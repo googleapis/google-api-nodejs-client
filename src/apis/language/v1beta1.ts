@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace language_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -499,7 +511,7 @@ export namespace language_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await language.documents.analyzeEntities({
@@ -647,7 +659,7 @@ export namespace language_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await language.documents.analyzeSentiment({
@@ -796,7 +808,7 @@ export namespace language_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await language.documents.analyzeSyntax({
@@ -945,7 +957,7 @@ export namespace language_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await language.documents.annotateText({
@@ -1075,22 +1087,12 @@ export namespace language_v1beta1 {
   export interface Params$Resource$Documents$Analyzeentities
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitiesRequest;
   }
   export interface Params$Resource$Documents$Analyzesentiment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1099,22 +1101,12 @@ export namespace language_v1beta1 {
   export interface Params$Resource$Documents$Analyzesyntax
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSyntaxRequest;
   }
   export interface Params$Resource$Documents$Annotatetext
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace managedidentities_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -771,7 +783,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.get({
@@ -904,7 +916,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.list({
@@ -1036,22 +1048,12 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1118,7 +1120,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.attachTrust(
@@ -1266,7 +1268,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.create({
@@ -1437,7 +1439,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.delete({
@@ -1571,7 +1573,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.detachTrust(
@@ -1719,7 +1721,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.get({
@@ -1860,7 +1862,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.getIamPolicy(
@@ -2007,7 +2009,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.list({
@@ -2163,7 +2165,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.patch({
@@ -2326,7 +2328,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.reconfigureTrust(
@@ -2474,7 +2476,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.resetAdminPassword(
@@ -2623,7 +2625,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.setIamPolicy(
@@ -2769,7 +2771,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.testIamPermissions(
@@ -2920,7 +2922,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.validateTrust(
@@ -3049,11 +3051,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Attachtrust
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
     name?: string;
@@ -3065,11 +3062,6 @@ export namespace managedidentities_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions:   * Must contain only lowercase letters, numbers, periods and hyphens.  * Must start with a letter.  * Must contain between 2-64 characters.  * Must end with a number or a letter.  * Must not start with period.  * Must be unique within the project.  * First segement length (mydomain form example above) shouldn't exceed    15 chars.  * The last segment cannot be fully numeric.
      */
@@ -3087,22 +3079,12 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Detachtrust
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
@@ -3116,22 +3098,12 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
@@ -3143,11 +3115,6 @@ export namespace managedidentities_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Filter specifying constraints of a list operation. For example, `Domain.fqdn="mydomain.myorginization"`.
      */
@@ -3172,11 +3139,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
      */
     name?: string;
@@ -3193,11 +3155,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
     name?: string;
@@ -3209,11 +3166,6 @@ export namespace managedidentities_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
@@ -3227,11 +3179,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3244,11 +3191,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3260,11 +3202,6 @@ export namespace managedidentities_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Validatetrust
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      */
@@ -3305,7 +3242,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.cancel(
@@ -3444,7 +3381,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.delete(
@@ -3573,7 +3510,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.get({
@@ -3706,7 +3643,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.list(
@@ -3836,11 +3773,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -3853,11 +3785,6 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
@@ -3865,22 +3792,12 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

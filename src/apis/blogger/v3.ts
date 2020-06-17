@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace blogger_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -636,7 +648,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.blogs.get({
@@ -783,7 +795,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.blogs.getByUrl({
@@ -927,7 +939,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.blogs.listByUser({
@@ -1050,11 +1062,6 @@ export namespace blogger_v3 {
 
   export interface Params$Resource$Blogs$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -1069,11 +1076,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Blogs$Getbyurl extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     url?: string;
@@ -1083,11 +1085,6 @@ export namespace blogger_v3 {
     view?: string;
   }
   export interface Params$Resource$Blogs$Listbyuser extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -1142,7 +1139,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.blogUserInfos.get({
@@ -1261,11 +1258,6 @@ export namespace blogger_v3 {
   export interface Params$Resource$Bloguserinfos$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -1308,7 +1300,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.approve({
@@ -1453,7 +1445,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.delete({
@@ -1583,7 +1575,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.get({
@@ -1733,7 +1725,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.list({
@@ -1892,7 +1884,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.listByBlog({
@@ -2044,7 +2036,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.markAsSpam({
@@ -2190,7 +2182,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.comments.removeContent({
@@ -2316,11 +2308,6 @@ export namespace blogger_v3 {
 
   export interface Params$Resource$Comments$Approve extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -2335,11 +2322,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -2353,11 +2335,6 @@ export namespace blogger_v3 {
     postId?: string;
   }
   export interface Params$Resource$Comments$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -2376,11 +2353,6 @@ export namespace blogger_v3 {
     view?: string;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -2421,11 +2393,6 @@ export namespace blogger_v3 {
   export interface Params$Resource$Comments$Listbyblog
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -2457,11 +2424,6 @@ export namespace blogger_v3 {
   export interface Params$Resource$Comments$Markasspam
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -2476,11 +2438,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Comments$Removecontent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -2524,7 +2481,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.delete({
@@ -2652,7 +2609,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.get({
@@ -2798,7 +2755,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.insert({
@@ -2964,7 +2921,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.list({
@@ -3111,7 +3068,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.patch({
@@ -3280,7 +3237,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.publish({
@@ -3422,7 +3379,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.revert({
@@ -3565,7 +3522,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pages.update({
@@ -3714,11 +3671,6 @@ export namespace blogger_v3 {
 
   export interface Params$Resource$Pages$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -3728,11 +3680,6 @@ export namespace blogger_v3 {
     pageId?: string;
   }
   export interface Params$Resource$Pages$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -3748,11 +3695,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Pages$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -3767,11 +3709,6 @@ export namespace blogger_v3 {
     requestBody?: Schema$Page;
   }
   export interface Params$Resource$Pages$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -3799,11 +3736,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Pages$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -3827,11 +3759,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Pages$Publish extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -3842,11 +3769,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Pages$Revert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -3856,11 +3778,6 @@ export namespace blogger_v3 {
     pageId?: string;
   }
   export interface Params$Resource$Pages$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -3913,7 +3830,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.pageViews.get({
@@ -4027,11 +3944,6 @@ export namespace blogger_v3 {
 
   export interface Params$Resource$Pageviews$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -4070,7 +3982,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.delete({
@@ -4198,7 +4110,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.get({
@@ -4363,7 +4275,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.getByPath({
@@ -4519,7 +4431,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.insert({
@@ -4705,7 +4617,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.list({
@@ -4868,7 +4780,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.patch({
@@ -5060,7 +4972,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.publish({
@@ -5212,7 +5124,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.revert({
@@ -5365,7 +5277,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.search({
@@ -5507,7 +5419,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.posts.update({
@@ -5679,11 +5591,6 @@ export namespace blogger_v3 {
 
   export interface Params$Resource$Posts$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -5693,11 +5600,6 @@ export namespace blogger_v3 {
     postId?: string;
   }
   export interface Params$Resource$Posts$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -5725,11 +5627,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Posts$Getbypath extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -5747,11 +5644,6 @@ export namespace blogger_v3 {
     view?: string;
   }
   export interface Params$Resource$Posts$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -5775,11 +5667,6 @@ export namespace blogger_v3 {
     requestBody?: Schema$Post;
   }
   export interface Params$Resource$Posts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -5827,11 +5714,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Posts$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -5867,11 +5749,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Posts$Publish extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -5886,11 +5763,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Posts$Revert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -5900,11 +5772,6 @@ export namespace blogger_v3 {
     postId?: string;
   }
   export interface Params$Resource$Posts$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -5923,11 +5790,6 @@ export namespace blogger_v3 {
     q?: string;
   }
   export interface Params$Resource$Posts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -5995,7 +5857,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.postUserInfos.get({
@@ -6138,7 +6000,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.postUserInfos.list({
@@ -6284,11 +6146,6 @@ export namespace blogger_v3 {
   export interface Params$Resource$Postuserinfos$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     blogId?: string;
@@ -6307,11 +6164,6 @@ export namespace blogger_v3 {
   }
   export interface Params$Resource$Postuserinfos$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -6390,7 +6242,7 @@ export namespace blogger_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await blogger.users.get({
@@ -6503,11 +6355,6 @@ export namespace blogger_v3 {
   }
 
   export interface Params$Resource$Users$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */

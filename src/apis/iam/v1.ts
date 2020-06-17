@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace iam_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -142,7 +154,7 @@ export namespace iam_v1 {
     name?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -164,7 +176,7 @@ export namespace iam_v1 {
     policyDelta?: Schema$PolicyDelta;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -181,7 +193,7 @@ export namespace iam_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
@@ -373,7 +385,7 @@ export namespace iam_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * The patch service account request.
+   * The request for PatchServiceAccount.  You can patch only the `display_name` and `description` fields. You must use the `update_mask` field to specify which of these fields you want to patch.  Only the fields specified in the request are guaranteed to be returned in the response. Other fields may be empty in the response.
    */
   export interface Schema$PatchServiceAccountRequest {
     serviceAccount?: Schema$ServiceAccount;
@@ -427,7 +439,7 @@ export namespace iam_v1 {
     removedPermissions?: string[] | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -443,7 +455,7 @@ export namespace iam_v1 {
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -569,43 +581,43 @@ export namespace iam_v1 {
     title?: string | null;
   }
   /**
-   * A service account in the Identity and Access Management API.  To create a service account, specify the `project_id` and the `account_id` for the account.  The `account_id` is unique within the project, and is used to generate the service account email address and a stable `unique_id`.  If the account already exists, the account&#39;s resource name is returned in the format of projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}. The caller can use the name in other methods to access the account.  All other methods can identify the service account using the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+   * An IAM service account.  A service account is an account for an application or a virtual machine (VM) instance, not a person. You can use a service account to call Google APIs. To learn more, read the [overview of service accounts](https://cloud.google.com/iam/help/service-accounts/overview).  When you create a service account, you specify the project ID that owns the service account, as well as a name that must be unique within the project. IAM uses these values to create an email address that identifies the service account.
    */
   export interface Schema$ServiceAccount {
     /**
-     * Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.
+     * Optional. A user-specified, human-readable description of the service account. The maximum length is 256 UTF-8 bytes.
      */
     description?: string | null;
     /**
-     * @OutputOnly A bool indicate if the service account is disabled. The field is currently in alpha phase.
+     * Output only. Whether the service account is disabled.
      */
     disabled?: boolean | null;
     /**
-     * Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.
+     * Optional. A user-specified, human-readable name for the service account. The maximum length is 100 UTF-8 bytes.
      */
     displayName?: string | null;
     /**
-     * @OutputOnly The email address of the service account.
+     * Output only. The email address of the service account.
      */
     email?: string | null;
     /**
-     * Optional. Note: `etag` is an inoperable legacy field that is only returned for backwards compatibility.
+     * Deprecated. Do not use.
      */
     etag?: string | null;
     /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * The resource name of the service account.  Use one of the following formats:  * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`  As an alternative, you can use the `-` wildcard character instead of the project ID:  * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` * `projects/-/serviceAccounts/{UNIQUE_ID}`  When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to get the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string | null;
     /**
-     * @OutputOnly The OAuth2 client id for the service account. This is used in conjunction with the OAuth2 clientconfig API to make three legged OAuth2 (3LO) flows to access the data of Google users.
+     * Output only. The OAuth 2.0 client ID for the service account.
      */
     oauth2ClientId?: string | null;
     /**
-     * @OutputOnly The id of the project that owns the service account.
+     * Output only. The ID of the project that owns the service account.
      */
     projectId?: string | null;
     /**
-     * @OutputOnly The unique and stable id of the service account.
+     * Output only. The unique, stable numeric ID for the service account.  Each service account retains its unique ID even if you delete the service account. For example, if you delete a service account, then create a new service account with the same name, the new service account has a different unique ID than the deleted service account.
      */
     uniqueId?: string | null;
   }
@@ -659,7 +671,7 @@ export namespace iam_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -690,7 +702,7 @@ export namespace iam_v1 {
    */
   export interface Schema$SignJwtRequest {
     /**
-     * Required. The JWT payload to sign, a JSON JWT Claim set.
+     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 1 hour in the future.  If the JWT Claims Set does not contain an expiration time (`exp`) claim, this claim is added automatically, with a timestamp that is 1 hour in the future.
      */
     payload?: string | null;
   }
@@ -762,7 +774,7 @@ export namespace iam_v1 {
 
     /**
      * iam.iamPolicies.lintPolicy
-     * @desc Lints a Cloud IAM policy object or its sub fields. Currently supports google.iam.v1.Binding.condition.  Each lint operation consists of multiple lint validation units. Each unit inspects the input object in regard to a particular linting aspect and issues a google.iam.admin.v1.LintResult disclosing the result.  The set of applicable validation units is determined by the Cloud IAM server and is not configurable.  Regardless of any lint issues or their severities, successful calls to `lintPolicy` return an HTTP 200 OK status code.
+     * @desc Lints, or validates, an IAM policy. Currently checks the google.iam.v1.Binding.condition field, which contains a condition expression for a role binding.  Successful calls to this method always return an HTTP `200 OK` status code, even if the linter detects an issue in the IAM policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -783,7 +795,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.iamPolicies.lintPolicy({
@@ -902,7 +914,7 @@ export namespace iam_v1 {
 
     /**
      * iam.iamPolicies.queryAuditableServices
-     * @desc Returns a list of services that support service level audit logging configuration for the given resource.
+     * @desc Returns a list of services that allow you to opt into audit logs that are not generated by default.  To learn more about audit logs, see the [Logging documentation](https://cloud.google.com/logging/docs/audit).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -923,7 +935,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.iamPolicies.queryAuditableServices({
@@ -1049,22 +1061,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Iampolicies$Lintpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$LintPolicyRequest;
   }
   export interface Params$Resource$Iampolicies$Queryauditableservices
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1088,7 +1090,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.create
-     * @desc Creates a new Role.
+     * @desc Creates a new custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1109,7 +1111,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.create({
@@ -1254,7 +1256,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.delete
-     * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
+     * @desc Deletes a custom Role.  When you delete a custom role, the following changes occur immediately:  * You cannot bind a member to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role.  You have 7 days to undelete the custom role. After 7 days, the following changes occur:  * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1275,7 +1277,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.delete({
@@ -1410,7 +1412,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.get
-     * @desc Gets a Role definition.
+     * @desc Gets the definition of a Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1431,7 +1433,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.get({
@@ -1570,7 +1572,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.list
-     * @desc Lists the Roles defined on a resource.
+     * @desc Lists every predefined Role that IAM supports, or every custom role that is defined for an organization or project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1591,7 +1593,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.list({
@@ -1746,7 +1748,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.patch
-     * @desc Updates a Role definition.
+     * @desc Updates the definition of a custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1767,7 +1769,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.patch({
@@ -1917,7 +1919,7 @@ export namespace iam_v1 {
 
     /**
      * iam.organizations.roles.undelete
-     * @desc Undelete a Role, bringing it back in its previous state.
+     * @desc Undeletes a custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1938,7 +1940,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.organizations.roles.undelete({
@@ -2084,11 +2086,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     parent?: string;
@@ -2101,11 +2098,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
@@ -2117,22 +2109,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Roles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -2157,11 +2139,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
@@ -2177,11 +2154,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Organizations$Roles$Undelete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -2201,7 +2173,7 @@ export namespace iam_v1 {
 
     /**
      * iam.permissions.queryTestablePermissions
-     * @desc Lists the permissions testable on a resource. A permission is testable if it can be tested for an identity on a resource.
+     * @desc Lists every permission that you can test on a resource. A permission is testable if you can check whether a member has that permission on the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2222,7 +2194,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.permissions.queryTestablePermissions({
@@ -2351,11 +2323,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Permissions$Querytestablepermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$QueryTestablePermissionsRequest;
@@ -2382,7 +2349,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.create
-     * @desc Creates a new Role.
+     * @desc Creates a new custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2403,7 +2370,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.create({
@@ -2548,7 +2515,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.delete
-     * @desc Soft deletes a role. The role is suspended and cannot be used to create new IAM Policy Bindings. The Role will not be included in `ListRoles()` unless `show_deleted` is set in the `ListRolesRequest`. The Role contains the deleted boolean set. Existing Bindings remains, but are inactive. The Role can be undeleted within 7 days. After 7 days the Role is deleted and all Bindings associated with the role are removed.
+     * @desc Deletes a custom Role.  When you delete a custom role, the following changes occur immediately:  * You cannot bind a member to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role.  You have 7 days to undelete the custom role. After 7 days, the following changes occur:  * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2569,7 +2536,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.delete({
@@ -2704,7 +2671,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.get
-     * @desc Gets a Role definition.
+     * @desc Gets the definition of a Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2725,7 +2692,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.get({
@@ -2864,7 +2831,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.list
-     * @desc Lists the Roles defined on a resource.
+     * @desc Lists every predefined Role that IAM supports, or every custom role that is defined for an organization or project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2885,7 +2852,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.list({
@@ -3040,7 +3007,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.patch
-     * @desc Updates a Role definition.
+     * @desc Updates the definition of a custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3061,7 +3028,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.patch({
@@ -3211,7 +3178,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.roles.undelete
-     * @desc Undelete a Role, bringing it back in its previous state.
+     * @desc Undeletes a custom Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3232,7 +3199,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.roles.undelete({
@@ -3378,11 +3345,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `parent` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`projects.roles.create()`](/iam/reference/rest/v1/projects.roles/create):   `projects/{PROJECT_ID}`. This method creates project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.create()`](/iam/reference/rest/v1/organizations.roles/create):   `organizations/{ORGANIZATION_ID}`. This method creates organization-level   [custom roles](/iam/docs/understanding-custom-roles). Example request   URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     parent?: string;
@@ -3395,11 +3357,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
@@ -3411,22 +3368,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Roles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -3451,11 +3398,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.patch()`](/iam/reference/rest/v1/projects.roles/patch):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method updates only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.patch()`](/iam/reference/rest/v1/organizations.roles/patch):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   updates only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
@@ -3471,11 +3413,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Roles$Undelete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `name` parameter's value depends on the target resource for the request, namely [`projects`](/iam/reference/rest/v1/projects.roles) or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`projects.roles.undelete()`](/iam/reference/rest/v1/projects.roles/undelete):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method undeletes   only [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.undelete()`](/iam/reference/rest/v1/organizations.roles/undelete):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   undeletes only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
@@ -3497,7 +3434,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.create
-     * @desc Creates a ServiceAccount and returns it.
+     * @desc Creates a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3518,7 +3455,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.create({
@@ -3647,7 +3584,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.delete
-     * @desc Deletes a ServiceAccount.
+     * @desc Deletes a ServiceAccount.  **Warning:** After you delete a service account, you might not be able to undelete it. If you know that you need to re-enable the service account in the future, use DisableServiceAccount instead.  If you delete a service account, IAM permanently removes the service account 30 days later. Google Cloud cannot recover the service account after it is permanently removed, even if you file a support request.  To help avoid unplanned outages, we recommend that you disable the service account before you delete it. Use DisableServiceAccount to disable the service account, then wait at least 24 hours and watch for unintended consequences. If there are no unintended consequences, you can delete the service account.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3668,7 +3605,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.delete({
@@ -3777,7 +3714,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.disable
-     * @desc DisableServiceAccount is currently in the alpha launch stage.  Disables a ServiceAccount, which immediately prevents the service account from authenticating and gaining access to APIs.  Disabled service accounts can be safely restored by using EnableServiceAccount at any point. Deleted service accounts cannot be restored using this method.  Disabling a service account that is bound to VMs, Apps, Functions, or other jobs will cause those jobs to lose access to resources if they are using the disabled service account.  To improve reliability of your services and avoid unexpected outages, it is recommended to first disable a service account rather than delete it. After disabling the service account, wait at least 24 hours to verify there are no unintended consequences, and then delete the service account.
+     * @desc Disables a ServiceAccount immediately.  If an application uses the service account to authenticate, that application can no longer call Google APIs or access Google Cloud resources. Existing access tokens for the service account are rejected, and requests for new access tokens will fail.  To re-enable the service account, use EnableServiceAccount. After you re-enable the service account, its existing access tokens will be accepted, and you can request new access tokens.  To help avoid unplanned outages, we recommend that you disable the service account before you delete it. Use this method to disable the service account, then wait at least 24 hours and watch for unintended consequences. If there are no unintended consequences, you can delete the service account with DeleteServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3798,7 +3735,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.disable({
@@ -3917,7 +3854,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.enable
-     * @desc EnableServiceAccount is currently in the alpha launch stage.   Restores a disabled ServiceAccount  that has been manually disabled by using DisableServiceAccount. Service  accounts that have been disabled by other means or for other reasons,  such as abuse, cannot be restored using this method.   EnableServiceAccount will have no effect on a service account that is  not disabled.  Enabling an already enabled service account will have no  effect.
+     * @desc Enables a ServiceAccount that was disabled by DisableServiceAccount.  If the service account is already enabled, then this method has no effect.  If the service account was disabled by other means—for example, if Google disabled the service account because it was compromised—you cannot use this method to enable the service account.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3938,7 +3875,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.enable({
@@ -4075,7 +4012,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.get({
@@ -4194,7 +4131,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.getIamPolicy
-     * @desc Returns the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. It returns the Cloud IAM policy that reflects what members have access to the service account.  This method does not return what resources the service account has access to. To see if a service account has access to a resource, call the `getIamPolicy` method on the target resource. For example, to view grants for a project, call the [projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy) method.
+     * @desc Gets the IAM policy that is attached to a ServiceAccount. This IAM policy specifies which members have access to the service account.  This method does not tell you whether the service account has been granted any roles on other resources. To check whether a service account has role grants on a resource, use the `getIamPolicy` method for that resource. For example, to view the role grants for a project, call the Resource Manager API's [`projects.getIamPolicy`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/getIamPolicy) method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4215,7 +4152,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.getIamPolicy({
@@ -4227,6 +4164,10 @@ export namespace iam_v1 {
      *     // Requests for policies with any conditional bindings must specify version 3.
      *     // Policies without any conditional bindings may specify any valid value or
      *     // leave the field unset.
+     *     //
+     *     // To learn which resources support conditions in their IAM policies, see the
+     *     // [IAM
+     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested.
      *     // See the operation documentation for the appropriate value for this field.
@@ -4252,7 +4193,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4339,7 +4280,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.list
-     * @desc Lists ServiceAccounts for a project.
+     * @desc Lists every ServiceAccount that belongs to a specific project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4360,7 +4301,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.list({
@@ -4489,7 +4430,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.patch
-     * @desc Patches a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.  Only fields specified in the request are guaranteed to be returned in the response. Other fields in the response may be empty.  Note: The field mask is required.
+     * @desc Patches a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4510,19 +4451,29 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.patch({
-     *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // The resource name of the service account.
      *     //
-     *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
-     *     // project from the `account` and the `ACCOUNT` value can be the `email`
-     *     // address or the `unique_id` of the service account.
+     *     // Use one of the following formats:
      *     //
-     *     // In responses the resource name will always be in the format
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}`
+     *     // * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`
+     *     //
+     *     // As an alternative, you can use the `-` wildcard character instead of the
+     *     // project ID:
+     *     //
+     *     // * `projects/-/serviceAccounts/{EMAIL_ADDRESS}`
+     *     // * `projects/-/serviceAccounts/{UNIQUE_ID}`
+     *     //
+     *     // When possible, avoid using the `-` wildcard character, because it can cause
+     *     // response messages to contain misleading error codes. For example, if you
+     *     // try to get the service account
+     *     // `projects/-/serviceAccounts/fake@example.com`, which does not exist, the
+     *     // response contains an HTTP `403 Forbidden` error instead of a `404 Not
+     *     // Found` error.
      *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *     // Request body metadata
@@ -4559,7 +4510,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * @param {string} params.name The resource name of the service account.  Use one of the following formats:  * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`  As an alternative, you can use the `-` wildcard character instead of the project ID:  * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` * `projects/-/serviceAccounts/{UNIQUE_ID}`  When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to get the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      * @param {().PatchServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4643,7 +4594,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.setIamPolicy
-     * @desc Sets the Cloud IAM access control policy for a ServiceAccount.  Note: Service accounts are both [resources and identities](/iam/docs/service-accounts#service_account_permissions). This method treats the service account as a resource. Use it to grant members access to the service account, such as when they need to impersonate it.  This method does not grant the service account access to other resources, such as projects. To grant a service account access to resources, include the service account in the Cloud IAM policy for the desired resource, then call the appropriate `setIamPolicy` method on the target resource. For example, to grant a service account access to a project, call the [projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy) method.
+     * @desc Sets the IAM policy that is attached to a ServiceAccount.  Use this method to grant or revoke access to the service account. For example, you could grant a member the ability to impersonate the service account.  This method does not enable the service account to access other resources. To grant roles to a service account on a resource, follow these steps:  1. Call the resource's `getIamPolicy` method to get its current IAM policy. 2. Edit the policy so that it binds the service account to an IAM role for the resource. 3. Call the resource's `setIamPolicy` method to update its IAM policy.  For detailed instructions, see [Granting roles to a service account for specific resources](https://cloud.google.com/iam/help/service-accounts/granting-access-to-service-accounts).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4664,7 +4615,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.setIamPolicy({
@@ -4788,7 +4739,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.signBlob
-     * @desc **Note**: This method is in the process of being deprecated. Call the [`signBlob()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob) method of the Cloud IAM Service Account Credentials API instead.  Signs a blob using a service account's system-managed private key.
+     * @desc **Note:** We are in the process of deprecating this method. Use the [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob) method in the IAM Service Account Credentials API instead.  Signs a blob using the system-managed private key for a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4809,7 +4760,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.signBlob({
@@ -4933,7 +4884,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.signJwt
-     * @desc **Note**: This method is in the process of being deprecated. Call the [`signJwt()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signJwt) method of the Cloud IAM Service Account Credentials API instead.  Signs a JWT using a service account's system-managed private key.  If no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an an expiry time of one hour by default. If you request an expiry time of more than one hour, the request will fail.
+     * @desc **Note:** We are in the process of deprecating this method. Use the [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt) method in the IAM Service Account Credentials API instead.  Signs a JSON Web Token (JWT) using the system-managed private key for a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4954,7 +4905,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.signJwt({
@@ -5078,7 +5029,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.testIamPermissions
-     * @desc Tests the specified permissions against the IAM access control policy for a ServiceAccount.
+     * @desc Tests whether the caller has the specified permissions on a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5099,7 +5050,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.testIamPermissions({
@@ -5226,7 +5177,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.undelete
-     * @desc Restores a deleted ServiceAccount. This is to be used as an action of last resort.  A service account may not always be restorable.
+     * @desc Restores a deleted ServiceAccount.  **Important:** It is not always possible to restore a deleted service account. Use this method only as a last resort.  After you delete a service account, IAM permanently removes the service account 30 days later. There is no way to restore a deleted service account that has been permanently removed.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5247,7 +5198,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.undelete({
@@ -5376,7 +5327,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.update
-     * @desc Note: This method is in the process of being deprecated. Use PatchServiceAccount instead.  Updates a ServiceAccount.  Currently, only the following fields are updatable: `display_name` and `description`.
+     * @desc **Note:** We are in the process of deprecating this method. Use PatchServiceAccount instead.  Updates a ServiceAccount.  You can update only the `display_name` and `description` fields.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5397,19 +5348,29 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.update({
-     *     // The resource name of the service account in the following format:
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // The resource name of the service account.
      *     //
-     *     // Requests using `-` as a wildcard for the `PROJECT_ID` will infer the
-     *     // project from the `account` and the `ACCOUNT` value can be the `email`
-     *     // address or the `unique_id` of the service account.
+     *     // Use one of the following formats:
      *     //
-     *     // In responses the resource name will always be in the format
-     *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     *     // * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}`
+     *     // * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`
+     *     //
+     *     // As an alternative, you can use the `-` wildcard character instead of the
+     *     // project ID:
+     *     //
+     *     // * `projects/-/serviceAccounts/{EMAIL_ADDRESS}`
+     *     // * `projects/-/serviceAccounts/{UNIQUE_ID}`
+     *     //
+     *     // When possible, avoid using the `-` wildcard character, because it can cause
+     *     // response messages to contain misleading error codes. For example, if you
+     *     // try to get the service account
+     *     // `projects/-/serviceAccounts/fake@example.com`, which does not exist, the
+     *     // response contains an HTTP `403 Forbidden` error instead of a `404 Not
+     *     // Found` error.
      *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *     // Request body metadata
@@ -5453,7 +5414,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * @param {string} params.name The resource name of the service account.  Use one of the following formats:  * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`  As an alternative, you can use the `-` wildcard character instead of the project ID:  * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` * `projects/-/serviceAccounts/{UNIQUE_ID}`  When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to get the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      * @param {().ServiceAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5539,11 +5500,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
     name?: string;
@@ -5556,22 +5512,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Disable
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -5585,11 +5531,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Enable
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
@@ -5602,11 +5543,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
@@ -5614,12 +5550,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -5629,11 +5560,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
      */
@@ -5650,12 +5576,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * The resource name of the service account.  Use one of the following formats:  * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`  As an alternative, you can use the `-` wildcard character instead of the project ID:  * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` * `projects/-/serviceAccounts/{UNIQUE_ID}`  When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to get the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
 
@@ -5666,11 +5587,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -5684,11 +5600,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
@@ -5700,11 +5611,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -5718,11 +5624,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -5734,11 +5635,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Undelete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
      */
@@ -5752,12 +5648,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * The resource name of the service account.  Use one of the following formats:  * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS}` * `projects/{PROJECT_ID}/serviceAccounts/{UNIQUE_ID}`  As an alternative, you can use the `-` wildcard character instead of the project ID:  * `projects/-/serviceAccounts/{EMAIL_ADDRESS}` * `projects/-/serviceAccounts/{UNIQUE_ID}`  When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to get the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
 
@@ -5775,7 +5666,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.keys.create
-     * @desc Creates a ServiceAccountKey and returns it.
+     * @desc Creates a ServiceAccountKey.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5796,7 +5687,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.keys.create({
@@ -5949,7 +5840,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.keys.delete({
@@ -6058,7 +5949,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.keys.get
-     * @desc Gets the ServiceAccountKey by key id.
+     * @desc Gets a ServiceAccountKey.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6079,7 +5970,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.keys.get({
@@ -6206,7 +6097,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.keys.list
-     * @desc Lists ServiceAccountKeys.
+     * @desc Lists every ServiceAccountKey for a service account.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6227,7 +6118,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.keys.list({
@@ -6353,7 +6244,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.keys.upload
-     * @desc Upload public key for a given service account. This rpc will create a ServiceAccountKey that has the provided public key and returns it.
+     * @desc Creates a ServiceAccountKey, using a public key that you provide.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6374,7 +6265,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.keys.upload({
@@ -6510,11 +6401,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
@@ -6527,22 +6413,12 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -6555,11 +6431,6 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Keys$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
      */
     keyTypes?: string[];
@@ -6570,11 +6441,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
@@ -6594,7 +6460,7 @@ export namespace iam_v1 {
 
     /**
      * iam.roles.get
-     * @desc Gets a Role definition.
+     * @desc Gets the definition of a Role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6615,7 +6481,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.roles.get({
@@ -6753,7 +6619,7 @@ export namespace iam_v1 {
 
     /**
      * iam.roles.list
-     * @desc Lists the Roles defined on a resource.
+     * @desc Lists every predefined Role that IAM supports, or every custom role that is defined for an organization or project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6774,7 +6640,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.roles.list({
@@ -6925,7 +6791,7 @@ export namespace iam_v1 {
 
     /**
      * iam.roles.queryGrantableRoles
-     * @desc Queries roles that can be granted on a particular resource. A role is grantable if it can be used as the role in a binding for a policy for that resource.
+     * @desc Lists roles that can be granted on a Google Cloud resource. A role is grantable if the IAM policy for the resource can contain bindings to the role.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6946,7 +6812,7 @@ export namespace iam_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iam.roles.queryGrantableRoles({
@@ -7073,21 +6939,11 @@ export namespace iam_v1 {
 
   export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `name` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `name` value format is described below:  * [`roles.get()`](/iam/reference/rest/v1/roles/get): `roles/{ROLE_NAME}`.   This method returns results from all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles/{ROLE_NAME}`  * [`projects.roles.get()`](/iam/reference/rest/v1/projects.roles/get):   `projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`. This method returns only   [custom roles](/iam/docs/understanding-custom-roles) that have been   created at the project level. Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles/{CUSTOM_ROLE_ID}`  * [`organizations.roles.get()`](/iam/reference/rest/v1/organizations.roles/get):   `organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`. This method   returns only [custom roles](/iam/docs/understanding-custom-roles) that   have been created at the organization level. Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles/{CUSTOM_ROLE_ID}`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      */
     name?: string;
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional limit on the number of roles to include in the response.
      */
@@ -7111,11 +6967,6 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Roles$Querygrantableroles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

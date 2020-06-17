@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace iamcredentials_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -171,11 +183,11 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignBlobResponse {
     /**
-     * The ID of the key used to sign the blob.
+     * The ID of the key used to sign the blob. The key used for signing will remain valid for at least 12 hours after the blob is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints:  - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
      */
     keyId?: string | null;
     /**
-     * The signature for the blob. Does not include the original blob.
+     * The signature for the blob. Does not include the original blob.  After the key pair referenced by the `key_id` response field expires, Google no longer exposes the public key that can be used to verify the blob. As a result, the receiver can no longer verify the signature.
      */
     signedBlob?: string | null;
   }
@@ -185,17 +197,17 @@ export namespace iamcredentials_v1 {
      */
     delegates?: string[] | null;
     /**
-     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claim Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the claim set contains an `exp` claim, it must be an integer timestamp that is not in the past and at most 12 hours in the future.
+     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 12 hours in the future.
      */
     payload?: string | null;
   }
   export interface Schema$SignJwtResponse {
     /**
-     * The ID of the key used to sign the JWT.
+     * The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints:  - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
      */
     keyId?: string | null;
     /**
-     * The signed JWT. Contains the automatically generated header; the client-supplied payload; and the signature, which is generated using the key referenced by the `kid` field in the header.
+     * The signed JWT. Contains the automatically generated header; the client-supplied payload; and the signature, which is generated using the key referenced by the `kid` field in the header.  After the key pair referenced by the `key_id` response field expires, Google no longer exposes the public key that can be used to verify the JWT. As a result, the receiver can no longer verify the signature.
      */
     signedJwt?: string | null;
   }
@@ -240,7 +252,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateAccessToken(
@@ -396,7 +408,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateIdToken({
@@ -549,7 +561,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signBlob({
@@ -695,7 +707,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signJwt({
@@ -822,11 +834,6 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
@@ -838,11 +845,6 @@ export namespace iamcredentials_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
@@ -856,11 +858,6 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
@@ -872,11 +869,6 @@ export namespace iamcredentials_v1 {
   }
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace networkmanagement_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -982,7 +994,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.get({
@@ -1115,7 +1127,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
@@ -1243,22 +1255,12 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1321,7 +1323,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.create(
@@ -1489,7 +1491,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.delete(
@@ -1626,7 +1628,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.get(
@@ -1769,7 +1771,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
@@ -1922,7 +1924,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.list(
@@ -2097,7 +2099,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.patch(
@@ -2257,7 +2259,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.rerun(
@@ -2404,7 +2406,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
@@ -2553,7 +2555,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
@@ -2686,11 +2688,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource of the Connectivity Test to create:     `projects/{project_id}/locations/global`
      */
     parent?: string;
@@ -2707,11 +2704,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
@@ -2719,22 +2711,12 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. `ConnectivityTest` resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2746,11 +2728,6 @@ export namespace networkmanagement_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form `<field> <operator> <value>` where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). <field> can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.  Examples: - Filter by name:   name = "projects/proj-1/locations/global/connectivityTests/test-1  - Filter by labels:   - Resources that have a key called `foo`     labels.foo:*   - Resources that have a key called `foo` whose value is `bar`     labels.foo = bar
      */
@@ -2775,11 +2752,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Unique name of the resource using the form:     `projects/{project_id}/locations/global/connectivityTests/{test}`
      */
     name?: string;
@@ -2796,11 +2768,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Connectivity Test resource name using the form:     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      */
     name?: string;
@@ -2813,11 +2780,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2829,11 +2791,6 @@ export namespace networkmanagement_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2874,7 +2831,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.cancel(
@@ -3013,7 +2970,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.delete(
@@ -3142,7 +3099,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.get({
@@ -3275,7 +3232,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.list(
@@ -3405,11 +3362,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -3422,11 +3374,6 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
@@ -3434,22 +3381,12 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

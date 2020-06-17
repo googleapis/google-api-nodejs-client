@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200601",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -399,7 +399,7 @@
           "type": "array"
         },
         "audiences": {
-          "description": "The intended audience(s) for this authentication information. Reflects\nthe audience (`aud`) claim within a JWT. The audience\nvalue(s) depends on the `issuer`, but typically include one or more of\nthe following pieces of information:\n\n*  The services intended to receive the credential such as\n   [\"pubsub.googleapis.com\", \"storage.googleapis.com\"]\n*  A set of service-based scopes. For example,\n   [\"https://www.googleapis.com/auth/cloud-platform\"]\n*  The client id of an app, such as the Firebase project id for JWTs\n   from Firebase Auth.\n\nConsult the documentation for the credential issuer to determine the\ninformation provided.",
+          "description": "The intended audience(s) for this authentication information. Reflects\nthe audience (`aud`) claim within a JWT. The audience\nvalue(s) depends on the `issuer`, but typically include one or more of\nthe following pieces of information:\n\n*  The services intended to receive the credential. For example,\n   [\"https://pubsub.googleapis.com/\", \"https://storage.googleapis.com/\"].\n*  A set of service-based scopes. For example,\n   [\"https://www.googleapis.com/auth/cloud-platform\"].\n*  The client id of an app, such as the Firebase project id for JWTs\n   from Firebase Auth.\n\nConsult the documentation for the credential issuer to determine the\ninformation provided.",
           "items": {
             "type": "string"
           },

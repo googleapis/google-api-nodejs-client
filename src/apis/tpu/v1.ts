@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace tpu_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -380,7 +392,13 @@ export namespace tpu_v1 {
      */
     tensorflowVersion?: string | null;
   }
+  /**
+   * Sets the scheduling options for this node.
+   */
   export interface Schema$SchedulingConfig {
+    /**
+     * Defines whether the node is preemptible.
+     */
     preemptible?: boolean | null;
     /**
      * Whether the node is created under a reservation.
@@ -478,7 +496,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.get({
@@ -610,7 +628,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
@@ -737,22 +755,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -800,7 +808,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.acceleratorTypes.get({
@@ -930,7 +938,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.acceleratorTypes.list({
@@ -1065,22 +1073,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Acceleratortypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * List filter.
      */
@@ -1132,7 +1130,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.create({
@@ -1294,7 +1292,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.delete({
@@ -1426,7 +1424,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.get({
@@ -1569,7 +1567,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.list({
@@ -1711,7 +1709,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.reimage({
@@ -1855,7 +1853,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.start({
@@ -1994,7 +1992,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.stop({
@@ -2114,11 +2112,6 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unqualified resource name.
      */
     nodeId?: string;
@@ -2135,11 +2128,6 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
@@ -2147,22 +2135,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */
@@ -2179,11 +2157,6 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Reimage
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
@@ -2196,11 +2169,6 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Nodes$Start
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
@@ -2212,11 +2180,6 @@ export namespace tpu_v1 {
   }
   export interface Params$Resource$Projects$Locations$Nodes$Stop
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name.
      */
@@ -2257,7 +2220,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.operations.cancel({
@@ -2383,7 +2346,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.operations.delete({
@@ -2509,7 +2472,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.operations.get({
@@ -2641,7 +2604,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.operations.list({
@@ -2768,22 +2731,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -2792,22 +2745,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2855,7 +2798,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.tensorflowVersions.get({
@@ -2988,7 +2931,7 @@ export namespace tpu_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.tensorflowVersions.list({
@@ -3123,22 +3066,12 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tensorflowversions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * List filter.
      */

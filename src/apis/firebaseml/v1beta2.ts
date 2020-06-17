@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firebaseml_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -296,7 +308,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.create({
@@ -450,7 +462,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.delete({
@@ -577,7 +589,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.get({
@@ -715,7 +727,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.list({
@@ -861,7 +873,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.patch({
@@ -997,11 +1009,6 @@ export namespace firebaseml_v1beta2 {
   export interface Params$Resource$Projects$Models$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`
      */
     parent?: string;
@@ -1014,11 +1021,6 @@ export namespace firebaseml_v1beta2 {
   export interface Params$Resource$Projects$Models$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`
      */
     name?: string;
@@ -1026,22 +1028,12 @@ export namespace firebaseml_v1beta2 {
   export interface Params$Resource$Projects$Models$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Models$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter for the list e.g. 'tags: abc' to list models which are tagged with "abc"
      */
@@ -1061,11 +1053,6 @@ export namespace firebaseml_v1beta2 {
   }
   export interface Params$Resource$Projects$Models$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
      */
@@ -1110,7 +1097,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.operations.get({
@@ -1222,11 +1209,6 @@ export namespace firebaseml_v1beta2 {
 
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

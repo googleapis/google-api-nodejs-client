@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace accessapproval_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -312,7 +324,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.deleteAccessApprovalSettings({
@@ -441,7 +453,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.getAccessApprovalSettings({
@@ -580,7 +592,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.updateAccessApprovalSettings({
@@ -729,11 +741,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -741,22 +748,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -801,7 +798,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.approve({
@@ -950,7 +947,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.dismiss({
@@ -1097,7 +1094,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.get({
@@ -1234,7 +1231,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.list({
@@ -1375,11 +1372,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -1391,11 +1383,6 @@ export namespace accessapproval_v1 {
   }
   export interface Params$Resource$Folders$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -1409,22 +1396,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -1476,7 +1453,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.deleteAccessApprovalSettings({
@@ -1605,7 +1582,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.getAccessApprovalSettings({
@@ -1744,7 +1721,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
@@ -1893,11 +1870,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -1905,22 +1877,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -1965,7 +1927,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.approve({
@@ -2114,7 +2076,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.dismiss({
@@ -2261,7 +2223,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.get({
@@ -2398,7 +2360,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.list({
@@ -2539,11 +2501,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -2555,11 +2512,6 @@ export namespace accessapproval_v1 {
   }
   export interface Params$Resource$Organizations$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -2573,22 +2525,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -2640,7 +2582,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.deleteAccessApprovalSettings({
@@ -2769,7 +2711,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.getAccessApprovalSettings({
@@ -2908,7 +2850,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.updateAccessApprovalSettings({
@@ -3057,11 +2999,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -3069,22 +3006,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -3129,7 +3056,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.approve({
@@ -3278,7 +3205,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.dismiss({
@@ -3425,7 +3352,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.get({
@@ -3562,7 +3489,7 @@ export namespace accessapproval_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.list({
@@ -3703,11 +3630,6 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -3719,11 +3641,6 @@ export namespace accessapproval_v1 {
   }
   export interface Params$Resource$Projects$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -3737,22 +3654,12 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */

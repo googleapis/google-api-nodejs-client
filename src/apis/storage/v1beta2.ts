@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace storage_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -562,7 +574,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.delete({
@@ -689,7 +701,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.get({
@@ -835,7 +847,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.insert({
@@ -996,7 +1008,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.list({
@@ -1133,7 +1145,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.patch({
@@ -1297,7 +1309,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.update({
@@ -1442,11 +1454,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Bucketaccesscontrols$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -1458,11 +1465,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Bucketaccesscontrols$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -1473,11 +1475,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Bucketaccesscontrols$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -1491,22 +1488,12 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Bucketaccesscontrols$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -1523,11 +1510,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Bucketaccesscontrols$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -1575,7 +1557,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.delete({
@@ -1708,7 +1690,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.get({
@@ -1866,7 +1848,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.insert({
@@ -2041,7 +2023,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.list({
@@ -2182,7 +2164,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.patch({
@@ -2365,7 +2347,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.update({
@@ -2525,11 +2507,6 @@ export namespace storage_v1beta2 {
 
   export interface Params$Resource$Buckets$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -2543,11 +2520,6 @@ export namespace storage_v1beta2 {
     ifMetagenerationNotMatch?: string;
   }
   export interface Params$Resource$Buckets$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -2567,11 +2539,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Buckets$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A valid API project identifier.
      */
     project?: string;
@@ -2586,11 +2553,6 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of buckets to return.
      */
@@ -2609,11 +2571,6 @@ export namespace storage_v1beta2 {
     projection?: string;
   }
   export interface Params$Resource$Buckets$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -2637,11 +2594,6 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$Bucket;
   }
   export interface Params$Resource$Buckets$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -2698,7 +2650,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.channels.stop({
@@ -2815,11 +2767,6 @@ export namespace storage_v1beta2 {
 
   export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Channel;
@@ -2854,7 +2801,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.delete({
@@ -2980,7 +2927,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.get({
@@ -3127,7 +3074,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.insert({
@@ -3291,7 +3238,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.list({
@@ -3433,7 +3380,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.patch({
@@ -3600,7 +3547,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.update({
@@ -3748,11 +3695,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Defaultobjectaccesscontrols$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -3763,11 +3705,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -3780,11 +3717,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Defaultobjectaccesscontrols$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -3796,11 +3728,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -3817,11 +3744,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Defaultobjectaccesscontrols$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -3837,11 +3759,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -3886,7 +3803,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.delete({
@@ -4018,7 +3935,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.get({
@@ -4171,7 +4088,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.insert({
@@ -4341,7 +4258,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.list({
@@ -4483,7 +4400,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.patch({
@@ -4656,7 +4573,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.update({
@@ -4810,11 +4727,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Objectaccesscontrols$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -4834,11 +4746,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Objectaccesscontrols$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -4857,11 +4764,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objectaccesscontrols$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -4883,11 +4785,6 @@ export namespace storage_v1beta2 {
   export interface Params$Resource$Objectaccesscontrols$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of a bucket.
      */
     bucket?: string;
@@ -4902,11 +4799,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objectaccesscontrols$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -4931,11 +4823,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objectaccesscontrols$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of a bucket.
      */
@@ -4991,7 +4878,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.compose({
@@ -5167,7 +5054,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.copy({
@@ -5404,7 +5291,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.delete({
@@ -5549,7 +5436,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.get({
@@ -5726,7 +5613,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.insert({
@@ -5944,7 +5831,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.list({
@@ -6098,7 +5985,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.patch({
@@ -6307,7 +6194,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.update({
@@ -6517,7 +6404,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.watchAll({
@@ -6672,11 +6559,6 @@ export namespace storage_v1beta2 {
 
   export interface Params$Resource$Objects$Compose extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the bucket containing the source objects. The destination object is stored in this bucket.
      */
     destinationBucket?: string;
@@ -6699,11 +6581,6 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$ComposeRequest;
   }
   export interface Params$Resource$Objects$Copy extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
@@ -6768,11 +6645,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objects$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
@@ -6802,11 +6674,6 @@ export namespace storage_v1beta2 {
     object?: string;
   }
   export interface Params$Resource$Objects$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the bucket in which the object resides.
      */
@@ -6841,11 +6708,6 @@ export namespace storage_v1beta2 {
     projection?: string;
   }
   export interface Params$Resource$Objects$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
@@ -6897,11 +6759,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objects$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the bucket in which to look for objects.
      */
     bucket?: string;
@@ -6931,11 +6788,6 @@ export namespace storage_v1beta2 {
     versions?: boolean;
   }
   export interface Params$Resource$Objects$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the bucket in which the object resides.
      */
@@ -6976,11 +6828,6 @@ export namespace storage_v1beta2 {
   }
   export interface Params$Resource$Objects$Update extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
@@ -7019,11 +6866,6 @@ export namespace storage_v1beta2 {
     requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Watchall extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the bucket in which to look for objects.
      */

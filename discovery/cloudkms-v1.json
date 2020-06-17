@@ -1251,7 +1251,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200609",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1261,6 +1261,11 @@
         "ciphertext": {
           "description": "Required. The data encrypted with the named CryptoKeyVersion's public\nkey using OAEP.",
           "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext.\nIf specified, KeyManagementService will verify the integrity of the\nreceived AsymmetricDecryptRequest.ciphertext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(AsymmetricDecryptRequest.ciphertext) is equal to\nAsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a\nlimited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1274,6 +1279,15 @@
           "description": "The decrypted data originally encrypted with the matching public key.",
           "format": "byte",
           "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned\nAsymmetricDecryptResponse.plaintext. An integrity check of\nAsymmetricDecryptResponse.plaintext can be performed by computing the\nCRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing\nyour results to this field. Discard the response in case of non-matching\nchecksum values, and perform a limited number of retries. A persistent\nmismatch may indicate an issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verifiedCiphertextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether\nAsymmetricDecryptRequest.ciphertext_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nciphertext. A false value of this\nfield indicates either that AsymmetricDecryptRequest.ciphertext_crc32c\nwas left unset or that it was not delivered to KeyManagementService. If\nyou've set AsymmetricDecryptRequest.ciphertext_crc32c but this field is\nstill false, discard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1285,6 +1299,11 @@
         "digest": {
           "$ref": "Digest",
           "description": "Required. The digest of the data to sign. The digest must be produced with\nthe same digest algorithm as specified by the key version's\nalgorithm."
+        },
+        "digestCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If\nspecified, KeyManagementService will verify the integrity of the\nreceived AsymmetricSignRequest.digest using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(AsymmetricSignRequest.digest) is equal to\nAsymmetricSignRequest.digest_crc32c, and if so, perform a limited\nnumber of retries. A persistent mismatch may indicate an issue in your\ncomputation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1293,16 +1312,29 @@
       "description": "Response message for KeyManagementService.AsymmetricSign.",
       "id": "AsymmetricSignResponse",
       "properties": {
+        "name": {
+          "description": "The resource name of the CryptoKeyVersion used for signing. Check\nthis field to verify that the intended resource was used for signing.\n\nNOTE: This field is in Beta.",
+          "type": "string"
+        },
         "signature": {
           "description": "The created signature.",
           "format": "byte",
           "type": "string"
+        },
+        "signatureCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned\nAsymmetricSignResponse.signature. An integrity check of\nAsymmetricSignResponse.signature can be performed by computing the\nCRC32C checksum of AsymmetricSignResponse.signature and comparing your\nresults to this field. Discard the response in case of non-matching\nchecksum values, and perform a limited number of retries. A persistent\nmismatch may indicate an issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verifiedDigestCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether\nAsymmetricSignRequest.digest_crc32c was received by\nKeyManagementService and used for the integrity verification of the\ndigest. A false value of this field\nindicates either that AsymmetricSignRequest.digest_crc32c was left\nunset or that it was not delivered to KeyManagementService. If you've\nset AsymmetricSignRequest.digest_crc32c but this field is still false,\ndiscard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "type": "boolean"
         }
       },
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1320,7 +1352,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
@@ -1384,7 +1416,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels with user-defined metadata. For more information, see\n[Labeling Keys](/kms/docs/labeling-keys).",
+          "description": "Labels with user-defined metadata. For more information, see\n[Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).",
           "type": "object"
         },
         "name": {
@@ -1636,9 +1668,19 @@
           "format": "byte",
           "type": "string"
         },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the\nDecryptRequest.additional_authenticated_data. If specified,\nKeyManagementService will verify the integrity of the received\nDecryptRequest.additional_authenticated_data using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(DecryptRequest.additional_authenticated_data) is equal to\nDecryptRequest.additional_authenticated_data_crc32c, and if so, perform\na limited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
+        },
         "ciphertext": {
           "description": "Required. The encrypted data originally returned in\nEncryptResponse.ciphertext.",
           "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If\nspecified, KeyManagementService will verify the integrity of the\nreceived DecryptRequest.ciphertext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(DecryptRequest.ciphertext) is equal to\nDecryptRequest.ciphertext_crc32c, and if so, perform a limited number\nof retries. A persistent mismatch may indicate an issue in your computation\nof the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1651,6 +1693,11 @@
         "plaintext": {
           "description": "The decrypted data originally supplied in EncryptRequest.plaintext.",
           "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned\nDecryptResponse.plaintext. An integrity check of\nDecryptResponse.plaintext can be performed by computing the CRC32C\nchecksum of DecryptResponse.plaintext and comparing your results to\nthis field. Discard the response in case of non-matching checksum values,\nand perform a limited number of retries. A persistent mismatch may indicate\nan issue in your computation of the CRC32C checksum. Note: receiving this\nresponse message indicates that KeyManagementService is able to\nsuccessfully decrypt the ciphertext.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1693,9 +1740,19 @@
           "format": "byte",
           "type": "string"
         },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the\nEncryptRequest.additional_authenticated_data. If specified,\nKeyManagementService will verify the integrity of the received\nEncryptRequest.additional_authenticated_data using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(EncryptRequest.additional_authenticated_data) is equal to\nEncryptRequest.additional_authenticated_data_crc32c, and if so, perform\na limited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
+        },
         "plaintext": {
           "description": "Required. The data to encrypt. Must be no larger than 64KiB.\n\nThe maximum size depends on the key version's\nprotection_level. For\nSOFTWARE keys, the plaintext must be no larger\nthan 64KiB. For HSM keys, the combined length of the\nplaintext and additional_authenticated_data fields must be no larger than\n8KiB.",
           "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If\nspecified, KeyManagementService will verify the integrity of the\nreceived EncryptRequest.plaintext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(EncryptRequest.plaintext) is equal to\nEncryptRequest.plaintext_crc32c, and if so, perform a limited number of\nretries. A persistent mismatch may indicate an issue in your computation of\nthe CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1710,9 +1767,22 @@
           "format": "byte",
           "type": "string"
         },
+        "ciphertextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned\nEncryptResponse.ciphertext. An integrity check of\nEncryptResponse.ciphertext can be performed by computing the CRC32C\nchecksum of EncryptResponse.ciphertext and comparing your results to\nthis field. Discard the response in case of non-matching checksum values,\nand perform a limited number of retries. A persistent mismatch may indicate\nan issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the CryptoKeyVersion used in encryption. Check\nthis field to verify that the intended resource was used for encryption.",
           "type": "string"
+        },
+        "verifiedAdditionalAuthenticatedDataCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether\nEncryptRequest.additional_authenticated_data_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nAAD. A false value of this\nfield indicates either that\nEncryptRequest.additional_authenticated_data_crc32c was left unset or\nthat it was not delivered to KeyManagementService. If you've set\nEncryptRequest.additional_authenticated_data_crc32c but this field is\nstill false, discard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "type": "boolean"
+        },
+        "verifiedPlaintextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether\nEncryptRequest.plaintext_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nplaintext. A false value of this field\nindicates either that EncryptRequest.plaintext_crc32c was left unset or\nthat it was not delivered to KeyManagementService. If you've set\nEncryptRequest.plaintext_crc32c but this field is still false, discard\nthe response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2172,8 +2242,17 @@
           ],
           "type": "string"
         },
+        "name": {
+          "description": "The name of the CryptoKeyVersion public key.\nProvided here for verification.\n\nNOTE: This field is in Beta.",
+          "type": "string"
+        },
         "pem": {
           "description": "The public key, encoded in PEM format. For more information, see the\n[RFC 7468](https://tools.ietf.org/html/rfc7468) sections for\n[General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and\n[Textual Encoding of Subject Public Key Info]\n(https://tools.ietf.org/html/rfc7468#section-13).",
+          "type": "string"
+        },
+        "pemCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned\nPublicKey.pem. An integrity check of PublicKey.pem can be performed\nby computing the CRC32C checksum of PublicKey.pem and\ncomparing your results to this field. Discard the response in case of\nnon-matching checksum values, and perform a limited number of retries. A\npersistent mismatch may indicate an issue in your computation of the CRC32C\nchecksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "format": "int64",
           "type": "string"
         }
       },

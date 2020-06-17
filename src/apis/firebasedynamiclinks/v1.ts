@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firebasedynamiclinks_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -704,7 +716,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.managedShortLinks.create({
@@ -837,11 +849,6 @@ export namespace firebasedynamiclinks_v1 {
   export interface Params$Resource$Managedshortlinks$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateManagedShortLinkRequest;
@@ -876,7 +883,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.shortLinks.create({
@@ -1005,11 +1012,6 @@ export namespace firebasedynamiclinks_v1 {
   export interface Params$Resource$Shortlinks$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateShortDynamicLinkRequest;
@@ -1044,7 +1046,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.getLinkStats({
@@ -1181,7 +1183,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.installAttribution({
@@ -1355,7 +1357,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.reopenAttribution({
@@ -1491,11 +1493,6 @@ export namespace firebasedynamiclinks_v1 {
 
   export interface Params$Resource$V1$Getlinkstats extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The span of time requested in days.
      */
     durationDays?: string;
@@ -1511,22 +1508,12 @@ export namespace firebasedynamiclinks_v1 {
   export interface Params$Resource$V1$Installattribution
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GetIosPostInstallAttributionRequest;
   }
   export interface Params$Resource$V1$Reopenattribution
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

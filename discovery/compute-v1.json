@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/VZADaIUTjNHbxdv5VQ4VUIadXV4\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/1qThsnp409WPlAMDctY9ILp8CKs\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -23387,7 +23387,7 @@
       }
     }
   },
-  "revision": "20200427",
+  "revision": "20200515",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26912,7 +26912,7 @@
           "type": "string"
         },
         "physicalBlockSizeBytes": {
-          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently supported sizes are 4096 and 16384, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
+          "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
           "format": "int64",
           "type": "string"
         },
@@ -26986,7 +26986,7 @@
           "type": "string"
         },
         "type": {
-          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard or pd-ssd",
+          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd",
           "type": "string"
         },
         "users": {
@@ -29170,11 +29170,13 @@
             "FEATURE_TYPE_UNSPECIFIED",
             "MULTI_IP_SUBNET",
             "SECURE_BOOT",
+            "SEV_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -31013,6 +31015,20 @@
           },
           "type": "array"
         },
+        "privateIpv6GoogleAccess": {
+          "description": "The private IPv6 google access type for the VM. If not specified, use  INHERIT_FROM_SUBNETWORK as default.",
+          "enum": [
+            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
+            "INHERIT_FROM_SUBNETWORK"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "Specifies the reservations that this instance can consume from."
@@ -31050,7 +31066,7 @@
           "type": "boolean"
         },
         "status": {
-          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.",
+          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED.",
           "enum": [
             "DEPROVISIONING",
             "PROVISIONING",
@@ -32917,6 +32933,20 @@
             "$ref": "NetworkInterface"
           },
           "type": "array"
+        },
+        "privateIpv6GoogleAccess": {
+          "description": "The private IPv6 google access type for the VM. If not specified, use  INHERIT_FROM_SUBNETWORK as default.",
+          "enum": [
+            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
+            "INHERIT_FROM_SUBNETWORK"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
@@ -36379,6 +36409,10 @@
           "format": "byte",
           "type": "string"
         },
+        "ipv6Address": {
+          "description": "[Output Only] An IPv6 internal network address for this network interface.",
+          "type": "string"
+        },
         "kind": {
           "default": "compute#networkInterface",
           "description": "[Output Only] Type of the resource. Always compute#networkInterface for network interfaces.",
@@ -39494,6 +39528,8 @@
             "IN_USE_BACKUP_SCHEDULES",
             "IN_USE_SNAPSHOT_SCHEDULES",
             "LOCAL_SSD_TOTAL_GB",
+            "M1_CPUS",
+            "M2_CPUS",
             "MACHINE_IMAGES",
             "N2D_CPUS",
             "N2_CPUS",
@@ -39549,6 +39585,8 @@
             "VPN_TUNNELS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -42108,7 +42146,7 @@
       "type": "object"
     },
     "Router": {
-      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the the Cloud Router overview.",
+      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the Cloud Router overview.",
       "id": "Router",
       "properties": {
         "bgp": {
@@ -44657,6 +44695,10 @@
           "description": "The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.",
           "type": "string"
         },
+        "ipv6CidrRange": {
+          "description": "[Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.",
+          "type": "string"
+        },
         "kind": {
           "default": "compute#subnetwork",
           "description": "[Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.",
@@ -44678,6 +44720,20 @@
         "privateIpGoogleAccess": {
           "description": "Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.",
           "type": "boolean"
+        },
+        "privateIpv6GoogleAccess": {
+          "description": "The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.\n\nThis field can be both set at resource creation time and updated using patch.",
+          "enum": [
+            "DISABLE_GOOGLE_ACCESS",
+            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "purpose": {
           "description": "The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.",

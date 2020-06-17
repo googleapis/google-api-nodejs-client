@@ -488,6 +488,159 @@
             }
           }
         },
+        "dnsRecordSets": {
+          "methods": {
+            "add": {
+              "description": "Service producers can use this method to add DNS record sets to private DNS\nzones in the shared producer host project.",
+              "flatPath": "v1/services/{servicesId}/dnsRecordSets:add",
+              "httpMethod": "POST",
+              "id": "servicenetworking.services.dnsRecordSets.add",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The service that is managing peering connectivity for a service producer's\norganization. For Google services that support this functionality, this\nvalue is `services/servicenetworking.googleapis.com`.",
+                  "location": "path",
+                  "pattern": "^services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsRecordSets:add",
+              "request": {
+                "$ref": "AddDnsRecordSetRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            },
+            "remove": {
+              "description": "Service producers can use this method to remove DNS record sets from\nprivate DNS zones in the shared producer host project.",
+              "flatPath": "v1/services/{servicesId}/dnsRecordSets:remove",
+              "httpMethod": "POST",
+              "id": "servicenetworking.services.dnsRecordSets.remove",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The service that is managing peering connectivity for a service producer's\norganization. For Google services that support this functionality, this\nvalue is `services/servicenetworking.googleapis.com`.",
+                  "location": "path",
+                  "pattern": "^services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsRecordSets:remove",
+              "request": {
+                "$ref": "RemoveDnsRecordSetRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            },
+            "update": {
+              "description": "Service producers can use this method to update DNS record sets from\nprivate DNS zones in the shared producer host project.",
+              "flatPath": "v1/services/{servicesId}/dnsRecordSets:update",
+              "httpMethod": "POST",
+              "id": "servicenetworking.services.dnsRecordSets.update",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The service that is managing peering connectivity for a service producer's\norganization. For Google services that support this functionality, this\nvalue is `services/servicenetworking.googleapis.com`.",
+                  "location": "path",
+                  "pattern": "^services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsRecordSets:update",
+              "request": {
+                "$ref": "UpdateDnsRecordSetRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            }
+          }
+        },
+        "dnsZones": {
+          "methods": {
+            "add": {
+              "description": "Service producers can use this method to add private DNS zones in the\nshared producer host project and matching peering zones in the consumer\nproject.",
+              "flatPath": "v1/services/{servicesId}/dnsZones:add",
+              "httpMethod": "POST",
+              "id": "servicenetworking.services.dnsZones.add",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The service that is managing peering connectivity for a service producer's\norganization. For Google services that support this functionality, this\nvalue is `services/servicenetworking.googleapis.com`.",
+                  "location": "path",
+                  "pattern": "^services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsZones:add",
+              "request": {
+                "$ref": "AddDnsZoneRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            },
+            "remove": {
+              "description": "Service producers can use this method to remove private DNS zones in the\nshared producer host project and matching peering zones in the consumer\nproject.",
+              "flatPath": "v1/services/{servicesId}/dnsZones:remove",
+              "httpMethod": "POST",
+              "id": "servicenetworking.services.dnsZones.remove",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The service that is managing peering connectivity for a service producer's\norganization. For Google services that support this functionality, this\nvalue is `services/servicenetworking.googleapis.com`.",
+                  "location": "path",
+                  "pattern": "^services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/dnsZones:remove",
+              "request": {
+                "$ref": "RemoveDnsZoneRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            }
+          }
+        },
         "roles": {
           "methods": {
             "add": {
@@ -524,9 +677,74 @@
       }
     }
   },
-  "revision": "20200516",
+  "revision": "20200611",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
+    "AddDnsRecordSetMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by\nAddDnsRecordSet API",
+      "id": "AddDnsRecordSetMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "AddDnsRecordSetRequest": {
+      "description": "Request to add a record set to a private managed DNS zone in the shared\nproducer host project.",
+      "id": "AddDnsRecordSetRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. The network that the consumer is using to connect with services.\nMust be in the form of projects/{project}/global/networks/{network}\n{project} is the project number, as in '12345'\n{network} is the network name.",
+          "type": "string"
+        },
+        "dnsRecordSet": {
+          "$ref": "DnsRecordSet",
+          "description": "Required. The DNS record set to add."
+        },
+        "zone": {
+          "description": "Required. The name of the private DNS zone in the shared producer host project to\nwhich the record set will be added.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddDnsZoneMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by\nAddDnsZone API",
+      "id": "AddDnsZoneMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "AddDnsZoneRequest": {
+      "description": "Request to add a private managed DNS zone in the shared producer host project\nand a matching DNS peering zone in the consumer project.",
+      "id": "AddDnsZoneRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. The network that the consumer is using to connect with services.\nMust be in the form of projects/{project}/global/networks/{network}\n{project} is the project number, as in '12345'\n{network} is the network name.",
+          "type": "string"
+        },
+        "dnsSuffix": {
+          "description": "Required. The DNS name suffix for the zones e.g. `example.com`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name for both the private zone in the shared producer host project and\nthe peering zone in the consumer project. Must be unique within both\nprojects. The name must be 1-63 characters long, must begin with a letter,\nend with a letter or digit, and only contain lowercase letters, digits or\ndashes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddDnsZoneResponse": {
+      "description": "Represents managed DNS zones created in the shared producer host and consumer\nprojects.",
+      "id": "AddDnsZoneResponse",
+      "properties": {
+        "consumerPeeringZone": {
+          "$ref": "DnsZone",
+          "description": "The DNS peering zone created in the consumer project."
+        },
+        "producerPrivateZone": {
+          "$ref": "DnsZone",
+          "description": "The private DNS zone created in the shared producer host project."
+        }
+      },
+      "type": "object"
+    },
     "AddRolesMetadata": {
       "description": "Metadata provided through GetOperation request for the LRO generated by\nAddRoles API",
       "id": "AddRolesMetadata",
@@ -1031,6 +1249,48 @@
       },
       "type": "object"
     },
+    "DnsRecordSet": {
+      "description": "Represents a DNS record set resource.",
+      "id": "DnsRecordSet",
+      "properties": {
+        "data": {
+          "description": "Required. As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) for\nexamples see https://cloud.google.com/dns/records/json-record.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domain": {
+          "description": "Required. The DNS or domain name of the record set, e.g. `test.example.com`.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Required. The period of time for which this RecordSet can be cached by resolvers.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The identifier of a supported record type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsZone": {
+      "description": "Represents a DNS zone resource.",
+      "id": "DnsZone",
+      "properties": {
+        "dnsSuffix": {
+          "description": "The DNS name suffix of this zone e.g. `example.com.`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "User assigned name for this resource. Must be unique within the project.\nThe name must be 1-63 characters long, must begin with a letter, end with\na letter or digit, and only contain lowercase letters, digits or dashes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Documentation": {
       "description": "`Documentation` provides the information for describing a service.\n\nExample:\n<pre><code>documentation:\n  summary: >\n    The Google Calendar API gives access\n    to most calendar features.\n  pages:\n  - name: Overview\n    content: &#40;== include google/foo/overview.md ==&#41;\n  - name: Tutorial\n    content: &#40;== include google/foo/tutorial.md ==&#41;\n    subpages;\n    - name: Java\n      content: &#40;== include google/foo/tutorial_java.md ==&#41;\n  rules:\n  - selector: google.calendar.Calendar.Get\n    description: >\n      ...\n  - selector: google.calendar.Calendar.Put\n    description: >\n      ...\n</code></pre>\nDocumentation is provided in markdown syntax. In addition to\nstandard markdown features, definition lists, tables and fenced\ncode blocks are supported. Section headers can be provided and are\ninterpreted relative to the section nesting of the context where\na documentation fragment is embedded.\n\nDocumentation from the IDL is merged with documentation defined\nvia the config at normalization time, where documentation provided\nby config rules overrides IDL provided.\n\nA number of constructs specific to the API platform are supported\nin documentation text.\n\nIn order to reference a proto element, the following\nnotation can be used:\n<pre><code>&#91;fully.qualified.proto.name]&#91;]</code></pre>\nTo override the display text used for the link, this can be used:\n<pre><code>&#91;display text]&#91;fully.qualified.proto.name]</code></pre>\nText can be excluded from doc using the following notation:\n<pre><code>&#40;-- internal comment --&#41;</code></pre>\n\nA few directives are available in documentation. Note that\ndirectives must appear on a single line to be properly\nidentified. The `include` directive includes a markdown file from\nan external source:\n<pre><code>&#40;== include path/to/file ==&#41;</code></pre>\nThe `resource_for` directive marks a message to be the resource of\na collection in REST view. If it is not specified, tools attempt\nto infer the resource from the operations in a collection:\n<pre><code>&#40;== resource_for v1.shelves.books ==&#41;</code></pre>\nThe directive `suppress_warning` does not directly affect documentation\nand is documented together with service config validation.",
       "id": "Documentation",
@@ -1118,13 +1378,6 @@
         "allowCors": {
           "description": "Allowing\n[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka\ncross-domain traffic, would allow the backends served from this endpoint to\nreceive and respond to HTTP OPTIONS requests. The response will be used by\nthe browser to determine whether the subsequent cross-origin request is\nallowed to proceed.",
           "type": "boolean"
-        },
-        "features": {
-          "description": "The list of features enabled on this endpoint.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "name": {
           "description": "The canonical name of this endpoint.",
@@ -1594,7 +1847,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type`, `description`, `display_name`,\n  `launch_stage` fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -1606,7 +1859,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "The set of labels that can be used to describe a specific\ninstance of this metric type. For example, the\n`appengine.googleapis.com/http/server/response_latencies` metric\ntype has a label for the HTTP response code, `response_code`, so\nyou can look at latencies for successful responses or just\nfor responses that failed.",
+          "description": "The set of labels that can be used to describe a specific\ninstance of this metric type.\n\nThe label key name must follow:\n\n* Only upper and lower-case letters, digits and underscores (_) are\n  allowed.\n* Label name must start with a letter or digit.\n* The maximum length of a label name is 100 characters.\n\nFor example, the\n`appengine.googleapis.com/http/server/response_latencies` metric\ntype has a label for the HTTP response code, `response_code`, so\nyou can look at latencies for successful responses or just\nfor responses that failed.",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -1668,7 +1921,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The metric type, including its DNS name prefix. The type is not\nURL-encoded.  All user-defined metric types have the DNS name\n`custom.googleapis.com` or `external.googleapis.com`.  Metric types should\nuse a natural hierarchical grouping. For example:\n\n    \"custom.googleapis.com/invoice/paid/amount\"\n    \"external.googleapis.com/prometheus/up\"\n    \"appengine.googleapis.com/http/server/response_latencies\"",
+          "description": "The metric type, including its DNS name prefix. The type is not\nURL-encoded.\n\nAll service defined metrics must be prefixed with the service name, in the\nformat of `{service name}/{relative metric name}`, such as\n`cloudsql.googleapis.com/database/cpu/utilization`. The relative metric\nname must follow:\n\n* Only upper and lower-case letters, digits, '/' and underscores '_' are\n  allowed.\n* The maximum number of characters allowed for the relative_metric_name is\n  100.\n\nAll user-defined metric types have the DNS name\n`custom.googleapis.com`, `external.googleapis.com`, or\n`logging.googleapis.com/user/`.\n\nMetric types should use a natural hierarchical grouping. For example:\n\n    \"custom.googleapis.com/invoice/paid/amount\"\n    \"external.googleapis.com/prometheus/up\"\n    \"appengine.googleapis.com/http/server/response_latencies\"",
           "type": "string"
         },
         "unit": {
@@ -1776,7 +2029,7 @@
       "type": "object"
     },
     "MonitoredResourceDescriptor": {
-      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent APIs can support different monitored resource types. APIs generally\nprovide a `list` method that returns the monitored resource descriptors used\nby the API.",
+      "description": "An object that describes the schema of a MonitoredResource object using a\ntype name and a set of labels.  For example, the monitored resource\ndescriptor for Google Compute Engine VM instances has a type of\n`\"gce_instance\"` and specifies the use of the labels `\"instance_id\"` and\n`\"zone\"` to identify particular VM instances.\n\nDifferent services can support different monitored resource types.\n\nThe following are specific rules to service defined monitored resources for\nMonitoring and Logging:\n\n* The `type`, `display_name`, `description`, `labels` and `launch_stage`\n  fields are all required.\n* The first label of the monitored resource descriptor must be\n  `resource_container`. There are legacy monitored resource descritptors\n  start with `project_id`.\n* It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors\n  is allowed per service.\n* Maximum of default 10 labels per monitored resource is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
       "id": "MonitoredResourceDescriptor",
       "properties": {
         "description": {
@@ -1788,7 +2041,7 @@
           "type": "string"
         },
         "labels": {
-          "description": "Required. A set of labels used to describe instances of this monitored\nresource type. For example, an individual Google Cloud SQL database is\nidentified by values for the labels `\"database_id\"` and `\"zone\"`.",
+          "description": "Required. A set of labels used to describe instances of this monitored\nresource type.\nThe label key name must follow:\n\n* Only upper and lower-case letters, digits and underscores (_) are\n  allowed.\n* Label name must start with a letter or digit.\n* The maximum length of a label name is 100 characters.\n\nFor example, an individual Google Cloud SQL database is\nidentified by values for the labels `database_id` and `location`.",
           "items": {
             "$ref": "LabelDescriptor"
           },
@@ -1823,25 +2076,25 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type\n`\"cloudsql_database\"` represents databases in Google Cloud SQL.\nThe maximum length of this value is 256 characters.",
+          "description": "Note there are legacy service monitored resources not following this rule.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Monitoring": {
-      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/overdue_count` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/branch\n      labels:\n      - key: /city\n        description: The city where the library branch is located in.\n      - key: /name\n        description: The name of the branch.\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      metric_kind: DELTA\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    - name: library.googleapis.com/book/overdue_count\n      metric_kind: GAUGE\n      value_type: INT64\n      labels:\n      - key: /customer_id\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/overdue_count",
+      "description": "Monitoring configuration of the service.\n\nThe example below shows how to configure monitored resources and metrics\nfor monitoring. In the example, a monitored resource and two metrics are\ndefined. The `library.googleapis.com/book/returned_count` metric is sent\nto both producer and consumer projects, whereas the\n`library.googleapis.com/book/num_overdue` metric is only sent to the\nconsumer project.\n\n    monitored_resources:\n    - type: library.googleapis.com/Branch\n      display_name: \"Library Branch\"\n      description: \"A branch of a library.\"\n      launch_stage: GA\n      labels:\n      - key: resource_container\n        description: \"The Cloud container (ie. project id) for the Branch.\"\n      - key: location\n        description: \"The location of the library branch.\"\n      - key: branch_id\n        description: \"The id of the branch.\"\n    metrics:\n    - name: library.googleapis.com/book/returned_count\n      display_name: \"Books Returned\"\n      description: \"The count of books that have been returned.\"\n      launch_stage: GA\n      metric_kind: DELTA\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    - name: library.googleapis.com/book/num_overdue\n      display_name: \"Books Overdue\"\n      description: \"The current number of overdue books.\"\n      launch_stage: GA\n      metric_kind: GAUGE\n      value_type: INT64\n      unit: \"1\"\n      labels:\n      - key: customer_id\n        description: \"The id of the customer.\"\n    monitoring:\n      producer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n      consumer_destinations:\n      - monitored_resource: library.googleapis.com/Branch\n        metrics:\n        - library.googleapis.com/book/returned_count\n        - library.googleapis.com/book/num_overdue",
       "id": "Monitoring",
       "properties": {
         "consumerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the consumer project.\nThere can be multiple consumer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
           "type": "array"
         },
         "producerDestinations": {
-          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resouce type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
+          "description": "Monitoring configurations for sending metrics to the producer project.\nThere can be multiple producer destinations. A monitored resource type may\nappear in multiple monitoring destinations if different aggregations are\nneeded for different sets of metrics associated with that monitored\nresource type. A monitored resource and metric pair may only be used once\nin the Monitoring configuration.",
           "items": {
             "$ref": "MonitoringDestination"
           },
@@ -1964,7 +2217,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Required. Role to apply. Only whitelisted roles can be used at the specified\ngranularity. The role must be one of the following:\n  - 'roles/container.hostServiceAgentUser' applied on the shared VPC host\n    project",
+          "description": "Required. Role to apply. Only whitelisted roles can be used at the specified\ngranularity. The role must be one of the following:\n  - 'roles/container.hostServiceAgentUser' applied on the shared VPC host\n    project\n  - 'roles/compute.securityAdmin' applied on the shared VPC host project",
           "type": "string"
         }
       },
@@ -2078,6 +2331,64 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "RemoveDnsRecordSetMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by\nRemoveDnsRecordSet API",
+      "id": "RemoveDnsRecordSetMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "RemoveDnsRecordSetRequest": {
+      "description": "Request to remove a record set from a private managed DNS zone in the shared\nproducer host project. The name, type, ttl, and data values must all exactly\nmatch an existing record set in the specified zone.",
+      "id": "RemoveDnsRecordSetRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. The network that the consumer is using to connect with services.\nMust be in the form of projects/{project}/global/networks/{network}\n{project} is the project number, as in '12345'\n{network} is the network name.",
+          "type": "string"
+        },
+        "dnsRecordSet": {
+          "$ref": "DnsRecordSet",
+          "description": "Required. The DNS record set to remove."
+        },
+        "zone": {
+          "description": "Required. The name of the private DNS zone in the shared producer host project from\nwhich the record set will be removed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveDnsRecordSetResponse": {
+      "description": "Blank message response type for RemoveDnsRecordSet API",
+      "id": "RemoveDnsRecordSetResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "RemoveDnsZoneMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by\nRemoveDnsZone API",
+      "id": "RemoveDnsZoneMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "RemoveDnsZoneRequest": {
+      "description": "Request to remove a private managed DNS zone in the shared producer host\nproject and a matching DNS peering zone in the consumer project.",
+      "id": "RemoveDnsZoneRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. The network that the consumer is using to connect with services.\nMust be in the form of projects/{project}/global/networks/{network}\n{project} is the project number, as in '12345'\n{network} is the network name.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name for both the private zone in the shared producer host project and\nthe peering zone in the consumer project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveDnsZoneResponse": {
+      "description": "Blank message response type for RemoveDnsZone API",
+      "id": "RemoveDnsZoneResponse",
+      "properties": {},
       "type": "object"
     },
     "Route": {
@@ -2451,6 +2762,35 @@
             "Syntax `proto2`.",
             "Syntax `proto3`."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDnsRecordSetMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by\nUpdateDnsRecordSet API",
+      "id": "UpdateDnsRecordSetMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UpdateDnsRecordSetRequest": {
+      "description": "Request to update a record set from a private managed DNS zone in the shared\nproducer host project. The name, type, ttl, and data values of the existing\nrecord set must all exactly match an existing record set in the specified\nzone.",
+      "id": "UpdateDnsRecordSetRequest",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. The network that the consumer is using to connect with services.\nMust be in the form of projects/{project}/global/networks/{network}\n{project} is the project number, as in '12345'\n{network} is the network name.",
+          "type": "string"
+        },
+        "existingDnsRecordSet": {
+          "$ref": "DnsRecordSet",
+          "description": "Required. The existing DNS record set to update."
+        },
+        "newDnsRecordSet": {
+          "$ref": "DnsRecordSet",
+          "description": "Required. The new values that the DNS record set should be updated to hold."
+        },
+        "zone": {
+          "description": "Required. The name of the private DNS zone in the shared producer host project from\nwhich the record set will be removed.",
           "type": "string"
         }
       },

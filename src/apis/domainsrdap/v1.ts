@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace domainsrdap_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -259,7 +271,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.autnum.get({
@@ -374,11 +386,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Autnum$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     autnumId?: string;
@@ -413,7 +420,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.domain.get({
@@ -525,11 +532,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Domain$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full domain name to look up. Example: "example.com"
      */
     domainName?: string;
@@ -564,7 +566,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.entity.get({
@@ -679,11 +681,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Entity$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     entityId?: string;
@@ -718,7 +715,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.ip.get({
@@ -836,11 +833,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Ip$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     ipId?: string;
@@ -879,7 +871,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.nameserver.get({
@@ -994,11 +986,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Nameserver$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     nameserverId?: string;
@@ -1033,7 +1020,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.getDomains({});
@@ -1162,7 +1149,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.getEntities({});
@@ -1291,7 +1278,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.getHelp({});
@@ -1416,7 +1403,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.getIp({});
@@ -1541,7 +1528,7 @@ export namespace domainsrdap_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await domainsrdap.getNameservers({});
@@ -1649,35 +1636,10 @@ export namespace domainsrdap_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Getdomains extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getentities extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Gethelp extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getip extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$V1$Getdomains extends StandardParameters {}
+  export interface Params$Resource$V1$Getentities extends StandardParameters {}
+  export interface Params$Resource$V1$Gethelp extends StandardParameters {}
+  export interface Params$Resource$V1$Getip extends StandardParameters {}
   export interface Params$Resource$V1$Getnameservers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 }

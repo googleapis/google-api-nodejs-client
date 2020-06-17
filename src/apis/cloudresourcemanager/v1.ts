@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -41,13 +42,20 @@ export namespace cloudresourcemanager_v1 {
 
   interface StandardParameters {
     /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
      * V1 error format.
      */
     '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
     /**
      * Data format for response.
      */
@@ -64,10 +72,6 @@ export namespace cloudresourcemanager_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -133,7 +137,7 @@ export namespace cloudresourcemanager_v1 {
     resourceId?: Schema$ResourceId;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -146,7 +150,7 @@ export namespace cloudresourcemanager_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -784,7 +788,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.clearOrgPolicy({
@@ -927,7 +931,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getEffectiveOrgPolicy({
@@ -1079,7 +1083,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getOrgPolicy({
@@ -1229,7 +1233,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.listAvailableOrgPolicyConstraints(
@@ -1393,7 +1397,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.listOrgPolicies({
@@ -1543,7 +1547,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.setOrgPolicy({
@@ -1671,11 +1675,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -1687,11 +1686,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Geteffectiveorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -1705,11 +1699,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Getorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
@@ -1721,11 +1710,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Listavailableorgpolicyconstraints
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list `Constraints` for.
      */
@@ -1739,11 +1723,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Listorgpolicies
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list Policies for.
      */
     resource?: string;
@@ -1755,11 +1734,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Setorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -1803,7 +1777,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.create({
@@ -1949,7 +1923,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.delete({
@@ -2078,7 +2052,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.get({
@@ -2214,7 +2188,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.list({
@@ -2337,21 +2311,11 @@ export namespace cloudresourcemanager_v1 {
 
   export interface Params$Resource$Liens$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Lien;
   }
   export interface Params$Resource$Liens$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name/identifier of the Lien to delete.
      */
@@ -2359,21 +2323,11 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Liens$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name/identifier of the Lien.
      */
     name?: string;
   }
   export interface Params$Resource$Liens$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. This is a suggestion for the server.
      */
@@ -2420,7 +2374,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.operations.get({
@@ -2532,11 +2486,6 @@ export namespace cloudresourcemanager_v1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -2571,7 +2520,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.clearOrgPolicy({
@@ -2714,7 +2663,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.get({
@@ -2852,7 +2801,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getEffectiveOrgPolicy({
@@ -3004,7 +2953,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getIamPolicy({
@@ -3152,7 +3101,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getOrgPolicy({
@@ -3302,7 +3251,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints(
@@ -3466,7 +3415,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.listOrgPolicies({
@@ -3619,7 +3568,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.search({
@@ -3766,7 +3715,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setIamPolicy({
@@ -3912,7 +3861,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setOrgPolicy({
@@ -4062,7 +4011,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.testIamPermissions({
@@ -4192,11 +4141,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -4209,22 +4153,12 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Geteffectiveorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -4238,11 +4172,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4254,11 +4183,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Getorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource the `Policy` is set on.
      */
@@ -4272,11 +4196,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
@@ -4288,11 +4207,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Listorgpolicies
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list Policies for.
      */
@@ -4306,22 +4220,12 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Search
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchOrganizationsRequest;
   }
   export interface Params$Resource$Organizations$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -4335,11 +4239,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Setorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the resource to attach the `Policy`.
      */
     resource?: string;
@@ -4351,11 +4250,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4396,7 +4290,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.clearOrgPolicy({
@@ -4536,7 +4430,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.create({
@@ -4679,7 +4573,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.delete({
@@ -4813,7 +4707,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.get({
@@ -4955,7 +4849,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getAncestry({
@@ -5104,7 +4998,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getEffectiveOrgPolicy({
@@ -5256,7 +5150,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getIamPolicy({
@@ -5404,7 +5298,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getOrgPolicy({
@@ -5554,7 +5448,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
@@ -5736,7 +5630,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.listAvailableOrgPolicyConstraints(
@@ -5900,7 +5794,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.listOrgPolicies({
@@ -6029,7 +5923,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project. Overwrites any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + This method will replace the existing policy, and cannot be used to append additional IAM settings.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project.  CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings.  NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6050,7 +5944,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setIamPolicy({
@@ -6196,7 +6090,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setOrgPolicy({
@@ -6346,7 +6240,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.testIamPermissions({
@@ -6494,7 +6388,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.undelete({
@@ -6633,7 +6527,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.update({
@@ -6768,11 +6662,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -6784,21 +6673,11 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Project;
   }
   export interface Params$Resource$Projects$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
      */
@@ -6806,22 +6685,12 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
@@ -6835,11 +6704,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Geteffectiveorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the resource to start computing the effective `Policy`.
      */
     resource?: string;
@@ -6851,11 +6715,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -6869,11 +6728,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Getorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
@@ -6884,11 +6738,6 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      */
@@ -6905,11 +6754,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Listavailableorgpolicyconstraints
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
@@ -6921,11 +6765,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Listorgpolicies
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list Policies for.
      */
@@ -6939,11 +6778,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6955,11 +6789,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Setorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -6973,11 +6802,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6990,11 +6814,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
@@ -7005,11 +6824,6 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$UndeleteProjectRequest;
   }
   export interface Params$Resource$Projects$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The project ID (for example, `my-project-123`).  Required.
      */

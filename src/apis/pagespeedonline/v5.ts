@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace pagespeedonline_v5 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -394,6 +406,10 @@ export namespace pagespeedonline_v5 {
      */
     metrics?: {[key: string]: Schema$UserPageLoadMetricV5} | null;
     /**
+     * True if the result is an origin fallback from a page, false otherwise.
+     */
+    origin_fallback?: boolean | null;
+    /**
      * The human readable speed &quot;category&quot; of the id.
      */
     overall_category?: string | null;
@@ -619,7 +635,7 @@ export namespace pagespeedonline_v5 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pagespeedonline.pagespeedapi.runpagespeed({
@@ -767,11 +783,6 @@ export namespace pagespeedonline_v5 {
 
   export interface Params$Resource$Pagespeedapi$Runpagespeed
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The captcha token passed when filling out a captcha.
      */

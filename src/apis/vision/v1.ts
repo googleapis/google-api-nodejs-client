@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace vision_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -5166,7 +5178,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.files.annotate({
@@ -5309,7 +5321,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.files.asyncBatchAnnotate({
@@ -5430,22 +5442,12 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Files$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchAnnotateFilesRequest;
   }
   export interface Params$Resource$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5484,7 +5486,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.images.annotate({
@@ -5630,7 +5632,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.images.asyncBatchAnnotate({
@@ -5752,22 +5754,12 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
   export interface Params$Resource$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5815,7 +5807,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.locations.operations.get({
@@ -5928,11 +5920,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -5970,7 +5957,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.operations.cancel({
@@ -6106,7 +6093,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.operations.delete({
@@ -6235,7 +6222,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.operations.get({
@@ -6369,7 +6356,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.operations.list({
@@ -6492,11 +6479,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -6509,32 +6491,17 @@ export namespace vision_v1 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -6600,7 +6567,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.files.annotate({
@@ -6762,7 +6729,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.files.asyncBatchAnnotate({
@@ -6899,11 +6866,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Files$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -6915,11 +6877,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6963,7 +6920,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.images.annotate({
@@ -7125,7 +7082,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.images.asyncBatchAnnotate({
@@ -7263,11 +7220,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Images$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -7279,11 +7231,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7348,7 +7295,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.annotate({
@@ -7510,7 +7457,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
@@ -7647,11 +7594,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Files$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -7663,11 +7605,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -7711,7 +7648,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.annotate({
@@ -7873,7 +7810,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
@@ -8011,11 +7948,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Images$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -8027,11 +7959,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -8075,7 +8002,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.operations.get({
@@ -8188,11 +8115,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -8234,7 +8156,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.create({
@@ -8394,7 +8316,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.delete({
@@ -8526,7 +8448,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.get({
@@ -8664,7 +8586,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.list({
@@ -8813,7 +8735,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.patch({
@@ -8973,7 +8895,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.purge({
@@ -9102,11 +9024,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
     parent?: string;
@@ -9123,11 +9040,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
@@ -9135,22 +9047,12 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -9167,11 +9069,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
     name?: string;
@@ -9187,11 +9084,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Products$Purge
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -9235,7 +9127,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.create({
@@ -9391,7 +9283,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.delete({
@@ -9525,7 +9417,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.get({
@@ -9663,7 +9555,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.list({
@@ -9796,11 +9688,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      */
     parent?: string;
@@ -9817,11 +9704,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      */
     name?: string;
@@ -9829,22 +9711,12 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -9895,7 +9767,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.addProduct({
@@ -10039,7 +9911,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.create({
@@ -10196,7 +10068,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.delete({
@@ -10328,7 +10200,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.get({
@@ -10465,7 +10337,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.import({
@@ -10614,7 +10486,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.list({
@@ -10762,7 +10634,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.patch({
@@ -10919,7 +10791,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.removeProduct({
@@ -11041,11 +10913,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Addproduct
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
@@ -11057,11 +10924,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Productsets$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -11079,11 +10941,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
@@ -11091,22 +10948,12 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Productsets$Import
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      */
@@ -11119,11 +10966,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Productsets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default 10, maximum 100.
      */
@@ -11140,11 +10982,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This field is ignored when creating a ProductSet.
      */
     name?: string;
@@ -11160,11 +10997,6 @@ export namespace vision_v1 {
   }
   export interface Params$Resource$Projects$Locations$Productsets$Removeproduct
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
@@ -11208,7 +11040,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.productSets.products.list({
@@ -11339,11 +11171,6 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Productsets$Products$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      */
     name?: string;
@@ -11389,7 +11216,7 @@ export namespace vision_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.operations.get({
@@ -11501,11 +11328,6 @@ export namespace vision_v1 {
 
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

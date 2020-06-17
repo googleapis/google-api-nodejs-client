@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace testing_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -598,7 +610,7 @@ export namespace testing_v1 {
    */
   export interface Schema$FileReference {
     /**
-     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app-debug-unaligned.apk
+     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)
      */
     gcsPath?: string | null;
   }
@@ -1380,7 +1392,7 @@ export namespace testing_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await testing.applicationDetailService.getApkDetails({
@@ -1503,11 +1515,6 @@ export namespace testing_v1 {
   export interface Params$Resource$Applicationdetailservice$Getapkdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$FileReference;
@@ -1551,7 +1558,7 @@ export namespace testing_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await testing.projects.testMatrices.cancel({
@@ -1692,7 +1699,7 @@ export namespace testing_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await testing.projects.testMatrices.create({
@@ -1865,7 +1872,7 @@ export namespace testing_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await testing.projects.testMatrices.get({
@@ -1990,11 +1997,6 @@ export namespace testing_v1 {
   export interface Params$Resource$Projects$Testmatrices$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud project that owns the test.
      */
     projectId?: string;
@@ -2005,11 +2007,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GCE project under which this job will run.
      */
@@ -2026,11 +2023,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud project that owns the test matrix.
      */
@@ -2073,7 +2065,7 @@ export namespace testing_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await testing.testEnvironmentCatalog.get({
@@ -2194,11 +2186,6 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Testenvironmentcatalog$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The type of environment that should be listed.
      */

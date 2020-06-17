@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace monitoring_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -844,6 +856,10 @@ export namespace monitoring_v3 {
      * If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
      */
     nextPageToken?: string | null;
+    /**
+     * The total number of alert policies in all pages. This number is only an estimate, and may change in subsequent pages. https://aip.dev/158
+     */
+    totalSize?: number | null;
   }
   /**
    * The ListGroupMembers response.
@@ -969,6 +985,10 @@ export namespace monitoring_v3 {
      * One or more time series that match the filter included in the request.
      */
     timeSeries?: Schema$TimeSeries[];
+    /**
+     * The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be &quot;{not_a_unit}&quot;.
+     */
+    unit?: string | null;
   }
   /**
    * The protocol for the ListUptimeCheckConfigs response.
@@ -1917,7 +1937,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.create({
@@ -2082,7 +2102,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.delete({
@@ -2214,7 +2234,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.get({
@@ -2358,7 +2378,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.list({
@@ -2380,7 +2400,8 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "alertPolicies": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
      *   // }
      * }
      *
@@ -2514,7 +2535,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.patch({
@@ -2659,11 +2680,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      */
     name?: string;
@@ -2676,11 +2692,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The alerting policy to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] For more information, see AlertPolicy.
      */
     name?: string;
@@ -2688,22 +2699,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The alerting policy to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Alertpolicies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
@@ -2727,11 +2728,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Alertpolicies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
@@ -2780,7 +2776,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.collectdTimeSeries.create({
@@ -2915,11 +2911,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Collectdtimeseries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
@@ -2964,7 +2955,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.create({
@@ -3117,7 +3108,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.delete({
@@ -3252,7 +3243,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.get({
@@ -3390,7 +3381,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.list({
@@ -3548,7 +3539,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.update({
@@ -3679,11 +3670,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Groups$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
@@ -3700,11 +3686,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Groups$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The group to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      */
     name?: string;
@@ -3716,22 +3697,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The group to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Groups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
      */
@@ -3759,11 +3730,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Groups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically.
      */
@@ -3812,7 +3778,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.members.list({
@@ -3950,11 +3916,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Groups$Members$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * An optional list filter (https://cloud.google.com/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: `resource.type = "gce_instance"`
      */
     filter?: string;
@@ -4013,7 +3974,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.create({
@@ -4178,7 +4139,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.delete({
@@ -4311,7 +4272,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.get({
@@ -4456,7 +4417,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.list({
@@ -4591,11 +4552,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Metricdescriptors$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
@@ -4608,11 +4564,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Metricdescriptors$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example of [METRIC_ID] is: "custom.googleapis.com/my_test_metric".
      */
     name?: string;
@@ -4620,22 +4571,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Metricdescriptors$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example value of [METRIC_ID] is "compute.googleapis.com/instance/disk/read_bytes_count".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Metricdescriptors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/")
      */
@@ -4688,7 +4629,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.monitoredResourceDescriptors.get({
@@ -4835,7 +4776,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.monitoredResourceDescriptors.list({
@@ -4976,22 +4917,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The monitored resource descriptor to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE] The [RESOURCE_TYPE] is a predefined type, such as cloudsql_database.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Monitoredresourcedescriptors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id
      */
@@ -5043,7 +4974,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.get({
@@ -5192,7 +5123,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.list({
@@ -5335,22 +5266,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchanneldescriptors$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The channel type for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notificationchanneldescriptors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
      */
@@ -5397,7 +5318,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.create({
@@ -5559,7 +5480,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.delete({
@@ -5694,7 +5615,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.get({
@@ -5837,7 +5758,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.getVerificationCode(
@@ -6007,7 +5928,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.list({
@@ -6165,7 +6086,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.patch({
@@ -6327,7 +6248,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.sendVerificationCode(
@@ -6468,7 +6389,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.verify({
@@ -6596,11 +6517,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
      */
     name?: string;
@@ -6613,11 +6529,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, channels that are still referenced by an existing alerting policy will fail to be deleted in a delete operation.
      */
     force?: boolean;
@@ -6629,22 +6540,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notificationchannels$Getverificationcode
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
      */
@@ -6657,11 +6558,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Notificationchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
@@ -6686,11 +6582,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string;
@@ -6707,11 +6598,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The notification channel to which to send a verification code.
      */
     name?: string;
@@ -6723,11 +6609,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Notificationchannels$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The notification channel to verify.
      */
@@ -6772,7 +6653,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.create({
@@ -6916,7 +6797,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.list({
@@ -6956,7 +6837,8 @@ export namespace monitoring_v3 {
      *   // {
      *   //   "executionErrors": [],
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "timeSeries": []
+     *   //   "timeSeries": [],
+     *   //   "unit": "my_unit"
      *   // }
      * }
      *
@@ -7096,7 +6978,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.query({
@@ -7229,11 +7111,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Timeseries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
@@ -7245,11 +7122,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Timeseries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.
      */
@@ -7302,11 +7174,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Timeseries$Query
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
@@ -7349,7 +7216,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.create({
@@ -7519,7 +7386,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.delete({
@@ -7651,7 +7518,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.get({
@@ -7799,7 +7666,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.list({
@@ -7952,7 +7819,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.patch({
@@ -8100,11 +7967,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
@@ -8117,11 +7979,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The Uptime check configuration to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      */
     name?: string;
@@ -8129,22 +7986,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The Uptime check configuration to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      */
@@ -8160,11 +8007,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A unique resource name for this Uptime check configuration. The format is:  projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
@@ -8216,7 +8058,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.create({
@@ -8377,7 +8219,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.delete({
@@ -8508,7 +8350,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.get({
@@ -8648,7 +8490,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.list({
@@ -8807,7 +8649,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.patch({
@@ -8942,11 +8784,6 @@ export namespace monitoring_v3 {
 
   export interface Params$Resource$Services$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
@@ -8962,32 +8799,17 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the Service to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Services$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string;
   }
   export interface Params$Resource$Services$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
      */
@@ -9006,11 +8828,6 @@ export namespace monitoring_v3 {
     parent?: string;
   }
   export interface Params$Resource$Services$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
@@ -9058,7 +8875,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.create({
@@ -9221,7 +9038,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.delete({
@@ -9354,7 +9171,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.get({
@@ -9502,7 +9319,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.list({
@@ -9661,7 +9478,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.patch({
@@ -9800,11 +9617,6 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Services$Servicelevelobjectives$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     parent?: string;
@@ -9821,22 +9633,12 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Services$Servicelevelobjectives$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the ServiceLevelObjective to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
     name?: string;
   }
   export interface Params$Resource$Services$Servicelevelobjectives$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
@@ -9848,11 +9650,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$Servicelevelobjectives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter specifying what ServiceLevelObjectives to return.
      */
@@ -9876,11 +9673,6 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$Servicelevelobjectives$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      */
@@ -9929,7 +9721,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.uptimeCheckIps.list({
@@ -10048,11 +9840,6 @@ export namespace monitoring_v3 {
 
   export interface Params$Resource$Uptimecheckips$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned. NOTE: this field is not yet implemented
      */

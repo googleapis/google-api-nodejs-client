@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -41,13 +42,20 @@ export namespace run_v1beta1 {
 
   interface StandardParameters {
     /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
      * V1 error format.
      */
     '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
     /**
      * Data format for response.
      */
@@ -64,10 +72,6 @@ export namespace run_v1beta1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -532,7 +536,7 @@ export namespace run_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.customresourcedefinitions.list({
@@ -690,11 +694,6 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Customresourcedefinitions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional encoded string to continue paging.
      */
     continue?: string;
@@ -768,7 +767,7 @@ export namespace run_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.customresourcedefinitions.get({
@@ -889,11 +888,6 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Namespaces$Customresourcedefinitions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
@@ -948,7 +942,7 @@ export namespace run_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.customresourcedefinitions.get({
@@ -1086,7 +1080,7 @@ export namespace run_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.customresourcedefinitions.list({
@@ -1243,22 +1237,12 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Projects$Locations$Customresourcedefinitions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Customresourcedefinitions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace monitoring_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -445,6 +457,19 @@ export namespace monitoring_v1 {
     sparkChartType?: string | null;
   }
   /**
+   * A filter that ranks streams based on their statistical relation to other streams in a request. Note: This field is deprecated and completely ignored by the API.
+   */
+  export interface Schema$StatisticalTimeSeriesFilter {
+    /**
+     * How many time series to output.
+     */
+    numTimeSeries?: number | null;
+    /**
+     * rankingMethod is applied to a set of time series, and then the produced value for each individual time series is used to compare a given time series to others. These are methods that cannot be applied stream-by-stream, but rather require the full context of a request to evaluate time series.
+     */
+    rankingMethod?: string | null;
+  }
+  /**
    * A widget that displays textual content.
    */
   export interface Schema$Text {
@@ -498,6 +523,10 @@ export namespace monitoring_v1 {
      * Apply a second aggregation after aggregation is applied.
      */
     secondaryAggregation?: Schema$Aggregation;
+    /**
+     * Statistics based time series filter. Note: This field is deprecated and completely ignored by the API.
+     */
+    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * A pair of time series filters that define a ratio computation. The output time series is the pair-wise division of each aligned element from the numerator and denominator time series.
@@ -519,6 +548,10 @@ export namespace monitoring_v1 {
      * Apply a second aggregation after the ratio is computed.
      */
     secondaryAggregation?: Schema$Aggregation;
+    /**
+     * Statistics based time series filter. Note: This field is deprecated and completely ignored by the API.
+     */
+    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * TimeSeriesQuery collects the set of supported methods for querying time series data from the Stackdriver metrics API.
@@ -667,7 +700,7 @@ export namespace monitoring_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.create({
@@ -823,7 +856,7 @@ export namespace monitoring_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.delete({
@@ -955,7 +988,7 @@ export namespace monitoring_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.get({
@@ -1094,7 +1127,7 @@ export namespace monitoring_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.list({
@@ -1243,7 +1276,7 @@ export namespace monitoring_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.dashboards.patch({
@@ -1371,11 +1404,6 @@ export namespace monitoring_v1 {
   export interface Params$Resource$Projects$Dashboards$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      */
     parent?: string;
@@ -1388,11 +1416,6 @@ export namespace monitoring_v1 {
   export interface Params$Resource$Projects$Dashboards$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Dashboard. The format is: projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
      */
     name?: string;
@@ -1400,22 +1423,12 @@ export namespace monitoring_v1 {
   export interface Params$Resource$Projects$Dashboards$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Dashboards$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A positive number that is the maximum number of results to return. If unspecified, a default of 1000 is used.
      */
@@ -1431,11 +1444,6 @@ export namespace monitoring_v1 {
   }
   export interface Params$Resource$Projects$Dashboards$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable. The resource name of the dashboard.
      */

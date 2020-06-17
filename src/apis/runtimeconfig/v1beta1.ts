@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace runtimeconfig_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -432,7 +444,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.create({
@@ -592,7 +604,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.delete({
@@ -724,7 +736,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.get({
@@ -859,7 +871,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.getIamPolicy({
@@ -1011,7 +1023,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.list({
@@ -1160,7 +1172,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.setIamPolicy({
@@ -1307,7 +1319,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.testIamPermissions({
@@ -1459,7 +1471,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.update({
@@ -1582,11 +1594,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
      */
     parent?: string;
@@ -1603,11 +1610,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The RuntimeConfig resource to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
@@ -1615,22 +1617,12 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the RuntimeConfig resource to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Configs$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1642,11 +1634,6 @@ export namespace runtimeconfig_v1beta1 {
   }
   export interface Params$Resource$Projects$Configs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
      */
@@ -1663,11 +1650,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1680,11 +1662,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1696,11 +1673,6 @@ export namespace runtimeconfig_v1beta1 {
   }
   export interface Params$Resource$Projects$Configs$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the RuntimeConfig resource to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
@@ -1744,7 +1716,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.operations.get({
@@ -1880,7 +1852,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.operations.testIamPermissions(
@@ -2012,22 +1984,12 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Configs$Operations$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2071,7 +2033,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.create({
@@ -2238,7 +2200,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.delete({
@@ -2374,7 +2336,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.get({
@@ -2512,7 +2474,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.list({
@@ -2675,7 +2637,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.testIamPermissions(
@@ -2829,7 +2791,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.update({
@@ -2980,7 +2942,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.watch({
@@ -3108,11 +3070,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must be in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
     parent?: string;
@@ -3129,11 +3086,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Variables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the variable to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
     name?: string;
@@ -3145,22 +3097,12 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Variables$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the variable to return, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Configs$Variables$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filters variables by matching the specified filter. For example:  `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
      */
@@ -3185,11 +3127,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Variables$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3202,11 +3139,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Variables$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the variable to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
     name?: string;
@@ -3218,11 +3150,6 @@ export namespace runtimeconfig_v1beta1 {
   }
   export interface Params$Resource$Projects$Configs$Variables$Watch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the variable to watch, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
@@ -3266,7 +3193,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.create({
@@ -3435,7 +3362,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.delete({
@@ -3567,7 +3494,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.get({
@@ -3708,7 +3635,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.list({
@@ -3858,7 +3785,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.testIamPermissions({
@@ -3988,11 +3915,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Waiters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must be in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
      */
     parent?: string;
@@ -4009,11 +3931,6 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Waiters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Waiter resource to delete, in the format:   `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
     name?: string;
@@ -4021,22 +3938,12 @@ export namespace runtimeconfig_v1beta1 {
   export interface Params$Resource$Projects$Configs$Waiters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully-qualified name of the Waiter resource object to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Configs$Waiters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
      */
@@ -4052,11 +3959,6 @@ export namespace runtimeconfig_v1beta1 {
   }
   export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

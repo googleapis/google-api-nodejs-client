@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudsearch_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2216,7 +2228,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.checkAccess({
@@ -2371,7 +2383,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.searchByViewUrl({
@@ -2505,11 +2517,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Debug$Datasources$Items$Checkaccess
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -2525,11 +2532,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Source name, format: datasources/{source_id}
      */
@@ -2573,7 +2575,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.datasources.items.unmappedids.list({
@@ -2707,11 +2709,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Debug$Datasources$Items$Unmappedids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -2774,7 +2771,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.identitysources.items.listForunmappedidentity(
@@ -2921,11 +2918,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -2983,7 +2975,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.debug.identitysources.unmappedids.list({
@@ -3120,11 +3112,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Debug$Identitysources$Unmappedids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -3190,7 +3177,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.deleteSchema({
@@ -3334,7 +3321,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.getSchema({
@@ -3475,7 +3462,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.updateSchema({
@@ -3603,11 +3590,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Deleteschema
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -3619,11 +3601,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Getschema
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -3634,11 +3611,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Updateschema
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the data source to update Schema.  Format: datasources/{source_id}
      */
@@ -3682,7 +3654,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.delete({
@@ -3843,7 +3815,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
@@ -3992,7 +3964,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.get({
@@ -4144,7 +4116,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.index({
@@ -4298,7 +4270,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.list({
@@ -4475,7 +4447,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.poll({
@@ -4626,7 +4598,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.push({
@@ -4784,7 +4756,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.unreserve({
@@ -4934,7 +4906,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.upload({
@@ -5058,11 +5030,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      */
     connectorName?: string;
@@ -5086,11 +5053,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
      */
     name?: string;
@@ -5102,11 +5064,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      */
@@ -5123,11 +5080,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Index
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
@@ -5139,11 +5091,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
      */
@@ -5172,11 +5119,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Poll
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to poll items. Format: datasources/{source_id}
      */
     name?: string;
@@ -5188,11 +5130,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$Push
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
      */
@@ -5206,11 +5143,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Unreserve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the Data Source to unreserve all items. Format: datasources/{source_id}
      */
     name?: string;
@@ -5222,11 +5154,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Indexing$Datasources$Items$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}. The maximum length is 1536 bytes.
      */
@@ -5270,7 +5197,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.media.upload({
@@ -5401,11 +5328,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the media that is being downloaded.  See ReadRequest.resource_name.
      */
     resourceName?: string;
@@ -5467,7 +5389,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.operations.get({
@@ -5578,11 +5500,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -5622,7 +5539,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.query.search({
@@ -5774,7 +5691,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.query.suggest({
@@ -5888,21 +5805,11 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Query$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchRequest;
   }
   export interface Params$Resource$Query$Suggest extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5941,7 +5848,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.query.sources.list({
@@ -6089,11 +5996,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Query$Sources$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Number of sources to return in the response.
      */
     pageToken?: string;
@@ -6161,7 +6063,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.create({
@@ -6312,7 +6214,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.delete({
@@ -6456,7 +6358,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.get({
@@ -6603,7 +6505,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.list({
@@ -6753,7 +6655,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.update({
@@ -6881,22 +6783,12 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
   }
   export interface Params$Resource$Settings$Datasources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -6909,11 +6801,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
@@ -6924,11 +6811,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -6944,11 +6826,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Datasources$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
      */
@@ -6993,7 +6870,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.create({
@@ -7144,7 +7021,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.delete({
@@ -7288,7 +7165,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.get({
@@ -7296,7 +7173,7 @@ export namespace cloudsearch_v1 {
      *     // Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // Name of the search application.
-     *     // <br />Format: applications/{application_id}.
+     *     // <br />Format: searchapplications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7324,7 +7201,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the search application. <br />Format: applications/{application_id}.
+     * @param {string} params.name Name of the search application. <br />Format: searchapplications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7438,7 +7315,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.list({
@@ -7591,7 +7468,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.reset({
@@ -7740,7 +7617,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.update({
@@ -7873,22 +7750,12 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchApplication;
   }
   export interface Params$Resource$Settings$Searchapplications$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -7901,26 +7768,16 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. <br />Format: applications/{application_id}.
+     * Name of the search application. <br />Format: searchapplications/{application_id}.
      */
     name?: string;
   }
   export interface Params$Resource$Settings$Searchapplications$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
@@ -7937,11 +7794,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Reset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the search application to be reset. <br />Format: applications/{application_id}.
      */
     name?: string;
@@ -7953,11 +7805,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Settings$Searchapplications$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the Search Application. <br />Format: searchapplications/{application_id}.
      */
@@ -8010,7 +7857,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.getIndex({
@@ -8165,7 +8012,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.getQuery({
@@ -8320,7 +8167,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.getSession({
@@ -8475,7 +8322,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.getUser({
@@ -8606,11 +8453,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Stats$Getindex extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
     'fromDate.day'?: number;
@@ -8636,11 +8478,6 @@ export namespace cloudsearch_v1 {
     'toDate.year'?: number;
   }
   export interface Params$Resource$Stats$Getquery extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -8668,11 +8505,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Params$Resource$Stats$Getsession extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
     'fromDate.day'?: number;
@@ -8698,11 +8530,6 @@ export namespace cloudsearch_v1 {
     'toDate.year'?: number;
   }
   export interface Params$Resource$Stats$Getuser extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
@@ -8771,7 +8598,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.index.datasources.get({
@@ -8911,11 +8738,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Stats$Index$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
     'fromDate.day'?: number;
@@ -8989,7 +8811,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.query.searchapplications.get({
@@ -9135,11 +8957,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Stats$Query$Searchapplications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
     'fromDate.day'?: number;
@@ -9213,7 +9030,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.session.searchapplications.get({
@@ -9359,11 +9176,6 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Stats$Session$Searchapplications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
     'fromDate.day'?: number;
@@ -9437,7 +9249,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudsearch.stats.user.searchapplications.get({
@@ -9582,11 +9394,6 @@ export namespace cloudsearch_v1 {
 
   export interface Params$Resource$Stats$User$Searchapplications$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace sheets_v4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -4155,7 +4167,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.batchUpdate({
@@ -4312,7 +4324,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.create({
@@ -4461,7 +4473,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.get({
@@ -4607,7 +4619,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.getByDataFilter({
@@ -4733,11 +4745,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The spreadsheet to apply the updates to.
      */
     spreadsheetId?: string;
@@ -4750,21 +4757,11 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Spreadsheet;
   }
   export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
      */
@@ -4780,11 +4777,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Getbydatafilter
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The spreadsheet to request.
      */
@@ -4829,7 +4821,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.developerMetadata.get({
@@ -4974,7 +4966,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.developerMetadata.search({
@@ -5104,11 +5096,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Developermetadata$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the developer metadata to retrieve.
      */
     metadataId?: number;
@@ -5119,11 +5106,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Developermetadata$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the spreadsheet to retrieve metadata from.
      */
@@ -5168,7 +5150,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.sheets.copyTo({
@@ -5300,11 +5282,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Sheets$Copyto
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the sheet to copy.
      */
     sheetId?: number;
@@ -5352,7 +5329,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.append({
@@ -5529,7 +5506,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchClear({
@@ -5680,7 +5657,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchClearByDataFilter({
@@ -5842,7 +5819,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGet({
@@ -6005,7 +5982,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGetByDataFilter({
@@ -6162,7 +6139,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchUpdate({
@@ -6321,7 +6298,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchUpdateByDataFilter({
@@ -6489,7 +6466,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.clear({
@@ -6639,7 +6616,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.get({
@@ -6796,7 +6773,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.update({
@@ -6953,11 +6930,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Append
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      */
     includeValuesInResponse?: boolean;
@@ -6994,11 +6966,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchclear
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
@@ -7011,11 +6978,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
@@ -7027,11 +6989,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Batchget
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
@@ -7056,11 +7013,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to retrieve data from.
      */
     spreadsheetId?: string;
@@ -7072,11 +7024,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the spreadsheet to update.
      */
@@ -7090,11 +7037,6 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the spreadsheet to update.
      */
     spreadsheetId?: string;
@@ -7106,11 +7048,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Clear
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The A1 notation of the values to clear.
      */
@@ -7127,11 +7064,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      */
@@ -7155,11 +7087,6 @@ export namespace sheets_v4 {
   }
   export interface Params$Resource$Spreadsheets$Values$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */

@@ -17,6 +17,9 @@ import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {Utils} from './utils';
+import {GoogleAuth} from 'google-auth-library';
+import * as sinon from 'sinon';
+import {GaxiosResponse} from 'gaxios';
 
 function createNock(path?: string) {
   const p = path || '/drive/v2/files/woot';
@@ -24,6 +27,7 @@ function createNock(path?: string) {
 }
 
 describe('Options', () => {
+  const sandbox = sinon.createSandbox();
   before(() => {
     nock.disableNetConnect();
   });
@@ -31,6 +35,7 @@ describe('Options', () => {
   afterEach(() => {
     nock.disableNetConnect();
     nock.cleanAll();
+    sandbox.restore();
   });
 
   it('should be a function', () => {
@@ -241,5 +246,18 @@ describe('Options', () => {
     });
 
     scope.done();
+  });
+
+  it('should allow using a GoogleAuth object for auth', async () => {
+    const google = new GoogleApis();
+    const auth = new GoogleAuth();
+    const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
+    // global options
+    google.options({auth});
+    // per-API options
+    const drive = google.drive({version: 'v3', auth});
+    // per-call options
+    await drive.files.list({auth});
+    assert(stub.calledOnce);
   });
 });

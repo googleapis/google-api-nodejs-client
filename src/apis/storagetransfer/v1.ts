@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace storagetransfer_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -336,7 +348,7 @@ export namespace storagetransfer_v1 {
      */
     error?: Schema$Status;
     /**
-     * Represents the transfer operation object.
+     * Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -667,7 +679,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.googleServiceAccounts.get({
@@ -786,11 +798,6 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Googleserviceaccounts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
      */
     projectId?: string;
@@ -825,7 +832,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.create({
@@ -977,7 +984,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
@@ -1118,7 +1125,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.list({
@@ -1269,7 +1276,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.patch({
@@ -1399,21 +1406,11 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferjobs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$TransferJob;
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The job to get.
      */
@@ -1425,11 +1422,6 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project`<span>`_`</span>`id` is required.  `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      */
@@ -1445,11 +1437,6 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of job to update.
      */
@@ -1490,7 +1477,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.cancel({
@@ -1617,7 +1604,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.get({
@@ -1750,7 +1737,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.list({
@@ -1898,7 +1885,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.pause({
@@ -2032,7 +2019,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.resume({
@@ -2147,11 +2134,6 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -2159,22 +2141,12 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Transferoperations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project`<span>`_`</span>`id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
@@ -2195,11 +2167,6 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$Pause
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the transfer operation.
      */
     name?: string;
@@ -2211,11 +2178,6 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferoperations$Resume
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the transfer operation.
      */

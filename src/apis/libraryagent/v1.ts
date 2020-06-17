@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace libraryagent_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -207,7 +219,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.get({
@@ -344,7 +356,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.list({
@@ -482,21 +494,11 @@ export namespace libraryagent_v1 {
 
   export interface Params$Resource$Shelves$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the shelf to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Shelves$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
      */
@@ -536,7 +538,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.books.borrow({
@@ -676,7 +678,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.books.get({
@@ -816,7 +818,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.books.list({
@@ -981,7 +983,7 @@ export namespace libraryagent_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.books.return({
@@ -1102,11 +1104,6 @@ export namespace libraryagent_v1 {
   export interface Params$Resource$Shelves$Books$Borrow
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the book to borrow.
      */
     name?: string;
@@ -1114,22 +1111,12 @@ export namespace libraryagent_v1 {
   export interface Params$Resource$Shelves$Books$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the book to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Shelves$Books$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      */
@@ -1145,11 +1132,6 @@ export namespace libraryagent_v1 {
   }
   export interface Params$Resource$Shelves$Books$Return
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the book to return.
      */

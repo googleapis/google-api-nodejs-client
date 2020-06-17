@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace websecurityscanner_v1beta {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -187,7 +199,7 @@ export namespace websecurityscanner_v1beta {
      */
     finalUrl?: string | null;
     /**
-     * The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-scanner/docs/scan-result-details
+     * The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-command-center/docs/how-to-remediate-web-security-scanner
      */
     findingType?: string | null;
     /**
@@ -400,7 +412,7 @@ export namespace websecurityscanner_v1beta {
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The excluded URL patterns as described in https://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls
      */
     blacklistPatterns?: string[] | null;
     /**
@@ -408,7 +420,7 @@ export namespace websecurityscanner_v1beta {
      */
     displayName?: string | null;
     /**
-     * Controls export of scan configurations and results to Cloud Security Command Center.
+     * Controls export of scan configurations and results to Security Command Center.
      */
     exportToSecurityCommandCenter?: string | null;
     /**
@@ -416,7 +428,7 @@ export namespace websecurityscanner_v1beta {
      */
     latestRun?: Schema$ScanRun;
     /**
-     * Whether the scan config is managed by Cloud Web Security Scanner, output only.
+     * Whether the scan config is managed by Web Security Scanner, output only.
      */
     managedScan?: boolean | null;
     /**
@@ -444,7 +456,7 @@ export namespace websecurityscanner_v1beta {
      */
     staticIpScan?: boolean | null;
     /**
-     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
+     * Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     targetPlatforms?: string[] | null;
     /**
@@ -650,7 +662,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.create({
@@ -818,7 +830,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.delete({
@@ -946,7 +958,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.get({
@@ -1089,7 +1101,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.list({
@@ -1238,7 +1250,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.patch({
@@ -1409,7 +1421,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.start({
@@ -1540,11 +1552,6 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the scan is created, which should be a project resource name in the format 'projects/{projectId}'.
      */
     parent?: string;
@@ -1557,11 +1564,6 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the ScanConfig to be deleted. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
@@ -1569,22 +1571,12 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the ScanConfig to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of ScanConfigs to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
@@ -1601,11 +1593,6 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the ScanConfig. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'. The ScanConfig IDs are generated by the system.
      */
     name?: string;
@@ -1621,11 +1608,6 @@ export namespace websecurityscanner_v1beta {
   }
   export interface Params$Resource$Projects$Scanconfigs$Start
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the ScanConfig to be used. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      */
@@ -1678,7 +1660,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.get({
@@ -1819,7 +1801,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.list({
@@ -1968,7 +1950,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.stop({
@@ -2100,22 +2082,12 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the ScanRun to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of ScanRuns to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
@@ -2131,11 +2103,6 @@ export namespace websecurityscanner_v1beta {
   }
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the ScanRun to be stopped. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */
@@ -2176,7 +2143,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list(
@@ -2310,11 +2277,6 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      */
     pageSize?: number;
@@ -2357,7 +2319,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.get(
@@ -2507,7 +2469,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.list(
@@ -2647,22 +2609,12 @@ export namespace websecurityscanner_v1beta {
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The filter expression. The expression must be in the format: <field> <operator> <value>. Supported field: 'finding_type'. Supported operator: '='.
      */
@@ -2710,7 +2662,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list(
@@ -2836,11 +2788,6 @@ export namespace websecurityscanner_v1beta {
 
   export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      */

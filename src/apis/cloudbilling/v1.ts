@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudbilling_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -535,7 +547,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.create({
@@ -677,7 +689,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.get({
@@ -809,7 +821,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.getIamPolicy({
@@ -958,7 +970,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.list({
@@ -1111,7 +1123,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.patch({
@@ -1258,7 +1270,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.setIamPolicy({
@@ -1403,7 +1415,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.testIamPermissions({
@@ -1532,11 +1544,6 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BillingAccount;
@@ -1544,22 +1551,12 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
   }
   export interface Params$Resource$Billingaccounts$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1571,11 +1568,6 @@ export namespace cloudbilling_v1 {
   }
   export interface Params$Resource$Billingaccounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
      */
@@ -1591,11 +1583,6 @@ export namespace cloudbilling_v1 {
   }
   export interface Params$Resource$Billingaccounts$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the billing account resource to be updated.
      */
@@ -1613,11 +1600,6 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1629,11 +1611,6 @@ export namespace cloudbilling_v1 {
   }
   export interface Params$Resource$Billingaccounts$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1674,7 +1651,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.projects.list({
@@ -1806,11 +1783,6 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Billingaccounts$Projects$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
@@ -1853,7 +1825,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.projects.getBillingInfo({
@@ -1993,7 +1965,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.projects.updateBillingInfo({
@@ -2126,22 +2098,12 @@ export namespace cloudbilling_v1 {
   export interface Params$Resource$Projects$Getbillinginfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updatebillinginfo
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      */
@@ -2184,7 +2146,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.services.list({
@@ -2302,11 +2264,6 @@ export namespace cloudbilling_v1 {
 
   export interface Params$Resource$Services$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Requested page size. Defaults to 5000.
      */
     pageSize?: number;
@@ -2345,7 +2302,7 @@ export namespace cloudbilling_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudbilling.services.skus.list({
@@ -2484,11 +2441,6 @@ export namespace cloudbilling_v1 {
 
   export interface Params$Resource$Services$Skus$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
      */

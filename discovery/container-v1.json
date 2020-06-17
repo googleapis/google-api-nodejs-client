@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20200501",
+  "revision": "20200519",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2544,14 +2544,14 @@
           "description": "Specifies the node management options for NAP created node-pools."
         },
         "oauthScopes": {
-          "description": "Scopes that are used by NAP when creating node pools. If oauth_scopes are\nspecified, service_account should be empty.",
+          "description": "Scopes that are used by NAP when creating node pools.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "serviceAccount": {
-          "description": "The Google Cloud Platform Service Account to be used by the node VMs. If\nservice_account is specified, scopes should be empty.",
+          "description": "The Google Cloud Platform Service Account to be used by the node VMs.",
           "type": "string"
         },
         "upgradeSettings": {

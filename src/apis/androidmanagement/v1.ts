@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace androidmanagement_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -331,6 +343,10 @@ export namespace androidmanagement_v1 {
      * Number of days the policy is non-compliant before the device or work profile is blocked. To block access immediately, set to 0. blockAfterDays must be less than wipeAfterDays.
      */
     blockAfterDays?: number | null;
+    /**
+     * Specifies the scope of this BlockAction. Only applicable to devices that are company-owned.
+     */
+    blockScope?: string | null;
   }
   /**
    * A rule for automatically choosing a private key and certificate to authenticate the device to a server.
@@ -513,6 +529,10 @@ export namespace androidmanagement_v1 {
      */
     nonComplianceDetails?: Schema$NonComplianceDetail[];
     /**
+     * Ownership of the managed device.
+     */
+    ownership?: string | null;
+    /**
      * Whether the device is compliant with its policy.
      */
     policyCompliant?: boolean | null;
@@ -631,6 +651,10 @@ export namespace androidmanagement_v1 {
      * Optional, arbitrary data associated with the enrollment token. This could contain, for example, the ID of an org unit the device is assigned to after enrollment. After a device enrolls with the token, this data will be exposed in the enrollment_token_data field of the Device resource. The data must be 1024 characters or less; otherwise, the creation request will fail.
      */
     additionalData?: string | null;
+    /**
+     * Controls personal usage on devices provisioned using this enrollment token.
+     */
+    allowPersonalUsage?: string | null;
     /**
      * The length of time the enrollment token is valid, ranging from 1 minute to 30 days. If not specified, the default duration is 1 hour.
      */
@@ -1218,6 +1242,48 @@ export namespace androidmanagement_v1 {
     receiverActivity?: string | null;
   }
   /**
+   * Policies for apps on the personal profile of a Corporate Owned Personally Enabled device.
+   */
+  export interface Schema$PersonalApplicationPolicy {
+    /**
+     * The type of installation to perform.
+     */
+    installType?: string | null;
+    /**
+     * The package name of the application.
+     */
+    packageName?: string | null;
+  }
+  /**
+   * Policies controlling personal usage on a Corporate Owned Personally Enabled device.
+   */
+  export interface Schema$PersonalUsagePolicies {
+    /**
+     * Account types that can&#39;t be managed by the user.
+     */
+    accountTypesWithManagementDisabled?: string[] | null;
+    /**
+     * Whether camera is disabled.
+     */
+    cameraDisabled?: boolean | null;
+    /**
+     * Controls how long the work profile can stay off.
+     */
+    maxDaysWithWorkOff?: number | null;
+    /**
+     * Policy applied to applications on the personal profile.
+     */
+    personalApplications?: Schema$PersonalApplicationPolicy[];
+    /**
+     * Controls how apps on the personal profile are allowed or blocked.
+     */
+    personalPlayStoreMode?: string | null;
+    /**
+     * Whether screen capture is disabled.
+     */
+    screenCaptureDisabled?: boolean | null;
+  }
+  /**
    * A policy resource represents a group of settings that govern the behavior of a managed device and the apps installed on it.
    */
   export interface Schema$Policy {
@@ -1434,6 +1500,10 @@ export namespace androidmanagement_v1 {
      */
     persistentPreferredActivities?: Schema$PersistentPreferredActivity[];
     /**
+     * Policies managing personal usage on a company-owned device.
+     */
+    personalUsagePolicies?: Schema$PersonalUsagePolicies;
+    /**
      * This mode controls which apps are available to the user in the Play Store and the behavior on the device when apps are removed from the policy.
      */
     playStoreMode?: string | null;
@@ -1644,6 +1714,10 @@ export namespace androidmanagement_v1 {
    * A resource containing sign in details for an enterprise.
    */
   export interface Schema$SigninDetail {
+    /**
+     * Controls whether personal usage is allowed on a device provisioned with this enrollment token.For company-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage requires the user provision the device as a fully managed device.For personally-owned devices: Enabling personal usage allows the user to set up a work profile on the device. Disabling personal usage will prevent the device from provisioning. Personal usage cannot be disabled on personally-owned device.
+     */
+    allowPersonalUsage?: string | null;
     /**
      * A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON. This is a read-only field generated by the server.
      */
@@ -1953,7 +2027,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.create({
@@ -2113,7 +2187,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.get({
@@ -2249,7 +2323,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.patch({
@@ -2387,11 +2461,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The enterprise token appended to the callback URL.
      */
     enterpriseToken?: string;
@@ -2411,22 +2480,12 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
@@ -2471,7 +2530,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.applications.get({
@@ -2588,11 +2647,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Applications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
      */
     languageCode?: string;
@@ -2635,7 +2689,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.delete({
@@ -2768,7 +2822,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.get({
@@ -2801,6 +2855,7 @@ export namespace androidmanagement_v1 {
      *   //   "name": "my_name",
      *   //   "networkInfo": {},
      *   //   "nonComplianceDetails": [],
+     *   //   "ownership": "my_ownership",
      *   //   "policyCompliant": false,
      *   //   "policyName": "my_policyName",
      *   //   "powerManagementEvents": [],
@@ -2928,7 +2983,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.issueCommand({
@@ -3079,7 +3134,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.list({
@@ -3221,7 +3276,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.patch({
@@ -3256,6 +3311,7 @@ export namespace androidmanagement_v1 {
      *       //   "name": "my_name",
      *       //   "networkInfo": {},
      *       //   "nonComplianceDetails": [],
+     *       //   "ownership": "my_ownership",
      *       //   "policyCompliant": false,
      *       //   "policyName": "my_policyName",
      *       //   "powerManagementEvents": [],
@@ -3295,6 +3351,7 @@ export namespace androidmanagement_v1 {
      *   //   "name": "my_name",
      *   //   "networkInfo": {},
      *   //   "nonComplianceDetails": [],
+     *   //   "ownership": "my_ownership",
      *   //   "policyCompliant": false,
      *   //   "policyName": "my_policyName",
      *   //   "powerManagementEvents": [],
@@ -3405,11 +3462,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
@@ -3425,22 +3477,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Issuecommand
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
@@ -3453,11 +3495,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -3473,11 +3510,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
@@ -3522,7 +3554,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.operations.cancel({
@@ -3649,7 +3681,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.operations.delete({
@@ -3776,7 +3808,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.operations.get({
@@ -3909,7 +3941,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.devices.operations.list({
@@ -4034,22 +4066,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -4058,22 +4080,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -4121,7 +4133,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.enrollmentTokens.create({
@@ -4133,6 +4145,7 @@ export namespace androidmanagement_v1 {
      *       // request body parameters
      *       // {
      *       //   "additionalData": "my_additionalData",
+     *       //   "allowPersonalUsage": "my_allowPersonalUsage",
      *       //   "duration": "my_duration",
      *       //   "expirationTimestamp": "my_expirationTimestamp",
      *       //   "name": "my_name",
@@ -4149,6 +4162,7 @@ export namespace androidmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "additionalData": "my_additionalData",
+     *   //   "allowPersonalUsage": "my_allowPersonalUsage",
      *   //   "duration": "my_duration",
      *   //   "expirationTimestamp": "my_expirationTimestamp",
      *   //   "name": "my_name",
@@ -4278,7 +4292,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.enrollmentTokens.delete({
@@ -4386,11 +4400,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Enrollmenttokens$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -4402,11 +4411,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Enrollmenttokens$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
      */
@@ -4442,7 +4446,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.policies.delete({
@@ -4569,7 +4573,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.policies.get({
@@ -4633,6 +4637,7 @@ export namespace androidmanagement_v1 {
      *   //   "permittedAccessibilityServices": {},
      *   //   "permittedInputMethods": {},
      *   //   "persistentPreferredActivities": [],
+     *   //   "personalUsagePolicies": {},
      *   //   "playStoreMode": "my_playStoreMode",
      *   //   "policyEnforcementRules": [],
      *   //   "privateKeySelectionEnabled": false,
@@ -4777,7 +4782,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.policies.list({
@@ -4921,7 +4926,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.policies.patch({
@@ -4987,6 +4992,7 @@ export namespace androidmanagement_v1 {
      *       //   "permittedAccessibilityServices": {},
      *       //   "permittedInputMethods": {},
      *       //   "persistentPreferredActivities": [],
+     *       //   "personalUsagePolicies": {},
      *       //   "playStoreMode": "my_playStoreMode",
      *       //   "policyEnforcementRules": [],
      *       //   "privateKeySelectionEnabled": false,
@@ -5074,6 +5080,7 @@ export namespace androidmanagement_v1 {
      *   //   "permittedAccessibilityServices": {},
      *   //   "permittedInputMethods": {},
      *   //   "persistentPreferredActivities": [],
+     *   //   "personalUsagePolicies": {},
      *   //   "playStoreMode": "my_playStoreMode",
      *   //   "policyEnforcementRules": [],
      *   //   "privateKeySelectionEnabled": false,
@@ -5201,11 +5208,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Policies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
     name?: string;
@@ -5213,22 +5215,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Policies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Policies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -5244,11 +5236,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Policies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
@@ -5293,7 +5280,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.create({
@@ -5444,7 +5431,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.delete({
@@ -5571,7 +5558,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.get({
@@ -5705,7 +5692,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.list({
@@ -5847,7 +5834,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.patch({
@@ -5979,11 +5966,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -5996,11 +5978,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
      */
     name?: string;
@@ -6008,22 +5985,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApp/{packageName}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Webapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -6039,11 +6006,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Webapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
      */
@@ -6088,7 +6050,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webTokens.create({
@@ -6218,11 +6180,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webtokens$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -6262,7 +6219,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidmanagement.signupUrls.create({
@@ -6375,11 +6332,6 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */

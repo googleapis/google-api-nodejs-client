@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace securitycenter_v1p1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -129,7 +141,7 @@ export namespace securitycenter_v1p1beta1 {
     projectIds?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -142,7 +154,7 @@ export namespace securitycenter_v1p1beta1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -159,7 +171,7 @@ export namespace securitycenter_v1p1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
@@ -246,7 +258,7 @@ export namespace securitycenter_v1p1beta1 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -255,7 +267,7 @@ export namespace securitycenter_v1p1beta1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -284,6 +296,10 @@ export namespace securitycenter_v1p1beta1 {
      * Name of the notification config that generated current notification.
      */
     notificationConfigName?: string | null;
+    /**
+     * The Cloud resource tied to this notification&#39;s Finding.
+     */
+    resource?: Schema$GoogleCloudSecuritycenterV1Resource;
   }
   /**
    * Security Command Center representation of a Google Cloud resource.  The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don&#39;t affect the referenced Google Cloud resource.
@@ -385,9 +401,38 @@ export namespace securitycenter_v1p1beta1 {
      */
     notificationConfigName?: string | null;
     /**
+     * The Cloud resource tied to the notification.
+     */
+    resource?: Schema$GoogleCloudSecuritycenterV1p1beta1Resource;
+    /**
      * If it&#39;s an asset based notification config, this field will be populated.
      */
     temporalAsset?: Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset;
+  }
+  /**
+   *  Information related to the Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Resource {
+    /**
+     * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    name?: string | null;
+    /**
+     * The full resource name of resource&#39;s parent.
+     */
+    parent?: string | null;
+    /**
+     *  The human readable name of resource&#39;s parent.
+     */
+    parentDisplayName?: string | null;
+    /**
+     * The full resource name of project that the resource belongs to.
+     */
+    project?: string | null;
+    /**
+     *  The human readable name of project that the resource belongs to.
+     */
+    projectDisplayName?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -464,6 +509,31 @@ export namespace securitycenter_v1p1beta1 {
      * Represents if the asset was created/updated/deleted.
      */
     changeType?: string | null;
+  }
+  /**
+   *  Information related to the Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1Resource {
+    /**
+     * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    name?: string | null;
+    /**
+     * The full resource name of resource&#39;s parent.
+     */
+    parent?: string | null;
+    /**
+     *  The human readable name of resource&#39;s parent.
+     */
+    parentDisplayName?: string | null;
+    /**
+     * The full resource name of project that the resource belongs to.
+     */
+    project?: string | null;
+    /**
+     *  The human readable name of project that the resource belongs to.
+     */
+    projectDisplayName?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -774,7 +844,7 @@ export namespace securitycenter_v1p1beta1 {
     name?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -790,7 +860,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -858,7 +928,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -963,7 +1033,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getOrganizationSettings({
@@ -1102,7 +1172,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateOrganizationSettings({
@@ -1240,22 +1310,12 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Getorganizationsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateorganizationsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/organizationSettings".
      */
@@ -1300,7 +1360,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.group({
@@ -1453,7 +1513,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.list({
@@ -1726,7 +1786,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.runDiscovery({
@@ -1870,7 +1930,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.updateSecurityMarks({
@@ -2029,11 +2089,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Assets$Group
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      */
     parent?: string;
@@ -2045,11 +2100,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Assets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again.  Possible "state_change" values when compare_duration is specified:  * "ADDED":   indicates that the asset was not present at the start of                compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of                compare_duration, but not present at read_time. * "ACTIVE":  indicates that the asset was present at both the                start and the end of the time period defined by                compare_duration and read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED",  which will be the state_change set for all assets present at read_time.
      */
@@ -2086,11 +2136,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Assets$Rundiscovery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      */
     parent?: string;
@@ -2102,11 +2147,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Assets$Updatesecuritymarks
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */
@@ -2155,7 +2195,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.create({
@@ -2316,7 +2356,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.delete({
@@ -2445,7 +2485,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.get({
@@ -2584,7 +2624,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.list({
@@ -2736,7 +2776,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.patch({
@@ -2877,11 +2917,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters, and contains alphanumeric characters, underscores or hyphens only.
      */
     configId?: string;
@@ -2898,11 +2933,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
      */
     name?: string;
@@ -2910,22 +2940,12 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Notificationconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -2941,11 +2961,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Notificationconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
      */
@@ -2990,7 +3005,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.cancel({
@@ -3120,7 +3135,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.delete({
@@ -3247,7 +3262,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.get({
@@ -3380,7 +3395,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.list({
@@ -3505,22 +3520,12 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -3529,22 +3534,12 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -3594,7 +3589,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.create({
@@ -3740,7 +3735,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.get({
@@ -3872,7 +3867,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.getIamPolicy({
@@ -4017,7 +4012,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.list({
@@ -4163,7 +4158,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.patch({
@@ -4313,7 +4308,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.setIamPolicy({
@@ -4459,7 +4454,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.testIamPermissions({
@@ -4588,11 +4583,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
@@ -4605,22 +4595,12 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Sources$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4633,11 +4613,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -4653,11 +4628,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}"
      */
@@ -4675,11 +4645,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4691,11 +4656,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4736,7 +4696,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.create({
@@ -4918,7 +4878,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.group({
@@ -5075,7 +5035,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.list({
@@ -5341,7 +5301,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.patch({
@@ -5526,7 +5486,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.setState({
@@ -5697,7 +5657,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.updateSecurityMarks(
@@ -5859,11 +5819,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
     findingId?: string;
@@ -5880,11 +5835,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Group
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      */
     parent?: string;
@@ -5896,11 +5846,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Findings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
@@ -5937,11 +5882,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      */
     name?: string;
@@ -5958,11 +5898,6 @@ export namespace securitycenter_v1p1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      */
     name?: string;
@@ -5974,11 +5909,6 @@ export namespace securitycenter_v1p1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */

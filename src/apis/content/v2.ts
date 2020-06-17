@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace content_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -3215,7 +3227,7 @@ export namespace content_v2 {
      */
     shipmentId?: string | null;
     /**
-     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`undeliverable`&quot;
+     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`undeliverable`&quot;  - &quot;`readyForPickup`&quot;
      */
     status?: string | null;
     /**
@@ -3297,6 +3309,10 @@ export namespace content_v2 {
      */
     lineItems?: Schema$OrderShipmentLineItemShipment[];
     /**
+     * Delivery details of the shipment if scheduling is needed.
+     */
+    scheduledDeliveryDetails?: Schema$OrderShipmentScheduledDeliveryDetails;
+    /**
      * The status of the shipment.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`readyForPickup`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
      */
     status?: string | null;
@@ -3318,6 +3334,16 @@ export namespace content_v2 {
      * The quantity that is shipped.
      */
     quantity?: number | null;
+  }
+  export interface Schema$OrderShipmentScheduledDeliveryDetails {
+    /**
+     * The phone number of the carrier fulfilling the delivery.
+     */
+    carrierPhoneNumber?: string | null;
+    /**
+     * The date a shipment is scheduled for delivery, in ISO 8601 format.
+     */
+    scheduledDate?: string | null;
   }
   export interface Schema$OrdersInStoreRefundLineItemRequest {
     /**
@@ -3661,7 +3687,7 @@ export namespace content_v2 {
      */
     shipmentId?: string | null;
     /**
-     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`undeliverable`&quot;
+     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`undeliverable`&quot;  - &quot;`readyForPickup`&quot;
      */
     status?: string | null;
     /**
@@ -4881,7 +4907,7 @@ export namespace content_v2 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
+     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;  - &quot;`pending`&quot;
      */
     state?: string | null;
   }
@@ -5432,7 +5458,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.authinfo({});
@@ -5567,7 +5593,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.claimwebsite({
@@ -5713,7 +5739,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.custombatch({
@@ -5861,7 +5887,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.delete({
@@ -5992,7 +6018,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.get({
@@ -6135,7 +6161,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.insert({
@@ -6299,7 +6325,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.link({
@@ -6447,7 +6473,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.list({
@@ -6590,7 +6616,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounts.update({
@@ -6735,19 +6761,9 @@ export namespace content_v2 {
   }
 
   export interface Params$Resource$Accounts$Authinfo
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Accounts$Claimwebsite
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account whose website is claimed.
      */
@@ -6764,11 +6780,6 @@ export namespace content_v2 {
   export interface Params$Resource$Accounts$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -6779,11 +6790,6 @@ export namespace content_v2 {
     requestBody?: Schema$AccountsCustomBatchRequest;
   }
   export interface Params$Resource$Accounts$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -6803,11 +6809,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account.
      */
     accountId?: string;
@@ -6817,11 +6818,6 @@ export namespace content_v2 {
     merchantId?: string;
   }
   export interface Params$Resource$Accounts$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -6838,11 +6834,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accounts$Link extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that should be linked.
      */
     accountId?: string;
@@ -6858,11 +6849,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of accounts to return in the response, used for paging.
      */
     maxResults?: number;
@@ -6876,11 +6862,6 @@ export namespace content_v2 {
     pageToken?: string;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -6929,7 +6910,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accountstatuses.custombatch({
@@ -7075,7 +7056,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accountstatuses.get({
@@ -7216,7 +7197,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accountstatuses.list({
@@ -7346,22 +7327,12 @@ export namespace content_v2 {
   export interface Params$Resource$Accountstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Accountstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -7377,11 +7348,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accountstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -7429,7 +7395,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounttax.custombatch({
@@ -7579,7 +7545,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounttax.get({
@@ -7713,7 +7679,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounttax.list({
@@ -7856,7 +7822,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.accounttax.update({
@@ -7986,11 +7952,6 @@ export namespace content_v2 {
   export interface Params$Resource$Accounttax$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -8002,11 +7963,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accounttax$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to get/update account tax settings.
      */
     accountId?: string;
@@ -8016,11 +7972,6 @@ export namespace content_v2 {
     merchantId?: string;
   }
   export interface Params$Resource$Accounttax$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of tax settings to return in the response, used for paging.
      */
@@ -8036,11 +7987,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Accounttax$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update account tax settings.
      */
@@ -8089,7 +8035,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.custombatch({
@@ -8239,7 +8185,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.delete({
@@ -8367,7 +8313,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.fetchnow({
@@ -8511,7 +8457,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.get({
@@ -8654,7 +8600,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.insert({
@@ -8818,7 +8764,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.list({
@@ -8961,7 +8907,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeeds.update({
@@ -9108,11 +9054,6 @@ export namespace content_v2 {
   export interface Params$Resource$Datafeeds$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -9123,11 +9064,6 @@ export namespace content_v2 {
     requestBody?: Schema$DatafeedsCustomBatchRequest;
   }
   export interface Params$Resource$Datafeeds$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the datafeed.
      */
@@ -9144,11 +9080,6 @@ export namespace content_v2 {
   export interface Params$Resource$Datafeeds$Fetchnow
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the datafeed to be fetched.
      */
     datafeedId?: string;
@@ -9163,11 +9094,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Datafeeds$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the datafeed.
      */
     datafeedId?: string;
@@ -9177,11 +9103,6 @@ export namespace content_v2 {
     merchantId?: string;
   }
   export interface Params$Resource$Datafeeds$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -9198,11 +9119,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Datafeeds$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of products to return in the response, used for paging.
      */
     maxResults?: number;
@@ -9216,11 +9132,6 @@ export namespace content_v2 {
     pageToken?: string;
   }
   export interface Params$Resource$Datafeeds$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the datafeed.
      */
@@ -9269,7 +9180,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeedstatuses.custombatch({
@@ -9415,7 +9326,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeedstatuses.get({
@@ -9563,7 +9474,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.datafeedstatuses.list({
@@ -9691,22 +9602,12 @@ export namespace content_v2 {
   export interface Params$Resource$Datafeedstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Datafeedstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
@@ -9726,11 +9627,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Datafeedstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of products to return in the response, used for paging.
      */
@@ -9774,7 +9670,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.inventory.custombatch({
@@ -9924,7 +9820,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.inventory.set({
@@ -10072,11 +9968,6 @@ export namespace content_v2 {
   export interface Params$Resource$Inventory$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -10087,11 +9978,6 @@ export namespace content_v2 {
     requestBody?: Schema$InventoryCustomBatchRequest;
   }
   export interface Params$Resource$Inventory$Set extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -10144,7 +10030,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.custombatch({
@@ -10294,7 +10180,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.get({
@@ -10428,7 +10314,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.getaccessiblegmbaccounts({
@@ -10587,7 +10473,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.list({
@@ -10730,7 +10616,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.listposdataproviders({});
@@ -10873,7 +10759,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.requestgmbaccess({
@@ -11019,7 +10905,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.requestinventoryverification({
@@ -11178,7 +11064,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.setinventoryverificationcontact({
@@ -11353,7 +11239,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.setposdataprovider({
@@ -11511,7 +11397,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.liasettings.update({
@@ -11641,11 +11527,6 @@ export namespace content_v2 {
   export interface Params$Resource$Liasettings$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -11656,11 +11537,6 @@ export namespace content_v2 {
     requestBody?: Schema$LiasettingsCustomBatchRequest;
   }
   export interface Params$Resource$Liasettings$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get or update LIA settings.
      */
@@ -11673,11 +11549,6 @@ export namespace content_v2 {
   export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
@@ -11687,11 +11558,6 @@ export namespace content_v2 {
     merchantId?: string;
   }
   export interface Params$Resource$Liasettings$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of LIA settings to return in the response, used for paging.
      */
@@ -11706,19 +11572,9 @@ export namespace content_v2 {
     pageToken?: string;
   }
   export interface Params$Resource$Liasettings$Listposdataproviders
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Liasettings$Requestgmbaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which GMB access is requested.
      */
@@ -11735,11 +11591,6 @@ export namespace content_v2 {
   export interface Params$Resource$Liasettings$Requestinventoryverification
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     accountId?: string;
@@ -11754,11 +11605,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Liasettings$Setinventoryverificationcontact
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -11787,11 +11633,6 @@ export namespace content_v2 {
   export interface Params$Resource$Liasettings$Setposdataprovider
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
@@ -11814,11 +11655,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Liasettings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get or update LIA settings.
      */
@@ -11867,7 +11703,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderinvoices.createchargeinvoice({
@@ -12030,7 +11866,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderinvoices.createrefundinvoice({
@@ -12174,11 +12010,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orderinvoices$Createchargeinvoice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -12194,11 +12025,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orderinvoices$Createrefundinvoice
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -12243,7 +12069,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderreports.listdisbursements({
@@ -12402,7 +12228,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderreports.listtransactions({
@@ -12550,11 +12376,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orderreports$Listdisbursements
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The last date which disbursements occurred. In ISO 8601 format. Default: current date.
      */
     disbursementEndDate?: string;
@@ -12577,11 +12398,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orderreports$Listtransactions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Google-provided ID of the disbursement (found in Wallet).
      */
@@ -12637,7 +12453,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderreturns.get({
@@ -12777,7 +12593,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orderreturns.list({
@@ -12910,11 +12726,6 @@ export namespace content_v2 {
 
   export interface Params$Resource$Orderreturns$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -12925,11 +12736,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orderreturns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Obtains order returns created before this date (inclusively), in ISO 8601 format.
      */
@@ -12985,7 +12791,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.acknowledge({
@@ -13135,7 +12941,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.advancetestorder({
@@ -13277,7 +13083,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.cancel({
@@ -13426,7 +13232,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.cancellineitem({
@@ -13587,7 +13393,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.canceltestorderbycustomer({
@@ -13745,7 +13551,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.createtestorder({
@@ -13897,7 +13703,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.createtestreturn({
@@ -14049,7 +13855,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.custombatch({
@@ -14193,7 +13999,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.get({
@@ -14346,7 +14152,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.getbymerchantorderid({
@@ -14490,7 +14296,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.gettestordertemplate({
@@ -14637,7 +14443,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.instorerefundlineitem({
@@ -14797,7 +14603,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.list({
@@ -14958,7 +14764,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.refund({
@@ -15110,7 +14916,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.rejectreturnlineitem({
@@ -15268,7 +15074,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.returnlineitem({
@@ -15405,7 +15211,7 @@ export namespace content_v2 {
 
     /**
      * content.orders.returnrefundlineitem
-     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders.
+     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15426,7 +15232,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.returnrefundlineitem({
@@ -15586,7 +15392,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.setlineitemmetadata({
@@ -15742,7 +15548,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.shiplineitems({
@@ -15899,7 +15705,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.updatelineitemshippingdetails({
@@ -16070,7 +15876,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.updatemerchantorderid({
@@ -16224,7 +16030,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.orders.updateshipment({
@@ -16363,11 +16169,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16384,11 +16185,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Advancetestorder
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16398,11 +16194,6 @@ export namespace content_v2 {
     orderId?: string;
   }
   export interface Params$Resource$Orders$Cancel extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16420,11 +16211,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Cancellineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16440,11 +16226,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Canceltestorderbycustomer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16462,11 +16243,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Createtestorder
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that should manage the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16478,11 +16254,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Createtestreturn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16500,21 +16271,11 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$OrdersCustomBatchRequest;
   }
   export interface Params$Resource$Orders$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16527,11 +16288,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Getbymerchantorderid
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16542,11 +16298,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Gettestordertemplate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The country of the template to retrieve. Defaults to `US`.
      */
@@ -16563,11 +16314,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Instorerefundlineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16582,11 +16328,6 @@ export namespace content_v2 {
     requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
      */
@@ -16622,11 +16363,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16642,11 +16378,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Rejectreturnlineitem
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16664,11 +16395,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Returnlineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16684,11 +16410,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Returnrefundlineitem
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16706,11 +16427,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Setlineitemmetadata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16726,11 +16442,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Shiplineitems
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16748,11 +16459,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Updatelineitemshippingdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16769,11 +16475,6 @@ export namespace content_v2 {
   export interface Params$Resource$Orders$Updatemerchantorderid
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16789,11 +16490,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Orders$Updateshipment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16838,7 +16534,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.custombatch({
@@ -16985,7 +16681,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.delete({
@@ -17117,7 +16813,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.get({
@@ -17255,7 +16951,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.insert({
@@ -17403,7 +17099,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.inventory({
@@ -17570,7 +17266,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.list({
@@ -17703,7 +17399,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.pos.sale({
@@ -17844,11 +17540,6 @@ export namespace content_v2 {
 
   export interface Params$Resource$Pos$Custombatch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -17859,11 +17550,6 @@ export namespace content_v2 {
     requestBody?: Schema$PosCustomBatchRequest;
   }
   export interface Params$Resource$Pos$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -17883,11 +17569,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Pos$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the POS or inventory data provider.
      */
     merchantId?: string;
@@ -17901,11 +17582,6 @@ export namespace content_v2 {
     targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -17926,11 +17602,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Pos$Inventory extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -17950,11 +17621,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Pos$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the POS or inventory data provider.
      */
     merchantId?: string;
@@ -17964,11 +17630,6 @@ export namespace content_v2 {
     targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Sale extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -18017,7 +17678,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.products.custombatch({
@@ -18165,7 +17826,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.products.delete({
@@ -18293,7 +17954,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.products.get({
@@ -18502,7 +18163,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.products.insert({
@@ -18798,7 +18459,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.products.list({
@@ -18925,11 +18586,6 @@ export namespace content_v2 {
   export interface Params$Resource$Products$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -18940,11 +18596,6 @@ export namespace content_v2 {
     requestBody?: Schema$ProductsCustomBatchRequest;
   }
   export interface Params$Resource$Products$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -18960,11 +18611,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Products$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
@@ -18974,11 +18620,6 @@ export namespace content_v2 {
     productId?: string;
   }
   export interface Params$Resource$Products$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
@@ -18994,11 +18635,6 @@ export namespace content_v2 {
     requestBody?: Schema$Product;
   }
   export interface Params$Resource$Products$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      */
@@ -19046,7 +18682,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.productstatuses.custombatch({
@@ -19196,7 +18832,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.productstatuses.get({
@@ -19345,7 +18981,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.productstatuses.list({
@@ -19481,11 +19117,6 @@ export namespace content_v2 {
   export interface Params$Resource$Productstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to include full product data in the results of this request. The default value is false.
      */
     includeAttributes?: boolean;
@@ -19497,11 +19128,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Productstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -19521,11 +19147,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Productstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -19581,7 +19202,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.custombatch({
@@ -19731,7 +19352,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.get({
@@ -19866,7 +19487,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.getsupportedcarriers({
@@ -20020,7 +19641,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.getsupportedholidays({
@@ -20174,7 +19795,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.getsupportedpickupservices({
@@ -20327,7 +19948,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.list({
@@ -20474,7 +20095,7 @@ export namespace content_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await content.shippingsettings.update({
@@ -20604,11 +20225,6 @@ export namespace content_v2 {
   export interface Params$Resource$Shippingsettings$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      */
     dryRun?: boolean;
@@ -20621,11 +20237,6 @@ export namespace content_v2 {
   export interface Params$Resource$Shippingsettings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to get/update shipping settings.
      */
     accountId?: string;
@@ -20637,22 +20248,12 @@ export namespace content_v2 {
   export interface Params$Resource$Shippingsettings$Getsupportedcarriers
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve the supported carriers.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$Getsupportedholidays
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to retrieve the supported holidays.
      */
@@ -20661,22 +20262,12 @@ export namespace content_v2 {
   export interface Params$Resource$Shippingsettings$Getsupportedpickupservices
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve the supported pickup services.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of shipping settings to return in the response, used for paging.
      */
@@ -20692,11 +20283,6 @@ export namespace content_v2 {
   }
   export interface Params$Resource$Shippingsettings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update shipping settings.
      */

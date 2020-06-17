@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firebase_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -683,7 +695,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.availableProjects.list({
@@ -815,11 +827,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Availableprojects$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of GCP `Projects` to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. <br> <br>This value cannot be negative.
      */
     pageSize?: number;
@@ -863,7 +870,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.operations.get({
@@ -974,11 +981,6 @@ export namespace firebase_v1beta1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -1030,7 +1032,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.addFirebase({
@@ -1184,7 +1186,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.addGoogleAnalytics({
@@ -1336,7 +1338,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.get({
@@ -1473,7 +1475,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.getAdminSdkConfig({
@@ -1612,7 +1614,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.getAnalyticsDetails({
@@ -1749,7 +1751,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.list({
@@ -1899,7 +1901,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.patch({
@@ -2054,7 +2056,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.removeAnalytics({
@@ -2199,7 +2201,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.searchApps({
@@ -2333,11 +2335,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Addfirebase
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
      */
     project?: string;
@@ -2350,11 +2347,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Addgoogleanalytics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -2366,22 +2358,12 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getadminsdkconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
      */
@@ -2390,21 +2372,11 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Getanalyticsdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Projects to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -2415,11 +2387,6 @@ export namespace firebase_v1beta1 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      */
@@ -2437,11 +2404,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Removeanalytics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -2453,11 +2415,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Searchapps
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      */
@@ -2506,7 +2463,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.create({
@@ -2660,7 +2617,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.get({
@@ -2801,7 +2758,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.getConfig({
@@ -2939,7 +2896,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.list({
@@ -3091,7 +3048,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.patch({
@@ -3223,11 +3180,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -3240,11 +3192,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
     name?: string;
@@ -3252,22 +3199,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -3283,11 +3220,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Androidapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
      */
@@ -3335,7 +3267,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.create({
@@ -3486,7 +3418,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.delete({
@@ -3621,7 +3553,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.list({
@@ -3744,11 +3676,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Sha$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
     parent?: string;
@@ -3761,22 +3688,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Sha$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$Sha$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
      */
@@ -3817,7 +3734,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.availableLocations.list({
@@ -3956,11 +3873,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Availablelocations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of locations to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      */
     pageSize?: number;
@@ -4006,7 +3918,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.defaultLocation.finalize({
@@ -4132,11 +4044,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Defaultlocation$Finalize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -4179,7 +4086,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.create({
@@ -4334,7 +4241,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.get({
@@ -4476,7 +4383,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.getConfig({
@@ -4614,7 +4521,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.list({
@@ -4764,7 +4671,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.patch({
@@ -4898,11 +4805,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -4915,11 +4817,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
      */
     name?: string;
@@ -4927,22 +4824,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Iosapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
@@ -4958,11 +4845,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Iosapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
      */
@@ -5010,7 +4892,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.webApps.create({
@@ -5164,7 +5046,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.webApps.get({
@@ -5305,7 +5187,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.webApps.getConfig({
@@ -5450,7 +5332,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.webApps.list({
@@ -5600,7 +5482,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebase.projects.webApps.patch({
@@ -5732,11 +5614,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
@@ -5749,11 +5626,6 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
      */
     name?: string;
@@ -5761,22 +5633,12 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Webapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -5792,11 +5654,6 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Webapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fully qualified resource name of the App, for example: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
      */

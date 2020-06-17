@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigqueryreservation_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -258,7 +270,7 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$MergeCapacityCommitmentsRequest {
     /**
-     * Ids of capacity commitments to merge. These capacity commitments must exist under admin project and location specified in the parent.
+     * Ids of capacity commitments to merge. These capacity commitments must exist under admin project and location specified in the parent. ID is the last portion of capacity commitment name e.g., &#39;abc&#39; for projects/myproject/locations/US/capacityCommitments/abc
      */
     capacityCommitmentIds?: string[] | null;
   }
@@ -398,7 +410,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.operations.delete({
@@ -528,7 +540,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.operations.list({
@@ -652,21 +664,11 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -734,7 +736,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.getBiReservation({
@@ -871,7 +873,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.searchAssignments({
@@ -881,7 +883,7 @@ export namespace bigqueryreservation_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the admin project(containing project and location),
      *     // e.g.:
-     *     //   "projects/myproject/locations/US".
+     *     //   `projects/myproject/locations/US`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Please specify resource name as assignee in the query.
      *     //
@@ -912,7 +914,7 @@ export namespace bigqueryreservation_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return per page.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
+     * @param {string} params.parent Required. The resource name of the admin project(containing project and location), e.g.:   `projects/myproject/locations/US`.
      * @param {string=} params.query Please specify resource name as assignee in the query.  Examples:  * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1031,7 +1033,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.updateBiReservation({
@@ -1161,22 +1163,12 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Getbireservation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Searchassignments
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return per page.
      */
@@ -1186,7 +1178,7 @@ export namespace bigqueryreservation_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
+     * Required. The resource name of the admin project(containing project and location), e.g.:   `projects/myproject/locations/US`.
      */
     parent?: string;
     /**
@@ -1196,11 +1188,6 @@ export namespace bigqueryreservation_v1 {
   }
   export interface Params$Resource$Projects$Locations$Updatebireservation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id}/locations/{location_id}/bireservation`.
      */
@@ -1248,7 +1235,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.create(
@@ -1257,7 +1244,7 @@ export namespace bigqueryreservation_v1 {
      *       // capacity commitment.
      *       enforceSingleAdminProjectPerOrg: 'placeholder-value',
      *       // Required. Resource name of the parent reservation. E.g.,
-     *       //    projects/myproject/locations/US
+     *       //    `projects/myproject/locations/US`
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1299,7 +1286,7 @@ export namespace bigqueryreservation_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleAdminProjectPerOrg If true, fail the request if another project in the organization has a capacity commitment.
-     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
      * @param {().CapacityCommitment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1414,13 +1401,13 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.delete(
      *     {
      *       // Required. Resource name of the capacity commitment to delete. E.g.,
-     *       //    projects/myproject/locations/US/capacityCommitments/123
+     *       //    `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *     }
@@ -1440,7 +1427,7 @@ export namespace bigqueryreservation_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * @param {string} params.name Required. Resource name of the capacity commitment to delete. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1548,13 +1535,13 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.get(
      *     {
      *       // Required. Resource name of the capacity commitment to retrieve. E.g.,
-     *       //    projects/myproject/locations/US/capacityCommitments/123
+     *       //    `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *     }
@@ -1582,7 +1569,7 @@ export namespace bigqueryreservation_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * @param {string} params.name Required. Resource name of the capacity commitment to retrieve. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1693,7 +1680,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.list(
@@ -1703,7 +1690,7 @@ export namespace bigqueryreservation_v1 {
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
      *       // Required. Resource name of the parent reservation. E.g.,
-     *       //    projects/myproject/locations/US
+     *       //    `projects/myproject/locations/US`
      *       parent: 'projects/my-project/locations/my-location',
      *     }
      *   );
@@ -1727,7 +1714,7 @@ export namespace bigqueryreservation_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1847,13 +1834,13 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.merge(
      *     {
      *       // Parent resource that identifies admin project and location e.g.,
-     *       // projects/myproject/locations/us
+     *       //  `projects/myproject/locations/us`
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1888,7 +1875,7 @@ export namespace bigqueryreservation_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Parent resource that identifies admin project and location e.g., projects/myproject/locations/us
+     * @param {string} params.parent Parent resource that identifies admin project and location e.g.,  `projects/myproject/locations/us`
      * @param {().MergeCapacityCommitmentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2003,7 +1990,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.patch(
@@ -2166,13 +2153,13 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.split(
      *     {
      *       // Required. The resource name e.g.,:
-     *       //   projects/myproject/locations/US/capacityCommitments/123
+     *       //  `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *
@@ -2203,7 +2190,7 @@ export namespace bigqueryreservation_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     * @param {string} params.name Required. The resource name e.g.,:  `projects/myproject/locations/US/capacityCommitments/123`
      * @param {().SplitCapacityCommitmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2299,16 +2286,11 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, fail the request if another project in the organization has a capacity commitment.
      */
     enforceSingleAdminProjectPerOrg?: boolean;
     /**
-     * Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
      */
     parent?: string;
 
@@ -2320,34 +2302,19 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * Required. Resource name of the capacity commitment to delete. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * Required. Resource name of the capacity commitment to retrieve. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */
@@ -2357,19 +2324,14 @@ export namespace bigqueryreservation_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Merge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Parent resource that identifies admin project and location e.g., projects/myproject/locations/us
+     * Parent resource that identifies admin project and location e.g.,  `projects/myproject/locations/us`
      */
     parent?: string;
 
@@ -2380,11 +2342,6 @@ export namespace bigqueryreservation_v1 {
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
      */
@@ -2402,12 +2359,7 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Split
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     * Required. The resource name e.g.,:  `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
 
@@ -2453,7 +2405,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.create({
@@ -2606,7 +2558,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.delete({
@@ -2738,7 +2690,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.get({
@@ -2874,7 +2826,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.list({
@@ -2883,7 +2835,7 @@ export namespace bigqueryreservation_v1 {
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name containing project and location, e.g.:
-     *     //   "projects/myproject/locations/US"
+     *     //   `projects/myproject/locations/US`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2906,7 +2858,7 @@ export namespace bigqueryreservation_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return per page.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
+     * @param {string} params.parent Required. The parent resource name containing project and location, e.g.:   `projects/myproject/locations/US`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3022,7 +2974,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
@@ -3150,11 +3102,6 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Project, location. E.g., `projects/myproject/locations/US`
      */
     parent?: string;
@@ -3171,11 +3118,6 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
@@ -3183,22 +3125,12 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return per page.
      */
@@ -3208,17 +3140,12 @@ export namespace bigqueryreservation_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
+     * Required. The parent resource name containing project and location, e.g.:   `projects/myproject/locations/US`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
      */
@@ -3266,7 +3193,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.create(
@@ -3420,7 +3347,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.delete(
@@ -3554,7 +3481,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.list(
@@ -3710,7 +3637,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.move(
@@ -3837,11 +3764,6 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
      */
     parent?: string;
@@ -3854,22 +3776,12 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the resource, e.g.   `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return per page.
      */
@@ -3885,11 +3797,6 @@ export namespace bigqueryreservation_v1 {
   }
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Move
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the assignment, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      */

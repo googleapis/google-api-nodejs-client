@@ -4,6 +4,39 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [52.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.0.0...v52.1.0) (2020-06-03)
+
+
+### Features
+
+* support GoogleAuth parameter ([#2210](https://www.github.com/googleapis/google-api-nodejs-client/issues/2210)) ([b08ef52](https://www.github.com/googleapis/google-api-nodejs-client/commit/b08ef52eb5db13067d8b5c52452d51208b7733cd))
+
+
+### Bug Fixes
+
+* ensure params are not deleted from global options ([#2190](https://www.github.com/googleapis/google-api-nodejs-client/issues/2190)) ([787e296](https://www.github.com/googleapis/google-api-nodejs-client/commit/787e296773f1d7daa655b4294cea41ecd1476ceb))
+* **deps:** update dependency googleapis to v52 ([#2213](https://www.github.com/googleapis/google-api-nodejs-client/issues/2213)) ([78ff014](https://www.github.com/googleapis/google-api-nodejs-client/commit/78ff01482a67ca4385d80042eaf80ee756106edd))
+
+## [52.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v51.0.0...v52.0.0) (2020-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* run the generator (#2104)
+
+### Features
+
+* run the generator ([#2104](https://www.github.com/googleapis/google-api-nodejs-client/issues/2104)) ([dca679d](https://www.github.com/googleapis/google-api-nodejs-client/commit/dca679d1cf41154b093c5c2217892733ee8047dd)), closes [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-aa33c994c0faf2308b6f3b52e9774a95](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-aa33c994c0faf2308b6f3b52e9774a95) [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-7a149e24d8a857d58df585d4560b602bL785](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-7a149e24d8a857d58df585d4560b602bL785) [/github.com/googleapis/google-api-nodejs-client/pull/2104/files#diff-fb190556a259ff0d91cd366665703b05](https://www.github.com/googleapis//github.com/googleapis/google-api-nodejs-client/pull/2104/files/issues/diff-fb190556a259ff0d91cd366665703b05)
+* run the generator ([#2122](https://www.github.com/googleapis/google-api-nodejs-client/issues/2122)) ([7b306a8](https://www.github.com/googleapis/google-api-nodejs-client/commit/7b306a8871fd1a7fac014375f6b7d14876fffb86))
+* run the generator ([#2197](https://www.github.com/googleapis/google-api-nodejs-client/issues/2197)) ([9ae8d42](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ae8d4215b491f4a5b3b16346f7a88b53bf0f2ce))
+
+
+### Bug Fixes
+
+* run the generator ([#2109](https://www.github.com/googleapis/google-api-nodejs-client/issues/2109)) ([c12710a](https://www.github.com/googleapis/google-api-nodejs-client/commit/c12710ab45f65dc2533edb52b2e91e5cc328e677))
+* **types:** augment types to manage response streams ([#2188](https://www.github.com/googleapis/google-api-nodejs-client/issues/2188)) ([46ac8ba](https://www.github.com/googleapis/google-api-nodejs-client/commit/46ac8ba712daff9fe617be00b5df61ce9552b26e))
+
 ## [51.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v50.0.0...v51.0.0) (2020-05-13)
 
 

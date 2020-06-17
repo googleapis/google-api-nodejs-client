@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -41,13 +42,20 @@ export namespace run_v1 {
 
   interface StandardParameters {
     /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
      * V1 error format.
      */
     '$.xgafv'?: string;
-    /**
-     * OAuth access token.
-     */
-    access_token?: string;
     /**
      * Data format for response.
      */
@@ -64,10 +72,6 @@ export namespace run_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -126,7 +130,7 @@ export namespace run_v1 {
     url?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -139,7 +143,7 @@ export namespace run_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -440,6 +444,10 @@ export namespace run_v1 {
      * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.
      */
     resourceRecords?: Schema$ResourceRecord[];
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Holds the URL that will serve the traffic of the DomainMapping. +optional
+     */
+    url?: string | null;
   }
   /**
    * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  EnvFromSource represents the source of a set of ConfigMaps
@@ -1557,7 +1565,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.api.v1.namespaces.get({
@@ -1688,7 +1696,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.api.v1.namespaces.patch({
@@ -1815,22 +1823,12 @@ export namespace run_v1 {
   export interface Params$Resource$Api$V1$Namespaces$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Api$V1$Namespaces$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -1875,7 +1873,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.api.v1.namespaces.secrets.create({
@@ -2022,7 +2020,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.api.v1.namespaces.secrets.get({
@@ -2154,7 +2152,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.api.v1.namespaces.secrets.replaceSecret({
@@ -2279,11 +2277,6 @@ export namespace run_v1 {
   export interface Params$Resource$Api$V1$Namespaces$Secrets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this secret should be created.
      */
     parent?: string;
@@ -2296,22 +2289,12 @@ export namespace run_v1 {
   export interface Params$Resource$Api$V1$Namespaces$Secrets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -2377,7 +2360,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.authorizeddomains.list({
@@ -2505,11 +2488,6 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Authorizeddomains$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum results to return per page.
      */
     pageSize?: number;
@@ -2552,7 +2530,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.configurations.get({
@@ -2689,7 +2667,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.configurations.list({
@@ -2839,22 +2817,12 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Configurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Configurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -2918,7 +2886,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.create({
@@ -3067,7 +3035,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.delete({
@@ -3217,7 +3185,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.get({
@@ -3354,7 +3322,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.list({
@@ -3504,11 +3472,6 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     parent?: string;
@@ -3520,11 +3483,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Domainmappings$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -3545,22 +3503,12 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -3624,7 +3572,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.delete({
@@ -3774,7 +3722,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.get({
@@ -3911,7 +3859,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.list({
@@ -4059,11 +4007,6 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Revisions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
@@ -4083,22 +4026,12 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Revisions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Revisions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -4162,7 +4095,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.get({
@@ -4299,7 +4232,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.list({
@@ -4445,22 +4378,12 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Routes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Routes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -4524,7 +4447,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.create({
@@ -4673,7 +4596,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.delete({
@@ -4823,7 +4746,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.get({
@@ -4960,7 +4883,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.list({
@@ -5127,7 +5050,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
@@ -5258,11 +5181,6 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     parent?: string;
@@ -5274,11 +5192,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Services$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -5299,22 +5212,12 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -5350,11 +5253,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
@@ -5428,7 +5326,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.list({
@@ -5555,11 +5453,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The standard list filter.
      */
     filter?: string;
@@ -5606,7 +5499,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.authorizeddomains.list({
@@ -5734,11 +5627,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Authorizeddomains$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum results to return per page.
      */
     pageSize?: number;
@@ -5781,7 +5669,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.configurations.get({
@@ -5916,7 +5804,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.configurations.list({
@@ -6067,22 +5955,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Configurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Configurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -6146,7 +6024,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.create({
@@ -6296,7 +6174,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.delete({
@@ -6444,7 +6322,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.get({
@@ -6579,7 +6457,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.list({
@@ -6730,11 +6608,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     parent?: string;
@@ -6746,11 +6619,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -6771,22 +6639,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -6850,7 +6708,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.namespaces.get({
@@ -6981,7 +6839,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.namespaces.patch({
@@ -7108,22 +6966,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -7168,7 +7016,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.delete({
@@ -7315,7 +7163,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.get({
@@ -7449,7 +7297,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.list({
@@ -7598,11 +7446,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Revisions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
@@ -7622,22 +7465,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Revisions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Revisions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -7701,7 +7534,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.get({
@@ -7835,7 +7668,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.list({
@@ -7982,22 +7815,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Routes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Routes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -8061,7 +7884,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.secrets.create({
@@ -8208,7 +8031,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.secrets.get({
@@ -8340,7 +8163,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.secrets.replaceSecret({
@@ -8465,11 +8288,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Secrets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this secret should be created.
      */
     parent?: string;
@@ -8482,22 +8300,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Secrets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Secrets$Replacesecret
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -8538,7 +8346,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
@@ -8688,7 +8496,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.delete({
@@ -8835,7 +8643,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
@@ -8969,7 +8777,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.getIamPolicy({
@@ -9118,7 +8926,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.list({
@@ -9286,7 +9094,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
@@ -9433,7 +9241,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.setIamPolicy({
@@ -9578,7 +9386,7 @@ export namespace run_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.testIamPermissions({
@@ -9707,11 +9515,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     parent?: string;
@@ -9723,11 +9526,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -9748,22 +9546,12 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9775,11 +9563,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -9816,11 +9599,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
      */
     name?: string;
@@ -9833,11 +9611,6 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -9849,11 +9622,6 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

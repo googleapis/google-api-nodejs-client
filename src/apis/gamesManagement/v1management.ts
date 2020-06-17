@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace gamesManagement_v1management {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -381,7 +393,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.reset({
@@ -521,7 +533,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetAll({});
@@ -656,7 +668,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetAllForAllPlayers({});
@@ -775,7 +787,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetForAllPlayers({
@@ -899,7 +911,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetMultipleForAllPlayers({
@@ -1010,36 +1022,16 @@ export namespace gamesManagement_v1management {
   export interface Params$Resource$Achievements$Reset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Resetall
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Achievements$Resetallforallplayers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Achievements$Resetforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -1047,11 +1039,6 @@ export namespace gamesManagement_v1management {
   }
   export interface Params$Resource$Achievements$Resetmultipleforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1087,7 +1074,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.applications.listHidden({
@@ -1209,11 +1196,6 @@ export namespace gamesManagement_v1management {
   export interface Params$Resource$Applications$Listhidden
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
@@ -1256,7 +1238,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.reset({
@@ -1378,7 +1360,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetAll({});
@@ -1497,7 +1479,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetAllForAllPlayers({});
@@ -1616,7 +1598,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetForAllPlayers({
@@ -1740,7 +1722,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetMultipleForAllPlayers({
@@ -1849,35 +1831,15 @@ export namespace gamesManagement_v1management {
 
   export interface Params$Resource$Events$Reset extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the event.
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetall extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Events$Resetall extends StandardParameters {}
   export interface Params$Resource$Events$Resetallforallplayers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Events$Resetforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the event.
      */
@@ -1885,11 +1847,6 @@ export namespace gamesManagement_v1management {
   }
   export interface Params$Resource$Events$Resetmultipleforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1925,7 +1882,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.players.hide({
@@ -2052,7 +2009,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.players.unhide({
@@ -2159,11 +2116,6 @@ export namespace gamesManagement_v1management {
 
   export interface Params$Resource$Players$Hide extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
@@ -2173,11 +2125,6 @@ export namespace gamesManagement_v1management {
     playerId?: string;
   }
   export interface Params$Resource$Players$Unhide extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -2217,7 +2164,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.reset({
@@ -2356,7 +2303,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetAll({});
@@ -2490,7 +2437,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetAllForAllPlayers({});
@@ -2609,7 +2556,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetForAllPlayers({
@@ -2733,7 +2680,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetMultipleForAllPlayers({
@@ -2842,35 +2789,15 @@ export namespace gamesManagement_v1management {
 
   export interface Params$Resource$Scores$Reset extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetall extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Scores$Resetall extends StandardParameters {}
   export interface Params$Resource$Scores$Resetallforallplayers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Scores$Resetforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the leaderboard.
      */
@@ -2878,11 +2805,6 @@ export namespace gamesManagement_v1management {
   }
   export interface Params$Resource$Scores$Resetmultipleforallplayers
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

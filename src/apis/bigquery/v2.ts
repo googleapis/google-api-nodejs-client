@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigquery_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -967,6 +979,10 @@ export namespace bigquery_v2 {
      * [Optional] The compression type of the data source. Possible values include GZIP and NONE. The default value is NONE. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
      */
     compression?: string | null;
+    /**
+     * [Optional, Trusted Tester] Connection for external data source.
+     */
+    connectionId?: string | null;
     /**
      * Additional properties to set if sourceFormat is set to CSV.
      */
@@ -2021,9 +2037,17 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
+     * The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The geographic location where the job should run. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string | null;
+    /**
+     * [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
+     */
+    maximumBytesBilled?: string | null;
     /**
      * [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
      */
@@ -2044,6 +2068,10 @@ export namespace bigquery_v2 {
      * Query parameters for Standard SQL queries.
      */
     queryParameters?: Schema$QueryParameter[];
+    /**
+     * A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of the previous request, all parameters in the request that may affect the behavior are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don&#39;t affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
+     */
+    requestId?: string | null;
     /**
      * [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
      */
@@ -2824,6 +2852,9 @@ export namespace bigquery_v2 {
      */
     trainingOptions?: Schema$TrainingOptions;
   }
+  /**
+   * This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of Standard SQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
+   */
   export interface Schema$UserDefinedFunctionResource {
     /**
      * [Pick one] An inline resource that contains code for a user-defined function (UDF). Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
@@ -2881,7 +2912,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.delete({
@@ -3014,7 +3045,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.get({
@@ -3163,7 +3194,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.insert({
@@ -3334,7 +3365,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.list({
@@ -3481,7 +3512,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.patch({
@@ -3653,7 +3684,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.datasets.update({
@@ -3802,11 +3833,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of dataset being deleted
      */
     datasetId?: string;
@@ -3821,11 +3847,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the requested dataset
      */
     datasetId?: string;
@@ -3835,11 +3856,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project ID of the new dataset
      */
@@ -3851,11 +3867,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to list all datasets, including hidden ones
      */
@@ -3879,11 +3890,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the dataset being updated
      */
     datasetId?: string;
@@ -3898,11 +3904,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the dataset being updated
      */
@@ -3950,7 +3951,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.cancel({
@@ -4094,7 +4095,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.get({
@@ -4242,7 +4243,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.getQueryResults({
@@ -4414,7 +4415,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.insert({
@@ -4584,7 +4585,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.list({
@@ -4746,7 +4747,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.query({
@@ -4761,12 +4762,15 @@ export namespace bigquery_v2 {
      *       //   "defaultDataset": {},
      *       //   "dryRun": false,
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "maxResults": 0,
+     *       //   "maximumBytesBilled": "my_maximumBytesBilled",
      *       //   "parameterMode": "my_parameterMode",
      *       //   "preserveNulls": false,
      *       //   "query": "my_query",
      *       //   "queryParameters": [],
+     *       //   "requestId": "my_requestId",
      *       //   "timeoutMs": 0,
      *       //   "useLegacySql": false,
      *       //   "useQueryCache": false
@@ -4886,11 +4890,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * [Required] Job ID of the job to cancel
      */
     jobId?: string;
@@ -4904,11 +4903,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Jobs$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * [Required] Job ID of the requested job
      */
@@ -4924,11 +4918,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Getqueryresults
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * [Required] Job ID of the query job
      */
@@ -4960,11 +4949,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID of the project that will be billed for the job
      */
     projectId?: string;
@@ -4990,11 +4974,6 @@ export namespace bigquery_v2 {
     };
   }
   export interface Params$Resource$Jobs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to display jobs owned by all users in the project. Default false
      */
@@ -5033,11 +5012,6 @@ export namespace bigquery_v2 {
     stateFilter?: string[];
   }
   export interface Params$Resource$Jobs$Query extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project ID of the project billed for the query
      */
@@ -5081,7 +5055,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.models.delete({
@@ -5215,7 +5189,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.models.get({
@@ -5369,7 +5343,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.models.list({
@@ -5517,7 +5491,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.models.patch({
@@ -5668,11 +5642,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Models$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the model to delete.
      */
     datasetId?: string;
@@ -5687,11 +5656,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Models$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the requested model.
      */
     datasetId?: string;
@@ -5705,11 +5669,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Models$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the models to list.
      */
@@ -5728,11 +5687,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Models$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the model to patch.
      */
@@ -5786,7 +5740,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.projects.getServiceAccount({
@@ -5929,7 +5883,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.projects.list({
@@ -6047,21 +6001,11 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Projects$Getserviceaccount
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID for which the service account is requested.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return
      */
@@ -6104,7 +6048,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.routines.delete({
@@ -6238,7 +6182,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.routines.get({
@@ -6391,7 +6335,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.routines.insert({
@@ -6558,7 +6502,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.routines.list({
@@ -6721,7 +6665,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.routines.update({
@@ -6866,11 +6810,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Routines$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the routine to delete
      */
     datasetId?: string;
@@ -6884,11 +6823,6 @@ export namespace bigquery_v2 {
     routineId?: string;
   }
   export interface Params$Resource$Routines$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the requested routine
      */
@@ -6908,11 +6842,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Routines$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the new routine
      */
     datasetId?: string;
@@ -6927,11 +6856,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Routine;
   }
   export interface Params$Resource$Routines$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the routines to list
      */
@@ -6958,11 +6882,6 @@ export namespace bigquery_v2 {
     readMask?: string;
   }
   export interface Params$Resource$Routines$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the routine to update
      */
@@ -7015,7 +6934,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tabledata.insertAll({
@@ -7178,7 +7097,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tabledata.list({
@@ -7311,11 +7230,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tabledata$Insertall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the destination table.
      */
     datasetId?: string;
@@ -7334,11 +7248,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$TableDataInsertAllRequest;
   }
   export interface Params$Resource$Tabledata$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to read
      */
@@ -7401,7 +7310,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.delete({
@@ -7535,7 +7444,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.get({
@@ -7706,7 +7615,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.getIamPolicy({
@@ -7853,7 +7762,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.insert({
@@ -8054,7 +7963,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.list({
@@ -8200,7 +8109,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.patch({
@@ -8402,7 +8311,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.setIamPolicy({
@@ -8552,7 +8461,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.testIamPermissions({
@@ -8702,7 +8611,7 @@ export namespace bigquery_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquery.tables.update({
@@ -8881,11 +8790,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the table to delete
      */
     datasetId?: string;
@@ -8899,11 +8803,6 @@ export namespace bigquery_v2 {
     tableId?: string;
   }
   export interface Params$Resource$Tables$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the requested table
      */
@@ -8924,11 +8823,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -8939,11 +8833,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Tables$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the new table
      */
@@ -8959,11 +8848,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Table;
   }
   export interface Params$Resource$Tables$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the tables to list
      */
@@ -8982,11 +8866,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Tables$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to update
      */
@@ -9008,11 +8887,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -9025,11 +8899,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -9040,11 +8909,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Tables$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to update
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace servicecontrol_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -259,7 +271,7 @@ export namespace servicecontrol_v1 {
      */
     accessLevels?: string[] | null;
     /**
-     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential such as    [&quot;pubsub.googleapis.com&quot;, &quot;storage.googleapis.com&quot;] *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;] *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
+     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential. For example,    [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
      */
     audiences?: string[] | null;
     /**
@@ -1257,7 +1269,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.allocateQuota({
@@ -1416,7 +1428,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.check({
@@ -1572,7 +1584,7 @@ export namespace servicecontrol_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicecontrol.services.report({
@@ -1702,11 +1714,6 @@ export namespace servicecontrol_v1 {
   export interface Params$Resource$Services$Allocatequota
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      */
     serviceName?: string;
@@ -1718,11 +1725,6 @@ export namespace servicecontrol_v1 {
   }
   export interface Params$Resource$Services$Check extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */
     serviceName?: string;
@@ -1733,11 +1735,6 @@ export namespace servicecontrol_v1 {
     requestBody?: Schema$CheckRequest;
   }
   export interface Params$Resource$Services$Report extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
      */

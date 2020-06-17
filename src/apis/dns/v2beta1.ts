@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace dns_v2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -113,232 +125,92 @@ export namespace dns_v2beta1 {
     }
   }
 
-  /**
-   * A Change represents a set of ResourceRecordSet additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the ResourceRecordSets in a ManagedZone. The current state of the ManagedZone is the sum effect of applying all Change elements in the Changes collection in sequence.
-   */
   export interface Schema$Change {
-    /**
-     * Which ResourceRecordSets to add?
-     */
     additions?: Schema$ResourceRecordSet[];
-    /**
-     * Which ResourceRecordSets to remove? Must match existing data exactly.
-     */
     deletions?: Schema$ResourceRecordSet[];
-    /**
-     * Unique identifier for the resource; defined by the server (output only).
-     */
     id?: string | null;
-    /**
-     * If the DNS queries for the zone will be served.
-     */
     isServing?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#change&quot;.
      */
     kind?: string | null;
-    /**
-     * The time that this operation was started by the server (output only). This is in RFC3339 text format.
-     */
     startTime?: string | null;
-    /**
-     * Status of the operation (output only). A status of &quot;done&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
-     */
     status?: string | null;
   }
-  /**
-   * The response to a request to enumerate Changes to a ResourceRecordSets collection.
-   */
   export interface Schema$ChangesListResponse {
-    /**
-     * The requested changes.
-     */
     changes?: Schema$Change[];
     header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
-     */
     nextPageToken?: string | null;
   }
-  /**
-   * A DNSSEC key pair.
-   */
   export interface Schema$DnsKey {
-    /**
-     * String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time.
-     */
     algorithm?: string | null;
-    /**
-     * The time that this resource was created in the control plane. This is in RFC3339 text format. Output only.
-     */
     creationTime?: string | null;
-    /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the resource&#39;s function.
-     */
     description?: string | null;
-    /**
-     * Cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Output only.
-     */
     digests?: Schema$DnsKeyDigest[];
-    /**
-     * Unique identifier for the resource; defined by the server (output only).
-     */
     id?: string | null;
-    /**
-     * Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
-     */
     isActive?: boolean | null;
-    /**
-     * Length of the key in bits. Specified at creation time then immutable.
-     */
     keyLength?: number | null;
-    /**
-     * The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone&#39;s DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B. Output only.
-     */
     keyTag?: number | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#dnsKey&quot;.
      */
     kind?: string | null;
-    /**
-     * Base64 encoded public half of this key. Output only.
-     */
     publicKey?: string | null;
-    /**
-     * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.
-     */
     type?: string | null;
   }
   export interface Schema$DnsKeyDigest {
-    /**
-     * The base-16 encoded bytes of this digest. Suitable for use in a DS resource record.
-     */
     digest?: string | null;
-    /**
-     * Specifies the algorithm used to calculate this digest.
-     */
     type?: string | null;
   }
-  /**
-   * The response to a request to enumerate DnsKeys in a ManagedZone.
-   */
   export interface Schema$DnsKeysListResponse {
-    /**
-     * The requested resources.
-     */
     dnsKeys?: Schema$DnsKey[];
     header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
-     */
     nextPageToken?: string | null;
   }
-  /**
-   * Parameters for DnsKey key generation. Used for generating initial keys for a new ManagedZone and as default when adding a new DnsKey.
-   */
   export interface Schema$DnsKeySpec {
-    /**
-     * String mnemonic specifying the DNSSEC algorithm of this key.
-     */
     algorithm?: string | null;
-    /**
-     * Length of the keys in bits.
-     */
     keyLength?: number | null;
-    /**
-     * Specifies whether this is a key signing key (KSK) or a zone signing key (ZSK). Key signing keys have the Secure Entry Point flag set and, when active, will only be used to sign resource record sets of type DNSKEY. Zone signing keys do not have the Secure Entry Point flag set and will be used to sign all other types of resource record sets.
-     */
     keyType?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#dnsKeySpec&quot;.
      */
     kind?: string | null;
   }
-  /**
-   * A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.
-   */
   export interface Schema$ManagedZone {
-    /**
-     * The time that this resource was created on the server. This is in RFC3339 text format. Output only.
-     */
     creationTime?: string | null;
-    /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the managed zone&#39;s function.
-     */
     description?: string | null;
-    /**
-     * The DNS name of this managed zone, for instance &quot;example.com.&quot;.
-     */
     dnsName?: string | null;
-    /**
-     * DNSSEC configuration.
-     */
     dnssecConfig?: Schema$ManagedZoneDnsSecConfig;
-    /**
-     * The presence for this field indicates that outbound forwarding is enabled for this zone. The value of this field contains the set of destinations to forward to.
-     */
     forwardingConfig?: Schema$ManagedZoneForwardingConfig;
-    /**
-     * Unique identifier for the resource; defined by the server (output only)
-     */
     id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZone&quot;.
      */
     kind?: string | null;
-    /**
-     * User labels.
-     */
     labels?: {[key: string]: string} | null;
-    /**
-     * User assigned name for this resource. Must be unique within the project. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.
-     */
     name?: string | null;
-    /**
-     * Delegate your managed_zone to these virtual name servers; defined by the server (output only)
-     */
     nameServers?: string[] | null;
-    /**
-     * Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
-     */
     nameServerSet?: string | null;
-    /**
-     * The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with.
-     */
     peeringConfig?: Schema$ManagedZonePeeringConfig;
-    /**
-     * For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
-     */
     privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
-    /**
-     * The zone&#39;s visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
-     */
+    reverseLookupConfig?: Schema$ManagedZoneReverseLookupConfig;
     visibility?: string | null;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
-    /**
-     * Specifies parameters for generating initial DnsKeys for this ManagedZone. Can only be changed while the state is OFF.
-     */
     defaultKeySpecs?: Schema$DnsKeySpec[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneDnsSecConfig&quot;.
      */
     kind?: string | null;
-    /**
-     * Specifies the mechanism for authenticated denial-of-existence responses. Can only be changed while the state is OFF.
-     */
     nonExistence?: string | null;
-    /**
-     * Specifies whether DNSSEC is enabled, and what mode it is in.
-     */
     state?: string | null;
   }
   export interface Schema$ManagedZoneForwardingConfig {
@@ -346,15 +218,10 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneForwardingConfig&quot;.
      */
     kind?: string | null;
-    /**
-     * List of target name servers to forward to. Cloud DNS will select the best available name server if more than one target is given.
-     */
     targetNameServers?: Schema$ManagedZoneForwardingConfigNameServerTarget[];
   }
   export interface Schema$ManagedZoneForwardingConfigNameServerTarget {
-    /**
-     * IPv4 address of a target name server.
-     */
+    forwardingPath?: string | null;
     ipv4Address?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneForwardingConfigNameServerTarget&quot;.
@@ -367,13 +234,7 @@ export namespace dns_v2beta1 {
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
-     */
     nextPageToken?: string | null;
-    /**
-     * The operation resources.
-     */
     operations?: Schema$Operation[];
   }
   export interface Schema$ManagedZonePeeringConfig {
@@ -381,23 +242,14 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfig&quot;.
      */
     kind?: string | null;
-    /**
-     * The network with which to peer.
-     */
     targetNetwork?: Schema$ManagedZonePeeringConfigTargetNetwork;
   }
   export interface Schema$ManagedZonePeeringConfigTargetNetwork {
-    /**
-     * The time at which the zone was deactivated, in RFC 3339 date-time format. An empty string indicates that the peering connection is active. The producer network can deactivate a zone. The zone is automatically deactivated if the producer network that the zone targeted is deleted. Output only.
-     */
     deactivateTime?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfigTargetNetwork&quot;.
      */
     kind?: string | null;
-    /**
-     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     */
     networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
@@ -405,9 +257,6 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePrivateVisibilityConfig&quot;.
      */
     kind?: string | null;
-    /**
-     * The list of VPC networks that can see this zone.
-     */
     networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
   }
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
@@ -415,10 +264,13 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePrivateVisibilityConfigNetwork&quot;.
      */
     kind?: string | null;
-    /**
-     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     */
     networkUrl?: string | null;
+  }
+  export interface Schema$ManagedZoneReverseLookupConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneReverseLookupConfig&quot;.
+     */
+    kind?: string | null;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -426,70 +278,28 @@ export namespace dns_v2beta1 {
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The managed zone resources.
-     */
     managedZones?: Schema$ManagedZone[];
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
-     */
     nextPageToken?: string | null;
   }
-  /**
-   * An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never received by the caller. Use the caller specified client_operation_id.
-   */
   export interface Schema$Operation {
-    /**
-     * Only populated if the operation targeted a DnsKey (output only).
-     */
     dnsKeyContext?: Schema$OperationDnsKeyContext;
-    /**
-     * Unique identifier for the resource. This is the client_operation_id if the client specified it when the mutation was initiated, otherwise, it is generated by the server. The name must be 1-63 characters long and match the regular expression [-a-z0-9]? (output only)
-     */
     id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#operation&quot;.
      */
     kind?: string | null;
-    /**
-     * The time that this operation was started by the server. This is in RFC3339 text format (output only).
-     */
     startTime?: string | null;
-    /**
-     * Status of the operation. Can be one of the following: &quot;PENDING&quot; or &quot;DONE&quot; (output only). A status of &quot;DONE&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
-     */
     status?: string | null;
-    /**
-     * Type of the operation. Operations include insert, update, and delete (output only).
-     */
     type?: string | null;
-    /**
-     * User who requested the operation, for example: user@example.com. cloud-dns-system for operations automatically done by the system. (output only)
-     */
     user?: string | null;
-    /**
-     * Only populated if the operation targeted a ManagedZone (output only).
-     */
     zoneContext?: Schema$OperationManagedZoneContext;
   }
   export interface Schema$OperationDnsKeyContext {
-    /**
-     * The post-operation DnsKey resource.
-     */
     newValue?: Schema$DnsKey;
-    /**
-     * The pre-operation DnsKey resource.
-     */
     oldValue?: Schema$DnsKey;
   }
   export interface Schema$OperationManagedZoneContext {
-    /**
-     * The post-operation ManagedZone resource.
-     */
     newValue?: Schema$ManagedZone;
-    /**
-     * The pre-operation ManagedZone resource.
-     */
     oldValue?: Schema$ManagedZone;
   }
   export interface Schema$PoliciesListResponse {
@@ -498,13 +308,7 @@ export namespace dns_v2beta1 {
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
-     */
     nextPageToken?: string | null;
-    /**
-     * The policy resources.
-     */
     policies?: Schema$Policy[];
   }
   export interface Schema$PoliciesPatchResponse {
@@ -515,41 +319,17 @@ export namespace dns_v2beta1 {
     header?: Schema$ResponseHeader;
     policy?: Schema$Policy;
   }
-  /**
-   * A policy is a collection of DNS rules applied to one or more Virtual Private Cloud resources.
-   */
   export interface Schema$Policy {
-    /**
-     * Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.
-     */
     alternativeNameServerConfig?: Schema$PolicyAlternativeNameServerConfig;
-    /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the policy&#39;s function.
-     */
     description?: string | null;
-    /**
-     * Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are bound to this policy.
-     */
     enableInboundForwarding?: boolean | null;
-    /**
-     * Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not set.
-     */
     enableLogging?: boolean | null;
-    /**
-     * Unique identifier for the resource; defined by the server (output only).
-     */
     id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policy&quot;.
      */
     kind?: string | null;
-    /**
-     * User assigned name for this policy.
-     */
     name?: string | null;
-    /**
-     * List of network names specifying networks to which this policy is applied.
-     */
     networks?: Schema$PolicyNetwork[];
   }
   export interface Schema$PolicyAlternativeNameServerConfig {
@@ -557,15 +337,10 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyAlternativeNameServerConfig&quot;.
      */
     kind?: string | null;
-    /**
-     * Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.
-     */
     targetNameServers?: Schema$PolicyAlternativeNameServerConfigTargetNameServer[];
   }
   export interface Schema$PolicyAlternativeNameServerConfigTargetNameServer {
-    /**
-     * IPv4 address to forward to.
-     */
+    forwardingPath?: string | null;
     ipv4Address?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyAlternativeNameServerConfigTargetNameServer&quot;.
@@ -577,124 +352,46 @@ export namespace dns_v2beta1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyNetwork&quot;.
      */
     kind?: string | null;
-    /**
-     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
-     */
     networkUrl?: string | null;
   }
-  /**
-   * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console.
-   */
   export interface Schema$Project {
-    /**
-     * User assigned unique identifier for the resource (output only).
-     */
     id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#project&quot;.
      */
     kind?: string | null;
-    /**
-     * Unique numeric identifier for the resource; defined by the server (output only).
-     */
     number?: string | null;
-    /**
-     * Quotas assigned to this project (output only).
-     */
     quota?: Schema$Quota;
   }
-  /**
-   * Limits associated with a Project.
-   */
   export interface Schema$Quota {
-    /**
-     * Maximum allowed number of DnsKeys per ManagedZone.
-     */
     dnsKeysPerManagedZone?: number | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#quota&quot;.
      */
     kind?: string | null;
-    /**
-     * Maximum allowed number of managed zones in the project.
-     */
     managedZones?: number | null;
-    /**
-     * Maximum allowed number of managed zones which can be attached to a network.
-     */
     managedZonesPerNetwork?: number | null;
-    /**
-     * Maximum allowed number of networks to which a privately scoped zone can be attached.
-     */
     networksPerManagedZone?: number | null;
-    /**
-     * Maximum allowed number of networks per policy.
-     */
     networksPerPolicy?: number | null;
-    /**
-     * Maximum allowed number of policies per project.
-     */
     policies?: number | null;
-    /**
-     * Maximum allowed number of ResourceRecords per ResourceRecordSet.
-     */
     resourceRecordsPerRrset?: number | null;
-    /**
-     * Maximum allowed number of ResourceRecordSets to add per ChangesCreateRequest.
-     */
     rrsetAdditionsPerChange?: number | null;
-    /**
-     * Maximum allowed number of ResourceRecordSets to delete per ChangesCreateRequest.
-     */
     rrsetDeletionsPerChange?: number | null;
-    /**
-     * Maximum allowed number of ResourceRecordSets per zone in the project.
-     */
     rrsetsPerManagedZone?: number | null;
-    /**
-     * Maximum allowed number of target name servers per managed forwarding zone.
-     */
     targetNameServersPerManagedZone?: number | null;
-    /**
-     * Maximum allowed number of alternative target name servers per policy.
-     */
     targetNameServersPerPolicy?: number | null;
-    /**
-     * Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
-     */
     totalRrdataSizePerChange?: number | null;
-    /**
-     * DNSSEC algorithm and key length types that can be used for DnsKeys.
-     */
     whitelistedKeySpecs?: Schema$DnsKeySpec[];
   }
-  /**
-   * A unit of data that will be returned by the DNS servers.
-   */
   export interface Schema$ResourceRecordSet {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#resourceRecordSet&quot;.
      */
     kind?: string | null;
-    /**
-     * For example, www.example.com.
-     */
     name?: string | null;
-    /**
-     * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
-     */
     rrdatas?: string[] | null;
-    /**
-     * As defined in RFC 4034 (section 3.2).
-     */
     signatureRrdatas?: string[] | null;
-    /**
-     * Number of seconds that this ResourceRecordSet can be cached by resolvers.
-     */
     ttl?: number | null;
-    /**
-     * The identifier of a supported record type. See the list of Supported DNS record types.
-     */
     type?: string | null;
   }
   export interface Schema$ResourceRecordSetsListResponse {
@@ -703,22 +400,10 @@ export namespace dns_v2beta1 {
      * Type of resource.
      */
     kind?: string | null;
-    /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
-     */
     nextPageToken?: string | null;
-    /**
-     * The resource record set resources.
-     */
     rrsets?: Schema$ResourceRecordSet[];
   }
-  /**
-   * Elements common to every response.
-   */
   export interface Schema$ResponseHeader {
-    /**
-     * For mutating operation requests that completed successfully. This is the client_operation_id if the client specified it, otherwise it is generated by the server (output only).
-     */
     operationId?: string | null;
   }
 
@@ -730,7 +415,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.changes.create
-     * @desc Atomically update the ResourceRecordSet collection.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -754,15 +438,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.changes.create({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -802,9 +485,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {().Change} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -890,7 +573,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.changes.get
-     * @desc Fetch the representation of an existing Change.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -916,17 +598,16 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.changes.get({
-     *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
      *     changeId: 'placeholder-value',
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -952,10 +633,10 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string} params.changeId
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1040,7 +721,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.changes.list
-     * @desc Enumerate Changes to a ResourceRecordSet collection.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1066,21 +746,20 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.changes.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
-     *     // Sorting criterion. The only supported value is change sequence.
+     *
      *     sortBy: 'placeholder-value',
-     *     // Sorting order direction: 'ascending' or 'descending'.
+     *
      *     sortOrder: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1103,12 +782,12 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
-     * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
+     * @param {string} params.managedZone
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.project
+     * @param {string=} params.sortBy
+     * @param {string=} params.sortOrder
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1197,20 +876,15 @@ export namespace dns_v2beta1 {
 
   export interface Params$Resource$Changes$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -1221,55 +895,45 @@ export namespace dns_v2beta1 {
   }
   export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     *
      */
     changeId?: string;
     /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
     /**
-     * Sorting criterion. The only supported value is change sequence.
+     *
      */
     sortBy?: string;
     /**
-     * Sorting order direction: 'ascending' or 'descending'.
+     *
      */
     sortOrder?: string;
   }
@@ -1282,7 +946,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.dnsKeys.get
-     * @desc Fetch the representation of an existing DnsKey.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1308,19 +971,18 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.dnsKeys.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+     *
      *     digestType: 'placeholder-value',
-     *     // The identifier of the requested DnsKey.
+     *
      *     dnsKeyId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1350,11 +1012,11 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-     * @param {string} params.dnsKeyId The identifier of the requested DnsKey.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string=} params.digestType
+     * @param {string} params.dnsKeyId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1439,7 +1101,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.dnsKeys.list
-     * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1465,19 +1126,18 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.dnsKeys.list({
-     *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      *     digestType: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1500,11 +1160,11 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.digestType
+     * @param {string} params.managedZone
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1593,55 +1253,45 @@ export namespace dns_v2beta1 {
 
   export interface Params$Resource$Dnskeys$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+     *
      */
     digestType?: string;
     /**
-     * The identifier of the requested DnsKey.
+     *
      */
     dnsKeyId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Dnskeys$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+     *
      */
     digestType?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
@@ -1654,7 +1304,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZoneOperations.get
-     * @desc Fetch the representation of an existing Operation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1680,17 +1329,16 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZoneOperations.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the operation addressed by this request.
+     *
      *     operation: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1717,10 +1365,10 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-     * @param {string} params.operation Identifies the operation addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.operation
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1806,7 +1454,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZoneOperations.list
-     * @desc Enumerate Operations for the given ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1832,19 +1479,18 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZoneOperations.list({
-     *     // Identifies the managed zone addressed by this request.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
-     *     // Sorting criterion. The only supported values are START_TIME and ID.
+     *
      *     sortBy: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1867,11 +1513,11 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
+     * @param {string} params.managedZone
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.project
+     * @param {string=} params.sortBy
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1968,52 +1614,42 @@ export namespace dns_v2beta1 {
   export interface Params$Resource$Managedzoneoperations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the operation addressed by this request.
+     *
      */
     operation?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Managedzoneoperations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Identifies the managed zone addressed by this request.
+     *
      */
     managedZone?: string;
     /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
     /**
-     * Sorting criterion. The only supported values are START_TIME and ID.
+     *
      */
     sortBy?: string;
   }
@@ -2026,7 +1662,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.create
-     * @desc Create a new ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2050,13 +1685,12 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.create({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2076,6 +1710,7 @@ export namespace dns_v2beta1 {
      *       //   "nameServers": [],
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },
@@ -2097,6 +1732,7 @@ export namespace dns_v2beta1 {
      *   //   "nameServers": [],
      *   //   "peeringConfig": {},
      *   //   "privateVisibilityConfig": {},
+     *   //   "reverseLookupConfig": {},
      *   //   "visibility": "my_visibility"
      *   // }
      * }
@@ -2110,8 +1746,8 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.project
      * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2197,7 +1833,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.delete
-     * @desc Delete a previously created ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2221,15 +1856,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.delete({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2244,9 +1878,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2330,7 +1964,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.get
-     * @desc Fetch the representation of an existing ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2356,15 +1989,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2384,6 +2016,7 @@ export namespace dns_v2beta1 {
      *   //   "nameServers": [],
      *   //   "peeringConfig": {},
      *   //   "privateVisibilityConfig": {},
+     *   //   "reverseLookupConfig": {},
      *   //   "visibility": "my_visibility"
      *   // }
      * }
@@ -2397,9 +2030,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2484,7 +2117,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.list
-     * @desc Enumerate ManagedZones that have been created but not yet deleted.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2510,17 +2142,16 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.list({
-     *     // Restricts the list to return only zones with this domain name.
      *     dnsName: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2543,10 +2174,10 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.dnsName
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2636,7 +2267,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.patch
-     * @desc Apply a partial update to an existing ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2660,15 +2290,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.patch({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2688,6 +2317,7 @@ export namespace dns_v2beta1 {
      *       //   "nameServers": [],
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },
@@ -2716,9 +2346,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2805,7 +2435,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.managedZones.update
-     * @desc Update an existing ManagedZone.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2829,15 +2458,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.managedZones.update({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      *     managedZone: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2857,6 +2485,7 @@ export namespace dns_v2beta1 {
      *       //   "nameServers": [],
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
+     *       //   "reverseLookupConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },
@@ -2885,9 +2514,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.managedZone
+     * @param {string} params.project
      * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2976,16 +2605,11 @@ export namespace dns_v2beta1 {
   export interface Params$Resource$Managedzones$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -2997,83 +2621,63 @@ export namespace dns_v2beta1 {
   export interface Params$Resource$Managedzones$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Managedzones$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Managedzones$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Restricts the list to return only zones with this domain name.
+     *
      */
     dnsName?: string;
     /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Managedzones$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -3085,20 +2689,15 @@ export namespace dns_v2beta1 {
   export interface Params$Resource$Managedzones$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -3116,7 +2715,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.create
-     * @desc Create a new Policy
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3140,13 +2738,12 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.create({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3188,8 +2785,8 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.project
      * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3275,7 +2872,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.delete
-     * @desc Delete a previously created Policy. Will fail if the policy is still being referenced by a network.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3299,15 +2895,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.delete({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // User given friendly name of the policy addressed by this request.
+     *
      *     policy: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3322,9 +2917,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.policy
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3406,7 +3001,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.get
-     * @desc Fetch the representation of an existing Policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3432,15 +3026,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // User given friendly name of the policy addressed by this request.
+     *
      *     policy: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3467,9 +3060,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.policy
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3553,7 +3146,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.list
-     * @desc Enumerate all Policies associated with a project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3579,15 +3171,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.list({
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3610,9 +3201,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {integer=} params.maxResults
+     * @param {string=} params.pageToken
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3702,7 +3293,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.patch
-     * @desc Apply a partial update to an existing Policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3726,15 +3316,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.patch({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // User given friendly name of the policy addressed by this request.
+     *
      *     policy: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3770,9 +3359,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.policy
+     * @param {string} params.project
      * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3862,7 +3451,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.policies.update
-     * @desc Update an existing Policy.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3886,15 +3474,14 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.policies.update({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // User given friendly name of the policy addressed by this request.
+     *
      *     policy: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3930,9 +3517,9 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.policy
+     * @param {string} params.project
      * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4023,16 +3610,11 @@ export namespace dns_v2beta1 {
 
   export interface Params$Resource$Policies$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -4043,77 +3625,57 @@ export namespace dns_v2beta1 {
   }
   export interface Params$Resource$Policies$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * User given friendly name of the policy addressed by this request.
+     *
      */
     policy?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Policies$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * User given friendly name of the policy addressed by this request.
+     *
      */
     policy?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Policies$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
   export interface Params$Resource$Policies$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * User given friendly name of the policy addressed by this request.
+     *
      */
     policy?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -4124,20 +3686,15 @@ export namespace dns_v2beta1 {
   }
   export interface Params$Resource$Policies$Update extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * User given friendly name of the policy addressed by this request.
+     *
      */
     policy?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
 
@@ -4155,7 +3712,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.projects.get
-     * @desc Fetch the representation of an existing Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4181,13 +3737,12 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.projects.get({
-     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4210,8 +3765,8 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.clientOperationId
+     * @param {string} params.project
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4297,16 +3852,11 @@ export namespace dns_v2beta1 {
 
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *
      */
     clientOperationId?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
   }
@@ -4319,7 +3869,6 @@ export namespace dns_v2beta1 {
 
     /**
      * dns.resourceRecordSets.list
-     * @desc Enumerate ResourceRecordSets that have been created but not yet deleted.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4345,21 +3894,20 @@ export namespace dns_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dns.resourceRecordSets.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      *     managedZone: 'placeholder-value',
-     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      *     maxResults: 'placeholder-value',
-     *     // Restricts the list to return only records with this fully qualified domain name.
+     *
      *     name: 'placeholder-value',
-     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      *     pageToken: 'placeholder-value',
-     *     // Identifies the project addressed by this request.
+     *
      *     project: 'placeholder-value',
-     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     *
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4382,12 +3930,12 @@ export namespace dns_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.name Restricts the list to return only records with this fully qualified domain name.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.type Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     * @param {string} params.managedZone
+     * @param {integer=} params.maxResults
+     * @param {string=} params.name
+     * @param {string=} params.pageToken
+     * @param {string} params.project
+     * @param {string=} params.type
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4484,32 +4032,27 @@ export namespace dns_v2beta1 {
   export interface Params$Resource$Resourcerecordsets$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *
      */
     managedZone?: string;
     /**
-     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *
      */
     maxResults?: number;
     /**
-     * Restricts the list to return only records with this fully qualified domain name.
+     *
      */
     name?: string;
     /**
-     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *
      */
     pageToken?: string;
     /**
-     * Identifies the project addressed by this request.
+     *
      */
     project?: string;
     /**
-     * Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     *
      */
     type?: string;
   }

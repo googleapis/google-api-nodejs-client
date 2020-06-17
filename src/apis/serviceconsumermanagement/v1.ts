@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -514,10 +526,6 @@ export namespace serviceconsumermanagement_v1 {
      */
     allowCors?: boolean | null;
     /**
-     * The list of features enabled on this endpoint.
-     */
-    features?: string[] | null;
-    /**
      * The canonical name of this endpoint.
      */
     name?: string | null;
@@ -816,7 +824,7 @@ export namespace serviceconsumermanagement_v1 {
     syntax?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type`, `description`, `display_name`,   `launch_stage` fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -828,7 +836,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type.  The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -852,7 +860,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All service defined metrics must be prefixed with the service name, in the format of `{service name}/{relative metric name}`, such as `cloudsql.googleapis.com/database/cpu/utilization`. The relative metric name must follow:  * Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are   allowed. * The maximum number of characters allowed for the relative_metric_name is   100.  All user-defined metric types have the DNS name `custom.googleapis.com`, `external.googleapis.com`, or `logging.googleapis.com/user/`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
@@ -908,7 +916,7 @@ export namespace serviceconsumermanagement_v1 {
     root?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API.
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different services can support different monitored resource types.  The following are specific rules to service defined monitored resources for Monitoring and Logging:  * The `type`, `display_name`, `description`, `labels` and `launch_stage`   fields are all required. * The first label of the monitored resource descriptor must be   `resource_container`. There are legacy monitored resource descritptors   start with `project_id`. * It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors   is allowed per service. * Maximum of default 10 labels per monitored resource is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -920,7 +928,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, an individual Google Cloud SQL database is identified by values for the labels `database_id` and `location`.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -932,20 +940,20 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+     * Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
   /**
-   * Monitoring configuration of the service.  The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/overdue_count` metric is only sent to the consumer project.      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     metrics:     - name: library.googleapis.com/book/returned_count       metric_kind: DELTA       value_type: INT64       labels:       - key: /customer_id     - name: library.googleapis.com/book/overdue_count       metric_kind: GAUGE       value_type: INT64       labels:       - key: /customer_id     monitoring:       producer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/returned_count       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/returned_count         - library.googleapis.com/book/overdue_count
+   * Monitoring configuration of the service.  The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/num_overdue` metric is only sent to the consumer project.      monitored_resources:     - type: library.googleapis.com/Branch       display_name: &quot;Library Branch&quot;       description: &quot;A branch of a library.&quot;       launch_stage: GA       labels:       - key: resource_container         description: &quot;The Cloud container (ie. project id) for the Branch.&quot;       - key: location         description: &quot;The location of the library branch.&quot;       - key: branch_id         description: &quot;The id of the branch.&quot;     metrics:     - name: library.googleapis.com/book/returned_count       display_name: &quot;Books Returned&quot;       description: &quot;The count of books that have been returned.&quot;       launch_stage: GA       metric_kind: DELTA       value_type: INT64       unit: &quot;1&quot;       labels:       - key: customer_id         description: &quot;The id of the customer.&quot;     - name: library.googleapis.com/book/num_overdue       display_name: &quot;Books Overdue&quot;       description: &quot;The current number of overdue books.&quot;       launch_stage: GA       metric_kind: GAUGE       value_type: INT64       unit: &quot;1&quot;       labels:       - key: customer_id         description: &quot;The id of the customer.&quot;     monitoring:       producer_destinations:       - monitored_resource: library.googleapis.com/Branch         metrics:         - library.googleapis.com/book/returned_count       consumer_destinations:       - monitored_resource: library.googleapis.com/Branch         metrics:         - library.googleapis.com/book/returned_count         - library.googleapis.com/book/num_overdue
    */
   export interface Schema$Monitoring {
     /**
-     * Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations. A monitored resouce type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration.
+     * Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration.
      */
     consumerDestinations?: Schema$MonitoringDestination[];
     /**
-     * Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations. A monitored resouce type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration.
+     * Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration.
      */
     producerDestinations?: Schema$MonitoringDestination[];
   }
@@ -1537,6 +1545,44 @@ export namespace serviceconsumermanagement_v1 {
     overrides?: Schema$V1Beta1QuotaOverride[];
   }
   /**
+   * Response message for ImportProducerQuotaPolicies
+   */
+  export interface Schema$V1Beta1ImportProducerQuotaPoliciesResponse {
+    /**
+     * The policies that were created from the imported data.
+     */
+    policies?: Schema$V1Beta1ProducerQuotaPolicy[];
+  }
+  /**
+   * Quota policy created by service producer.
+   */
+  export interface Schema$V1Beta1ProducerQuotaPolicy {
+    /**
+     * The cloud resource container at which the quota policy is created. The format is {container_type}/{container_number}
+     */
+    container?: string | null;
+    /**
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit.  For example, an policy on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the policy is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota polcies     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
+     */
+    dimensions?: {[key: string]: string} | null;
+    /**
+     * The name of the metric to which this policy applies.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
+     * The resource name of the producer policy. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`
+     */
+    name?: string | null;
+    /**
+     * The quota policy value. Can be any nonnegative integer, or -1 (unlimited quota).
+     */
+    policyValue?: string | null;
+    /**
+     * The limit unit of the limit to which this policy applies.  An example unit would be: `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
+     */
+    unit?: string | null;
+  }
+  /**
    * A quota override
    */
   export interface Schema$V1Beta1QuotaOverride {
@@ -1705,7 +1751,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.cancel({
@@ -1839,7 +1885,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.delete({
@@ -1966,7 +2012,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.get({
@@ -2098,7 +2144,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.list({
@@ -2222,11 +2268,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -2239,32 +2280,17 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2314,7 +2340,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.search({
@@ -2467,11 +2493,6 @@ export namespace serviceconsumermanagement_v1 {
 
   export interface Params$Resource$Services$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
      */
     pageSize?: number;
@@ -2518,7 +2539,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.addProject({
@@ -2665,7 +2686,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.applyProjectConfig(
@@ -2814,7 +2835,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.attachProject(
@@ -2964,7 +2985,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.create({
@@ -3114,7 +3135,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.delete({
@@ -3247,7 +3268,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.deleteProject(
@@ -3395,7 +3416,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.list({
@@ -3549,7 +3570,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.removeProject(
@@ -3697,7 +3718,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.undeleteProject(
@@ -3826,11 +3847,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Addproject
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     parent?: string;
@@ -3842,11 +3858,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -3860,11 +3871,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Attachproject
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
@@ -3876,11 +3882,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      */
@@ -3894,22 +3895,12 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$Deleteproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
@@ -3922,11 +3913,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter expression over tenancy resources field. Optional.
      */
@@ -3947,11 +3933,6 @@ export namespace serviceconsumermanagement_v1 {
   export interface Params$Resource$Services$Tenancyunits$Removeproject
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
     name?: string;
@@ -3963,11 +3944,6 @@ export namespace serviceconsumermanagement_v1 {
   }
   export interface Params$Resource$Services$Tenancyunits$Undeleteproject
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */

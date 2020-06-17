@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudasset_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -126,11 +138,11 @@ export namespace cloudasset_v1 {
     accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
     accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
     /**
-     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself.  For example: `[&quot;projects/123456789&quot;, &quot;folders/5432&quot;, &quot;organizations/1234&quot;]`
+     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself.  Example: `[&quot;projects/123456789&quot;, &quot;folders/5432&quot;, &quot;organizations/1234&quot;]`
      */
     ancestors?: string[] | null;
     /**
-     * The type of the asset. For example: &quot;compute.googleapis.com/Disk&quot;  See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+     * The type of the asset. Example: `compute.googleapis.com/Disk`  See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
      */
     assetType?: string | null;
     /**
@@ -138,7 +150,7 @@ export namespace cloudasset_v1 {
      */
     iamPolicy?: Schema$Policy;
     /**
-     * The full name of the asset. For example: &quot;//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1&quot;  See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     * The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`  See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
      */
     name?: string | null;
     /**
@@ -150,9 +162,13 @@ export namespace cloudasset_v1 {
      */
     resource?: Schema$Resource;
     servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
+    /**
+     * The last update timestamp of an asset. update_time is updated when create/update/delete operation is performed.
+     */
+    updateTime?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -165,7 +181,7 @@ export namespace cloudasset_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -187,7 +203,7 @@ export namespace cloudasset_v1 {
     assets?: Schema$TemporalAsset[];
   }
   /**
-   * A BigQuery destination.
+   * A BigQuery destination for exporting assets to.
    */
   export interface Schema$BigQueryDestination {
     /**
@@ -208,7 +224,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
@@ -242,7 +258,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$ExportAssetsRequest {
     /**
-     * A list of asset types of which to take a snapshot for. For example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
+     * A list of asset types of which to take a snapshot for. Example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
      */
     assetTypes?: string[] | null;
     /**
@@ -250,7 +266,7 @@ export namespace cloudasset_v1 {
      */
     contentType?: string | null;
     /**
-     * Required. Output configuration indicating where the results will be output to. All results will be in newline delimited JSON format.
+     * Required. Output configuration indicating where the results will be output to.
      */
     outputConfig?: Schema$OutputConfig;
     /**
@@ -284,11 +300,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$Feed {
     /**
-     * A list of the full names of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names and asset_types are exported to the feed. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.
+     * A list of the full names of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names or asset_types are exported to the feed. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.
      */
     assetNames?: string[] | null;
     /**
-     * A list of types of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names and asset_types are exported to the feed. For example: `&quot;compute.googleapis.com/Disk&quot;`  See [this topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for a list of all supported asset types.
+     * A list of types of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names or asset_types are exported to the feed. Example: `&quot;compute.googleapis.com/Disk&quot;`  See [this topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for a list of all supported asset types.
      */
     assetTypes?: string[] | null;
     /**
@@ -318,11 +334,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GcsDestination {
     /**
-     * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. For example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
+     * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. Example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
      */
     uri?: string | null;
     /**
-     * The uri prefix of all generated Cloud Storage objects. For example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. For example: &quot;gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0&quot; is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
+     * The uri prefix of all generated Cloud Storage objects. Example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. Example: &quot;gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0&quot; is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
      */
     uriPrefix?: string | null;
   }
@@ -643,7 +659,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$OutputConfig {
     /**
-     * Destination on BigQuery. The output table stores the fields in asset proto as columns in BigQuery. The resource/iam_policy field is converted to a record with each field to a column, except metadata to a single JSON string.
+     * Destination on BigQuery. The output table stores the fields in asset proto as columns in BigQuery.
      */
     bigqueryDestination?: Schema$BigQueryDestination;
     /**
@@ -652,7 +668,7 @@ export namespace cloudasset_v1 {
     gcsDestination?: Schema$GcsDestination;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -668,7 +684,7 @@ export namespace cloudasset_v1 {
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -677,7 +693,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$PubsubDestination {
     /**
-     * The name of the Pub/Sub topic to publish to. For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     * The name of the Pub/Sub topic to publish to. Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      */
     topic?: string | null;
   }
@@ -690,23 +706,27 @@ export namespace cloudasset_v1 {
      */
     data?: {[key: string]: any} | null;
     /**
-     * The URL of the discovery document containing the resource&#39;s JSON schema. For example: &quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     * The URL of the discovery document containing the resource&#39;s JSON schema. Example: `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryDocumentUri?: string | null;
     /**
-     * The JSON schema name listed in the discovery document. For example: &quot;Project&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     * The JSON schema name listed in the discovery document. Example: `Project`  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryName?: string | null;
     /**
-     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: &quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;  For third-party assets, this field may be set differently.
+     * The location of the resource in Google Cloud, such as its zone and region. For more information, see https://cloud.google.com/about/locations/.
+     */
+    location?: string | null;
+    /**
+     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123`  For third-party assets, this field may be set differently.
      */
     parent?: string | null;
     /**
-     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. For example: &quot;https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123&quot;  This value is unspecified for resources without a REST API.
+     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`  This value is unspecified for resources without a REST API.
      */
     resourceUrl?: string | null;
     /**
-     * The API version. For example: &quot;v1&quot;
+     * The API version. Example: `v1`
      */
     version?: string | null;
   }
@@ -745,7 +765,7 @@ export namespace cloudasset_v1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * A time window specified by its &quot;start_time&quot; and &quot;end_time&quot;.
+   * A time window specified by its `start_time` and `end_time`.
    */
   export interface Schema$TimeWindow {
     /**
@@ -800,7 +820,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.feeds.create({
@@ -948,7 +968,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.feeds.delete({
@@ -1076,7 +1096,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.feeds.get({
@@ -1210,7 +1230,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.feeds.list({
@@ -1345,7 +1365,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.feeds.patch({
@@ -1472,11 +1492,6 @@ export namespace cloudasset_v1 {
 
   export interface Params$Resource$Feeds$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project/folder/organization where this feed should be created in. It can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
      */
     parent?: string;
@@ -1488,21 +1503,11 @@ export namespace cloudasset_v1 {
   }
   export interface Params$Resource$Feeds$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
      */
     name?: string;
   }
   export interface Params$Resource$Feeds$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the Feed and it must be in the format of: projects/project_number/feeds/feed_id folders/folder_number/feeds/feed_id organizations/organization_number/feeds/feed_id
      */
@@ -1510,21 +1515,11 @@ export namespace cloudasset_v1 {
   }
   export interface Params$Resource$Feeds$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent project/folder/organization whose feeds are to be listed. It can only be using project/folder/organization number (such as "folders/12345")", or a project ID (such as "projects/my-project-id").
      */
     parent?: string;
   }
   export interface Params$Resource$Feeds$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The format will be projects/{project_number}/feeds/{client-assigned_feed_identifier} or folders/{folder_number}/feeds/{client-assigned_feed_identifier} or organizations/{organization_number}/feeds/{client-assigned_feed_identifier}  The client-assigned feed identifier must be unique within the parent project/folder/organization.
      */
@@ -1565,7 +1560,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.operations.get({
@@ -1676,11 +1671,6 @@ export namespace cloudasset_v1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -1694,7 +1684,7 @@ export namespace cloudasset_v1 {
 
     /**
      * cloudasset.batchGetAssetsHistory
-     * @desc Batch gets the update history of assets that overlap a time window. For RESOURCE content, this API outputs history with asset in both non-delete or deleted status. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
+     * @desc Batch gets the update history of assets that overlap a time window. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. Otherwise, this API outputs history with asset in both non-delete or deleted status. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1715,17 +1705,15 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.batchGetAssetsHistory({
-     *     // A list of the full names of the assets. For example:
+     *     // A list of the full names of the assets.
+     *     // See: https://cloud.google.com/asset-inventory/docs/resource-name-format
+     *     // Example:
+     *     //
      *     // `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *     // See [Resource
-     *     // Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *     // and [Resource Name
-     *     // Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *     // for more info.
      *     //
      *     // The request becomes a no-op if the asset name list is empty, and the max
      *     // size of the asset name list is 100 in one request.
@@ -1759,7 +1747,7 @@ export namespace cloudasset_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
+     * @param {string=} params.assetNames A list of the full names of the assets. See: https://cloud.google.com/asset-inventory/docs/resource-name-format Example:  `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      * @param {string=} params.contentType Optional. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
      * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). If not specified, the current timestamp is used instead.
@@ -1858,7 +1846,7 @@ export namespace cloudasset_v1 {
 
     /**
      * cloudasset.exportAssets
-     * @desc Exports assets with time and resource types to a given Cloud Storage location. The output format is newline-delimited JSON. This API implements the google.longrunning.Operation API allowing you to keep track of the export.
+     * @desc Exports assets with time and resource types to a given Cloud Storage location/BigQuery table. For Cloud Storage location destinations, the output format is newline-delimited JSON. Each line represents a google.cloud.asset.v1.Asset in the JSON format; for BigQuery table destinations, the output table stores the fields in asset proto as columns. This API implements the google.longrunning.Operation API , which allows you to keep track of the export. We recommend intervals of at least 2 seconds with exponential retry to poll the export operation result. For regular-size resource parent, the export operation usually finishes within 5 minutes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1879,7 +1867,7 @@ export namespace cloudasset_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudasset.exportAssets({
@@ -2009,12 +1997,7 @@ export namespace cloudasset_v1 {
   export interface Params$Resource$V1$Batchgetassetshistory
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
+     * A list of the full names of the assets. See: https://cloud.google.com/asset-inventory/docs/resource-name-format Example:  `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      */
     assetNames?: string[];
     /**
@@ -2035,11 +2018,6 @@ export namespace cloudasset_v1 {
     'readTimeWindow.startTime'?: string;
   }
   export interface Params$Resource$V1$Exportassets extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */

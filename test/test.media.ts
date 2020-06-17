@@ -108,7 +108,7 @@ describe('Media', () => {
   it('should post progress for uploads', async () => {
     const scope = nock(Utils.baseUrl)
       .post(
-        '/upload/youtube/v3/videos?part=id%2Csnippet&notifySubscribers=false&uploadType=multipart'
+        '/upload/youtube/v3/videos?part=id&part=snippet&notifySubscribers=false&uploadType=multipart'
       )
       .reply(200);
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
@@ -118,7 +118,7 @@ describe('Media', () => {
     const progressEvents = new Array<number>();
     await youtube.videos.insert(
       {
-        part: 'id,snippet',
+        part: ['id', 'snippet'],
         notifySubscribers: false,
         requestBody: {
           snippet: {

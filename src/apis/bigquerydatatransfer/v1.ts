@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -669,7 +681,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
@@ -822,7 +834,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.get({
@@ -975,7 +987,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.list({
@@ -1106,11 +1118,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      */
     name?: string;
@@ -1123,22 +1130,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -1195,7 +1192,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.get({
@@ -1333,7 +1330,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.list({
@@ -1461,22 +1458,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1529,7 +1516,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
@@ -1685,7 +1672,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
@@ -1838,7 +1825,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.list({
@@ -1969,11 +1956,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      */
     name?: string;
@@ -1986,22 +1968,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -2049,7 +2021,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
@@ -2260,7 +2232,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
@@ -2397,7 +2369,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
@@ -2551,7 +2523,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.list(
@@ -2708,7 +2680,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
@@ -2924,7 +2896,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
@@ -3083,7 +3055,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
@@ -3220,11 +3192,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
@@ -3249,11 +3216,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
@@ -3261,22 +3223,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -3296,11 +3248,6 @@ export namespace bigquerydatatransfer_v1 {
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
@@ -3330,11 +3277,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
@@ -3346,11 +3288,6 @@ export namespace bigquerydatatransfer_v1 {
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
@@ -3398,7 +3335,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
@@ -3535,7 +3472,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
@@ -3688,7 +3625,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.list(
@@ -3826,11 +3763,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
@@ -3838,22 +3770,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -3910,7 +3832,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
@@ -4048,11 +3970,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */
     messageTypes?: string[];
@@ -4101,7 +4018,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
@@ -4310,7 +4227,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
@@ -4444,7 +4361,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
@@ -4595,7 +4512,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.list({
@@ -4750,7 +4667,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
@@ -4963,7 +4880,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
@@ -5119,7 +5036,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
@@ -5255,11 +5172,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
@@ -5284,11 +5196,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
@@ -5296,22 +5203,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only configurations of requested data sources are returned.
      */
@@ -5331,11 +5228,6 @@ export namespace bigquerydatatransfer_v1 {
   }
   export interface Params$Resource$Projects$Transferconfigs$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      */
@@ -5365,11 +5257,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
@@ -5381,11 +5268,6 @@ export namespace bigquerydatatransfer_v1 {
   }
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      */
@@ -5433,7 +5315,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
@@ -5567,7 +5449,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
@@ -5717,7 +5599,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.list({
@@ -5852,11 +5734,6 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
@@ -5864,22 +5741,12 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -5936,7 +5803,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(
@@ -6073,11 +5940,6 @@ export namespace bigquerydatatransfer_v1 {
 
   export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      */

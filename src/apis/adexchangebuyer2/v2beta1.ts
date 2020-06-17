@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -302,7 +314,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientName?: string | null;
     /**
-     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
+     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type. The value of this field is ignored if the entity type is not provided.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
      */
     entityId?: string | null;
     /**
@@ -310,7 +322,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     entityName?: string | null;
     /**
-     * The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
+     * An optional field for specifying the type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
      */
     entityType?: string | null;
     /**
@@ -2156,7 +2168,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.create({
@@ -2314,7 +2326,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.get({
@@ -2457,7 +2469,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.list({
@@ -2610,7 +2622,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.update({
@@ -2752,11 +2764,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
      */
     accountId?: string;
@@ -2769,11 +2776,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -2784,11 +2786,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique numerical account ID of the sponsor buyer to list the clients for.
      */
@@ -2808,11 +2805,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      */
@@ -2857,7 +2849,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.invitations.create({
@@ -3011,7 +3003,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.invitations.get({
@@ -3157,7 +3149,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.invitations.list({
@@ -3300,11 +3292,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Invitations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -3321,11 +3308,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Invitations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -3340,11 +3322,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Invitations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3392,7 +3369,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.users.get({
@@ -3534,7 +3511,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.users.list({
@@ -3692,7 +3669,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.users.update({
@@ -3827,11 +3804,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Clients$Users$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
     accountId?: string;
@@ -3846,11 +3818,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Users$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the sponsor buyer of the client to list users for. (required)
      */
@@ -3870,11 +3837,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Clients$Users$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
@@ -3927,7 +3889,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.create({
@@ -4125,7 +4087,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.get({
@@ -4284,7 +4246,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.list({
@@ -4453,7 +4415,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.stopWatching({
@@ -4594,7 +4556,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.update({
@@ -4793,7 +4755,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.watch({
@@ -4920,11 +4882,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
     accountId?: string;
@@ -4941,11 +4898,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account the creative belongs to.
      */
     accountId?: string;
@@ -4956,11 +4908,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      */
@@ -4981,11 +4928,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Stopwatching
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account of the creative to stop notifications for.
      */
     accountId?: string;
@@ -5002,11 +4944,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
     accountId?: string;
@@ -5022,11 +4959,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$Watch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account of the creative to watch.
      */
@@ -5071,7 +5003,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.add({
@@ -5213,7 +5145,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.list({
@@ -5385,7 +5317,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.remove(
@@ -5510,11 +5442,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Creatives$Dealassociations$Add
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account the creative belongs to.
      */
     accountId?: string;
@@ -5530,11 +5457,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$Dealassociations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account to list the associations from. Specify "-" to list all creatives the current user has access to.
      */
@@ -5558,11 +5480,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account the creative belongs to.
      */
@@ -5607,7 +5524,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.finalizedProposals.list({
@@ -5742,11 +5659,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Finalizedproposals$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -5797,7 +5709,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.products.get({
@@ -5945,7 +5857,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.products.list({
@@ -6079,11 +5991,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -6094,11 +6001,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -6146,7 +6048,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.accept({
@@ -6307,7 +6209,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.addNote({
@@ -6455,7 +6357,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.cancelNegotiation({
@@ -6614,7 +6516,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.completeSetup({
@@ -6773,7 +6675,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.create({
@@ -6948,7 +6850,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.get({
@@ -7099,7 +7001,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.list({
@@ -7254,7 +7156,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.pause({
@@ -7415,7 +7317,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.resume({
@@ -7574,7 +7476,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.proposals.update({
@@ -7732,11 +7634,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Accept
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7752,11 +7649,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$Addnote
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -7774,11 +7666,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Cancelnegotiation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7794,11 +7681,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$Completesetup
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -7816,11 +7698,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7833,11 +7710,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7848,11 +7720,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -7877,11 +7744,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Pause
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7898,11 +7760,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Proposals$Resume
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -7918,11 +7775,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Proposals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -7967,7 +7819,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.publisherProfiles.get({
@@ -8117,7 +7969,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.publisherProfiles.list({
@@ -8245,11 +8097,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Accounts$Publisherprofiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the buyer.
      */
     accountId?: string;
@@ -8260,11 +8107,6 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   export interface Params$Resource$Accounts$Publisherprofiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the buyer.
      */
@@ -8360,7 +8202,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.create({
@@ -8541,7 +8383,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.delete({
@@ -8678,7 +8520,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.get({
@@ -8830,7 +8672,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.list({
@@ -8970,11 +8812,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
     isTransient?: boolean;
@@ -8991,11 +8828,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
@@ -9003,22 +8835,12 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -9062,7 +8884,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list(
@@ -9205,11 +9027,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -9252,7 +9069,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list(
@@ -9398,11 +9215,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -9445,7 +9257,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list(
@@ -9591,11 +9403,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -9638,7 +9445,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list(
@@ -9784,11 +9591,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -9839,7 +9641,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list(
@@ -9982,11 +9784,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -10029,7 +9826,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list(
@@ -10196,11 +9993,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
     creativeStatusId?: number;
@@ -10247,7 +10039,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list(
@@ -10415,11 +10207,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
     creativeStatusId?: number;
@@ -10466,7 +10253,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list(
@@ -10612,11 +10399,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -10659,7 +10441,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.losingBids.list(
@@ -10802,11 +10584,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -10849,7 +10626,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list(
@@ -10995,11 +10772,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -11074,7 +10846,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.create({
@@ -11255,7 +11027,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.delete({
@@ -11392,7 +11164,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.get({
@@ -11544,7 +11316,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.list({
@@ -11684,11 +11456,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      */
     isTransient?: boolean;
@@ -11705,11 +11472,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
@@ -11717,22 +11479,12 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
      */
@@ -11776,7 +11528,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidMetrics.list({
@@ -11916,11 +11668,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -11963,7 +11710,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidResponseErrors.list({
@@ -12106,11 +11853,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -12153,7 +11895,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list(
@@ -12298,11 +12040,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -12345,7 +12082,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBidRequests.list(
@@ -12490,11 +12227,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -12545,7 +12277,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.list({
@@ -12685,11 +12417,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -12732,7 +12459,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list(
@@ -12898,11 +12625,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
     creativeStatusId?: number;
@@ -12949,7 +12671,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.details.list(
@@ -13116,11 +12838,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      */
     creativeStatusId?: number;
@@ -13167,7 +12884,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.impressionMetrics.list({
@@ -13310,11 +13027,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -13357,7 +13069,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.losingBids.list({
@@ -13497,11 +13209,6 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Losingbids$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
@@ -13544,7 +13251,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list(
@@ -13688,11 +13395,6 @@ export namespace adexchangebuyer2_v2beta1 {
 
   export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */

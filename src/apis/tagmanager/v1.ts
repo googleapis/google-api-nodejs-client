@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace tagmanager_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1007,7 +1019,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.get({
@@ -1144,7 +1156,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.list({});
@@ -1275,7 +1287,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.update({
@@ -1404,27 +1416,12 @@ export namespace tagmanager_v1 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Accounts$List extends StandardParameters {}
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -1491,7 +1488,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.create({
@@ -1650,7 +1647,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.delete({
@@ -1780,7 +1777,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.get({
@@ -1927,7 +1924,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.list({
@@ -2062,7 +2059,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.update({
@@ -2210,11 +2207,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -2227,11 +2219,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -2242,11 +2229,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -2259,22 +2241,12 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -2323,7 +2295,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.create({
@@ -2488,7 +2460,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.delete({
@@ -2621,7 +2593,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.get({
@@ -2772,7 +2744,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.list({
@@ -2911,7 +2883,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.update({
@@ -3064,11 +3036,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3085,11 +3052,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3104,11 +3066,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3125,11 +3082,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3140,11 +3092,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3201,7 +3148,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.create({
@@ -3352,7 +3299,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.delete({
@@ -3485,7 +3432,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.get({
@@ -3629,7 +3576,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.list({
@@ -3766,7 +3713,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.update({
@@ -3905,11 +3852,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3926,11 +3868,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3945,11 +3882,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Folders$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3966,11 +3898,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3981,11 +3908,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Folders$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -4041,7 +3963,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.folders.entities.list({
@@ -4161,11 +4083,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Entities$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -4208,7 +4125,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.move_folders.update({
@@ -4341,11 +4258,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Move_folders$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -4405,7 +4317,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.reauthorize_environments.update(
@@ -4556,11 +4468,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Reauthorize_environments$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -4608,7 +4515,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.tags.create({
@@ -4791,7 +4698,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.tags.delete({
@@ -4924,7 +4831,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.tags.get({
@@ -5084,7 +4991,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.tags.list({
@@ -5218,7 +5125,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.tags.update({
@@ -5389,11 +5296,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5410,11 +5312,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5429,11 +5326,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Tags$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -5450,11 +5342,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5465,11 +5352,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Tags$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -5522,7 +5404,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.triggers.create({
@@ -5719,7 +5601,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.triggers.delete({
@@ -5852,7 +5734,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.triggers.get({
@@ -6019,7 +5901,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.triggers.list({
@@ -6158,7 +6040,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.triggers.update({
@@ -6343,11 +6225,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6364,11 +6241,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6383,11 +6255,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -6404,11 +6271,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6419,11 +6281,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -6476,7 +6333,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.variables.create({
@@ -6643,7 +6500,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.variables.delete({
@@ -6776,7 +6633,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.variables.get({
@@ -6928,7 +6785,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.variables.list({
@@ -7067,7 +6924,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.variables.update({
@@ -7222,11 +7079,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7243,11 +7095,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7262,11 +7109,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Variables$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -7283,11 +7125,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7298,11 +7135,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Variables$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -7357,7 +7189,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.create({
@@ -7514,7 +7346,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.delete({
@@ -7648,7 +7480,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.get({
@@ -7803,7 +7635,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.list({
@@ -7953,7 +7785,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.publish({
@@ -8104,7 +7936,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.restore({
@@ -8256,7 +8088,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.undelete({
@@ -8408,7 +8240,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.update({
@@ -8565,11 +8397,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8586,11 +8413,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8606,11 +8428,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8625,11 +8442,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -8650,11 +8462,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Publish
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8674,11 +8481,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Restore
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8694,11 +8496,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8713,11 +8510,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -8770,7 +8562,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.permissions.create({
@@ -8917,7 +8709,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.permissions.delete({
@@ -9044,7 +8836,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.permissions.get({
@@ -9182,7 +8974,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.permissions.list({
@@ -9317,7 +9109,7 @@ export namespace tagmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.permissions.update({
@@ -9449,11 +9241,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -9466,11 +9253,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -9481,11 +9263,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Permissions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -9498,22 +9275,12 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
   export interface Params$Resource$Accounts$Permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */

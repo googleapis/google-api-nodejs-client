@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudkms_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -123,6 +135,10 @@ export namespace cloudkms_v1 {
      * Required. The data encrypted with the named CryptoKeyVersion&#39;s public key using OAEP.
      */
     ciphertext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received AsymmetricDecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricDecryptRequest.ciphertext) is equal to AsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.AsymmetricDecrypt.
@@ -132,6 +148,14 @@ export namespace cloudkms_v1 {
      * The decrypted data originally encrypted with the matching public key.
      */
     plaintext?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricDecryptResponse.plaintext. An integrity check of AsymmetricDecryptResponse.plaintext can be performed by computing the CRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedCiphertextCrc32c?: boolean | null;
   }
   /**
    * Request message for KeyManagementService.AsymmetricSign.
@@ -141,18 +165,34 @@ export namespace cloudkms_v1 {
      * Required. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version&#39;s algorithm.
      */
     digest?: Schema$Digest;
+    /**
+     * Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If specified, KeyManagementService will verify the integrity of the received AsymmetricSignRequest.digest using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricSignRequest.digest) is equal to AsymmetricSignRequest.digest_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    digestCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.AsymmetricSign.
    */
   export interface Schema$AsymmetricSignResponse {
     /**
+     * The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing.  NOTE: This field is in Beta.
+     */
+    name?: string | null;
+    /**
      * The created signature.
      */
     signature?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricSignResponse.signature. An integrity check of AsymmetricSignResponse.signature can be performed by computing the CRC32C checksum of AsymmetricSignResponse.signature and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    signatureCrc32c?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether AsymmetricSignRequest.digest_crc32c was received by KeyManagementService and used for the integrity verification of the digest. A false value of this field indicates either that AsymmetricSignRequest.digest_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricSignRequest.digest_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedDigestCrc32c?: boolean | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -165,7 +205,7 @@ export namespace cloudkms_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -203,7 +243,7 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
-     * Labels with user-defined metadata. For more information, see [Labeling Keys](/kms/docs/labeling-keys).
+     * Labels with user-defined metadata. For more information, see [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -310,9 +350,17 @@ export namespace cloudkms_v1 {
      */
     additionalAuthenticatedData?: string | null;
     /**
+     * Optional. An optional CRC32C checksum of the DecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.additional_authenticated_data) is equal to DecryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    additionalAuthenticatedDataCrc32c?: string | null;
+    /**
      * Required. The encrypted data originally returned in EncryptResponse.ciphertext.
      */
     ciphertext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.ciphertext) is equal to DecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.Decrypt.
@@ -322,6 +370,10 @@ export namespace cloudkms_v1 {
      * The decrypted data originally supplied in EncryptRequest.plaintext.
      */
     plaintext?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
   }
   /**
    * Request message for KeyManagementService.DestroyCryptoKeyVersion.
@@ -353,9 +405,17 @@ export namespace cloudkms_v1 {
      */
     additionalAuthenticatedData?: string | null;
     /**
+     * Optional. An optional CRC32C checksum of the EncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.additional_authenticated_data) is equal to EncryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    additionalAuthenticatedDataCrc32c?: string | null;
+    /**
      * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     plaintext?: string | null;
+    /**
+     * Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.plaintext) is equal to EncryptRequest.plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    plaintextCrc32c?: string | null;
   }
   /**
    * Response message for KeyManagementService.Encrypt.
@@ -366,9 +426,21 @@ export namespace cloudkms_v1 {
      */
     ciphertext?: string | null;
     /**
+     * Integrity verification field. A CRC32C checksum of the returned EncryptResponse.ciphertext. An integrity check of EncryptResponse.ciphertext can be performed by computing the CRC32C checksum of EncryptResponse.ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    ciphertextCrc32c?: string | null;
+    /**
      * The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.
      */
     name?: string | null;
+    /**
+     * Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedAdditionalAuthenticatedDataCrc32c?: boolean | null;
+    /**
+     * Integrity verification field. A flag indicating whether EncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that EncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     */
+    verifiedPlaintextCrc32c?: boolean | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -637,9 +709,17 @@ export namespace cloudkms_v1 {
      */
     algorithm?: string | null;
     /**
+     * The name of the CryptoKeyVersion public key. Provided here for verification.  NOTE: This field is in Beta.
+     */
+    name?: string | null;
+    /**
      * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
      */
     pem?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     */
+    pemCrc32c?: string | null;
   }
   /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
@@ -738,7 +818,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.get({
@@ -873,7 +953,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.list({
@@ -1000,22 +1080,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1074,7 +1144,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.create({
@@ -1224,7 +1294,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.get({
@@ -1356,7 +1426,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.getIamPolicy({
@@ -1508,7 +1578,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.list({
@@ -1672,7 +1742,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.setIamPolicy({
@@ -1820,7 +1890,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.testIamPermissions({
@@ -1949,11 +2019,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
     keyRingId?: string;
@@ -1970,22 +2035,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the KeyRing to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1997,11 +2052,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -2026,11 +2076,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2042,11 +2087,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2094,7 +2134,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.create({
@@ -2263,7 +2303,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
@@ -2277,7 +2317,9 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
-     *       //   "ciphertext": "my_ciphertext"
+     *       //   "additionalAuthenticatedDataCrc32c": "my_additionalAuthenticatedDataCrc32c",
+     *       //   "ciphertext": "my_ciphertext",
+     *       //   "ciphertextCrc32c": "my_ciphertextCrc32c"
      *       // }
      *     },
      *   });
@@ -2285,7 +2327,8 @@ export namespace cloudkms_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "plaintext": "my_plaintext"
+     *   //   "plaintext": "my_plaintext",
+     *   //   "plaintextCrc32c": "my_plaintextCrc32c"
      *   // }
      * }
      *
@@ -2409,7 +2452,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
@@ -2426,7 +2469,9 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "additionalAuthenticatedData": "my_additionalAuthenticatedData",
-     *       //   "plaintext": "my_plaintext"
+     *       //   "additionalAuthenticatedDataCrc32c": "my_additionalAuthenticatedDataCrc32c",
+     *       //   "plaintext": "my_plaintext",
+     *       //   "plaintextCrc32c": "my_plaintextCrc32c"
      *       // }
      *     },
      *   });
@@ -2435,7 +2480,10 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "ciphertext": "my_ciphertext",
-     *   //   "name": "my_name"
+     *   //   "ciphertextCrc32c": "my_ciphertextCrc32c",
+     *   //   "name": "my_name",
+     *   //   "verifiedAdditionalAuthenticatedDataCrc32c": false,
+     *   //   "verifiedPlaintextCrc32c": false
      *   // }
      * }
      *
@@ -2559,7 +2607,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.get({
@@ -2698,7 +2746,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
@@ -2853,7 +2901,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.list({
@@ -3020,7 +3068,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
@@ -3179,7 +3227,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
@@ -3330,7 +3378,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
@@ -3484,7 +3532,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion(
@@ -3617,11 +3665,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
     cryptoKeyId?: string;
@@ -3642,11 +3685,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
      */
     name?: string;
@@ -3658,11 +3696,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
      */
@@ -3676,22 +3709,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the CryptoKey to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3703,11 +3726,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -3736,11 +3754,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     name?: string;
@@ -3757,11 +3770,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3774,11 +3782,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3790,11 +3793,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKey to update.
      */
@@ -3838,7 +3836,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
@@ -3852,7 +3850,8 @@ export namespace cloudkms_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "ciphertext": "my_ciphertext"
+     *         //   "ciphertext": "my_ciphertext",
+     *         //   "ciphertextCrc32c": "my_ciphertextCrc32c"
      *         // }
      *       },
      *     }
@@ -3861,7 +3860,9 @@ export namespace cloudkms_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "plaintext": "my_plaintext"
+     *   //   "plaintext": "my_plaintext",
+     *   //   "plaintextCrc32c": "my_plaintextCrc32c",
+     *   //   "verifiedCiphertextCrc32c": false
      *   // }
      * }
      *
@@ -3992,7 +3993,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
@@ -4005,7 +4006,8 @@ export namespace cloudkms_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "digest": {}
+     *         //   "digest": {},
+     *         //   "digestCrc32c": "my_digestCrc32c"
      *         // }
      *       },
      *     }
@@ -4014,7 +4016,10 @@ export namespace cloudkms_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "signature": "my_signature"
+     *   //   "name": "my_name",
+     *   //   "signature": "my_signature",
+     *   //   "signatureCrc32c": "my_signatureCrc32c",
+     *   //   "verifiedDigestCrc32c": false
      *   // }
      * }
      *
@@ -4145,7 +4150,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
@@ -4316,7 +4321,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
@@ -4472,7 +4477,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
@@ -4618,7 +4623,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
@@ -4634,7 +4639,9 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "algorithm": "my_algorithm",
-     *   //   "pem": "my_pem"
+     *   //   "name": "my_name",
+     *   //   "pem": "my_pem",
+     *   //   "pemCrc32c": "my_pemCrc32c"
      *   // }
      * }
      *
@@ -4757,7 +4764,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
@@ -4918,7 +4925,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
@@ -5093,7 +5100,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
@@ -5264,7 +5271,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
@@ -5398,11 +5405,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the CryptoKeyVersion to use for decryption.
      */
     name?: string;
@@ -5414,11 +5416,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKeyVersion to use for signing.
      */
@@ -5432,11 +5429,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the CryptoKey associated with the CryptoKeyVersions.
      */
     parent?: string;
@@ -5448,11 +5440,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKeyVersion to destroy.
      */
@@ -5466,11 +5453,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the CryptoKeyVersion to get.
      */
     name?: string;
@@ -5478,22 +5460,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the CryptoKeyVersion public key to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the CryptoKey to be imported into.
      */
@@ -5506,11 +5478,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -5539,11 +5506,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      */
     name?: string;
@@ -5559,11 +5521,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the CryptoKeyVersion to restore.
      */
@@ -5607,7 +5564,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.create({
@@ -5773,7 +5730,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
@@ -5914,7 +5871,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
@@ -6069,7 +6026,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.list({
@@ -6233,7 +6190,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
@@ -6384,7 +6341,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(
@@ -6516,11 +6473,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
     importJobId?: string;
@@ -6537,22 +6489,12 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the ImportJob to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6564,11 +6506,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
@@ -6593,11 +6530,6 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6609,11 +6541,6 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

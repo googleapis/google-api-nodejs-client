@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace siteVerification_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -169,7 +181,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.delete({
@@ -293,7 +305,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.get({
@@ -437,7 +449,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.getToken({
@@ -601,7 +613,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.insert({
@@ -754,7 +766,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.list({});
@@ -895,7 +907,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.patch({
@@ -1048,7 +1060,7 @@ export namespace siteVerification_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await siteVerification.webResource.update({
@@ -1182,21 +1194,11 @@ export namespace siteVerification_v1 {
   export interface Params$Resource$Webresource$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id of a verified site or domain.
      */
     id?: string;
   }
   export interface Params$Resource$Webresource$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id of a verified site or domain.
      */
@@ -1205,22 +1207,12 @@ export namespace siteVerification_v1 {
   export interface Params$Resource$Webresource$Gettoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SiteVerificationWebResourceGettokenRequest;
   }
   export interface Params$Resource$Webresource$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The method to use for verifying a site or domain.
      */
@@ -1231,19 +1223,10 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Webresource$List
+    extends StandardParameters {}
   export interface Params$Resource$Webresource$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id of a verified site or domain.
      */
@@ -1256,11 +1239,6 @@ export namespace siteVerification_v1 {
   }
   export interface Params$Resource$Webresource$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id of a verified site or domain.
      */

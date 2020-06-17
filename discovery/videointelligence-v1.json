@@ -200,6 +200,39 @@
       "resources": {
         "locations": {
           "resources": {
+            "corpura": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/corpura/{corpuraId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "videointelligence.projects.locations.corpura.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/corpura/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunning_Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -350,7 +383,7 @@
       }
     }
   },
-  "revision": "20200423",
+  "revision": "20200602",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -3899,7 +3932,7 @@
           "description": "Streaming annotation results."
         },
         "annotationResultsUri": {
-          "description": "Google Cloud Storage(GCS) URI that stores annotation results of one\nstreaming session in JSON format.\nIt is the annotation_result_storage_directory\nfrom the request followed by '/cloud_project_number-session_id'.",
+          "description": "Google Cloud Storage URI that stores annotation results of one\nstreaming session in JSON format.\nIt is the annotation_result_storage_directory\nfrom the request followed by '/cloud_project_number-session_id'.",
           "type": "string"
         },
         "error": {

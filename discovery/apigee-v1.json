@@ -1636,7 +1636,7 @@
                 "keys": {
                   "methods": {
                     "create": {
-                      "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed.\n\n**Note**: To avoid service disruptions, a consumer key and secret\nshould not exceed 2 KBs each.\n\nAfter creating the consumer key and secret, associate the key with\nan API product using the\nUpdateDeveloperAppKey API.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
+                      "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed. To avoid service\ndisruptions, a consumer key and secret should not exceed 2 KBs each.\n\n**Note**: When creating the consumer key and secret, an association to\nAPI products will not be made. Therefore, you should not specify the\nassociated API products in your request. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
                       "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.developers.apps.keys.create",
@@ -1838,7 +1838,7 @@
                     "create": {
                       "methods": {
                         "create": {
-                          "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed.\n\n**Note**: To avoid service disruptions, a consumer key and secret\nshould not exceed 2 KBs each.\n\nAfter creating the consumer key and secret, associate the key with\nan API product using the\nUpdateDeveloperAppKey API.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
+                          "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed. To avoid service\ndisruptions, a consumer key and secret should not exceed 2 KBs each.\n\n**Note**: When creating the consumer key and secret, an association to\nAPI products will not be made. Therefore, you should not specify the\nassociated API products in your request. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
                           "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys/create",
                           "httpMethod": "POST",
                           "id": "apigee.organizations.developers.apps.keys.create.create",
@@ -1992,7 +1992,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Optional. Name of the environment. Alternatively, the name may\nbe specified in the request body in the\nenvironment_id field.",
+                  "description": "Optional. Name of the environment. Alternatively, the name may\nbe specified in the request body in the\nname field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2570,6 +2570,17 @@
                             "parent"
                           ],
                           "parameters": {
+                            "pageSize": {
+                              "description": "Maximum number of debug sessions to return. The page size defaults\nto 25.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Page token, returned from a previous ListDebugSessions call, that you\ncan use to retrieve the next page.",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "parent": {
                               "description": "Required. The name of the API Proxy revision deployment for which\nto list debug sessions. Must be of the form:\n `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}`.",
                               "location": "path",
@@ -4543,7 +4554,7 @@
       }
     }
   },
-  "revision": "20200507",
+  "revision": "20200604",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5566,6 +5577,14 @@
         "name": {
           "description": "The name of the API or shared flow revision to be deployed. Must be of the\nform 'organizations/{org}/apis/{api}/revisions/{rev}' or\n'organizations/{org}/sharedflows/{sf}/revisions/{rev}'.",
           "type": "string"
+        },
+        "proxyUid": {
+          "description": "The uid of the proxy revision.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "A unique id that will only change if the deployment is deleted and\nrecreated.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5720,7 +5739,7 @@
       "id": "GoogleCloudApigeeV1DeveloperAppKey",
       "properties": {
         "apiProducts": {
-          "description": "List of API products for which the credential can be used.",
+          "description": "List of API products for which the credential can be used.\n\n**Note**: Do not specify the list of API products when creating a consumer\nkey and secret for a developer app. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.",
           "items": {
             "type": "any"
           },
@@ -5902,8 +5921,13 @@
           },
           "type": "array"
         },
+        "revisionId": {
+          "description": "Revision id that defines the ordering on the environment config.\nThe higher the revision, the more recently the configuration\nwas deployed.",
+          "format": "int64",
+          "type": "string"
+        },
         "sequenceNumber": {
-          "description": "A sequence number that defines an ordering on environment configs. No two\nconfigs under an environment will ever have the same sequence number.\nA higher sequence number means that the config was deployed more\nrecently than one with a lower sequence number.",
+          "description": "DEPRECATED: use revision_id",
           "format": "int64",
           "type": "string"
         },
@@ -5913,6 +5937,10 @@
             "$ref": "GoogleCloudApigeeV1TargetServerConfig"
           },
           "type": "array"
+        },
+        "uid": {
+          "description": "A unique id for the environment config that will only change if the\nenvironment is deleted and recreated.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6094,6 +6122,10 @@
     "GoogleCloudApigeeV1ListDebugSessionsResponse": {
       "id": "GoogleCloudApigeeV1ListDebugSessionsResponse",
       "properties": {
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListDebugSessionsRequest to\nretrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        },
         "sessions": {
           "description": "Session info that includes debug session ID and the first transaction\ncreation timestamp.",
           "items": {
@@ -6366,6 +6398,10 @@
         },
         "name": {
           "description": "Output only. Name of the Apigee organization.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "The project ID associated with the Apigee organization.",
           "type": "string"
         },
         "properties": {
@@ -6932,6 +6968,10 @@
           "format": "int64",
           "type": "string"
         },
+        "description": {
+          "description": "Description of the shared flow revision.",
+          "type": "string"
+        },
         "displayName": {
           "description": "The human readable name of this shared flow.",
           "type": "string"
@@ -7225,7 +7265,7 @@
       "type": "object"
     },
     "GoogleIamV1AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "GoogleIamV1AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -7243,7 +7283,7 @@
       "type": "object"
     },
     "GoogleIamV1AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "GoogleIamV1AuditLogConfig",
       "properties": {
         "exemptedMembers": {

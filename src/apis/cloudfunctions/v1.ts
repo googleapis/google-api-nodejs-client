@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudfunctions_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -629,7 +641,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.operations.get({
@@ -761,7 +773,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.operations.list({
@@ -884,21 +896,11 @@ export namespace cloudfunctions_v1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      */
@@ -957,7 +959,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.list({
@@ -1085,11 +1087,6 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The standard list filter.
      */
     filter?: string;
@@ -1136,7 +1133,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.call({
@@ -1281,7 +1278,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.create({
@@ -1448,7 +1445,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.delete({
@@ -1581,7 +1578,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.generateDownloadUrl(
@@ -1732,7 +1729,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.generateUploadUrl(
@@ -1880,7 +1877,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.get({
@@ -2030,7 +2027,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.getIamPolicy({
@@ -2180,7 +2177,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.list({
@@ -2333,7 +2330,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.patch({
@@ -2500,7 +2497,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.setIamPolicy({
@@ -2646,7 +2643,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.testIamPermissions(
@@ -2779,11 +2776,6 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Call
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function to be called.
      */
     name?: string;
@@ -2795,11 +2787,6 @@ export namespace cloudfunctions_v1 {
   }
   export interface Params$Resource$Projects$Locations$Functions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      */
@@ -2813,22 +2800,12 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function which should be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of function for which source code Google Cloud Storage signed URL should be generated.
      */
@@ -2842,11 +2819,6 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
@@ -2859,22 +2831,12 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function which details should be obtained.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2886,11 +2848,6 @@ export namespace cloudfunctions_v1 {
   }
   export interface Params$Resource$Projects$Locations$Functions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of functions to return per call.
      */
@@ -2906,11 +2863,6 @@ export namespace cloudfunctions_v1 {
   }
   export interface Params$Resource$Projects$Locations$Functions$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
      */
@@ -2928,11 +2880,6 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2944,11 +2891,6 @@ export namespace cloudfunctions_v1 {
   }
   export interface Params$Resource$Projects$Locations$Functions$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

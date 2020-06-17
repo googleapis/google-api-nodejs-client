@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace plus_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -620,7 +632,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.activities.get({
@@ -772,7 +784,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.activities.list({
@@ -921,7 +933,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.activities.search({
@@ -1052,21 +1064,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$Activities$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the activity to get.
      */
     activityId?: string;
   }
   export interface Params$Resource$Activities$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of activities to list.
      */
@@ -1086,11 +1088,6 @@ export namespace plus_v1 {
   }
   export interface Params$Resource$Activities$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specify the preferred language to search with. See search language codes for available values.
      */
@@ -1145,7 +1142,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.comments.get({
@@ -1288,7 +1285,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.comments.list({
@@ -1413,21 +1410,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment to get.
      */
     commentId?: string;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the activity to get comments for.
      */
@@ -1480,7 +1467,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.people.get({
@@ -1642,7 +1629,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.people.list({
@@ -1792,7 +1779,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.people.listByActivity({
@@ -1940,7 +1927,7 @@ export namespace plus_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await plus.people.search({
@@ -2062,21 +2049,11 @@ export namespace plus_v1 {
 
   export interface Params$Resource$People$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$People$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of people to list.
      */
@@ -2101,11 +2078,6 @@ export namespace plus_v1 {
   export interface Params$Resource$People$Listbyactivity
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the activity to get the list of people for.
      */
     activityId?: string;
@@ -2123,11 +2095,6 @@ export namespace plus_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$People$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specify the preferred language to search with. See search language codes for available values.
      */

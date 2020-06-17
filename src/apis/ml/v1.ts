@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace ml_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1578,7 +1590,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.explain({
@@ -1724,7 +1736,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.getConfig({
@@ -1866,7 +1878,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.predict({
@@ -1992,11 +2004,6 @@ export namespace ml_v1 {
 
   export interface Params$Resource$Projects$Explain extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of a model or a version.  Authorization: requires the `predict` permission on the specified resource.
      */
     name?: string;
@@ -2009,21 +2016,11 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Predict extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of a model or a version.  Authorization: requires the `predict` permission on the specified resource.
      */
@@ -2064,7 +2061,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.cancel({
@@ -2202,7 +2199,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.create({
@@ -2369,7 +2366,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.get({
@@ -2513,7 +2510,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.getIamPolicy({
@@ -2670,7 +2667,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.list({
@@ -2832,7 +2829,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.patch({
@@ -3017,7 +3014,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.setIamPolicy({
@@ -3167,7 +3164,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.testIamPermissions({
@@ -3304,11 +3301,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Jobs$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the job to cancel.
      */
     name?: string;
@@ -3320,11 +3312,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Jobs$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project name.
      */
@@ -3338,22 +3325,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the job to get the description of.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Jobs$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3365,11 +3342,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Specifies the subset of jobs to retrieve. You can filter on the value of one or more attributes of the job object. For example, retrieve jobs with a job identifier that starts with 'census': <p><code>gcloud ai-platform jobs list --filter='jobId:census*'</code> <p>List all failed jobs with names that start with 'rnn': <p><code>gcloud ai-platform jobs list --filter='jobId:rnn* AND state:FAILED'</code> <p>For more examples, see the guide to <a href="/ml-engine/docs/tensorflow/monitor-training">monitoring jobs</a>.
      */
@@ -3390,11 +3362,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Jobs$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The job name.
      */
     name?: string;
@@ -3411,11 +3378,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Jobs$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3427,11 +3389,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Jobs$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3481,7 +3438,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.get({
@@ -3618,7 +3575,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.list({
@@ -3760,22 +3717,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The number of locations to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
      */
@@ -3819,7 +3766,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.operations.cancel({
@@ -3950,7 +3897,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.operations.get({
@@ -4072,22 +4019,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -4127,7 +4064,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.create({
@@ -4285,7 +4222,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.delete({
@@ -4416,7 +4353,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.get({
@@ -4553,7 +4490,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.list({
@@ -4681,11 +4618,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
      */
     parent?: string;
@@ -4702,11 +4634,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The study name.
      */
     name?: string;
@@ -4714,22 +4641,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The study name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Studies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
      */
@@ -4765,7 +4682,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.addMeasurement({
@@ -4922,7 +4839,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.checkEarlyStoppingState(
@@ -5076,7 +4993,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.complete({
@@ -5235,7 +5152,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.create({
@@ -5398,7 +5315,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.delete({
@@ -5530,7 +5447,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.get({
@@ -5673,7 +5590,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.list({
@@ -5813,7 +5730,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.stop({
@@ -5963,7 +5880,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.suggest({
@@ -6098,11 +6015,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The trial name.
      */
     name?: string;
@@ -6114,11 +6026,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The trial name.
      */
@@ -6132,11 +6039,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Trials$Complete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The trial name.metat
      */
     name?: string;
@@ -6148,11 +6050,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the study that the trial belongs to.
      */
@@ -6166,22 +6063,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Trials$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The trial name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The trial name.
      */
@@ -6190,22 +6077,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Locations$Studies$Trials$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the study that the trial belongs to.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Stop
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The trial name.
      */
@@ -6218,11 +6095,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Suggest
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the study that the trial belongs to.
      */
@@ -6265,7 +6137,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.create({
@@ -6424,7 +6296,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.delete({
@@ -6568,7 +6440,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.get({
@@ -6708,7 +6580,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.getIamPolicy({
@@ -6865,7 +6737,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.list({
@@ -7022,7 +6894,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.patch({
@@ -7196,7 +7068,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.setIamPolicy({
@@ -7346,7 +7218,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.testIamPermissions({
@@ -7483,11 +7355,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project name.
      */
     parent?: string;
@@ -7500,11 +7367,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model.
      */
     name?: string;
@@ -7512,22 +7374,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Models$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7539,11 +7391,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Models$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Specifies the subset of models to retrieve.
      */
@@ -7564,11 +7411,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project name.
      */
     name?: string;
@@ -7585,11 +7427,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -7601,11 +7438,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Models$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -7646,7 +7478,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.create({
@@ -7820,7 +7652,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.delete({
@@ -7963,7 +7795,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.get({
@@ -8120,7 +7952,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.list({
@@ -8283,7 +8115,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.patch({
@@ -8474,7 +8306,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.models.versions.setDefault({
@@ -8623,11 +8455,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model.
      */
     parent?: string;
@@ -8640,11 +8467,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
     name?: string;
@@ -8652,22 +8474,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Models$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Specifies the subset of versions to retrieve.
      */
@@ -8688,11 +8500,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Versions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the model.
      */
     name?: string;
@@ -8708,11 +8515,6 @@ export namespace ml_v1 {
   }
   export interface Params$Resource$Projects$Models$Versions$Setdefault
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
@@ -8753,7 +8555,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.operations.cancel({
@@ -8884,7 +8686,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.operations.get({
@@ -9025,7 +8827,7 @@ export namespace ml_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await ml.projects.operations.list({
@@ -9164,11 +8966,6 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -9176,22 +8973,12 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

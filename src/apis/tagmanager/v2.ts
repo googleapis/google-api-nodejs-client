@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace tagmanager_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1589,7 +1601,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.get({
@@ -1729,7 +1741,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.list({
@@ -1865,7 +1877,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.update({
@@ -1999,32 +2011,17 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Continuation token for fetching the next page of results.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the account in storage.
      */
@@ -2083,7 +2080,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.create({
@@ -2242,7 +2239,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.delete({
@@ -2370,7 +2367,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.get({
@@ -2514,7 +2511,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.list({
@@ -2655,7 +2652,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.update({
@@ -2799,11 +2796,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Account's API relative path. Example: accounts/{account_id}.
      */
     parent?: string;
@@ -2816,11 +2808,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
@@ -2828,22 +2815,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -2855,11 +2832,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container in storage.
      */
@@ -2904,7 +2876,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.create({
@@ -3073,7 +3045,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.delete({
@@ -3203,7 +3175,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.get({
@@ -3354,7 +3326,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.list({
@@ -3495,7 +3467,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.reauthorize({
@@ -3666,7 +3638,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.update({
@@ -3822,11 +3794,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
@@ -3839,11 +3806,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
@@ -3851,22 +3813,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -3879,11 +3831,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
     path?: string;
@@ -3895,11 +3842,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the environment in storage.
      */
@@ -3946,7 +3888,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.delete({
@@ -4076,7 +4018,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.get({
@@ -4233,7 +4175,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.live({
@@ -4382,7 +4324,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.publish({
@@ -4529,7 +4471,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.set_latest({
@@ -4681,7 +4623,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.undelete({
@@ -4833,7 +4775,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.update({
@@ -4994,22 +4936,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM ContainerVersion ID. Specify <code>published</code> to retrieve the currently published version.
      */
@@ -5022,22 +4954,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Live
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Publish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -5050,11 +4972,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Set_latest
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
@@ -5062,22 +4979,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Versions$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the container version in storage.
      */
@@ -5125,7 +5032,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.version_headers.latest({
@@ -5277,7 +5184,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.version_headers.list({
@@ -5406,22 +5313,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Version_headers$Latest
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Version_headers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Also retrieve deleted (archived) versions when true.
      */
@@ -5493,7 +5390,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.create({
@@ -5650,7 +5547,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.create_version({
@@ -5805,7 +5702,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.delete({
@@ -5934,7 +5831,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.get({
@@ -6077,7 +5974,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.getStatus({
@@ -6221,7 +6118,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.list({
@@ -6364,7 +6261,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.quick_preview({
@@ -6506,7 +6403,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.resolve_conflict({
@@ -6649,7 +6546,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.sync({
@@ -6788,7 +6685,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.update({
@@ -6929,11 +6826,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
@@ -6945,11 +6837,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -6963,22 +6850,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
@@ -6987,22 +6864,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -7015,22 +6882,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      */
@@ -7048,22 +6905,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Sync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the workspace in storage.
      */
@@ -7108,7 +6955,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.create(
@@ -7255,7 +7102,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.delete(
@@ -7390,7 +7237,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.list(
@@ -7538,7 +7385,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.revert(
@@ -7666,11 +7513,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -7681,11 +7523,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
@@ -7698,11 +7535,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Continuation token for fetching the next page of results.
      */
     pageToken?: string;
@@ -7713,11 +7545,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
@@ -7757,7 +7584,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.create({
@@ -7916,7 +7743,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.delete({
@@ -8046,7 +7873,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.entities({
@@ -8189,7 +8016,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.get({
@@ -8334,7 +8161,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.list({
@@ -8475,7 +8302,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
@@ -8629,7 +8456,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.revert({
@@ -8772,7 +8599,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.update({
@@ -8916,11 +8743,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -8933,22 +8755,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -8961,22 +8773,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -8988,11 +8790,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
@@ -9018,11 +8815,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
     fingerprint?: string;
@@ -9033,11 +8825,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the folder in storage.
      */
@@ -9082,7 +8869,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.create({
@@ -9275,7 +9062,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.delete({
@@ -9405,7 +9192,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.get({
@@ -9567,7 +9354,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.list({
@@ -9705,7 +9492,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.revert({
@@ -9846,7 +9633,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.update({
@@ -10024,11 +9811,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -10041,11 +9823,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
@@ -10053,22 +9830,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -10081,11 +9848,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of thetag in storage.
      */
     fingerprint?: string;
@@ -10096,11 +9858,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in storage.
      */
@@ -10145,7 +9902,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.create({
@@ -10306,7 +10063,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.delete({
@@ -10436,7 +10193,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.get({
@@ -10582,7 +10339,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.list({
@@ -10725,7 +10482,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.revert({
@@ -10868,7 +10625,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.update({
@@ -11014,11 +10771,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -11031,11 +10783,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
      */
     path?: string;
@@ -11043,22 +10790,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -11071,11 +10808,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the template in storage.
      */
     fingerprint?: string;
@@ -11086,11 +10818,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Templates$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the templates in storage.
      */
@@ -11135,7 +10862,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.create({
@@ -11340,7 +11067,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.delete({
@@ -11470,7 +11197,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.get({
@@ -11638,7 +11365,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.list({
@@ -11781,7 +11508,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.revert({
@@ -11924,7 +11651,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.update({
@@ -12114,11 +11841,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -12131,11 +11853,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
@@ -12143,22 +11860,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -12171,11 +11878,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
     fingerprint?: string;
@@ -12186,11 +11888,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger in storage.
      */
@@ -12235,7 +11932,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.create({
@@ -12410,7 +12107,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.delete({
@@ -12540,7 +12237,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.get({
@@ -12693,7 +12390,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.list({
@@ -12836,7 +12533,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.revert({
@@ -12979,7 +12676,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.update({
@@ -13139,11 +12836,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -13156,11 +12848,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
@@ -13168,22 +12855,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -13196,11 +12873,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
     fingerprint?: string;
@@ -13211,11 +12883,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the variable in storage.
      */
@@ -13260,7 +12927,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.create({
@@ -13425,7 +13092,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.delete({
@@ -13555,7 +13222,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.get({
@@ -13703,7 +13370,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.list({
@@ -13844,7 +13511,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.revert({
@@ -13985,7 +13652,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.update({
@@ -14135,11 +13802,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
     parent?: string;
@@ -14152,11 +13814,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
@@ -14164,22 +13821,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -14192,11 +13839,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
     fingerprint?: string;
@@ -14207,11 +13849,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in storage.
      */
@@ -14256,7 +13893,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.create({
@@ -14404,7 +14041,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.delete({
@@ -14529,7 +14166,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.get({
@@ -14665,7 +14302,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.list({
@@ -14807,7 +14444,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.update({
@@ -14937,11 +14574,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM Account's API relative path. Example: accounts/{account_id}
      */
     parent?: string;
@@ -14954,11 +14586,6 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
@@ -14966,22 +14593,12 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$User_permissions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */
     path?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Continuation token for fetching the next page of results.
      */
@@ -14993,11 +14610,6 @@ export namespace tagmanager_v2 {
   }
   export interface Params$Resource$Accounts$User_permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
      */

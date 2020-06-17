@@ -2049,11 +2049,333 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200604",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
+    "GoogleCloudDialogflowCxV3beta1ExportAgentResponse": {
+      "description": "The response message for Agents.ExportAgent.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportAgentResponse",
+      "properties": {
+        "agentContent": {
+          "description": "Uncompressed raw byte content for agent.",
+          "format": "byte",
+          "type": "string"
+        },
+        "agentUri": {
+          "description": "The URI to a file containing the exported agent. This field is populated\nonly if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1PageInfo": {
+      "description": "Represents page information communicated to and from the webhook.",
+      "id": "GoogleCloudDialogflowCxV3beta1PageInfo",
+      "properties": {
+        "currentPage": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse.\nThe unique identifier of the current page.\nFormat: `projects/<Project ID>/locations/<Location ID>/agents/<Agent\nID>/flows/<Flow ID>/pages/<Page ID>`.",
+          "type": "string"
+        },
+        "formInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfo",
+          "description": "Optional for both WebhookRequest and WebhookResponse.\nInformation about the form."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1PageInfoFormInfo": {
+      "description": "Represents form information.",
+      "id": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfo",
+      "properties": {
+        "parameterInfo": {
+          "description": "Optional for both WebhookRequest and WebhookResponse.\nThe parameters contained in the form. Note that the webhook cannot add\nor remove any form parameter.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo": {
+      "description": "Represents parameter information.",
+      "id": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo",
+      "properties": {
+        "displayName": {
+          "description": "Always present for WebhookRequest. Required for\nWebhookResponse.\nThe human-readable name of the parameter, unique within the form. This\nfield cannot be modified by the webhook.",
+          "type": "string"
+        },
+        "justCollected": {
+          "description": "Optional for WebhookRequest. Ignored for WebhookResponse.\nIndicates if the parameter value was just collected on the last\nconversation turn.",
+          "type": "boolean"
+        },
+        "required": {
+          "description": "Optional for both WebhookRequest and WebhookResponse.\nIndicates whether the parameter is required. Optional parameters will\nnot trigger prompts; however, they are filled if the user specifies\nthem. Required parameters must be filled before form filling concludes.",
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Always present for WebhookRequest. Required for\nWebhookResponse. The state of the parameter. This field can be set\nto INVALID by\nthe webhook to invalidate the parameter; other values set by the\nwebhook will be ignored.",
+          "enum": [
+            "PARAMETER_STATE_UNSPECIFIED",
+            "EMPTY",
+            "INVALID",
+            "FILLED"
+          ],
+          "enumDescriptions": [
+            "Not specified. This value should be never used.",
+            "Indicates that the parameter does not have a value.",
+            "Indicates that the parameter value is invalid. This field can be used\nby the webhook to invalidate the parameter and ask the server to\ncollect it from the user again.",
+            "Indicates that the parameter has a value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional for both WebhookRequest and WebhookResponse.\nThe value of the parameter. This field can be set by the webhook to\nchange the parameter value.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessage": {
+      "description": "Represents a response message that can be returned by a conversational agent.\n\nResponse messages are also used for output audio synthesis. The approach is\nas follows:\n\n* If at least one OutputAudioText response is present, then all\n  OutputAudioText responses are linearly concatenated, and the result is used\n  for output audio synthesis.\n* If the OutputAudioText responses are a mixture of text and SSML, then the\n  concatenated result is treated as SSML; otherwise, the result is treated as\n  either text or SSML as appropriate. The agent designer should ideally use\n  either text or SSML consistently throughout the bot design.\n* Otherwise, all Text responses are linearly concatenated, and the result is\n  used for output audio synthesis.\n\nThis approach allows for more sophisticated user experience scenarios, where\nthe text displayed to the user may differ from what is heard.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessage",
+      "properties": {
+        "conversationSuccess": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess",
+          "description": "Indicates that the conversation succeeded."
+        },
+        "humanAgentHandoff": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff",
+          "description": "Hands off conversation to a human agent."
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Returns a response containing a custom, platform-specific payload.",
+          "type": "object"
+        },
+        "text": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
+          "description": "Returns a text response."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess": {
+      "description": "Indicates that the conversation succeeded, i.e., the bot handled the issue\nthat the customer talked to it about.\n\nDialogflow only uses this to determine which conversations should be\ncounted as successful and doesn't process the metadata in this message in\nany way. Note that Dialogflow also considers conversations that get to the\nconversation end page as successful even if they don't return\nConversationSuccess.\n\nYou may set this, for example:\n* In the entry_fulfillment of a Page if\n  entering the page indicates that the conversation succeeded.\n* In a webhook response when you determine that you handled the customer\n  issue.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom metadata. Dialogflow doesn't impose any structure on this.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff": {
+      "description": "Indicates that the conversation should be handed off to a human agent.\n\nDialogflow only uses this to determine which conversations were handed off\nto a human agent for measurement purposes. What else to do with this signal\nis up to you and your handoff procedures.\n\nYou may set this, for example:\n* In the entry_fulfillment of a Page if\n  entering the page indicates something went extremely wrong in the\n  conversation.\n* In a webhook response when you determine that the customer issue can only\n  be handled by a human.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom metadata for your handoff procedure. Dialogflow doesn't impose\nany structure on this.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageText": {
+      "description": "The text response message.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
+      "properties": {
+        "text": {
+          "description": "A collection of text responses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1SessionInfo": {
+      "description": "Represents session information communicated to and from the webhook.",
+      "id": "GoogleCloudDialogflowCxV3beta1SessionInfo",
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "description": "Optional for WebhookRequest. Optional for WebhookResponse.\nAll parameters collected from forms and intents during the session.\nParameters can be created, updated, or removed by the webhook. To remove a\nparameter from the session, the webhook should explicitly set the parameter\nvalue to null in WebhookResponse. The map is keyed by parameters'\ndisplay names.",
+          "type": "object"
+        },
+        "session": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse.\nThe unique identifier of the session. This\nfield can be used by the webhook to identify a user.\nFormat: `projects/<Project ID>/locations/<Location ID>/agents/<Agent\nID>/sessions/<Session ID>`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookRequest": {
+      "description": "The request message for a webhook call.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookRequest",
+      "properties": {
+        "detectIntentResponseId": {
+          "description": "Always present. The unique identifier of the DetectIntentResponse that\nwill be returned to the API caller.",
+          "type": "string"
+        },
+        "fulfillmentInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo",
+          "description": "Always present. Information about the fulfillment that triggered this\nwebhook call."
+        },
+        "intentInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo",
+          "description": "Information about the last matched intent."
+        },
+        "messages": {
+          "description": "The list of rich message responses to present to the user. Webhook can\nchoose to append or replace this list in\nWebhookResponse.fulfillment_response;",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
+          },
+          "type": "array"
+        },
+        "pageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1PageInfo",
+          "description": "Information about page status."
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom data set in QueryParameters.payload.",
+          "type": "object"
+        },
+        "sessionInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1SessionInfo",
+          "description": "Information about session status."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo": {
+      "description": "Represents fulfillment information communicated to the webhook.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo",
+      "properties": {
+        "tag": {
+          "description": "Always present. The tag used to identify which fulfillment is being\ncalled.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo": {
+      "description": "Represents intent information communicated to the webhook.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo",
+      "properties": {
+        "lastMatchedIntent": {
+          "description": "Always present. The unique identifier of the last matched\nintent. Format: `projects/<Project ID>/locations/<Location\nID>/agents/<Agent ID>/intents/<Intent ID>`.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue"
+          },
+          "description": "Parameters identified as a result of intent matching. This is a map of\nthe name of the identified parameter to the value of the parameter\nidentified from the user's utterance. All parameters defined in the\nmatched intent that are identified will be surfaced here.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue": {
+      "description": "Represents a value for an intent parameter.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue",
+      "properties": {
+        "originalValue": {
+          "description": "Always present. Original text value extracted from user utterance.",
+          "type": "string"
+        },
+        "resolvedValue": {
+          "description": "Always present. Structured value for the parameter extracted from user\nutterance.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookResponse": {
+      "description": "The response message for a webhook call.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookResponse",
+      "properties": {
+        "fulfillmentResponse": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse",
+          "description": "The fulfillment response to send to the user. This field can be omitted by\nthe webhook if it does not intend to send any response to the user."
+        },
+        "pageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1PageInfo",
+          "description": "Information about page status. This field can be omitted by the webhook if\nit does not intend to modify page status."
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Value to append directly to QueryResult.webhook_payloads.",
+          "type": "object"
+        },
+        "sessionInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1SessionInfo",
+          "description": "Information about session status. This field can be omitted by the webhook\nif it does not intend to modify session status."
+        },
+        "targetFlow": {
+          "description": "The target flow to transition to.\nFormat: `projects/<Project ID>/locations/<Location ID>/agents/<Agent\nID>/flows/<Flow ID>`.",
+          "type": "string"
+        },
+        "targetPage": {
+          "description": "The target page to transition to.\nFormat: `projects/<Project ID>/locations/<Location ID>/agents/<Agent\nID>/flows/<Flow ID>/pages/<Page ID>`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse": {
+      "description": "Represents a fulfillment response to the user.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse",
+      "properties": {
+        "mergeBehavior": {
+          "description": "Merge behavior for `messages`.",
+          "enum": [
+            "MERGE_BEHAVIOR_UNSPECIFIED",
+            "APPEND",
+            "REPLACE"
+          ],
+          "enumDescriptions": [
+            "Not specified. `APPEND` will be used.",
+            "`messages` will be appended to the list of messages waiting to be sent\nto the user.",
+            "`messages` will replace the list of messages waiting to be sent to the\nuser."
+          ],
+          "type": "string"
+        },
+        "messages": {
+          "description": "The list of rich message responses to present to the user.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2Agent": {
-      "description": "Represents a conversational agent.",
+      "description": "A Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands the\nnuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.\n\nFor more information about agents, see the\n[Agents\ndocumentation](https://cloud.google.com/dialogflow/docs/agents-overview).",
       "id": "GoogleCloudDialogflowV2Agent",
       "properties": {
         "apiVersion": {
@@ -2435,7 +2757,7 @@
       "id": "GoogleCloudDialogflowV2DetectIntentResponse",
       "properties": {
         "outputAudio": {
-          "description": "The audio data bytes encoded as specified in the request.\nNote: The output audio is generated based on the values of default platform\ntext responses found in the `query_result.fulfillment_messages` field. If\nmultiple default text responses exist, they will be concatenated when\ngenerating audio. If no default platform text responses exist, the\ngenerated audio content will be empty.",
+          "description": "The audio data bytes encoded as specified in the request.\nNote: The output audio is generated based on the values of default platform\ntext responses found in the `query_result.fulfillment_messages` field. If\nmultiple default text responses exist, they will be concatenated when\ngenerating audio. If no default platform text responses exist, the\ngenerated audio content will be empty.\n\nIn some scenarios, multiple output audio fields may be present in the\nresponse structure. In these cases, only the top-most-level audio output\nhas content.",
           "format": "byte",
           "type": "string"
         },
@@ -5347,7 +5669,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard": {
-      "description": "Carousel Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards.\nIf you want to show a single card with more control over the layout,\nplease use RbmStandaloneCard instead.",
+      "description": "Carousel Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards\nIf you want to show a single card with more control over the layout,\nplease use RbmStandaloneCard instead.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard",
       "properties": {
         "cardContents": {
@@ -5375,7 +5697,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard": {
-      "description": "Standalone Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards.\nYou can group multiple rich cards into one using RbmCarouselCard but\ncarousel cards will give you less control over the card layout.",
+      "description": "Standalone Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards\nYou can group multiple rich cards into one using RbmCarouselCard but\ncarousel cards will give you less control over the card layout.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard",
       "properties": {
         "cardContent": {

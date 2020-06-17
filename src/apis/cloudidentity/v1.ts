@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudidentity_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -321,7 +333,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.create({
@@ -468,7 +480,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.delete({
@@ -606,7 +618,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.get({
@@ -747,7 +759,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.list({
@@ -893,7 +905,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.lookup({
@@ -1040,7 +1052,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.patch({
@@ -1199,7 +1211,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.search({
@@ -1326,21 +1338,11 @@ export namespace cloudidentity_v1 {
 
   export interface Params$Resource$Groups$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
      */
@@ -1348,21 +1350,11 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
      */
@@ -1382,11 +1374,6 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Groups$Lookup extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the entity within the given namespace. The ID must be unique within its namespace.
      */
     'groupKey.id'?: string;
@@ -1396,11 +1383,6 @@ export namespace cloudidentity_v1 {
     'groupKey.namespace'?: string;
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique ID assigned to the Group.  Must be left blank while creating a Group.
      */
@@ -1416,11 +1398,6 @@ export namespace cloudidentity_v1 {
     requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
      */
@@ -1471,7 +1448,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.create({
@@ -1625,7 +1602,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.delete({
@@ -1767,7 +1744,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.get({
@@ -1909,7 +1886,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.list({
@@ -2065,7 +2042,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.lookup({
@@ -2203,11 +2180,6 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to create Membership within. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
      */
     parent?: string;
@@ -2220,11 +2192,6 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be deleted.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique ID assigned to the Group to which Membership belongs to, and member_id is the unique ID assigned to the member.
      */
     name?: string;
@@ -2232,22 +2199,12 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership to be retrieved.  Format: `groups/{group_id}/memberships/{member_id}`, where `group_id` is the unique id assigned to the Group to which Membership belongs to, and `member_id` is the unique ID assigned to the member.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
      */
@@ -2267,11 +2224,6 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Groups$Memberships$Lookup
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the entity within the given namespace. The ID must be unique within its namespace.
      */

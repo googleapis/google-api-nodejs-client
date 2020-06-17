@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace pubsub_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -168,6 +180,10 @@ export namespace pubsub_v1 {
     maxDeliveryAttempts?: number | null;
   }
   /**
+   * Response for the DetachSubscription method. Reserved for future use.
+   */
+  export interface Schema$DetachSubscriptionResponse {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -262,10 +278,13 @@ export namespace pubsub_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The names of the subscriptions that match the request.
+     * The names of subscriptions attached to the topic specified in the request.
      */
     subscriptions?: string[] | null;
   }
+  /**
+   * A policy constraining the storage of messages published to the topic.
+   */
   export interface Schema$MessageStoragePolicy {
     /**
      * A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.
@@ -420,6 +439,19 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
+   * A policy that specifies how Cloud Pub/Sub retries message delivery.  Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff.  RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.  Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   */
+  export interface Schema$RetryPolicy {
+    /**
+     * The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     */
+    maximumBackoff?: string | null;
+    /**
+     * The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     */
+    minimumBackoff?: string | null;
+  }
+  /**
    * Request for the `Seek` method.
    */
   export interface Schema$SeekRequest {
@@ -483,7 +515,7 @@ export namespace pubsub_v1 {
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
-     * An expression written in the Cloud Pub/Sub filter language. If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out. &lt;b&gt;EXPERIMENTAL:&lt;/b&gt; This feature is part of a closed alpha release. This API might be changed in backward-incompatible ways and is not recommended for production use. It is not subject to any SLA or deprecation policy.
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
      */
     filter?: string | null;
     /**
@@ -506,6 +538,10 @@ export namespace pubsub_v1 {
      * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription&#39;s backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to &lt;a href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt; Seek to a timestamp&lt;/a&gt;.
      */
     retainAckedMessages?: boolean | null;
+    /**
+     * A policy that specifies how Pub/Sub retries message delivery for this subscription.  If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     */
+    retryPolicy?: Schema$RetryPolicy;
     /**
      * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
@@ -635,7 +671,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
@@ -784,7 +820,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
@@ -914,7 +950,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
@@ -1049,7 +1085,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.getIamPolicy({
@@ -1200,7 +1236,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.list({
@@ -1349,7 +1385,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.patch({
@@ -1493,7 +1529,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.setIamPolicy({
@@ -1639,7 +1675,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.testIamPermissions({
@@ -1768,11 +1804,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
@@ -1785,11 +1816,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
@@ -1797,22 +1823,12 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
   }
   export interface Params$Resource$Projects$Snapshots$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1824,11 +1840,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Snapshots$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of snapshots to return.
      */
@@ -1845,11 +1856,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the snapshot.
      */
     name?: string;
@@ -1862,11 +1868,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1878,11 +1879,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Snapshots$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1926,7 +1922,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.acknowledge({
@@ -2068,7 +2064,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.create({
@@ -2093,6 +2089,7 @@ export namespace pubsub_v1 {
      *       //   "name": "my_name",
      *       //   "pushConfig": {},
      *       //   "retainAckedMessages": false,
+     *       //   "retryPolicy": {},
      *       //   "topic": "my_topic"
      *       // }
      *     },
@@ -2110,6 +2107,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
@@ -2231,7 +2229,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
@@ -2339,6 +2337,146 @@ export namespace pubsub_v1 {
     }
 
     /**
+     * pubsub.projects.subscriptions.detach
+     * @desc Detaches a subscription from this topic. All messages retained in the subscription are dropped. Subsequent `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will stop.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.subscriptions.detach({
+     *     // Required. The subscription to detach.
+     *     // Format is `projects/{project}/subscriptions/{subscription}`.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias pubsub.projects.subscriptions.detach
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.subscription Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detach(
+      params?: Params$Resource$Projects$Subscriptions$Detach,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DetachSubscriptionResponse>;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscriptions$Detach
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetachSubscriptionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscriptions$Detach;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Detach;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+subscription}:detach').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DetachSubscriptionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$DetachSubscriptionResponse>(parameters);
+      }
+    }
+
+    /**
      * pubsub.projects.subscriptions.get
      * @desc Gets the configuration details of a subscription.
      * @example
@@ -2364,7 +2502,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
@@ -2385,6 +2523,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
@@ -2508,7 +2647,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.getIamPolicy({
@@ -2659,7 +2798,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.list({
@@ -2810,7 +2949,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyAckDeadline({
@@ -2953,7 +3092,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyPushConfig({
@@ -3095,7 +3234,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.patch({
@@ -3129,6 +3268,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
@@ -3250,7 +3390,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.pull({
@@ -3395,7 +3535,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.seek({
@@ -3537,7 +3677,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.setIamPolicy({
@@ -3683,7 +3823,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.testIamPermissions({
@@ -3812,11 +3952,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
@@ -3828,11 +3963,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -3846,22 +3976,19 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Detach
+    extends StandardParameters {
+    /**
+     * Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
      */
     subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
      */
@@ -3869,11 +3996,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3885,11 +4007,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of subscriptions to return.
      */
@@ -3906,11 +4023,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
@@ -3922,11 +4034,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
@@ -3940,11 +4047,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
@@ -3956,11 +4058,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Pull
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
      */
@@ -3974,11 +4071,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Seek
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The subscription to affect.
      */
     subscription?: string;
@@ -3991,11 +4083,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4007,11 +4094,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4061,7 +4143,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.create({
@@ -4212,7 +4294,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
@@ -4342,7 +4424,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
@@ -4477,7 +4559,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.getIamPolicy({
@@ -4628,7 +4710,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.list({
@@ -4775,7 +4857,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.patch({
@@ -4924,7 +5006,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
@@ -5068,7 +5150,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.setIamPolicy({
@@ -5214,7 +5296,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.testIamPermissions({
@@ -5343,11 +5425,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
@@ -5360,11 +5437,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
@@ -5372,22 +5444,12 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -5399,11 +5461,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of topics to return.
      */
@@ -5420,11 +5477,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
@@ -5436,11 +5488,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Publish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
      */
@@ -5454,11 +5501,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -5470,11 +5512,6 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -5518,7 +5555,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.snapshots.list({
@@ -5647,11 +5684,6 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Snapshots$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum number of snapshot names to return.
      */
     pageSize?: number;
@@ -5673,7 +5705,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.subscriptions.list
-     * @desc Lists the names of the subscriptions on this topic.
+     * @desc Lists the names of the attached subscriptions on this topic.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5697,7 +5729,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.subscriptions.list({
@@ -5827,11 +5859,6 @@ export namespace pubsub_v1 {
 
   export interface Params$Resource$Projects$Topics$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of subscription names to return.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace securitycenter_v1p1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -189,6 +201,10 @@ export namespace securitycenter_v1p1alpha1 {
      * Name of the notification config that generated current notification.
      */
     notificationConfigName?: string | null;
+    /**
+     * The Cloud resource tied to this notification&#39;s Finding.
+     */
+    resource?: Schema$GoogleCloudSecuritycenterV1Resource;
   }
   /**
    * Security Command Center representation of a Google Cloud resource.  The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don&#39;t affect the referenced Google Cloud resource.
@@ -290,9 +306,38 @@ export namespace securitycenter_v1p1alpha1 {
      */
     notificationConfigName?: string | null;
     /**
+     * The Cloud resource tied to the notification.
+     */
+    resource?: Schema$GoogleCloudSecuritycenterV1p1beta1Resource;
+    /**
      * If it&#39;s an asset based notification config, this field will be populated.
      */
     temporalAsset?: Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset;
+  }
+  /**
+   *  Information related to the Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Resource {
+    /**
+     * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    name?: string | null;
+    /**
+     * The full resource name of resource&#39;s parent.
+     */
+    parent?: string | null;
+    /**
+     *  The human readable name of resource&#39;s parent.
+     */
+    parentDisplayName?: string | null;
+    /**
+     * The full resource name of project that the resource belongs to.
+     */
+    project?: string | null;
+    /**
+     *  The human readable name of project that the resource belongs to.
+     */
+    projectDisplayName?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -369,6 +414,31 @@ export namespace securitycenter_v1p1alpha1 {
      * Represents if the asset was created/updated/deleted.
      */
     changeType?: string | null;
+  }
+  /**
+   *  Information related to the Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1Resource {
+    /**
+     * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    name?: string | null;
+    /**
+     * The full resource name of resource&#39;s parent.
+     */
+    parent?: string | null;
+    /**
+     *  The human readable name of resource&#39;s parent.
+     */
+    parentDisplayName?: string | null;
+    /**
+     * The full resource name of project that the resource belongs to.
+     */
+    project?: string | null;
+    /**
+     *  The human readable name of project that the resource belongs to.
+     */
+    projectDisplayName?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -490,7 +560,7 @@ export namespace securitycenter_v1p1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.cancel({
@@ -620,7 +690,7 @@ export namespace securitycenter_v1p1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.delete({
@@ -750,7 +820,7 @@ export namespace securitycenter_v1p1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.get({
@@ -886,7 +956,7 @@ export namespace securitycenter_v1p1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.list({
@@ -1014,22 +1084,12 @@ export namespace securitycenter_v1p1alpha1 {
   export interface Params$Resource$Organizations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -1038,22 +1098,12 @@ export namespace securitycenter_v1p1alpha1 {
   export interface Params$Resource$Organizations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

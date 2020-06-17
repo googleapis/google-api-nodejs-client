@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace datastore_v1beta3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -969,7 +981,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.allocateIds({
@@ -1116,7 +1128,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.beginTransaction({
@@ -1265,7 +1277,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.commit({
@@ -1410,7 +1422,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.lookup({
@@ -1555,7 +1567,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.reserveIds({
@@ -1700,7 +1712,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.rollback({
@@ -1841,7 +1853,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.runQuery({
@@ -1966,11 +1978,6 @@ export namespace datastore_v1beta3 {
   export interface Params$Resource$Projects$Allocateids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -1983,11 +1990,6 @@ export namespace datastore_v1beta3 {
   export interface Params$Resource$Projects$Begintransaction
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -1999,11 +2001,6 @@ export namespace datastore_v1beta3 {
   }
   export interface Params$Resource$Projects$Commit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2014,11 +2011,6 @@ export namespace datastore_v1beta3 {
     requestBody?: Schema$CommitRequest;
   }
   export interface Params$Resource$Projects$Lookup extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2032,11 +2024,6 @@ export namespace datastore_v1beta3 {
   export interface Params$Resource$Projects$Reserveids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2049,11 +2036,6 @@ export namespace datastore_v1beta3 {
   export interface Params$Resource$Projects$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2065,11 +2047,6 @@ export namespace datastore_v1beta3 {
   }
   export interface Params$Resource$Projects$Runquery
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the project against which to make the request.
      */

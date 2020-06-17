@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace vision_v1p1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -5002,7 +5014,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.files.annotate({
@@ -5167,7 +5179,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.files.asyncBatchAnnotate({
@@ -5288,22 +5300,12 @@ export namespace vision_v1p1beta1 {
 
   export interface Params$Resource$Files$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest;
   }
   export interface Params$Resource$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5342,7 +5344,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.images.annotate({
@@ -5507,7 +5509,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.images.asyncBatchAnnotate({
@@ -5629,22 +5631,12 @@ export namespace vision_v1p1beta1 {
 
   export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest;
   }
   export interface Params$Resource$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5696,7 +5688,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.files.annotate({
@@ -5877,7 +5869,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.files.asyncBatchAnnotate({
@@ -6013,11 +6005,6 @@ export namespace vision_v1p1beta1 {
   export interface Params$Resource$Projects$Files$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -6029,11 +6016,6 @@ export namespace vision_v1p1beta1 {
   }
   export interface Params$Resource$Projects$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6077,7 +6059,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.images.annotate({
@@ -6258,7 +6240,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.images.asyncBatchAnnotate({
@@ -6395,11 +6377,6 @@ export namespace vision_v1p1beta1 {
   export interface Params$Resource$Projects$Images$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -6411,11 +6388,6 @@ export namespace vision_v1p1beta1 {
   }
   export interface Params$Resource$Projects$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6470,7 +6442,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.annotate({
@@ -6651,7 +6623,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
@@ -6787,11 +6759,6 @@ export namespace vision_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Files$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -6803,11 +6770,6 @@ export namespace vision_v1p1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
@@ -6851,7 +6813,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.annotate({
@@ -7032,7 +6994,7 @@ export namespace vision_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
@@ -7169,11 +7131,6 @@ export namespace vision_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Images$Annotate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
@@ -7185,11 +7142,6 @@ export namespace vision_v1p1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */

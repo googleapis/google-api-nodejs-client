@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace osconfig_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -402,7 +414,7 @@ export namespace osconfig_v1 {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed.  Instance details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -454,7 +466,7 @@ export namespace osconfig_v1 {
      */
     percentComplete?: number | null;
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      */
     state?: string | null;
     /**
@@ -759,7 +771,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.create({
@@ -926,7 +938,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.delete({
@@ -1053,7 +1065,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.get({
@@ -1191,7 +1203,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.list({
@@ -1320,11 +1332,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project to apply this patch deployment to in the form `projects/x`.
      */
     parent?: string;
@@ -1341,11 +1348,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
@@ -1353,22 +1355,12 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchdeployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of patch deployments to return. Default is 100.
      */
@@ -1416,7 +1408,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.cancel({
@@ -1564,7 +1556,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.execute({
@@ -1722,7 +1714,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.get({
@@ -1863,7 +1855,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.list({
@@ -1993,11 +1985,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchjobs$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
@@ -2009,11 +1996,6 @@ export namespace osconfig_v1 {
   }
   export interface Params$Resource$Projects$Patchjobs$Execute
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project in which to run this patch in the form `projects/x`
      */
@@ -2027,22 +2009,12 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchjobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchjobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
      */
@@ -2090,7 +2062,7 @@ export namespace osconfig_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
@@ -2223,11 +2195,6 @@ export namespace osconfig_v1 {
 
   export interface Params$Resource$Projects$Patchjobs$Instancedetails$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
      */

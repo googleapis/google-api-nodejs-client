@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace appengine_v1alpha {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -575,7 +587,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.create({
@@ -735,7 +747,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.delete({
@@ -871,7 +883,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.get({
@@ -1025,7 +1037,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.list({
@@ -1174,7 +1186,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.patch({
@@ -1322,11 +1334,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Authorizedcertificates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
@@ -1339,11 +1346,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Authorizedcertificates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
@@ -1354,11 +1356,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -1374,11 +1371,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -1398,11 +1390,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -1455,7 +1442,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedDomains.list({
@@ -1583,11 +1570,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Authorizeddomains$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
@@ -1630,7 +1612,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.create({
@@ -1783,7 +1765,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.delete({
@@ -1925,7 +1907,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.get({
@@ -2066,7 +2048,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.list({
@@ -2211,7 +2193,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.patch({
@@ -2348,11 +2330,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
@@ -2373,11 +2350,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Domainmappings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -2389,11 +2361,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -2404,11 +2371,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -2424,11 +2386,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Domainmappings$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      */
@@ -2485,7 +2442,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.locations.get({
@@ -2626,7 +2583,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.locations.list({
@@ -2753,11 +2710,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Resource name for the location.
      */
     appsId?: string;
@@ -2768,11 +2720,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The resource that owns the locations collection, if applicable.
      */
@@ -2824,7 +2771,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.operations.get({
@@ -2965,7 +2912,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.operations.list({
@@ -3092,11 +3039,6 @@ export namespace appengine_v1alpha {
   export interface Params$Resource$Apps$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. The name of the operation resource.
      */
     appsId?: string;
@@ -3107,11 +3049,6 @@ export namespace appengine_v1alpha {
   }
   export interface Params$Resource$Apps$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The name of the operation's parent resource.
      */

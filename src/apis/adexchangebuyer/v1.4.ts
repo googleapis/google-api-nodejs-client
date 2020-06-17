@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace adexchangebuyer_v1_4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1654,7 +1666,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.get({
@@ -1792,7 +1804,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.list({});
@@ -1919,7 +1931,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.patch({
@@ -2077,7 +2089,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.update({
@@ -2215,27 +2227,12 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id
      */
     id?: number;
   }
-  export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Accounts$List extends StandardParameters {}
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Confirmation for erasing bidder and cookie matching urls.
      */
@@ -2251,11 +2248,6 @@ export namespace adexchangebuyer_v1_4 {
     requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Confirmation for erasing bidder and cookie matching urls.
      */
@@ -2300,7 +2292,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.billingInfo.get({
@@ -2432,7 +2424,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.billingInfo.list({});
@@ -2539,21 +2531,12 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Billinginfo$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id.
      */
     accountId?: number;
   }
-  export interface Params$Resource$Billinginfo$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Billinginfo$List
+    extends StandardParameters {}
 
   export class Resource$Budget {
     context: APIRequestContext;
@@ -2584,7 +2567,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.get({
@@ -2722,7 +2705,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.patch({
@@ -2874,7 +2857,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.update({
@@ -3006,11 +2989,6 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Budget$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the budget information for.
      */
     accountId?: string;
@@ -3020,11 +2998,6 @@ export namespace adexchangebuyer_v1_4 {
     billingId?: string;
   }
   export interface Params$Resource$Budget$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id associated with the budget being updated.
      */
@@ -3040,11 +3013,6 @@ export namespace adexchangebuyer_v1_4 {
     requestBody?: Schema$Budget;
   }
   export interface Params$Resource$Budget$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id associated with the budget being updated.
      */
@@ -3089,7 +3057,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.addDeal({
@@ -3219,7 +3187,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.get({
@@ -3382,7 +3350,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.insert({
@@ -3577,7 +3545,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.list({
@@ -3724,7 +3692,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.listDeals({
@@ -3859,7 +3827,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.removeDeal({
@@ -3970,11 +3938,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Creatives$Adddeal
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the account that will serve this creative.
      */
     accountId?: number;
@@ -3989,11 +3952,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the account that will serve this creative.
      */
     accountId?: number;
@@ -4004,21 +3962,11 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When specified, only creatives for the given account ids are returned.
      */
@@ -4047,11 +3995,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Creatives$Listdeals
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the account that will serve this creative.
      */
     accountId?: number;
@@ -4062,11 +4005,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Creatives$Removedeal
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id for the account that will serve this creative.
      */
@@ -4110,7 +4048,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.delete({
@@ -4260,7 +4198,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.insert({
@@ -4408,7 +4346,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.list({
@@ -4546,7 +4484,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.update({
@@ -4678,11 +4616,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplacedeals$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The proposalId to delete deals from.
      */
     proposalId?: string;
@@ -4694,11 +4627,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Marketplacedeals$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * proposalId for which deals need to be added.
      */
@@ -4712,11 +4640,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplacedeals$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query string to retrieve specific deals.
      */
     pqlQuery?: string;
@@ -4727,11 +4650,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Marketplacedeals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposalId to edit deals on.
      */
@@ -4772,7 +4690,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacenotes.insert({
@@ -4917,7 +4835,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacenotes.list({
@@ -5036,11 +4954,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplacenotes$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The proposalId to add notes for.
      */
     proposalId?: string;
@@ -5052,11 +4965,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Marketplacenotes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
      */
@@ -5096,7 +5004,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplaceprivateauction.updateproposal({
@@ -5213,11 +5121,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Marketplaceprivateauction$Updateproposal
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The private auction id to be updated.
      */
     privateAuctionId?: string;
@@ -5257,7 +5160,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.performanceReport.list({
@@ -5387,11 +5290,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Performancereport$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the reports.
      */
     accountId?: string;
@@ -5442,7 +5340,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.delete({
@@ -5569,7 +5467,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.get({
@@ -5732,7 +5630,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.insert({
@@ -5926,7 +5824,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.list({
@@ -6062,7 +5960,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.patch({
@@ -6260,7 +6158,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.update({
@@ -6439,11 +6337,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Pretargetingconfig$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to delete the pretargeting config for.
      */
     accountId?: string;
@@ -6455,11 +6348,6 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Pretargetingconfig$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the pretargeting config for.
      */
     accountId?: string;
@@ -6470,11 +6358,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Pretargetingconfig$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to insert the pretargeting config for.
      */
@@ -6488,22 +6371,12 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Pretargetingconfig$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account id to get the pretargeting configs for.
      */
     accountId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to update the pretargeting config for.
      */
@@ -6520,11 +6393,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Pretargetingconfig$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account id to update the pretargeting config for.
      */
@@ -6569,7 +6437,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.products.get({
@@ -6724,7 +6592,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.products.search({
@@ -6837,21 +6705,11 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Products$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id for the product to get the head revision for.
      */
     productId?: string;
   }
   export interface Params$Resource$Products$Search extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The pql query used to query for products.
      */
@@ -6887,7 +6745,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.get({
@@ -7038,7 +6896,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.insert({
@@ -7179,7 +7037,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.patch({
@@ -7368,7 +7226,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.search({
@@ -7501,7 +7359,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.setupcomplete({
@@ -7625,7 +7483,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.update({
@@ -7794,32 +7652,17 @@ export namespace adexchangebuyer_v1_4 {
 
   export interface Params$Resource$Proposals$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Id of the proposal to retrieve.
      */
     proposalId?: string;
   }
   export interface Params$Resource$Proposals$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateOrdersRequest;
   }
   export interface Params$Resource$Proposals$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposal id to update.
      */
@@ -7840,11 +7683,6 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Params$Resource$Proposals$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query string to retrieve specific proposals.
      */
     pqlQuery?: string;
@@ -7852,21 +7690,11 @@ export namespace adexchangebuyer_v1_4 {
   export interface Params$Resource$Proposals$Setupcomplete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The proposal id for which the setup is complete
      */
     proposalId?: string;
   }
   export interface Params$Resource$Proposals$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The proposal id to update.
      */
@@ -7915,7 +7743,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pubprofiles.list({
@@ -8038,11 +7866,6 @@ export namespace adexchangebuyer_v1_4 {
   }
 
   export interface Params$Resource$Pubprofiles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The accountId of the publisher to get profiles for.
      */

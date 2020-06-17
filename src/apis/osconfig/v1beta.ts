@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace osconfig_v1beta {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -307,7 +319,7 @@ export namespace osconfig_v1beta {
     localPath?: string | null;
   }
   /**
-   * A request message to initiate patching across Google Compute Engine instances.
+   * A request message to initiate patching across Compute Engine instances.
    */
   export interface Schema$ExecutePatchJobRequest {
     /**
@@ -651,12 +663,12 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$PatchInstanceFilterGroupLabel {
     /**
-     * Google Compute Engine instance labels that must be present for a VM instance to be targeted by this filter.
+     * Compute Engine instance labels that must be present for a VM instance to be targeted by this filter.
      */
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed.  Instance details are not included in the job. To paginate through instance details, use `ListPatchJobInstanceDetails`.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -708,7 +720,7 @@ export namespace osconfig_v1beta {
      */
     percentComplete?: number | null;
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      */
     state?: string | null;
     /**
@@ -1283,7 +1295,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.create({
@@ -1450,7 +1462,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.delete({
@@ -1577,7 +1589,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.get({
@@ -1714,7 +1726,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.list({
@@ -1861,7 +1873,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.patch({
@@ -2001,11 +2013,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Guestpolicies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The logical name of the guest policy in the project with the following restrictions:  * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      */
     guestPolicyId?: string;
@@ -2022,11 +2029,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Guestpolicies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the guest policy  using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
      */
     name?: string;
@@ -2034,22 +2036,12 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Guestpolicies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Guestpolicies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of guest policies to return.
      */
@@ -2065,11 +2057,6 @@ export namespace osconfig_v1beta {
   }
   export interface Params$Resource$Projects$Guestpolicies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
      */
@@ -2114,7 +2101,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.create({
@@ -2281,7 +2268,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.delete({
@@ -2408,7 +2395,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.get({
@@ -2546,7 +2533,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.list({
@@ -2675,11 +2662,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchdeployments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project to apply this patch deployment to in the form `projects/x`.
      */
     parent?: string;
@@ -2696,11 +2678,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchdeployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
@@ -2708,22 +2685,12 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchdeployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchdeployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of patch deployments to return. Default is 100.
      */
@@ -2771,7 +2738,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.cancel({
@@ -2922,7 +2889,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.execute({
@@ -3080,7 +3047,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.get({
@@ -3221,7 +3188,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.list({
@@ -3351,11 +3318,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchjobs$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
@@ -3367,11 +3329,6 @@ export namespace osconfig_v1beta {
   }
   export interface Params$Resource$Projects$Patchjobs$Execute
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project in which to run this patch in the form `projects/x`
      */
@@ -3385,22 +3342,12 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchjobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchjobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
      */
@@ -3448,7 +3395,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
@@ -3582,11 +3529,6 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Patchjobs$Instancedetails$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
      */
     filter?: string;
@@ -3642,7 +3584,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy(
@@ -3774,11 +3716,6 @@ export namespace osconfig_v1beta {
 
   export interface Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The VM instance whose policies are being looked up.
      */

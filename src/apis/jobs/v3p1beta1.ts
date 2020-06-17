@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace jobs_v3p1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1422,7 +1434,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.complete({
@@ -1609,11 +1621,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Complete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     companyName?: string;
@@ -1679,7 +1686,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.clientEvents.create({
@@ -1805,11 +1812,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Clientevents$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent project name.
      */
     parent?: string;
@@ -1852,7 +1854,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.create({
@@ -2010,7 +2012,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.delete({
@@ -2142,7 +2144,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.get({
@@ -2288,7 +2290,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.list({
@@ -2447,7 +2449,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.companies.patch({
@@ -2584,11 +2586,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Companies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
@@ -2601,11 +2598,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Companies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the company to be deleted.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     name?: string;
@@ -2613,22 +2605,12 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Companies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the company to be retrieved.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Companies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
      */
@@ -2648,11 +2630,6 @@ export namespace jobs_v3p1beta1 {
   }
   export interface Params$Resource$Projects$Companies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required during company update.  The resource name for a company. This is generated by the service when a company is created.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      */
@@ -2696,7 +2673,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.batchDelete({
@@ -2840,7 +2817,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.create({
@@ -3015,7 +2992,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.delete({
@@ -3147,7 +3124,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.get({
@@ -3310,7 +3287,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.list({
@@ -3481,7 +3458,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.patch({
@@ -3660,7 +3637,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.search({
@@ -3832,7 +3809,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.jobs.searchForAlert({
@@ -3984,11 +3961,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Jobs$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
@@ -4000,11 +3972,6 @@ export namespace jobs_v3p1beta1 {
   }
   export interface Params$Resource$Projects$Jobs$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
@@ -4018,11 +3985,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Jobs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the job to be deleted.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      */
     name?: string;
@@ -4030,22 +3992,12 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the job to retrieve.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
      */
@@ -4070,11 +4022,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Jobs$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required during job update.  The resource name for the job. This is generated by the service when a job is created.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".  Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      */
     name?: string;
@@ -4087,11 +4034,6 @@ export namespace jobs_v3p1beta1 {
   export interface Params$Resource$Projects$Jobs$Search
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
     parent?: string;
@@ -4103,11 +4045,6 @@ export namespace jobs_v3p1beta1 {
   }
   export interface Params$Resource$Projects$Jobs$Searchforalert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      */
@@ -4151,7 +4088,7 @@ export namespace jobs_v3p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await jobs.projects.operations.get({
@@ -4263,11 +4200,6 @@ export namespace jobs_v3p1beta1 {
 
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

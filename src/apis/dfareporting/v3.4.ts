@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace dfareporting_v3_4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -6794,7 +6806,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountActiveAdSummaries.get({
@@ -6918,11 +6930,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Accountactiveadsummaries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -6961,7 +6968,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.get({
@@ -7102,7 +7109,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.list({
@@ -7224,11 +7231,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Accountpermissiongroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account permission group ID.
      */
     id?: string;
@@ -7239,11 +7241,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accountpermissiongroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -7279,7 +7276,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.get({
@@ -7421,7 +7418,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.list({
@@ -7543,11 +7540,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Accountpermissions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account permission ID.
      */
     id?: string;
@@ -7558,11 +7550,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accountpermissions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -7598,7 +7585,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.get({
@@ -7749,7 +7736,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.list({
@@ -7906,7 +7893,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.patch({
@@ -8083,7 +8070,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.update({
@@ -8237,11 +8224,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID.
      */
     id?: string;
@@ -8251,11 +8233,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active accounts. Don't set this field to select both active and non-active accounts.
      */
@@ -8291,11 +8268,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID.
      */
     id?: string;
@@ -8310,11 +8282,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -8355,7 +8322,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.get({
@@ -8507,7 +8474,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.insert({
@@ -8680,7 +8647,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.list({
@@ -8849,7 +8816,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.patch({
@@ -9025,7 +8992,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.update({
@@ -9179,11 +9146,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Accountuserprofiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID.
      */
     id?: string;
@@ -9194,11 +9156,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accountuserprofiles$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -9211,11 +9168,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accountuserprofiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active user profiles.
      */
@@ -9260,11 +9212,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Accountuserprofiles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID.
      */
     id?: string;
@@ -9280,11 +9227,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Accountuserprofiles$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -9325,7 +9267,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.get({
@@ -9495,7 +9437,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.insert({
@@ -9709,7 +9651,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.list({
@@ -9909,7 +9851,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.patch({
@@ -10126,7 +10068,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.update({
@@ -10320,11 +10262,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Ads$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad ID.
      */
     id?: string;
@@ -10334,11 +10271,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Ads$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -10350,11 +10282,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Ad;
   }
   export interface Params$Resource$Ads$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active ads.
      */
@@ -10454,11 +10381,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Ads$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad ID.
      */
     id?: string;
@@ -10473,11 +10395,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Ad;
   }
   export interface Params$Resource$Ads$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -10518,7 +10435,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.delete({
@@ -10645,7 +10562,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.get({
@@ -10782,7 +10699,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.insert({
@@ -10928,7 +10845,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.list({
@@ -11088,7 +11005,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.patch({
@@ -11237,7 +11154,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.update({
@@ -11364,11 +11281,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertisergroups$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Advertiser group ID.
      */
     id?: string;
@@ -11379,11 +11291,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertisergroups$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Advertiser group ID.
      */
@@ -11396,11 +11303,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertisergroups$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -11412,11 +11314,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertisergroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only advertiser groups with these IDs.
      */
@@ -11449,11 +11346,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertisergroups$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Advertiser group ID.
      */
     id?: string;
@@ -11469,11 +11361,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertisergroups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -11514,7 +11401,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.get({
@@ -11654,7 +11541,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.insert({
@@ -11806,7 +11693,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.list({
@@ -11978,7 +11865,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.patch({
@@ -12133,7 +12020,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.update({
@@ -12266,11 +12153,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertiserlandingpages$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Landing page ID.
      */
     id?: string;
@@ -12281,11 +12163,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertiserlandingpages$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -12298,11 +12175,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertiserlandingpages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only landing pages that belong to these advertisers.
      */
@@ -12351,11 +12223,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertiserlandingpages$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Landing page ID.
      */
     id?: string;
@@ -12371,11 +12238,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertiserlandingpages$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -12416,7 +12278,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.get({
@@ -12563,7 +12425,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.insert({
@@ -12731,7 +12593,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.list({
@@ -12904,7 +12766,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.patch({
@@ -13075,7 +12937,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.update({
@@ -13223,11 +13085,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Advertisers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Advertiser ID.
      */
     id?: string;
@@ -13239,11 +13096,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertisers$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -13254,11 +13106,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Advertiser;
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only advertisers with these advertiser group IDs.
      */
@@ -13315,11 +13162,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Advertisers$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Advertiser ID.
      */
     id?: string;
@@ -13335,11 +13177,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Advertisers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -13380,7 +13217,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.browsers.list({
@@ -13495,11 +13332,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Browsers$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -13534,7 +13366,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.insert({
@@ -13686,7 +13518,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.list({
@@ -13827,11 +13659,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Campaigncreativeassociations$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Campaign ID in this association.
      */
     campaignId?: string;
@@ -13847,11 +13674,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Campaigncreativeassociations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Campaign ID in this association.
      */
@@ -13903,7 +13725,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.get({
@@ -14063,7 +13885,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.insert({
@@ -14255,7 +14077,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.list({
@@ -14430,7 +14252,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.patch({
@@ -14625,7 +14447,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.update({
@@ -14797,11 +14619,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Campaigns$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Campaign ID.
      */
     id?: string;
@@ -14811,11 +14628,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Campaigns$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -14827,11 +14639,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Campaign;
   }
   export interface Params$Resource$Campaigns$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only campaigns whose advertisers belong to these advertiser groups.
      */
@@ -14891,11 +14698,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Campaigns$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Campaign ID.
      */
     id?: string;
@@ -14910,11 +14712,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Campaign;
   }
   export interface Params$Resource$Campaigns$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -14955,7 +14752,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.changeLogs.get({
@@ -15101,7 +14898,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.changeLogs.list({
@@ -15247,11 +15044,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Changelogs$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Change log ID.
      */
     id?: string;
@@ -15261,11 +15053,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Changelogs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only change logs with the specified action.
      */
@@ -15341,7 +15128,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.cities.list({
@@ -15466,11 +15253,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Cities$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Select only cities from these countries.
      */
     countryDartIds?: string[];
@@ -15521,7 +15303,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.get({
@@ -15657,7 +15439,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.list({
@@ -15777,11 +15559,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Connectiontypes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Connection type ID.
      */
     id?: string;
@@ -15792,11 +15569,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Connectiontypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -15832,7 +15604,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.delete({
@@ -15959,7 +15731,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.get({
@@ -16096,7 +15868,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.insert({
@@ -16242,7 +16014,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.list({
@@ -16402,7 +16174,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.patch({
@@ -16551,7 +16323,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.update({
@@ -16678,11 +16450,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Contentcategories$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Content category ID.
      */
     id?: string;
@@ -16693,11 +16460,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Contentcategories$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Content category ID.
      */
@@ -16710,11 +16472,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Contentcategories$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -16726,11 +16483,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Contentcategories$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only content categories with these IDs.
      */
@@ -16763,11 +16515,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Contentcategories$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Content category ID.
      */
     id?: string;
@@ -16783,11 +16530,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Contentcategories$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -16828,7 +16570,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.conversions.batchinsert({
@@ -16981,7 +16723,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.conversions.batchupdate({
@@ -17115,11 +16857,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Conversions$Batchinsert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -17131,11 +16868,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Conversions$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -17176,7 +16908,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.countries.get({
@@ -17313,7 +17045,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.countries.list({
@@ -17428,11 +17160,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Countries$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Country DART ID.
      */
     dartId?: string;
@@ -17442,11 +17169,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Countries$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -17482,7 +17204,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeAssets.insert({
@@ -17642,11 +17364,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativeassets$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Advertiser ID of this creative. This is a required field.
      */
     advertiserId?: string;
@@ -17705,7 +17422,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.delete({
@@ -17832,7 +17549,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.get({
@@ -17972,7 +17689,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.insert({
@@ -18124,7 +17841,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.list({
@@ -18285,7 +18002,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.patch({
@@ -18440,7 +18157,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.update({
@@ -18573,11 +18290,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefields$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative Field ID
      */
     id?: string;
@@ -18588,11 +18300,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefields$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Creative Field ID
      */
@@ -18605,11 +18312,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefields$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -18621,11 +18323,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefields$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only creative fields that belong to these advertisers.
      */
@@ -18662,11 +18359,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefields$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative Field ID
      */
     id?: string;
@@ -18682,11 +18374,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefields$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -18727,7 +18414,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.delete({
@@ -18857,7 +18544,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.get({
@@ -18999,7 +18686,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.insert({
@@ -19149,7 +18836,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.list({
@@ -19312,7 +18999,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.patch({
@@ -19465,7 +19152,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.update({
@@ -19596,11 +19283,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefieldvalues$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative field ID for this creative field value.
      */
     creativeFieldId?: string;
@@ -19615,11 +19297,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefieldvalues$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Creative field ID for this creative field value.
      */
@@ -19636,11 +19313,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefieldvalues$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative field ID for this creative field value.
      */
     creativeFieldId?: string;
@@ -19656,11 +19328,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefieldvalues$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Creative field ID for this creative field value.
      */
@@ -19697,11 +19364,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativefieldvalues$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative field ID for this creative field value.
      */
     creativeFieldId?: string;
@@ -19721,11 +19383,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativefieldvalues$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Creative field ID for this creative field value.
      */
@@ -19770,7 +19427,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.get({
@@ -19911,7 +19568,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.insert({
@@ -20065,7 +19722,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.list({
@@ -20229,7 +19886,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.patch({
@@ -20386,7 +20043,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.update({
@@ -20521,11 +20178,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativegroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative group ID.
      */
     id?: string;
@@ -20536,11 +20188,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativegroups$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -20553,11 +20200,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativegroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only creative groups that belong to these advertisers.
      */
@@ -20598,11 +20240,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Creativegroups$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative group ID.
      */
     id?: string;
@@ -20618,11 +20255,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creativegroups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -20663,7 +20295,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.get({
@@ -20860,7 +20492,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.insert({
@@ -21126,7 +20758,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.list({
@@ -21310,7 +20942,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.patch({
@@ -21579,7 +21211,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.update({
@@ -21825,11 +21457,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative ID.
      */
     id?: string;
@@ -21839,11 +21466,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Creatives$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -21855,11 +21477,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active creatives. Leave blank to select active and inactive creatives.
      */
@@ -21931,11 +21548,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Creatives$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Creative ID.
      */
     id?: string;
@@ -21950,11 +21562,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Creative;
   }
   export interface Params$Resource$Creatives$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -21995,7 +21602,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.customEvents.batchinsert({
@@ -22128,11 +21735,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Customevents$Batchinsert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -22172,7 +21774,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dimensionValues.query({
@@ -22309,11 +21911,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Dimensionvalues$Query
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum number of results to return.
      */
     maxResults?: number;
@@ -22361,7 +21958,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.get({
@@ -22502,7 +22099,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.insert({
@@ -22656,7 +22253,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.list({
@@ -22810,11 +22407,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Directorysites$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Directory site ID.
      */
     id?: string;
@@ -22825,11 +22417,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Directorysites$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -22842,11 +22429,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Directorysites$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * This search filter is no longer supported and will have no effect on the results returned.
      */
@@ -22926,7 +22508,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.delete({
@@ -23059,7 +22641,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.insert({
@@ -23208,7 +22790,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.list({
@@ -23342,11 +22924,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Dynamictargetingkeys$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
     name?: string;
@@ -23366,11 +22943,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Dynamictargetingkeys$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -23382,11 +22954,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Dynamictargetingkeys$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only dynamic targeting keys whose object has this advertiser ID.
      */
@@ -23438,7 +23005,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.delete({
@@ -23564,7 +23131,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.get({
@@ -23714,7 +23281,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.insert({
@@ -23886,7 +23453,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.list({
@@ -24051,7 +23618,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.patch({
@@ -24226,7 +23793,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.update({
@@ -24378,11 +23945,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Eventtags$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Event tag ID.
      */
     id?: string;
@@ -24392,11 +23954,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Eventtags$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Event tag ID.
      */
@@ -24408,11 +23965,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Eventtags$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -24423,11 +23975,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$EventTag;
   }
   export interface Params$Resource$Eventtags$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only event tags that belong to this ad.
      */
@@ -24475,11 +24022,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Eventtags$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Event tag ID.
      */
     id?: string;
@@ -24494,11 +24036,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$EventTag;
   }
   export interface Params$Resource$Eventtags$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -24539,7 +24076,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.files.get({
@@ -24680,7 +24217,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.files.list({
@@ -24807,11 +24344,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Files$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the report file.
      */
     fileId?: string;
@@ -24821,11 +24353,6 @@ export namespace dfareporting_v3_4 {
     reportId?: string;
   }
   export interface Params$Resource$Files$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return.
      */
@@ -24881,7 +24408,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.delete({
@@ -25008,7 +24535,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.generatetag({
@@ -25159,7 +24686,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.get({
@@ -25323,7 +24850,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.insert({
@@ -25520,7 +25047,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.list({
@@ -25701,7 +25228,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.patch({
@@ -25901,7 +25428,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.update({
@@ -26079,11 +25606,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightactivities$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight activity ID.
      */
     id?: string;
@@ -26094,11 +25616,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivities$Generatetag
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Floodlight activity ID for which we want to generate a tag.
      */
@@ -26111,11 +25628,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightactivities$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight activity ID.
      */
     id?: string;
@@ -26126,11 +25638,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivities$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -26143,11 +25650,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivities$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      */
@@ -26208,11 +25710,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightactivities$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight activity ID.
      */
     id?: string;
@@ -26228,11 +25725,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivities$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -26273,7 +25765,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.get({
@@ -26423,7 +25915,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.insert({
@@ -26592,7 +26084,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.list({
@@ -26767,7 +26259,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.patch({
@@ -26937,7 +26429,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.update({
@@ -27087,11 +26579,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightactivitygroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight activity Group ID.
      */
     id?: string;
@@ -27102,11 +26589,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivitygroups$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -27119,11 +26601,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivitygroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
      */
@@ -27168,11 +26645,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightactivitygroups$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight activity Group ID.
      */
     id?: string;
@@ -27188,11 +26660,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightactivitygroups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -27233,7 +26700,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.get({
@@ -27389,7 +26856,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.list({
@@ -27539,7 +27006,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.patch({
@@ -27721,7 +27188,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.update({
@@ -27883,11 +27350,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightconfigurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Floodlight configuration ID.
      */
     id?: string;
@@ -27899,11 +27361,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Floodlightconfigurations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
      */
     ids?: string[];
@@ -27914,11 +27371,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightconfigurations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Floodlight configuration ID.
      */
@@ -27935,11 +27387,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Floodlightconfigurations$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -27980,7 +27427,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.inventoryItems.get({
@@ -28136,7 +27583,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.inventoryItems.list({
@@ -28287,11 +27734,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Inventoryitems$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Inventory item ID.
      */
     id?: string;
@@ -28306,11 +27748,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Inventoryitems$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only inventory items with these IDs.
      */
@@ -28386,7 +27823,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.languages.list({
@@ -28501,11 +27938,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Languages$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -28540,7 +27972,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.metros.list({
@@ -28653,11 +28085,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Metros$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -28692,7 +28119,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileApps.get({
@@ -28829,7 +28256,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileApps.list({
@@ -28960,11 +28387,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Mobileapps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Mobile app ID.
      */
     id?: string;
@@ -28974,11 +28396,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Mobileapps$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only apps from these directories.
      */
@@ -29034,7 +28451,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.get({
@@ -29172,7 +28589,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.list({
@@ -29292,11 +28709,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Mobilecarriers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Mobile carrier ID.
      */
     id?: string;
@@ -29307,11 +28719,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Mobilecarriers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -29347,7 +28754,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.get({
@@ -29485,7 +28892,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.list({
@@ -29607,11 +29014,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Operatingsystems$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Operating system DART ID.
      */
     dartId?: string;
@@ -29622,11 +29024,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Operatingsystems$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -29662,7 +29059,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.get({
@@ -29806,7 +29203,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.list({
@@ -29928,11 +29325,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Operatingsystemversions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Operating system version ID.
      */
     id?: string;
@@ -29943,11 +29335,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Operatingsystemversions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -29983,7 +29370,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orderDocuments.get({
@@ -30136,7 +29523,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orderDocuments.list({
@@ -30287,11 +29674,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Orderdocuments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Order document ID.
      */
     id?: string;
@@ -30306,11 +29688,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Orderdocuments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only order documents that have been approved by at least one user.
      */
@@ -30386,7 +29763,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orders.get({
@@ -30541,7 +29918,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orders.list({
@@ -30680,11 +30057,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Orders$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Order ID.
      */
     id?: string;
@@ -30698,11 +30070,6 @@ export namespace dfareporting_v3_4 {
     projectId?: string;
   }
   export interface Params$Resource$Orders$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only orders with these IDs.
      */
@@ -30770,7 +30137,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.get({
@@ -30929,7 +30296,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.insert({
@@ -31119,7 +30486,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.list({
@@ -31316,7 +30683,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.patch({
@@ -31509,7 +30876,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.update({
@@ -31680,11 +31047,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placementgroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement group ID.
      */
     id?: string;
@@ -31695,11 +31057,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementgroups$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -31712,11 +31069,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementgroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only placement groups that belong to these advertisers.
      */
@@ -31801,11 +31153,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placementgroups$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement group ID.
      */
     id?: string;
@@ -31821,11 +31168,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementgroups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -31866,7 +31208,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.generatetags({
@@ -32018,7 +31360,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.get({
@@ -32191,7 +31533,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.insert({
@@ -32410,7 +31752,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.list({
@@ -32612,7 +31954,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.patch({
@@ -32833,7 +32175,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.update({
@@ -33033,11 +32375,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placements$Generatetags
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Generate placements belonging to this campaign. This is a required field.
      */
     campaignId?: string;
@@ -33056,11 +32393,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placements$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement ID.
      */
     id?: string;
@@ -33072,11 +32404,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placements$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -33087,11 +32414,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Placement;
   }
   export interface Params$Resource$Placements$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only placements that belong to these advertisers.
      */
@@ -33187,11 +32509,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placements$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement ID.
      */
     id?: string;
@@ -33207,11 +32524,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placements$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -33252,7 +32564,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.delete({
@@ -33379,7 +32691,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.get({
@@ -33519,7 +32831,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.insert({
@@ -33668,7 +32980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.list({
@@ -33828,7 +33140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.patch({
@@ -33980,7 +33292,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.update({
@@ -34110,11 +33422,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placementstrategies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement strategy ID.
      */
     id?: string;
@@ -34125,11 +33432,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementstrategies$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Placement strategy ID.
      */
@@ -34142,11 +33444,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placementstrategies$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -34158,11 +33455,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementstrategies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only placement strategies with these IDs.
      */
@@ -34195,11 +33487,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Placementstrategies$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Placement strategy ID.
      */
     id?: string;
@@ -34215,11 +33502,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Placementstrategies$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -34260,7 +33542,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.get({
@@ -34396,7 +33678,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.list({
@@ -34516,11 +33798,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Platformtypes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Platform type ID.
      */
     id?: string;
@@ -34531,11 +33808,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Platformtypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -34571,7 +33843,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.get({
@@ -34708,7 +33980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.list({
@@ -34824,11 +34096,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Postalcodes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Postal code ID.
      */
     code?: string;
@@ -34838,11 +34105,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Postalcodes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -34878,7 +34140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.projects.get({
@@ -35032,7 +34294,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.projects.list({
@@ -35169,11 +34431,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID.
      */
     id?: string;
@@ -35183,11 +34440,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only projects with these advertiser IDs.
      */
@@ -35251,7 +34503,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.regions.list({
@@ -35364,11 +34616,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Regions$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -35403,7 +34650,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.get({
@@ -35549,7 +34796,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.insert({
@@ -35713,7 +34960,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.list({
@@ -35879,7 +35126,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.patch({
@@ -36046,7 +35293,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.update({
@@ -36191,11 +35438,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Remarketinglists$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Remarketing list ID.
      */
     id?: string;
@@ -36206,11 +35448,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Remarketinglists$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -36223,11 +35460,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Remarketinglists$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active or only inactive remarketing lists.
      */
@@ -36268,11 +35500,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Remarketinglists$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Remarketing list ID.
      */
     id?: string;
@@ -36288,11 +35515,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Remarketinglists$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -36333,7 +35555,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.get({
@@ -36475,7 +35697,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.patch({
@@ -36629,7 +35851,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.update({
@@ -36761,11 +35983,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Remarketinglistshares$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -36776,11 +35993,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Remarketinglistshares$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -36797,11 +36009,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Remarketinglistshares$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -36848,7 +36055,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.delete({
@@ -36974,7 +36181,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.get({
@@ -37124,7 +36331,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.insert({
@@ -37296,7 +36503,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.list({
@@ -37443,7 +36650,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.run({
@@ -37588,7 +36795,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.update({
@@ -37744,11 +36951,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Reports$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The DFA user profile ID.
      */
     profileId?: string;
@@ -37758,11 +36960,6 @@ export namespace dfareporting_v3_4 {
     reportId?: string;
   }
   export interface Params$Resource$Reports$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The DFA user profile ID.
      */
@@ -37774,11 +36971,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Reports$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The DFA user profile ID.
      */
     profileId?: string;
@@ -37789,11 +36981,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Report;
   }
   export interface Params$Resource$Reports$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return.
      */
@@ -37821,11 +37008,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The DFA profile ID.
      */
     profileId?: string;
@@ -37839,11 +37021,6 @@ export namespace dfareporting_v3_4 {
     synchronous?: boolean;
   }
   export interface Params$Resource$Reports$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The DFA user profile ID.
      */
@@ -37888,7 +37065,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.compatibleFields.query({
@@ -38031,11 +37208,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Reports$Compatiblefields$Query
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The DFA user profile ID.
      */
     profileId?: string;
@@ -38075,7 +37247,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.files.get({
@@ -38221,7 +37393,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.files.list({
@@ -38351,11 +37523,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Reports$Files$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the report file.
      */
     fileId?: string;
@@ -38370,11 +37537,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Reports$Files$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return.
      */
@@ -38430,7 +37592,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.get({
@@ -38574,7 +37736,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.insert({
@@ -38736,7 +37898,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.list({
@@ -38915,7 +38077,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.patch({
@@ -39080,7 +38242,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.update({
@@ -39222,11 +38384,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Site ID.
      */
     id?: string;
@@ -39236,11 +38393,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Sites$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -39252,11 +38404,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Site;
   }
   export interface Params$Resource$Sites$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * This search filter is no longer supported and will have no effect on the results returned.
      */
@@ -39324,11 +38471,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Sites$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Site ID.
      */
     id?: string;
@@ -39343,11 +38485,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Site;
   }
   export interface Params$Resource$Sites$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -39388,7 +38525,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.get({
@@ -39524,7 +38661,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.insert({
@@ -39670,7 +38807,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.list({
@@ -39795,11 +38932,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Sizes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Size ID.
      */
     id?: string;
@@ -39809,11 +38941,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Sizes$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -39825,11 +38952,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Size;
   }
   export interface Params$Resource$Sizes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only sizes with this height.
      */
@@ -39881,7 +39003,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.get({
@@ -40018,7 +39140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.insert({
@@ -40166,7 +39288,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.list({
@@ -40321,7 +39443,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.patch({
@@ -40472,7 +39594,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.update({
@@ -40600,11 +39722,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Subaccounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Subaccount ID.
      */
     id?: string;
@@ -40616,11 +39733,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Subaccounts$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -40631,11 +39743,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$Subaccount;
   }
   export interface Params$Resource$Subaccounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only subaccounts with these IDs.
      */
@@ -40668,11 +39775,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Subaccounts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Subaccount ID.
      */
     id?: string;
@@ -40688,11 +39790,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Subaccounts$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -40733,7 +39830,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetableRemarketingLists.get({
@@ -40883,7 +39980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetableRemarketingLists.list({
@@ -41033,11 +40130,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Targetableremarketinglists$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Remarketing list ID.
      */
     id?: string;
@@ -41048,11 +40140,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Targetableremarketinglists$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only active or only inactive targetable remarketing lists.
      */
@@ -41116,7 +40203,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.get({
@@ -41265,7 +40352,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.insert({
@@ -41432,7 +40519,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.list({
@@ -41595,7 +40682,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.patch({
@@ -41765,7 +40852,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.update({
@@ -41913,11 +41000,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Targetingtemplates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Targeting template ID.
      */
     id?: string;
@@ -41928,11 +41010,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Targetingtemplates$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -41945,11 +41022,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Targetingtemplates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only targeting templates with this advertiser ID.
      */
@@ -41986,11 +41058,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Targetingtemplates$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Targeting template ID.
      */
     id?: string;
@@ -42006,11 +41073,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Targetingtemplates$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -42054,7 +41116,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userProfiles.get({
@@ -42193,7 +41255,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userProfiles.list({});
@@ -42302,22 +41364,12 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Userprofiles$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user profile ID.
      */
     profileId?: string;
   }
   export interface Params$Resource$Userprofiles$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 
   export class Resource$Userrolepermissiongroups {
     context: APIRequestContext;
@@ -42348,7 +41400,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.get({
@@ -42489,7 +41541,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.list({
@@ -42617,11 +41669,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Userrolepermissiongroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User role permission group ID.
      */
     id?: string;
@@ -42632,11 +41679,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Userrolepermissiongroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -42672,7 +41714,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissions.get({
@@ -42813,7 +41855,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissions.list({
@@ -42938,11 +41980,6 @@ export namespace dfareporting_v3_4 {
   export interface Params$Resource$Userrolepermissions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User role permission ID.
      */
     id?: string;
@@ -42953,11 +41990,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Userrolepermissions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only user role permissions with these IDs.
      */
@@ -42997,7 +42029,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.delete({
@@ -43123,7 +42155,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.get({
@@ -43263,7 +42295,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.insert({
@@ -43415,7 +42447,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.list({
@@ -43575,7 +42607,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.patch({
@@ -43730,7 +42762,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.update({
@@ -43862,11 +42894,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Userroles$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User role ID.
      */
     id?: string;
@@ -43876,11 +42903,6 @@ export namespace dfareporting_v3_4 {
     profileId?: string;
   }
   export interface Params$Resource$Userroles$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User role ID.
      */
@@ -43892,11 +42914,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Userroles$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
@@ -43907,11 +42924,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$UserRole;
   }
   export interface Params$Resource$Userroles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Select only account level user roles not associated with any specific subaccount.
      */
@@ -43951,11 +42963,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Userroles$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User role ID.
      */
     id?: string;
@@ -43970,11 +42977,6 @@ export namespace dfareporting_v3_4 {
     requestBody?: Schema$UserRole;
   }
   export interface Params$Resource$Userroles$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */
@@ -44015,7 +43017,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.get({
@@ -44152,7 +43154,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.list({
@@ -44269,11 +43271,6 @@ export namespace dfareporting_v3_4 {
 
   export interface Params$Resource$Videoformats$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Video format ID.
      */
     id?: number;
@@ -44284,11 +43281,6 @@ export namespace dfareporting_v3_4 {
   }
   export interface Params$Resource$Videoformats$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User profile ID associated with this request.
      */

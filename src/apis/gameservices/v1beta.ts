@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace gameservices_v1beta {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1158,7 +1170,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.get({
@@ -1290,7 +1302,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.list({
@@ -1421,22 +1433,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -1492,7 +1494,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.create(
@@ -1647,7 +1649,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
@@ -1784,7 +1786,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
@@ -1937,7 +1939,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
@@ -2078,7 +2080,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getIamPolicy(
@@ -2232,7 +2234,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
@@ -2380,7 +2382,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.list({
@@ -2541,7 +2543,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
@@ -2703,7 +2705,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
@@ -2893,7 +2895,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.setIamPolicy(
@@ -3043,7 +3045,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.testIamPermissions(
@@ -3194,7 +3196,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
@@ -3340,11 +3342,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the game server delpoyment resource to be created.
      */
     deploymentId?: string;
@@ -3361,22 +3358,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server delpoyment to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the game server delpoyment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
@@ -3390,22 +3377,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3418,22 +3395,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to apply to list results.
      */
@@ -3458,11 +3425,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the game server deployment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.
      */
     name?: string;
@@ -3478,11 +3440,6 @@ export namespace gameservices_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
      */
@@ -3504,11 +3461,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3521,11 +3473,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3537,11 +3484,6 @@ export namespace gameservices_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
      */
@@ -3586,7 +3528,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.create(
@@ -3744,7 +3686,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
@@ -3881,7 +3823,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
@@ -4020,7 +3962,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.list(
@@ -4165,11 +4107,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the game server config resource to be created.
      */
     configId?: string;
@@ -4186,11 +4123,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server config to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
@@ -4198,22 +4130,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server config to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to apply to list results.
      */
@@ -4265,7 +4187,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.cancel({
@@ -4401,7 +4323,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.delete({
@@ -4527,7 +4449,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.get({
@@ -4659,7 +4581,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.list({
@@ -4786,11 +4708,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -4803,11 +4720,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
@@ -4815,22 +4727,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -4882,7 +4784,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
@@ -5036,7 +4938,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
@@ -5169,7 +5071,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
@@ -5304,7 +5206,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.list({
@@ -5459,7 +5361,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
@@ -5616,7 +5518,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
@@ -5764,11 +5666,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      */
     parent?: string;
@@ -5785,11 +5682,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
      */
     name?: string;
@@ -5797,22 +5689,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to apply to list results.
      */
@@ -5837,11 +5719,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      */
     name?: string;
@@ -5857,11 +5734,6 @@ export namespace gameservices_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Realms$Previewupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      */
@@ -5910,7 +5782,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.create(
@@ -6066,7 +5938,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
@@ -6202,7 +6074,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
@@ -6344,7 +6216,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.list(
@@ -6506,7 +6378,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
@@ -6669,7 +6541,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewCreate(
@@ -6839,7 +6711,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
@@ -6993,7 +6865,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
@@ -7155,11 +7027,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the game server cluster resource to be created.
      */
     gameServerClusterId?: string;
@@ -7176,11 +7043,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      */
     name?: string;
@@ -7188,22 +7050,12 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server cluster to retrieve. Uses the form:  `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to apply to list results.
      */
@@ -7228,11 +7080,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
@@ -7248,11 +7095,6 @@ export namespace gameservices_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the game server cluster resource to be created.
      */
@@ -7274,11 +7116,6 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      */
     name?: string;
@@ -7289,11 +7126,6 @@ export namespace gameservices_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */

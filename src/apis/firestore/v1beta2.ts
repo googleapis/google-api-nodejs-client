@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firestore_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -494,7 +506,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
@@ -650,7 +662,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
@@ -784,11 +796,6 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
     name?: string;
@@ -800,11 +807,6 @@ export namespace firestore_v1beta2 {
   }
   export interface Params$Resource$Projects$Databases$Importdocuments
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
@@ -863,7 +865,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.get({
@@ -1006,7 +1008,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.list({
@@ -1181,7 +1183,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.patch({
@@ -1341,22 +1343,12 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
      */
@@ -1376,11 +1368,6 @@ export namespace firestore_v1beta2 {
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
@@ -1428,7 +1415,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.create(
@@ -1589,7 +1576,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.delete(
@@ -1722,7 +1709,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.get({
@@ -1867,7 +1854,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.list({
@@ -2016,11 +2003,6 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      */
     parent?: string;
@@ -2033,11 +2015,6 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      */
     name?: string;
@@ -2045,22 +2022,12 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter to apply to list results.
      */

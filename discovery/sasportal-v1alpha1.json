@@ -784,6 +784,33 @@
       }
     },
     "nodes": {
+      "methods": {
+        "get": {
+          "description": "Returns a requested node.",
+          "flatPath": "v1alpha1/nodes/{nodesId}",
+          "httpMethod": "GET",
+          "id": "sasportal.nodes.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the node.",
+              "location": "path",
+              "pattern": "^nodes/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/{+name}",
+          "response": {
+            "$ref": "SasPortalNode"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email"
+          ]
+        }
+      },
       "resources": {
         "devices": {
           "methods": {
@@ -1522,7 +1549,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200604",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {

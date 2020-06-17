@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace slides_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1058,7 +1070,7 @@ export namespace slides_v1 {
    */
   export interface Schema$PageElement {
     /**
-     * The description of the page element. Combined with title to display alt text.
+     * The description of the page element. Combined with title to display alt text.  The field is not supported for Group elements.
      */
     description?: string | null;
     /**
@@ -1094,7 +1106,7 @@ export namespace slides_v1 {
      */
     table?: Schema$Table;
     /**
-     * The title of the page element. Combined with description to display alt text.
+     * The title of the page element. Combined with description to display alt text.  The field is not supported for Group elements.
      */
     title?: string | null;
     /**
@@ -2614,7 +2626,7 @@ export namespace slides_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await slides.presentations.batchUpdate({
@@ -2769,7 +2781,7 @@ export namespace slides_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await slides.presentations.create({
@@ -2924,7 +2936,7 @@ export namespace slides_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await slides.presentations.get({
@@ -3044,11 +3056,6 @@ export namespace slides_v1 {
   export interface Params$Resource$Presentations$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The presentation to apply the updates to.
      */
     presentationId?: string;
@@ -3061,22 +3068,12 @@ export namespace slides_v1 {
   export interface Params$Resource$Presentations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Presentation;
   }
   export interface Params$Resource$Presentations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the presentation to retrieve.
      */
@@ -3118,7 +3115,7 @@ export namespace slides_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await slides.presentations.pages.get({
@@ -3266,7 +3263,7 @@ export namespace slides_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await slides.presentations.pages.getThumbnail({
@@ -3394,11 +3391,6 @@ export namespace slides_v1 {
   export interface Params$Resource$Presentations$Pages$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The object ID of the page to retrieve.
      */
     pageObjectId?: string;
@@ -3409,11 +3401,6 @@ export namespace slides_v1 {
   }
   export interface Params$Resource$Presentations$Pages$Getthumbnail
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The object ID of the page whose thumbnail to retrieve.
      */

@@ -23,6 +23,7 @@ nock.disableNetConnect();
 
 const samples = {
   jwt: require('../jwt'),
+  accessToken: require('../accessTokenAuth'),
 };
 
 describe('Auth samples', () => {
@@ -44,6 +45,15 @@ describe('Auth samples', () => {
     }
     const data = await samples.jwt.runSample();
     assert(data);
+    scope.done();
+  });
+
+  it('should accept an access token header', async () => {
+    const scope = nock('https://www.googleapis.com')
+      .get('/drive/v2/files')
+      .reply(200, {});
+    const res = await samples.accessToken.runSample(12345);
+    assert.strictEqual(res.config.headers['Authorization'], 'Bearer 12345');
     scope.done();
   });
 });

@@ -2486,7 +2486,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200601",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -2757,7 +2757,7 @@
           "type": "string"
         },
         "entityId": {
-          "description": "Numerical identifier of the client entity.\nThe entity can be an advertiser, a brand, or an agency.\nThis identifier is unique among all the entities with the same type.\n\nA list of all known advertisers with their identifiers is available in the\n[advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt)\nfile.\n\nA list of all known brands with their identifiers is available in the\n[brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt)\nfile.\n\nA list of all known agencies with their identifiers is available in the\n[agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt)\nfile.",
+          "description": "Numerical identifier of the client entity.\nThe entity can be an advertiser, a brand, or an agency.\nThis identifier is unique among all the entities with the same type.\nThe value of this field is ignored if the entity type is not provided.\n\nA list of all known advertisers with their identifiers is available in the\n[advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt)\nfile.\n\nA list of all known brands with their identifiers is available in the\n[brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt)\nfile.\n\nA list of all known agencies with their identifiers is available in the\n[agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt)\nfile.",
           "format": "int64",
           "type": "string"
         },
@@ -2766,7 +2766,7 @@
           "type": "string"
         },
         "entityType": {
-          "description": "The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.",
+          "description": "An optional field for specifying the type of the client entity:\n`ADVERTISER`, `BRAND`, or `AGENCY`.",
           "enum": [
             "ENTITY_TYPE_UNSPECIFIED",
             "ADVERTISER",

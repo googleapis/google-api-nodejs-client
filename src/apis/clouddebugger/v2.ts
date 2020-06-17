@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace clouddebugger_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -644,7 +656,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.register({
@@ -770,11 +782,6 @@ export namespace clouddebugger_v2 {
   export interface Params$Resource$Controller$Debuggees$Register
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$RegisterDebuggeeRequest;
@@ -812,7 +819,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.breakpoints.list({
@@ -975,7 +982,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.breakpoints.update({
@@ -1106,11 +1113,6 @@ export namespace clouddebugger_v2 {
   export interface Params$Resource$Controller$Debuggees$Breakpoints$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifies the agent. This is the ID returned in the RegisterDebuggee response.
      */
     agentId?: string;
@@ -1129,11 +1131,6 @@ export namespace clouddebugger_v2 {
   }
   export interface Params$Resource$Controller$Debuggees$Breakpoints$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Identifies the debuggee being debugged.
      */
@@ -1194,7 +1191,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.list({
@@ -1320,11 +1317,6 @@ export namespace clouddebugger_v2 {
   export interface Params$Resource$Debugger$Debuggees$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
@@ -1370,7 +1362,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.delete({
@@ -1510,7 +1502,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.get({
@@ -1657,7 +1649,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.list({
@@ -1823,7 +1815,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.set({
@@ -1973,11 +1965,6 @@ export namespace clouddebugger_v2 {
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the breakpoint to delete.
      */
     breakpointId?: string;
@@ -1993,11 +1980,6 @@ export namespace clouddebugger_v2 {
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the breakpoint to get.
      */
     breakpointId?: string;
@@ -2012,11 +1994,6 @@ export namespace clouddebugger_v2 {
   }
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Only breakpoints with the specified action will pass the filter.
      */
@@ -2048,11 +2025,6 @@ export namespace clouddebugger_v2 {
   }
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The canary option set by the user upon setting breakpoint.
      */

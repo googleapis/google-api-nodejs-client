@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudtasks_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -116,11 +128,11 @@ export namespace cloudtasks_v2 {
   }
 
   /**
-   * App Engine HTTP request.  The message defines the HTTP request that is sent to an App Engine app when the task is dispatched.  Using AppEngineHttpRequest requires [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control) Google IAM permission for the project and the following scope:  `https://www.googleapis.com/auth/cloud-platform`  The task will be delivered to the App Engine app which belongs to the same project as the queue. For more information, see [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed) and how routing is affected by [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref). Traffic is encrypted during transport and never leaves Google datacenters. Because this traffic is carried over a communication mechanism internal to Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS). The request to the handler, however, will appear to have used the HTTP protocol.  The AppEngineRouting used to construct the URL that the task is delivered to can be set at the queue-level or task-level:  * If app_engine_routing_override is set on the   queue, this value is used for all   tasks in the queue, no matter what the setting is for the task-level   app_engine_routing.   The `url` that the task will be sent to is:  * `url =` host `+`   relative_uri  Tasks can be dispatched to secure app handlers, unsecure app handlers, and URIs restricted with [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref). Because tasks are not run as any user, they cannot be dispatched to URIs restricted with [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref) Task dispatches also do not follow redirects.  The task attempt has succeeded if the app&#39;s request handler returns an HTTP response code in the range [`200` - `299`]. The task attempt has failed if the app&#39;s handler returns a non-2xx response code or Cloud Tasks does not receive response before the deadline. Failed tasks will be retried according to the retry configuration. `503` (Service Unavailable) is considered an App Engine system error instead of an application error and will cause Cloud Tasks&#39; traffic congestion control to temporarily throttle the queue&#39;s dispatches. Unlike other types of task targets, a `429` (Too Many Requests) response from an app handler does not cause traffic congestion control to throttle the queue.
+   * App Engine HTTP request.  The message defines the HTTP request that is sent to an App Engine app when the task is dispatched.  Using AppEngineHttpRequest requires [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control) Google IAM permission for the project and the following scope:  `https://www.googleapis.com/auth/cloud-platform`  The task will be delivered to the App Engine app which belongs to the same project as the queue. For more information, see [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed) and how routing is affected by [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref). Traffic is encrypted during transport and never leaves Google datacenters. Because this traffic is carried over a communication mechanism internal to Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS). The request to the handler, however, will appear to have used the HTTP protocol.  The AppEngineRouting used to construct the URL that the task is delivered to can be set at the queue-level or task-level:  * If app_engine_routing_override is set on the   queue, this value   is used for all tasks in the queue, no matter what the setting is for the   task-level   app_engine_routing.   The `url` that the task will be sent to is:  * `url =` host `+`   relative_uri  Tasks can be dispatched to secure app handlers, unsecure app handlers, and URIs restricted with [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref). Because tasks are not run as any user, they cannot be dispatched to URIs restricted with [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref) Task dispatches also do not follow redirects.  The task attempt has succeeded if the app&#39;s request handler returns an HTTP response code in the range [`200` - `299`]. The task attempt has failed if the app&#39;s handler returns a non-2xx response code or Cloud Tasks does not receive response before the deadline. Failed tasks will be retried according to the retry configuration. `503` (Service Unavailable) is considered an App Engine system error instead of an application error and will cause Cloud Tasks&#39; traffic congestion control to temporarily throttle the queue&#39;s dispatches. Unlike other types of task targets, a `429` (Too Many Requests) response from an app handler does not cause traffic congestion control to throttle the queue.
    */
   export interface Schema$AppEngineHttpRequest {
     /**
-     * Task-level setting for App Engine routing.  * If app_engine_routing_override is set on the   queue, this value is used for all   tasks in the queue, no matter what the setting is for the task-level   app_engine_routing.
+     * Task-level setting for App Engine routing.  * If app_engine_routing_override is set on the   queue, this   value is used for all tasks in the queue, no matter what the setting is   for the task-level   app_engine_routing.
      */
     appEngineRouting?: Schema$AppEngineRouting;
     /**
@@ -539,7 +551,7 @@ export namespace cloudtasks_v2 {
      */
     dispatchCount?: number | null;
     /**
-     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listing for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:  * For HTTP tasks, the default is 10 minutes. The deadline   must be in the interval [15 seconds, 30 minutes].  * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
+     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listening for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:  * For HTTP tasks, the default is 10 minutes. The deadline   must be in the interval [15 seconds, 30 minutes].  * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
      */
     dispatchDeadline?: string | null;
     /**
@@ -630,7 +642,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.get({
@@ -762,7 +774,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.list({
@@ -889,22 +901,12 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -954,7 +956,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.create({
@@ -1111,7 +1113,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.delete({
@@ -1238,7 +1240,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.get({
@@ -1373,7 +1375,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.getIamPolicy({
@@ -1516,7 +1518,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.list({
@@ -1684,7 +1686,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.patch({
@@ -1856,7 +1858,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.pause({
@@ -1998,7 +2000,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.purge({
@@ -2140,7 +2142,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.resume({
@@ -2282,7 +2284,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.setIamPolicy({
@@ -2425,7 +2427,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.testIamPermissions({
@@ -2554,11 +2556,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The location name in which the queue will be created. For example: `projects/PROJECT_ID/locations/LOCATION_ID`  The list of allowed locations can be obtained by calling Cloud Tasks' implementation of ListLocations.
      */
     parent?: string;
@@ -2571,11 +2568,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
@@ -2583,22 +2575,12 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2611,11 +2593,6 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Queues$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * `filter` can be used to specify a subset of queues. Any Queue field can be used as a filter and several operators as supported. For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as described in [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).  Sample filter "state: PAUSED".  Note that using filters might cause fewer queues than the requested page_size to be returned.
      */
@@ -2636,11 +2613,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Caller-specified and required in CreateQueue, after which it becomes output only.  The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying    projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.
      */
     name?: string;
@@ -2657,11 +2629,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Pause
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
@@ -2673,11 +2640,6 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Queues$Purge
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
@@ -2691,11 +2653,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Resume
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
@@ -2708,11 +2665,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2724,11 +2676,6 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Queues$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2769,7 +2716,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.create({
@@ -2923,7 +2870,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.delete({
@@ -3051,7 +2998,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.get({
@@ -3205,7 +3152,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.list({
@@ -3376,7 +3323,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.run({
@@ -3506,11 +3453,6 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  The queue must already exist.
      */
     parent?: string;
@@ -3523,22 +3465,12 @@ export namespace cloudtasks_v2 {
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
@@ -3550,11 +3482,6 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum page size.  Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.  The maximum page size is 1000. If unspecified, the page size will be the maximum.
      */
@@ -3574,11 +3501,6 @@ export namespace cloudtasks_v2 {
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Run
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */

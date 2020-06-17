@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace games_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2401,7 +2413,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievementDefinitions.list({
@@ -2530,11 +2542,6 @@ export namespace games_v1 {
   export interface Params$Resource$Achievementdefinitions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -2577,7 +2584,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.increment({
@@ -2724,7 +2731,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.list({
@@ -2877,7 +2884,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.reveal({
@@ -3015,7 +3022,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.setStepsAtLeast({
@@ -3159,7 +3166,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.unlock({
@@ -3297,7 +3304,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.achievements.updateMultiple({
@@ -3425,11 +3432,6 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Increment
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
@@ -3444,11 +3446,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Achievements$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3473,22 +3470,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Reveal
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Setstepsatleast
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -3501,22 +3488,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Unlock
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Updatemultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3552,7 +3529,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.applications.get({
@@ -3700,7 +3677,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.applications.played({});
@@ -3820,7 +3797,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.applications.verify({
@@ -3939,11 +3916,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
@@ -3957,19 +3929,9 @@ export namespace games_v1 {
     platformType?: string;
   }
   export interface Params$Resource$Applications$Played
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Applications$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -4005,7 +3967,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.events.listByPlayer({
@@ -4148,7 +4110,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.events.listDefinitions({
@@ -4294,7 +4256,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.events.record({
@@ -4420,11 +4382,6 @@ export namespace games_v1 {
   export interface Params$Resource$Events$Listbyplayer
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4440,11 +4397,6 @@ export namespace games_v1 {
   export interface Params$Resource$Events$Listdefinitions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4458,11 +4410,6 @@ export namespace games_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Events$Record extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4503,7 +4450,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.leaderboards.get({
@@ -4641,7 +4588,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.leaderboards.list({
@@ -4765,11 +4712,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Leaderboards$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4780,11 +4722,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Leaderboards$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4828,7 +4765,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.metagame.getMetagameConfig({});
@@ -4959,7 +4896,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.metagame.listCategoriesByPlayer({
@@ -5089,19 +5026,9 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Metagame$Getmetagameconfig
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Metagame$Listcategoriesbyplayer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of categories for which data will be returned.
      */
@@ -5153,7 +5080,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.players.get({
@@ -5298,7 +5225,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.players.list({
@@ -5421,11 +5348,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Players$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -5435,11 +5357,6 @@ export namespace games_v1 {
     playerId?: string;
   }
   export interface Params$Resource$Players$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Collection of players being retrieved
      */
@@ -5487,7 +5404,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.pushtokens.remove({
@@ -5617,7 +5534,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.pushtokens.update({
@@ -5730,22 +5647,12 @@ export namespace games_v1 {
   export interface Params$Resource$Pushtokens$Remove
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PushTokenId;
   }
   export interface Params$Resource$Pushtokens$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5781,7 +5688,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.revisions.check({
@@ -5903,11 +5810,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Revisions$Check extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      */
     clientRevision?: string;
@@ -5942,7 +5844,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.create({
@@ -6100,7 +6002,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.decline({
@@ -6245,7 +6147,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.dismiss({
@@ -6368,7 +6270,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.get({
@@ -6513,7 +6415,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.join({
@@ -6670,7 +6572,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.leave({
@@ -6826,7 +6728,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.list({
@@ -6961,7 +6863,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.rooms.reportStatus({
@@ -7090,11 +6992,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Rooms$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7106,11 +7003,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Decline extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7121,21 +7013,11 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Dismiss extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the room.
      */
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7146,11 +7028,6 @@ export namespace games_v1 {
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Join extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7167,11 +7044,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Leave extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7187,11 +7059,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7206,11 +7073,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Reportstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7255,7 +7117,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.scores.get({
@@ -7415,7 +7277,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.scores.list({
@@ -7568,7 +7430,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.scores.listWindow({
@@ -7728,7 +7590,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.scores.submit({
@@ -7874,7 +7736,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.scores.submitMultiple({
@@ -8003,11 +7865,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Scores$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      */
     includeRankType?: string;
@@ -8038,11 +7895,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The collection of scores you're requesting.
      */
     collection?: string;
@@ -8069,11 +7921,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Listwindow
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of scores you're requesting.
      */
@@ -8109,11 +7956,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -8132,11 +7974,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submitmultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -8180,7 +8017,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.snapshots.get({
@@ -8326,7 +8163,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.snapshots.list({
@@ -8452,11 +8289,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -8466,11 +8298,6 @@ export namespace games_v1 {
     snapshotId?: string;
   }
   export interface Params$Resource$Snapshots$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -8518,7 +8345,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.cancel({
@@ -8641,7 +8468,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.create({
@@ -8804,7 +8631,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.decline({
@@ -8956,7 +8783,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.dismiss({
@@ -9079,7 +8906,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.finish({
@@ -9243,7 +9070,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.get({
@@ -9399,7 +9226,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.join({
@@ -9551,7 +9378,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.leave({
@@ -9703,7 +9530,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.leaveTurn({
@@ -9861,7 +9688,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.list({
@@ -10009,7 +9836,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.rematch({
@@ -10152,7 +9979,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.sync({
@@ -10301,7 +10128,7 @@ export namespace games_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await games.turnBasedMatches.takeTurn({
@@ -10447,22 +10274,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10476,11 +10293,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Decline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10492,22 +10304,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Finish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10525,11 +10327,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Get match data along with metadata.
      */
     includeMatchData?: boolean;
@@ -10545,11 +10342,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Join
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10561,11 +10353,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Leave
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10576,11 +10363,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Leaveturn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10600,11 +10382,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -10629,11 +10406,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Rematch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10648,11 +10420,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Sync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -10676,11 +10443,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Taketurn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */

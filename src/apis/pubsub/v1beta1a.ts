@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace pubsub_v1beta1a {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -412,7 +424,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.acknowledge({
@@ -550,7 +562,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.create({
@@ -695,7 +707,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.delete({
@@ -827,7 +839,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.get({
@@ -964,7 +976,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.list({
@@ -1113,7 +1125,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.modifyAckDeadline({
@@ -1252,7 +1264,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.modifyPushConfig({
@@ -1390,7 +1402,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.pull({
@@ -1531,7 +1543,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.pullBatch({
@@ -1653,22 +1665,12 @@ export namespace pubsub_v1beta1a {
   export interface Params$Resource$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
   export interface Params$Resource$Subscriptions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1677,11 +1679,6 @@ export namespace pubsub_v1beta1a {
   export interface Params$Resource$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The subscription to delete.
      */
     subscription?: string;
@@ -1689,22 +1686,12 @@ export namespace pubsub_v1beta1a {
   export interface Params$Resource$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the subscription to get.
      */
     subscription?: string;
   }
   export interface Params$Resource$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of subscriptions to return.
      */
@@ -1721,22 +1708,12 @@ export namespace pubsub_v1beta1a {
   export interface Params$Resource$Subscriptions$Modifyackdeadline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
   export interface Params$Resource$Subscriptions$Modifypushconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1745,22 +1722,12 @@ export namespace pubsub_v1beta1a {
   export interface Params$Resource$Subscriptions$Pull
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PullRequest;
   }
   export interface Params$Resource$Subscriptions$Pullbatch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1799,7 +1766,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.create({
@@ -1934,7 +1901,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.delete({
@@ -2065,7 +2032,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.get({
@@ -2198,7 +2165,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.list({
@@ -2339,7 +2306,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.publish({
@@ -2476,7 +2443,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.publishBatch({
@@ -2600,21 +2567,11 @@ export namespace pubsub_v1beta1a {
 
   export interface Params$Resource$Topics$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Topic;
   }
   export interface Params$Resource$Topics$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the topic to delete.
      */
@@ -2622,21 +2579,11 @@ export namespace pubsub_v1beta1a {
   }
   export interface Params$Resource$Topics$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the topic to get.
      */
     topic?: string;
   }
   export interface Params$Resource$Topics$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of topics to return.
      */
@@ -2652,22 +2599,12 @@ export namespace pubsub_v1beta1a {
   }
   export interface Params$Resource$Topics$Publish extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PublishRequest;
   }
   export interface Params$Resource$Topics$Publishbatch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

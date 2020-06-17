@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigtableadmin_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -122,7 +134,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AppProfile {
     /**
-     * Optional long form description of the use case for this AppProfile.
+     * Long form description of the use case for this AppProfile.
      */
     description?: string | null;
     /**
@@ -134,7 +146,7 @@ export namespace bigtableadmin_v2 {
      */
     multiClusterRoutingUseAny?: Schema$MultiClusterRoutingUseAny;
     /**
-     * (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string | null;
     /**
@@ -173,7 +185,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
@@ -208,15 +220,15 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Cluster {
     /**
-     * (`CreationOnly`) The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
+     * Immutable. The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
     /**
-     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
+     * Immutable. The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
      */
     location?: string | null;
     /**
-     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string | null;
     /**
@@ -224,7 +236,7 @@ export namespace bigtableadmin_v2 {
      */
     serveNodes?: number | null;
     /**
-     * (`OutputOnly`) The current state of the cluster.
+     * Output only. The current state of the cluster.
      */
     state?: string | null;
   }
@@ -416,7 +428,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -425,7 +437,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -442,11 +454,11 @@ export namespace bigtableadmin_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
-     * (`OutputOnly`) The current state of the instance.
+     * Output only. The current state of the instance.
      */
     state?: string | null;
     /**
@@ -651,7 +663,7 @@ export namespace bigtableadmin_v2 {
     updateMask?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -667,7 +679,7 @@ export namespace bigtableadmin_v2 {
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -680,7 +692,7 @@ export namespace bigtableadmin_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -732,15 +744,15 @@ export namespace bigtableadmin_v2 {
      */
     clusterStates?: {[key: string]: Schema$ClusterState} | null;
     /**
-     * (`CreationOnly`) The column families configured for this table, mapped by column family ID. Views: `SCHEMA_VIEW`, `FULL`
+     * The column families configured for this table, mapped by column family ID. Views: `SCHEMA_VIEW`, `FULL`
      */
     columnFamilies?: {[key: string]: Schema$ColumnFamily} | null;
     /**
-     * (`CreationOnly`) The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
     granularity?: string | null;
     /**
-     * Output only. The unique name of the table. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
+     * The unique name of the table. Values are of the form `projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      */
     name?: string | null;
   }
@@ -862,7 +874,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.cancel({
@@ -996,7 +1008,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.delete({
@@ -1131,7 +1143,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.get({
@@ -1244,11 +1256,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -1256,21 +1263,11 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -1325,7 +1322,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.projects.operations.list({
@@ -1453,11 +1450,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Operations$Projects$Operations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The standard list filter.
      */
     filter?: string;
@@ -1530,7 +1522,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.create({
@@ -1686,7 +1678,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.delete({
@@ -1822,7 +1814,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.get({
@@ -1963,7 +1955,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.getIamPolicy({
@@ -2116,7 +2108,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.list({
@@ -2266,11 +2258,10 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.partialUpdateInstance({
-     *     // Required. (`OutputOnly`)
      *     // The unique name of the instance. Values are of the form
      *     // `projects/{project}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
@@ -2311,7 +2302,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * @param {string} params.name The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      * @param {string=} params.updateMask Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2427,7 +2418,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.setIamPolicy({
@@ -2580,7 +2571,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.testIamPermissions({
@@ -2736,11 +2727,10 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.update({
-     *     // Required. (`OutputOnly`)
      *     // The unique name of the instance. Values are of the form
      *     // `projects/{project}/instances/a-z+[a-z0-9]`.
      *     name: 'projects/my-project/instances/my-instance',
@@ -2778,7 +2768,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * @param {string} params.name The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2865,11 +2855,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      */
     parent?: string;
@@ -2882,11 +2867,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
      */
     name?: string;
@@ -2894,22 +2874,12 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2923,11 +2893,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * DEPRECATED: This field is unused and ignored.
      */
     pageToken?: string;
@@ -2939,12 +2904,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Partialupdateinstance
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
     /**
@@ -2960,11 +2920,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2976,11 +2931,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2994,12 +2944,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
 
@@ -3045,7 +2990,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.create({
@@ -3211,7 +3156,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.delete({
@@ -3350,7 +3295,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.get({
@@ -3491,7 +3436,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.list({
@@ -3655,15 +3600,14 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.patch({
      *     // If true, ignore safety checks when updating the app profile.
      *     ignoreWarnings: 'placeholder-value',
-     *     // (`OutputOnly`)
      *     // The unique name of the app profile. Values are of the form
-     *     // `projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.
+     *     // `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
      *     name: 'projects/my-project/instances/my-instance/appProfiles/my-appProfile',
      *     // Required. The subset of app profile fields which should be replaced.
      *     // If unset, all fields will be replaced.
@@ -3703,7 +3647,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when updating the app profile.
-     * @param {string} params.name (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.
+     * @param {string} params.name The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
      * @param {string=} params.updateMask Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
      * @param {().AppProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3791,11 +3735,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Appprofiles$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      */
     appProfileId?: string;
@@ -3816,11 +3755,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Appprofiles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. If true, ignore safety checks when deleting the app profile.
      */
     ignoreWarnings?: boolean;
@@ -3832,22 +3766,12 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Appprofiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Appprofiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      */
@@ -3864,16 +3788,11 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Appprofiles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, ignore safety checks when updating the app profile.
      */
     ignoreWarnings?: boolean;
     /**
-     * (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.
+     * The unique name of the app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/_a-zA-Z0-9*`.
      */
     name?: string;
     /**
@@ -3927,7 +3846,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.create({
@@ -4090,7 +4009,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.delete({
@@ -4226,7 +4145,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.get({
@@ -4368,7 +4287,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.list({
@@ -4520,11 +4439,10 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.update({
-     *     // Required. (`OutputOnly`)
      *     // The unique name of the cluster. Values are of the form
      *     // `projects/{project}/instances/{instance}/clusters/a-z*`.
      *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
@@ -4562,7 +4480,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * @param {string} params.name The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4649,11 +4567,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
     clusterId?: string;
@@ -4670,11 +4583,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string;
@@ -4682,22 +4590,12 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Clusters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * DEPRECATED: This field is unused and ignored.
      */
@@ -4710,12 +4608,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string;
 
@@ -4760,7 +4653,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.getIamPolicy(
@@ -4914,7 +4807,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.setIamPolicy(
@@ -5069,7 +4962,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.testIamPermissions(
@@ -5202,11 +5095,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -5219,11 +5107,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -5235,11 +5118,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -5286,7 +5164,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.checkConsistency({
@@ -5442,7 +5320,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.create({
@@ -5595,7 +5473,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.delete({
@@ -5730,7 +5608,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.dropRowRange({
@@ -5878,7 +5756,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.generateConsistencyToken(
@@ -6037,7 +5915,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.get({
@@ -6181,7 +6059,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.getIamPolicy({
@@ -6333,7 +6211,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.list({
@@ -6494,7 +6372,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.modifyColumnFamilies(
@@ -6648,7 +6526,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.setIamPolicy({
@@ -6800,7 +6678,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.testIamPermissions({
@@ -6930,11 +6808,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Checkconsistency
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
@@ -6946,11 +6819,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Tables$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
      */
@@ -6964,22 +6832,12 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Droprowrange
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
@@ -6993,11 +6851,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Generateconsistencytoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
@@ -7010,11 +6863,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
@@ -7025,11 +6873,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Tables$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -7042,11 +6885,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Tables$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      */
@@ -7067,11 +6905,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
@@ -7084,11 +6917,6 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Tables$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -7100,11 +6928,6 @@ export namespace bigtableadmin_v2 {
   }
   export interface Params$Resource$Projects$Instances$Tables$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -7153,7 +6976,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.get({
@@ -7294,7 +7117,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.list({
@@ -7422,22 +7245,12 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

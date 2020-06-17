@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace toolresults_v1beta3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1800,7 +1812,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.clusters.get({
@@ -1953,7 +1965,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.clusters.list({
@@ -2084,11 +2096,6 @@ export namespace toolresults_v1beta3 {
 
   export interface Params$Resource$Clusters$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A Cluster id  Required.
      */
     clusterId?: string;
@@ -2106,11 +2113,6 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Clusters$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An Execution id.  Required.
      */
@@ -2154,7 +2156,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.environments.get({
@@ -2308,7 +2310,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.environments.list({
@@ -2443,11 +2445,6 @@ export namespace toolresults_v1beta3 {
 
   export interface Params$Resource$Environments$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. An Environment id.
      */
     environmentId?: string;
@@ -2466,11 +2463,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Environments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. An Execution id.
      */
@@ -2522,7 +2514,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.create({
@@ -2689,7 +2681,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.get({
@@ -2838,7 +2830,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.list({
@@ -2994,7 +2986,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.patch({
@@ -3141,11 +3133,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Executions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A History id.  Required.
      */
     historyId?: string;
@@ -3165,11 +3152,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Executions$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * An Execution id.  Required.
      */
     executionId?: string;
@@ -3183,11 +3165,6 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Executions$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A History id.  Required.
      */
@@ -3206,11 +3183,6 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Executions$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required.
      */
@@ -3263,7 +3235,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.create({
@@ -3415,7 +3387,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.get({
@@ -3555,7 +3527,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.list({
@@ -3690,11 +3662,6 @@ export namespace toolresults_v1beta3 {
 
   export interface Params$Resource$Histories$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A Project id.  Required.
      */
     projectId?: string;
@@ -3710,11 +3677,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Histories$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A History id.  Required.
      */
     historyId?: string;
@@ -3724,11 +3686,6 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Histories$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only return histories with the given name.  Optional.
      */
@@ -3776,7 +3733,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfMetricsSummary.create({
@@ -3923,11 +3880,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Perfmetricssummary$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A tool results execution ID.
      */
     executionId?: string;
@@ -3979,7 +3931,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.create({
@@ -4138,7 +4090,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.get({
@@ -4298,7 +4250,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.list({
@@ -4431,11 +4383,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Perfsampleseries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A tool results execution ID.
      */
     executionId?: string;
@@ -4460,11 +4407,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Perfsampleseries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A tool results execution ID.
      */
     executionId?: string;
@@ -4487,11 +4429,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Perfsampleseries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A tool results execution ID.
      */
@@ -4543,7 +4480,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.projects.getSettings({
@@ -4676,7 +4613,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.projects.initializeSettings({
@@ -4793,22 +4730,12 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Getsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A Project id.  Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Initializesettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A Project id.  Required.
      */
@@ -4844,7 +4771,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.samples.batchCreate({
@@ -5017,7 +4944,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.samples.list({
@@ -5165,11 +5092,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Samples$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A tool results execution ID.
      */
     executionId?: string;
@@ -5196,11 +5118,6 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
   export interface Params$Resource$Samples$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A tool results execution ID.
      */
@@ -5260,7 +5177,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.accessibilityClusters({
@@ -5420,7 +5337,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.create({
@@ -5599,7 +5516,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.get({
@@ -5760,7 +5677,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.getPerfMetricsSummary({
@@ -5912,7 +5829,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.list({
@@ -6071,7 +5988,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.patch({
@@ -6261,7 +6178,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.publishXunitXmlFiles({
@@ -6414,11 +6331,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Steps$Accessibilityclusters
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
      */
     locale?: string;
@@ -6428,11 +6340,6 @@ export namespace toolresults_v1beta3 {
     name?: string;
   }
   export interface Params$Resource$Steps$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. An Execution id.
      */
@@ -6457,11 +6364,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Steps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A Execution id.  Required.
      */
     executionId?: string;
@@ -6481,11 +6383,6 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Steps$Getperfmetricssummary
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A tool results execution ID.
      */
     executionId?: string;
@@ -6503,11 +6400,6 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
   export interface Params$Resource$Steps$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A Execution id.  Required.
      */
@@ -6530,11 +6422,6 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Steps$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A Execution id.  Required.
      */
@@ -6563,11 +6450,6 @@ export namespace toolresults_v1beta3 {
   }
   export interface Params$Resource$Steps$Publishxunitxmlfiles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A Execution id.  Required.
      */
@@ -6620,7 +6502,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.testCases.get({
@@ -6793,7 +6675,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.testCases.list({
@@ -6940,11 +6822,6 @@ export namespace toolresults_v1beta3 {
 
   export interface Params$Resource$Testcases$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A Execution id  Required.
      */
     executionId?: string;
@@ -6966,11 +6843,6 @@ export namespace toolresults_v1beta3 {
     testCaseId?: string;
   }
   export interface Params$Resource$Testcases$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A Execution id  Required.
      */
@@ -7026,7 +6898,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.thumbnails.list({
@@ -7173,11 +7045,6 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Thumbnails$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An Execution id.  Required.
      */

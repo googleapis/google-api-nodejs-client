@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace containeranalysis_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1567,7 +1579,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.batchCreate({
@@ -1716,7 +1728,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.create({
@@ -1893,7 +1905,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.delete({
@@ -2021,7 +2033,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.get({
@@ -2167,7 +2179,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
@@ -2311,7 +2323,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.list({
@@ -2458,7 +2470,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.patch({
@@ -2632,7 +2644,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
@@ -2776,7 +2788,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
@@ -2906,11 +2918,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
      */
     parent?: string;
@@ -2922,11 +2929,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Notes$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID to use for this note.
      */
@@ -2944,11 +2946,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
@@ -2956,22 +2953,12 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notes$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2984,11 +2971,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Notes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression.
      */
@@ -3009,11 +2991,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
@@ -3030,11 +3007,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3046,11 +3018,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Notes$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3091,7 +3058,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.occurrences.list({
@@ -3222,11 +3189,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Occurrences$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The filter expression.
      */
     filter?: string;
@@ -3273,7 +3235,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.batchCreate({
@@ -3423,7 +3385,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.create({
@@ -3593,7 +3555,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.delete({
@@ -3721,7 +3683,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.get({
@@ -3865,7 +3827,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
@@ -4009,7 +3971,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getNotes({
@@ -4158,7 +4120,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getVulnerabilitySummary(
@@ -4304,7 +4266,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.list({
@@ -4453,7 +4415,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.patch({
@@ -4623,7 +4585,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
@@ -4767,7 +4729,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
@@ -4897,11 +4859,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
      */
     parent?: string;
@@ -4913,11 +4870,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Occurrences$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
      */
@@ -4931,11 +4883,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
@@ -4943,22 +4890,12 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4972,22 +4909,12 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Getnotes
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression.
      */
@@ -4999,11 +4926,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Occurrences$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression.
      */
@@ -5024,11 +4946,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
@@ -5045,11 +4962,6 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -5061,11 +4973,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -5106,7 +5013,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.get({
@@ -5240,7 +5147,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.list({
@@ -5388,7 +5295,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.update({
@@ -5516,22 +5423,12 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Scanconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Scanconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The filter expression.
      */
@@ -5551,11 +5448,6 @@ export namespace containeranalysis_v1beta1 {
   }
   export interface Params$Resource$Projects$Scanconfigs$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.
      */

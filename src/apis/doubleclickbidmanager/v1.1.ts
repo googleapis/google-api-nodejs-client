@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace doubleclickbidmanager_v1_1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -578,7 +590,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.lineitems.downloadlineitems({
@@ -724,7 +736,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.lineitems.uploadlineitems({
@@ -849,22 +861,12 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Lineitems$Downloadlineitems
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DownloadLineItemsRequest;
   }
   export interface Params$Resource$Lineitems$Uploadlineitems
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -900,7 +902,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.createquery({
@@ -1054,7 +1056,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.deletequery({
@@ -1177,7 +1179,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.getquery({
@@ -1313,7 +1315,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.listqueries({
@@ -1454,7 +1456,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.runquery({
@@ -1572,11 +1574,6 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Queries$Createquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
      */
     asynchronous?: boolean;
@@ -1589,21 +1586,11 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Queries$Deletequery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Query ID to delete.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$Getquery extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Query ID to retrieve.
      */
@@ -1611,11 +1598,6 @@ export namespace doubleclickbidmanager_v1_1 {
   }
   export interface Params$Resource$Queries$Listqueries
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      */
@@ -1626,11 +1608,6 @@ export namespace doubleclickbidmanager_v1_1 {
     pageToken?: string;
   }
   export interface Params$Resource$Queries$Runquery extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If true, tries to run the query asynchronously.
      */
@@ -1675,7 +1652,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.reports.listreports({
@@ -1799,11 +1776,6 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Reports$Listreports
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      */
     pageSize?: number;
@@ -1846,7 +1818,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.sdf.download({
@@ -1968,11 +1940,6 @@ export namespace doubleclickbidmanager_v1_1 {
   }
 
   export interface Params$Resource$Sdf$Download extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

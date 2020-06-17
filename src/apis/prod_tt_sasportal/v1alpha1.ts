@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -683,7 +695,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.get({
@@ -816,7 +828,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.list({
@@ -962,7 +974,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.patch({
@@ -1089,21 +1101,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the customer.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of customers to return in the response.
      */
@@ -1114,11 +1116,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
     pageToken?: string;
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of the customer.
      */
@@ -1163,7 +1160,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.bulk({
@@ -1313,7 +1310,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.create({
@@ -1468,7 +1465,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.createSigned({
@@ -1617,7 +1614,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.delete({
@@ -1744,7 +1741,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.get({
@@ -1880,7 +1877,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.list({
@@ -2036,7 +2033,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.move({
@@ -2184,7 +2181,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.patch({
@@ -2339,7 +2336,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.signDevice({
@@ -2478,7 +2475,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.updateSigned({
@@ -2608,11 +2605,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -2624,11 +2616,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -2642,11 +2629,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -2659,11 +2641,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
@@ -2671,22 +2648,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -2707,11 +2674,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device to move.
      */
     name?: string;
@@ -2723,11 +2685,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource path name.
      */
@@ -2745,11 +2702,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Signdevice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource path name.
      */
     name?: string;
@@ -2761,11 +2713,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Updatesigned
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device to update.
      */
@@ -2808,7 +2755,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.create({
@@ -2953,7 +2900,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.delete({
@@ -3080,7 +3027,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.get({
@@ -3211,7 +3158,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.list({
@@ -3358,7 +3305,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.move({
@@ -3507,7 +3454,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.patch({
@@ -3633,11 +3580,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -3650,11 +3592,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
@@ -3662,22 +3599,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -3694,11 +3621,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node to move.
      */
     name?: string;
@@ -3710,11 +3632,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Nodes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name.
      */
@@ -3759,7 +3676,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.nodes.create({
@@ -3904,7 +3821,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.nodes.list({
@@ -4032,11 +3949,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -4048,11 +3960,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Nodes$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -4096,7 +4003,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.installer.generateSecret({
@@ -4240,7 +4147,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.installer.validate({
@@ -4367,22 +4274,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Installer$Generatesecret
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalGenerateSecretRequest;
   }
   export interface Params$Resource$Installer$Validate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4398,6 +4295,143 @@ export namespace prod_tt_sasportal_v1alpha1 {
       this.devices = new Resource$Nodes$Devices(this.context);
       this.nodes = new Resource$Nodes$Nodes(this.context);
     }
+
+    /**
+     * prod_tt_sasportal.nodes.get
+     * @desc Returns a requested node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias prod_tt_sasportal.nodes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the node.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Nodes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalNode>;
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Get,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SasPortalNode>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Get
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalNode>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Get extends StandardParameters {
+    /**
+     * Required. The name of the node.
+     */
+    name?: string;
   }
 
   export class Resource$Nodes$Devices {
@@ -4429,7 +4463,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.bulk({
@@ -4579,7 +4613,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.create({
@@ -4734,7 +4768,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.createSigned({
@@ -4883,7 +4917,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.delete({
@@ -5010,7 +5044,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.get({
@@ -5146,7 +5180,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.list({
@@ -5302,7 +5336,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.move({
@@ -5450,7 +5484,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.patch({
@@ -5605,7 +5639,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.signDevice({
@@ -5744,7 +5778,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.updateSigned({
@@ -5874,11 +5908,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -5890,11 +5919,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -5908,11 +5932,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -5925,11 +5944,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
@@ -5937,22 +5951,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -5973,11 +5977,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device to move.
      */
     name?: string;
@@ -5989,11 +5988,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource path name.
      */
@@ -6011,11 +6005,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Signdevice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource path name.
      */
     name?: string;
@@ -6027,11 +6016,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Updatesigned
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device to update.
      */
@@ -6076,7 +6060,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.create({
@@ -6221,7 +6205,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.delete({
@@ -6348,7 +6332,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.get({
@@ -6478,7 +6462,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.list({
@@ -6624,7 +6608,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.move({
@@ -6772,7 +6756,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.patch({
@@ -6898,11 +6882,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -6915,32 +6894,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Nodes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Nodes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -6956,11 +6920,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Move extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node to move.
      */
     name?: string;
@@ -6972,11 +6931,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name.
      */
@@ -7021,7 +6975,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.bulk({
@@ -7171,7 +7125,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.create({
@@ -7326,7 +7280,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.createSigned({
@@ -7475,7 +7429,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.list({
@@ -7612,11 +7566,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -7628,11 +7577,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -7646,11 +7590,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -7662,11 +7601,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -7714,7 +7648,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.nodes.create({
@@ -7859,7 +7793,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.nodes.list({
@@ -7987,11 +7921,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -8003,11 +7932,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -8051,7 +7975,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.get({
@@ -8188,7 +8112,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.set({
@@ -8326,7 +8250,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.test({
@@ -8452,32 +8376,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export interface Params$Resource$Policies$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalGetPolicyRequest;
   }
   export interface Params$Resource$Policies$Set extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalSetPolicyRequest;
   }
   export interface Params$Resource$Policies$Test extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace books_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1188,7 +1200,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.bookshelves.get({
@@ -1332,7 +1344,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.bookshelves.list({
@@ -1446,11 +1458,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Bookshelves$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of bookshelf to retrieve.
      */
     shelf?: string;
@@ -1464,11 +1471,6 @@ export namespace books_v1 {
     userId?: string;
   }
   export interface Params$Resource$Bookshelves$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * String to identify the originator of this request.
      */
@@ -1508,7 +1510,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.bookshelves.volumes.list({
@@ -1636,11 +1638,6 @@ export namespace books_v1 {
   export interface Params$Resource$Bookshelves$Volumes$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum number of results to return
      */
     maxResults?: number;
@@ -1694,7 +1691,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.cloudloading.addBook({
@@ -1844,7 +1841,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.cloudloading.deleteBook({
@@ -1967,7 +1964,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.cloudloading.updateBook({
@@ -2097,11 +2094,6 @@ export namespace books_v1 {
   export interface Params$Resource$Cloudloading$Addbook
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A drive document id. The upload_client_token must not be set.
      */
     drive_document_id?: string;
@@ -2121,22 +2113,12 @@ export namespace books_v1 {
   export interface Params$Resource$Cloudloading$Deletebook
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id of the book to be removed.
      */
     volumeId?: string;
   }
   export interface Params$Resource$Cloudloading$Updatebook
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2172,7 +2154,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.dictionary.listOfflineMetadata({
@@ -2285,11 +2267,6 @@ export namespace books_v1 {
   export interface Params$Resource$Dictionary$Listofflinemetadata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The device/version ID from which to request the data.
      */
     cpksver?: string;
@@ -2324,7 +2301,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.familysharing.getFamilyInfo({
@@ -2456,7 +2433,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.familysharing.share({
@@ -2586,7 +2563,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.familysharing.unshare({
@@ -2697,22 +2674,12 @@ export namespace books_v1 {
   export interface Params$Resource$Familysharing$Getfamilyinfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
   export interface Params$Resource$Familysharing$Share
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The docid to share.
      */
@@ -2728,11 +2695,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Familysharing$Unshare
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The docid to unshare.
      */
@@ -2782,7 +2744,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.get({
@@ -2932,7 +2894,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.list({
@@ -3055,11 +3017,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Layers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The content version for the requested volume.
      */
     contentVersion?: string;
@@ -3077,11 +3034,6 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Params$Resource$Layers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -3133,7 +3085,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.annotationData.get({
@@ -3304,7 +3256,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.annotationData.list({
@@ -3454,11 +3406,6 @@ export namespace books_v1 {
   export interface Params$Resource$Layers$Annotationdata$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * For the dictionary layer. Whether or not to allow web definitions.
      */
     allowWebDefinitions?: boolean;
@@ -3501,11 +3448,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Layers$Annotationdata$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      */
@@ -3589,7 +3531,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.volumeAnnotations.get({
@@ -3745,7 +3687,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.layers.volumeAnnotations.list({
@@ -3905,11 +3847,6 @@ export namespace books_v1 {
   export interface Params$Resource$Layers$Volumeannotations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the volume annotation to retrieve.
      */
     annotationId?: string;
@@ -3932,11 +3869,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Layers$Volumeannotations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -4028,7 +3960,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.myconfig.getUserSettings({});
@@ -4157,7 +4089,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.myconfig.releaseDownloadAccess({
@@ -4300,7 +4232,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.myconfig.requestAccess({
@@ -4448,7 +4380,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.myconfig.syncVolumeLicenses({
@@ -4602,7 +4534,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.myconfig.updateUserSettings({
@@ -4723,19 +4655,9 @@ export namespace books_v1 {
   }
 
   export interface Params$Resource$Myconfig$Getusersettings
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Myconfig$Releasedownloadaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4755,11 +4677,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Requestaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to request the restrictions.
      */
@@ -4787,11 +4704,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Syncvolumelicenses
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4827,11 +4739,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Updateusersettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4882,7 +4789,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.annotations.delete({
@@ -5008,7 +4915,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.annotations.insert({
@@ -5189,7 +5096,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.annotations.list({
@@ -5350,7 +5257,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.annotations.summary({
@@ -5488,7 +5395,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.annotations.update({
@@ -5643,11 +5550,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Annotations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID for the annotation to delete.
      */
     annotationId?: string;
@@ -5658,11 +5560,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID for the annotation to insert.
      */
@@ -5687,11 +5584,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -5736,11 +5628,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Annotations$Summary
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Array of layer IDs to get the summary for.
      */
     layerIds?: string[];
@@ -5751,11 +5638,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID for the annotation to update.
      */
@@ -5802,7 +5684,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.addVolume({
@@ -5934,7 +5816,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.clearVolumes({
@@ -6060,7 +5942,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.get({
@@ -6203,7 +6085,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.list({
@@ -6335,7 +6217,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.moveVolume({
@@ -6467,7 +6349,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.removeVolume({
@@ -6580,11 +6462,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$Addvolume
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The reason for which the book is added to the library.
      */
     reason?: string;
@@ -6604,11 +6481,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of bookshelf from which to remove a volume.
      */
     shelf?: string;
@@ -6619,11 +6491,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of bookshelf to retrieve.
      */
@@ -6636,22 +6503,12 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Movevolume
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of bookshelf with the volume.
      */
@@ -6671,11 +6528,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Removevolume
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The reason for which the book is removed from the library.
      */
@@ -6723,7 +6575,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.bookshelves.volumes.list({
@@ -6857,11 +6709,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-3166-1 code to override the IP-based location.
      */
     country?: string;
@@ -6924,7 +6771,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.readingpositions.get({
@@ -7066,7 +6913,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.mylibrary.readingpositions.setPosition({
@@ -7189,11 +7036,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Readingpositions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Volume content version for which this reading position is requested.
      */
     contentVersion?: string;
@@ -7208,11 +7050,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Readingpositions$Setposition
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Action that caused this reading position to be set.
      */
@@ -7272,7 +7109,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.notification.get({
@@ -7403,11 +7240,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Notification$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      */
     locale?: string;
@@ -7450,7 +7282,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.onboarding.listCategories({
@@ -7582,7 +7414,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.onboarding.listCategoryVolumes({
@@ -7708,22 +7540,12 @@ export namespace books_v1 {
   export interface Params$Resource$Onboarding$Listcategories
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      */
     locale?: string;
   }
   export interface Params$Resource$Onboarding$Listcategoryvolumes
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * List of category ids requested.
      */
@@ -7775,7 +7597,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.personalizedstream.get({
@@ -7898,11 +7720,6 @@ export namespace books_v1 {
   export interface Params$Resource$Personalizedstream$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
@@ -7944,7 +7761,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.promooffer.accept({
@@ -8088,7 +7905,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.promooffer.dismiss({
@@ -8230,7 +8047,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.promooffer.get({
@@ -8357,11 +8174,6 @@ export namespace books_v1 {
   export interface Params$Resource$Promooffer$Accept
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * device android_id
      */
     androidId?: string;
@@ -8397,11 +8209,6 @@ export namespace books_v1 {
   export interface Params$Resource$Promooffer$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * device android_id
      */
     androidId?: string;
@@ -8431,11 +8238,6 @@ export namespace books_v1 {
     serial?: string;
   }
   export interface Params$Resource$Promooffer$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * device android_id
      */
@@ -8493,7 +8295,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.series.get({
@@ -8604,11 +8406,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Series$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String that identifies the series
      */
     series_id?: string[];
@@ -8643,7 +8440,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.series.membership.get({
@@ -8763,11 +8560,6 @@ export namespace books_v1 {
   export interface Params$Resource$Series$Membership$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Number of maximum results per page to be included in the response.
      */
     page_size?: number;
@@ -8818,7 +8610,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.get({
@@ -8976,7 +8768,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.list({
@@ -9124,11 +8916,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Volumes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-3166-1 code to override the IP-based location.
      */
     country?: string;
@@ -9158,11 +8945,6 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Params$Resource$Volumes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Restrict to volumes by download availability.
      */
@@ -9250,7 +9032,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.associated.list({
@@ -9376,11 +9158,6 @@ export namespace books_v1 {
   export interface Params$Resource$Volumes$Associated$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Association type.
      */
     association?: string;
@@ -9431,7 +9208,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.mybooks.list({
@@ -9563,11 +9340,6 @@ export namespace books_v1 {
   export interface Params$Resource$Volumes$Mybooks$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * How the book was acquired
      */
     acquireMethod?: string[];
@@ -9626,7 +9398,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.list({
@@ -9765,7 +9537,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.rate({
@@ -9895,11 +9667,6 @@ export namespace books_v1 {
   export interface Params$Resource$Volumes$Recommended$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
@@ -9914,11 +9681,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Volumes$Recommended$Rate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -9966,7 +9728,7 @@ export namespace books_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await books.volumes.useruploaded.list({
@@ -10094,11 +9856,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Volumes$Useruploaded$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */

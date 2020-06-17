@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -416,7 +428,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.deleteEvents({
@@ -539,11 +551,6 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Deleteevents
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID}`, where `{projectID}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: `projects/my-project-123`.
      */
     projectName?: string;
@@ -578,7 +585,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.events.list({
@@ -744,7 +751,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.events.report({
@@ -879,11 +886,6 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Events$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The group for which events shall be returned.
      */
     groupId?: string;
@@ -918,11 +920,6 @@ export namespace clouderrorreporting_v1beta1 {
   }
   export interface Params$Resource$Projects$Events$Report
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectId}`, where `{projectId}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).  Example: // `projects/my-project-123`.
      */
@@ -963,7 +960,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.get({
@@ -1104,7 +1101,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.update({
@@ -1228,22 +1225,12 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
      */
     groupName?: string;
   }
   export interface Params$Resource$Projects$Groups$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      */
@@ -1284,7 +1271,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groupStats.list({
@@ -1451,11 +1438,6 @@ export namespace clouderrorreporting_v1beta1 {
 
   export interface Params$Resource$Projects$Groupstats$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
      */

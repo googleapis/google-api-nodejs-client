@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firebasehosting_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -253,11 +265,11 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * A [`header`](/docs/hosting/full-config#headers) defines custom headers to add to a response should the request URL path match the pattern.
+   * A [`header`](/docs/hosting/full-config#headers) is an object that specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
    */
   export interface Schema$Header {
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -370,11 +382,11 @@ export namespace firebasehosting_v1beta1 {
     expireTime?: string | null;
   }
   /**
-   * A [`redirect`](/docs/hosting/full-config#redirects) represents the configuration for returning an HTTP redirect response given a matching request URL path.
+   * A [`redirect`](/docs/hosting/full-config#redirects) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
    */
   export interface Schema$Redirect {
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -420,7 +432,7 @@ export namespace firebasehosting_v1beta1 {
     version?: Schema$Version;
   }
   /**
-   * A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal content rewrite on the version. If the pattern matches, the request will be handled as if it were to the destination path specified in the configuration.
+   * A [`rewrite`](/docs/hosting/full-config#rewrites) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
    */
   export interface Schema$Rewrite {
     /**
@@ -432,7 +444,7 @@ export namespace firebasehosting_v1beta1 {
      */
     function?: string | null;
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -449,7 +461,7 @@ export namespace firebasehosting_v1beta1 {
     run?: Schema$CloudRunRewrite;
   }
   /**
-   * The configuration for how incoming requests to a site should be routed and processed before serving content. The patterns are matched and applied according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
+   * The configuration for how incoming requests to a site should be routed and processed before serving content. The URL request paths are matched against the specified URL patterns in the configuration, then Hosting applies the applicable configuration according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
    */
   export interface Schema$ServingConfig {
     /**
@@ -461,15 +473,15 @@ export namespace firebasehosting_v1beta1 {
      */
     cleanUrls?: boolean | null;
     /**
-     * A list of custom response headers that are added to the content if the request URL path matches the glob.
+     * An array of objects, where each object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
      */
     headers?: Schema$Header[];
     /**
-     * A list of globs that will cause the response to redirect to another location.
+     * An array of objects (called redirect rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
      */
     redirects?: Schema$Redirect[];
     /**
-     * A list of rewrites that will act as if the service were given the destination URL.
+     * An array of objects (called rewrite rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
      */
     rewrites?: Schema$Rewrite[];
     /**
@@ -627,7 +639,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.operations.get({
@@ -741,11 +753,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -793,7 +800,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.getConfig({
@@ -927,7 +934,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.updateConfig({
@@ -1056,22 +1063,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Updateconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
@@ -1130,7 +1127,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.create({
@@ -1296,7 +1293,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.list({
@@ -1422,11 +1419,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -1442,11 +1434,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Channels$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -1493,7 +1480,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.create({
@@ -1648,7 +1635,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.delete({
@@ -1780,7 +1767,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.get({
@@ -1919,7 +1906,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.list({
@@ -2065,7 +2052,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.update({
@@ -2195,11 +2182,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the domain association for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -2212,11 +2194,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
@@ -2224,22 +2201,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Domains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 50.
      */
@@ -2255,11 +2222,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Domains$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -2303,7 +2265,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.create({
@@ -2469,7 +2431,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.list({
@@ -2595,11 +2557,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -2615,11 +2572,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -2668,7 +2620,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.create({
@@ -2845,7 +2797,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.delete({
@@ -2978,7 +2930,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.list({
@@ -3135,7 +3087,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.patch({
@@ -3310,7 +3262,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.populateFiles({
@@ -3443,11 +3395,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the version for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -3468,22 +3415,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version to be deleted, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
      */
@@ -3504,11 +3441,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique identifier for a version, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code> This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
@@ -3524,11 +3456,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Versions$Populatefiles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The version to add files to, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
@@ -3574,7 +3501,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.files.list({
@@ -3704,11 +3631,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Files$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The page size to return. Defaults to 1000.
      */
     pageSize?: number;
@@ -3768,7 +3690,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.getConfig({
@@ -3901,7 +3823,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.updateConfig({
@@ -4029,22 +3951,12 @@ export namespace firebasehosting_v1beta1 {
 
   export interface Params$Resource$Sites$Getconfig extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Updateconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
@@ -4101,7 +4013,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.create({
@@ -4267,7 +4179,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.list({
@@ -4393,11 +4305,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -4413,11 +4320,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Channels$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -4464,7 +4366,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.create({
@@ -4619,7 +4521,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.delete({
@@ -4751,7 +4653,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.get({
@@ -4890,7 +4792,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.list({
@@ -5036,7 +4938,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.update({
@@ -5166,11 +5068,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the domain association for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -5183,11 +5080,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
@@ -5195,22 +5087,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Domains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 50.
      */
@@ -5226,11 +5108,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Domains$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -5274,7 +5151,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.create({
@@ -5440,7 +5317,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.list({
@@ -5566,11 +5443,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -5586,11 +5458,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -5639,7 +5506,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.create({
@@ -5816,7 +5683,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.delete({
@@ -5949,7 +5816,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.list({
@@ -6106,7 +5973,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.patch({
@@ -6281,7 +6148,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.populateFiles({
@@ -6414,11 +6281,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the version for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -6439,22 +6301,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version to be deleted, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
      */
@@ -6475,11 +6327,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique identifier for a version, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code> This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
@@ -6495,11 +6342,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Versions$Populatefiles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The version to add files to, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
@@ -6545,7 +6387,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.files.list({
@@ -6674,11 +6516,6 @@ export namespace firebasehosting_v1beta1 {
 
   export interface Params$Resource$Sites$Versions$Files$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 1000.
      */

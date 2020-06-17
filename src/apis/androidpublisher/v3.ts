@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -41,9 +42,32 @@ export namespace androidpublisher_v3 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -61,19 +85,23 @@ export namespace androidpublisher_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Google Play Developer API
+   * Google Play Android Developer API
    *
-   * Accesses Android application developers&#39; Google Play accounts.
+   * Lets Android application developers access their Google Play accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -93,7 +121,6 @@ export namespace androidpublisher_v3 {
     orders: Resource$Orders;
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
-    systemapks: Resource$Systemapks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -109,18 +136,19 @@ export namespace androidpublisher_v3 {
       this.orders = new Resource$Orders(this.context);
       this.purchases = new Resource$Purchases(this.context);
       this.reviews = new Resource$Reviews(this.context);
-      this.systemapks = new Resource$Systemapks(this.context);
     }
   }
 
+  /**
+   * Information about an APK. The resource for ApksService.
+   */
   export interface Schema$Apk {
     /**
      * Information about the binary payload of this APK.
      */
     binary?: Schema$ApkBinary;
-    testBinary?: Schema$ApkBinary;
     /**
-     * The version code of the APK, as specified in the APK&#39;s manifest file.
+     * The version code of the APK, as specified in the manifest file.
      */
     versionCode?: number | null;
   }
@@ -137,25 +165,40 @@ export namespace androidpublisher_v3 {
      */
     sha256?: string | null;
   }
+  /**
+   * Request to create a new externally hosted APK.
+   */
   export interface Schema$ApksAddExternallyHostedRequest {
     /**
      * The definition of the externally-hosted APK and where it is located.
      */
     externallyHostedApk?: Schema$ExternallyHostedApk;
   }
+  /**
+   * Response for creating a new externally hosted APK.
+   */
   export interface Schema$ApksAddExternallyHostedResponse {
     /**
      * The definition of the externally-hosted APK and where it is located.
      */
     externallyHostedApk?: Schema$ExternallyHostedApk;
   }
+  /**
+   * Response listing all APKs.
+   */
   export interface Schema$ApksListResponse {
+    /**
+     * All APKs.
+     */
     apks?: Schema$Apk[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apksListResponse&quot;.
+     * The kind of this response (&quot;androidpublisher#apksListResponse&quot;).
      */
     kind?: string | null;
   }
+  /**
+   * The app details. The resource for DetailsService.
+   */
   export interface Schema$AppDetails {
     /**
      * The user-visible support email for this app.
@@ -175,18 +218,21 @@ export namespace androidpublisher_v3 {
     defaultLanguage?: string | null;
   }
   /**
-   * Represents an edit of an app. An edit allows clients to make multiple changes before committing them in one operation.
+   * An app edit. The resource for EditsService.
    */
   export interface Schema$AppEdit {
     /**
-     * The time at which the edit will expire and will be no longer valid for use in any subsequent API calls (encoded as seconds since the Epoch).
+     * Output only. The time (as seconds since Epoch) at which the edit will expire and will be no longer valid for use.
      */
     expiryTimeSeconds?: string | null;
     /**
-     * The ID of the edit that can be used in subsequent API calls.
+     * Output only. Identifier of the edit. Can be used in subsequent API calls.
      */
     id?: string | null;
   }
+  /**
+   * Information about a bundle. The resource for BundlesService.
+   */
   export interface Schema$Bundle {
     /**
      * A sha1 hash of the upload payload, encoded as a hex string and matching the output of the sha1sum command.
@@ -197,17 +243,26 @@ export namespace androidpublisher_v3 {
      */
     sha256?: string | null;
     /**
-     * The version code of the Android App Bundle. As specified in the Android App Bundle&#39;s base module APK manifest file.
+     * The version code of the Android App Bundle, as specified in the Android App Bundle&#39;s base module APK manifest file.
      */
     versionCode?: number | null;
   }
+  /**
+   * Response listing all bundles.
+   */
   export interface Schema$BundlesListResponse {
+    /**
+     * All bundles.
+     */
     bundles?: Schema$Bundle[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#bundlesListResponse&quot;.
+     * The kind of this response (&quot;androidpublisher#bundlesListResponse&quot;).
      */
     kind?: string | null;
   }
+  /**
+   * An entry of conversation between user and developer.
+   */
   export interface Schema$Comment {
     /**
      * A comment from a developer.
@@ -218,13 +273,17 @@ export namespace androidpublisher_v3 {
      */
     userComment?: Schema$UserComment;
   }
-  export interface Schema$Control {
-    modRanges?: Schema$ModRange[];
-    stratifiedSamplings?: Schema$StratifiedSampling[];
-    versionCodes?: string[] | null;
-  }
+  /**
+   * Country targeting specification.
+   */
   export interface Schema$CountryTargeting {
+    /**
+     * Countries to target, specified as two letter [CLDR codes](https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html).
+     */
     countries?: string[] | null;
+    /**
+     * Include &quot;rest of world&quot; as well as explicitly targeted countries.
+     */
     includeRestOfWorld?: boolean | null;
   }
   /**
@@ -236,9 +295,18 @@ export namespace androidpublisher_v3 {
      */
     symbolType?: string | null;
   }
+  /**
+   * Responses for the upload.
+   */
   export interface Schema$DeobfuscationFilesUploadResponse {
+    /**
+     * The uploaded Deobfuscation File configuration.
+     */
     deobfuscationFile?: Schema$DeobfuscationFile;
   }
+  /**
+   * Developer entry from conversation between user and developer.
+   */
   export interface Schema$DeveloperComment {
     /**
      * The last time at which this comment was updated.
@@ -249,13 +317,16 @@ export namespace androidpublisher_v3 {
      */
     text?: string | null;
   }
+  /**
+   * Characteristics of the user&#39;s device.
+   */
   export interface Schema$DeviceMetadata {
     /**
-     * Device CPU make e.g. &quot;Qualcomm&quot;
+     * Device CPU make, e.g. &quot;Qualcomm&quot;
      */
     cpuMake?: string | null;
     /**
-     * Device CPU model e.g. &quot;MSM8974&quot;
+     * Device CPU model, e.g. &quot;MSM8974&quot;
      */
     cpuModel?: string | null;
     /**
@@ -279,7 +350,7 @@ export namespace androidpublisher_v3 {
      */
     productName?: string | null;
     /**
-     * Device RAM in Megabytes e.g. &quot;2048&quot;
+     * Device RAM in Megabytes, e.g. &quot;2048&quot;
      */
     ramMb?: number | null;
     /**
@@ -295,26 +366,30 @@ export namespace androidpublisher_v3 {
      */
     screenWidthPx?: number | null;
   }
-  export interface Schema$DeviceSpec {
-    screenDensity?: number | null;
-    supportedAbis?: string[] | null;
-    supportedLocales?: string[] | null;
-  }
+  /**
+   * An expansion file. The resource for ExpansionFilesService.
+   */
   export interface Schema$ExpansionFile {
     /**
-     * If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK&#39;s Expansion File. The field&#39;s value is the size of the uploaded Expansion File in bytes.
+     * If set, this field indicates that this APK has an expansion file uploaded to it: this APK does not reference another APK&#39;s expansion file. The field&#39;s value is the size of the uploaded expansion file in bytes.
      */
     fileSize?: string | null;
     /**
-     * If set this APK&#39;s Expansion File references another APK&#39;s Expansion File. The file_size field will not be set.
+     * If set, this APK&#39;s expansion file references another APK&#39;s expansion file. The file_size field will not be set.
      */
     referencesVersion?: number | null;
   }
+  /**
+   * Response for uploading an expansion file.
+   */
   export interface Schema$ExpansionFilesUploadResponse {
+    /**
+     * The uploaded expansion file configuration.
+     */
     expansionFile?: Schema$ExpansionFile;
   }
   /**
-   * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to enterprises who are using Google Play for Work, and whos application is restricted to the enterprise private channel
+   * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
    */
   export interface Schema$ExternallyHostedApk {
     /**
@@ -322,7 +397,7 @@ export namespace androidpublisher_v3 {
      */
     applicationLabel?: string | null;
     /**
-     * A certificate (or array of certificates if a certificate-chain is used) used to signed this APK, represented as a base64 encoded byte array.
+     * A certificate (or array of certificates if a certificate-chain is used) used to sign this APK, represented as a base64 encoded byte array.
      */
     certificateBase64s?: string[] | null;
     /**
@@ -330,11 +405,11 @@ export namespace androidpublisher_v3 {
      */
     externallyHostedUrl?: string | null;
     /**
-     * The SHA1 checksum of this APK, represented as a base64 encoded byte array.
+     * The sha1 checksum of this APK, represented as a base64 encoded byte array.
      */
     fileSha1Base64?: string | null;
     /**
-     * The SHA256 checksum of this APK, represented as a base64 encoded byte array.
+     * The sha256 checksum of this APK, represented as a base64 encoded byte array.
      */
     fileSha256Base64?: string | null;
     /**
@@ -368,7 +443,7 @@ export namespace androidpublisher_v3 {
     /**
      * The permissions requested by this APK.
      */
-    usesPermissions?: Schema$ExternallyHostedApkUsesPermission[];
+    usesPermissions?: Schema$UsesPermission[];
     /**
      * The version code of this APK.
      */
@@ -379,29 +454,19 @@ export namespace androidpublisher_v3 {
     versionName?: string | null;
   }
   /**
-   * A permission used by this APK.
+   * An uploaded image. The resource for ImagesService.
    */
-  export interface Schema$ExternallyHostedApkUsesPermission {
-    /**
-     * Optionally, the maximum SDK version for which the permission is required.
-     */
-    maxSdkVersion?: number | null;
-    /**
-     * The name of the permission requested.
-     */
-    name?: string | null;
-  }
   export interface Schema$Image {
     /**
      * A unique id representing this image.
      */
     id?: string | null;
     /**
-     * A sha1 hash of the image that was uploaded.
+     * A sha1 hash of the image.
      */
     sha1?: string | null;
     /**
-     * A sha256 hash of the image that was uploaded.
+     * A sha256 hash of the image.
      */
     sha256?: string | null;
     /**
@@ -409,69 +474,118 @@ export namespace androidpublisher_v3 {
      */
     url?: string | null;
   }
+  /**
+   * Response for deleting all images.
+   */
   export interface Schema$ImagesDeleteAllResponse {
+    /**
+     * The deleted images.
+     */
     deleted?: Schema$Image[];
   }
+  /**
+   * Response listing all images.
+   */
   export interface Schema$ImagesListResponse {
+    /**
+     * All listed Images.
+     */
     images?: Schema$Image[];
   }
+  /**
+   * Response for uploading an image.
+   */
   export interface Schema$ImagesUploadResponse {
+    /**
+     * The uploaded image.
+     */
     image?: Schema$Image;
   }
+  /**
+   * An in-app product. The resource for InappproductsService.
+   */
   export interface Schema$InAppProduct {
     /**
-     * The default language of the localized data, as defined by BCP 47. e.g. &quot;en-US&quot;, &quot;en-GB&quot;.
+     * Default language of the localized data, as defined by BCP-47. e.g. &quot;en-US&quot;.
      */
     defaultLanguage?: string | null;
     /**
-     * Default price cannot be zero. In-app products can never be free. Default price is always in the developer&#39;s Checkout merchant currency.
+     * Default price. Cannot be zero, as in-app products are never free. Always in the developer&#39;s Checkout merchant currency.
      */
     defaultPrice?: Schema$Price;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. It will allow developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values = &quot;P3D&quot; (three days), &quot;P7D&quot; (seven days), &quot;P14D&quot; (fourteen days), and &quot;P30D&quot; (thirty days)
+     * Grace period of the subscription, specified in ISO 8601 format. Allows developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values are P0D (zero days), P3D (three days), P7D (seven days), P14D (14 days), and P30D (30 days).
      */
     gracePeriod?: string | null;
     /**
-     * List of localized title and description data.
+     * List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. &quot;en-US&quot;.
      */
     listings?: {[key: string]: Schema$InAppProductListing} | null;
     /**
-     * The package name of the parent app.
+     * Package name of the parent app.
      */
     packageName?: string | null;
     /**
-     * Prices per buyer region. None of these prices should be zero. In-app products can never be free.
+     * Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2.
      */
     prices?: {[key: string]: Schema$Price} | null;
     /**
-     * Purchase type enum value. Unmodifiable after creation.
+     * The type of the product, e.g. a recurring subscription.
      */
     purchaseType?: string | null;
     /**
-     * The stock-keeping-unit (SKU) of the product, unique within an app.
+     * Stock-keeping-unit (SKU) of the product, unique within an app.
      */
     sku?: string | null;
+    /**
+     * The status of the product, e.g. whether it&#39;s active.
+     */
     status?: string | null;
     /**
-     * Subscription period, specified in ISO 8601 format. Acceptable values are &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
+     * Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year).
      */
     subscriptionPeriod?: string | null;
     /**
-     * Trial period, specified in ISO 8601 format. Acceptable values are anything between &quot;P7D&quot; (seven days) and &quot;P999D&quot; (999 days). Seasonal subscriptions cannot have a trial period.
+     * Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days).
      */
     trialPeriod?: string | null;
   }
+  /**
+   * Store listing of a single in-app product.
+   */
   export interface Schema$InAppProductListing {
+    /**
+     * Localized entitlement benefits for a subscription.
+     */
+    benefits?: string[] | null;
+    /**
+     * Description for the store listing.
+     */
     description?: string | null;
+    /**
+     * Title for the store listing.
+     */
     title?: string | null;
   }
+  /**
+   * Response listing all in-app products.
+   */
   export interface Schema$InappproductsListResponse {
+    /**
+     * All in-app products.
+     */
     inappproduct?: Schema$InAppProduct[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsListResponse&quot;.
+     * The kind of this response (&quot;androidpublisher#inappproductsListResponse&quot;).
      */
     kind?: string | null;
+    /**
+     * Information about the current page.
+     */
     pageInfo?: Schema$PageInfo;
+    /**
+     * Pagination token, to handle a number of products that is over one page.
+     */
     tokenPagination?: Schema$TokenPagination;
   }
   /**
@@ -479,7 +593,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$InternalAppSharingArtifact {
     /**
-     * The SHA256 fingerprint of the certificate used to signed the generated artifact.
+     * The sha256 fingerprint of the certificate used to sign the generated artifact.
      */
     certificateFingerprint?: string | null;
     /**
@@ -487,7 +601,7 @@ export namespace androidpublisher_v3 {
      */
     downloadUrl?: string | null;
     /**
-     * The SHA-256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command.
+     * The sha256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command.
      */
     sha256?: string | null;
   }
@@ -512,21 +626,24 @@ export namespace androidpublisher_v3 {
      */
     introductoryPricePeriod?: string | null;
   }
+  /**
+   * A localized store listing. The resource for ListingsService.
+   */
   export interface Schema$Listing {
     /**
-     * Full description of the app; this may be up to 4000 characters in length.
+     * Full description of the app.
      */
     fullDescription?: string | null;
     /**
-     * Language localization code (for example, &quot;de-AT&quot; for Austrian German).
+     * Language localization code (a BCP-47 language tag; for example, &quot;de-AT&quot; for Austrian German).
      */
     language?: string | null;
     /**
-     * Short description of the app (previously known as promo text); this may be up to 80 characters in length.
+     * Short description of the app.
      */
     shortDescription?: string | null;
     /**
-     * App&#39;s localized title.
+     * Localized title of the app.
      */
     title?: string | null;
     /**
@@ -534,39 +651,59 @@ export namespace androidpublisher_v3 {
      */
     video?: string | null;
   }
+  /**
+   * Response listing all localized listings.
+   */
   export interface Schema$ListingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#listingsListResponse&quot;.
+     * The kind of this response (&quot;androidpublisher#listingsListResponse&quot;).
      */
     kind?: string | null;
+    /**
+     * All localized listings.
+     */
     listings?: Schema$Listing[];
   }
+  /**
+   * Release notes specification, i.e. language and text.
+   */
   export interface Schema$LocalizedText {
     /**
-     * The language code, in BCP 47 format (eg &quot;en-US&quot;).
+     * Language localization code (a BCP-47 language tag; for example, &quot;de-AT&quot; for Austrian German).
      */
     language?: string | null;
     /**
-     * The text in the given `language`.
+     * The text in the given language.
      */
     text?: string | null;
   }
-  export interface Schema$ModRange {
-    end?: string | null;
-    start?: string | null;
-  }
+  /**
+   * Information about the current page.  List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.
+   */
   export interface Schema$PageInfo {
+    /**
+     * Maximum number of results returned in one page. ! The number of results included in the API response.
+     */
     resultPerPage?: number | null;
+    /**
+     * Index of the first result returned in the current page.
+     */
     startIndex?: number | null;
+    /**
+     * Total number of results available on the backend ! The total number of results in the result set.
+     */
     totalResults?: number | null;
   }
+  /**
+   * Definition of a price, i.e. currency and units.
+   */
   export interface Schema$Price {
     /**
-     * 3 letter Currency code, as defined by ISO 4217.
+     * 3 letter Currency code, as defined by ISO 4217. See java/com/google/common/money/CurrencyCode.java
      */
     currency?: string | null;
     /**
-     * The price in millionths of the currency base unit represented as a string.
+     * Price in 1/million of the currency base unit, represented as a string.
      */
     priceMicros?: string | null;
   }
@@ -575,11 +712,11 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ProductPurchase {
     /**
-     * The acknowledgement state of the inapp product. Possible values are:   - Yet to be acknowledged  - Acknowledged
+     * The acknowledgement state of the inapp product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged
      */
     acknowledgementState?: number | null;
     /**
-     * The consumption state of the inapp product. Possible values are:   - Yet to be consumed  - Consumed
+     * The consumption state of the inapp product. Possible values are: 0. Yet to be consumed 1. Consumed
      */
     consumptionState?: number | null;
     /**
@@ -591,6 +728,14 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
+     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
+     */
+    obfuscatedExternalAccountId?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user&#39;s profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     */
+    obfuscatedExternalProfileId?: string | null;
+    /**
      * The order id associated with the purchase of the inapp product.
      */
     orderId?: string | null;
@@ -599,7 +744,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string | null;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
+     * The purchase state of the order. Possible values are: 0. Purchased 1. Canceled 2. Pending
      */
     purchaseState?: number | null;
     /**
@@ -611,7 +756,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseToken?: string | null;
     /**
-     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
+     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code) 2. Rewarded (i.e. from watching a video ad instead of paying)
      */
     purchaseType?: number | null;
     /**
@@ -619,12 +764,18 @@ export namespace androidpublisher_v3 {
      */
     quantity?: number | null;
   }
+  /**
+   * Request for the product.purchases.acknowledge API.
+   */
   export interface Schema$ProductPurchasesAcknowledgeRequest {
     /**
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
   }
+  /**
+   * An Android app review.
+   */
   export interface Schema$Review {
     /**
      * The name of the user who wrote the review.
@@ -639,6 +790,9 @@ export namespace androidpublisher_v3 {
      */
     reviewId?: string | null;
   }
+  /**
+   * The result of replying/updating a reply to review.
+   */
   export interface Schema$ReviewReplyResult {
     /**
      * The time at which the reply took effect.
@@ -649,40 +803,47 @@ export namespace androidpublisher_v3 {
      */
     replyText?: string | null;
   }
+  /**
+   * Response listing reviews.
+   */
   export interface Schema$ReviewsListResponse {
+    /**
+     * Information about the current page.
+     */
     pageInfo?: Schema$PageInfo;
+    /**
+     * List of reviews.
+     */
     reviews?: Schema$Review[];
+    /**
+     * Pagination token, to handle a number of products that is over one page.
+     */
     tokenPagination?: Schema$TokenPagination;
   }
+  /**
+   * Request to reply to review or update existing reply.
+   */
   export interface Schema$ReviewsReplyRequest {
     /**
      * The text to set as the reply. Replies of more than approximately 350 characters will be rejected. HTML tags will be stripped.
      */
     replyText?: string | null;
   }
+  /**
+   * Response on status of replying to a review.
+   */
   export interface Schema$ReviewsReplyResponse {
+    /**
+     * The result of replying/updating a reply to review.
+     */
     result?: Schema$ReviewReplyResult;
-  }
-  export interface Schema$Sampling {
-    modRanges?: Schema$ModRange[];
-    modulus?: string | null;
-    salt?: number | null;
-    stratifiedSamplings?: Schema$StratifiedSampling[];
-    useAndroidId?: boolean | null;
-  }
-  export interface Schema$StratifiedSampling {
-    modRanges?: Schema$ModRange[];
-    stratum?: Schema$Stratum;
-  }
-  export interface Schema$Stratum {
-    brand?: string | null;
   }
   /**
    * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
    */
   export interface Schema$SubscriptionCancelSurveyResult {
     /**
-     * The cancellation reason the user chose in the survey. Possible values are:   - Other  - I don&#39;t use this service enough  - Technical issues  - Cost-related reasons  - I found a better app
+     * The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don&#39;t use this service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app
      */
     cancelSurveyReason?: number | null;
     /**
@@ -699,7 +860,7 @@ export namespace androidpublisher_v3 {
      */
     desiredExpiryTimeMillis?: string | null;
     /**
-     * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
+     * The expected expiry time for the subscription.  If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
   }
@@ -712,7 +873,7 @@ export namespace androidpublisher_v3 {
      */
     newPrice?: Schema$Price;
     /**
-     * The current state of the price change. Possible values are:   - Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API.  - Accepted: State for an accepted price change that the subscription will renew with unless it&#39;s canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
+     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to     agree. In this state, you can optionally seek confirmation from the     user using the In-App API. 1. Accepted: State for an accepted price change that the subscription     will renew with unless it&#39;s canceled. The price change takes effect on     a future date when the subscription renews. Note that the change might     not occur when the subscription is renewed next.
      */
     state?: number | null;
   }
@@ -721,7 +882,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SubscriptionPurchase {
     /**
-     * The acknowledgement state of the subscription product. Possible values are:   - Yet to be acknowledged  - Acknowledged
+     * The acknowledgement state of the subscription product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged
      */
     acknowledgementState?: number | null;
     /**
@@ -733,7 +894,7 @@ export namespace androidpublisher_v3 {
      */
     autoResumeTimeMillis?: string | null;
     /**
-     * The reason why a subscription was canceled or is not auto-renewing. Possible values are:   - User canceled the subscription  - Subscription was canceled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was canceled by the developer
+     * The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled the subscription 1. Subscription was canceled by the system,       for example because of a billing problem 2. Subscription was replaced with a new subscription 3. Subscription was canceled by the developer
      */
     cancelReason?: number | null;
     /**
@@ -777,19 +938,27 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * The purchase token of the originating purchase if this subscription is one of the following:   - Re-signup of a canceled but non-lapsed subscription  - Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
+     * The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
      */
     linkedPurchaseToken?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Present for the following purchases:   * If account linking happened as part of the subscription purchase flow.   * It was specified using     https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid     when the purchase was made.
+     */
+    obfuscatedExternalAccountId?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user&#39;s profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     */
+    obfuscatedExternalProfileId?: string | null;
     /**
      * The order id of the latest recurring order associated with the purchase of the subscription.
      */
     orderId?: string | null;
     /**
-     * The payment state of the subscription. Possible values are:   - Payment pending  - Payment received  - Free trial  - Pending deferred upgrade/downgrade
+     * The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade
      */
     paymentState?: number | null;
     /**
-     * Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
+     * Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is &amp;euro;1.99, price_amount_micros is 1990000.
      */
     priceAmountMicros?: string | null;
     /**
@@ -813,11 +982,11 @@ export namespace androidpublisher_v3 {
      */
     promotionCode?: string | null;
     /**
-     * The type of promotion applied on this purchase. This field is only set if a promotion is applied when the subscription was purchased. Possible values are:   - One time code  - Vanity code
+     * The type of promotion applied on this purchase. This field is only set if a promotion is applied when the subscription was purchased. Possible values are: 0. One time code 1. Vanity code
      */
     promotionType?: number | null;
     /**
-     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)
+     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code)
      */
     purchaseType?: number | null;
     /**
@@ -829,110 +998,127 @@ export namespace androidpublisher_v3 {
      */
     userCancellationTimeMillis?: string | null;
   }
+  /**
+   * Request for the purchases.subscriptions.acknowledge API.
+   */
   export interface Schema$SubscriptionPurchasesAcknowledgeRequest {
     /**
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
   }
+  /**
+   * Request for the purchases.subscriptions.defer API.
+   */
   export interface Schema$SubscriptionPurchasesDeferRequest {
     /**
      * The information about the new desired expiry time for the subscription.
      */
     deferralInfo?: Schema$SubscriptionDeferralInfo;
   }
+  /**
+   * Response for the purchases.subscriptions.defer API.
+   */
   export interface Schema$SubscriptionPurchasesDeferResponse {
     /**
      * The new expiry time for the subscription in milliseconds since the Epoch.
      */
     newExpiryTimeMillis?: string | null;
   }
-  export interface Schema$SystemApkVariantsCreateRequest {
-    deviceSpec?: Schema$DeviceSpec;
-  }
-  export interface Schema$SystemApkVariantsListResponse {
-    variants?: Schema$Variant[];
-  }
+  /**
+   * The testers of an app. The resource for TestersService.
+   */
   export interface Schema$Testers {
-    autoEnrolledAndroidGroups?: string[] | null;
-    autoEnrolledGoogleGroups?: string[] | null;
-    excludedGoogleGroups?: string[] | null;
     /**
-     * A list of all Google Groups, as email addresses, that define testers for this track.
+     * All testing Google Groups, as email addresses.
      */
     googleGroups?: string[] | null;
   }
+  /**
+   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970.
+   */
   export interface Schema$Timestamp {
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Must be from 0 to 999,999,999 inclusive.
+     */
     nanos?: number | null;
+    /**
+     * Represents seconds of UTC time since Unix epoch.
+     */
     seconds?: string | null;
   }
+  /**
+   * Pagination information returned by a List operation when token pagination is enabled.  List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.  When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.
+   */
   export interface Schema$TokenPagination {
+    /**
+     * Tokens to pass to the standard list field &#39;page_token&#39;. Whenever available, tokens are preferred over manipulating start_index.
+     */
     nextPageToken?: string | null;
     previousPageToken?: string | null;
   }
+  /**
+   * A track configuration. The resource for TracksService.
+   */
   export interface Schema$Track {
     /**
-     * A list of all active releases in this track during a read request. On an update request, it represents desired changes.
+     * In a read request, represents all active releases in the track. In an update request, represents desired changes.
      */
     releases?: Schema$TrackRelease[];
     /**
-     * Identifier for this track.
+     * Identifier of the track.
      */
     track?: string | null;
   }
+  /**
+   * A release within a track.
+   */
   export interface Schema$TrackRelease {
-    controls?: Schema$Control[];
+    /**
+     * Restricts a release to a specific set of countries.
+     */
     countryTargeting?: Schema$CountryTargeting;
     /**
-     * In-app update priority of the release. All newly added APKs in the release will be considered at this priority. in_app_update_priority can take values between [0, 5]. 5 is the highest priority. Default priority is 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates.
+     * In-app update priority of the release. All newly added APKs in the release will be considered at this priority. Can take values in the range [0, 5], with 5 the highest priority. Defaults to 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates.
      */
     inAppUpdatePriority?: number | null;
     /**
-     * The release name, used to identify this release in the Play Console UI. Not required to be unique. This is optional, if not set it will be generated from the version_name in the APKs.
+     * The release name. Not required to be unique. If not set, the name is generated from the APK&#39;s version_name. If the release contains multiple APKs, the name is generated from the date.
      */
     name?: string | null;
-    pinnedVersions?: Schema$TrackReleasePin[];
     /**
-     * The description of what is new in the app in this release.
+     * A description of what is new in this release.
      */
     releaseNotes?: Schema$LocalizedText[];
-    rollbackEnabled?: boolean | null;
-    sampling?: Schema$Sampling;
     /**
-     * The desired status of this release.
+     * The status of the release.
      */
     status?: string | null;
     /**
-     * Fraction of users who are eligible to receive the release. 0 &lt; fraction &lt; 1. To be set, release status must be &quot;inProgress&quot; or &quot;halted&quot;.
+     * Fraction of users who are eligible for a staged release. 0 &lt; fraction &lt; 1. Can only be set when status is &quot;inProgress&quot; or &quot;halted&quot;.
      */
     userFraction?: number | null;
     /**
-     * A list of all version codes of APKs that will be exposed to the users of this track when this release is rolled out. Note that this list should contain all versions you wish to be active, including those you wish to retain from previous releases.
+     * Version codes of all APKs in the release. Must include version codes to retain from previous releases.
      */
     versionCodes?: string[] | null;
   }
-  export interface Schema$TrackReleasePin {
-    targetings?: Schema$TrackReleasePinPinTargeting[];
-    versionCodes?: string[] | null;
-  }
-  export interface Schema$TrackReleasePinPinTargeting {
-    countryCodes?: string[] | null;
-    devices?: Schema$TrackReleasePinPinTargetingDevicePin[];
-    phoneskyVersions?: string[] | null;
-    sdkVersions?: number[] | null;
-  }
-  export interface Schema$TrackReleasePinPinTargetingDevicePin {
-    brand?: string | null;
-    device?: string | null;
-    product?: string | null;
-  }
+  /**
+   * Response listing all tracks.
+   */
   export interface Schema$TracksListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#tracksListResponse&quot;.
+     * The kind of this response (&quot;androidpublisher#tracksListResponse&quot;).
      */
     kind?: string | null;
+    /**
+     * All tracks.
+     */
     tracks?: Schema$Track[];
   }
+  /**
+   * User entry from conversation between user and developer.
+   */
   export interface Schema$UserComment {
     /**
      * Integer Android SDK version of the user&#39;s device at the time the review was written, e.g. 23 is Marshmallow. May be absent.
@@ -951,7 +1137,7 @@ export namespace androidpublisher_v3 {
      */
     device?: string | null;
     /**
-     * Some information about the characteristics of the user&#39;s device
+     * Information about the characteristics of the user&#39;s device.
      */
     deviceMetadata?: Schema$DeviceMetadata;
     /**
@@ -959,7 +1145,7 @@ export namespace androidpublisher_v3 {
      */
     lastModified?: Schema$Timestamp;
     /**
-     * Untranslated text of the review, in the case where the review has been translated. If the review has not been translated this is left blank.
+     * Untranslated text of the review, where the review was translated. If the review was not translated this is left blank.
      */
     originalText?: string | null;
     /**
@@ -975,20 +1161,26 @@ export namespace androidpublisher_v3 {
      */
     text?: string | null;
     /**
-     * Number of users who have given this review a thumbs down
+     * Number of users who have given this review a thumbs down.
      */
     thumbsDownCount?: number | null;
     /**
-     * Number of users who have given this review a thumbs up
+     * Number of users who have given this review a thumbs up.
      */
     thumbsUpCount?: number | null;
   }
   /**
-   * Represents the variant of a generated system APK from an uploaded App Bundle.
+   * A permission used by this APK.
    */
-  export interface Schema$Variant {
-    deviceSpec?: Schema$DeviceSpec;
-    variantId?: number | null;
+  export interface Schema$UsesPermission {
+    /**
+     * Optionally, the maximum SDK version for which the permission is required.
+     */
+    maxSdkVersion?: number | null;
+    /**
+     * The name of the permission requested.
+     */
+    name?: string | null;
   }
   /**
    * A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.
@@ -1011,11 +1203,11 @@ export namespace androidpublisher_v3 {
      */
     purchaseToken?: string | null;
     /**
-     * The reason why the purchase was voided, possible values are:   - Other  - Remorse  - Not_received  - Defective  - Accidental_purchase  - Fraud  - Friendly_fraud  - Chargeback
+     * The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback
      */
     voidedReason?: number | null;
     /**
-     * The initiator of voided purchase, possible values are:   - User  - Developer  - Google
+     * The initiator of voided purchase, possible values are: 0. User 1. Developer 2. Google
      */
     voidedSource?: number | null;
     /**
@@ -1023,8 +1215,17 @@ export namespace androidpublisher_v3 {
      */
     voidedTimeMillis?: string | null;
   }
+  /**
+   * Response for the voidedpurchases.list API.
+   */
   export interface Schema$VoidedPurchasesListResponse {
+    /**
+     * General pagination information.
+     */
     pageInfo?: Schema$PageInfo;
+    /**
+     * Pagination information for token pagination.
+     */
     tokenPagination?: Schema$TokenPagination;
     voidedPurchases?: Schema$VoidedPurchase[];
   }
@@ -1057,7 +1258,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.commit
-     * @desc Commits/applies the changes made in this edit back to the app.
+     * @desc Commits an app edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1078,13 +1279,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.commit({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1105,8 +1306,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1191,7 +1392,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.delete
-     * @desc Deletes an edit for an app. Creating a new edit will automatically delete any of your previous edits so this method need only be called if you want to preemptively abandon an edit.
+     * @desc Deletes an app edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1212,13 +1413,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.delete({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1233,8 +1434,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1317,7 +1518,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.get
-     * @desc Returns information about the edit specified. Calls will fail if the edit is no long active (e.g. has been deleted, superseded or expired).
+     * @desc Gets an app edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1338,13 +1539,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.get({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1365,8 +1566,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1451,7 +1652,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.insert
-     * @desc Creates a new edit for an app, populated with the app's current state.
+     * @desc Creates a new edit for an app.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1472,11 +1673,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.insert({
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1506,7 +1707,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {().AppEdit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1591,7 +1792,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.validate
-     * @desc Checks that the edit can be successfully committed. The edit's changes are not applied to the live app.
+     * @desc Validates an app edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1612,13 +1813,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.validate({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1639,8 +1840,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1726,57 +1927,37 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Edits$Commit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -1787,16 +1968,11 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Validate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
@@ -1809,7 +1985,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.apks.addexternallyhosted
-     * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for Work whose application is configured to restrict distribution to the enterprise domain.
+     * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1830,13 +2006,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.addexternallyhosted({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1864,8 +2040,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {().ApksAddExternallyHostedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1961,6 +2137,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.apks.list
+     * @desc Lists all current APKs of the app and edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1981,13 +2158,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.list({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2008,8 +2185,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2094,6 +2271,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.apks.upload
+     * @desc Uploads an APK and adds to the current edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2114,13 +2292,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.upload({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -2136,7 +2314,6 @@ export namespace androidpublisher_v3 {
      *   // Example response
      *   // {
      *   //   "binary": {},
-     *   //   "testBinary": {},
      *   //   "versionCode": 0
      *   // }
      * }
@@ -2150,8 +2327,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2246,16 +2423,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Apks$Addexternallyhosted
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -2266,32 +2438,22 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Apks$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Apks$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -2324,6 +2486,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.bundles.list
+     * @desc Lists all current Android App Bundles of the app and edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2344,13 +2507,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.list({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2371,8 +2534,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2461,7 +2624,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.bundles.upload
-     * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2482,15 +2645,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.upload({
-     *     // Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
+     *     // Must be set to true if the bundle installation may trigger a warning on
+     *     // user devices (for example, if installation size may be over a threshold,
+     *     // typically 100 MB).
      *     ackBundleInstallationWarning: 'placeholder-value',
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -2521,8 +2686,8 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.ackBundleInstallationWarning Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2617,36 +2782,26 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Bundles$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Bundles$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
     ackBundleInstallationWarning?: boolean;
     /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -2679,7 +2834,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.deobfuscationfiles.upload
-     * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation or symbolication file already exists, it will be replaced. See https://developer.android.com/studio/build/shrink-code to learn more about deobfuscation files.
+     * @desc Uploads a new deobfuscation file and attaches to the specified APK.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2700,17 +2855,18 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.deobfuscationfiles.upload({
-     *     // The version code of the APK whose deobfuscation file is being uploaded.
+     *     // The version code of the APK whose Deobfuscation File is being
+     *     // uploaded.
      *     apkVersionCode: 'placeholder-value',
-     *
+     *     // The type of the deobfuscation file.
      *     deobfuscationFileType: 'placeholder-value',
      *     // Unique identifier for this edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
+     *     // Unique identifier for the Android app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -2738,10 +2894,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose deobfuscation file is being uploaded.
-     * @param {string} params.deobfuscationFileType
+     * @param {integer} params.apkVersionCode The version code of the APK whose Deobfuscation File is being uploaded.
+     * @param {string} params.deobfuscationFileType The type of the deobfuscation file.
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier for the Android app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2855,16 +3011,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Deobfuscationfiles$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The version code of the APK whose deobfuscation file is being uploaded.
+     * The version code of the APK whose Deobfuscation File is being uploaded.
      */
     apkVersionCode?: number;
     /**
-     *
+     * The type of the deobfuscation file.
      */
     deobfuscationFileType?: string;
     /**
@@ -2872,7 +3023,7 @@ export namespace androidpublisher_v3 {
      */
     editId?: string;
     /**
-     * Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
+     * Unique identifier for the Android app.
      */
     packageName?: string;
 
@@ -2905,7 +3056,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.details.get
-     * @desc Fetches app details for this edit. This includes the default language and developer support contact information.
+     * @desc Gets details of an app.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2926,13 +3077,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.get({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2955,8 +3106,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3042,7 +3193,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.details.patch
-     * @desc Updates app details for this edit. This method supports patch semantics.
+     * @desc Patches details of an app.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3063,13 +3214,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.patch({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3103,8 +3254,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {().AppDetails} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3191,7 +3342,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.details.update
-     * @desc Updates app details for this edit.
+     * @desc Updates details of an app.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3212,13 +3363,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.update({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3252,8 +3403,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {().AppDetails} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3342,32 +3493,22 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Details$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Details$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -3379,16 +3520,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Details$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -3406,7 +3542,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.expansionfiles.get
-     * @desc Fetches the Expansion File configuration for the APK specified.
+     * @desc Fetches the expansion file configuration for the specified APK.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3427,17 +3563,18 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.get({
-     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     // The version code of the APK whose expansion file configuration is being
+     *     // read or modified.
      *     apkVersionCode: 'placeholder-value',
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // The file type of the file configuration which is being read or modified.
      *     expansionFileType: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3458,10 +3595,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.expansionFileType The file type of the file configuration which is being read or modified.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3557,7 +3694,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.expansionfiles.patch
-     * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method. This method supports patch semantics.
+     * @desc Patches the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3578,17 +3715,18 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.patch({
-     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     // The version code of the APK whose expansion file configuration is being
+     *     // read or modified.
      *     apkVersionCode: 'placeholder-value',
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // The file type of the expansion file configuration which is being updated.
      *     expansionFileType: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3618,10 +3756,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.expansionFileType The file type of the expansion file configuration which is being updated.
+     * @param {string} params.packageName Package name of the app.
      * @param {().ExpansionFile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3718,7 +3856,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.expansionfiles.update
-     * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method.
+     * @desc Updates the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3739,17 +3877,18 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.update({
-     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     // The version code of the APK whose expansion file configuration is being
+     *     // read or modified.
      *     apkVersionCode: 'placeholder-value',
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // The file type of the file configuration which is being read or modified.
      *     expansionFileType: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3779,10 +3918,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.expansionFileType The file type of the file configuration which is being read or modified.
+     * @param {string} params.packageName Package name of the app.
      * @param {().ExpansionFile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3879,7 +4018,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.expansionfiles.upload
-     * @desc Uploads and attaches a new Expansion File to the APK specified.
+     * @desc Uploads a new expansion file and attaches to the specified APK.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3900,17 +4039,18 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.upload({
-     *     // The version code of the APK whose Expansion File configuration is being read or modified.
+     *     // The version code of the APK whose expansion file configuration is being
+     *     // read or modified.
      *     apkVersionCode: 'placeholder-value',
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // The file type of the expansion file configuration which is being updated.
      *     expansionFileType: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -3938,10 +4078,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.expansionFileType
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {integer} params.apkVersionCode The version code of the APK whose expansion file configuration is being read or modified.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.expansionFileType The file type of the expansion file configuration which is being updated.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -4055,48 +4195,38 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Expansionfiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being read or modified.
+     * The version code of the APK whose expansion file configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * The file type of the file configuration which is being read or modified.
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Expansionfiles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being read or modified.
+     * The version code of the APK whose expansion file configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * The file type of the expansion file configuration which is being updated.
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -4108,24 +4238,19 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Expansionfiles$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being read or modified.
+     * The version code of the APK whose expansion file configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * The file type of the file configuration which is being read or modified.
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -4137,24 +4262,19 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Expansionfiles$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being read or modified.
+     * The version code of the APK whose expansion file configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * The file type of the expansion file configuration which is being updated.
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -4208,19 +4328,20 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.delete({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
      *     // Unique identifier an image within the set of images attached to this edit.
      *     imageId: 'placeholder-value',
-     *
+     *     // Type of the Image.
      *     imageType: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4235,11 +4356,11 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
+     * @param {string} params.editId Identifier of the edit.
      * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
-     * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.imageType Type of the Image.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4335,7 +4456,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.images.deleteall
-     * @desc Deletes all images for the specified language and image type.
+     * @desc Deletes all images for the specified language and image type. Returns an empty response if no images are found.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4356,17 +4477,20 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.deleteall({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // Type of the Image.
+     *     // Providing an image type that refers to no images is a no-op.
      *     imageType: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
+     *     // Providing a language that is not supported by the App is a no-op.
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4386,10 +4510,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.imageType Type of the Image. Providing an image type that refers to no images is a no-op.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4482,7 +4606,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.images.list
-     * @desc Lists all images for the specified language and image type.
+     * @desc Lists all images. The response may be empty.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4503,17 +4627,20 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.list({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // Type of the Image. Providing an image type that refers to no images will
+     *     // return an empty response.
      *     imageType: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
+     *     // There must be a store listing for the specified language.
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4533,10 +4660,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.imageType Type of the Image. Providing an image type that refers to no images will return an empty response.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4625,7 +4752,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.images.upload
-     * @desc Uploads a new image and adds it to the list of images for the specified language and image type.
+     * @desc Uploads an image of the specified language and image type, and adds to the edit.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4646,17 +4773,19 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.upload({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *
+     *     // Type of the Image.
      *     imageType: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
+     *     // Providing a language that is not supported by the App is a no-op.
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -4684,10 +4813,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.imageType
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.imageType Type of the Image.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -4787,12 +4916,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Images$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
@@ -4800,87 +4924,72 @@ export namespace androidpublisher_v3 {
      */
     imageId?: string;
     /**
-     *
+     * Type of the Image.
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Images$Deleteall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * Type of the Image. Providing an image type that refers to no images is a no-op.
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Images$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * Type of the Image. Providing an image type that refers to no images will return an empty response.
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language.
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Images$Upload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     *
+     * Type of the Image.
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -4913,7 +5022,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.listings.delete
-     * @desc Deletes the specified localized store listing from an edit.
+     * @desc Deletes a localized store listing.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4934,15 +5043,16 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.delete({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4957,9 +5067,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5043,7 +5153,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.listings.deleteall
-     * @desc Deletes all localized listings from an edit.
+     * @desc Deletes all store listings.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5064,13 +5174,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.deleteall({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5085,8 +5195,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5170,7 +5280,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.listings.get
-     * @desc Fetches information about a localized store listing.
+     * @desc Gets a localized store listing.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5191,15 +5301,16 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.get({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5223,9 +5334,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5311,7 +5422,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.listings.list
-     * @desc Returns all of the localized store listings attached to this edit.
+     * @desc Lists all localized store listings.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5332,13 +5443,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.list({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5359,8 +5470,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5451,7 +5562,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.listings.patch
-     * @desc Creates or updates a localized store listing. This method supports patch semantics.
+     * @desc Patches a localized store listing.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5472,15 +5583,16 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.patch({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5516,9 +5628,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
+     * @param {string} params.packageName Package name of the app.
      * @param {().Listing} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5626,15 +5738,16 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.update({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
+     *     // for Austrian German).
      *     language: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5670,9 +5783,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.language Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
+     * @param {string} params.packageName Package name of the app.
      * @param {().Listing} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5761,92 +5874,67 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Listings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Deleteall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -5858,20 +5946,15 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Listings$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+     * Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -5889,6 +5972,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.get
+     * @desc Gets testers.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5909,24 +5993,21 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.get({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // The track to read from.
      *     track: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "autoEnrolledAndroidGroups": [],
-     *   //   "autoEnrolledGoogleGroups": [],
-     *   //   "excludedGoogleGroups": [],
      *   //   "googleGroups": []
      *   // }
      * }
@@ -5940,9 +6021,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track The track to read from.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6028,6 +6109,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.patch
+     * @desc Patches testers.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6048,24 +6130,21 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.patch({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // The track to update.
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "autoEnrolledAndroidGroups": [],
-     *       //   "autoEnrolledGoogleGroups": [],
-     *       //   "excludedGoogleGroups": [],
      *       //   "googleGroups": []
      *       // }
      *     },
@@ -6074,9 +6153,6 @@ export namespace androidpublisher_v3 {
      *
      *   // Example response
      *   // {
-     *   //   "autoEnrolledAndroidGroups": [],
-     *   //   "autoEnrolledGoogleGroups": [],
-     *   //   "excludedGoogleGroups": [],
      *   //   "googleGroups": []
      *   // }
      * }
@@ -6090,9 +6166,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track The track to update.
      * @param {().Testers} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6179,6 +6255,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.testers.update
+     * @desc Updates testers.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6199,24 +6276,21 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.update({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // The track to update.
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "autoEnrolledAndroidGroups": [],
-     *       //   "autoEnrolledGoogleGroups": [],
-     *       //   "excludedGoogleGroups": [],
      *       //   "googleGroups": []
      *       // }
      *     },
@@ -6225,9 +6299,6 @@ export namespace androidpublisher_v3 {
      *
      *   // Example response
      *   // {
-     *   //   "autoEnrolledAndroidGroups": [],
-     *   //   "autoEnrolledGoogleGroups": [],
-     *   //   "excludedGoogleGroups": [],
      *   //   "googleGroups": []
      *   // }
      * }
@@ -6241,9 +6312,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track The track to update.
      * @param {().Testers} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6332,40 +6403,30 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Testers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * The track to read from.
      */
     track?: string;
   }
   export interface Params$Resource$Edits$Testers$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * The track to update.
      */
     track?: string;
 
@@ -6377,20 +6438,15 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Testers$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * The track to update.
      */
     track?: string;
 
@@ -6408,7 +6464,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.tracks.get
-     * @desc Fetches the track configuration for the specified track type. Includes the APK version codes that are in this track.
+     * @desc Gets a track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6429,15 +6485,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.get({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // Identifier of the track.
      *     track: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6458,9 +6514,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track Identifier of the track.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6545,7 +6601,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.tracks.list
-     * @desc Lists all the track configurations for this edit.
+     * @desc Lists all tracks.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6566,13 +6622,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.list({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6593,8 +6649,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6683,7 +6739,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.tracks.patch
-     * @desc Updates the track configuration for the specified track type. This method supports patch semantics.
+     * @desc Patches a track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6704,15 +6760,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.patch({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // Identifier of the track.
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6742,9 +6798,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track Identifier of the track.
      * @param {().Track} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6831,7 +6887,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.tracks.update
-     * @desc Updates the track configuration for the specified track type.
+     * @desc Updates a track.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6852,15 +6908,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.update({
-     *     // Unique identifier for this edit.
+     *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The track to read or modify.
+     *     // Identifier of the track.
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6890,9 +6946,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify.
+     * @param {string} params.editId Identifier of the edit.
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.track Identifier of the track.
      * @param {().Track} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6980,56 +7036,41 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Edits$Tracks$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * Identifier of the track.
      */
     track?: string;
   }
   export interface Params$Resource$Edits$Tracks$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
   }
   export interface Params$Resource$Edits$Tracks$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * Identifier of the track.
      */
     track?: string;
 
@@ -7041,20 +7082,15 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Tracks$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
+     * Identifier of the edit.
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     * The track to read or modify.
+     * Identifier of the track.
      */
     track?: string;
 
@@ -7072,7 +7108,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.delete
-     * @desc Delete an in-app product for an app.
+     * @desc Deletes an in-app product (i.e. a managed product or a subscriptions).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7093,11 +7129,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.delete({
-     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // Unique identifier for the in-app product.
      *     sku: 'placeholder-value',
@@ -7114,7 +7150,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7199,7 +7235,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.get
-     * @desc Returns information about the in-app product specified.
+     * @desc Gets an in-app product, which can be a managed product or a subscription.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7220,10 +7256,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.get({
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // Unique identifier for the in-app product.
      *     sku: 'placeholder-value',
@@ -7255,7 +7292,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName
+     * @param {string} params.packageName Package name of the app.
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7342,7 +7379,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.insert
-     * @desc Creates a new in-app product for an app.
+     * @desc Creates an in-app product (i.e. a managed product or a subscriptions).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7363,13 +7400,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.insert({
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't
+     *     // have a price specified for this in-app product will be auto converted to
+     *     // the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7418,7 +7457,7 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {().InAppProduct} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7505,7 +7544,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.list
-     * @desc List all the in-app products for an Android app, both subscriptions and managed in-app products..
+     * @desc Lists all in-app products - both managed products and subscriptions.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7526,16 +7565,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.list({
+     *     // How many results the list operation should return.
      *     maxResults: 'placeholder-value',
-     *     // Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *
+     *     // The index of the first element to return.
      *     startIndex: 'placeholder-value',
-     *
+     *     // Pagination token. If empty, list starts at the first product.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7558,10 +7598,10 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults
-     * @param {string} params.packageName Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
-     * @param {integer=} params.startIndex
-     * @param {string=} params.token
+     * @param {integer=} params.maxResults How many results the list operation should return.
+     * @param {string} params.packageName Package name of the app.
+     * @param {integer=} params.startIndex The index of the first element to return.
+     * @param {string=} params.token Pagination token. If empty, list starts at the first product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7654,7 +7694,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.patch
-     * @desc Updates the details of an in-app product. This method supports patch semantics.
+     * @desc Patches an in-app product (i.e. a managed product or a subscriptions).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7675,13 +7715,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.patch({
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't
+     *     // have a price specified for this in-app product will be auto converted to
+     *     // the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // Unique identifier for the in-app product.
      *     sku: 'placeholder-value',
@@ -7732,7 +7774,7 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {().InAppProduct} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7820,7 +7862,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.inappproducts.update
-     * @desc Updates the details of an in-app product.
+     * @desc Updates an in-app product (i.e. a managed product or a subscriptions).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7841,13 +7883,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.update({
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't
+     *     // have a price specified for this in-app product will be auto converted to
+     *     // the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // Unique identifier for the in-app product.
      *     sku: 'placeholder-value',
@@ -7898,7 +7942,7 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {().InAppProduct} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7988,12 +8032,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -8004,12 +8043,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     *
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -8020,16 +8054,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -8041,40 +8070,30 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     *
+     * How many results the list operation should return.
      */
     maxResults?: number;
     /**
-     * Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     *
+     * The index of the first element to return.
      */
     startIndex?: number;
     /**
-     *
+     * Pagination token. If empty, list starts at the first product.
      */
     token?: string;
   }
   export interface Params$Resource$Inappproducts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
-     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -8090,16 +8109,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
-     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -8121,7 +8135,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.internalappsharingartifacts.uploadapk
-     * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended).  See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8142,11 +8156,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.internalappsharingartifacts.uploadapk({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -8176,7 +8190,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -8276,7 +8290,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.internalappsharingartifacts.uploadbundle
-     * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
+     * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended).  See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8297,11 +8311,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.internalappsharingartifacts.uploadbundle({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *
      *     requestBody: {
@@ -8331,7 +8345,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {string} params.packageName Package name of the app.
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -8433,12 +8447,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Internalappsharingartifacts$Uploadapk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -8465,12 +8474,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Internalappsharingartifacts$Uploadbundle
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
 
@@ -8524,15 +8528,20 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.orders.refund({
-     *     // The order ID provided to the user when the subscription or in-app order was purchased.
+     *     // The order ID provided to the user when the subscription or in-app order was
+     *     // purchased.
      *     orderId: 'placeholder-value',
-     *     // The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription or in-app
+     *     // item was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
-     *     // Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
+     *     // Whether to revoke the purchased item. If set to true, access to the
+     *     // subscription or in-app item will be terminated immediately. If the item is
+     *     // a recurring subscription, all future payments will also be terminated.
+     *     // Consumed in-app items need to be handled by developer's app. (optional).
      *     revoke: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8549,7 +8558,7 @@ export namespace androidpublisher_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.orderId The order ID provided to the user when the subscription or in-app order was purchased.
      * @param {string} params.packageName The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
-     * @param {boolean=} params.revoke Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
+     * @param {boolean=} params.revoke Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8633,11 +8642,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The order ID provided to the user when the subscription or in-app order was purchased.
      */
     orderId?: string;
@@ -8646,7 +8650,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
+     * Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
      */
     revoke?: boolean;
   }
@@ -8695,15 +8699,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.acknowledge({
-     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     // The package name of the application the inapp product was sold in (for
+     *     // example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
      *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the inapp product was
+     *     // purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8728,7 +8734,7 @@ export namespace androidpublisher_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
-     * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+     * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
      * @param {().ProductPurchasesAcknowledgeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8834,15 +8840,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.get({
-     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     // The package name of the application the inapp product was sold in (for
+     *     // example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
      *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was purchased.
+     *     // The token provided to the user's device when the inapp product was
+     *     // purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8853,6 +8861,8 @@ export namespace androidpublisher_v3 {
      *   //   "consumptionState": 0,
      *   //   "developerPayload": "my_developerPayload",
      *   //   "kind": "my_kind",
+     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
+     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
      *   //   "orderId": "my_orderId",
      *   //   "productId": "my_productId",
      *   //   "purchaseState": 0,
@@ -8962,11 +8972,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Products$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -8975,7 +8980,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * The token provided to the user's device when the subscription was purchased.
+     * The token provided to the user's device when the inapp product was purchased.
      */
     token?: string;
 
@@ -8986,11 +8991,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Products$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -9034,15 +9034,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.acknowledge({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9173,15 +9175,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.cancel({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9303,15 +9307,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.defer({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9458,15 +9464,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.get({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9488,6 +9496,8 @@ export namespace androidpublisher_v3 {
      *   //   "introductoryPriceInfo": {},
      *   //   "kind": "my_kind",
      *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
+     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
+     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
      *   //   "orderId": "my_orderId",
      *   //   "paymentState": 0,
      *   //   "priceAmountMicros": "my_priceAmountMicros",
@@ -9626,15 +9636,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.refund({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
+     *     // "The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9650,7 +9662,7 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+     * @param {string} params.subscriptionId "The purchased subscription ID (for example, 'monthly001').
      * @param {string} params.token The token provided to the user's device when the subscription was purchased.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9756,15 +9768,17 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.revoke({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was
+     *     // purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
+     *     // The token provided to the user's device when the subscription was
+     *     // purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9867,11 +9881,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9892,11 +9901,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9911,11 +9915,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Subscriptions$Defer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -9937,11 +9936,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9957,16 +9951,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Refund
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
-     * The purchased subscription ID (for example, 'monthly001').
+     * "The purchased subscription ID (for example, 'monthly001').
      */
     subscriptionId?: string;
     /**
@@ -9976,11 +9965,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Subscriptions$Revoke
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -10024,25 +10008,51 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.voidedpurchases.list({
-     *     // The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     *     // The time, in milliseconds since the Epoch, of the newest voided purchase
+     *     // that you want to see in the response. The value of this parameter cannot
+     *     // be greater than the current time and is ignored if a pagination token is
+     *     // set. Default value is current time.
+     *     // Note: This filter is applied on the time at which the record is seen as
+     *     // voided by our systems and not the actual voided time returned in the
+     *     // response.
      *     endTime: 'placeholder-value',
-     *
+     *     // Defines how many results the list operation should return.
+     *     // The default number depends on the resource collection.
      *     maxResults: 'placeholder-value',
-     *     // The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
+     *     // The package name of the application for which voided purchases need to be
+     *     // returned (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
-     *
+     *     // Defines the index of the first element to return.
+     *     // This can only be used if indexed paging is enabled.
      *     startIndex: 'placeholder-value',
-     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
+     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase
+     *     // that you want to see in the response. The value of this parameter cannot
+     *     // be older than 30 days and is ignored if a pagination token is set.
+     *     // Default value is current time minus 30 days.
+     *     // Note: This filter is applied on the time at which the record is seen as
+     *     // voided by our systems and not the actual voided time returned in the
+     *     // response.
      *     startTime: 'placeholder-value',
-     *
+     *     // Defines the token of the page to return, usually taken from
+     *     // TokenPagination.
+     *     // This can only be used if token paging is enabled.
      *     token: 'placeholder-value',
-     *     // The type of voided purchases that you want to see in the response. Possible values are:
-     *     // - 0: Only voided in-app product purchases will be returned in the response. This is the default value.
-     *     // - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     *     // The type of voided purchases that you want to see in the response.
+     *     // Possible values are:
+     *     // 0. Only voided in-app product purchases will be returned in the
+     *     //    response. This is the default value.
+     *     // 1. Both voided in-app purchases and voided subscription purchases
+     *     //    will be returned in the response.
+     *     //
+     *     // Note: Before requesting to receive voided subscription purchases, you
+     *     // must switch to use orderId in the response which uniquely identifies
+     *     // one-time purchases and subscriptions. Otherwise, you will receive multiple
+     *     // subscription orders with the same PurchaseToken, because subscription
+     *     // renewal orders share the same PurchaseToken.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10065,12 +10075,12 @@ export namespace androidpublisher_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     * @param {integer=} params.maxResults
+     * @param {integer=} params.maxResults Defines how many results the list operation should return. The default number depends on the resource collection.
      * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
-     * @param {integer=} params.startIndex
+     * @param {integer=} params.startIndex Defines the index of the first element to return. This can only be used if indexed paging is enabled.
      * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     * @param {string=} params.token
-     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are:   - 0: Only voided in-app product purchases will be returned in the response. This is the default value. - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     * @param {string=} params.token Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
+     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the    response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases    will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10165,16 +10175,11 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Voidedpurchases$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     endTime?: string;
     /**
-     *
+     * Defines how many results the list operation should return. The default number depends on the resource collection.
      */
     maxResults?: number;
     /**
@@ -10182,7 +10187,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     *
+     * Defines the index of the first element to return. This can only be used if indexed paging is enabled.
      */
     startIndex?: number;
     /**
@@ -10190,11 +10195,11 @@ export namespace androidpublisher_v3 {
      */
     startTime?: string;
     /**
-     *
+     * Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
      */
     token?: string;
     /**
-     * The type of voided purchases that you want to see in the response. Possible values are:   - 0: Only voided in-app product purchases will be returned in the response. This is the default value. - 1: Both voided in-app purchases and voided subscription purchases will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     * The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the    response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases    will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      */
     type?: number;
   }
@@ -10207,7 +10212,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.reviews.get
-     * @desc Returns a single review.
+     * @desc Gets a single review.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10228,15 +10233,15 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.get({
-     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *
+     *     // Unique identifier for a review.
      *     reviewId: 'placeholder-value',
-     *
+     *     // Language localization code.
      *     translationLanguage: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10258,9 +10263,9 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
-     * @param {string} params.reviewId
-     * @param {string=} params.translationLanguage
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.reviewId Unique identifier for a review.
+     * @param {string=} params.translationLanguage Language localization code.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10345,7 +10350,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.reviews.list
-     * @desc Returns a list of reviews. Only reviews from last week will be returned.
+     * @desc Lists all reviews.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10366,18 +10371,19 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.list({
+     *     // How many results the list operation should return.
      *     maxResults: 'placeholder-value',
-     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *
+     *     // The index of the first element to return.
      *     startIndex: 'placeholder-value',
-     *
+     *     // Pagination token. If empty, list starts at the first review.
      *     token: 'placeholder-value',
-     *
+     *     // Language localization code.
      *     translationLanguage: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10399,11 +10405,11 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
-     * @param {integer=} params.startIndex
-     * @param {string=} params.token
-     * @param {string=} params.translationLanguage
+     * @param {integer=} params.maxResults How many results the list operation should return.
+     * @param {string} params.packageName Package name of the app.
+     * @param {integer=} params.startIndex The index of the first element to return.
+     * @param {string=} params.token Pagination token. If empty, list starts at the first review.
+     * @param {string=} params.translationLanguage Language localization code.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10491,7 +10497,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.reviews.reply
-     * @desc Reply to a single review, or update an existing reply.
+     * @desc Replies to a single review, or updates an existing reply.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10512,13 +10518,13 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.reply({
-     *     // Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *
+     *     // Unique identifier for a review.
      *     reviewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10546,8 +10552,8 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
-     * @param {string} params.reviewId
+     * @param {string} params.packageName Package name of the app.
+     * @param {string} params.reviewId Unique identifier for a review.
      * @param {().ReviewsReplyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10639,62 +10645,47 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Reviews$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     *
+     * Unique identifier for a review.
      */
     reviewId?: string;
     /**
-     *
+     * Language localization code.
      */
     translationLanguage?: string;
   }
   export interface Params$Resource$Reviews$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     *
+     * How many results the list operation should return.
      */
     maxResults?: number;
     /**
-     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     *
+     * The index of the first element to return.
      */
     startIndex?: number;
     /**
-     *
+     * Pagination token. If empty, list starts at the first review.
      */
     token?: string;
     /**
-     *
+     * Language localization code.
      */
     translationLanguage?: string;
   }
   export interface Params$Resource$Reviews$Reply extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
+     * Package name of the app.
      */
     packageName?: string;
     /**
-     *
+     * Unique identifier for a review.
      */
     reviewId?: string;
 
@@ -10702,654 +10693,5 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$ReviewsReplyRequest;
-  }
-
-  export class Resource$Systemapks {
-    context: APIRequestContext;
-    variants: Resource$Systemapks$Variants;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.variants = new Resource$Systemapks$Variants(this.context);
-    }
-  }
-
-  export class Resource$Systemapks$Variants {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * androidpublisher.systemapks.variants.create
-     * @desc Creates a new variant of APK which is suitable for inclusion in a system image.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.create({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
-     *     packageName: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "deviceSpec": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceSpec": {},
-     *   //   "variantId": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidpublisher.systemapks.variants.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {().SystemApkVariantsCreateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-      params: Params$Resource$Systemapks$Variants$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Systemapks$Variants$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Variant>;
-    create(
-      params: Params$Resource$Systemapks$Variants$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Systemapks$Variants$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Variant>,
-      callback: BodyResponseCallback<Schema$Variant>
-    ): void;
-    create(
-      params: Params$Resource$Systemapks$Variants$Create,
-      callback: BodyResponseCallback<Schema$Variant>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Variant>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Systemapks$Variants$Create
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Systemapks$Variants$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Systemapks$Variants$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'versionCode'],
-        pathParams: ['packageName', 'versionCode'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Variant>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Variant>(parameters);
-      }
-    }
-
-    /**
-     * androidpublisher.systemapks.variants.download
-     * @desc Download a previously created APK which is suitable for inclusion in a system image.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.download({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
-     *     packageName: 'placeholder-value',
-     *
-     *     variantId: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidpublisher.systemapks.variants.download
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param {integer} params.variantId
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    download(
-      params: Params$Resource$Systemapks$Variants$Download,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    download(
-      params?: Params$Resource$Systemapks$Variants$Download,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    download(
-      params: Params$Resource$Systemapks$Variants$Download,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    download(
-      params: Params$Resource$Systemapks$Variants$Download,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    download(
-      params: Params$Resource$Systemapks$Variants$Download,
-      callback: BodyResponseCallback<void>
-    ): void;
-    download(callback: BodyResponseCallback<void>): void;
-    download(
-      paramsOrCallback?:
-        | Params$Resource$Systemapks$Variants$Download
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Systemapks$Variants$Download;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Systemapks$Variants$Download;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'versionCode', 'variantId'],
-        pathParams: ['packageName', 'variantId', 'versionCode'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
-     * androidpublisher.systemapks.variants.get
-     * @desc Returns a previously created system APK variant.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.get({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for this variant.
-     *     variantId: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceSpec": {},
-     *   //   "variantId": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidpublisher.systemapks.variants.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param {integer} params.variantId Unique identifier for this variant.
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Systemapks$Variants$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Systemapks$Variants$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Variant>;
-    get(
-      params: Params$Resource$Systemapks$Variants$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Systemapks$Variants$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Variant>,
-      callback: BodyResponseCallback<Schema$Variant>
-    ): void;
-    get(
-      params: Params$Resource$Systemapks$Variants$Get,
-      callback: BodyResponseCallback<Schema$Variant>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Variant>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Systemapks$Variants$Get
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Variant>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Systemapks$Variants$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Systemapks$Variants$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'versionCode', 'variantId'],
-        pathParams: ['packageName', 'variantId', 'versionCode'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Variant>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Variant>(parameters);
-      }
-    }
-
-    /**
-     * androidpublisher.systemapks.variants.list
-     * @desc Returns the list of previously created system APK variants.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.list({
-     *     // Unique identifier for the Android app; for example, "com.spiffygame".
-     *     packageName: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "variants": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidpublisher.systemapks.variants.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
-     * @param {string} params.versionCode The version code of the App Bundle.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Systemapks$Variants$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Systemapks$Variants$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SystemApkVariantsListResponse>;
-    list(
-      params: Params$Resource$Systemapks$Variants$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Systemapks$Variants$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
-      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Systemapks$Variants$List,
-      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Systemapks$Variants$List
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SystemApkVariantsListResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Systemapks$Variants$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Systemapks$Variants$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName', 'versionCode'],
-        pathParams: ['packageName', 'versionCode'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SystemApkVariantsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$SystemApkVariantsListResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Systemapks$Variants$Create
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     * The version code of the App Bundle.
-     */
-    versionCode?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SystemApkVariantsCreateRequest;
-  }
-  export interface Params$Resource$Systemapks$Variants$Download
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     *
-     */
-    variantId?: number;
-    /**
-     * The version code of the App Bundle.
-     */
-    versionCode?: string;
-  }
-  export interface Params$Resource$Systemapks$Variants$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     * Unique identifier for this variant.
-     */
-    variantId?: number;
-    /**
-     * The version code of the App Bundle.
-     */
-    versionCode?: string;
-  }
-  export interface Params$Resource$Systemapks$Variants$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Unique identifier for the Android app; for example, "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     * The version code of the App Bundle.
-     */
-    versionCode?: string;
   }
 }

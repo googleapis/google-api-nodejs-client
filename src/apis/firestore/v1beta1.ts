@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firestore_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1198,7 +1210,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
@@ -1354,7 +1366,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
@@ -1488,11 +1500,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
     name?: string;
@@ -1504,11 +1511,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Importdocuments
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
      */
@@ -1552,7 +1554,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.batchGet({
@@ -1710,7 +1712,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.beginTransaction({
@@ -1860,7 +1862,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.commit({
@@ -2006,7 +2008,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.createDocument({
@@ -2169,7 +2171,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.delete({
@@ -2307,7 +2309,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.get({
@@ -2453,7 +2455,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.list({
@@ -2632,7 +2634,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listCollectionIds({
@@ -2788,7 +2790,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listen({
@@ -2938,7 +2940,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.patch({
@@ -3101,7 +3103,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.rollback({
@@ -3243,7 +3245,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.runQuery({
@@ -3398,7 +3400,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.write({
@@ -3527,11 +3529,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Batchget
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
@@ -3543,11 +3540,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$Begintransaction
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
@@ -3561,11 +3553,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Commit
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
@@ -3577,11 +3564,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$Createdocument
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
      */
@@ -3607,11 +3589,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
     'currentDocument.exists'?: boolean;
@@ -3626,11 +3603,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
@@ -3650,11 +3622,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
      */
@@ -3695,11 +3662,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Listcollectionids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
@@ -3712,11 +3674,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Listen
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
@@ -3728,11 +3685,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
@@ -3762,11 +3714,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
      */
     database?: string;
@@ -3779,11 +3726,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Runquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
     parent?: string;
@@ -3795,11 +3737,6 @@ export namespace firestore_v1beta1 {
   }
   export interface Params$Resource$Projects$Databases$Documents$Write
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.
      */
@@ -3843,7 +3780,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.create({
@@ -4001,7 +3938,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.delete({
@@ -4131,7 +4068,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.get({
@@ -4275,7 +4212,7 @@ export namespace firestore_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.indexes.list({
@@ -4420,11 +4357,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Indexes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`
      */
     parent?: string;
@@ -4437,11 +4369,6 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Indexes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The index name. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
     name?: string;
@@ -4449,22 +4376,12 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Indexes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the index. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Indexes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */

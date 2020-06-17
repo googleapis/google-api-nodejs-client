@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace vault_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -874,7 +886,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.addPermissions({
@@ -1019,7 +1031,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.close({
@@ -1159,7 +1171,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.create({
@@ -1299,7 +1311,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.delete({
@@ -1436,7 +1448,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.get({
@@ -1576,7 +1588,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.list({
@@ -1718,7 +1730,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.removePermissions({
@@ -1856,7 +1868,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.reopen({
@@ -1998,7 +2010,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.undelete({
@@ -2139,7 +2151,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.update({
@@ -2267,11 +2279,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Addpermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -2282,11 +2289,6 @@ export namespace vault_v1 {
     requestBody?: Schema$AddMatterPermissionsRequest;
   }
   export interface Params$Resource$Matters$Close extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2299,32 +2301,17 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Matter;
   }
   export interface Params$Resource$Matters$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID
      */
     matterId?: string;
   }
   export interface Params$Resource$Matters$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2335,11 +2322,6 @@ export namespace vault_v1 {
     view?: string;
   }
   export interface Params$Resource$Matters$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The number of matters to return in the response. Default and maximum are 100.
      */
@@ -2360,11 +2342,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Removepermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -2375,11 +2352,6 @@ export namespace vault_v1 {
     requestBody?: Schema$RemoveMatterPermissionsRequest;
   }
   export interface Params$Resource$Matters$Reopen extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2392,11 +2364,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Undelete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -2407,11 +2374,6 @@ export namespace vault_v1 {
     requestBody?: Schema$UndeleteMatterRequest;
   }
   export interface Params$Resource$Matters$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -2452,7 +2414,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.exports.create({
@@ -2610,7 +2572,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.exports.delete({
@@ -2744,7 +2706,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.exports.get({
@@ -2889,7 +2851,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.exports.list({
@@ -3011,11 +2973,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Exports$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -3028,11 +2985,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Exports$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The export ID.
      */
     exportId?: string;
@@ -3044,11 +2996,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Exports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The export ID.
      */
     exportId?: string;
@@ -3059,11 +3006,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Exports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -3109,7 +3051,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.addHeldAccounts({
@@ -3259,7 +3201,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.create({
@@ -3411,7 +3353,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.delete({
@@ -3546,7 +3488,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.get({
@@ -3692,7 +3634,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.list({
@@ -3838,7 +3780,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.removeHeldAccounts({
@@ -3988,7 +3930,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.update({
@@ -4124,11 +4066,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Addheldaccounts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -4145,11 +4082,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID.
      */
     matterId?: string;
@@ -4162,11 +4094,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -4177,11 +4104,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -4197,11 +4119,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID.
      */
@@ -4222,11 +4139,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Removeheldaccounts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -4242,11 +4154,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the hold.
      */
@@ -4291,7 +4198,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.accounts.create({
@@ -4441,7 +4348,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.accounts.delete({
@@ -4579,7 +4486,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.holds.accounts.list({
@@ -4698,11 +4605,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Accounts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hold ID.
      */
     holdId?: string;
@@ -4719,11 +4621,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Holds$Accounts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account to remove from the hold.
      */
     accountId?: string;
@@ -4738,11 +4635,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Holds$Accounts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hold ID.
      */
@@ -4782,7 +4674,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.create({
@@ -4931,7 +4823,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.delete({
@@ -5066,7 +4958,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.get({
@@ -5207,7 +5099,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.list({
@@ -5333,11 +5225,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID of the parent matter for which the saved query is to be created.
      */
     matterId?: string;
@@ -5350,11 +5237,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID of the parent matter for which the saved query is to be deleted.
      */
     matterId?: string;
@@ -5366,11 +5248,6 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The matter ID of the parent matter for which the saved query is to be retrieved.
      */
     matterId?: string;
@@ -5381,11 +5258,6 @@ export namespace vault_v1 {
   }
   export interface Params$Resource$Matters$Savedqueries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The matter ID of the parent matter for which the saved queries are to be retrieved.
      */
@@ -5429,7 +5301,7 @@ export namespace vault_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await vault.operations.delete({
@@ -5535,11 +5407,6 @@ export namespace vault_v1 {
 
   export interface Params$Resource$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */

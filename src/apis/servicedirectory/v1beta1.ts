@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace servicedirectory_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -409,7 +421,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.get({
@@ -542,7 +554,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.list({
@@ -670,22 +682,12 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -737,7 +739,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.create({
@@ -890,7 +892,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.delete({
@@ -1017,7 +1019,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.get({
@@ -1147,7 +1149,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.getIamPolicy(
@@ -1294,7 +1296,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.list({
@@ -1475,7 +1477,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.patch({
@@ -1619,7 +1621,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.setIamPolicy(
@@ -1766,7 +1768,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.testIamPermissions(
@@ -1899,11 +1901,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The Resource ID must be 1-63 characters long, and comply with <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     namespaceId?: string;
@@ -1920,11 +1917,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the namespace to delete.
      */
     name?: string;
@@ -1932,22 +1924,12 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the namespace to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1960,11 +1942,6 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to list result by.  General filter string syntax: <field> <operator> <value> (<logical connector>) <field> can be "name", or "labels.<key>" for map field. <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". <value> must be the same data type as field. <logical connector> can be "AND, OR, NOT".  Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner"   this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value   "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/namespace-c"   returns Namespaces that have name that is alphabetically later than the   string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have   "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't   have a field called "doesnotexist". Since the filter does not match any   Namespaces, it returns no results.
      */
@@ -1989,11 +1966,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
      */
     name?: string;
@@ -2010,11 +1982,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2026,11 +1993,6 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2075,7 +2037,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.create(
@@ -2232,7 +2194,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.delete(
@@ -2362,7 +2324,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.get(
@@ -2496,7 +2458,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.getIamPolicy(
@@ -2643,7 +2605,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.list(
@@ -2820,7 +2782,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.patch(
@@ -2969,7 +2931,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.resolve(
@@ -3121,7 +3083,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.setIamPolicy(
@@ -3268,7 +3230,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.testIamPermissions(
@@ -3401,11 +3363,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the namespace this service will belong to.
      */
     parent?: string;
@@ -3422,11 +3379,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the service to delete.
      */
     name?: string;
@@ -3434,22 +3386,12 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the service to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3462,11 +3404,6 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to list result by.  General filter string syntax: <field> <operator> <value> (<logical connector>) <field> can be "name", or "metadata.<key>" for map field. <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". <value> must be the same data type as field. <logical connector> can be "AND, OR, NOT".  Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner"   this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value   "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"   returns Services that have name that is alphabetically later than the   string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have   "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't   have a field called "doesnotexist". Since the filter does not match any   Services, it returns no results.
      */
@@ -3491,11 +3428,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
      */
     name?: string;
@@ -3512,11 +3444,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Resolve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the service to resolve.
      */
     name?: string;
@@ -3529,11 +3456,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3545,11 +3467,6 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3590,7 +3507,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.create(
@@ -3749,7 +3666,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.delete(
@@ -3879,7 +3796,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.get(
@@ -4014,7 +3931,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
@@ -4193,7 +4110,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
@@ -4325,11 +4242,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The Resource ID must be 1-63 characters long, and comply with <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     endpointId?: string;
@@ -4346,11 +4258,6 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the endpoint to delete.
      */
     name?: string;
@@ -4358,22 +4265,12 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the endpoint to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The filter to list result by.  General filter string syntax: <field> <operator> <value> (<logical connector>) <field> can be "name", "address", "port" or "metadata.<key>" for map field. <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". <value> must be the same data type as field. <logical connector> can be "AND, OR, NOT".  Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner"   this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value   "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port>8080" returns Endpoints that have port number larger than 8080. * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c"   returns Endpoints that have name that is alphabetically later than the   string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have   "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't   have a field called "doesnotexist". Since the filter does not match any   Endpoints, it returns no results.
      */
@@ -4397,11 +4294,6 @@ export namespace servicedirectory_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
      */

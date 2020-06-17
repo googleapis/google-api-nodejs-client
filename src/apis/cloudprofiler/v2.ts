@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudprofiler_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -217,7 +229,7 @@ export namespace cloudprofiler_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudprofiler.projects.profiles.create({
@@ -368,7 +380,7 @@ export namespace cloudprofiler_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudprofiler.projects.profiles.createOffline({
@@ -523,7 +535,7 @@ export namespace cloudprofiler_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudprofiler.projects.profiles.patch({
@@ -658,11 +670,6 @@ export namespace cloudprofiler_v2 {
   export interface Params$Resource$Projects$Profiles$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent project to create the profile in.
      */
     parent?: string;
@@ -675,11 +682,6 @@ export namespace cloudprofiler_v2 {
   export interface Params$Resource$Projects$Profiles$Createoffline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent project to create the profile in.
      */
     parent?: string;
@@ -691,11 +693,6 @@ export namespace cloudprofiler_v2 {
   }
   export interface Params$Resource$Projects$Profiles$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace dialogflow_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -116,7 +128,242 @@ export namespace dialogflow_v2 {
   }
 
   /**
-   * Represents a conversational agent.
+   * The response message for Agents.ExportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentResponse {
+    /**
+     * Uncompressed raw byte content for agent.
+     */
+    agentContent?: string | null;
+    /**
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     */
+    agentUri?: string | null;
+  }
+  /**
+   * Represents page information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfo {
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
+     */
+    currentPage?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Information about the form.
+     */
+    formInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo;
+  }
+  /**
+   * Represents form information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo {
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The parameters contained in the form. Note that the webhook cannot add or remove any form parameter.
+     */
+    parameterInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo[];
+  }
+  /**
+   * Represents parameter information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo {
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The human-readable name of the parameter, unique within the form. This field cannot be modified by the webhook.
+     */
+    displayName?: string | null;
+    /**
+     * Optional for WebhookRequest. Ignored for WebhookResponse. Indicates if the parameter value was just collected on the last conversation turn.
+     */
+    justCollected?: boolean | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
+     */
+    required?: boolean | null;
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The state of the parameter. This field can be set to INVALID by the webhook to invalidate the parameter; other values set by the webhook will be ignored.
+     */
+    state?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The value of the parameter. This field can be set by the webhook to change the parameter value.
+     */
+    value?: any | null;
+  }
+  /**
+   * Represents a response message that can be returned by a conversational agent.  Response messages are also used for output audio synthesis. The approach is as follows:  * If at least one OutputAudioText response is present, then all   OutputAudioText responses are linearly concatenated, and the result is used   for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the   concatenated result is treated as SSML; otherwise, the result is treated as   either text or SSML as appropriate. The agent designer should ideally use   either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is   used for output audio synthesis.  This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage {
+    /**
+     * Indicates that the conversation succeeded.
+     */
+    conversationSuccess?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess;
+    /**
+     * Hands off conversation to a human agent.
+     */
+    humanAgentHandoff?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff;
+    /**
+     * Returns a response containing a custom, platform-specific payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Returns a text response.
+     */
+    text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
+  }
+  /**
+   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about.  Dialogflow only uses this to determine which conversations should be counted as successful and doesn&#39;t process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don&#39;t return ConversationSuccess.  You may set this, for example: * In the entry_fulfillment of a Page if   entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer   issue.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess {
+    /**
+     * Custom metadata. Dialogflow doesn&#39;t impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Indicates that the conversation should be handed off to a human agent.  Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures.  You may set this, for example: * In the entry_fulfillment of a Page if   entering the page indicates something went extremely wrong in the   conversation. * In a webhook response when you determine that the customer issue can only   be handled by a human.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff {
+    /**
+     * Custom metadata for your handoff procedure. Dialogflow doesn&#39;t impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * The text response message.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText {
+    /**
+     * A collection of text responses.
+     */
+    text?: string[] | null;
+  }
+  /**
+   * Represents session information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SessionInfo {
+    /**
+     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters&#39; display names.
+     */
+    parameters?: {[key: string]: any} | null;
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a user. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/sessions/&lt;Session ID&gt;`.
+     */
+    session?: string | null;
+  }
+  /**
+   * The request message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequest {
+    /**
+     * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
+     */
+    detectIntentResponseId?: string | null;
+    /**
+     * Always present. Information about the fulfillment that triggered this webhook call.
+     */
+    fulfillmentInfo?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo;
+    /**
+     * Information about the last matched intent.
+     */
+    intentInfo?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo;
+    /**
+     * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+    /**
+     * Information about page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfo;
+    /**
+     * Custom data set in QueryParameters.payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+  }
+  /**
+   * Represents fulfillment information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo {
+    /**
+     * Always present. The tag used to identify which fulfillment is being called.
+     */
+    tag?: string | null;
+  }
+  /**
+   * Represents intent information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo {
+    /**
+     * Always present. The unique identifier of the last matched intent. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/intents/&lt;Intent ID&gt;`.
+     */
+    lastMatchedIntent?: string | null;
+    /**
+     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user&#39;s utterance. All parameters defined in the matched intent that are identified will be surfaced here.
+     */
+    parameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue;
+    } | null;
+  }
+  /**
+   * Represents a value for an intent parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue {
+    /**
+     * Always present. Original text value extracted from user utterance.
+     */
+    originalValue?: string | null;
+    /**
+     * Always present. Structured value for the parameter extracted from user utterance.
+     */
+    resolvedValue?: any | null;
+  }
+  /**
+   * The response message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookResponse {
+    /**
+     * The fulfillment response to send to the user. This field can be omitted by the webhook if it does not intend to send any response to the user.
+     */
+    fulfillmentResponse?: Schema$GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse;
+    /**
+     * Information about page status. This field can be omitted by the webhook if it does not intend to modify page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfo;
+    /**
+     * Value to append directly to QueryResult.webhook_payloads.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status. This field can be omitted by the webhook if it does not intend to modify session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+    /**
+     * The target flow to transition to. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
+     */
+    targetPage?: string | null;
+  }
+  /**
+   * Represents a fulfillment response to the user.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse {
+    /**
+     * Merge behavior for `messages`.
+     */
+    mergeBehavior?: string | null;
+    /**
+     * The list of rich message responses to present to the user.
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+  }
+  /**
+   * A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system.  For more information about agents, see the [Agents documentation](https://cloud.google.com/dialogflow/docs/agents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Agent {
     /**
@@ -963,7 +1210,7 @@ export namespace dialogflow_v2 {
     thumbnailUri?: string | null;
   }
   /**
-   * Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. If you want to show a single card with more control over the layout, please use RbmStandaloneCard instead.
+   * Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards If you want to show a single card with more control over the layout, please use RbmStandaloneCard instead.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard {
     /**
@@ -976,7 +1223,7 @@ export namespace dialogflow_v2 {
     cardWidth?: string | null;
   }
   /**
-   * Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. You can group multiple rich cards into one using RbmCarouselCard but carousel cards will give you less control over the card layout.
+   * Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards You can group multiple rich cards into one using RbmCarouselCard but carousel cards will give you less control over the card layout.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard {
     /**
@@ -1612,7 +1859,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2DetectIntentResponse {
     /**
-     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.
+     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.  In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.
      */
     outputAudio?: string | null;
     /**
@@ -3116,7 +3363,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.deleteAgent({
@@ -3254,7 +3501,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.getAgent({
@@ -3409,7 +3656,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.setAgent({
@@ -3565,11 +3812,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Deleteagent
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project that the agent to delete is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
@@ -3577,22 +3819,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Getagent
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Setagent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project of this agent. Format: `projects/<Project ID>`.
      */
@@ -3650,7 +3882,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.export({
@@ -3805,7 +4037,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.getFulfillment({
@@ -3950,7 +4182,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.getValidationResult({
@@ -4107,7 +4339,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.import({
@@ -4263,7 +4495,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.restore({
@@ -4419,7 +4651,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.search({
@@ -4585,7 +4817,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.train({
@@ -4738,7 +4970,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.updateFulfillment({
@@ -4878,11 +5110,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Export
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
@@ -4895,22 +5122,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Getfulfillment
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the fulfillment. Format: `projects/<Project ID>/agent/fulfillment`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Getvalidationresult
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The language for which you want a validation result. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
@@ -4922,11 +5139,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Import
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
      */
@@ -4940,11 +5152,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Restore
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
@@ -4956,11 +5163,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Search
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -4977,11 +5179,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Train
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
@@ -4993,11 +5190,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Updatefulfillment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique identifier of the fulfillment. Format: `projects/<Project ID>/agent/fulfillment`.
      */
@@ -5049,7 +5241,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.batchDelete({
@@ -5204,7 +5396,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.batchUpdate({
@@ -5362,7 +5554,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.create({
@@ -5532,7 +5724,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.delete({
@@ -5665,7 +5857,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.get({
@@ -5818,7 +6010,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.list({
@@ -5991,7 +6183,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.patch({
@@ -6141,11 +6333,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Entitytypes$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
@@ -6158,11 +6345,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
@@ -6174,11 +6356,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -6196,22 +6373,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Entitytypes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -6223,11 +6390,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -6247,11 +6409,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
@@ -6303,7 +6460,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchCreate({
@@ -6459,7 +6616,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchDelete({
@@ -6615,7 +6772,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchUpdate({
@@ -6750,11 +6907,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
@@ -6767,11 +6919,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
@@ -6783,11 +6930,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the entity type to update or create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
@@ -6833,7 +6975,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.list({
@@ -6976,11 +7118,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
@@ -7045,7 +7182,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.deleteContexts(
@@ -7190,7 +7327,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.detectIntent(
@@ -7353,22 +7490,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      */
@@ -7412,7 +7539,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.create(
@@ -7576,7 +7703,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.delete(
@@ -7716,7 +7843,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.get(
@@ -7866,7 +7993,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.list(
@@ -8039,7 +8166,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.patch(
@@ -8192,11 +8319,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
@@ -8209,11 +8331,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
@@ -8221,22 +8338,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -8252,11 +8359,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -8304,7 +8406,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.create(
@@ -8474,7 +8576,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.delete(
@@ -8615,7 +8717,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.get(
@@ -8772,7 +8874,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.list(
@@ -8948,7 +9050,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.patch(
@@ -9100,11 +9202,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
@@ -9117,11 +9214,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
@@ -9129,22 +9221,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -9160,11 +9242,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -9212,7 +9289,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.batchDelete({
@@ -9367,7 +9444,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.batchUpdate({
@@ -9526,7 +9603,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.create({
@@ -9723,7 +9800,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.delete({
@@ -9857,7 +9934,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.get({
@@ -10025,7 +10102,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.list({
@@ -10201,7 +10278,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.patch({
@@ -10378,11 +10455,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Intents$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
@@ -10395,11 +10467,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Intents$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
@@ -10411,11 +10478,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Intents$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -10437,22 +10499,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Intents$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Intents$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -10468,11 +10520,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Intents$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -10496,11 +10543,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Intents$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The resource view to apply to the returned intent.
      */
@@ -10564,7 +10606,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.deleteContexts({
@@ -10706,7 +10748,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.detectIntent({
@@ -10866,22 +10908,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Deletecontexts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Detectintent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      */
@@ -10925,7 +10957,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.create({
@@ -11086,7 +11118,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.delete({
@@ -11223,7 +11255,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.get({
@@ -11370,7 +11402,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.list({
@@ -11540,7 +11572,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.patch({
@@ -11690,11 +11722,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
@@ -11707,11 +11734,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
@@ -11719,22 +11741,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -11750,11 +11762,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
@@ -11802,7 +11809,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.create({
@@ -11969,7 +11976,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.delete({
@@ -12108,7 +12115,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.get({
@@ -12263,7 +12270,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.list({
@@ -12436,7 +12443,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.patch({
@@ -12586,11 +12593,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
@@ -12603,11 +12605,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
@@ -12615,22 +12612,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
@@ -12646,11 +12633,6 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
@@ -12709,7 +12691,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.cancel({
@@ -12841,7 +12823,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.get({
@@ -12983,7 +12965,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.list({
@@ -13120,11 +13102,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -13132,22 +13109,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -13198,7 +13165,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.cancel({
@@ -13330,7 +13297,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.get({
@@ -13472,7 +13439,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.list({
@@ -13609,11 +13576,6 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -13621,22 +13583,12 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

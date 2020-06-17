@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace admob_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -155,7 +167,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$MediationReportSpec;
   }
   /**
-   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;date_range&quot;: {           &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 30}         }         &quot;localization_settings&quot;: {           &quot;currency_code&quot;: &quot;USD&quot;,           &quot;language_code&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimension_values&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              &quot;display_label&quot;: &quot;My app name!&quot;           }         },         &quot;metric_values&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;decimal_value&quot;: &quot;1324746&quot;}         }       }     },     {       &quot;footer&quot;: {&quot;matching_row_count&quot;: 1}     }]
+   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;date_range&quot;: {           &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}         },         &quot;localization_settings&quot;: {           &quot;currency_code&quot;: &quot;USD&quot;,           &quot;language_code&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimension_values&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              &quot;display_label&quot;: &quot;My app name!&quot;           }         },         &quot;metric_values&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;decimal_value&quot;: &quot;1324746&quot;}         }       }     },     {       &quot;footer&quot;: {&quot;matching_row_count&quot;: 1}     }]
    */
   export interface Schema$GenerateMediationReportResponse {
     /**
@@ -181,7 +193,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$NetworkReportSpec;
   }
   /**
-   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;dateRange&quot;: {           &quot;startDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;endDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 30}         }         &quot;localizationSettings&quot;: {           &quot;currencyCode&quot;: &quot;USD&quot;,           &quot;languageCode&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimensionValues&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              displayLabel: &quot;My app name!&quot;           }         },         &quot;metricValues&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;microsValue&quot;: 6500000}         }       }     },     ...     {       &quot;footer&quot;: {&quot;matchingRowCount&quot;: 5}     }]
+   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;dateRange&quot;: {           &quot;startDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;endDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}         },         &quot;localizationSettings&quot;: {           &quot;currencyCode&quot;: &quot;USD&quot;,           &quot;languageCode&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimensionValues&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              displayLabel: &quot;My app name!&quot;           }         },         &quot;metricValues&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;microsValue&quot;: 6500000}         }       }     },     {       &quot;footer&quot;: {&quot;matchingRowCount&quot;: 1}     }]
    */
   export interface Schema$GenerateNetworkReportResponse {
     /**
@@ -509,7 +521,7 @@ export namespace admob_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await admob.accounts.get({
@@ -640,7 +652,7 @@ export namespace admob_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await admob.accounts.list({
@@ -762,21 +774,11 @@ export namespace admob_v1 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
      */
     name?: string;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of accounts to return.
      */
@@ -816,7 +818,7 @@ export namespace admob_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await admob.accounts.mediationReport.generate({
@@ -949,11 +951,6 @@ export namespace admob_v1 {
   export interface Params$Resource$Accounts$Mediationreport$Generate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
     parent?: string;
@@ -993,7 +990,7 @@ export namespace admob_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await admob.accounts.networkReport.generate({
@@ -1125,11 +1122,6 @@ export namespace admob_v1 {
 
   export interface Params$Resource$Accounts$Networkreport$Generate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */

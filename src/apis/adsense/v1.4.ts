@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace adsense_v1_4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -655,7 +667,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.get({
@@ -797,7 +809,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.list({
@@ -913,11 +925,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to get information about.
      */
     accountId?: string;
@@ -927,11 +934,6 @@ export namespace adsense_v1_4 {
     tree?: boolean;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of accounts to include in the response, used for paging.
      */
@@ -974,7 +976,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.getAdCode({
@@ -1114,7 +1116,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.list({
@@ -1234,11 +1236,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Adclients$Getadcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad client.
      */
     accountId?: string;
@@ -1249,11 +1246,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Adclients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to list ad clients.
      */
@@ -1304,7 +1296,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.get({
@@ -1453,7 +1445,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.getAdCode({
@@ -1596,7 +1588,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.list({
@@ -1723,11 +1715,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Adunits$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the ad client belongs.
      */
     accountId?: string;
@@ -1743,11 +1730,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Adunits$Getadcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad client.
      */
     accountId?: string;
@@ -1762,11 +1744,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Adunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -1821,7 +1798,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.customchannels.list({
@@ -1948,11 +1925,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Adunits$Customchannels$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the ad client belongs.
      */
     accountId?: string;
@@ -2003,7 +1975,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.alerts.delete({
@@ -2132,7 +2104,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.alerts.list({
@@ -2247,11 +2219,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Alerts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad unit.
      */
     accountId?: string;
@@ -2262,11 +2229,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Alerts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to retrieve the alerts.
      */
@@ -2311,7 +2273,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.get({
@@ -2455,7 +2417,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.list({
@@ -2579,11 +2541,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Customchannels$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the ad client belongs.
      */
     accountId?: string;
@@ -2598,11 +2555,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the ad client belongs.
      */
@@ -2653,7 +2605,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.adunits.list({
@@ -2783,11 +2735,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Customchannels$Adunits$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the ad client belongs.
      */
     accountId?: string;
@@ -2845,7 +2792,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.payments.list({
@@ -2957,11 +2904,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Payments$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account for which to retrieve the payments.
      */
     accountId?: string;
@@ -3001,7 +2943,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.generate({
@@ -3164,11 +3106,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Reports$Generate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account upon which to report.
      */
     accountId?: string;
@@ -3250,7 +3187,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.saved.generate({
@@ -3413,7 +3350,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.saved.list({
@@ -3533,11 +3470,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Reports$Saved$Generate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the saved reports belong.
      */
     accountId?: string;
@@ -3560,11 +3492,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Reports$Saved$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account to which the saved reports belong.
      */
@@ -3611,7 +3538,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.savedadstyles.get({
@@ -3751,7 +3678,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.savedadstyles.list({
@@ -3871,11 +3798,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Savedadstyles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account for which to get the saved ad style.
      */
     accountId?: string;
@@ -3886,11 +3808,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Accounts$Savedadstyles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to list saved ad styles.
      */
@@ -3937,7 +3854,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.urlchannels.list({
@@ -4061,11 +3978,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Accounts$Urlchannels$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to which the ad client belongs.
      */
     accountId?: string;
@@ -4115,7 +4027,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adclients.list({
@@ -4231,11 +4143,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Adclients$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
@@ -4279,7 +4186,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.get({
@@ -4424,7 +4331,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.getAdCode({
@@ -4564,7 +4471,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.list({
@@ -4685,11 +4592,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Adunits$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client for which to get the ad unit.
      */
     adClientId?: string;
@@ -4701,11 +4603,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Adunits$Getadcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client with contains the ad unit.
      */
     adClientId?: string;
@@ -4715,11 +4612,6 @@ export namespace adsense_v1_4 {
     adUnitId?: string;
   }
   export interface Params$Resource$Adunits$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list ad units.
      */
@@ -4770,7 +4662,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.customchannels.list({
@@ -4894,11 +4786,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Adunits$Customchannels$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client which contains the ad unit.
      */
     adClientId?: string;
@@ -4945,7 +4832,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.alerts.delete({
@@ -5071,7 +4958,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.alerts.list({
@@ -5182,21 +5069,11 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Alerts$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Alert to delete.
      */
     alertId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
      */
@@ -5237,7 +5114,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.get({
@@ -5378,7 +5255,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.list({
@@ -5498,11 +5375,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Customchannels$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client which contains the custom channel.
      */
     adClientId?: string;
@@ -5513,11 +5385,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list custom channels.
      */
@@ -5564,7 +5431,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.adunits.list({
@@ -5691,11 +5558,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Customchannels$Adunits$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client which contains the custom channel.
      */
     adClientId?: string;
@@ -5760,7 +5622,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.metadata.dimensions.list({});
@@ -5867,12 +5729,7 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Metadata$Dimensions$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 
   export class Resource$Metadata$Metrics {
     context: APIRequestContext;
@@ -5906,7 +5763,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.metadata.metrics.list({});
@@ -6013,12 +5870,7 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Metadata$Metrics$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 
   export class Resource$Payments {
     context: APIRequestContext;
@@ -6052,7 +5904,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.payments.list({});
@@ -6157,12 +6009,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Payments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Payments$List extends StandardParameters {}
 
   export class Resource$Reports {
     context: APIRequestContext;
@@ -6198,7 +6045,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.generate({
@@ -6360,11 +6207,6 @@ export namespace adsense_v1_4 {
 
   export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Accounts upon which to report.
      */
     accountId?: string[];
@@ -6446,7 +6288,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.saved.generate({
@@ -6606,7 +6448,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.saved.list({
@@ -6724,11 +6566,6 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Reports$Saved$Generate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
@@ -6747,11 +6584,6 @@ export namespace adsense_v1_4 {
   }
   export interface Params$Resource$Reports$Saved$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of saved reports to include in the response, used for paging.
      */
@@ -6794,7 +6626,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.savedadstyles.get({
@@ -6930,7 +6762,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.savedadstyles.list({
@@ -7048,22 +6880,12 @@ export namespace adsense_v1_4 {
   export interface Params$Resource$Savedadstyles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Saved ad style to retrieve.
      */
     savedAdStyleId?: string;
   }
   export interface Params$Resource$Savedadstyles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of saved ad styles to include in the response, used for paging.
      */
@@ -7106,7 +6928,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.urlchannels.list({
@@ -7223,11 +7045,6 @@ export namespace adsense_v1_4 {
   }
 
   export interface Params$Resource$Urlchannels$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list URL channels.
      */
