@@ -4,6 +4,13 @@
 
 > Google Cloud Memorystore for Memcached API is used for creating and managing Memcached instances in GCP.
 
+*NOTE*: There are multiple npm modules available for this service. This module
+provides a low level HTTP client which exposes the inner workings of the API.
+The [@google-cloud/memcache](https://www.npmjs.com/package/@google-cloud/memcache)
+npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

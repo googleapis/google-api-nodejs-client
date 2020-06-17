@@ -24,6 +24,7 @@ import * as prettier from 'prettier';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
 import {addFragments} from './samplegen';
+import { Disclaimer } from './disclaimer';
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
@@ -33,6 +34,8 @@ const stat = util.promisify(fs.stat);
 const srcPath = path.join(__dirname, '../../../src');
 const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
 const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const disclaimers = require('../../../disclaimers.json') as Disclaimer[];
 
 export interface GeneratorOptions {
   debug?: boolean;
@@ -183,7 +186,14 @@ export class Generator {
           await this.render('package.json.njk', packageData, pkgPath);
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
-          await this.render('README.md.njk', {name: file, desc}, rdPath);
+          const disclaimer = disclaimers.find(disclaimer => {
+            return disclaimer.api === file;
+          });
+          await this.render(
+            'README.md.njk',
+            {name: file, desc, disclaimer},
+            rdPath
+          );
           // generate the tsconfig.json
           const tsPath = path.join(apisPath, file, 'tsconfig.json');
           await this.render('tsconfig.json.njk', {}, tsPath);

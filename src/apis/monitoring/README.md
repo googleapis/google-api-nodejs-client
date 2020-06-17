@@ -4,6 +4,13 @@
 
 > Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the [Cloud Monitoring documentation](/monitoring/docs).
 
+*NOTE*: There are multiple npm modules available for this service. This module
+provides a low level HTTP client which exposes the inner workings of the API.
+The [@google-cloud/monitoring-dashboards](https://www.npmjs.com/package/@google-cloud/monitoring-dashboards)
+npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

@@ -4,6 +4,13 @@
 
 > Detects objects, explicit content, and scene changes in videos. It also specifies the region for annotation and transcribes speech to text. Supports both asynchronous API and streaming API.
 
+*NOTE*: There are multiple npm modules available for this service. This module
+provides a low level HTTP client which exposes the inner workings of the API.
+The [@google-cloud/video-intelligence](https://www.npmjs.com/package/@google-cloud/video-intelligence)
+npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

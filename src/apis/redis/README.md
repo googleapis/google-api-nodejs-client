@@ -4,6 +4,13 @@
 
 > Creates and manages Redis instances on the Google Cloud Platform.
 
+*NOTE*: There are multiple npm modules available for this service. This module
+provides a low level HTTP client which exposes the inner workings of the API.
+The [@google-cloud/redis](https://www.npmjs.com/package/@google-cloud/redis)
+npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

@@ -4,6 +4,13 @@
 
 > Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors.
 
+*NOTE*: There are multiple npm modules available for this service. This module
+provides a low level HTTP client which exposes the inner workings of the API.
+The [@google-cloud/error-reporting](https://www.npmjs.com/package/@google-cloud/error-reporting)
+npm module provides a [grpc](https://grpc.io/) based client that is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

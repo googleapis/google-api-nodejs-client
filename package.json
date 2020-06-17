@@ -35,7 +35,9 @@
     "submit-prs": "node build/src/generator/synth.js",
     "prelint": "cd samples; npm link ../; npm i",
     "predownload": "npm run build-tools",
-    "download": "node build/src/generator/download.js"
+    "download": "node build/src/generator/download.js",
+    "preupdate-disclaimers": "npm run build-tools",
+    "update-disclaimers": "node build/src/generator/disclaimer.js"
   },
   "author": "Google Inc.",
   "keywords": [

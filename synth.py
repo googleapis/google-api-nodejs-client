@@ -28,4 +28,5 @@ s.copy(templates, excludes=[
   ".prettierignore"
 ])
 subprocess.run(['npm', 'install'])
+subprocess.run(['npm', 'run', 'update-disclaimers'])
 subprocess.run(['npm', 'run', 'submit-prs'])
