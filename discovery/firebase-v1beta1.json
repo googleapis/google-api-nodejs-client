@@ -183,7 +183,7 @@
     "projects": {
       "methods": {
         "addFirebase": {
-          "description": "Adds Firebase resources to the specified existing\n[Google Cloud Platform (GCP) `Project`]\n(https://cloud.google.com/resource-manager/reference/rest/v1/projects).\n<br>\n<br>Since a FirebaseProject is actually also a GCP `Project`, a\n`FirebaseProject` uses underlying GCP identifiers (most importantly,\nthe `projectId`) as its own for easy interop with GCP APIs.\n<br>\n<br>The result of this call is an [`Operation`](../../v1beta1/operations).\nPoll the `Operation` to track the provisioning process by calling\nGetOperation until\n[`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When\n`done` is `true`, the `Operation` has either succeeded or failed. If the\n`Operation` succeeded, its\n[`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to\na FirebaseProject; if the `Operation` failed, its\n[`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a\ngoogle.rpc.Status. The `Operation` is automatically deleted after\ncompletion, so there is no need to call\nDeleteOperation.\n<br>\n<br>This method does not modify any billing account information on the\nunderlying GCP `Project`.\n<br>\n<br>To call `AddFirebase`, a project member or service account must have\nthe following permissions (the IAM roles of Editor and Owner contain these\npermissions):\n`firebase.projects.update`, `resourcemanager.projects.get`,\n`serviceusage.services.enable`, and `serviceusage.services.get`.",
+          "description": "Adds Firebase resources to the specified existing\n[Google Cloud Platform (GCP) `Project`]\n(https://cloud.google.com/resource-manager/reference/rest/v1/projects).\n<br>\n<br>Since a FirebaseProject is actually also a GCP `Project`, a\n`FirebaseProject` uses underlying GCP identifiers (most importantly,\nthe `PROJECT_NUMBER`) as its own for easy interop with GCP APIs.\n<br>\n<br>The result of this call is an [`Operation`](../../v1beta1/operations).\nPoll the `Operation` to track the provisioning process by calling\nGetOperation until\n[`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When\n`done` is `true`, the `Operation` has either succeeded or failed. If the\n`Operation` succeeded, its\n[`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to\na FirebaseProject; if the `Operation` failed, its\n[`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a\ngoogle.rpc.Status. The `Operation` is automatically deleted after\ncompletion, so there is no need to call\nDeleteOperation.\n<br>\n<br>This method does not modify any billing account information on the\nunderlying GCP `Project`.\n<br>\n<br>To call `AddFirebase`, a project member or service account must have\nthe following permissions (the IAM roles of Editor and Owner contain these\npermissions):\n`firebase.projects.update`, `resourcemanager.projects.get`,\n`serviceusage.services.enable`, and `serviceusage.services.get`.",
           "flatPath": "v1beta1/projects/{projectsId}:addFirebase",
           "httpMethod": "POST",
           "id": "firebase.projects.addFirebase",
@@ -192,7 +192,7 @@
           ],
           "parameters": {
             "project": {
-              "description": "The resource name of the GCP `Project` to which Firebase resources will be\nadded, in the format:\n<br><code>projects/<var>projectId</var></code>\nAfter calling `AddFirebase`, the\n[`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)\nof the GCP `Project` is also the `projectId` of the FirebaseProject.",
+              "description": "The resource name of the GCP `Project` to which Firebase resources will be\nadded, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>\nAfter calling `AddFirebase`, the\n[`project_id`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)\nof the GCP `Project` is also the `project_id` of the FirebaseProject.",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -221,7 +221,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "The parent `FirebaseProject` to link to an existing Google Analytics\naccount, in the format:\n<br><code>projects/<var>projectId</var></code>",
+              "description": "The parent `FirebaseProject` to link to an existing Google Analytics\naccount, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -250,7 +250,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The fully qualified resource name of the Project, in the format:\n<br><code>projects/<var>projectId</var></code>",
+              "description": "The fully qualified resource name of the Project, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -278,7 +278,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The fully qualified resource name of the Project, in the format:\n<br><code>projects/<var>projectId</var>/adminSdkConfig</code>",
+              "description": "The fully qualified resource name of the Project, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/adminSdkConfig</code>",
               "location": "path",
               "pattern": "^projects/[^/]+/adminSdkConfig$",
               "required": true,
@@ -306,7 +306,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The fully qualified resource name, in the format:\n<br><code>projects/<var>projectId</var>/analyticsDetails</code>",
+              "description": "The fully qualified resource name, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/analyticsDetails</code>",
               "location": "path",
               "pattern": "^projects/[^/]+/analyticsDetails$",
               "required": true,
@@ -399,7 +399,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "The parent `FirebaseProject` to unlink from its Google Analytics account,\nin the format:\n<br><code>projects/<var>projectId</var></code>",
+              "description": "The parent `FirebaseProject` to unlink from its Google Analytics account,\nin the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -439,7 +439,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>projectId</var></code>",
+              "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -471,7 +471,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -500,7 +500,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fully qualified resource name of the App, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>appId</var></code>",
+                  "description": "The fully qualified resource name of the App, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/androidApps/[^/]+$",
                   "required": true,
@@ -528,7 +528,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>appId</var></code>",
+                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/config</code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/androidApps/[^/]+/config$",
                   "required": true,
@@ -567,7 +567,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -602,7 +602,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update.\n<br>Note that the fields `name`, `appId`, `projectId`, and `packageName`\nare all immutable.",
+                  "description": "Specifies which fields to update.\n<br>Note that the fields `name`, `app_id`, `project_id`, and `package_name`\nare all immutable.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -634,7 +634,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent App to which a SHA certificate will be added, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>appId</var></code>",
+                      "description": "The parent App to which a SHA certificate will be added, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>APP_ID</var></code>",
                       "location": "path",
                       "pattern": "^projects/[^/]+/androidApps/[^/]+$",
                       "required": true,
@@ -663,7 +663,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The fully qualified resource name of the `sha-key`, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code>\n<br>You can obtain the full name from the response of\n[`ListShaCertificates`](../projects.androidApps.sha/list) or the original\n[`CreateShaCertificate`](../projects.androidApps.sha/create).",
+                      "description": "The fully qualified resource name of the `sha-key`, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/sha/<var>SHA_ID</var></code>\n<br>You can obtain the full name from the response of\n[`ListShaCertificates`](../projects.androidApps.sha/list) or the original\n[`CreateShaCertificate`](../projects.androidApps.sha/create).",
                       "location": "path",
                       "pattern": "^projects/[^/]+/androidApps/[^/]+/sha/[^/]+$",
                       "required": true,
@@ -689,7 +689,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent App for which to list SHA certificates, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>appId</var></code>",
+                      "description": "The parent App for which to list SHA certificates, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/androidApps/<var>APP_ID</var></code>",
                       "location": "path",
                       "pattern": "^projects/[^/]+/androidApps/[^/]+$",
                       "required": true,
@@ -714,7 +714,7 @@
         "availableLocations": {
           "methods": {
             "list": {
-              "description": "Returns a list of valid Google Cloud Platform (GCP) resource locations for\nthe specified Project (including a FirebaseProject).\n<br>\n<br>One of these locations can be selected as the Project's [_default_ GCP\nresource location](https://firebase.google.com/docs/projects/locations),\nwhich is the geographical location where project resources, such as Cloud\nFirestore, will be provisioned by default. However, if the default GCP\nresource location has already been set for the Project, then this setting\ncannot be changed.\n<br>\n<br>This call checks for any possible\n[location\nrestrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations)\nfor the specified Project and, thus, might return a subset of all possible\nGCP resource locations. To list all GCP resource locations (regardless of\nany restrictions), call the endpoint without specifying a `projectId` (that\nis, `/v1beta1/{parent=projects/-}/listAvailableLocations`).\n<br>\n<br>To call `ListAvailableLocations` with a specified project, a member\nmust be at minimum a Viewer of the project. Calls without a specified\nproject do not require any specific project permissions.",
+              "description": "Returns a list of valid Google Cloud Platform (GCP) resource locations for\nthe specified Project (including a FirebaseProject).\n<br>\n<br>One of these locations can be selected as the Project's [_default_ GCP\nresource location](https://firebase.google.com/docs/projects/locations),\nwhich is the geographical location where project resources, such as Cloud\nFirestore, will be provisioned by default. However, if the default GCP\nresource location has already been set for the Project, then this setting\ncannot be changed.\n<br>\n<br>This call checks for any possible\n[location\nrestrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations)\nfor the specified Project and, thus, might return a subset of all possible\nGCP resource locations. To list all GCP resource locations (regardless of\nany restrictions), call the endpoint without specifying a `PROJECT_NUMBER`\n(that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br>\n<br>To call `ListAvailableLocations` with a specified project, a member\nmust be at minimum a Viewer of the project. Calls without a specified\nproject do not require any specific project permissions.",
               "flatPath": "v1beta1/projects/{projectsId}/availableLocations",
               "httpMethod": "GET",
               "id": "firebase.projects.availableLocations.list",
@@ -734,7 +734,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The Project for which to list GCP resource locations, in the format:\n<br><code>projects/<var>projectId</var></code>\n<br>If no project is specified (that is, `projects/-`), the returned list\ndoes not take into account org-specific or project-specific location\nrestrictions.",
+                  "description": "The Project for which to list GCP resource locations, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>\n<br>If no project is specified (that is, `projects/-`), the returned list\ndoes not take into account org-specific or project-specific location\nrestrictions.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -766,7 +766,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The resource name of the Project for which the default GCP resource\nlocation will be set, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The resource name of the Project for which the default GCP resource\nlocation will be set, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -799,7 +799,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -828,7 +828,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fully qualified resource name of the App, in the format:\n<code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/iosApps/<var>appId</var></code>",
+                  "description": "The fully qualified resource name of the App, in the format:\n<code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var></code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/iosApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/iosApps/[^/]+$",
                   "required": true,
@@ -856,7 +856,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/iosApps/<var>appId</var></code>",
+                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var>/config</code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/iosApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/iosApps/[^/]+/config$",
                   "required": true,
@@ -895,7 +895,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -962,7 +962,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project in which to create an App, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -991,7 +991,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fully qualified resource name of the App, in the format:\n<br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/webApps/<var>appId</var></code>",
+                  "description": "The fully qualified resource name of the App, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var></code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/webApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/webApps/[^/]+$",
                   "required": true,
@@ -1019,7 +1019,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code>\n<br>As an <var>appId</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/webApps/<var>appId</var></code>",
+                  "description": "The resource name of the App configuration to download, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var>/config</code>\n<br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource\nfrom Sub-Collection access pattern may be used here, in the format:\n<br><code>projects/-/webApps/<var>APP_ID</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+/webApps/[^/]+/config$",
                   "required": true,
@@ -1058,7 +1058,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>projectId</var></code>",
+                  "description": "The parent Project for which to list Apps, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20200513",
+  "revision": "20200616",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1611,7 +1611,7 @@
           "type": "string"
         },
         "project": {
-          "description": "The resource name of the GCP `Project` to which Firebase resources can be\nadded, in the format:\n<br><code>projects/<var>projectId</var></code>",
+          "description": "The resource name of the GCP `Project` to which Firebase resources can be\nadded, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var></code>",
           "type": "string"
         }
       },
@@ -1663,7 +1663,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The fully qualified resource name of the `sha-key`, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code>",
+          "description": "The fully qualified resource name of the `sha-key`, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/sha/<var>SHA_ID</var></code>",
           "type": "string"
         },
         "shaHash": {
@@ -1738,7 +1738,7 @@
       "id": "StreamMapping",
       "properties": {
         "app": {
-          "description": "The fully qualified resource name of the Firebase App associated with the\nGoogle Analytics data stream, in the format:\n<br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>\nor\n<code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>\nor\n<code>projects/<var>projectId</var>/webApps/<var>appId</var></code>",
+          "description": "The fully qualified resource name of the Firebase App associated with the\nGoogle Analytics data stream, in the format:\n<br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>\nor\n<code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var></code>\nor\n<code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var></code>",
           "type": "string"
         },
         "measurementId": {
