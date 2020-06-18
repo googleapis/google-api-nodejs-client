@@ -30,6 +30,7 @@ module.exports = {
     child_process: 'empty',
     fs: 'empty',
     crypto: 'empty',
+    http2: 'empty',
   },
   module: {
     rules: [
