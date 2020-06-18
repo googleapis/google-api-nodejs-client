@@ -1,0 +1,2190 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "View and manage your data across Google Cloud Platform services"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://documentai.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Document",
+  "description": "Service to parse structured information from unstructured or semi-structured documents using state-of-the-art Google AI such as natural language, computer vision, translation, and AutoML.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/document-ai/docs/",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "documentai:v1beta2",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://documentai.mtls.googleapis.com/",
+  "name": "documentai",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "documents": {
+          "methods": {
+            "batchProcess": {
+              "description": "LRO endpoint to batch process many documents. The output is written\nto Cloud Storage as JSON in the [Document] format.",
+              "flatPath": "v1beta2/projects/{projectsId}/documents:batchProcess",
+              "httpMethod": "POST",
+              "id": "documentai.projects.documents.batchProcess",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Target project and location to make a call.\n\nFormat: `projects/{project-id}/locations/{location-id}`.\n\nIf no location is specified, a region will be chosen automatically.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+parent}/documents:batchProcess",
+              "request": {
+                "$ref": "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "process": {
+              "description": "Processes a single document.",
+              "flatPath": "v1beta2/projects/{projectsId}/documents:process",
+              "httpMethod": "POST",
+              "id": "documentai.projects.documents.process",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Target project and location to make a call.\n\nFormat: `projects/{project-id}/locations/{location-id}`.\n\nIf no location is specified, a region will be chosen automatically.\nThis field is only populated when used in ProcessDocument method.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+parent}/documents:process",
+              "request": {
+                "$ref": "GoogleCloudDocumentaiV1beta2ProcessDocumentRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDocumentaiV1beta2Document"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "locations": {
+          "resources": {
+            "documents": {
+              "methods": {
+                "batchProcess": {
+                  "description": "LRO endpoint to batch process many documents. The output is written\nto Cloud Storage as JSON in the [Document] format.",
+                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/documents:batchProcess",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.documents.batchProcess",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Target project and location to make a call.\n\nFormat: `projects/{project-id}/locations/{location-id}`.\n\nIf no location is specified, a region will be chosen automatically.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta2/{+parent}/documents:batchProcess",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "process": {
+                  "description": "Processes a single document.",
+                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/documents:process",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.documents.process",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Target project and location to make a call.\n\nFormat: `projects/{project-id}/locations/{location-id}`.\n\nIf no location is specified, a region will be chosen automatically.\nThis field is only populated when used in ProcessDocument method.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta2/{+parent}/documents:process",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1beta2ProcessDocumentRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1beta2Document"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "documentai.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta2/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operations": {
+          "methods": {
+            "get": {
+              "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+              "flatPath": "v1beta2/projects/{projectsId}/operations/{operationsId}",
+              "httpMethod": "GET",
+              "id": "documentai.projects.operations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20200612",
+  "rootUrl": "https://documentai.googleapis.com/",
+  "schemas": {
+    "GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse": {
+      "description": "Response to an batch document processing request. This is returned in\nthe LRO Operation after the operation is complete.",
+      "id": "GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse",
+      "properties": {
+        "responses": {
+          "description": "Responses for each individual document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1ProcessDocumentResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1BoundingPoly": {
+      "description": "A bounding polygon for the detected image annotation.",
+      "id": "GoogleCloudDocumentaiV1beta1BoundingPoly",
+      "properties": {
+        "normalizedVertices": {
+          "description": "The bounding polygon normalized vertices.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1NormalizedVertex"
+          },
+          "type": "array"
+        },
+        "vertices": {
+          "description": "The bounding polygon vertices.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1Vertex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1Document": {
+      "description": "Document represents the canonical document resource in Document Understanding\nAI.\nIt is an interchange format that provides insights into documents and allows\nfor collaboration between users and Document Understanding AI to iterate and\noptimize for quality.",
+      "id": "GoogleCloudDocumentaiV1beta1Document",
+      "properties": {
+        "content": {
+          "description": "Inline document content, represented as a stream of bytes.\nNote: As with all `bytes` fields, protobuffers use a pure binary\nrepresentation, whereas JSON representations use base64.",
+          "format": "byte",
+          "type": "string"
+        },
+        "entities": {
+          "description": "A list of entities detected on Document.text. For document shards,\nentities in this list may cross shard boundaries.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentEntity"
+          },
+          "type": "array"
+        },
+        "entityRelations": {
+          "description": "Relationship among Document.entities.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentEntityRelation"
+          },
+          "type": "array"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Any error that occurred while processing this document."
+        },
+        "mimeType": {
+          "description": "An IANA published MIME type (also referred to as media type). For more\ninformation, see\nhttps://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
+        "pages": {
+          "description": "Visual page layout for the Document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPage"
+          },
+          "type": "array"
+        },
+        "shardInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentShardInfo",
+          "description": "Information about the sharding if this document is sharded part of a larger\ndocument. If the document is not sharded, this message is not specified."
+        },
+        "text": {
+          "description": "UTF-8 encoded text in reading order from the document.",
+          "type": "string"
+        },
+        "textStyles": {
+          "description": "Styles for the Document.text.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentStyle"
+          },
+          "type": "array"
+        },
+        "translations": {
+          "description": "A list of translations on Document.text. For document shards,\ntranslations in this list may cross shard boundaries.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentTranslation"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "Currently supports Google Cloud Storage URI of the form\n   `gs://bucket_name/object_name`. Object versioning is not supported.\n   See [Google Cloud Storage Request\n   URIs](https://cloud.google.com/storage/docs/reference-uris) for more\n   info.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentEntity": {
+      "description": "A phrase in the text that is a known entity type, such as a person, an\norganization, or location.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentEntity",
+      "properties": {
+        "confidence": {
+          "description": "Optional. Confidence of detected Schema entity. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "mentionId": {
+          "description": "Deprecated.  Use `id` field instead.",
+          "type": "string"
+        },
+        "mentionText": {
+          "description": "Text value in the document e.g. `1600 Amphitheatre Pkwy`.",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextAnchor",
+          "description": "Provenance of the entity.\nText anchor indexing into the Document.text."
+        },
+        "type": {
+          "description": "Entity type from a schema e.g. `Address`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentEntityRelation": {
+      "description": "Relationship between Entities.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentEntityRelation",
+      "properties": {
+        "objectId": {
+          "description": "Object entity id.",
+          "type": "string"
+        },
+        "relation": {
+          "description": "Relationship description.",
+          "type": "string"
+        },
+        "subjectId": {
+          "description": "Subject entity id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPage": {
+      "description": "A page in a Document.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPage",
+      "properties": {
+        "blocks": {
+          "description": "A list of visually detected text blocks on the page.\nA block has a set of lines (collected into paragraphs) that have a common\nline-spacing and orientation.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageBlock"
+          },
+          "type": "array"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "dimension": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDimension",
+          "description": "Physical dimension of the page."
+        },
+        "formFields": {
+          "description": "A list of visually detected form fields on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageFormField"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for the page."
+        },
+        "lines": {
+          "description": "A list of visually detected text lines on the page.\nA collection of tokens that a human would perceive as a line.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLine"
+          },
+          "type": "array"
+        },
+        "pageNumber": {
+          "description": "1-based index for current Page in a parent Document.\nUseful when a page is taken out of a Document for individual\nprocessing.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paragraphs": {
+          "description": "A list of visually detected text paragraphs on the page.\nA collection of lines that a human would perceive as a paragraph.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageParagraph"
+          },
+          "type": "array"
+        },
+        "tables": {
+          "description": "A list of visually detected tables on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTable"
+          },
+          "type": "array"
+        },
+        "tokens": {
+          "description": "A list of visually detected tokens on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageToken"
+          },
+          "type": "array"
+        },
+        "visualElements": {
+          "description": "A list of detected non-text visual elements e.g. checkbox,\nsignature etc. on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageVisualElement"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageBlock": {
+      "description": "A block has a set of lines (collected into paragraphs) that have a\ncommon line-spacing and orientation.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageBlock",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for Block."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage": {
+      "description": "Detected language for a structural component.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage",
+      "properties": {
+        "confidence": {
+          "description": "Confidence of detected language. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more\ninformation, see\nhttp://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageDimension": {
+      "description": "Dimension for the page.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageDimension",
+      "properties": {
+        "height": {
+          "description": "Page height.",
+          "format": "float",
+          "type": "number"
+        },
+        "unit": {
+          "description": "Dimension unit.",
+          "type": "string"
+        },
+        "width": {
+          "description": "Page width.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageFormField": {
+      "description": "A form field detected on the page.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageFormField",
+      "properties": {
+        "fieldName": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for the FormField name. e.g. `Address`, `Email`,\n`Grand total`, `Phone number`, etc."
+        },
+        "fieldValue": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for the FormField value."
+        },
+        "nameDetectedLanguages": {
+          "description": "A list of detected languages for name together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "valueDetectedLanguages": {
+          "description": "A list of detected languages for value together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageLayout": {
+      "description": "Visual element describing a layout unit on a page.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+      "properties": {
+        "boundingPoly": {
+          "$ref": "GoogleCloudDocumentaiV1beta1BoundingPoly",
+          "description": "The bounding polygon for the Layout."
+        },
+        "confidence": {
+          "description": "Confidence of the current Layout within context of the object this\nlayout is for. e.g. confidence can be for a single token, a table,\na visual element, etc. depending on context. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "orientation": {
+          "description": "Detected orientation for the Layout.",
+          "enum": [
+            "ORIENTATION_UNSPECIFIED",
+            "PAGE_UP",
+            "PAGE_RIGHT",
+            "PAGE_DOWN",
+            "PAGE_LEFT"
+          ],
+          "enumDescriptions": [
+            "Unspecified orientation.",
+            "Orientation is aligned with page up.",
+            "Orientation is aligned with page right.\nTurn the head 90 degrees clockwise from upright to read.",
+            "Orientation is aligned with page down.\nTurn the head 180 degrees from upright to read.",
+            "Orientation is aligned with page left.\nTurn the head 90 degrees counterclockwise from upright to read."
+          ],
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextAnchor",
+          "description": "Text anchor indexing into the Document.text."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageLine": {
+      "description": "A collection of tokens that a human would perceive as a line.\nDoes not cross column boundaries, can be horizontal, vertical, etc.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageLine",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for Line."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageParagraph": {
+      "description": "A collection of lines that a human would perceive as a paragraph.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageParagraph",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for Paragraph."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageTable": {
+      "description": "A table representation similar to HTML table structure.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageTable",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow"
+          },
+          "type": "array"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "headerRows": {
+          "description": "Header rows of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for Table."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell": {
+      "description": "A cell representation inside the table.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell",
+      "properties": {
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for TableCell."
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow": {
+      "description": "A row of table cells.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow",
+      "properties": {
+        "cells": {
+          "description": "Cells that make up this row.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageToken": {
+      "description": "A detected token.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageToken",
+      "properties": {
+        "detectedBreak": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTokenDetectedBreak",
+          "description": "Detected break at the end of a Token."
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for Token."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageTokenDetectedBreak": {
+      "description": "Detected break at the end of a Token.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageTokenDetectedBreak",
+      "properties": {
+        "type": {
+          "description": "Detected break type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "SPACE",
+            "WIDE_SPACE",
+            "HYPHEN"
+          ],
+          "enumDescriptions": [
+            "Unspecified break type.",
+            "A single whitespace.",
+            "A wider whitespace.",
+            "A hyphen that indicates that a token has been split across lines."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageVisualElement": {
+      "description": "Detected non-text visual elements e.g. checkbox, signature etc. on the\npage.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageVisualElement",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
+          "description": "Layout for VisualElement."
+        },
+        "type": {
+          "description": "Type of the VisualElement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentShardInfo": {
+      "description": "For a large document, sharding may be performed to produce several\ndocument shards. Each document shard contains this field to detail which\nshard it is.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentShardInfo",
+      "properties": {
+        "shardCount": {
+          "description": "Total number of shards.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shardIndex": {
+          "description": "The 0-based index of this shard.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textOffset": {
+          "description": "The index of the first character in Document.text in the overall\ndocument global text.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentStyle": {
+      "description": "Annotation for common text style attributes. This adheres to CSS\nconventions as much as possible.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentStyle",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Text background color."
+        },
+        "color": {
+          "$ref": "GoogleTypeColor",
+          "description": "Text color."
+        },
+        "fontSize": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentStyleFontSize",
+          "description": "Font size."
+        },
+        "fontWeight": {
+          "description": "Font weight. Possible values are normal, bold, bolder, and lighter.\nhttps://www.w3schools.com/cssref/pr_font_weight.asp",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextAnchor",
+          "description": "Text anchor indexing into the Document.text."
+        },
+        "textDecoration": {
+          "description": "Text decoration. Follows CSS standard.\n<text-decoration-line> <text-decoration-color> <text-decoration-style>\nhttps://www.w3schools.com/cssref/pr_text_text-decoration.asp",
+          "type": "string"
+        },
+        "textStyle": {
+          "description": "Text style. Possible values are normal, italic, and oblique.\nhttps://www.w3schools.com/cssref/pr_font_font-style.asp",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentStyleFontSize": {
+      "description": "Font size with unit.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentStyleFontSize",
+      "properties": {
+        "size": {
+          "description": "Font size for the text.",
+          "format": "float",
+          "type": "number"
+        },
+        "unit": {
+          "description": "Unit for the font size. Follows CSS naming (in, px, pt, etc.).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentTextAnchor": {
+      "description": "Text reference indexing into the Document.text.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentTextAnchor",
+      "properties": {
+        "textSegments": {
+          "description": "The text segments from the Document.text.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment": {
+      "description": "A text segment in the Document.text. The indices may be out of bounds\nwhich indicate that the text extends into another document shard for\nlarge sharded documents. See ShardInfo.text_offset",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment",
+      "properties": {
+        "endIndex": {
+          "description": "TextSegment half open end UTF-8 char index in the\nDocument.text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startIndex": {
+          "description": "TextSegment start UTF-8 char index in the Document.text.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentTranslation": {
+      "description": "A translation of the text segment.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentTranslation",
+      "properties": {
+        "languageCode": {
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more\ninformation, see\nhttp://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextAnchor",
+          "description": "Provenance of the translation.\nText anchor indexing into the Document.text."
+        },
+        "translatedText": {
+          "description": "Text translated into the target language.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1GcsDestination": {
+      "description": "The Google Cloud Storage location where the output file will be written to.",
+      "id": "GoogleCloudDocumentaiV1beta1GcsDestination",
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1GcsSource": {
+      "description": "The Google Cloud Storage location where the input file will be read from.",
+      "id": "GoogleCloudDocumentaiV1beta1GcsSource",
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1InputConfig": {
+      "description": "The desired input location and metadata.",
+      "id": "GoogleCloudDocumentaiV1beta1InputConfig",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GoogleCloudDocumentaiV1beta1GcsSource",
+          "description": "The Google Cloud Storage location to read the input from. This must be a\nsingle file."
+        },
+        "mimeType": {
+          "description": "Required. Mimetype of the input. Current supported mimetypes are application/pdf,\nimage/tiff, and image/gif.\nIn addition, application/json type is supported for requests with\nProcessDocumentRequest.automl_params field set. The JSON file needs to\nbe in Document format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1NormalizedVertex": {
+      "description": "A vertex represents a 2D point in the image.\nNOTE: the normalized vertex coordinates are relative to the original image\nand range from 0 to 1.",
+      "id": "GoogleCloudDocumentaiV1beta1NormalizedVertex",
+      "properties": {
+        "x": {
+          "description": "X coordinate.",
+          "format": "float",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y coordinate.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1OperationMetadata": {
+      "description": "Contains metadata for the BatchProcessDocuments operation.",
+      "id": "GoogleCloudDocumentaiV1beta1OperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the current batch processing.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACCEPTED",
+            "WAITING",
+            "RUNNING",
+            "SUCCEEDED",
+            "CANCELLED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "Request is received.",
+            "Request operation is waiting for scheduling.",
+            "Request is being processed.",
+            "The batch processing completed successfully.",
+            "The batch processing was cancelled.",
+            "The batch processing has failed."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the current state of processing.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last update time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1OutputConfig": {
+      "description": "The desired output location and metadata.",
+      "id": "GoogleCloudDocumentaiV1beta1OutputConfig",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudDocumentaiV1beta1GcsDestination",
+          "description": "The Google Cloud Storage location to write the output to."
+        },
+        "pagesPerShard": {
+          "description": "The max number of pages to include into each output Document shard JSON on\nGoogle Cloud Storage.\n\nThe valid range is [1, 100]. If not specified, the default value is 20.\n\nFor example, for one pdf file with 100 pages, 100 parsed pages will be\nproduced. If `pages_per_shard` = 20, then 5 Document shard JSON files each\ncontaining 20 parsed pages will be written under the prefix\nOutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where\nx and y are 1-indexed page numbers.\n\nExample GCS outputs with 157 pages and pages_per_shard = 50:\n\n<prefix>pages-001-to-050.json\n<prefix>pages-051-to-100.json\n<prefix>pages-101-to-150.json\n<prefix>pages-151-to-157.json",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1ProcessDocumentResponse": {
+      "description": "Response to a single document processing request.",
+      "id": "GoogleCloudDocumentaiV1beta1ProcessDocumentResponse",
+      "properties": {
+        "inputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta1InputConfig",
+          "description": "Information about the input file. This is the same as the corresponding\ninput config in the request."
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta1OutputConfig",
+          "description": "The output location of the parsed responses. The responses are written to\nthis location as JSON-serialized `Document` objects."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1Vertex": {
+      "description": "A vertex represents a 2D point in the image.\nNOTE: the vertex coordinates are in the same scale as the original image.",
+      "id": "GoogleCloudDocumentaiV1beta1Vertex",
+      "properties": {
+        "x": {
+          "description": "X coordinate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "y": {
+          "description": "Y coordinate.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2AutoMlParams": {
+      "description": "Parameters to control AutoML model prediction behavior.",
+      "id": "GoogleCloudDocumentaiV1beta2AutoMlParams",
+      "properties": {
+        "model": {
+          "description": "Resource name of the AutoML model.\n\nFormat: `projects/{project-id}/locations/{location-id}/models/{model-id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest": {
+      "description": "Request to batch process documents as an asynchronous operation. The output\nis written to Cloud Storage as JSON in the [Document] format.",
+      "id": "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. Individual requests for each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2ProcessDocumentRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsResponse": {
+      "description": "Response to an batch document processing request. This is returned in\nthe LRO Operation after the operation is complete.",
+      "id": "GoogleCloudDocumentaiV1beta2BatchProcessDocumentsResponse",
+      "properties": {
+        "responses": {
+          "description": "Responses for each individual document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2ProcessDocumentResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2BoundingPoly": {
+      "description": "A bounding polygon for the detected image annotation.",
+      "id": "GoogleCloudDocumentaiV1beta2BoundingPoly",
+      "properties": {
+        "normalizedVertices": {
+          "description": "The bounding polygon normalized vertices.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2NormalizedVertex"
+          },
+          "type": "array"
+        },
+        "vertices": {
+          "description": "The bounding polygon vertices.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2Vertex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2Document": {
+      "description": "Document represents the canonical document resource in Document Understanding\nAI.\nIt is an interchange format that provides insights into documents and allows\nfor collaboration between users and Document Understanding AI to iterate and\noptimize for quality.",
+      "id": "GoogleCloudDocumentaiV1beta2Document",
+      "properties": {
+        "content": {
+          "description": "Inline document content, represented as a stream of bytes.\nNote: As with all `bytes` fields, protobuffers use a pure binary\nrepresentation, whereas JSON representations use base64.",
+          "format": "byte",
+          "type": "string"
+        },
+        "entities": {
+          "description": "A list of entities detected on Document.text. For document shards,\nentities in this list may cross shard boundaries.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentEntity"
+          },
+          "type": "array"
+        },
+        "entityRelations": {
+          "description": "Relationship among Document.entities.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentEntityRelation"
+          },
+          "type": "array"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Any error that occurred while processing this document."
+        },
+        "labels": {
+          "description": "Labels for this document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentLabel"
+          },
+          "type": "array"
+        },
+        "mimeType": {
+          "description": "An IANA published MIME type (also referred to as media type). For more\ninformation, see\nhttps://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
+        "pages": {
+          "description": "Visual page layout for the Document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPage"
+          },
+          "type": "array"
+        },
+        "shardInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentShardInfo",
+          "description": "Information about the sharding if this document is sharded part of a larger\ndocument. If the document is not sharded, this message is not specified."
+        },
+        "text": {
+          "description": "UTF-8 encoded text in reading order from the document.",
+          "type": "string"
+        },
+        "textStyles": {
+          "description": "Styles for the Document.text.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentStyle"
+          },
+          "type": "array"
+        },
+        "translations": {
+          "description": "A list of translations on Document.text. For document shards,\ntranslations in this list may cross shard boundaries.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentTranslation"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "Currently supports Google Cloud Storage URI of the form\n   `gs://bucket_name/object_name`. Object versioning is not supported.\n   See [Google Cloud Storage Request\n   URIs](https://cloud.google.com/storage/docs/reference-uris) for more\n   info.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentEntity": {
+      "description": "A phrase in the text that is a known entity type, such as a person, an\norganization, or location.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentEntity",
+      "properties": {
+        "confidence": {
+          "description": "Optional. Confidence of detected Schema entity. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "mentionId": {
+          "description": "Deprecated.  Use `id` field instead.",
+          "type": "string"
+        },
+        "mentionText": {
+          "description": "Text value in the document e.g. `1600 Amphitheatre Pkwy`.",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextAnchor",
+          "description": "Provenance of the entity.\nText anchor indexing into the Document.text."
+        },
+        "type": {
+          "description": "Entity type from a schema e.g. `Address`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentEntityRelation": {
+      "description": "Relationship between Entities.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentEntityRelation",
+      "properties": {
+        "objectId": {
+          "description": "Object entity id.",
+          "type": "string"
+        },
+        "relation": {
+          "description": "Relationship description.",
+          "type": "string"
+        },
+        "subjectId": {
+          "description": "Subject entity id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentLabel": {
+      "description": "Label attaches schema information and/or other metadata to segments within\na Document. Multiple Labels on a single field can denote either\ndifferent labels, different instances of the same label created at\ndifferent times, or some combination of both.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentLabel",
+      "properties": {
+        "automlModel": {
+          "description": "Label is generated AutoML model. This field stores the full resource\nname of the AutoML model.\n\nFormat:\n`projects/{project-id}/locations/{location-id}/models/{model-id}`",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "Confidence score between 0 and 1 for label assignment.",
+          "format": "float",
+          "type": "number"
+        },
+        "name": {
+          "description": "Name of the label.\n\nWhen the label is generated from AutoML Text Classification model, this\nfield represents the name of the category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPage": {
+      "description": "A page in a Document.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPage",
+      "properties": {
+        "blocks": {
+          "description": "A list of visually detected text blocks on the page.\nA block has a set of lines (collected into paragraphs) that have a common\nline-spacing and orientation.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageBlock"
+          },
+          "type": "array"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "dimension": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDimension",
+          "description": "Physical dimension of the page."
+        },
+        "formFields": {
+          "description": "A list of visually detected form fields on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageFormField"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for the page."
+        },
+        "lines": {
+          "description": "A list of visually detected text lines on the page.\nA collection of tokens that a human would perceive as a line.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLine"
+          },
+          "type": "array"
+        },
+        "pageNumber": {
+          "description": "1-based index for current Page in a parent Document.\nUseful when a page is taken out of a Document for individual\nprocessing.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paragraphs": {
+          "description": "A list of visually detected text paragraphs on the page.\nA collection of lines that a human would perceive as a paragraph.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageParagraph"
+          },
+          "type": "array"
+        },
+        "tables": {
+          "description": "A list of visually detected tables on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTable"
+          },
+          "type": "array"
+        },
+        "tokens": {
+          "description": "A list of visually detected tokens on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageToken"
+          },
+          "type": "array"
+        },
+        "visualElements": {
+          "description": "A list of detected non-text visual elements e.g. checkbox,\nsignature etc. on the page.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageVisualElement"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageBlock": {
+      "description": "A block has a set of lines (collected into paragraphs) that have a\ncommon line-spacing and orientation.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageBlock",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for Block."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage": {
+      "description": "Detected language for a structural component.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage",
+      "properties": {
+        "confidence": {
+          "description": "Confidence of detected language. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more\ninformation, see\nhttp://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageDimension": {
+      "description": "Dimension for the page.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageDimension",
+      "properties": {
+        "height": {
+          "description": "Page height.",
+          "format": "float",
+          "type": "number"
+        },
+        "unit": {
+          "description": "Dimension unit.",
+          "type": "string"
+        },
+        "width": {
+          "description": "Page width.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageFormField": {
+      "description": "A form field detected on the page.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageFormField",
+      "properties": {
+        "fieldName": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for the FormField name. e.g. `Address`, `Email`,\n`Grand total`, `Phone number`, etc."
+        },
+        "fieldValue": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for the FormField value."
+        },
+        "nameDetectedLanguages": {
+          "description": "A list of detected languages for name together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "valueDetectedLanguages": {
+          "description": "A list of detected languages for value together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "valueType": {
+          "description": "If the value is non-textual, this field represents the type. Current\nvalid values are:\n- blank (this indicates the field_value is normal text)\n- \"unfilled_checkbox\"\n- \"filled_checkbox\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageLayout": {
+      "description": "Visual element describing a layout unit on a page.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+      "properties": {
+        "boundingPoly": {
+          "$ref": "GoogleCloudDocumentaiV1beta2BoundingPoly",
+          "description": "The bounding polygon for the Layout."
+        },
+        "confidence": {
+          "description": "Confidence of the current Layout within context of the object this\nlayout is for. e.g. confidence can be for a single token, a table,\na visual element, etc. depending on context. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "orientation": {
+          "description": "Detected orientation for the Layout.",
+          "enum": [
+            "ORIENTATION_UNSPECIFIED",
+            "PAGE_UP",
+            "PAGE_RIGHT",
+            "PAGE_DOWN",
+            "PAGE_LEFT"
+          ],
+          "enumDescriptions": [
+            "Unspecified orientation.",
+            "Orientation is aligned with page up.",
+            "Orientation is aligned with page right.\nTurn the head 90 degrees clockwise from upright to read.",
+            "Orientation is aligned with page down.\nTurn the head 180 degrees from upright to read.",
+            "Orientation is aligned with page left.\nTurn the head 90 degrees counterclockwise from upright to read."
+          ],
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextAnchor",
+          "description": "Text anchor indexing into the Document.text."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageLine": {
+      "description": "A collection of tokens that a human would perceive as a line.\nDoes not cross column boundaries, can be horizontal, vertical, etc.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageLine",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for Line."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageParagraph": {
+      "description": "A collection of lines that a human would perceive as a paragraph.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageParagraph",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for Paragraph."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageTable": {
+      "description": "A table representation similar to HTML table structure.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageTable",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow"
+          },
+          "type": "array"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "headerRows": {
+          "description": "Header rows of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for Table."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell": {
+      "description": "A cell representation inside the table.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell",
+      "properties": {
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for TableCell."
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow": {
+      "description": "A row of table cells.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow",
+      "properties": {
+        "cells": {
+          "description": "Cells that make up this row.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageToken": {
+      "description": "A detected token.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageToken",
+      "properties": {
+        "detectedBreak": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTokenDetectedBreak",
+          "description": "Detected break at the end of a Token."
+        },
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for Token."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageTokenDetectedBreak": {
+      "description": "Detected break at the end of a Token.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageTokenDetectedBreak",
+      "properties": {
+        "type": {
+          "description": "Detected break type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "SPACE",
+            "WIDE_SPACE",
+            "HYPHEN"
+          ],
+          "enumDescriptions": [
+            "Unspecified break type.",
+            "A single whitespace.",
+            "A wider whitespace.",
+            "A hyphen that indicates that a token has been split across lines."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageVisualElement": {
+      "description": "Detected non-text visual elements e.g. checkbox, signature etc. on the\npage.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageVisualElement",
+      "properties": {
+        "detectedLanguages": {
+          "description": "A list of detected languages together with confidence.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
+          "description": "Layout for VisualElement."
+        },
+        "type": {
+          "description": "Type of the VisualElement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentShardInfo": {
+      "description": "For a large document, sharding may be performed to produce several\ndocument shards. Each document shard contains this field to detail which\nshard it is.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentShardInfo",
+      "properties": {
+        "shardCount": {
+          "description": "Total number of shards.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shardIndex": {
+          "description": "The 0-based index of this shard.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textOffset": {
+          "description": "The index of the first character in Document.text in the overall\ndocument global text.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentStyle": {
+      "description": "Annotation for common text style attributes. This adheres to CSS\nconventions as much as possible.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentStyle",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Text background color."
+        },
+        "color": {
+          "$ref": "GoogleTypeColor",
+          "description": "Text color."
+        },
+        "fontSize": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentStyleFontSize",
+          "description": "Font size."
+        },
+        "fontWeight": {
+          "description": "Font weight. Possible values are normal, bold, bolder, and lighter.\nhttps://www.w3schools.com/cssref/pr_font_weight.asp",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextAnchor",
+          "description": "Text anchor indexing into the Document.text."
+        },
+        "textDecoration": {
+          "description": "Text decoration. Follows CSS standard.\n<text-decoration-line> <text-decoration-color> <text-decoration-style>\nhttps://www.w3schools.com/cssref/pr_text_text-decoration.asp",
+          "type": "string"
+        },
+        "textStyle": {
+          "description": "Text style. Possible values are normal, italic, and oblique.\nhttps://www.w3schools.com/cssref/pr_font_font-style.asp",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentStyleFontSize": {
+      "description": "Font size with unit.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentStyleFontSize",
+      "properties": {
+        "size": {
+          "description": "Font size for the text.",
+          "format": "float",
+          "type": "number"
+        },
+        "unit": {
+          "description": "Unit for the font size. Follows CSS naming (in, px, pt, etc.).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentTextAnchor": {
+      "description": "Text reference indexing into the Document.text.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentTextAnchor",
+      "properties": {
+        "textSegments": {
+          "description": "The text segments from the Document.text.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment": {
+      "description": "A text segment in the Document.text. The indices may be out of bounds\nwhich indicate that the text extends into another document shard for\nlarge sharded documents. See ShardInfo.text_offset",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment",
+      "properties": {
+        "endIndex": {
+          "description": "TextSegment half open end UTF-8 char index in the\nDocument.text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startIndex": {
+          "description": "TextSegment start UTF-8 char index in the Document.text.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentTranslation": {
+      "description": "A translation of the text segment.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentTranslation",
+      "properties": {
+        "languageCode": {
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more\ninformation, see\nhttp://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "type": "string"
+        },
+        "textAnchor": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextAnchor",
+          "description": "Provenance of the translation.\nText anchor indexing into the Document.text."
+        },
+        "translatedText": {
+          "description": "Text translated into the target language.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2EntityExtractionParams": {
+      "description": "Parameters to control entity extraction behavior.",
+      "id": "GoogleCloudDocumentaiV1beta2EntityExtractionParams",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable entity extraction.",
+          "type": "boolean"
+        },
+        "modelVersion": {
+          "description": "Model version of the entity extraction. Default is\n\"builtin/stable\". Specify \"builtin/latest\" for the latest model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2FormExtractionParams": {
+      "description": "Parameters to control form extraction behavior.",
+      "id": "GoogleCloudDocumentaiV1beta2FormExtractionParams",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable form extraction.",
+          "type": "boolean"
+        },
+        "keyValuePairHints": {
+          "description": "Reserved for future use.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2KeyValuePairHint"
+          },
+          "type": "array"
+        },
+        "modelVersion": {
+          "description": "Model version of the form extraction system. Default is\n\"builtin/stable\". Specify \"builtin/latest\" for the latest model.\nFor custom form models, specify: “custom/{model_name}\". Model name\nformat is \"bucket_name/path/to/modeldir\" corresponding to\n\"gs://bucket_name/path/to/modeldir\" where annotated examples are stored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2GcsDestination": {
+      "description": "The Google Cloud Storage location where the output file will be written to.",
+      "id": "GoogleCloudDocumentaiV1beta2GcsDestination",
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2GcsSource": {
+      "description": "The Google Cloud Storage location where the input file will be read from.",
+      "id": "GoogleCloudDocumentaiV1beta2GcsSource",
+      "properties": {
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2InputConfig": {
+      "description": "The desired input location and metadata.",
+      "id": "GoogleCloudDocumentaiV1beta2InputConfig",
+      "properties": {
+        "contents": {
+          "description": "Content in bytes, represented as a stream of bytes.\nNote: As with all `bytes` fields, proto buffer messages use a pure binary\nrepresentation, whereas JSON representations use base64.\n\nThis field only works for synchronous ProcessDocument method.",
+          "format": "byte",
+          "type": "string"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudDocumentaiV1beta2GcsSource",
+          "description": "The Google Cloud Storage location to read the input from. This must be a\nsingle file."
+        },
+        "mimeType": {
+          "description": "Required. Mimetype of the input. Current supported mimetypes are application/pdf,\nimage/tiff, and image/gif.\nIn addition, application/json type is supported for requests with\nProcessDocumentRequest.automl_params field set. The JSON file needs to\nbe in Document format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2KeyValuePairHint": {
+      "description": "Reserved for future use.",
+      "id": "GoogleCloudDocumentaiV1beta2KeyValuePairHint",
+      "properties": {
+        "key": {
+          "description": "The key text for the hint.",
+          "type": "string"
+        },
+        "valueTypes": {
+          "description": "Type of the value. This is case-insensitive, and could be one of:\nADDRESS, LOCATION, ORGANIZATION, PERSON, PHONE_NUMBER,\nID, NUMBER, EMAIL, PRICE, TERMS, DATE, NAME. Types not in this list will\nbe ignored.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2NormalizedVertex": {
+      "description": "A vertex represents a 2D point in the image.\nNOTE: the normalized vertex coordinates are relative to the original image\nand range from 0 to 1.",
+      "id": "GoogleCloudDocumentaiV1beta2NormalizedVertex",
+      "properties": {
+        "x": {
+          "description": "X coordinate.",
+          "format": "float",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y coordinate.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2OcrParams": {
+      "description": "Parameters to control Optical Character Recognition (OCR) behavior.",
+      "id": "GoogleCloudDocumentaiV1beta2OcrParams",
+      "properties": {
+        "languageHints": {
+          "description": "List of languages to use for OCR. In most cases, an empty value\nyields the best results since it enables automatic language detection. For\nlanguages based on the Latin alphabet, setting `language_hints` is not\nneeded. In rare cases, when the language of the text in the image is known,\nsetting a hint will help get better results (although it will be a\nsignificant hindrance if the hint is wrong). Document processing returns an\nerror if one or more of the specified languages is not one of the\nsupported languages.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2OperationMetadata": {
+      "description": "Contains metadata for the BatchProcessDocuments operation.",
+      "id": "GoogleCloudDocumentaiV1beta2OperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the current batch processing.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACCEPTED",
+            "WAITING",
+            "RUNNING",
+            "SUCCEEDED",
+            "CANCELLED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "Request is received.",
+            "Request operation is waiting for scheduling.",
+            "Request is being processed.",
+            "The batch processing completed successfully.",
+            "The batch processing was cancelled.",
+            "The batch processing has failed."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the current state of processing.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last update time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2OutputConfig": {
+      "description": "The desired output location and metadata.",
+      "id": "GoogleCloudDocumentaiV1beta2OutputConfig",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudDocumentaiV1beta2GcsDestination",
+          "description": "The Google Cloud Storage location to write the output to."
+        },
+        "pagesPerShard": {
+          "description": "The max number of pages to include into each output Document shard JSON on\nGoogle Cloud Storage.\n\nThe valid range is [1, 100]. If not specified, the default value is 20.\n\nFor example, for one pdf file with 100 pages, 100 parsed pages will be\nproduced. If `pages_per_shard` = 20, then 5 Document shard JSON files each\ncontaining 20 parsed pages will be written under the prefix\nOutputConfig.gcs_destination.uri and suffix pages-x-to-y.json where\nx and y are 1-indexed page numbers.\n\nExample GCS outputs with 157 pages and pages_per_shard = 50:\n\n<prefix>pages-001-to-050.json\n<prefix>pages-051-to-100.json\n<prefix>pages-101-to-150.json\n<prefix>pages-151-to-157.json",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2ProcessDocumentRequest": {
+      "description": "Request to process one document.",
+      "id": "GoogleCloudDocumentaiV1beta2ProcessDocumentRequest",
+      "properties": {
+        "automlParams": {
+          "$ref": "GoogleCloudDocumentaiV1beta2AutoMlParams",
+          "description": "Controls AutoML model prediction behavior. AutoMlParams cannot be used\ntogether with other Params."
+        },
+        "documentType": {
+          "description": "Specifies a known document type for deeper structure detection. Valid\nvalues are currently \"general\" and \"invoice\". If not provided, \"general\"\\\nis used as default. If any other value is given, the request is rejected.",
+          "type": "string"
+        },
+        "entityExtractionParams": {
+          "$ref": "GoogleCloudDocumentaiV1beta2EntityExtractionParams",
+          "description": "Controls entity extraction behavior. If not specified, the system will\ndecide reasonable defaults."
+        },
+        "formExtractionParams": {
+          "$ref": "GoogleCloudDocumentaiV1beta2FormExtractionParams",
+          "description": "Controls form extraction behavior. If not specified, the system will\ndecide reasonable defaults."
+        },
+        "inputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta2InputConfig",
+          "description": "Required. Information about the input file."
+        },
+        "ocrParams": {
+          "$ref": "GoogleCloudDocumentaiV1beta2OcrParams",
+          "description": "Controls OCR behavior. If not specified, the system will decide reasonable\ndefaults."
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta2OutputConfig",
+          "description": "Optional. The desired output location. This field is only needed in\nBatchProcessDocumentsRequest."
+        },
+        "parent": {
+          "description": "Target project and location to make a call.\n\nFormat: `projects/{project-id}/locations/{location-id}`.\n\nIf no location is specified, a region will be chosen automatically.\nThis field is only populated when used in ProcessDocument method.",
+          "type": "string"
+        },
+        "tableExtractionParams": {
+          "$ref": "GoogleCloudDocumentaiV1beta2TableExtractionParams",
+          "description": "Controls table extraction behavior. If not specified, the system will\ndecide reasonable defaults."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2ProcessDocumentResponse": {
+      "description": "Response to a single document processing request.",
+      "id": "GoogleCloudDocumentaiV1beta2ProcessDocumentResponse",
+      "properties": {
+        "inputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta2InputConfig",
+          "description": "Information about the input file. This is the same as the corresponding\ninput config in the request."
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta2OutputConfig",
+          "description": "The output location of the parsed responses. The responses are written to\nthis location as JSON-serialized `Document` objects."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2TableBoundHint": {
+      "description": "A hint for a table bounding box on the page for table parsing.",
+      "id": "GoogleCloudDocumentaiV1beta2TableBoundHint",
+      "properties": {
+        "boundingBox": {
+          "$ref": "GoogleCloudDocumentaiV1beta2BoundingPoly",
+          "description": "Bounding box hint for a table on this page. The coordinates must be\nnormalized to [0,1] and the bounding box must be an axis-aligned rectangle."
+        },
+        "pageNumber": {
+          "description": "Optional. Page number for multi-paged inputs this hint applies to. If not\nprovided, this hint will apply to all pages by default. This value is\n1-based.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2TableExtractionParams": {
+      "description": "Parameters to control table extraction behavior.",
+      "id": "GoogleCloudDocumentaiV1beta2TableExtractionParams",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable table extraction.",
+          "type": "boolean"
+        },
+        "headerHints": {
+          "description": "Optional. Reserved for future use.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modelVersion": {
+          "description": "Model version of the table extraction system. Default is \"builtin/stable\".\nSpecify \"builtin/latest\" for the latest model.",
+          "type": "string"
+        },
+        "tableBoundHints": {
+          "description": "Optional. Table bounding box hints that can be provided to complex cases\nwhich our algorithm cannot locate the table(s) in.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2TableBoundHint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2Vertex": {
+      "description": "A vertex represents a 2D point in the image.\nNOTE: the vertex coordinates are in the same scale as the original image.",
+      "id": "GoogleCloudDocumentaiV1beta2Vertex",
+      "properties": {
+        "x": {
+          "description": "X coordinate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "y": {
+          "description": "Y coordinate.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningOperation": {
+      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "id": "GoogleLongrunningOperation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleRpcStatus": {
+      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "GoogleRpcStatus",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeColor": {
+      "description": "Represents a color in the RGBA color space. This representation is designed\nfor simplicity of conversion to/from color representations in various\nlanguages over compactness; for example, the fields of this representation\ncan be trivially provided to the constructor of \"java.awt.Color\" in Java; it\ncan also be trivially provided to UIColor's \"+colorWithRed:green:blue:alpha\"\nmethod in iOS; and, with just a little work, it can be easily formatted into\na CSS \"rgba()\" string in JavaScript, as well.\n\nNote: this proto does not carry information about the absolute color space\nthat should be used to interpret the RGB value (e.g. sRGB, Adobe RGB,\nDCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color\nspace.\n\nNote: when color equality needs to be decided, implementations, unless\ndocumented otherwise, will treat two colors to be equal if all their red,\ngreen, blue and alpha values each differ by at most 1e-5.\n\nExample (Java):\n\n     import com.google.type.Color;\n\n     // ...\n     public static java.awt.Color fromProto(Color protocolor) {\n       float alpha = protocolor.hasAlpha()\n           ? protocolor.getAlpha().getValue()\n           : 1.0;\n\n       return new java.awt.Color(\n           protocolor.getRed(),\n           protocolor.getGreen(),\n           protocolor.getBlue(),\n           alpha);\n     }\n\n     public static Color toProto(java.awt.Color color) {\n       float red = (float) color.getRed();\n       float green = (float) color.getGreen();\n       float blue = (float) color.getBlue();\n       float denominator = 255.0;\n       Color.Builder resultBuilder =\n           Color\n               .newBuilder()\n               .setRed(red / denominator)\n               .setGreen(green / denominator)\n               .setBlue(blue / denominator);\n       int alpha = color.getAlpha();\n       if (alpha != 255) {\n         result.setAlpha(\n             FloatValue\n                 .newBuilder()\n                 .setValue(((float) alpha) / denominator)\n                 .build());\n       }\n       return resultBuilder.build();\n     }\n     // ...\n\nExample (iOS / Obj-C):\n\n     // ...\n     static UIColor* fromProto(Color* protocolor) {\n        float red = [protocolor red];\n        float green = [protocolor green];\n        float blue = [protocolor blue];\n        FloatValue* alpha_wrapper = [protocolor alpha];\n        float alpha = 1.0;\n        if (alpha_wrapper != nil) {\n          alpha = [alpha_wrapper value];\n        }\n        return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];\n     }\n\n     static Color* toProto(UIColor* color) {\n         CGFloat red, green, blue, alpha;\n         if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) {\n           return nil;\n         }\n         Color* result = [[Color alloc] init];\n         [result setRed:red];\n         [result setGreen:green];\n         [result setBlue:blue];\n         if (alpha <= 0.9999) {\n           [result setAlpha:floatWrapperWithValue(alpha)];\n         }\n         [result autorelease];\n         return result;\n    }\n    // ...\n\n Example (JavaScript):\n\n    // ...\n\n    var protoToCssColor = function(rgb_color) {\n       var redFrac = rgb_color.red || 0.0;\n       var greenFrac = rgb_color.green || 0.0;\n       var blueFrac = rgb_color.blue || 0.0;\n       var red = Math.floor(redFrac * 255);\n       var green = Math.floor(greenFrac * 255);\n       var blue = Math.floor(blueFrac * 255);\n\n       if (!('alpha' in rgb_color)) {\n          return rgbToCssColor_(red, green, blue);\n       }\n\n       var alphaFrac = rgb_color.alpha.value || 0.0;\n       var rgbParams = [red, green, blue].join(',');\n       return ['rgba(', rgbParams, ',', alphaFrac, ')'].join('');\n    };\n\n    var rgbToCssColor_ = function(red, green, blue) {\n      var rgbNumber = new Number((red << 16) | (green << 8) | blue);\n      var hexString = rgbNumber.toString(16);\n      var missingZeros = 6 - hexString.length;\n      var resultBuilder = ['#'];\n      for (var i = 0; i < missingZeros; i++) {\n         resultBuilder.push('0');\n      }\n      resultBuilder.push(hexString);\n      return resultBuilder.join('');\n    };\n\n    // ...",
+      "id": "GoogleTypeColor",
+      "properties": {
+        "alpha": {
+          "description": "The fraction of this color that should be applied to the pixel. That is,\nthe final pixel color is defined by the equation:\n\n  pixel color = alpha * (this color) + (1.0 - alpha) * (background color)\n\nThis means that a value of 1.0 corresponds to a solid color, whereas\na value of 0.0 corresponds to a completely transparent color. This\nuses a wrapper message rather than a simple float scalar so that it is\npossible to distinguish between a default value and the value being unset.\nIf omitted, this color object is to be rendered as a solid color\n(as if the alpha value had been explicitly given with a value of 1.0).",
+          "format": "float",
+          "type": "number"
+        },
+        "blue": {
+          "description": "The amount of blue in the color as a value in the interval [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "green": {
+          "description": "The amount of green in the color as a value in the interval [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
+        "red": {
+          "description": "The amount of red in the color as a value in the interval [0, 1].",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Cloud Document AI API",
+  "version": "v1beta2",
+  "version_module": true
+}
