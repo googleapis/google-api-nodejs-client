@@ -4,6 +4,15 @@
 
 > Builds conversational interfaces (for example, chatbots, and voice-powered apps and devices).
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [dialogflow](https://www.npmjs.com/package/dialogflow) instead.
+The [dialogflow](https://www.npmjs.com/package/dialogflow) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

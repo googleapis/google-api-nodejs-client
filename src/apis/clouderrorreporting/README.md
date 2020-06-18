@@ -4,6 +4,15 @@
 
 > Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/error-reporting](https://www.npmjs.com/package/@google-cloud/error-reporting) instead.
+The [@google-cloud/error-reporting](https://www.npmjs.com/package/@google-cloud/error-reporting) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

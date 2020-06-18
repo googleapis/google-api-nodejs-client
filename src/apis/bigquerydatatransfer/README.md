@@ -4,6 +4,15 @@
 
 > Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/bigquery-data-transfer](https://www.npmjs.com/package/@google-cloud/bigquery-data-transfer) instead.
+The [@google-cloud/bigquery-data-transfer](https://www.npmjs.com/package/@google-cloud/bigquery-data-transfer) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

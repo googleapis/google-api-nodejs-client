@@ -14,7 +14,6 @@
 import * as assert from 'assert';
 import {describe, it, before, beforeEach, afterEach} from 'mocha';
 import {execSync} from 'child_process';
-import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {GoogleApis, blogger_v3, oauth2_v2} from '../src';
 import {Utils} from './utils';

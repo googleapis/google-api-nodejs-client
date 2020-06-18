@@ -4,6 +4,15 @@
 
 > An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/containeranalysis](https://www.npmjs.com/package/@google-cloud/containeranalysis) instead.
+The [@google-cloud/containeranalysis](https://www.npmjs.com/package/@google-cloud/containeranalysis) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

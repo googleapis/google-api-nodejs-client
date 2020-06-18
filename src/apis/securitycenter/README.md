@@ -4,6 +4,15 @@
 
 > Security Command Center API provides access to temporal views of assets and findings within an organization.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/security-center](https://www.npmjs.com/package/@google-cloud/security-center) instead.
+The [@google-cloud/security-center](https://www.npmjs.com/package/@google-cloud/security-center) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
