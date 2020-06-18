@@ -661,6 +661,10 @@ export namespace lifesciences_v2beta {
      */
     disks?: Schema$Disk[];
     /**
+     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. Only a single image is supported.
+     */
+    dockerCacheImages?: string[] | null;
+    /**
      * Whether Stackdriver monitoring should be enabled on the VM.
      */
     enableStackdriverMonitoring?: boolean | null;
