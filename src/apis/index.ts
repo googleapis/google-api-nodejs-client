@@ -83,6 +83,7 @@ import * as displayvideo from './displayvideo';
 import * as dlp from './dlp';
 import * as dns from './dns';
 import * as docs from './docs';
+import * as documentai from './documentai';
 import * as domainsrdap from './domainsrdap';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
@@ -260,6 +261,7 @@ export const APIS: APIList = {
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
   docs: docs.VERSIONS,
+  documentai: documentai.VERSIONS,
   domainsrdap: domainsrdap.VERSIONS,
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
@@ -434,6 +436,7 @@ export class GeneratedAPIs {
   dlp = dlp.dlp;
   dns = dns.dns;
   docs = docs.docs;
+  documentai = documentai.documentai;
   domainsrdap = domainsrdap.domainsrdap;
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;

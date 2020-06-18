@@ -465,7 +465,7 @@
                 "accept": [
                   "application/octet-stream"
                 ],
-                "maxSize": "31457280",
+                "maxSize": "314572800",
                 "protocols": {
                   "simple": {
                     "multipart": true,
@@ -2424,7 +2424,7 @@
       }
     }
   },
-  "revision": "20200607",
+  "revision": "20200618",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Apk": {
