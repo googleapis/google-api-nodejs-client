@@ -46,11 +46,6 @@
       "location": "query",
       "type": "string"
     },
-    "access_token": {
-      "description": "OAuth access token.",
-      "location": "query",
-      "type": "string"
-    },
     "alt": {
       "default": "json",
       "description": "Data format for response.",
@@ -79,11 +74,6 @@
     },
     "key": {
       "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
-      "location": "query",
-      "type": "string"
-    },
-    "oauth_token": {
-      "description": "OAuth 2.0 token for the current user.",
       "location": "query",
       "type": "string"
     },
@@ -512,7 +502,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200612",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "EntityKey": {
