@@ -1192,7 +1192,7 @@
                             "instances": {
                               "methods": {
                                 "delete": {
-                                  "description": "DeleteInstance deletes an instance associated with the given study, series,\nand SOP Instance UID. Delete requests are equivalent to the GET requests\nspecified in the Retrieve transaction.",
+                                  "description": "DeleteInstance deletes an instance associated with the given study, series,\nand SOP Instance UID. Delete requests are equivalent to the GET requests\nspecified in the Retrieve transaction.\nStudy and series search results can take a few seconds to be updated after\nan instance is deleted using DeleteInstance.",
                                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}/instances/{instancesId}",
                                   "httpMethod": "DELETE",
                                   "id": "healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete",
@@ -2677,7 +2677,7 @@
       }
     }
   },
-  "revision": "20200525",
+  "revision": "20200605",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AuditConfig": {

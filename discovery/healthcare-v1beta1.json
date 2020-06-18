@@ -451,6 +451,145 @@
               "resources": {
                 "annotationStores": {
                   "methods": {
+                    "create": {
+                      "description": "Creates a new Annotation store within the parent dataset.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "annotationStoreId": {
+                          "description": "The ID of the Annotation store that is being created.\nThe string must match the following regex: `[\\p{L}\\p{N}_\\-\\.]{1,256}`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "The name of the dataset this Annotation store belongs to.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/annotationStores",
+                      "request": {
+                        "$ref": "AnnotationStore"
+                      },
+                      "response": {
+                        "$ref": "AnnotationStore"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes the specified Annotation store and removes all annotations that are\ncontained within it.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}",
+                      "httpMethod": "DELETE",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The resource name of the Annotation store to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "evaluate": {
+                      "description": "Evaluate an Annotation store against a\nground truth Annotation store.\nWhen the operation finishes successfully, a detailed response is returned\nof type EvaluateAnnotationStoreResponse, contained in the response. The metadata field type is\nOperationMetadata.\nErrors are logged to Cloud Logging\n(see [Viewing logs](/healthcare/docs/how-tos/logging)).",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}:evaluate",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.evaluate",
+                      "parameterOrder": [
+                        "evalStore"
+                      ],
+                      "parameters": {
+                        "evalStore": {
+                          "description": "The Annotation store to compare against `golden_store`, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+evalStore}:evaluate",
+                      "request": {
+                        "$ref": "EvaluateAnnotationStoreRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "export": {
+                      "description": "Export\nAnnotations from\nthe Annotation\nstore.\nIf the request is successful, a detailed response is returned of type\nExportAnnotationsResponse, contained in the\nresponse field when the\noperation finishes.\nThe metadata field type is\nOperationMetadata.\nIf errors occur, the error\nfield type is ImportAnnotationsErrorDetails.\nErrors are also logged to Cloud Logging\n(see [Viewing logs](/healthcare/docs/how-tos/logging)).",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}:export",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.export",
+                      "parameterOrder": [
+                        "annotationStore"
+                      ],
+                      "parameters": {
+                        "annotationStore": {
+                          "description": "The name of the Annotation store to export annotations to, in\nthe format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+annotationStore}:export",
+                      "request": {
+                        "$ref": "ExportAnnotationsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the specified Annotation store or returns NOT_FOUND if it does not\nexist.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}",
+                      "httpMethod": "GET",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The resource name of the Annotation store to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "AnnotationStore"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}:getIamPolicy",
@@ -477,6 +616,109 @@
                       "path": "v1beta1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "import": {
+                      "description": "Import\nAnnotations to\nthe Annotation\nstore by\nloading data from the specified sources.\nIf the request is successful, a detailed response is returned as of type\nImportAnnotationsResponse, contained in the\nresponse field when the\noperation finishes.\nThe metadata field type is\nOperationMetadata.\nIf errors occur, the error\nfield type is ImportAnnotationsErrorDetails.\nErrors are also logged to Cloud Logging\n(see [Viewing logs](/healthcare/docs/how-tos/logging)).",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}:import",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.import",
+                      "parameterOrder": [
+                        "annotationStore"
+                      ],
+                      "parameters": {
+                        "annotationStore": {
+                          "description": "The name of the Annotation store to which the server imports annotations,\nin the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+annotationStore}:import",
+                      "request": {
+                        "$ref": "ImportAnnotationsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the Annotation stores in the given dataset for a source store.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores",
+                      "httpMethod": "GET",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Restricts stores returned to those matching a filter. Syntax:\nhttps://cloud.google.com/appengine/docs/standard/python/search/query_strings\nOnly filtering on labels is supported, for example `labels.key=value`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Limit on the number of Annotation stores to return in a single response.\nIf zero the default page size of 100 is used.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from the previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Name of the dataset.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/annotationStores",
+                      "response": {
+                        "$ref": "ListAnnotationStoresResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specified Annotation store.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}",
+                      "httpMethod": "PATCH",
+                      "id": "healthcare.projects.locations.datasets.annotationStores.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Resource name of the Annotation store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "AnnotationStore"
+                      },
+                      "response": {
+                        "$ref": "AnnotationStore"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -537,6 +779,175 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "annotations": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a new Annotation record. It is\nvalid to create Annotation objects for the same source more than once since\na unique ID is assigned to each record by this service.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}/annotations",
+                          "httpMethod": "POST",
+                          "id": "healthcare.projects.locations.datasets.annotationStores.annotations.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "The name of the Annotation store this annotation belongs to. For example,\n`projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+parent}/annotations",
+                          "request": {
+                            "$ref": "Annotation"
+                          },
+                          "response": {
+                            "$ref": "Annotation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes an Annotation or returns\nNOT_FOUND if it does not exist.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}/annotations/{annotationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "healthcare.projects.locations.datasets.annotationStores.annotations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The resource name of the Annotation to delete.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "Empty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets an Annotation.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}/annotations/{annotationsId}",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.annotationStores.annotations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The resource name of the Annotation to retrieve.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "Annotation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists the Annotations in the given\nAnnotation store for a source\nresource.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}/annotations",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.annotationStores.annotations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Restricts Annotations returned to those matching a filter. Functions\navailable for filtering are:\n\n- `matches(\"annotation_source.cloud_healthcare_source.name\", substring)`.\nFilter on `cloud_healthcare_source.name`. For example:\n`matches(\"annotation_source.cloud_healthcare_source.name\", \"some source\")`.\n\n- `matches(\"annotation\", substring)`. Filter on all fields of annotation.\nFor example: `matches(\"annotation\", \"some-content\")`.\n\n- `type(\"text\")`, `type(\"image\")`, `type(\"resource\")`. Filter on the type\nof annotation `data`.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Limit on the number of Annotations to return in a single response.\nIf zero the default page size of 100 is used.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The next_page_token value returned from the previous List request, if any.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Name of the Annotation store to retrieve Annotations from.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "view": {
+                              "description": "Controls which fields are populated in the response.",
+                              "enum": [
+                                "ANNOTATION_VIEW_UNSPECIFIED",
+                                "ANNOTATION_VIEW_BASIC",
+                                "ANNOTATION_VIEW_FULL"
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+parent}/annotations",
+                          "response": {
+                            "$ref": "ListAnnotationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates the Annotation.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/annotationStores/{annotationStoresId}/annotations/{annotationsId}",
+                          "httpMethod": "PATCH",
+                          "id": "healthcare.projects.locations.datasets.annotationStores.annotations.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Resource name of the Annotation, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+/annotations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "request": {
+                            "$ref": "Annotation"
+                          },
+                          "response": {
+                            "$ref": "Annotation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -1351,7 +1762,7 @@
                             "instances": {
                               "methods": {
                                 "delete": {
-                                  "description": "DeleteInstance deletes an instance associated with the given study, series,\nand SOP Instance UID. Delete requests are equivalent to the GET requests\nspecified in the Retrieve transaction.",
+                                  "description": "DeleteInstance deletes an instance associated with the given study, series,\nand SOP Instance UID. Delete requests are equivalent to the GET requests\nspecified in the Retrieve transaction.\nStudy and series search results can take a few seconds to be updated after\nan instance is deleted using DeleteInstance.",
                                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}/instances/{instancesId}",
                                   "httpMethod": "DELETE",
                                   "id": "healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete",
@@ -3061,9 +3472,87 @@
       }
     }
   },
-  "revision": "20200525",
+  "revision": "20200605",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
+    "Annotation": {
+      "description": "An annotation record.",
+      "id": "Annotation",
+      "properties": {
+        "annotationSource": {
+          "$ref": "AnnotationSource",
+          "description": "Details of the source."
+        },
+        "customData": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional information for this annotation record, such as annotator and\nverifier information or study campaign.",
+          "type": "object"
+        },
+        "imageAnnotation": {
+          "$ref": "ImageAnnotation",
+          "description": "Annotations for images. For example, bounding polygons."
+        },
+        "name": {
+          "description": "Resource name of the Annotation, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.",
+          "type": "string"
+        },
+        "resourceAnnotation": {
+          "$ref": "ResourceAnnotation",
+          "description": "Annotations for resource. For example, classification tags."
+        },
+        "textAnnotation": {
+          "$ref": "SensitiveTextAnnotation",
+          "description": "Annotations for sensitive texts. For example, a range that describes the\nlocation of sensitive text."
+        }
+      },
+      "type": "object"
+    },
+    "AnnotationConfig": {
+      "description": "Specifies how to store annotations during de-identification operation.",
+      "id": "AnnotationConfig",
+      "properties": {
+        "annotationStoreName": {
+          "description": "The name of the annotation store, in the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`).\n\n * The destination annotation store must be in the same project as the\n   source data. De-identifying data across multiple projects is not\n   supported.\n * The destination annotation store must exist when using\n   DeidentifyDicomStore or\n   DeidentifyFhirStore.\n   DeidentifyDataset\n   automatically creates the destination annotation store.",
+          "type": "string"
+        },
+        "storeQuote": {
+          "description": "If set to true, the sensitive texts are included in\nSensitiveTextAnnotation\nof Annotation.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AnnotationSource": {
+      "description": "AnnotationSource holds the source information of the annotation.",
+      "id": "AnnotationSource",
+      "properties": {
+        "cloudHealthcareSource": {
+          "$ref": "CloudHealthcareSource",
+          "description": "Cloud Healthcare API resource."
+        }
+      },
+      "type": "object"
+    },
+    "AnnotationStore": {
+      "description": "An Annotation store that can store annotation resources such as\nlabels and tags for text, image and audio.",
+      "id": "AnnotationStore",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-supplied key-value pairs used to organize Annotation stores.\n\nLabel keys must be between 1 and 63 characters long, have a UTF-8 encoding\nof maximum 128 bytes, and must conform to the\nfollowing PCRE regular expression:\n\\p{Ll}\\p{Lo}{0,62}\n\nLabel values must be between 1 and 63 characters long, have\na UTF-8 encoding of maximum 128 bytes, and must conform to the\nfollowing PCRE regular expression: [\\p{Ll}\\p{Lo}\\p{N}_-]{0,63}\n\nNo more than 64 labels can be associated with a given store.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name of the Annotation store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuditConfig": {
       "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
@@ -3134,6 +3623,24 @@
       },
       "type": "object"
     },
+    "BoundingPoly": {
+      "description": "A bounding polygon for the detected image annotation.",
+      "id": "BoundingPoly",
+      "properties": {
+        "label": {
+          "description": "A description of this polygon.",
+          "type": "string"
+        },
+        "vertices": {
+          "description": "List of the vertices of this polygon.",
+          "items": {
+            "$ref": "Vertex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -3146,6 +3653,17 @@
       "properties": {
         "maskingCharacter": {
           "description": "Character to mask the sensitive values. If not supplied, defaults to \"*\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudHealthcareSource": {
+      "description": "Cloud Healthcare API resource.",
+      "id": "CloudHealthcareSource",
+      "properties": {
+        "name": {
+          "description": "Full path of a Cloud Healthcare API resource.",
           "type": "string"
         }
       },
@@ -3205,6 +3723,10 @@
       "description": "Configures de-id options specific to different types of content.\nEach submessage customizes the handling of an\nhttps://tools.ietf.org/html/rfc6838 media type or subtype. Configs are\napplied in a nested manner at runtime.",
       "id": "DeidentifyConfig",
       "properties": {
+        "annotation": {
+          "$ref": "AnnotationConfig",
+          "description": "Configures how annotations, meaning that the location and infoType\nof sensitive information findings, are created during de-identification.\nIf unspecified, no annotations are created."
+        },
         "dicom": {
           "$ref": "DicomConfig",
           "description": "Configures de-id of application/DICOM content."
@@ -3326,6 +3848,19 @@
       },
       "type": "object"
     },
+    "Detail": {
+      "description": "Contains multiple sensitive information findings for each resource slice.",
+      "id": "Detail",
+      "properties": {
+        "findings": {
+          "items": {
+            "$ref": "Finding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DicomConfig": {
       "description": "Specifies the parameters needed for de-identification of DICOM stores.",
       "id": "DicomConfig",
@@ -3412,6 +3947,115 @@
         },
         "resource": {
           "description": "The identifier of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EvaluateAnnotationStoreRequest": {
+      "description": "Request to evaluate an Annotation store against a\nground truth [Annotation store].",
+      "id": "EvaluateAnnotationStoreRequest",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination",
+          "description": "The BigQuery table where the server writes the output.\nBigQueryDestination requires the `roles/bigquery.dataEditor` and\n`roles/bigquery.jobUser` Cloud IAM roles."
+        },
+        "evalInfoTypeMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. InfoType mapping for `eval_store`. Different resources can map to\nthe same infoType. For example, `PERSON_NAME`, `PERSON`, `NAME`, and\n`HUMAN` are different. To map all of these into a single\ninfoType (such as `PERSON_NAME`), specify the following mapping:\n```\n  info_type_mapping[\"PERSON\"] = \"PERSON_NAME\"\n  info_type_mapping[\"NAME\"] = \"PERSON_NAME\"\n  info_type_mapping[\"HUMAN\"] = \"PERSON_NAME\"\n```\nUnmentioned infoTypes, such as `DATE`, are treated as identity\nmapping. For example:\n```\n  info_type_mapping[\"DATE\"] = \"DATE\"\n```\nInfoTypes are case-insensitive.",
+          "type": "object"
+        },
+        "goldenInfoTypeMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Similar to `eval_info_type_mapping`, infoType mapping for\n`golden_store`.",
+          "type": "object"
+        },
+        "goldenStore": {
+          "description": "The Annotation store to use as ground truth, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "infoTypeConfig": {
+          "$ref": "InfoTypeConfig"
+        }
+      },
+      "type": "object"
+    },
+    "EvaluateAnnotationStoreResponse": {
+      "description": "Response for successful Annotation store evaluation operations. This\nstructure is included in the\nresponse upon operation completion.",
+      "id": "EvaluateAnnotationStoreResponse",
+      "properties": {
+        "evalStore": {
+          "description": "The evaluated Annotation store, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "goldenCount": {
+          "description": "The number of Annotations in the ground\ntruth Annotation store successfully\nprocessed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "goldenStore": {
+          "description": "The ground truth Annotation store, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "matchedCount": {
+          "description": "The number of Annotations\nin the eval store that match with corresponding annotations\nin the ground truth Annotation store. Two matched\nannotations both annotate the same resource defined in\nAnnotationSource.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportAnnotationsErrorDetails": {
+      "description": "Response for failed annotation export operations. This structure is\nincluded in error\ndetails upon operation completion.",
+      "id": "ExportAnnotationsErrorDetails",
+      "properties": {
+        "annotationStore": {
+          "description": "The annotation_store used for the export operation, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "errorCount": {
+          "description": "The number of annotations that had error.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of annotations successfully exported.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportAnnotationsRequest": {
+      "description": "Request to export\nAnnotations. The\nexport operation is not atomic. If a\nfailure occurs, any annotations already exported are not removed.",
+      "id": "ExportAnnotationsRequest",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination",
+          "description": "The BigQuery output destination, which requires two IAM roles:\n  `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`."
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudHealthcareV1beta1AnnotationGcsDestination",
+          "description": "The Cloud Storage destination, which requires the\n`roles/storage.objectAdmin` Cloud IAM role."
+        }
+      },
+      "type": "object"
+    },
+    "ExportAnnotationsResponse": {
+      "description": "Response for successful annotation export operations. This structure is\nincluded in response upon operation\ncompletion.",
+      "id": "ExportAnnotationsResponse",
+      "properties": {
+        "annotationStore": {
+          "description": "The annotation_store used for the export operation, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The total number of annotations successfully exported.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -3617,6 +4261,93 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FilterList": {
+      "description": "List of infoTypes to be filtered.",
+      "id": "FilterList",
+      "properties": {
+        "infoTypes": {
+          "description": "These infoTypes are based on after the `eval_info_type_mapping` and\n`golden_info_type_mapping`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Finding": {
+      "id": "Finding",
+      "properties": {
+        "end": {
+          "description": "Zero-based ending index of the found text, exclusively.",
+          "format": "int64",
+          "type": "string"
+        },
+        "infoType": {
+          "description": "The type of information stored in this text range. For example,\nHumanName, BirthDate, or Address.",
+          "type": "string"
+        },
+        "quote": {
+          "description": "The snippet of the sensitive text. This field is only populated during\ndeidentification if `store_quote` is set to true in DeidentifyConfig.",
+          "type": "string"
+        },
+        "start": {
+          "description": "Zero-based starting index of the found text, inclusively.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination": {
+      "description": "The BigQuery table for export.",
+      "id": "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination",
+      "properties": {
+        "force": {
+          "description": "If the destination table already exists and this flag is `TRUE`, the table\nis overwritten by the contents of the input store. If the flag is not\nset and the destination table already exists, the export call returns an\nerror.",
+          "type": "boolean"
+        },
+        "schemaType": {
+          "description": "Specifies the schema format to export.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "SIMPLE"
+          ],
+          "enumDescriptions": [
+            "Same as SIMPLE.",
+            "A flatterned version of\nAnnotation."
+          ],
+          "type": "string"
+        },
+        "tableUri": {
+          "description": "BigQuery URI to a table, up to 2000 characters long, must be of the form\nbq://projectId.bqDatasetId.tableId.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudHealthcareV1beta1AnnotationGcsDestination": {
+      "description": "The Cloud Storage location for export.",
+      "id": "GoogleCloudHealthcareV1beta1AnnotationGcsDestination",
+      "properties": {
+        "uriPrefix": {
+          "description": "The Cloud Storage destination to export to.\nURI for a Cloud Storage directory where the server writes result files, in\nthe format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no\ntrailing slash, the service appends one when composing the object path.\nThe user is responsible for creating the Cloud Storage bucket referenced in\n`uri_prefix`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudHealthcareV1beta1AnnotationGcsSource": {
+      "description": "Specifies the configuration for importing data from Cloud Storage.",
+      "id": "GoogleCloudHealthcareV1beta1AnnotationGcsSource",
+      "properties": {
+        "uri": {
+          "description": "Points to a Cloud Storage URI containing file(s) with\ncontent only. The URI must be in the following format:\n`gs://{bucket_id}/{object_id}`. The URI can include wildcards in\n`object_id` and thus identify multiple files. Supported wildcards:\n '*' to match 0 or more non-separator characters\n '**' to match 0 or more characters (including separators). Must be used\n at\n      the end of a path and with no other wildcards in the\n      path. Can also be used with a file extension (such as .dcm), which\n      imports all files with the extension in the specified directory and\n      its sub-directories. For example,\n      `gs://my-bucket/my-directory/**.json` imports all files with .json\n      extensions in `my-directory/` and its sub-directories.\n '?' to match 1 character\nAll other URI formats are invalid.\nFiles matching the wildcard are expected to contain content only, no\nmetadata.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3950,6 +4681,25 @@
       },
       "type": "object"
     },
+    "ImageAnnotation": {
+      "description": "Image annotation.",
+      "id": "ImageAnnotation",
+      "properties": {
+        "boundingPolys": {
+          "description": "The list of polygons outlining the sensitive regions in the image.",
+          "items": {
+            "$ref": "BoundingPoly"
+          },
+          "type": "array"
+        },
+        "frameIndex": {
+          "description": "0-based index of the image frame. For example, an image frame in a DICOM\ninstance.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ImageConfig": {
       "description": "Specifies how to handle de-identification of image pixels.",
       "id": "ImageConfig",
@@ -3968,6 +4718,53 @@
             "Redact sensitive text.",
             "Do not redact text."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportAnnotationsErrorDetails": {
+      "description": "Final response of importing\nAnnotations in\npartial or total failure case. This structure is included in the\nerror\ndetails. It is only included when the operation\nfinishes.",
+      "id": "ImportAnnotationsErrorDetails",
+      "properties": {
+        "annotationStore": {
+          "description": "The annotation_store that the annotations were imported to. The name\nis in the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "errorCount": {
+          "description": "The number of annotations that had errors.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of annotations that have been imported.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportAnnotationsRequest": {
+      "description": "Request to import\nAnnotations. The\nAnnotations to be imported must have client-supplied resource names which\nindicate the annotation resource. The import operation is not atomic. If a\nfailure occurs, any annotations already imported are not removed.",
+      "id": "ImportAnnotationsRequest",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GoogleCloudHealthcareV1beta1AnnotationGcsSource"
+        }
+      },
+      "type": "object"
+    },
+    "ImportAnnotationsResponse": {
+      "description": "Final response of importing\nAnnotations in\nsuccessful case. This structure is included in the\nresponse. It is only included\nwhen the operation finishes.",
+      "id": "ImportAnnotationsResponse",
+      "properties": {
+        "annotationStore": {
+          "description": "The annotation_store that the annotations were imported to. The name\nis in the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "The number of the input annotations. All input have been imported\nsuccessfully.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4033,6 +4830,23 @@
       },
       "type": "object"
     },
+    "InfoTypeConfig": {
+      "description": "Specifies how to use infoTypes for evaluation. For example, a user might\nonly want to evaluate `PERSON`, `LOCATION`, and `AGE`.",
+      "id": "InfoTypeConfig",
+      "properties": {
+        "evaluateList": {
+          "$ref": "FilterList"
+        },
+        "ignoreList": {
+          "$ref": "FilterList"
+        },
+        "strictMatching": {
+          "description": "If `TRUE`, infoTypes described by `filter` are used for evaluation.\nOtherwise, infoTypes are not considered for evaluation.\nFor example:\n\n* Annotated text:\n  \"Toronto is a location\"\n* Finding 1:\n  `{\"infoType\": \"PERSON\", \"quote\": \"Toronto\", \"start\": 0, \"end\": 7}`\n* Finding 2:\n  `{\"infoType\": \"CITY\", \"quote\": \"Toronto\", \"start\": 0, \"end\": 7}`\n* Finding 3:\n  `{}`\n* Ground truth:\n  `{\"infoType\": \"LOCATION\", \"quote\": \"Toronto\", \"start\": 0, \"end\": 7}`\n\nWhen `strict_matching` is `TRUE`:\n\n* Finding 1: 1 false positive\n* Finding 2: 1 false positive\n* Finding 3: 1 false negative\n\nWhen `strict_matching` is `FALSE`:\n\n* Finding 1: 1 true positive\n* Finding 2: 1 true positive\n* Finding 3: 1 false negative",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "InfoTypeTransformation": {
       "description": "A transformation to apply to text that is identified as a specific\ninfo_type.",
       "id": "InfoTypeTransformation",
@@ -4090,6 +4904,42 @@
         "message": {
           "$ref": "Message",
           "description": "Created message resource."
+        }
+      },
+      "type": "object"
+    },
+    "ListAnnotationStoresResponse": {
+      "description": "Lists the Annotation stores\nin the given dataset.",
+      "id": "ListAnnotationStoresResponse",
+      "properties": {
+        "annotationStores": {
+          "description": "The returned Annotation stores. Won't be more Annotation stores than the\nvalue of page_size in the request.",
+          "items": {
+            "$ref": "AnnotationStore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results or empty if there are no more\nresults in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAnnotationsResponse": {
+      "description": "Lists the Annotations in the specified\nAnnotation store.",
+      "id": "ListAnnotationsResponse",
+      "properties": {
+        "annotations": {
+          "description": "The returned Annotations. Won't be more values than the value of\npage_size in the request. See `AnnotationView` in the request for\npopulated fields.",
+          "items": {
+            "$ref": "Annotation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results or empty if there are no more\nresults in the list.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4501,6 +5351,17 @@
       "properties": {},
       "type": "object"
     },
+    "ResourceAnnotation": {
+      "description": "Resource level annotation.",
+      "id": "ResourceAnnotation",
+      "properties": {
+        "label": {
+          "description": "A description of the annotation record.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Resources": {
       "description": "A list of FHIR resources.",
       "id": "Resources",
@@ -4681,6 +5542,20 @@
       },
       "type": "object"
     },
+    "SensitiveTextAnnotation": {
+      "description": "A TextAnnotation specifies a text range that includes sensitive information.",
+      "id": "SensitiveTextAnnotation",
+      "properties": {
+        "details": {
+          "additionalProperties": {
+            "$ref": "Detail"
+          },
+          "description": "Maps from a resource slice. For example, FHIR resource field path to a set\nof sensitive text findings. For example,\nAppointment.Narrative text1 --> {findings_1, findings_2, findings_3}",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -4842,6 +5717,23 @@
         "value": {
           "description": "The value to match with the field. For example, \"My Application Name\" or\n\"2.3\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Vertex": {
+      "description": "A 2D coordinate in an image. The origin is the top-left.",
+      "id": "Vertex",
+      "properties": {
+        "x": {
+          "description": "X coordinate.",
+          "format": "float",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y coordinate.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"

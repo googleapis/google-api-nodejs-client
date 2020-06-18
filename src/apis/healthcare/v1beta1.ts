@@ -128,6 +128,70 @@ export namespace healthcare_v1beta1 {
   }
 
   /**
+   * An annotation record.
+   */
+  export interface Schema$Annotation {
+    /**
+     * Details of the source.
+     */
+    annotationSource?: Schema$AnnotationSource;
+    /**
+     * Additional information for this annotation record, such as annotator and verifier information or study campaign.
+     */
+    customData?: {[key: string]: string} | null;
+    /**
+     * Annotations for images. For example, bounding polygons.
+     */
+    imageAnnotation?: Schema$ImageAnnotation;
+    /**
+     * Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
+     */
+    name?: string | null;
+    /**
+     * Annotations for resource. For example, classification tags.
+     */
+    resourceAnnotation?: Schema$ResourceAnnotation;
+    /**
+     * Annotations for sensitive texts. For example, a range that describes the location of sensitive text.
+     */
+    textAnnotation?: Schema$SensitiveTextAnnotation;
+  }
+  /**
+   * Specifies how to store annotations during de-identification operation.
+   */
+  export interface Schema$AnnotationConfig {
+    /**
+     * The name of the annotation store, in the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`).   * The destination annotation store must be in the same project as the    source data. De-identifying data across multiple projects is not    supported.  * The destination annotation store must exist when using    DeidentifyDicomStore or    DeidentifyFhirStore.    DeidentifyDataset    automatically creates the destination annotation store.
+     */
+    annotationStoreName?: string | null;
+    /**
+     * If set to true, the sensitive texts are included in SensitiveTextAnnotation of Annotation.
+     */
+    storeQuote?: boolean | null;
+  }
+  /**
+   * AnnotationSource holds the source information of the annotation.
+   */
+  export interface Schema$AnnotationSource {
+    /**
+     * Cloud Healthcare API resource.
+     */
+    cloudHealthcareSource?: Schema$CloudHealthcareSource;
+  }
+  /**
+   * An Annotation store that can store annotation resources such as labels and tags for text, image and audio.
+   */
+  export interface Schema$AnnotationStore {
+    /**
+     * Optional. User-supplied key-value pairs used to organize Annotation stores.  Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}  Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated with a given store.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -171,6 +235,19 @@ export namespace healthcare_v1beta1 {
     role?: string | null;
   }
   /**
+   * A bounding polygon for the detected image annotation.
+   */
+  export interface Schema$BoundingPoly {
+    /**
+     * A description of this polygon.
+     */
+    label?: string | null;
+    /**
+     * List of the vertices of this polygon.
+     */
+    vertices?: Schema$Vertex[];
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -182,6 +259,15 @@ export namespace healthcare_v1beta1 {
      * Character to mask the sensitive values. If not supplied, defaults to &quot;*&quot;.
      */
     maskingCharacter?: string | null;
+  }
+  /**
+   * Cloud Healthcare API resource.
+   */
+  export interface Schema$CloudHealthcareSource {
+    /**
+     * Full path of a Cloud Healthcare API resource.
+     */
+    name?: string | null;
   }
   /**
    * Creates a new message.
@@ -227,6 +313,10 @@ export namespace healthcare_v1beta1 {
    * Configures de-id options specific to different types of content. Each submessage customizes the handling of an https://tools.ietf.org/html/rfc6838 media type or subtype. Configs are applied in a nested manner at runtime.
    */
   export interface Schema$DeidentifyConfig {
+    /**
+     * Configures how annotations, meaning that the location and infoType of sensitive information findings, are created during de-identification. If unspecified, no annotations are created.
+     */
+    annotation?: Schema$AnnotationConfig;
     /**
      * Configures de-id of application/DICOM content.
      */
@@ -330,6 +420,12 @@ export namespace healthcare_v1beta1 {
     successStoreCount?: string | null;
   }
   /**
+   * Contains multiple sensitive information findings for each resource slice.
+   */
+  export interface Schema$Detail {
+    findings?: Schema$Finding[];
+  }
+  /**
    * Specifies the parameters needed for de-identification of DICOM stores.
    */
   export interface Schema$DicomConfig {
@@ -392,6 +488,92 @@ export namespace healthcare_v1beta1 {
      * The identifier of the resource.
      */
     resource?: string | null;
+  }
+  /**
+   * Request to evaluate an Annotation store against a ground truth [Annotation store].
+   */
+  export interface Schema$EvaluateAnnotationStoreRequest {
+    /**
+     * The BigQuery table where the server writes the output. BigQueryDestination requires the `roles/bigquery.dataEditor` and `roles/bigquery.jobUser` Cloud IAM roles.
+     */
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination;
+    /**
+     * Optional. InfoType mapping for `eval_store`. Different resources can map to the same infoType. For example, `PERSON_NAME`, `PERSON`, `NAME`, and `HUMAN` are different. To map all of these into a single infoType (such as `PERSON_NAME`), specify the following mapping: ```   info_type_mapping[&quot;PERSON&quot;] = &quot;PERSON_NAME&quot;   info_type_mapping[&quot;NAME&quot;] = &quot;PERSON_NAME&quot;   info_type_mapping[&quot;HUMAN&quot;] = &quot;PERSON_NAME&quot; ``` Unmentioned infoTypes, such as `DATE`, are treated as identity mapping. For example: ```   info_type_mapping[&quot;DATE&quot;] = &quot;DATE&quot; ``` InfoTypes are case-insensitive.
+     */
+    evalInfoTypeMapping?: {[key: string]: string} | null;
+    /**
+     * Optional. Similar to `eval_info_type_mapping`, infoType mapping for `golden_store`.
+     */
+    goldenInfoTypeMapping?: {[key: string]: string} | null;
+    /**
+     * The Annotation store to use as ground truth, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    goldenStore?: string | null;
+    infoTypeConfig?: Schema$InfoTypeConfig;
+  }
+  /**
+   * Response for successful Annotation store evaluation operations. This structure is included in the response upon operation completion.
+   */
+  export interface Schema$EvaluateAnnotationStoreResponse {
+    /**
+     * The evaluated Annotation store, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    evalStore?: string | null;
+    /**
+     * The number of Annotations in the ground truth Annotation store successfully processed.
+     */
+    goldenCount?: string | null;
+    /**
+     * The ground truth Annotation store, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    goldenStore?: string | null;
+    /**
+     * The number of Annotations in the eval store that match with corresponding annotations in the ground truth Annotation store. Two matched annotations both annotate the same resource defined in AnnotationSource.
+     */
+    matchedCount?: string | null;
+  }
+  /**
+   * Response for failed annotation export operations. This structure is included in error details upon operation completion.
+   */
+  export interface Schema$ExportAnnotationsErrorDetails {
+    /**
+     * The annotation_store used for the export operation, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string | null;
+    /**
+     * The number of annotations that had error.
+     */
+    errorCount?: string | null;
+    /**
+     * The number of annotations successfully exported.
+     */
+    successCount?: string | null;
+  }
+  /**
+   * Request to export Annotations. The export operation is not atomic. If a failure occurs, any annotations already exported are not removed.
+   */
+  export interface Schema$ExportAnnotationsRequest {
+    /**
+     * The BigQuery output destination, which requires two IAM roles:   `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
+     */
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination;
+    /**
+     * The Cloud Storage destination, which requires the `roles/storage.objectAdmin` Cloud IAM role.
+     */
+    gcsDestination?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsDestination;
+  }
+  /**
+   * Response for successful annotation export operations. This structure is included in response upon operation completion.
+   */
+  export interface Schema$ExportAnnotationsResponse {
+    /**
+     * The annotation_store used for the export operation, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string | null;
+    /**
+     * The total number of annotations successfully exported.
+     */
+    successCount?: string | null;
   }
   /**
    * Exports data from the specified DICOM store. If a given resource, such as a DICOM object with the same SOPInstance UID, already exists in the output, it is overwritten with the version in the source dataset. Exported DICOM data persists when the DICOM store from which it was exported is deleted.
@@ -540,6 +722,68 @@ export namespace healthcare_v1beta1 {
      * List of paths to FHIR fields to redact. Each path is a period-separated list where each component is either a field name or FHIR type name. All types begin with an upper case letter. For example, the resource field &quot;Patient.Address.city&quot;, which uses a string type, can be matched by &quot;Patient.Address.String&quot;. Path also supports partial matching. For example, &quot;Patient.Address.city&quot; can be matched by &quot;Address.city&quot; (Patient omitted). Partial matching and type matching can be combined. For example, &quot;Patient.Address.city&quot; can be matched by &quot;Address.String&quot;. For &quot;choice&quot; types (those defined in the FHIR spec with the form: field[x]), use two separate components. For example, &quot;deceasedAge.unit&quot; is matched by &quot;Deceased.Age.unit&quot;. Supported types are: AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml. The sub-type for HumanName, such as HumanName.given or HumanName.family, can be omitted.
      */
     paths?: string[] | null;
+  }
+  /**
+   * List of infoTypes to be filtered.
+   */
+  export interface Schema$FilterList {
+    /**
+     * These infoTypes are based on after the `eval_info_type_mapping` and `golden_info_type_mapping`.
+     */
+    infoTypes?: string[] | null;
+  }
+  export interface Schema$Finding {
+    /**
+     * Zero-based ending index of the found text, exclusively.
+     */
+    end?: string | null;
+    /**
+     * The type of information stored in this text range. For example, HumanName, BirthDate, or Address.
+     */
+    infoType?: string | null;
+    /**
+     * The snippet of the sensitive text. This field is only populated during deidentification if `store_quote` is set to true in DeidentifyConfig.
+     */
+    quote?: string | null;
+    /**
+     * Zero-based starting index of the found text, inclusively.
+     */
+    start?: string | null;
+  }
+  /**
+   * The BigQuery table for export.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination {
+    /**
+     * If the destination table already exists and this flag is `TRUE`, the table is overwritten by the contents of the input store. If the flag is not set and the destination table already exists, the export call returns an error.
+     */
+    force?: boolean | null;
+    /**
+     * Specifies the schema format to export.
+     */
+    schemaType?: string | null;
+    /**
+     * BigQuery URI to a table, up to 2000 characters long, must be of the form bq://projectId.bqDatasetId.tableId.
+     */
+    tableUri?: string | null;
+  }
+  /**
+   * The Cloud Storage location for export.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1AnnotationGcsDestination {
+    /**
+     * The Cloud Storage destination to export to. URI for a Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no trailing slash, the service appends one when composing the object path. The user is responsible for creating the Cloud Storage bucket referenced in `uri_prefix`.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
+   * Specifies the configuration for importing data from Cloud Storage.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1AnnotationGcsSource {
+    /**
+     * Points to a Cloud Storage URI containing file(s) with content only. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  &#39;*&#39; to match 0 or more non-separator characters  &#39;**&#39; to match 0 or more characters (including separators). Must be used  at       the end of a path and with no other wildcards in the       path. Can also be used with a file extension (such as .dcm), which       imports all files with the extension in the specified directory and       its sub-directories. For example,       `gs://my-bucket/my-directory/**.json` imports all files with .json       extensions in `my-directory/` and its sub-directories.  &#39;?&#39; to match 1 character All other URI formats are invalid. Files matching the wildcard are expected to contain content only, no metadata.
+     */
+    uri?: string | null;
   }
   /**
    * Contains a summary of the DeidentifyDicomStore operation.
@@ -794,6 +1038,19 @@ export namespace healthcare_v1beta1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
+   * Image annotation.
+   */
+  export interface Schema$ImageAnnotation {
+    /**
+     * The list of polygons outlining the sensitive regions in the image.
+     */
+    boundingPolys?: Schema$BoundingPoly[];
+    /**
+     * 0-based index of the image frame. For example, an image frame in a DICOM instance.
+     */
+    frameIndex?: number | null;
+  }
+  /**
    * Specifies how to handle de-identification of image pixels.
    */
   export interface Schema$ImageConfig {
@@ -801,6 +1058,42 @@ export namespace healthcare_v1beta1 {
      * Determines how to redact text from image.
      */
     textRedactionMode?: string | null;
+  }
+  /**
+   * Final response of importing Annotations in partial or total failure case. This structure is included in the error details. It is only included when the operation finishes.
+   */
+  export interface Schema$ImportAnnotationsErrorDetails {
+    /**
+     * The annotation_store that the annotations were imported to. The name is in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string | null;
+    /**
+     * The number of annotations that had errors.
+     */
+    errorCount?: string | null;
+    /**
+     * The number of annotations that have been imported.
+     */
+    successCount?: string | null;
+  }
+  /**
+   * Request to import Annotations. The Annotations to be imported must have client-supplied resource names which indicate the annotation resource. The import operation is not atomic. If a failure occurs, any annotations already imported are not removed.
+   */
+  export interface Schema$ImportAnnotationsRequest {
+    gcsSource?: Schema$GoogleCloudHealthcareV1beta1AnnotationGcsSource;
+  }
+  /**
+   * Final response of importing Annotations in successful case. This structure is included in the response. It is only included when the operation finishes.
+   */
+  export interface Schema$ImportAnnotationsResponse {
+    /**
+     * The annotation_store that the annotations were imported to. The name is in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string | null;
+    /**
+     * The number of the input annotations. All input have been imported successfully.
+     */
+    successCount?: string | null;
   }
   /**
    * Returns the errors encountered during DICOM store import.
@@ -836,6 +1129,17 @@ export namespace healthcare_v1beta1 {
      * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.  Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirRestGcsSource;
+  }
+  /**
+   * Specifies how to use infoTypes for evaluation. For example, a user might only want to evaluate `PERSON`, `LOCATION`, and `AGE`.
+   */
+  export interface Schema$InfoTypeConfig {
+    evaluateList?: Schema$FilterList;
+    ignoreList?: Schema$FilterList;
+    /**
+     * If `TRUE`, infoTypes described by `filter` are used for evaluation. Otherwise, infoTypes are not considered for evaluation. For example:  * Annotated text:   &quot;Toronto is a location&quot; * Finding 1:   `{&quot;infoType&quot;: &quot;PERSON&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 2:   `{&quot;infoType&quot;: &quot;CITY&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}` * Finding 3:   `{}` * Ground truth:   `{&quot;infoType&quot;: &quot;LOCATION&quot;, &quot;quote&quot;: &quot;Toronto&quot;, &quot;start&quot;: 0, &quot;end&quot;: 7}`  When `strict_matching` is `TRUE`:  * Finding 1: 1 false positive * Finding 2: 1 false positive * Finding 3: 1 false negative  When `strict_matching` is `FALSE`:  * Finding 1: 1 true positive * Finding 2: 1 true positive * Finding 3: 1 false negative
+     */
+    strictMatching?: boolean | null;
   }
   /**
    * A transformation to apply to text that is identified as a specific info_type.
@@ -887,6 +1191,32 @@ export namespace healthcare_v1beta1 {
      * Created message resource.
      */
     message?: Schema$Message;
+  }
+  /**
+   * Lists the Annotations in the specified Annotation store.
+   */
+  export interface Schema$ListAnnotationsResponse {
+    /**
+     * The returned Annotations. Won&#39;t be more values than the value of page_size in the request. See `AnnotationView` in the request for populated fields.
+     */
+    annotations?: Schema$Annotation[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Lists the Annotation stores in the given dataset.
+   */
+  export interface Schema$ListAnnotationStoresResponse {
+    /**
+     * The returned Annotation stores. Won&#39;t be more Annotation stores than the value of page_size in the request.
+     */
+    annotationStores?: Schema$AnnotationStore[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Lists the available datasets.
@@ -1192,6 +1522,15 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ReplaceWithInfoTypeConfig {}
   /**
+   * Resource level annotation.
+   */
+  export interface Schema$ResourceAnnotation {
+    /**
+     * A description of the annotation record.
+     */
+    label?: string | null;
+  }
+  /**
    * A list of FHIR resources.
    */
   export interface Schema$Resources {
@@ -1316,6 +1655,15 @@ export namespace healthcare_v1beta1 {
     setId?: string | null;
   }
   /**
+   * A TextAnnotation specifies a text range that includes sensitive information.
+   */
+  export interface Schema$SensitiveTextAnnotation {
+    /**
+     * Maps from a resource slice. For example, FHIR resource field path to a set of sensitive text findings. For example, Appointment.Narrative text1 --&gt; {findings_1, findings_2, findings_3}
+     */
+    details?: {[key: string]: Schema$Detail} | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1420,6 +1768,19 @@ export namespace healthcare_v1beta1 {
      * The value to match with the field. For example, &quot;My Application Name&quot; or &quot;2.3&quot;.
      */
     value?: string | null;
+  }
+  /**
+   * A 2D coordinate in an image. The origin is the top-left.
+   */
+  export interface Schema$Vertex {
+    /**
+     * X coordinate.
+     */
+    x?: number | null;
+    /**
+     * Y coordinate.
+     */
+    y?: number | null;
   }
 
   export class Resource$Projects {
@@ -3169,8 +3530,723 @@ export namespace healthcare_v1beta1 {
 
   export class Resource$Projects$Locations$Datasets$Annotationstores {
     context: APIRequestContext;
+    annotations: Resource$Projects$Locations$Datasets$Annotationstores$Annotations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.annotations = new Resource$Projects$Locations$Datasets$Annotationstores$Annotations(
+        this.context
+      );
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.create
+     * @desc Creates a new Annotation store within the parent dataset.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.create(
+     *     {
+     *       // The ID of the Annotation store that is being created.
+     *       // The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     *       annotationStoreId: 'placeholder-value',
+     *       // The name of the dataset this Annotation store belongs to.
+     *       parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "labels": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.annotationStoreId The ID of the Annotation store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     * @param {string} params.parent The name of the dataset this Annotation store belongs to.
+     * @param {().AnnotationStore} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Create
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnnotationStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/annotationStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnnotationStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AnnotationStore>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.delete
+     * @desc Deletes the specified Annotation store and removes all annotations that are contained within it.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.delete(
+     *     {
+     *       // The resource name of the Annotation store to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the Annotation store to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.evaluate
+     * @desc Evaluate an Annotation store against a ground truth Annotation store. When the operation finishes successfully, a detailed response is returned of type EvaluateAnnotationStoreResponse, contained in the response. The metadata field type is OperationMetadata. Errors are logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.evaluate(
+     *     {
+     *       // The Annotation store to compare against `golden_store`, in the format of
+     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       evalStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bigqueryDestination": {},
+     *         //   "evalInfoTypeMapping": {},
+     *         //   "goldenInfoTypeMapping": {},
+     *         //   "goldenStore": "my_goldenStore",
+     *         //   "infoTypeConfig": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.evaluate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.evalStore The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {().EvaluateAnnotationStoreRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    evaluate(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    evaluate(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    evaluate(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    evaluate(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    evaluate(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    evaluate(callback: BodyResponseCallback<Schema$Operation>): void;
+    evaluate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+evalStore}:evaluate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['evalStore'],
+        pathParams: ['evalStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.export
+     * @desc Export Annotations from the Annotation store. If the request is successful, a detailed response is returned of type ExportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. If errors occur, the error field type is ImportAnnotationsErrorDetails. Errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.export(
+     *     {
+     *       // The name of the Annotation store to export annotations to, in
+     *       // the format of
+     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       annotationStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bigqueryDestination": {},
+     *         //   "gcsDestination": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.export
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationStore The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {().ExportAnnotationsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Export
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+annotationStore}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['annotationStore'],
+        pathParams: ['annotationStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.get
+     * @desc Gets the specified Annotation store or returns NOT_FOUND if it does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.get(
+     *     {
+     *       // The resource name of the Annotation store to get.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the Annotation store to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Get
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnnotationStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnnotationStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AnnotationStore>(parameters);
+      }
     }
 
     /**
@@ -3322,6 +4398,458 @@ export namespace healthcare_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.import
+     * @desc Import Annotations to the Annotation store by loading data from the specified sources. If the request is successful, a detailed response is returned as of type ImportAnnotationsResponse, contained in the response field when the operation finishes. The metadata field type is OperationMetadata. If errors occur, the error field type is ImportAnnotationsErrorDetails. Errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.import(
+     *     {
+     *       // The name of the Annotation store to which the server imports annotations,
+     *       // in the format
+     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       annotationStore:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsSource": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.annotationStore The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {().ImportAnnotationsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+annotationStore}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['annotationStore'],
+        pathParams: ['annotationStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.list
+     * @desc Lists the Annotation stores in the given dataset for a source store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.list(
+     *     {
+     *       // Restricts stores returned to those matching a filter. Syntax:
+     *       // https://cloud.google.com/appengine/docs/standard/python/search/query_strings
+     *       // Only filtering on labels is supported, for example `labels.key=value`.
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of Annotation stores to return in a single response.
+     *       // If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from the previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Name of the dataset.
+     *       parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     * @param {integer=} params.pageSize Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Name of the dataset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnotationStoresResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$List
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAnnotationStoresResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/annotationStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAnnotationStoresResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAnnotationStoresResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.patch
+     * @desc Updates the specified Annotation store.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.patch(
+     *     {
+     *       // Resource name of the Annotation store, of the form
+     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *       // The update mask applies to the resource. For the `FieldMask` definition,
+     *       // see
+     *       // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "labels": {},
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param {().AnnotationStore} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotationStore>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AnnotationStore> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnnotationStore>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AnnotationStore>(parameters);
       }
     }
 
@@ -3625,6 +5153,60 @@ export namespace healthcare_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Create
+    extends StandardParameters {
+    /**
+     * The ID of the Annotation store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+     */
+    annotationStoreId?: string;
+    /**
+     * The name of the dataset this Annotation store belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnnotationStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete
+    extends StandardParameters {
+    /**
+     * The resource name of the Annotation store to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Evaluate
+    extends StandardParameters {
+    /**
+     * The Annotation store to compare against `golden_store`, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    evalStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EvaluateAnnotationStoreRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Export
+    extends StandardParameters {
+    /**
+     * The name of the Annotation store to export annotations to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportAnnotationsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Get
+    extends StandardParameters {
+    /**
+     * The resource name of the Annotation store to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy
     extends StandardParameters {
     /**
@@ -3635,6 +5217,53 @@ export namespace healthcare_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Import
+    extends StandardParameters {
+    /**
+     * The name of the Annotation store to which the server imports annotations, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    annotationStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportAnnotationsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$List
+    extends StandardParameters {
+    /**
+     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     */
+    filter?: string;
+    /**
+     * Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from the previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Name of the dataset.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnnotationStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy
     extends StandardParameters {
@@ -3659,6 +5288,818 @@ export namespace healthcare_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Annotationstores$Annotations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.annotations.create
+     * @desc Creates a new Annotation record. It is valid to create Annotation objects for the same source more than once since a unique ID is assigned to each record by this service.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.create(
+     *     {
+     *       // The name of the Annotation store this annotation belongs to. For example,
+     *       // `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotationSource": {},
+     *         //   "customData": {},
+     *         //   "imageAnnotation": {},
+     *         //   "name": "my_name",
+     *         //   "resourceAnnotation": {},
+     *         //   "textAnnotation": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationSource": {},
+     *   //   "customData": {},
+     *   //   "imageAnnotation": {},
+     *   //   "name": "my_name",
+     *   //   "resourceAnnotation": {},
+     *   //   "textAnnotation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.annotations.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the Annotation store this annotation belongs to. For example, `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.
+     * @param {().Annotation} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Annotation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Annotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Annotation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.annotations.delete
+     * @desc Deletes an Annotation or returns NOT_FOUND if it does not exist.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.delete(
+     *     {
+     *       // The resource name of the Annotation to delete.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore/annotations/my-annotation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.annotations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the Annotation to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.annotations.get
+     * @desc Gets an Annotation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.get(
+     *     {
+     *       // The resource name of the Annotation to retrieve.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore/annotations/my-annotation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationSource": {},
+     *   //   "customData": {},
+     *   //   "imageAnnotation": {},
+     *   //   "name": "my_name",
+     *   //   "resourceAnnotation": {},
+     *   //   "textAnnotation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.annotations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the Annotation to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Annotation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Annotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Annotation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.annotations.list
+     * @desc Lists the Annotations in the given Annotation store for a source resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.list(
+     *     {
+     *       // Restricts Annotations returned to those matching a filter. Functions
+     *       // available for filtering are:
+     *       //
+     *       // - `matches("annotation_source.cloud_healthcare_source.name", substring)`.
+     *       // Filter on `cloud_healthcare_source.name`. For example:
+     *       // `matches("annotation_source.cloud_healthcare_source.name", "some source")`.
+     *       //
+     *       // - `matches("annotation", substring)`. Filter on all fields of annotation.
+     *       // For example: `matches("annotation", "some-content")`.
+     *       //
+     *       // - `type("text")`, `type("image")`, `type("resource")`. Filter on the type
+     *       // of annotation `data`.
+     *       filter: 'placeholder-value',
+     *       // Limit on the number of Annotations to return in a single response.
+     *       // If zero the default page size of 100 is used.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from the previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Name of the Annotation store to retrieve Annotations from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
+     *       // Controls which fields are populated in the response.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.annotations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts Annotations returned to those matching a filter. Functions available for filtering are:  - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`.  - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`.  - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
+     * @param {integer=} params.pageSize Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Name of the Annotation store to retrieve Annotations from.
+     * @param {string=} params.view Controls which fields are populated in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnotationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnotationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      callback: BodyResponseCallback<Schema$ListAnnotationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAnnotationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAnnotationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAnnotationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAnnotationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.annotationStores.annotations.patch
+     * @desc Updates the Annotation.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.annotationStores.annotations.patch(
+     *     {
+     *       // Resource name of the Annotation, of the form
+     *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
+     *       name:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore/annotations/my-annotation',
+     *       // The update mask applies to the resource. For the `FieldMask` definition,
+     *       // see
+     *       // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotationSource": {},
+     *         //   "customData": {},
+     *         //   "imageAnnotation": {},
+     *         //   "name": "my_name",
+     *         //   "resourceAnnotation": {},
+     *         //   "textAnnotation": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationSource": {},
+     *   //   "customData": {},
+     *   //   "imageAnnotation": {},
+     *   //   "name": "my_name",
+     *   //   "resourceAnnotation": {},
+     *   //   "textAnnotation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.annotationStores.annotations.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
+     * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param {().Annotation} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Annotation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Annotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Annotation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create
+    extends StandardParameters {
+    /**
+     * The name of the Annotation store this annotation belongs to. For example, `projects/my-project/locations/us-central1/datasets/mydataset/annotationStores/myannotationstore`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Annotation;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete
+    extends StandardParameters {
+    /**
+     * The resource name of the Annotation to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get
+    extends StandardParameters {
+    /**
+     * The resource name of the Annotation to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List
+    extends StandardParameters {
+    /**
+     * Restricts Annotations returned to those matching a filter. Functions available for filtering are:  - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`.  - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`.  - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
+     */
+    filter?: string;
+    /**
+     * Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from the previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Name of the Annotation store to retrieve Annotations from.
+     */
+    parent?: string;
+    /**
+     * Controls which fields are populated in the response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch
+    extends StandardParameters {
+    /**
+     * Resource name of the Annotation, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}/annotations/{annotation_id}`.
+     */
+    name?: string;
+    /**
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Annotation;
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores {
@@ -7582,7 +10023,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete
-     * @desc DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction.
+     * @desc DeleteInstance deletes an instance associated with the given study, series, and SOP Instance UID. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. Study and series search results can take a few seconds to be updated after an instance is deleted using DeleteInstance.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
