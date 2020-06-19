@@ -28,7 +28,7 @@
     "clean": "gts clean",
     "fix": "gts fix",
     "pregenerate": "npm run build-tools",
-    "generate": "node build/src/generator/generate.js",
+    "generate": "node build/src/generator/generator.js",
     "docs-test": "echo 🙈 this was taking too long and timing out CI",
     "presubmit-prs": "npm run compile",
     "submit-prs": "node build/src/generator/synth.js",
