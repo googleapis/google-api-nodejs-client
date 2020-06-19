@@ -4,6 +4,8 @@
 import {GoogleApis} from './googleapis';
 const google = new GoogleApis();
 export {google, GoogleApis};
+export * as Common from 'googleapis-common';
+export * as Auth from 'google-auth-library';
 
 {% for apiName, api in apis %}
   {% for versionName, version in api %}export { {{ apiName }}_{{ version|replace('.','_') }} } from './apis/{{ apiName }}/{{ version }}';

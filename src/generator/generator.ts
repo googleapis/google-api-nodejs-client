@@ -21,6 +21,9 @@ import {URL} from 'url';
 import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
+import * as minimist from 'yargs-parser';
+import * as rimraf from 'rimraf';
+import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
 import {addFragments} from './samplegen';
@@ -263,4 +266,31 @@ export class Generator {
     }
     await writeFile(outputPath, output, {encoding: 'utf8'});
   }
+}
+
+async function main() {
+  const argv = minimist(process.argv.slice(2));
+  const discoveryUrl = argv['discovery-url'];
+  const useCache = argv['use-cache'];
+
+  console.log(`useCache: ${useCache}`);
+
+  const gen = new Generator({debug: true, includePrivate: false});
+  if (!discoveryUrl && argv._.length > 0) {
+    argv._.forEach(async url => {
+      await gen.generateAPI(url);
+      console.log('Generated API for ' + url);
+    });
+  } else {
+    console.log('Removing old APIs...');
+    const apiPath = path.join(__dirname, '../../../src/apis');
+    await util.promisify(rimraf)(apiPath);
+    console.log('Generating APIs...');
+    await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
+    console.log('Finished generating APIs!');
+  }
+}
+
+if (require.main === module) {
+  main().catch(console.error);
 }
