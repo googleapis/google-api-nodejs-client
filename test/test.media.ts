@@ -36,10 +36,10 @@ async function testMultpart(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['Content-Type'].indexOf('multipart/related;'),
+    res.config.headers!['content-type'].indexOf('multipart/related;'),
     0
   );
-  const boundary = res.config.headers!['Content-Type'].replace(
+  const boundary = res.config.headers!['content-type'].replace(
     boundaryPrefix,
     ''
   );
@@ -66,10 +66,10 @@ async function testMediaBody(drive: drive_v2.Drive) {
   assert.strictEqual(url.pathname, '/upload/drive/v2/files');
   assert.strictEqual(url.search, '?uploadType=multipart');
   assert.strictEqual(
-    res.config.headers!['Content-Type'].indexOf('multipart/related;'),
+    res.config.headers!['content-type'].indexOf('multipart/related;'),
     0
   );
-  const boundary = res.config.headers!['Content-Type'].replace(
+  const boundary = res.config.headers!['content-type'].replace(
     boundaryPrefix,
     ''
   );
@@ -391,7 +391,7 @@ describe('Media', () => {
       requestBody,
       media,
     });
-    const boundary = res.config.headers!['Content-Type'].replace(
+    const boundary = res.config.headers!['content-type'].replace(
       boundaryPrefix,
       ''
     );
@@ -423,7 +423,7 @@ describe('Media', () => {
       requestBody,
       media,
     });
-    const boundary2 = res2.config.headers!['Content-Type'].replace(
+    const boundary2 = res2.config.headers!['content-type'].replace(
       boundaryPrefix,
       ''
     );

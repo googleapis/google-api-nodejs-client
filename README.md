@@ -29,6 +29,7 @@
   * [Using a Proxy](#using-a-proxy)
   * [Supported APIs](#getting-supported-apis)
   * [TypeScript](#typescript)
+  * [HTTP/2](#http2)
 * [License](#license)
 * [Contributing](#contributing)
 * [Questions/problems?](#questionsproblems)
@@ -544,6 +545,18 @@ This library is written in TypeScript, and provides types out of the box. All cl
 ```ts
 import { drive_v3 } from 'googleapis';
 ```
+
+### HTTP/2
+This library has **experimental** support for [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2). This support is experimental, and should not be used in production.  To enable it for testing purposes, use the `http2` option anywhere request parameters are accepted:
+
+```js
+const {google} = require('googleapis');
+google.options({
+  http2: true,
+});
+```
+
+HTTP/2 is often more performant, as it allows multiplexing of multiple concurrent requests over a single socket. In a traditional HTTP/2 API, the client is directly responsible for opening and closing the sessions made to make requests.  To maintain compability with the existing API, this module will automatically re-use existing sessions, which are collected after idling for 500ms.  Much of the performance gains will be visible in batch style workloads, and tight loops. To provide feedback on the experimental API surface, please comment on [this issue](https://github.com/googleapis/google-api-nodejs-client/issues/1130).
 
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
