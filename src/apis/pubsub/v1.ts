@@ -366,7 +366,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PubsubMessage {
     /**
-     * Attributes for this message. If this field is empty, the message must contain non-empty data.
+     * Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
      */
     attributes?: {[key: string]: string} | null;
     /**
@@ -515,7 +515,7 @@ export namespace pubsub_v1 {
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
-     * An expression written in the Cloud Pub/Sub filter language. If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
+     * An expression written in the Pub/Sub [filter language](https://cloud.google.com/pubsub/docs/filtering). If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
      */
     filter?: string | null;
     /**
