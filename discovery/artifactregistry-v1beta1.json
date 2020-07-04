@@ -132,7 +132,11 @@
               "path": "v1beta1/{+name}",
               "response": {
                 "$ref": "Location"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
@@ -170,7 +174,11 @@
               "path": "v1beta1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
             }
           },
           "resources": {
@@ -948,7 +956,7 @@
       }
     }
   },
-  "revision": "20200612",
+  "revision": "20200701",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
