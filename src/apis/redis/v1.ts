@@ -57,10 +57,6 @@ export namespace redis_v1 {
      */
     '$.xgafv'?: string;
     /**
-     * OAuth access token.
-     */
-    access_token?: string;
-    /**
      * Data format for response.
      */
     alt?: string;
@@ -76,10 +72,6 @@ export namespace redis_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
-    /**
-     * OAuth 2.0 token for the current user.
-     */
-    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -242,7 +234,7 @@ export namespace redis_v1 {
      */
     alternativeLocationId?: string | null;
     /**
-     * Optional. The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
+     * Optional. The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
     authorizedNetwork?: string | null;
     /**
@@ -778,7 +770,7 @@ export namespace redis_v1 {
 
     /**
      * redis.projects.locations.instances.create
-     * @desc Creates a Redis instance based on the specified tier and memory size.  By default, the instance is accessible from the project's [default network](/compute/docs/networks-and-firewalls#networks).  The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field.  The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * @desc Creates a Redis instance based on the specified tier and memory size.  By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc).  The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field.  The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
