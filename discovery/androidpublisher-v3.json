@@ -10,7 +10,7 @@
   },
   "basePath": "",
   "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/androidpublisher",
+  "batchPath": "batch/androidpublisher/v3",
   "canonicalName": "Android Publisher",
   "description": "Lets Android application developers access their Google Play accounts.",
   "discoveryVersion": "v1",
@@ -465,7 +465,7 @@
                 "accept": [
                   "application/octet-stream"
                 ],
-                "maxSize": "31457280",
+                "maxSize": "314572800",
                 "protocols": {
                   "simple": {
                     "multipart": true,
@@ -2422,9 +2422,163 @@
           ]
         }
       }
+    },
+    "systemapks": {
+      "resources": {
+        "variants": {
+          "methods": {
+            "create": {
+              "description": "Creates an APK which is suitable for inclusion in a system image from an\nalready uploaded Android App Bundle.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants",
+              "httpMethod": "POST",
+              "id": "androidpublisher.systemapks.variants.create",
+              "parameterOrder": [
+                "packageName",
+                "versionCode"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Unique identifier of the Android app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "versionCode": {
+                  "description": "The version code of the App Bundle.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants",
+              "request": {
+                "$ref": "Variant"
+              },
+              "response": {
+                "$ref": "Variant"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "download": {
+              "description": "Downloads a previously created system APK which is suitable for inclusion\nin a system image.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download",
+              "httpMethod": "GET",
+              "id": "androidpublisher.systemapks.variants.download",
+              "parameterOrder": [
+                "packageName",
+                "versionCode",
+                "variantId"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Unique identifier of the Android app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "variantId": {
+                  "description": "The ID of a previously created system APK variant.",
+                  "format": "uint32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "versionCode": {
+                  "description": "The version code of the App Bundle.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ],
+              "supportsMediaDownload": true,
+              "useMediaDownloadService": true
+            },
+            "get": {
+              "description": "Returns a previously created system APK variant.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.systemapks.variants.get",
+              "parameterOrder": [
+                "packageName",
+                "versionCode",
+                "variantId"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Unique identifier of the Android app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "variantId": {
+                  "description": "The ID of a previously created system APK variant.",
+                  "format": "uint32",
+                  "location": "path",
+                  "required": true,
+                  "type": "integer"
+                },
+                "versionCode": {
+                  "description": "The version code of the App Bundle.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}",
+              "response": {
+                "$ref": "Variant"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Returns the list of previously created system APK variants.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants",
+              "httpMethod": "GET",
+              "id": "androidpublisher.systemapks.variants.list",
+              "parameterOrder": [
+                "packageName",
+                "versionCode"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Unique identifier of the Android app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "versionCode": {
+                  "description": "The version code of the App Bundle.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants",
+              "response": {
+                "$ref": "SystemApksListResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20200607",
+  "revision": "20200702",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -2706,6 +2860,32 @@
           "description": "Screen width in pixels",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceSpec": {
+      "description": "The device spec used to generate a system APK.",
+      "id": "DeviceSpec",
+      "properties": {
+        "screenDensity": {
+          "description": "Screen dpi.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "supportedAbis": {
+          "description": "Supported ABI architectures in the order of preference.\nThe values should be the string as reported by the platform, e.g.\n\"armeabi-v7a\", \"x86_64\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "supportedLocales": {
+          "description": "All installed locales represented as BCP-47 strings, e.g. \"en-US\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3522,6 +3702,20 @@
       },
       "type": "object"
     },
+    "SystemApksListResponse": {
+      "description": "Response to list previously created system APK variants.",
+      "id": "SystemApksListResponse",
+      "properties": {
+        "variants": {
+          "description": "All system APK variants created.",
+          "items": {
+            "$ref": "Variant"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Testers": {
       "description": "The testers of an app. The resource for TestersService.",
       "id": "Testers",
@@ -3733,6 +3927,22 @@
         "name": {
           "description": "The name of the permission requested.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Variant": {
+      "description": "APK that is suitable for inclusion in a system image. The resource of\nSystemApksService.",
+      "id": "Variant",
+      "properties": {
+        "deviceSpec": {
+          "$ref": "DeviceSpec",
+          "description": "The device spec used to generate the APK."
+        },
+        "variantId": {
+          "description": "Output only. The ID of a previously created system APK variant.",
+          "format": "uint32",
+          "type": "integer"
         }
       },
       "type": "object"
