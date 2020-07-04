@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/N8mdGR5CdqP9V1ItPpqAuiW0638\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/mM9QQ9Q-yi6Xw-ieynL_CsfCUJ8\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -346,7 +346,7 @@
           ]
         },
         "update": {
-          "description": "Updates a Merchant Center account.",
+          "description": "Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.accounts.update",
           "parameterOrder": [
@@ -565,7 +565,7 @@
           ]
         },
         "update": {
-          "description": "Updates the tax settings of the account.",
+          "description": "Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.accounttax.update",
           "parameterOrder": [
@@ -774,7 +774,7 @@
           ]
         },
         "update": {
-          "description": "Updates a datafeed configuration of your Merchant Center account.",
+          "description": "Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.datafeeds.update",
           "parameterOrder": [
@@ -1223,7 +1223,7 @@
           ]
         },
         "update": {
-          "description": "Updates the LIA settings of the account.",
+          "description": "Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.liasettings.update",
           "parameterOrder": [
@@ -3641,7 +3641,7 @@
           ]
         },
         "update": {
-          "description": "Updates the shipping settings of the account.",
+          "description": "Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.shippingsettings.update",
           "parameterOrder": [
@@ -3678,7 +3678,7 @@
       }
     }
   },
-  "revision": "20200529",
+  "revision": "20200617",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7662,7 +7662,7 @@
       "properties": {
         "amount": {
           "$ref": "MonetaryAmount",
-          "description": "The amount that is refunded. In case of multiple refunds,  \n- If the quantity of refunded items changed, this should contain the total refund per item. \n- If the quantity of the refunded items remained the same, this should be the newly refunded amount."
+          "description": "The total amount that is refunded. (e.g. refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer."
         },
         "fullRefund": {
           "description": "If true, the full item will be refunded. If this is true, amount should not be provided and will be ignored.",
@@ -9012,6 +9012,10 @@
           "description": "Brand of the item.",
           "type": "string"
         },
+        "canonicalLink": {
+          "description": "Link to the canonical version of the landing page.",
+          "type": "string"
+        },
         "channel": {
           "annotations": {
             "required": [
@@ -9145,7 +9149,7 @@
         },
         "installment": {
           "$ref": "Installment",
-          "description": "Number and amount of installments to pay for an item. Brazil only."
+          "description": "Number and amount of installments to pay for an item."
         },
         "isBundle": {
           "description": "Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.",
@@ -9220,6 +9224,20 @@
           "$ref": "Price",
           "description": "Price of the item."
         },
+        "productDetails": {
+          "description": "Technical specification or additional product details",
+          "items": {
+            "$ref": "ProductProductDetail"
+          },
+          "type": "array"
+        },
+        "productHighlights": {
+          "description": "List of important bullet points describing the product",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "productTypes": {
           "description": "Categories of the item (formatted as in products data specification).",
           "items": {
@@ -9293,6 +9311,10 @@
           "description": "The source of the offer, i.e., how the offer was created.\n\nAcceptable values are:  \n- \"`api`\" \n- \"`crawl`\" \n- \"`feed`\"",
           "type": "string"
         },
+        "subscriptionCost": {
+          "$ref": "ProductSubscriptionCost",
+          "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
+        },
         "targetCountry": {
           "annotations": {
             "required": [
@@ -9346,6 +9368,24 @@
         "taxAmount": {
           "$ref": "Price",
           "description": "Tax value."
+        }
+      },
+      "type": "object"
+    },
+    "ProductProductDetail": {
+      "id": "ProductProductDetail",
+      "properties": {
+        "attributeName": {
+          "description": "The name of the product detail.",
+          "type": "string"
+        },
+        "attributeValue": {
+          "description": "The value of the product detail.",
+          "type": "string"
+        },
+        "sectionName": {
+          "description": "The section header used to group a set of product details.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9473,7 +9513,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Destination approval status in targetCountry of the offer.",
+          "description": "Destination approval status in `targetCountry` of the offer.",
           "type": "string"
         }
       },
@@ -9512,6 +9552,25 @@
         },
         "servability": {
           "description": "How this issue affects serving of the offer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductSubscriptionCost": {
+      "id": "ProductSubscriptionCost",
+      "properties": {
+        "amount": {
+          "$ref": "Price",
+          "description": "The amount the buyer has to pay per subscription period."
+        },
+        "period": {
+          "description": "The type of subscription period.",
+          "type": "string"
+        },
+        "periodLength": {
+          "description": "The number of subscription periods the buyer has to pay.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -11018,6 +11077,10 @@
     "TestOrder": {
       "id": "TestOrder",
       "properties": {
+        "deliveryDetails": {
+          "$ref": "TestOrderDeliveryDetails",
+          "description": "Overrides the predefined delivery details if provided."
+        },
         "enableOrderinvoices": {
           "description": "Whether the orderinvoices service should support this order.",
           "type": "boolean"
@@ -11042,6 +11105,10 @@
         "notificationMode": {
           "description": "Restricted. Do not use.",
           "type": "string"
+        },
+        "pickupDetails": {
+          "$ref": "TestOrderPickupDetails",
+          "description": "Overrides the predefined pickup details if provided."
         },
         "predefinedBillingAddress": {
           "annotations": {
@@ -11097,6 +11164,64 @@
             ]
           },
           "description": "Required. The requested shipping option.\n\nAcceptable values are:  \n- \"`economy`\" \n- \"`expedited`\" \n- \"`oneDay`\" \n- \"`sameDay`\" \n- \"`standard`\" \n- \"`twoDay`\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TestOrderAddress": {
+      "id": "TestOrderAddress",
+      "properties": {
+        "country": {
+          "description": "CLDR country code (e.g. \"US\").",
+          "type": "string"
+        },
+        "fullAddress": {
+          "description": "Strings representing the lines of the printed label for mailing the order, for example:\nJohn Smith\n1600 Amphitheatre Parkway\nMountain View, CA, 94043\nUnited States",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isPostOfficeBox": {
+          "description": "Whether the address is a post office box.",
+          "type": "boolean"
+        },
+        "locality": {
+          "description": "City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "Postal Code or ZIP (e.g. \"94043\").",
+          "type": "string"
+        },
+        "recipientName": {
+          "description": "Name of the recipient.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Top-level administrative subdivision of the country. For example, a state like California (\"CA\") or a province like Quebec (\"QC\").",
+          "type": "string"
+        },
+        "streetAddress": {
+          "description": "Street-level part of the address.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestOrderDeliveryDetails": {
+      "id": "TestOrderDeliveryDetails",
+      "properties": {
+        "address": {
+          "$ref": "TestOrderAddress",
+          "description": "The delivery address"
+        },
+        "phoneNumber": {
+          "description": "The phone number of the person receiving the delivery.",
           "type": "string"
         }
       },
@@ -11240,6 +11365,45 @@
             "$ref": "OrderLineItemProductVariantAttribute"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestOrderPickupDetails": {
+      "id": "TestOrderPickupDetails",
+      "properties": {
+        "locationCode": {
+          "description": "Required. Code of the location defined by provider or merchant.",
+          "type": "string"
+        },
+        "pickupLocationAddress": {
+          "$ref": "TestOrderAddress",
+          "description": "Required. Pickup location address."
+        },
+        "pickupLocationType": {
+          "description": "Pickup location type.\n\nAcceptable values are:  \n- \"`locker`\" \n- \"`store`\" \n- \"`curbside`\"",
+          "type": "string"
+        },
+        "pickupPersons": {
+          "description": "Required. all pickup persons set by users.",
+          "items": {
+            "$ref": "TestOrderPickupDetailsPickupPerson"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestOrderPickupDetailsPickupPerson": {
+      "id": "TestOrderPickupDetailsPickupPerson",
+      "properties": {
+        "name": {
+          "description": "Required. Full name of the pickup person.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Required. The phone number of the person picking up the items.",
+          "type": "string"
         }
       },
       "type": "object"
