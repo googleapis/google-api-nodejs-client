@@ -53,9 +53,21 @@ export namespace playcustomapp_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace playcustomapp_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Google Play Custom App Publishing API
    *
-   * An API to publish custom Android apps.
+   * API to create and publish custom Android apps
    *
    * @example
    * const {google} = require('googleapis');
@@ -120,6 +136,10 @@ export namespace playcustomapp_v1 {
      */
     languageCode?: string | null;
     /**
+     * Output only. Package name of the created Android app. Only present in the API response.
+     */
+    packageName?: string | null;
+    /**
      * Title for the Android app.
      */
     title?: string | null;
@@ -142,7 +162,7 @@ export namespace playcustomapp_v1 {
 
     /**
      * playcustomapp.accounts.customApps.create
-     * @desc Create and publish a new custom app.
+     * @desc Creates a new custom app.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -175,6 +195,7 @@ export namespace playcustomapp_v1 {
      *       // request body parameters
      *       // {
      *       //   "languageCode": "my_languageCode",
+     *       //   "packageName": "my_packageName",
      *       //   "title": "my_title"
      *       // }
      *     },
@@ -188,6 +209,7 @@ export namespace playcustomapp_v1 {
      *   // Example response
      *   // {
      *   //   "languageCode": "my_languageCode",
+     *   //   "packageName": "my_packageName",
      *   //   "title": "my_title"
      *   // }
      * }
