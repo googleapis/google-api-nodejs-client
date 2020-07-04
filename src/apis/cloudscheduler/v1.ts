@@ -353,7 +353,7 @@ export namespace cloudscheduler_v1 {
    */
   export interface Schema$PubsubMessage {
     /**
-     * Attributes for this message. If this field is empty, the message must contain non-empty data.
+     * Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
      */
     attributes?: {[key: string]: string} | null;
     /**
