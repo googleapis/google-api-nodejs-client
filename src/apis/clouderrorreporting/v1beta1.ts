@@ -388,7 +388,7 @@ export namespace clouderrorreporting_v1beta1 {
    */
   export interface Schema$TrackingIssue {
     /**
-     * A URL pointing to a related entry in an issue tracking system. Example: https://github.com/user/project/issues/4
+     * A URL pointing to a related entry in an issue tracking system. Example: `https://github.com/user/project/issues/4`
      */
     url?: string | null;
   }
@@ -965,13 +965,11 @@ export namespace clouderrorreporting_v1beta1 {
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.get({
      *     // Required. The group resource name. Written as
-     *     // <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     *     // Call
-     *     // <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     *     // <code>groupStats.list</code></a> to return a list of groups belonging to
-     *     // this project.
+     *     // `projects/{projectID}/groups/{group_name}`. Call
+     *     // [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     *     // to return a list of groups belonging to this project.
      *     //
-     *     // Example: <code>projects/my-project-123/groups/my-group</code>
+     *     // Example: `projects/my-project-123/groups/my-group`
      *     groupName: 'projects/my-project/groups/my-group',
      *   });
      *   console.log(res.data);
@@ -993,7 +991,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupName Required. The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+     * @param {string} params.groupName Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project.  Example: `projects/my-project-123/groups/my-group`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1225,7 +1223,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Required. The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+     * Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project.  Example: `projects/my-project-123/groups/my-group`
      */
     groupName?: string;
   }
