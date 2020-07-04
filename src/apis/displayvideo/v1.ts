@@ -57,6 +57,10 @@ export namespace displayvideo_v1 {
      */
     '$.xgafv'?: string;
     /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
      * Data format for response.
      */
     alt?: string;
@@ -72,6 +76,10 @@ export namespace displayvideo_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -440,7 +448,7 @@ export namespace displayvideo_v1 {
     targetingOptionId?: string | null;
   }
   /**
-   * A single assigned targeting option, which defines the state of a targeting option for an entity with targeting settings, such as a Line Item or Insertion Order.
+   * A single assigned targeting option, which defines the state of a targeting option for an entity with targeting settings.
    */
   export interface Schema$AssignedTargetingOption {
     /**
@@ -1818,7 +1826,39 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FirstAndThirdPartyAudience {
     /**
-     * Output only. The display name of the first and third party audience. .
+     * Output only. The estimated audience size for the Display network in the past month.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only returned in GET request.
+     */
+    activeDisplayAudienceSize?: string | null;
+    /**
+     * Output only. The source of the audience.
+     */
+    audienceSource?: string | null;
+    /**
+     * Output only. The type of the audience.
+     */
+    audienceType?: string | null;
+    /**
+     * The user-provided description of the audience.  Only applicable to first party audiences.
+     */
+    description?: string | null;
+    /**
+     * Output only. The estimated audience size for the Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only returned in GET request.
+     */
+    displayAudienceSize?: string | null;
+    /**
+     * Output only. The estimated desktop audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     */
+    displayDesktopAudienceSize?: string | null;
+    /**
+     * Output only. The estimated mobile app audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     */
+    displayMobileAppAudienceSize?: string | null;
+    /**
+     * Output only. The estimated mobile web audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     */
+    displayMobileWebAudienceSize?: string | null;
+    /**
+     * The display name of the first and third party audience.
      */
     displayName?: string | null;
     /**
@@ -1826,13 +1866,25 @@ export namespace displayvideo_v1 {
      */
     firstAndThirdPartyAudienceId?: string | null;
     /**
-     * Output only. Whether the audience is a first or third party audience. .
+     * Output only. Whether the audience is a first or third party audience.
      */
     firstAndThirdPartyAudienceType?: string | null;
+    /**
+     * Output only. The estimated audience size for Gmail network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     */
+    gmailAudienceSize?: string | null;
+    /**
+     * The duration in days that an entry remains in the audience after the qualifying event.  Only applicable to first party audiences.
+     */
+    membershipDurationDays?: string | null;
     /**
      * Output only. The resource name of the first and third party audience.
      */
     name?: string | null;
+    /**
+     * Output only. The estimated audience size for YouTube network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     */
+    youtubeAudienceSize?: string | null;
   }
   /**
    * Details of first and third party audience group. All first and third party audience targeting settings are logically ‘OR’ of each other.
@@ -5973,8 +6025,159 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * displayvideo.advertisers.channels.create
+     * @desc Creates a new channel. Returns the newly created channel if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.create({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: '[^/]+',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the created channel.
+     * @param {string=} params.partnerId The ID of the partner that owns the created channel.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Channels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Channels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    create(
+      params: Params$Resource$Advertisers$Channels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Channels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Channels$Create,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Channel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Create
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/advertisers/{+advertiserId}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
      * displayvideo.advertisers.channels.get
-     * @desc Updates an existing inventory source. Returns the updated inventory source if successful. Gets a channel for a partner or advertiser.
+     * @desc Gets a channel for a partner or advertiser.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6451,6 +6654,22 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Channels$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the created channel.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of the partner that owns the created channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
   export interface Params$Resource$Advertisers$Channels$Get
     extends StandardParameters {
     /**
@@ -7823,6 +8042,7 @@ export namespace displayvideo_v1 {
      *     //     - `approvalStatus`
      *     //     - `exchangeReviewStatus`
      *     //     - `dynamic`
+     *     //     - `creativeId`
      *     // * The operator must be `HAS (:)` for the following fields:
      *     //     - `lineItemIds`
      *     // * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may
@@ -7834,6 +8054,8 @@ export namespace displayvideo_v1 {
      *     // `"{duration}s"`. Only seconds are supported with millisecond granularity.
      *     // * There may be multiple `lineItemIds` restrictions in order to search
      *     // against multiple possible line item IDs.
+     *     // * There may be multiple `creativeId` restrictions in order to search
+     *     // against multiple possible creative IDs.
      *     //
      *     // Examples:
      *     //
@@ -7847,7 +8069,9 @@ export namespace displayvideo_v1 {
      *     // (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED"
      *     // OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")`
      *     // * All video creatives that are associated with line item ID 1 or 2:
-     *     // creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)
+     *     // `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)`
+     *     // * Find creatives by multiple creative IDs:
+     *     // `creativeId=1 OR creativeId=2`
      *     //
      *     // The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
@@ -7893,7 +8117,7 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list creatives for.
-     * @param {string=} params.filter Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic`     - `creativeId` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2`  The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
@@ -8260,7 +8484,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)  The length of this field should be no more than 500 characters.
+     * Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic`     - `creativeId` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2`  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -16000,10 +16224,21 @@ export namespace displayvideo_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *   //   "audienceSource": "my_audienceSource",
+     *   //   "audienceType": "my_audienceType",
+     *   //   "description": "my_description",
+     *   //   "displayAudienceSize": "my_displayAudienceSize",
+     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
+     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
+     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
      *   //   "displayName": "my_displayName",
      *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
      *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "name": "my_name"
+     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
+     *   //   "membershipDurationDays": "my_membershipDurationDays",
+     *   //   "name": "my_name",
+     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
      *   // }
      * }
      *
@@ -19275,8 +19510,159 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * displayvideo.partners.channels.create
+     * @desc Creates a new channel. Returns the newly created channel if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.create({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the created channel.
+     * @param {string} params.partnerId The ID of the partner that owns the created channel.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Partners$Channels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Partners$Channels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    create(
+      params: Params$Resource$Partners$Channels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Channels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Channels$Create,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Channel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Create
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{+partnerId}/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId'],
+        pathParams: ['partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
+
+    /**
      * displayvideo.partners.channels.get
-     * @desc Updates an existing inventory source. Returns the updated inventory source if successful. Gets a channel for a partner or advertiser.
+     * @desc Gets a channel for a partner or advertiser.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -19753,6 +20139,22 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Partners$Channels$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the created channel.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of the partner that owns the created channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
   export interface Params$Resource$Partners$Channels$Get
     extends StandardParameters {
     /**
