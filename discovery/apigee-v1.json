@@ -3132,7 +3132,7 @@
                   ],
                   "parameters": {
                     "accuracy": {
-                      "description": "Legacy field. not used anymore",
+                      "description": "Legacy field: not used anymore.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3142,17 +3142,17 @@
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Enables drill-down on specific dimension values",
+                      "description": "Enables drill-down on specific dimension values.",
                       "location": "query",
                       "type": "string"
                     },
                     "limit": {
-                      "description": "This parameter is used to limit the number of result items.\nDefault and the max value is 14400",
+                      "description": "This parameter is used to limit the number of result items.\nDefault and the max value is 14400.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The organization and environment name for which the interactive\nquery will be executed. Must be of the form\n  `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}`\nDimensions let you view metrics in meaningful groupings. E.g. apiproxy,\ntarget_host. The value of dimensions should be comma separated list as\nshown below\n`organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
+                      "description": "Required. The resource name for which the interactive query will be executed.\nMust be of the form\n  `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}`\nDimensions let you view metrics in meaningful groupings. E.g. apiproxy,\ntarget_host. The value of dimensions should be comma separated list as\nshown below\n`organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/optimizedStats/.*$",
                       "required": true,
@@ -3164,17 +3164,17 @@
                       "type": "string"
                     },
                     "realtime": {
-                      "description": "Legacy field: not used anymore",
+                      "description": "Legacy field: not used anymore.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "select": {
-                      "description": "Required. The select parameter contains a comma separated list of metrics\nE.g. sum(message_count),sum(error_count)",
+                      "description": "Required. The select parameter contains a comma separated list of metrics.\nE.g. sum(message_count),sum(error_count)",
                       "location": "query",
                       "type": "string"
                     },
                     "sonar": {
-                      "description": "This parameter routes the query to api monitoring service for last hour",
+                      "description": "This parameter routes the query to api monitoring service for last hour.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -3209,7 +3209,7 @@
                       "type": "boolean"
                     },
                     "tzo": {
-                      "description": "This parameters contains the timezone offset value",
+                      "description": "This parameters contains the timezone offset value.",
                       "location": "query",
                       "type": "string"
                     }
@@ -3236,7 +3236,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent organization and environment names.\nMust be of the form `organizations/{org}/environments/{env}`.",
+                      "description": "Required. The parent resource name.\nMust be of the form `organizations/{org}/environments/{env}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -3324,24 +3324,24 @@
                       "type": "string"
                     },
                     "inclQueriesWithoutReport": {
-                      "description": "Flag to include asynchronous queries that don't have a report\ndenifition.",
+                      "description": "Flag to include asynchronous queries that don't have a report denifition.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent organization and environment names.\nMust be of the form `organizations/{org}/environments/{env}`.",
+                      "description": "Required. The parent resource name.\nMust be of the form `organizations/{org}/environments/{env}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "status": {
-                      "description": "Filter response list by asynchronous query status",
+                      "description": "Filter response list by asynchronous query status.",
                       "location": "query",
                       "type": "string"
                     },
                     "submittedBy": {
-                      "description": "Filter response list by user who submitted queries",
+                      "description": "Filter response list by user who submitted queries.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3794,7 +3794,7 @@
                   ],
                   "parameters": {
                     "accuracy": {
-                      "description": "Legacy field. not used anymore\nThis field is present to support UI calls which still use this parameter",
+                      "description": "Legacy field: not used anymore.\nThis field is present to support UI calls which still use this parameter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3809,12 +3809,12 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "This parameter is used to limit the number of result items.\nDefault and the max value is 14400",
+                      "description": "This parameter is used to limit the number of result items.\nDefault and the max value is 14400.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The organization and environment name for which the interactive\nquery will be executed. Must be of the form\n  `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}`\nDimensions let you view metrics in meaningful groupings. E.g. apiproxy,\ntarget_host. The value of dimensions should be comma separated list as\nshown below\n`organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
+                      "description": "Required. The resource name for which the interactive query will be executed.\nMust be of the form\n  `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}`\nDimensions let you view metrics in meaningful groupings. E.g. apiproxy,\ntarget_host. The value of dimensions should be comma separated list as\nshown below\n`organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/stats/.*$",
                       "required": true,
@@ -3826,17 +3826,17 @@
                       "type": "string"
                     },
                     "realtime": {
-                      "description": "Legacy field: not used anymore",
+                      "description": "Legacy field: not used anymore.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "select": {
-                      "description": "The select parameter contains a comma separated list of metrics\nE.g. sum(message_count),sum(error_count)",
+                      "description": "The select parameter contains a comma separated list of metrics.\nE.g. sum(message_count),sum(error_count)",
                       "location": "query",
                       "type": "string"
                     },
                     "sonar": {
-                      "description": "This parameter routes the query to api monitoring service for last hour",
+                      "description": "This parameter routes the query to api monitoring service for last hour.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -3871,7 +3871,7 @@
                       "type": "boolean"
                     },
                     "tzo": {
-                      "description": "This parameters contains the timezone offset value",
+                      "description": "This parameters contains the timezone offset value.",
                       "location": "query",
                       "type": "string"
                     }
@@ -4554,7 +4554,7 @@
       }
     }
   },
-  "revision": "20200604",
+  "revision": "20200618",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5023,15 +5023,15 @@
       "id": "GoogleCloudApigeeV1AsyncQuery",
       "properties": {
         "created": {
-          "description": "Creation time of the query",
+          "description": "Creation time of the query.",
           "type": "string"
         },
         "error": {
-          "description": "Error is set when query fails",
+          "description": "Error is set when query fails.",
           "type": "string"
         },
         "executionTime": {
-          "description": "ExecutionTime is available only after the query is completed",
+          "description": "ExecutionTime is available only after the query is completed.",
           "type": "string"
         },
         "name": {
@@ -5040,7 +5040,7 @@
         },
         "queryParams": {
           "$ref": "GoogleCloudApigeeV1QueryMetadata",
-          "description": "Contains information like metrics, dimenstions etc\nof the AsyncQuery"
+          "description": "Contains information like metrics, dimenstions etc of the AsyncQuery."
         },
         "reportDefinitionId": {
           "description": "Asynchronous Report ID.",
@@ -5048,27 +5048,27 @@
         },
         "result": {
           "$ref": "GoogleCloudApigeeV1AsyncQueryResult",
-          "description": "Result is available only after the query is completed"
+          "description": "Result is available only after the query is completed."
         },
         "resultFileSize": {
-          "description": "ResultFileSize is available only after the query is completed",
+          "description": "ResultFileSize is available only after the query is completed.",
           "type": "string"
         },
         "resultRows": {
-          "description": "ResultRows is available only after the query is completed",
+          "description": "ResultRows is available only after the query is completed.",
           "format": "int64",
           "type": "string"
         },
         "self": {
-          "description": "Self link of the query\n\nExample:\n`/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
+          "description": "Self link of the query.\n\nExample:\n`/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
           "type": "string"
         },
         "state": {
-          "description": "Query state could be \"enqueued\", \"running\", \"completed\",\n\"failed\"",
+          "description": "Query state could be \"enqueued\", \"running\", \"completed\", \"failed\".",
           "type": "string"
         },
         "updated": {
-          "description": "Last updated timestamp for the query",
+          "description": "Last updated timestamp for the query.",
           "type": "string"
         }
       },
@@ -5082,7 +5082,7 @@
           "type": "string"
         },
         "self": {
-          "description": "Self link of the query results\n\nExample:\n`/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`",
+          "description": "Self link of the query results.\n\nExample:\n`/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`",
           "type": "string"
         }
       },
@@ -5389,6 +5389,37 @@
         },
         "name": {
           "description": "name of the metric",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DataCollectorConfig": {
+      "description": "A DataCollector and its configuration.",
+      "id": "GoogleCloudApigeeV1DataCollectorConfig",
+      "properties": {
+        "name": {
+          "description": "The name of the data collector. Must be of the form\n'organizations/{org}/datacollectors/{dc}'.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The data type this DataCollector accepts.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "BOOLEAN",
+            "DATETIME"
+          ],
+          "enumDescriptions": [
+            "For future compatibility.",
+            "For integer values.",
+            "For float values.",
+            "For string values.",
+            "For boolean values.",
+            "For datetime values."
+          ],
           "type": "string"
         }
       },
@@ -5785,18 +5816,18 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1DimensionMetric": {
-      "description": "This message type encapsulates a metric grouped by dimension",
+      "description": "This message type encapsulates a metric grouped by dimension.",
       "id": "GoogleCloudApigeeV1DimensionMetric",
       "properties": {
         "metrics": {
-          "description": "This field contains a list of metrics",
+          "description": "This field contains a list of metrics.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Metric"
           },
           "type": "array"
         },
         "name": {
-          "description": "This field contains the name of the dimension",
+          "description": "This field contains the name of the dimension.",
           "type": "string"
         }
       },
@@ -5862,6 +5893,13 @@
           "description": "The time at which this environment config was created.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "dataCollectors": {
+          "description": "The list of Data Collectors used by deployments in the environment.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DataCollectorConfig"
+          },
+          "type": "array"
         },
         "debugMask": {
           "$ref": "GoogleCloudApigeeV1DebugMask",
@@ -5975,7 +6013,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The name of the flow hook. Must be of the form\n'organizations/{org}/environments/{env}/flowhooks/{point}''.\nKnown points are PreProxyFlowHook, PostProxyFlowHook, PreTargetFlowHook,\nand PostTargetFlowHook",
+          "description": "The name of the flow hook. Must be of the form\n'organizations/{org}/environments/{env}/flowhooks/{point}'.\nKnown points are PreProxyFlowHook, PostProxyFlowHook, PreTargetFlowHook,\nand PostTargetFlowHook",
           "type": "string"
         },
         "sharedFlowName": {
@@ -6093,11 +6131,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListAsyncQueriesResponse": {
-      "description": "The response for ListAsyncQueries",
+      "description": "The response for ListAsyncQueries.",
       "id": "GoogleCloudApigeeV1ListAsyncQueriesResponse",
       "properties": {
         "queries": {
-          "description": "The asynchronous queries belong to requested organization and environment",
+          "description": "The asynchronous queries belong to requested resource name.",
           "items": {
             "$ref": "GoogleCloudApigeeV1AsyncQuery"
           },
@@ -6228,11 +6266,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Metadata": {
-      "description": "This message type encapsulates additional information about query execution",
+      "description": "This message type encapsulates additional information about query execution.",
       "id": "GoogleCloudApigeeV1Metadata",
       "properties": {
         "errors": {
-          "description": "List of error messages as strings",
+          "description": "List of error messages as strings.",
           "items": {
             "type": "string"
           },
@@ -6249,15 +6287,15 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Metric": {
-      "description": "This message type encapsulates the metric data point\nExample\n{\n   \"name\": \"sum(message_count)\",\n   \"values\" : [ {\n                  \"timestamp\": 1549004400000,\n                  \"value\": \"39.0\"\n                },\n                {\n                  \"timestamp\" : 1548997200000,\n                  \"value\" : \"0.0\"\n                } ]\n}\nor\n{\n    \"name\": \"sum(message_count)\",\n    \"values\" : [\"39.0\"]\n}",
+      "description": "This message type encapsulates the metric data point.\nExample:\n{\n   \"name\": \"sum(message_count)\",\n   \"values\" : [ {\n                  \"timestamp\": 1549004400000,\n                  \"value\": \"39.0\"\n                },\n                {\n                  \"timestamp\" : 1548997200000,\n                  \"value\" : \"0.0\"\n                } ]\n}\nor\n{\n    \"name\": \"sum(message_count)\",\n    \"values\" : [\"39.0\"]\n}",
       "id": "GoogleCloudApigeeV1Metric",
       "properties": {
         "name": {
-          "description": "This field contains the metric name",
+          "description": "This field contains the metric name.",
           "type": "string"
         },
         "values": {
-          "description": "List of metric values\nPossible value format\n\"values\":[\"39.0\"] or\n\"values\":[ { \"value\": \"39.0\", \"timestamp\": 1232434354} ]",
+          "description": "List of metric values.\nPossible value format:\n\"values\":[\"39.0\"] or\n\"values\":[ { \"value\": \"39.0\", \"timestamp\": 1232434354} ]",
           "items": {
             "type": "any"
           },
@@ -6274,9 +6312,11 @@
           "enum": [
             "OPERATION_TYPE_UNSPECIFIED",
             "INSERT",
-            "DELETE"
+            "DELETE",
+            "UPDATE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -6316,6 +6356,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1OptimizedStatsNode": {
+      "description": "This message type encapsulates a data node as represented below:\n       {\n           \"identifier\": {\n               \"names\": [\n                   \"apiproxy\"\n               ],\n               \"values\": [\n                   \"sirjee\"\n               ]\n           },\n           \"metric\": [\n               {\n                   \"env\": \"prod\",\n                   \"name\": \"sum(message_count)\",\n                   \"values\": [\n                       36.0\n                   ]\n               }\n           ]\n       }\n\n       OR\n       {\n         \"env\": \"prod\",\n         \"name\": \"sum(message_count)\",\n         \"values\": [\n                       36.0\n                   ]\n       }\nDepending on whether a dimension is present in the query or not\nthe data node type can be a simple metric value or dimension identifier\nwith list of metrics.",
       "id": "GoogleCloudApigeeV1OptimizedStatsNode",
       "properties": {
         "data": {
@@ -6328,7 +6369,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1OptimizedStatsResponse": {
-      "description": "This message type encapsulates a response format for Js Optimized Scenario",
+      "description": "This message type encapsulates a response format for Js Optimized Scenario.",
       "id": "GoogleCloudApigeeV1OptimizedStatsResponse",
       "properties": {
         "TimeUnit": {
@@ -6349,7 +6390,7 @@
         },
         "stats": {
           "$ref": "GoogleCloudApigeeV1OptimizedStatsNode",
-          "description": "This field contains a stats results"
+          "description": "This field contains a stats results."
         }
       },
       "type": "object"
@@ -6572,7 +6613,7 @@
           "type": "string"
         },
         "dimensions": {
-          "description": "A list of dimensions\nhttps://docs.apigee.com/api-platform/analytics/analytics-reference#dimensions",
+          "description": "A list of dimensions.\nhttps://docs.apigee.com/api-platform/analytics/analytics-reference#dimensions",
           "items": {
             "type": "string"
           },
@@ -6592,7 +6633,7 @@
           "type": "integer"
         },
         "metrics": {
-          "description": "A list of Metrics",
+          "description": "A list of Metrics.",
           "items": {
             "$ref": "GoogleCloudApigeeV1QueryMetric"
           },
@@ -6662,15 +6703,15 @@
           "type": "string"
         },
         "function": {
-          "description": "Aggregation function: avg, min, max, or sum",
+          "description": "Aggregation function: avg, min, max, or sum.",
           "type": "string"
         },
         "name": {
-          "description": "Required. Metric name",
+          "description": "Required. Metric name.",
           "type": "string"
         },
         "operator": {
-          "description": "One of `+`, `-`, `/`, `%`, `*`",
+          "description": "One of `+`, `-`, `/`, `%`, `*`.",
           "type": "string"
         },
         "value": {
@@ -7029,10 +7070,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Stats": {
-      "description": "This message type encapsulates a stats response",
+      "description": "This message type encapsulates a stats response.",
       "id": "GoogleCloudApigeeV1Stats",
       "properties": {
         "environments": {
+          "description": "This field contains a list of query results on environment level.",
           "items": {
             "$ref": "GoogleCloudApigeeV1StatsEnvironmentStats"
           },
@@ -7040,24 +7082,24 @@
         },
         "metaData": {
           "$ref": "GoogleCloudApigeeV1Metadata",
-          "description": "This field contains the metadata information"
+          "description": "This field contains the metadata information."
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1StatsEnvironmentStats": {
-      "description": "This message type encapsulates the environment wrapper\n    \"environments\": [\n     {\n         \"metrics\": [\n             {\n                 \"name\": \"sum(message_count)\",\n                 \"values\": [\n                     \"2.52056245E8\"\n                 ]\n             }\n         ],\n         \"name\": \"prod\"\n     }\n ]",
+      "description": "This message type encapsulates the environment wrapper:\n    \"environments\": [\n     {\n         \"metrics\": [\n             {\n                 \"name\": \"sum(message_count)\",\n                 \"values\": [\n                     \"2.52056245E8\"\n                 ]\n             }\n         ],\n         \"name\": \"prod\"\n     }\n ]",
       "id": "GoogleCloudApigeeV1StatsEnvironmentStats",
       "properties": {
         "dimensions": {
-          "description": "This field contains the list of metrics grouped under dimensions",
+          "description": "This field contains the list of metrics grouped under dimensions.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DimensionMetric"
           },
           "type": "array"
         },
         "metrics": {
-          "description": "In the final response, only one of the following fields will be present\nbased on the dimensions provided. If no dimensions are provided, then\nonly a top level metrics is provided. If dimensions are included, then\nthere will be a top level dimensions field under environments which will\ncontain metrics values and the dimension name.\nExample:\n     \"environments\": [\n      {\n         \"dimensions\": [\n             {\n                 \"metrics\": [\n                     {\n                         \"name\": \"sum(message_count)\",\n                         \"values\": [\n                             \"2.14049521E8\"\n                         ]\n                     }\n                 ],\n                 \"name\": \"nit_proxy\"\n             }\n           ],\n           \"name\": \"prod\"\n       }\n    ]\n\n    OR\n    \"environments\": [\n           {\n               \"metrics\": [\n                   {\n                       \"name\": \"sum(message_count)\",\n                        \"values\": [\n                           \"2.19026331E8\"\n                       ]\n                   }\n               ],\n               \"name\": \"prod\"\n           }\n       ]\nThis field contains the list of metric values",
+          "description": "In the final response, only one of the following fields will be present\nbased on the dimensions provided. If no dimensions are provided, then\nonly a top level metrics is provided. If dimensions are included, then\nthere will be a top level dimensions field under environments which will\ncontain metrics values and the dimension name.\nExample:\n     \"environments\": [\n      {\n         \"dimensions\": [\n             {\n                 \"metrics\": [\n                     {\n                         \"name\": \"sum(message_count)\",\n                         \"values\": [\n                             \"2.14049521E8\"\n                         ]\n                     }\n                 ],\n                 \"name\": \"nit_proxy\"\n             }\n           ],\n           \"name\": \"prod\"\n       }\n    ]\n\n    OR\n    \"environments\": [\n           {\n               \"metrics\": [\n                   {\n                       \"name\": \"sum(message_count)\",\n                        \"values\": [\n                           \"2.19026331E8\"\n                       ]\n                   }\n               ],\n               \"name\": \"prod\"\n           }\n       ]\nThis field contains the list of metric values.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Metric"
           },

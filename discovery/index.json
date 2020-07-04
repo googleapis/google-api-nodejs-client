@@ -413,13 +413,12 @@
       "id": "androidpublisher:v3",
       "name": "androidpublisher",
       "version": "v3",
-      "title": "Google Play Developer API",
-      "description": "Accesses Android application developers' Google Play accounts.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/androidpublisher/v3/rest",
-      "discoveryLink": "./apis/androidpublisher/v3/rest",
+      "title": "Google Play Android Developer API",
+      "description": "Lets Android application developers access their Google Play accounts.",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/android-16.png",
-        "x32": "https://www.google.com/images/icons/product/android-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/android-publisher",
       "preferred": true
@@ -810,13 +809,12 @@
       "version": "v2",
       "title": "Google Civic Information API",
       "description": "Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/civicinfo/v2/rest",
-      "discoveryLink": "./apis/civicinfo/v2/rest",
+      "discoveryRestUrl": "https://civicinfo.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/civic-information",
+      "documentationLink": "https://developers.google.com/civic-information/",
       "preferred": true
     },
     {
@@ -1497,22 +1495,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/shopping-content",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "customsearch:v1",
-      "name": "customsearch",
-      "version": "v1",
-      "title": "CustomSearch API",
-      "description": "Searches over a website or collection of websites",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/customsearch/v1/rest",
-      "discoveryLink": "./apis/customsearch/v1/rest",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/custom-search/v1/using_rest",
       "preferred": true
     },
     {
@@ -2272,6 +2254,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/solutions/gaming/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gameservices:v1",
+      "name": "gameservices",
+      "version": "v1",
+      "title": "Game Services API",
+      "description": "Deploy and manage infrastructure for global multiplayer gaming experiences.",
+      "discoveryRestUrl": "https://gameservices.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/solutions/gaming/",
       "preferred": true
     },
     {
@@ -2333,6 +2330,21 @@
         "x32": "https://www.google.com/images/icons/product/googlemail-32.png"
       },
       "documentationLink": "https://developers.google.com/gmail/api/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gmailpostmastertools:v1beta1",
+      "name": "gmailpostmastertools",
+      "version": "v1beta1",
+      "title": "Gmail Postmaster Tools API",
+      "description": "The Gmail Postmaster API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
+      "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/gmail/postmaster",
       "preferred": true
     },
     {
@@ -2433,7 +2445,7 @@
       "name": "iamcredentials",
       "version": "v1",
       "title": "IAM Service Account Credentials API",
-      "description": "Creates short-lived, limited-privilege credentials for IAM service accounts.",
+      "description": "Creates short-lived credentials for impersonating IAM service accounts.",
       "discoveryRestUrl": "https://iamcredentials.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2972,6 +2984,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "playablelocations:v3",
+      "name": "playablelocations",
+      "version": "v3",
+      "title": "Playable Locations API",
+      "description": "",
+      "discoveryRestUrl": "https://playablelocations.googleapis.com/$discovery/rest?version=v3",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/contact-sales/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "playcustomapp:v1",
       "name": "playcustomapp",
       "version": "v1",
@@ -3109,6 +3136,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "realtimebidding:v1",
+      "name": "realtimebidding",
+      "version": "v1",
+      "title": "Real-time Bidding API",
+      "description": "Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive via pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.",
+      "discoveryRestUrl": "https://realtimebidding.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/authorized-buyers/apis/realtimebidding/reference/rest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "recommender:v1",
       "name": "recommender",
       "version": "v1",
@@ -3236,7 +3278,7 @@
       "id": "run:v1alpha1",
       "name": "run",
       "version": "v1alpha1",
-      "title": "Cloud Run API",
+      "title": "Cloud Run Admin API",
       "description": "Deploy and manage user provided container images that scale automatically based on HTTP traffic.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
@@ -3251,7 +3293,7 @@
       "id": "run:v1",
       "name": "run",
       "version": "v1",
-      "title": "Cloud Run API",
+      "title": "Cloud Run Admin API",
       "description": "Deploy and manage user provided container images that scale automatically based on HTTP traffic.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -3266,7 +3308,7 @@
       "id": "run:v1beta1",
       "name": "run",
       "version": "v1beta1",
-      "title": "Cloud Run API",
+      "title": "Cloud Run Admin API",
       "description": "Deploy and manage user provided container images that scale automatically based on HTTP traffic.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
@@ -3312,7 +3354,7 @@
       "name": "safebrowsing",
       "version": "v4",
       "title": "Safe Browsing API",
-      "description": "Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources.",
+      "description": "Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.",
       "discoveryRestUrl": "https://safebrowsing.googleapis.com/$discovery/rest?version=v4",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3729,22 +3771,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "sqladmin:v1beta4",
-      "name": "sqladmin",
-      "version": "v1beta4",
-      "title": "Cloud SQL Admin API",
-      "description": "Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/sqladmin/v1beta4/rest",
-      "discoveryLink": "./apis/sqladmin/v1beta4/rest",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/sql/docs/reference/latest",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "storage:v1",
       "name": "storage",
       "version": "v1",
@@ -4022,6 +4048,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/vault",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vectortile:v1",
+      "name": "vectortile",
+      "version": "v1",
+      "title": "Semantic Tile API",
+      "description": "Serves vector tiles containing geospatial data.",
+      "discoveryRestUrl": "https://vectortile.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/contact-sales/",
       "preferred": true
     },
     {

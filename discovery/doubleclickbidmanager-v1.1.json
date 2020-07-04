@@ -15,7 +15,7 @@
   "description": "API for viewing and managing your reports in DoubleClick Bid Manager.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/bid-manager/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/6b9y3bDbjgvkpj1FGVAGd_f0qZM\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/9-5twGUs1hq-ELO4w_-sWYOtRM0\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20200316",
+  "revision": "20200616",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "DownloadLineItemsRequest": {
@@ -672,6 +672,7 @@
             "FILTER_TRUEVIEW_KEYWORD",
             "FILTER_TRUEVIEW_PARENTAL_STATUS",
             "FILTER_TRUEVIEW_PLACEMENT",
+            "FILTER_TRUEVIEW_PLACEMENT_ID",
             "FILTER_TRUEVIEW_REGION",
             "FILTER_TRUEVIEW_REGION_NAME",
             "FILTER_TRUEVIEW_REMARKETING_LIST",
@@ -716,6 +717,7 @@
             "FILTER_ZIP_POSTAL_CODE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1270,6 +1272,7 @@
               "FILTER_TRUEVIEW_KEYWORD",
               "FILTER_TRUEVIEW_PARENTAL_STATUS",
               "FILTER_TRUEVIEW_PLACEMENT",
+              "FILTER_TRUEVIEW_PLACEMENT_ID",
               "FILTER_TRUEVIEW_REGION",
               "FILTER_TRUEVIEW_REGION_NAME",
               "FILTER_TRUEVIEW_REMARKETING_LIST",
@@ -1314,6 +1317,7 @@
               "FILTER_ZIP_POSTAL_CODE"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -1864,6 +1868,7 @@
               "METRIC_ORIGINAL_AUDIENCE_FREQUENCY",
               "METRIC_PAUSES_AUDIO",
               "METRIC_PERCENT_IMPRESSIONS_WITH_POSITIVE_CUSTOM_VALUE",
+              "METRIC_PERCENT_INVALID_IMPRESSIONS_PREBID",
               "METRIC_PLATFORM_FEE_ADVERTISER",
               "METRIC_PLATFORM_FEE_PARTNER",
               "METRIC_PLATFORM_FEE_RATE",
@@ -2013,6 +2018,7 @@
               "METRIC_WATCH_TIME"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
