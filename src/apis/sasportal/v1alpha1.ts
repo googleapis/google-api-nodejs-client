@@ -116,6 +116,7 @@ export namespace sasportal_v1alpha1 {
   export class Sasportal {
     context: APIRequestContext;
     customers: Resource$Customers;
+    deployments: Resource$Deployments;
     installer: Resource$Installer;
     nodes: Resource$Nodes;
     policies: Resource$Policies;
@@ -127,6 +128,7 @@ export namespace sasportal_v1alpha1 {
       };
 
       this.customers = new Resource$Customers(this.context);
+      this.deployments = new Resource$Deployments(this.context);
       this.installer = new Resource$Installer(this.context);
       this.nodes = new Resource$Nodes(this.context);
       this.policies = new Resource$Policies(this.context);
@@ -194,11 +196,40 @@ export namespace sasportal_v1alpha1 {
      */
     sasUserIds?: string[] | null;
   }
+  /**
+   * The Deployment.
+   */
+  export interface Schema$SasPortalDeployment {
+    /**
+     * The allowed billing modes under this deployment.
+     */
+    allowedBillingModes?: string[] | null;
+    /**
+     * Default billing mode for the deployment and devices under it.
+     */
+    defaultBillingMode?: string | null;
+    /**
+     * The deployment&#39;s display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Resource name.
+     */
+    name?: string | null;
+    /**
+     * User id used by the devices belonging to this deployment. Each deployment should be associated with one unique user_id.
+     */
+    sasUserIds?: string[] | null;
+  }
   export interface Schema$SasPortalDevice {
     /**
      * Output only. Current configuration of the device as registered to the SAS.
      */
     activeConfig?: Schema$SasPortalDeviceConfig;
+    /**
+     * Device parameters that can be overridden by both SAS Portal and SAS registration requests.
+     */
+    deviceMetadata?: Schema$SasPortalDeviceMetadata;
     /**
      * Device display name.
      */
@@ -319,6 +350,10 @@ export namespace sasportal_v1alpha1 {
      */
     suspensionReason?: string[] | null;
   }
+  /**
+   * Device data overridable by both SAS Portal and registration requests.
+   */
+  export interface Schema$SasPortalDeviceMetadata {}
   /**
    * Information about the model of the device.
    */
@@ -467,6 +502,19 @@ export namespace sasportal_v1alpha1 {
     customers?: Schema$SasPortalCustomer[];
     /**
      * A pagination token returned from a previous call to ListCustomers method that indicates from where listing should continue. If the field is missing or empty, it means there are no more customers.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for ListDeployments method.
+   */
+  export interface Schema$SasPortalListDeploymentsResponse {
+    /**
+     * The deployments that match the request.
+     */
+    deployments?: Schema$SasPortalDeployment[];
+    /**
+     * A pagination token returned from a previous call to ListDeployments method that indicates from where listing should continue. If the field is missing or empty, it means there is no more deployments.
      */
     nextPageToken?: string | null;
   }
@@ -664,10 +712,12 @@ export namespace sasportal_v1alpha1 {
 
   export class Resource$Customers {
     context: APIRequestContext;
+    deployments: Resource$Customers$Deployments;
     devices: Resource$Customers$Devices;
     nodes: Resource$Customers$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deployments = new Resource$Customers$Deployments(this.context);
       this.devices = new Resource$Customers$Devices(this.context);
       this.nodes = new Resource$Customers$Nodes(this.context);
     }
@@ -1128,6 +1178,784 @@ export namespace sasportal_v1alpha1 {
     requestBody?: Schema$SasPortalCustomer;
   }
 
+  export class Resource$Customers$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sasportal.customers.deployments.create
+     * @desc Creates a new deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedBillingModes": [],
+     *       //   "defaultBillingMode": "my_defaultBillingMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.deployments.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name where the deployment is to be created.
+     * @param {().SasPortalDeployment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Customers$Deployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Customers$Deployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    create(
+      params: Params$Resource$Customers$Deployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Deployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Deployments$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Deployments$Create
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Deployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Deployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.customers.deployments.delete
+     * @desc Deletes a deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.deployments.delete({
+     *     // Required. The name of the deployment.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.deployments.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the deployment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Customers$Deployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Customers$Deployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Customers$Deployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
+      callback: BodyResponseCallback<Schema$SasPortalEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Customers$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$SasPortalEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$SasPortalEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Deployments$Delete
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Deployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Deployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalEmpty>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.customers.deployments.get
+     * @desc Returns a requested deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.deployments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the deployment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Customers$Deployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    get(
+      params: Params$Resource$Customers$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Deployments$Get,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Deployments$Get
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Deployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.customers.deployments.list
+     * @desc Lists deployments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.deployments.list({
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments
+     *     // method that
+     *     // indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1",
+     *     // customer/1/nodes/2.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.deployments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of deployments to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Customers$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Customers$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Deployments$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Deployments$List
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * sasportal.customers.deployments.patch
+     * @desc Updates an existing deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.deployments.patch({
+     *     // Output only. Resource name.
+     *     name: 'customers/my-customer/deployments/my-deployment',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedBillingModes": [],
+     *       //   "defaultBillingMode": "my_defaultBillingMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.deployments.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. Resource name.
+     * @param {string=} params.updateMask Fields to be updated.
+     * @param {().SasPortalDeployment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Customers$Deployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Customers$Deployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    patch(
+      params: Params$Resource$Customers$Deployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Customers$Deployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    patch(
+      params: Params$Resource$Customers$Deployments$Patch,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Deployments$Patch
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Deployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Deployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Deployments$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name where the deployment is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDeployment;
+  }
+  export interface Params$Resource$Customers$Deployments$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Deployments$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Deployments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of deployments to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Customers$Deployments$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name.
+     */
+    name?: string;
+    /**
+     * Fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDeployment;
+  }
+
   export class Resource$Customers$Devices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -1318,6 +2146,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
      *       //   "grants": [],
@@ -1333,6 +2162,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -1481,6 +2311,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -1746,6 +2577,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -2185,6 +3017,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
      *       //   "grants": [],
@@ -2200,6 +3033,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -2484,6 +3318,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -2713,9 +3548,11 @@ export namespace sasportal_v1alpha1 {
 
   export class Resource$Customers$Nodes {
     context: APIRequestContext;
+    deployments: Resource$Customers$Nodes$Deployments;
     nodes: Resource$Customers$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deployments = new Resource$Customers$Nodes$Deployments(this.context);
       this.nodes = new Resource$Customers$Nodes$Nodes(this.context);
     }
 
@@ -3628,6 +4465,342 @@ export namespace sasportal_v1alpha1 {
     requestBody?: Schema$SasPortalNode;
   }
 
+  export class Resource$Customers$Nodes$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sasportal.customers.nodes.deployments.create
+     * @desc Creates a new deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.nodes.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedBillingModes": [],
+     *       //   "defaultBillingMode": "my_defaultBillingMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.nodes.deployments.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name where the deployment is to be created.
+     * @param {().SasPortalDeployment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Customers$Nodes$Deployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Customers$Nodes$Deployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    create(
+      params: Params$Resource$Customers$Nodes$Deployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Deployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Deployments$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Deployments$Create
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Deployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Deployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.customers.nodes.deployments.list
+     * @desc Lists deployments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.nodes.deployments.list({
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments
+     *     // method that
+     *     // indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1",
+     *     // customer/1/nodes/2.
+     *     parent: 'customers/my-customer/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.customers.nodes.deployments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of deployments to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Customers$Nodes$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Nodes$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Deployments$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Deployments$List
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Nodes$Deployments$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name where the deployment is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDeployment;
+  }
+  export interface Params$Resource$Customers$Nodes$Deployments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of deployments to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     */
+    parent?: string;
+  }
+
   export class Resource$Customers$Nodes$Nodes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3953,6 +5126,154 @@ export namespace sasportal_v1alpha1 {
     parent?: string;
   }
 
+  export class Resource$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sasportal.deployments.get
+     * @desc Returns a requested deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.deployments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the deployment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Deployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    get(
+      params: Params$Resource$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Deployments$Get,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Get
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Deployments$Get extends StandardParameters {
+    /**
+     * Required. The name of the deployment.
+     */
+    name?: string;
+  }
+
   export class Resource$Installer {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4265,10 +5586,12 @@ export namespace sasportal_v1alpha1 {
 
   export class Resource$Nodes {
     context: APIRequestContext;
+    deployments: Resource$Nodes$Deployments;
     devices: Resource$Nodes$Devices;
     nodes: Resource$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deployments = new Resource$Nodes$Deployments(this.context);
       this.devices = new Resource$Nodes$Devices(this.context);
       this.nodes = new Resource$Nodes$Nodes(this.context);
     }
@@ -4408,6 +5731,621 @@ export namespace sasportal_v1alpha1 {
      * Required. The name of the node.
      */
     name?: string;
+  }
+
+  export class Resource$Nodes$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sasportal.nodes.deployments.delete
+     * @desc Deletes a deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.deployments.delete({
+     *     // Required. The name of the deployment.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.deployments.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the deployment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Nodes$Deployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Nodes$Deployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Nodes$Deployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Nodes$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
+      callback: BodyResponseCallback<Schema$SasPortalEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Nodes$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$SasPortalEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$SasPortalEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Deployments$Delete
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Deployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Deployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalEmpty>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.nodes.deployments.get
+     * @desc Returns a requested deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.deployments.get({
+     *     // Required. The name of the deployment.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.deployments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the deployment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Nodes$Deployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Nodes$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    get(
+      params: Params$Resource$Nodes$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Deployments$Get,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Deployments$Get
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Deployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.nodes.deployments.list
+     * @desc Lists deployments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.deployments.list({
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments
+     *     // method that
+     *     // indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1",
+     *     // customer/1/nodes/2.
+     *     parent: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.deployments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of deployments to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Nodes$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Nodes$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Nodes$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Deployments$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Deployments$List
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * sasportal.nodes.deployments.patch
+     * @desc Updates an existing deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.deployments.patch({
+     *     // Output only. Resource name.
+     *     name: 'nodes/my-node/deployments/my-deployment',
+     *     // Fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedBillingModes": [],
+     *       //   "defaultBillingMode": "my_defaultBillingMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.deployments.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. Resource name.
+     * @param {string=} params.updateMask Fields to be updated.
+     * @param {().SasPortalDeployment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Nodes$Deployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Nodes$Deployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    patch(
+      params: Params$Resource$Nodes$Deployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Nodes$Deployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    patch(
+      params: Params$Resource$Nodes$Deployments$Patch,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Deployments$Patch
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Deployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Deployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Deployments$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Nodes$Deployments$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the deployment.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Nodes$Deployments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of deployments to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Nodes$Deployments$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name.
+     */
+    name?: string;
+    /**
+     * Fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDeployment;
   }
 
   export class Resource$Nodes$Devices {
@@ -4600,6 +6538,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
      *       //   "grants": [],
@@ -4615,6 +6554,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -4763,6 +6703,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -5028,6 +6969,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -5467,6 +7409,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
      *       //   "grants": [],
@@ -5482,6 +7425,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -5766,6 +7710,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -5995,10 +7940,12 @@ export namespace sasportal_v1alpha1 {
 
   export class Resource$Nodes$Nodes {
     context: APIRequestContext;
+    deployments: Resource$Nodes$Nodes$Deployments;
     devices: Resource$Nodes$Nodes$Devices;
     nodes: Resource$Nodes$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deployments = new Resource$Nodes$Nodes$Deployments(this.context);
       this.devices = new Resource$Nodes$Nodes$Devices(this.context);
       this.nodes = new Resource$Nodes$Nodes$Nodes(this.context);
     }
@@ -6906,6 +8853,342 @@ export namespace sasportal_v1alpha1 {
     requestBody?: Schema$SasPortalNode;
   }
 
+  export class Resource$Nodes$Nodes$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sasportal.nodes.nodes.deployments.create
+     * @desc Creates a new deployment.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.nodes.deployments.create({
+     *     // Required. The parent resource name where the deployment is to be created.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedBillingModes": [],
+     *       //   "defaultBillingMode": "my_defaultBillingMode",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sasUserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedBillingModes": [],
+     *   //   "defaultBillingMode": "my_defaultBillingMode",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.nodes.deployments.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name where the deployment is to be created.
+     * @param {().SasPortalDeployment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Nodes$Nodes$Deployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Nodes$Nodes$Deployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDeployment>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Deployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Nodes$Nodes$Deployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDeployment>,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(
+      params: Params$Resource$Nodes$Nodes$Deployments$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDeployment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDeployment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Deployments$Create
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Deployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Deployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalDeployment>(parameters);
+      }
+    }
+
+    /**
+     * sasportal.nodes.nodes.deployments.list
+     * @desc Lists deployments.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.nodes.nodes.deployments.list({
+     *     // The maximum number of deployments to return in the response.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to ListDeployments
+     *     // method that
+     *     // indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name, for example, "nodes/1",
+     *     // customer/1/nodes/2.
+     *     parent: 'nodes/my-node/nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias sasportal.nodes.nodes.deployments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of deployments to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Nodes$Nodes$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Nodes$Nodes$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Nodes$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Nodes$Deployments$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Deployments$List
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Nodes$Deployments$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name where the deployment is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDeployment;
+  }
+  export interface Params$Resource$Nodes$Nodes$Deployments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of deployments to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDeployments method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1", customer/1/nodes/2.
+     */
+    parent?: string;
+  }
+
   export class Resource$Nodes$Nodes$Devices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7096,6 +9379,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
      *       //   "grants": [],
@@ -7111,6 +9395,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
@@ -7259,6 +9544,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
      *   //   "grants": [],
