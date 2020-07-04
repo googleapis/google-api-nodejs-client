@@ -853,7 +853,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200619",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2743,7 +2743,7 @@
       "id": "Signature",
       "properties": {
         "publicKeyId": {
-          "description": "The identifier for the public key that verifies this signature.\n  * The `public_key_id` is required.\n  * The `public_key_id` MUST be an RFC3986 conformant URI.\n  * When possible, the `public_key_id` SHOULD be an immutable reference,\n    such as a cryptographic digest.\n\nExamples of valid `public_key_id`s:\n\nOpenPGP V4 public key fingerprint:\n  * \"openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA\"\nSee https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more\ndetails on this scheme.\n\nRFC6920 digest-named SubjectPublicKeyInfo (digest of the DER\nserialization):\n  * \"ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU\"\n  * \"nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5\"",
+          "description": "The identifier for the public key that verifies this signature.\n  * The `public_key_id` is required.\n  * The `public_key_id` SHOULD be an RFC3986 conformant URI.\n  * When possible, the `public_key_id` SHOULD be an immutable reference,\n    such as a cryptographic digest.\n\nExamples of valid `public_key_id`s:\n\nOpenPGP V4 public key fingerprint:\n  * \"openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA\"\nSee https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more\ndetails on this scheme.\n\nRFC6920 digest-named SubjectPublicKeyInfo (digest of the DER\nserialization):\n  * \"ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU\"\n  * \"nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5\"",
           "type": "string"
         },
         "signature": {
