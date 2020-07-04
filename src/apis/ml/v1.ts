@@ -1181,6 +1181,10 @@ export namespace ml_v1 {
      */
     scheduling?: Schema$GoogleCloudMlV1__Scheduling;
     /**
+     * Optional. Specifies the service account for workload run-as account. Users submitting jobs must have act-as permission on this run-as account. If not specified, then CMLE P4SA will be used by default.
+     */
+    serviceAccount?: string | null;
+    /**
      * Optional. Use `chief` instead of `master` in the `TF_CONFIG` environment variable when training with a custom container. Defaults to `false`. [Learn more about this field.](/ai-platform/training/docs/distributed-training-details#chief-versus-master)  This field has no effect for training jobs that don&#39;t use a custom container.
      */
     useChiefInTfConfig?: boolean | null;

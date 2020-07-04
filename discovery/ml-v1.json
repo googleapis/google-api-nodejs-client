@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20200513",
+  "revision": "20200630",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -3111,6 +3111,10 @@
         "scheduling": {
           "$ref": "GoogleCloudMlV1__Scheduling",
           "description": "Optional. Scheduling options for a training job."
+        },
+        "serviceAccount": {
+          "description": "Optional. Specifies the service account for workload run-as account.\nUsers submitting jobs must have act-as permission on this run-as account.\nIf not specified, then CMLE P4SA will be used by default.",
+          "type": "string"
         },
         "useChiefInTfConfig": {
           "description": "Optional. Use `chief` instead of `master` in the `TF_CONFIG` environment\nvariable when training with a custom container. Defaults to `false`. [Learn\nmore about this\nfield.](/ai-platform/training/docs/distributed-training-details#chief-versus-master)\n\nThis field has no effect for training jobs that don't use a custom\ncontainer.",
