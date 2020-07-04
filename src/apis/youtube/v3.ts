@@ -143,6 +143,7 @@ export namespace youtube_v3 {
     videoCategories: Resource$Videocategories;
     videos: Resource$Videos;
     watermarks: Resource$Watermarks;
+    youtube: Resource$Youtube;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -180,6 +181,7 @@ export namespace youtube_v3 {
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
+      this.youtube = new Resource$Youtube(this.context);
     }
   }
 
@@ -3652,6 +3654,11 @@ export namespace youtube_v3 {
      */
     stickerId?: string | null;
   }
+  export interface Schema$TestItem {
+    id?: string | null;
+    snippet?: Schema$TestItemTestItemSnippet;
+  }
+  export interface Schema$TestItemTestItemSnippet {}
   /**
    * A thumbnail is an image representing a YouTube resource.
    */
@@ -18516,5 +18523,181 @@ export namespace youtube_v3 {
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+  }
+
+  export class Resource$Youtube {
+    context: APIRequestContext;
+    v3: Resource$Youtube$V3;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v3 = new Resource$Youtube$V3(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3 {
+    context: APIRequestContext;
+    tests: Resource$Youtube$V3$Tests;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.tests = new Resource$Youtube$V3$Tests(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3$Tests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.youtube.v3.tests.create
+     * @desc POST method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.tests.create({
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.youtube.v3.tests.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.part
+     * @param {().TestItem} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Youtube$V3$Tests$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestItem>;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TestItem>,
+      callback: BodyResponseCallback<Schema$TestItem>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      callback: BodyResponseCallback<Schema$TestItem>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TestItem>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Tests$Create
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TestItem> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Tests$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Tests$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/tests').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TestItem>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Tests$Create
+    extends StandardParameters {
+    /**
+     *
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestItem;
   }
 }
