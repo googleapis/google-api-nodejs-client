@@ -1519,7 +1519,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200617",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1773,7 +1773,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1791,7 +1791,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
@@ -3438,9 +3438,17 @@
           "$ref": "EncryptionConfiguration",
           "description": "Custom encryption configuration (e.g., Cloud KMS keys)."
         },
+        "destinationExpirationTime": {
+          "description": "[Optional] The time when the destination table expires. Expired tables will be deleted and their storage reclaimed.",
+          "type": "any"
+        },
         "destinationTable": {
           "$ref": "TableReference",
           "description": "[Required] The destination table"
+        },
+        "operationType": {
+          "description": "[Optional] Supported operation types in table copy job.",
+          "type": "string"
         },
         "sourceTable": {
           "$ref": "TableReference",
@@ -4584,6 +4592,20 @@
           "description": "Optional. [Experimental] The description of the routine if defined.",
           "type": "string"
         },
+        "determinismLevel": {
+          "description": "Optional. [Experimental] The determinism level of the JavaScript UDF if defined.",
+          "enum": [
+            "DETERMINISM_LEVEL_UNSPECIFIED",
+            "DETERMINISTIC",
+            "NOT_DETERMINISTIC"
+          ],
+          "enumDescriptions": [
+            "The determinism of the UDF is unspecified.",
+            "The UDF is deterministic, meaning that 2 function calls with the same\ninputs always produce the same result, even across 2 query runs.",
+            "The UDF is not deterministic."
+          ],
+          "type": "string"
+        },
         "etag": {
           "description": "Output only. A hash of this resource.",
           "type": "string"
@@ -5587,6 +5609,10 @@
             "Uses a normal equation to solve linear regression problem."
           ],
           "type": "string"
+        },
+        "preserveInputStructs": {
+          "description": "Whether to preserve the input structs in output feature names.\nSuppose there is a struct A with field b.\nWhen false (default), the output feature name is A_b.\nWhen true, the output feature name is A.b.",
+          "type": "boolean"
         },
         "subsample": {
           "description": "Subsample fraction of the training data to grow tree to prevent\noverfitting for boosted tree models.",
