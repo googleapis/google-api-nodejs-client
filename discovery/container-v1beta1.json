@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200619",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2586,32 +2586,32 @@
       "properties": {
         "management": {
           "$ref": "NodeManagement",
-          "description": "Specifies the node management options for NAP created node-pools."
+          "description": "NodeManagement configuration for this NodePool."
         },
         "minCpuPlatform": {
-          "description": "Minimum CPU platform to be used for NAP created node pools.\nThe instance may be scheduled on the specified or newer CPU platform.\nApplicable values are the friendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)\nTo unset the min cpu platform field pass \"automatic\" as field value.",
+          "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)\nTo unset the min cpu platform field pass \"automatic\"\nas field value.",
           "type": "string"
         },
         "oauthScopes": {
-          "description": "Scopes that are used by NAP when creating node pools.",
+          "description": "The set of Google API scopes to be made available on all of the\nnode VMs under the \"default\" service account.\n\nThe following scopes are recommended, but not required, and by default are\nnot included:\n\n* `https://www.googleapis.com/auth/compute` is required for mounting\npersistent storage on your nodes.\n* `https://www.googleapis.com/auth/devstorage.read_only` is required for\ncommunicating with **gcr.io**\n(the [Google Container\nRegistry](https://cloud.google.com/container-registry/)).\n\nIf unspecified, no scopes are added, unless Cloud Logging or Cloud\nMonitoring are enabled, in which case their required scopes will be added.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "serviceAccount": {
-          "description": "The Google Cloud Platform Service Account to be used by the node VMs.",
+          "description": "The Google Cloud Platform Service Account to be used by the node VMs.\nSpecify the email address of the Service Account; otherwise, if no Service\nAccount is specified, the \"default\" service account is used.",
           "type": "string"
         },
         "upgradeSettings": {
           "$ref": "UpgradeSettings",
-          "description": "Specifies the upgrade settings for NAP created node pools"
+          "description": "Upgrade settings control disruption and speed of the upgrade."
         }
       },
       "type": "object"
     },
     "AvailableVersion": {
-      "description": "AvailableVersion is an additional Kubernetes versions offered\nto users who subscribed to the release channel.",
+      "description": "Deprecated.",
       "id": "AvailableVersion",
       "properties": {
         "reason": {
@@ -2792,7 +2792,7 @@
           "type": "string"
         },
         "initialNodeCount": {
-          "description": "The number of nodes to create in this cluster. You must ensure that your\nCompute Engine <a href=\"/compute/docs/resource-quotas\">resource quota</a>\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.\nFor requests, this field should only be used in lieu of a\n\"node_pool\" object, since this configuration (along with the\n\"node_config\") will be used to create a \"NodePool\" object with an\nauto-generated name. Do not use this and a node_pool at the same time.\n\nThis field is deprecated, use node_pool.initial_node_count instead.",
+          "description": "The number of nodes to create in this cluster. You must ensure that your\nCompute Engine [resource quota](https://cloud.google.com/compute/quotas)\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.\nFor requests, this field should only be used in lieu of a\n\"node_pool\" object, since this configuration (along with the\n\"node_config\") will be used to create a \"NodePool\" object with an\nauto-generated name. Do not use this and a node_pool at the same time.\n\nThis field is deprecated, use node_pool.initial_node_count instead.",
           "format": "int32",
           "type": "integer"
         },
@@ -3205,7 +3205,7 @@
       "properties": {
         "cluster": {
           "$ref": "Cluster",
-          "description": "Required. A [cluster\nresource](https://cloud.google.com/container-engine/reference/rest/v1beta1/projects.zones.clusters)"
+          "description": "Required. A [cluster\nresource](https://cloud.google.com/container-engine/reference/rest/v1beta1/projects.locations.clusters)"
         },
         "parent": {
           "description": "The parent (project and location) where the cluster will be created.\nSpecified in the format `projects/*/locations/*`.",
@@ -3615,6 +3615,20 @@
       },
       "type": "object"
     },
+    "LinuxNodeConfig": {
+      "description": "Parameters that can be configured on Linux nodes.",
+      "id": "LinuxNodeConfig",
+      "properties": {
+        "sysctls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Linux kernel parameters to be applied to the nodes and all pods running\non the nodes.\n\nThe following parameters are supported.\n\nnet.core.netdev_max_backlog\nnet.core.rmem_max\nnet.core.wmem_default\nnet.core.wmem_max\nnet.core.optmem_max\nnet.core.somaxconn\nnet.ipv4.tcp_rmem\nnet.ipv4.tcp_wmem\nnet.ipv4.tcp_tw_reuse",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ListClustersResponse": {
       "description": "ListClustersResponse is the result of ListClustersRequest.",
       "id": "ListClustersResponse",
@@ -3949,12 +3963,20 @@
           "description": "The image type to use for this node. Note that for a given image type,\nthe latest version of it will be used.",
           "type": "string"
         },
+        "kubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "Node kubelet configs."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
           "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node.\nThese will added in addition to any default label(s) that\nKubernetes may apply to the node.\nIn case of conflict in label keys, the applied set may differ depending on\nthe Kubernetes version -- it's best to assume the behavior is undefined\nand conflicts should be avoided.\nFor more information, including usage and the valid values, see:\nhttps://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
           "type": "object"
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig",
+          "description": "Parameters that can be configured on Linux nodes."
         },
         "localSsdCount": {
           "description": "The number of local SSD disks to be attached to the node.\n\nThe limit for this value is dependent upon the maximum number of\ndisks available on a machine per zone. See:\nhttps://cloud.google.com/compute/docs/disks/local-ssd\nfor more information.",
@@ -4024,6 +4046,25 @@
       },
       "type": "object"
     },
+    "NodeKubeletConfig": {
+      "description": "Node kubelet configs.",
+      "id": "NodeKubeletConfig",
+      "properties": {
+        "cpuCfsQuota": {
+          "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits.\n\nIf this option is enabled, kubelet uses CFS quota\n(https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to\nenforce container CPU limits. Otherwise, CPU limits will not be enforced at\nall.\n\nDisable this option to mitigate CPU throttling problems while still having\nyour pods to be in Guaranteed QoS class by specifying the CPU limits.\n\nThe default value is 'true' if unspecified.",
+          "type": "boolean"
+        },
+        "cpuCfsQuotaPeriod": {
+          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'.\n\nThe string must be a sequence of decimal numbers, each with optional\nfraction and a unit suffix, such as \"300ms\".\nValid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\".\nThe value must be a positive duration.",
+          "type": "string"
+        },
+        "cpuManagerPolicy": {
+          "description": "Control the CPU management policy on the node.\nSee\nhttps://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/\n\nThe following values are allowed.\n  - \"none\": the default, which represents the existing scheduling behavior.\n  - \"static\": allows pods with certain resource characteristics to be\n              granted increased CPU affinity and exclusivity on the node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeManagement": {
       "description": "NodeManagement defines the set of node management services turned on for the\nnode pool.",
       "id": "NodeManagement",
@@ -4063,7 +4104,7 @@
           "description": "The node configuration of the pool."
         },
         "initialNodeCount": {
-          "description": "The initial node count for the pool. You must ensure that your\nCompute Engine <a href=\"/compute/docs/resource-quotas\">resource quota</a>\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.",
+          "description": "The initial node count for the pool. You must ensure that your\nCompute Engine [resource quota](https://cloud.google.com/compute/quotas)\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.",
           "format": "int32",
           "type": "integer"
         },
@@ -4432,7 +4473,7 @@
       "type": "object"
     },
     "ReleaseChannel": {
-      "description": "ReleaseChannel indicates which release channel a cluster is\nsubscribed to. Release channels are arranged in order of risk and\nfrequency of updates.\n\nWhen a cluster is subscribed to a release channel, Google maintains\nboth the master version and the node version. Node auto-upgrade\ndefaults to true and cannot be disabled. Updates to version related\nfields (e.g. current_master_version) return an error.",
+      "description": "ReleaseChannel indicates which release channel a cluster is\nsubscribed to. Release channels are arranged in order of risk.\n\nWhen a cluster is subscribed to a release channel, Google maintains\nboth the master version and the node version. Node auto-upgrade\ndefaults to true and cannot be disabled.",
       "id": "ReleaseChannel",
       "properties": {
         "channel": {
@@ -4445,9 +4486,9 @@
           ],
           "enumDescriptions": [
             "No channel specified.",
-            "RAPID channel is offered on an early access basis for customers who want\nto test new releases before they are qualified for production use or\ngeneral availability. New upgrades will occur roughly weekly.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not for use with\nproduction workloads or subject to any SLAs.",
-            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features. New upgrades will occur roughly every few\nweeks.",
-            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production. STABLE is intended for production\nusers who need stability above all else, or for whom frequent upgrades\nare too risky. New upgrades will occur roughly every few months."
+            "RAPID channel is offered on an early access basis for customers who want\nto test new releases.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not subject to any\nSLAs.",
+            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features.",
+            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production."
           ],
           "type": "string"
         }
@@ -4459,7 +4500,7 @@
       "id": "ReleaseChannelConfig",
       "properties": {
         "availableVersions": {
-          "description": "List of available versions for the release channel.",
+          "description": "Deprecated.\nThis field has been deprecated and replaced with the valid_versions\nfield.",
           "items": {
             "$ref": "AvailableVersion"
           },
@@ -4475,15 +4516,22 @@
           ],
           "enumDescriptions": [
             "No channel specified.",
-            "RAPID channel is offered on an early access basis for customers who want\nto test new releases before they are qualified for production use or\ngeneral availability. New upgrades will occur roughly weekly.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not for use with\nproduction workloads or subject to any SLAs.",
-            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features. New upgrades will occur roughly every few\nweeks.",
-            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production. STABLE is intended for production\nusers who need stability above all else, or for whom frequent upgrades\nare too risky. New upgrades will occur roughly every few months."
+            "RAPID channel is offered on an early access basis for customers who want\nto test new releases.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not subject to any\nSLAs.",
+            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features.",
+            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production."
           ],
           "type": "string"
         },
         "defaultVersion": {
           "description": "The default version for newly created clusters on the channel.",
           "type": "string"
+        },
+        "validVersions": {
+          "description": "List of valid versions for the channel.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4639,14 +4687,14 @@
           "type": "array"
         },
         "validMasterVersions": {
-          "description": "List of valid master versions.",
+          "description": "List of valid master versions, in descending order.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "validNodeVersions": {
-          "description": "List of valid node upgrade target versions.",
+          "description": "List of valid node upgrade target versions, in descending order.",
           "items": {
             "type": "string"
           },
@@ -5203,6 +5251,14 @@
         "imageType": {
           "description": "Required. The desired image type for the node pool.",
           "type": "string"
+        },
+        "kubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "Node kubelet configs."
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig",
+          "description": "Parameters that can be configured on Linux nodes."
         },
         "locations": {
           "description": "The desired list of Google Compute Engine\n[zones](https://cloud.google.com/compute/docs/zones#available) in which the\nnode pool's nodes should be located. Changing the locations for a node pool\nwill result in nodes being either created or removed from the node pool,\ndepending on whether locations are being added or removed.",
