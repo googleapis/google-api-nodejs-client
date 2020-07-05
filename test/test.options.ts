@@ -227,22 +227,27 @@ describe('Options', () => {
     const res2 = await drive.files.list({}, {responseType: 'stream'});
     assert.ok(res2.data.resume);
 
-    // It is ok to use callbacks here, and recognize the results won't be
-    // tested before the test completes.
-    // This is here purely to test TypeScript types.
-
     // callback for json
-    drive.files.list({}, (err, res) => {
-      assert.ok(res?.data.etag);
+    await new Promise(resolve => {
+      drive.files.list({}, (err, res) => {
+        assert.ok(res?.data.etag);
+        resolve();
+      });
     });
 
     // callback with no params
-    drive.files.list((err, res) => {
-      assert.ok(res?.data.etag);
+    await new Promise(resolve => {
+      drive.files.list((err, res) => {
+        assert.ok(res?.data.etag);
+        resolve();
+      });
     });
 
-    drive.files.list({}, {responseType: 'stream'}, (err, res) => {
-      assert.ok(res?.data.resume);
+    await new Promise(resolve => {
+      drive.files.list({}, {responseType: 'stream'}, (err, res) => {
+        assert.ok(res?.data.resume);
+        resolve();
+      });
     });
 
     scope.done();
