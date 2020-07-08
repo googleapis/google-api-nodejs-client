@@ -796,6 +796,10 @@ export namespace servicecontrol_v1 {
      */
     endTime?: string | null;
     /**
+     * Unimplemented.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+    /**
      * DO NOT USE. This is an experimental field.
      */
     importance?: string | null;
