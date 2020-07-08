@@ -2,7 +2,7 @@
 
 # iamcredentials
 
-> Creates short-lived, limited-privilege credentials for IAM service accounts.
+> Creates short-lived credentials for impersonating IAM service accounts.
 
 ## Installation
 
