@@ -288,7 +288,7 @@
               ]
             },
             "import": {
-              "description": "Imports the specified agent from a ZIP file.\n\nUploads new intents and entity types without deleting the existing ones.\nIntents and entity types with the same name are replaced with the new\nversions from ImportAgentRequest.\n\n\nOperation <response: google.protobuf.Empty>",
+              "description": "Imports the specified agent from a ZIP file.\n\nUploads new intents and entity types without deleting the existing ones.\nIntents and entity types with the same name are replaced with the new\nversions from ImportAgentRequest. After the import, the imported draft\nagent will be trained automatically (unless disabled in agent settings).\nHowever, once the import is done, training may not be completed yet. Please\ncall TrainAgent and wait for the operation it returns in order to train\nexplicitly.\n\n\nOperation <response: google.protobuf.Empty>\nAn operation which tracks when importing is complete. It only tracks\nwhen the draft agent is updated not when it is done training.",
               "flatPath": "v2beta1/projects/{projectsId}/agent:import",
               "httpMethod": "POST",
               "id": "dialogflow.projects.agent.import",
@@ -317,7 +317,7 @@
               ]
             },
             "restore": {
-              "description": "Restores the specified agent from a ZIP file.\n\nReplaces the current agent version with a new one. All the intents and\nentity types in the older version are deleted.\n\n\nOperation <response: google.protobuf.Empty>",
+              "description": "Restores the specified agent from a ZIP file.\n\nReplaces the current agent version with a new one. All the intents and\nentity types in the older version are deleted. After the restore, the\nrestored draft agent will be trained automatically (unless disabled in\nagent settings). However, once the restore is done, training may not be\ncompleted yet. Please call TrainAgent and wait for the operation it\nreturns in order to train explicitly.\n\n\nOperation <response: google.protobuf.Empty>\nAn operation which tracks when restoring is complete. It only tracks\nwhen the draft agent is updated not when it is done training.",
               "flatPath": "v2beta1/projects/{projectsId}/agent:restore",
               "httpMethod": "POST",
               "id": "dialogflow.projects.agent.restore",
@@ -799,7 +799,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The agent to list all environments from.\nFormat: `projects/<Project ID>/agent`.",
+                      "description": "Required. The agent to list all environments from.\nFormat:\n- `projects/<Project Number / ID>/agent`\n- `projects/<Project Number / ID>/locations/<Location\nID>/agent",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent$",
                       "required": true,
@@ -1724,13 +1724,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Optional. The maximum number of items to return in a single page. By\ndefault 10 and at most 100.",
+                          "description": "The maximum number of items to return in a single page. By\ndefault 10 and at most 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. The next_page_token value returned from a previous list request.",
+                          "description": "The next_page_token value returned from a previous list request.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2451,13 +2451,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return in a single page. By\ndefault 10 and at most 100.",
+                      "description": "The maximum number of items to return in a single page. By\ndefault 10 and at most 100.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The next_page_token value returned from a previous list request.",
+                      "description": "The next_page_token value returned from a previous list request.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2668,41 +2668,6 @@
                     "https://www.googleapis.com/auth/dialogflow"
                   ]
                 },
-                "fulfillment": {
-                  "description": "Updates the fulfillment.",
-                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent/fulfillment",
-                  "httpMethod": "POST",
-                  "id": "dialogflow.projects.locations.agent.fulfillment",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The unique identifier of the fulfillment.\nFormat: `projects/<Project ID>/agent/fulfillment`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/agent/fulfillment$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. The mask to control which fields get updated. If the mask is not\npresent, all fields will be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2beta1/{+name}",
-                  "request": {
-                    "$ref": "GoogleCloudDialogflowV2beta1Fulfillment"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudDialogflowV2beta1Fulfillment"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/dialogflow"
-                  ]
-                },
                 "getFulfillment": {
                   "description": "Retrieves the fulfillment.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent/fulfillment",
@@ -2730,7 +2695,7 @@
                   ]
                 },
                 "import": {
-                  "description": "Imports the specified agent from a ZIP file.\n\nUploads new intents and entity types without deleting the existing ones.\nIntents and entity types with the same name are replaced with the new\nversions from ImportAgentRequest.\n\n\nOperation <response: google.protobuf.Empty>",
+                  "description": "Imports the specified agent from a ZIP file.\n\nUploads new intents and entity types without deleting the existing ones.\nIntents and entity types with the same name are replaced with the new\nversions from ImportAgentRequest. After the import, the imported draft\nagent will be trained automatically (unless disabled in agent settings).\nHowever, once the import is done, training may not be completed yet. Please\ncall TrainAgent and wait for the operation it returns in order to train\nexplicitly.\n\n\nOperation <response: google.protobuf.Empty>\nAn operation which tracks when importing is complete. It only tracks\nwhen the draft agent is updated not when it is done training.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent:import",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agent.import",
@@ -2759,7 +2724,7 @@
                   ]
                 },
                 "restore": {
-                  "description": "Restores the specified agent from a ZIP file.\n\nReplaces the current agent version with a new one. All the intents and\nentity types in the older version are deleted.\n\n\nOperation <response: google.protobuf.Empty>",
+                  "description": "Restores the specified agent from a ZIP file.\n\nReplaces the current agent version with a new one. All the intents and\nentity types in the older version are deleted. After the restore, the\nrestored draft agent will be trained automatically (unless disabled in\nagent settings). However, once the restore is done, training may not be\ncompleted yet. Please call TrainAgent and wait for the operation it\nreturns in order to train explicitly.\n\n\nOperation <response: google.protobuf.Empty>\nAn operation which tracks when restoring is complete. It only tracks\nwhen the draft agent is updated not when it is done training.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent:restore",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agent.restore",
@@ -2847,6 +2812,41 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "updateFulfillment": {
+                  "description": "Updates the fulfillment.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent/fulfillment",
+                  "httpMethod": "PATCH",
+                  "id": "dialogflow.projects.locations.agent.updateFulfillment",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique identifier of the fulfillment.\nFormat: `projects/<Project ID>/agent/fulfillment`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agent/fulfillment$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The mask to control which fields get updated. If the mask is not\npresent, all fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Fulfillment"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Fulfillment"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -3206,7 +3206,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The agent to list all environments from.\nFormat: `projects/<Project ID>/agent`.",
+                          "description": "Required. The agent to list all environments from.\nFormat:\n- `projects/<Project Number / ID>/agent`\n- `projects/<Project Number / ID>/locations/<Location\nID>/agent",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent$",
                           "required": true,
@@ -4454,7 +4454,7 @@
       }
     }
   },
-  "revision": "20200604",
+  "revision": "20200706",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3beta1ExportAgentResponse": {
@@ -4549,9 +4549,25 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess",
           "description": "Indicates that the conversation succeeded."
         },
+        "endInteraction": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction",
+          "description": "Output only. A signal that indicates the interaction with the Dialogflow agent has\nended.\nThis message is generated by Dialogflow only when the conversation\nreaches `END_SESSION` or `END_PAGE` page. It is not supposed to be\ndefined by the user.\nIt's guaranteed that there is at most one such message in each response."
+        },
         "humanAgentHandoff": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff",
           "description": "Hands off conversation to a human agent."
+        },
+        "liveAgentHandoff": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff",
+          "description": "Hands off conversation to a human agent."
+        },
+        "mixedAudio": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudio",
+          "description": "Output only. An audio response message composed of both the synthesized Dialogflow\nagent responses and responses defined via\nplay_audio.\nThis message is generated by Dialogflow only and not supposed to be\ndefined by the user."
+        },
+        "outputAudioText": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText",
+          "description": "A text or ssml response that is preferentially used for TTS output audio\nsynthesis, as described in the comment on the ResponseMessage message."
         },
         "payload": {
           "additionalProperties": {
@@ -4560,6 +4576,10 @@
           },
           "description": "Returns a response containing a custom, platform-specific payload.",
           "type": "object"
+        },
+        "playAudio": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio",
+          "description": "Signal that the client should play an audio clip hosted at a\nclient-specific URI. Dialogflow uses this to construct\nmixed_audio. However, Dialogflow itself\ndoes not try to read or process the URI in any way."
         },
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
@@ -4583,6 +4603,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction": {
+      "description": "Indicates that interaction with the Dialogflow agent has ended.\nThis message is generated by Dialogflow only and not supposed to be\ndefined by the user.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff": {
       "description": "Indicates that the conversation should be handed off to a human agent.\n\nDialogflow only uses this to determine which conversations were handed off\nto a human agent for measurement purposes. What else to do with this signal\nis up to you and your handoff procedures.\n\nYou may set this, for example:\n* In the entry_fulfillment of a Page if\n  entering the page indicates something went extremely wrong in the\n  conversation.\n* In a webhook response when you determine that the customer issue can only\n  be handled by a human.",
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff",
@@ -4598,12 +4624,95 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff": {
+      "description": "Indicates that the conversation should be handed off to a live agent.\n\nDialogflow only uses this to determine which conversations were handed off\nto a human agent for measurement purposes. What else to do with this signal\nis up to you and your handoff procedures.\n\nYou may set this, for example:\n* In the entry_fulfillment of a Page if\n  entering the page indicates something went extremely wrong in the\n  conversation.\n* In a webhook response when you determine that the customer issue can only\n  be handled by a human.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom metadata for your handoff procedure. Dialogflow doesn't impose\nany structure on this.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudio": {
+      "description": "Represents an audio message that is composed of both segments\nsynthesized from the Dialogflow agent prompts and ones hosted externally\nat the specified URIs.\nThe external URIs are specified via\nplay_audio.\nThis message is generated by Dialogflow only and not supposed to be\ndefined by the user.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudio",
+      "properties": {
+        "segments": {
+          "description": "Segments this audio response is composed of.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment": {
+      "description": "Represents one segment of audio.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment",
+      "properties": {
+        "allowPlaybackInterruption": {
+          "description": "Whether the playback of this segment can be interrupted by the end\nuser's speech and the client should then start the next Dialogflow\nrequest.",
+          "type": "boolean"
+        },
+        "audio": {
+          "description": "Raw audio synthesized from the Dialogflow agent's response using\nthe output config specified in the request.",
+          "format": "byte",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Client-specific URI that points to an audio clip accessible to the\nclient. Dialogflow does not impose any validation on it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText": {
+      "description": "A text or ssml response that is preferentially used for TTS output audio\nsynthesis, as described in the comment on the ResponseMessage message.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText",
+      "properties": {
+        "ssml": {
+          "description": "The SSML text to be synthesized. For more information, see\n[SSML](/speech/text-to-speech/docs/ssml).",
+          "type": "string"
+        },
+        "text": {
+          "description": "The raw text to be synthesized.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio": {
+      "description": "Specifies an audio clip to be played by the client as part of the response.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio",
+      "properties": {
+        "allowPlaybackInterruption": {
+          "description": "Whether the playback of this message can be interrupted by the end\nuser's speech and the client can then starts the next Dialogflow\nrequest.",
+          "type": "boolean"
+        },
+        "audioUri": {
+          "description": "Required. URI of the audio clip. Dialogflow does not impose any validation on this\nvalue. It is specific to the client that reads it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ResponseMessageText": {
       "description": "The text response message.",
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
       "properties": {
+        "allowPlaybackInterruption": {
+          "description": "Whether the playback of this message can be interrupted by the end\nuser's speech and the client can then starts the next Dialogflow\nrequest.",
+          "type": "boolean"
+        },
         "text": {
-          "description": "A collection of text responses.",
+          "description": "Required. A collection of text responses.",
           "items": {
             "type": "string"
           },
@@ -6094,7 +6203,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SentimentAnalysisResult": {
-      "description": "The result of sentiment analysis as configured by\n`sentiment_analysis_request_config`.",
+      "description": "The result of sentiment analysis. Sentiment analysis inspects user input\nand identifies the prevailing subjective opinion, especially to determine a\nuser's attitude as positive, negative, or neutral.\nFor Participants.AnalyzeContent, it needs to be configured in\nDetectIntentRequest.query_params. For\nParticipants.StreamingAnalyzeContent, it needs to be configured in\nStreamingDetectIntentRequest.query_params.\nAnd for Participants.AnalyzeContent and\nParticipants.StreamingAnalyzeContent, it needs to be configured in\nConversationProfile.human_agent_assistant_config",
       "id": "GoogleCloudDialogflowV2SentimentAnalysisResult",
       "properties": {
         "queryTextSentiment": {
@@ -6773,7 +6882,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The unique identifier of this agent environment.\nFormat: `projects/<Project ID>/agent/environments/<Environment ID>`.\nFor Environment ID, \"-\" is reserved for 'draft' environment.",
+          "description": "Output only. The unique identifier of this agent environment.\nFormat:\n- `projects/<Project Number / ID>/agent/environments/<Environment ID>`\n- `projects/<Project Number / ID>/locations/<Location\nID>/agent/environments/<Environment ID>`",
           "type": "string"
         },
         "state": {
@@ -7762,7 +7871,7 @@
           "type": "string"
         },
         "height": {
-          "description": "Required for cards with vertical orientation. The height of the media\nwithin a rich card with a vertical layout. (https://goo.gl/NeFCjz).\nFor a standalone card with horizontal layout, height is not\ncustomizable, and this field is ignored.",
+          "description": "Required for cards with vertical orientation. The height of the media\nwithin a rich card with a vertical layout.\nFor a standalone card with horizontal layout, height is not\ncustomizable, and this field is ignored.",
           "enum": [
             "HEIGHT_UNSPECIFIED",
             "SHORT",
@@ -7785,7 +7894,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard": {
-      "description": "Carousel Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards\nIf you want to show a single card with more control over the layout,\nplease use RbmStandaloneCard instead.",
+      "description": "Carousel Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nIf you want to show a single card with more control over the layout,\nplease use RbmStandaloneCard instead.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard",
       "properties": {
         "cardContents": {
@@ -7813,7 +7922,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard": {
-      "description": "Standalone Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nFor more details about RBM rich cards, please see:\nhttps://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards\nYou can group multiple rich cards into one using RbmCarouselCard but\ncarousel cards will give you less control over the card layout.",
+      "description": "Standalone Rich Business Messaging (RBM) rich card.\n\nRich cards allow you to respond to users with more vivid content, e.g.\nwith media and suggestions.\n\nYou can group multiple rich cards into one using RbmCarouselCard but\ncarousel cards will give you less control over the card layout.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard",
       "properties": {
         "cardContent": {
@@ -7879,7 +7988,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial": {
-      "description": "Opens the user's default dialer app with the specified phone number\nbut does not dial automatically (https://goo.gl/ergbB2).",
+      "description": "Opens the user's default dialer app with the specified phone number\nbut does not dial automatically.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial",
       "properties": {
         "phoneNumber": {
@@ -7890,7 +7999,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri": {
-      "description": "Opens the user's default web browser app to the specified uri\n(https://goo.gl/6GLJD2). If the user has an app installed that is\nregistered as the default handler for the URL, then this app will be\nopened instead, and its icon will be used in the suggested action UI.",
+      "description": "Opens the user's default web browser app to the specified uri\nIf the user has an app installed that is\nregistered as the default handler for the URL, then this app will be\nopened instead, and its icon will be used in the suggested action UI.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri",
       "properties": {
         "uri": {
@@ -7901,7 +8010,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation": {
-      "description": "Opens the device's location chooser so the user can pick a location\nto send back to the agent (https://goo.gl/GXotJW).",
+      "description": "Opens the device's location chooser so the user can pick a location\nto send back to the agent.",
       "id": "GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation",
       "properties": {},
       "type": "object"
@@ -8790,7 +8899,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1SentimentAnalysisResult": {
-      "description": "The result of sentiment analysis as configured by\n`sentiment_analysis_request_config`.",
+      "description": "The result of sentiment analysis. Sentiment analysis inspects user input\nand identifies the prevailing subjective opinion, especially to determine a\nuser's attitude as positive, negative, or neutral.\nFor Participants.AnalyzeContent, it needs to be configured in\nDetectIntentRequest.query_params. For\nParticipants.StreamingAnalyzeContent, it needs to be configured in\nStreamingDetectIntentRequest.query_params.\nAnd for Participants.AnalyzeContent and\nParticipants.StreamingAnalyzeContent, it needs to be configured in\nConversationProfile.human_agent_assistant_config",
       "id": "GoogleCloudDialogflowV2beta1SentimentAnalysisResult",
       "properties": {
         "queryTextSentiment": {
