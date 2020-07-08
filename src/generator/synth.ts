@@ -15,8 +15,6 @@ import * as execa from 'execa';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as gaxios from 'gaxios';
-import * as rimraf from 'rimraf';
-import * as util from 'util';
 import * as minimist from 'yargs-parser';
 import {Generator} from './generator';
 import {DISCOVERY_URL, ChangeSet} from './download';
@@ -33,10 +31,6 @@ export interface Changelog {
   semverity: Semverity;
 }
 
-export const gfs = {
-  rimraf: util.promisify(rimraf),
-};
-
 export interface SynthOptions {
   useCache?: boolean;
 }
@@ -46,8 +40,6 @@ export async function synth(options: SynthOptions = {}) {
   let changeSets: ChangeSet[] = [];
   if (!options.useCache) {
     console.log('Removing old APIs...');
-    const apiPath = path.join(__dirname, '../../../src/apis');
-    await gfs.rimraf(apiPath);
     changeSets = await gen.generateAllAPIs(DISCOVERY_URL, false);
   }
   const statusResult = await execa('git', ['status', '--porcelain']);

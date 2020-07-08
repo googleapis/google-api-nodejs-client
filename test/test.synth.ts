@@ -74,7 +74,6 @@ describe(__filename, () => {
         modified:   src/apis/blogger/v1.ts
     `;
     process.env.GITHUB_TOKEN = '12345';
-    sandbox.stub(synth.gfs, 'rimraf').resolves();
     const scope = nock('https://api.github.com')
       .post('/repos/googleapis/google-api-nodejs-client/pulls')
       .reply(200);
@@ -84,7 +83,6 @@ describe(__filename, () => {
 
   it('should throw if no token is provided', async () => {
     process.env.GITHUB_TOKEN = '';
-    sandbox.stub(synth.gfs, 'rimraf').resolves();
     await assert.rejects(synth.synth, /please include a GITHUB_TOKEN/);
   });
 
