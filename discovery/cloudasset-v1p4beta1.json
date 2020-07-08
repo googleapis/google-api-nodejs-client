@@ -108,7 +108,7 @@
     "v1p4beta1": {
       "methods": {
         "analyzeIamPolicy": {
-          "description": "Analyzes IAM policies based on the specified request. Returns\na list of IamPolicyAnalysisResult matching the request.",
+          "description": "Analyzes IAM policies to answer which identities have what accesses on\nwhich resources.",
           "flatPath": "v1p4beta1/{v1p4beta1Id}/{v1p4beta1Id1}:analyzeIamPolicy",
           "httpMethod": "GET",
           "id": "cloudasset.analyzeIamPolicy",
@@ -191,7 +191,7 @@
           ]
         },
         "exportIamPolicyAnalysis": {
-          "description": "Exports IAM policy analysis based on the specified request. This API\nimplements the google.longrunning.Operation API allowing you to keep\ntrack of the export. The metadata contains the request to help callers to\nmap responses to requests.",
+          "description": "Exports the answers of which identities have what accesses on which\nresources to a Google Cloud Storage destination. The output format is\nthe JSON format that represents a AnalyzeIamPolicyResponse\nin the JSON format.\nThis method implements the google.longrunning.Operation, which allows\nyou to keep track of the export. We recommend intervals of at least 2\nseconds with exponential retry to poll the export operation result. The\nmetadata contains the request to help callers to map responses to requests.",
           "flatPath": "v1p4beta1/{v1p4beta1Id}/{v1p4beta1Id1}:exportIamPolicyAnalysis",
           "httpMethod": "POST",
           "id": "cloudasset.exportIamPolicyAnalysis",
@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20200605",
+  "revision": "20200613",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -350,12 +350,12 @@
       "type": "object"
     },
     "GoogleCloudAssetV1p4beta1Access": {
-      "description": "A role or permission that appears in an access control list.",
+      "description": "An IAM role or permission under analysis.",
       "id": "GoogleCloudAssetV1p4beta1Access",
       "properties": {
         "analysisState": {
           "$ref": "GoogleCloudAssetV1p4beta1AnalysisState",
-          "description": "The analysis state of this access node."
+          "description": "The analysis state of this access."
         },
         "permission": {
           "description": "The permission.",
@@ -397,7 +397,7 @@
       "type": "object"
     },
     "GoogleCloudAssetV1p4beta1AnalysisState": {
-      "description": "Represents analysis state of each node in the result graph or non-critical\nerrors in the response.",
+      "description": "Represents the detailed state of an entity under analysis, such as a\nresource, an identity or an access.",
       "id": "GoogleCloudAssetV1p4beta1AnalysisState",
       "properties": {
         "cause": {
@@ -405,7 +405,7 @@
           "type": "string"
         },
         "code": {
-          "description": "The Google standard error code that best describes the state.\nFor example:\n- OK means the node has been successfully explored;\n- PERMISSION_DENIED means an access denied error is encountered;\n- DEADLINE_EXCEEDED means the node hasn't been explored in time;",
+          "description": "The Google standard error code that best describes the state.\nFor example:\n- OK means the analysis on this entity has been successfully finished;\n- PERMISSION_DENIED means an access denied error is encountered;\n- DEADLINE_EXCEEDED means the analysis on this entity hasn't been started\nin time;",
           "enum": [
             "OK",
             "CANCELLED",
@@ -465,12 +465,12 @@
       "type": "object"
     },
     "GoogleCloudAssetV1p4beta1Identity": {
-      "description": "An identity that appears in an access control list.",
+      "description": "An identity under analysis.",
       "id": "GoogleCloudAssetV1p4beta1Identity",
       "properties": {
         "analysisState": {
           "$ref": "GoogleCloudAssetV1p4beta1AnalysisState",
-          "description": "The analysis state of this identity node."
+          "description": "The analysis state of this identity."
         },
         "name": {
           "description": "The identity name in any form of members appear in\n[IAM policy\nbinding](https://cloud.google.com/iam/reference/rest/v1/Binding), such\nas:\n- user:foo@google.com\n- group:group1@google.com\n- serviceAccount:s1@prj1.iam.gserviceaccount.com\n- projectOwner:some_project_id\n- domain:google.com\n- allUsers\n- etc.",
@@ -500,12 +500,12 @@
       "type": "object"
     },
     "GoogleCloudAssetV1p4beta1Resource": {
-      "description": "A GCP resource that appears in an access control list.",
+      "description": "A Google Cloud resource under analysis.",
       "id": "GoogleCloudAssetV1p4beta1Resource",
       "properties": {
         "analysisState": {
           "$ref": "GoogleCloudAssetV1p4beta1AnalysisState",
-          "description": "The analysis state of this resource node."
+          "description": "The analysis state of this resource."
         },
         "fullResourceName": {
           "description": "The [full resource\nname](https://cloud.google.com/asset-inventory/docs/resource-name-format)",
@@ -553,11 +553,11 @@
       "properties": {
         "accessSelector": {
           "$ref": "AccessSelector",
-          "description": "Optional. Specifies roles or permissions for analysis. Leaving it empty\nmeans ANY."
+          "description": "Optional. Specifies roles or permissions for analysis. This is optional."
         },
         "identitySelector": {
           "$ref": "IdentitySelector",
-          "description": "Optional. Specifies an identity for analysis. Leaving it empty means ANY."
+          "description": "Optional. Specifies an identity for analysis. Either ResourceSelector or\nIdentitySelector must be specified."
         },
         "parent": {
           "description": "Required. The relative name of the root asset. Only resources and IAM policies within\nthe parent will be analyzed. This can only be an organization number (such\nas \"organizations/123\") or a folder number (such as \"folders/123\").\n\nTo know how to get organization id, visit [here\n](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).\n\nTo know how to get folder id, visit [here\n](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).",
@@ -565,7 +565,7 @@
         },
         "resourceSelector": {
           "$ref": "ResourceSelector",
-          "description": "Optional. Specifies a resource for analysis. Leaving it empty means ANY."
+          "description": "Optional. Specifies a resource for analysis. Either ResourceSelector or\nIdentitySelector must be specified."
         }
       },
       "type": "object"
@@ -586,7 +586,7 @@
           "type": "string"
         },
         "fullyExplored": {
-          "description": "Represents whether all nodes in the transitive closure of the\niam_binding node have been explored.",
+          "description": "Represents whether all analyses on the iam_binding have successfully\nfinished.",
           "type": "boolean"
         },
         "iamBinding": {
@@ -678,7 +678,7 @@
       "type": "object"
     },
     "ResourceSelector": {
-      "description": "Specifies the resource to analyze for access policies, which may be set\ndirectly on the resource, or on ancestors such as organizations, folders or\nprojects. Either ResourceSelector or IdentitySelector must be\nspecified in a request.",
+      "description": "Specifies the resource to analyze for access policies, which may be set\ndirectly on the resource, or on ancestors such as organizations, folders or\nprojects.",
       "id": "ResourceSelector",
       "properties": {
         "fullResourceName": {
