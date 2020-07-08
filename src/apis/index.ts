@@ -68,7 +68,6 @@ import * as compute from './compute';
 import * as container from './container';
 import * as containeranalysis from './containeranalysis';
 import * as content from './content';
-import * as customsearch from './customsearch';
 import * as datacatalog from './datacatalog';
 import * as dataflow from './dataflow';
 import * as datafusion from './datafusion';
@@ -83,6 +82,7 @@ import * as displayvideo from './displayvideo';
 import * as dlp from './dlp';
 import * as dns from './dns';
 import * as docs from './docs';
+import * as documentai from './documentai';
 import * as domainsrdap from './domainsrdap';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
@@ -104,6 +104,7 @@ import * as gamesManagement from './gamesManagement';
 import * as gameservices from './gameservices';
 import * as genomics from './genomics';
 import * as gmail from './gmail';
+import * as gmailpostmastertools from './gmailpostmastertools';
 import * as groupsmigration from './groupsmigration';
 import * as groupssettings from './groupssettings';
 import * as healthcare from './healthcare';
@@ -131,12 +132,14 @@ import * as osconfig from './osconfig';
 import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
 import * as people from './people';
+import * as playablelocations from './playablelocations';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
 import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
 import * as prod_tt_sasportal from './prod_tt_sasportal';
 import * as pubsub from './pubsub';
+import * as realtimebidding from './realtimebidding';
 import * as recommender from './recommender';
 import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
@@ -173,6 +176,7 @@ import * as toolresults from './toolresults';
 import * as tpu from './tpu';
 import * as translate from './translate';
 import * as vault from './vault';
+import * as vectortile from './vectortile';
 import * as verifiedaccess from './verifiedaccess';
 import * as videointelligence from './videointelligence';
 import * as vision from './vision';
@@ -245,7 +249,6 @@ export const APIS: APIList = {
   container: container.VERSIONS,
   containeranalysis: containeranalysis.VERSIONS,
   content: content.VERSIONS,
-  customsearch: customsearch.VERSIONS,
   datacatalog: datacatalog.VERSIONS,
   dataflow: dataflow.VERSIONS,
   datafusion: datafusion.VERSIONS,
@@ -260,6 +263,7 @@ export const APIS: APIList = {
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
   docs: docs.VERSIONS,
+  documentai: documentai.VERSIONS,
   domainsrdap: domainsrdap.VERSIONS,
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
@@ -281,6 +285,7 @@ export const APIS: APIList = {
   gameservices: gameservices.VERSIONS,
   genomics: genomics.VERSIONS,
   gmail: gmail.VERSIONS,
+  gmailpostmastertools: gmailpostmastertools.VERSIONS,
   groupsmigration: groupsmigration.VERSIONS,
   groupssettings: groupssettings.VERSIONS,
   healthcare: healthcare.VERSIONS,
@@ -308,12 +313,14 @@ export const APIS: APIList = {
   oslogin: oslogin.VERSIONS,
   pagespeedonline: pagespeedonline.VERSIONS,
   people: people.VERSIONS,
+  playablelocations: playablelocations.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
   policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
   prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
   pubsub: pubsub.VERSIONS,
+  realtimebidding: realtimebidding.VERSIONS,
   recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
   remotebuildexecution: remotebuildexecution.VERSIONS,
@@ -350,6 +357,7 @@ export const APIS: APIList = {
   tpu: tpu.VERSIONS,
   translate: translate.VERSIONS,
   vault: vault.VERSIONS,
+  vectortile: vectortile.VERSIONS,
   verifiedaccess: verifiedaccess.VERSIONS,
   videointelligence: videointelligence.VERSIONS,
   vision: vision.VERSIONS,
@@ -419,7 +427,6 @@ export class GeneratedAPIs {
   container = container.container;
   containeranalysis = containeranalysis.containeranalysis;
   content = content.content;
-  customsearch = customsearch.customsearch;
   datacatalog = datacatalog.datacatalog;
   dataflow = dataflow.dataflow;
   datafusion = datafusion.datafusion;
@@ -434,6 +441,7 @@ export class GeneratedAPIs {
   dlp = dlp.dlp;
   dns = dns.dns;
   docs = docs.docs;
+  documentai = documentai.documentai;
   domainsrdap = domainsrdap.domainsrdap;
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
@@ -455,6 +463,7 @@ export class GeneratedAPIs {
   gameservices = gameservices.gameservices;
   genomics = genomics.genomics;
   gmail = gmail.gmail;
+  gmailpostmastertools = gmailpostmastertools.gmailpostmastertools;
   groupsmigration = groupsmigration.groupsmigration;
   groupssettings = groupssettings.groupssettings;
   healthcare = healthcare.healthcare;
@@ -482,12 +491,14 @@ export class GeneratedAPIs {
   oslogin = oslogin.oslogin;
   pagespeedonline = pagespeedonline.pagespeedonline;
   people = people.people;
+  playablelocations = playablelocations.playablelocations;
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;
   policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
   prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
   pubsub = pubsub.pubsub;
+  realtimebidding = realtimebidding.realtimebidding;
   recommender = recommender.recommender;
   redis = redis.redis;
   remotebuildexecution = remotebuildexecution.remotebuildexecution;
@@ -525,6 +536,7 @@ export class GeneratedAPIs {
   tpu = tpu.tpu;
   translate = translate.translate;
   vault = vault.vault;
+  vectortile = vectortile.vectortile;
   verifiedaccess = verifiedaccess.verifiedaccess;
   videointelligence = videointelligence.videointelligence;
   vision = vision.vision;

@@ -1,0 +1,3 @@
+*.ts text eol=lf
+*.js test eol=lf
+protos/* linguist-generated

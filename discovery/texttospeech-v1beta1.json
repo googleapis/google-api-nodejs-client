@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20200605",
+  "revision": "20200619",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -298,7 +298,7 @@
             "An unspecified gender.\nIn VoiceSelectionParams, this means that the client doesn't care which\ngender the selected voice will have. In the Voice field of\nListVoicesResponse, this may mean that the voice doesn't fit any of the\nother categories in this enum, or that the gender of the voice isn't known.",
             "A male voice.",
             "A female voice.",
-            "A gender-neutral voice."
+            "A gender-neutral voice. This voice is not yet supported."
           ],
           "type": "string"
         }
@@ -329,7 +329,7 @@
             "An unspecified gender.\nIn VoiceSelectionParams, this means that the client doesn't care which\ngender the selected voice will have. In the Voice field of\nListVoicesResponse, this may mean that the voice doesn't fit any of the\nother categories in this enum, or that the gender of the voice isn't known.",
             "A male voice.",
             "A female voice.",
-            "A gender-neutral voice."
+            "A gender-neutral voice. This voice is not yet supported."
           ],
           "type": "string"
         }
