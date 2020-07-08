@@ -271,7 +271,7 @@ export namespace bigquery_v2 {
     seasonalPeriods?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -284,7 +284,7 @@ export namespace bigquery_v2 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -1495,9 +1495,17 @@ export namespace bigquery_v2 {
      */
     destinationEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
+     * [Optional] The time when the destination table expires. Expired tables will be deleted and their storage reclaimed.
+     */
+    destinationExpirationTime?: any | null;
+    /**
      * [Required] The destination table
      */
     destinationTable?: Schema$TableReference;
+    /**
+     * [Optional] Supported operation types in table copy job.
+     */
+    operationType?: string | null;
     /**
      * [Pick one] Source table to copy.
      */
@@ -2230,6 +2238,10 @@ export namespace bigquery_v2 {
      */
     description?: string | null;
     /**
+     * Optional. [Experimental] The determinism level of the JavaScript UDF if defined.
+     */
+    determinismLevel?: string | null;
+    /**
      * Output only. A hash of this resource.
      */
     etag?: string | null;
@@ -2810,6 +2822,10 @@ export namespace bigquery_v2 {
      * Optimization strategy for training linear regression models.
      */
     optimizationStrategy?: string | null;
+    /**
+     * Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.
+     */
+    preserveInputStructs?: boolean | null;
     /**
      * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
      */
@@ -6204,6 +6220,7 @@ export namespace bigquery_v2 {
      *   //   "creationTime": "my_creationTime",
      *   //   "definitionBody": "my_definitionBody",
      *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
@@ -6352,6 +6369,7 @@ export namespace bigquery_v2 {
      *       //   "creationTime": "my_creationTime",
      *       //   "definitionBody": "my_definitionBody",
      *       //   "description": "my_description",
+     *       //   "determinismLevel": "my_determinismLevel",
      *       //   "etag": "my_etag",
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
@@ -6370,6 +6388,7 @@ export namespace bigquery_v2 {
      *   //   "creationTime": "my_creationTime",
      *   //   "definitionBody": "my_definitionBody",
      *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
@@ -6684,6 +6703,7 @@ export namespace bigquery_v2 {
      *       //   "creationTime": "my_creationTime",
      *       //   "definitionBody": "my_definitionBody",
      *       //   "description": "my_description",
+     *       //   "determinismLevel": "my_determinismLevel",
      *       //   "etag": "my_etag",
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
@@ -6702,6 +6722,7 @@ export namespace bigquery_v2 {
      *   //   "creationTime": "my_creationTime",
      *   //   "definitionBody": "my_definitionBody",
      *   //   "description": "my_description",
+     *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
