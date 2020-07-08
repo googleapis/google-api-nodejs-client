@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200623",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1448,7 +1448,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data.",
+          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data. This can be used to filter messages on the\nsubscription.",
           "type": "object"
         },
         "data": {
@@ -1635,7 +1635,7 @@
           "description": "A policy that specifies the conditions for this subscription's expiration.\nA subscription is considered active as long as any connected subscriber is\nsuccessfully consuming messages from the subscription or is issuing\noperations on the subscription. If `expiration_policy` is not set, a\n*default policy* with `ttl` of 31 days will be used. The minimum allowed\nvalue for `expiration_policy.ttl` is 1 day."
         },
         "filter": {
-          "description": "An expression written in the Cloud Pub/Sub filter language. If non-empty,\nthen only `PubsubMessage`s whose `attributes` field matches the filter are\ndelivered on this subscription. If empty, then no messages are filtered\nout.",
+          "description": "An expression written in the Pub/Sub [filter\nlanguage](https://cloud.google.com/pubsub/docs/filtering). If non-empty,\nthen only `PubsubMessage`s whose `attributes` field matches the filter are\ndelivered on this subscription. If empty, then no messages are filtered\nout.",
           "type": "string"
         },
         "labels": {
