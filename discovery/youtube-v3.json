@@ -123,6 +123,39 @@
   },
   "protocol": "rest",
   "resources": {
+    "abuseReports": {
+      "methods": {
+        "insert": {
+          "description": "Inserts a new resource into this collection.",
+          "flatPath": "youtube/v3/abuseReports",
+          "httpMethod": "POST",
+          "id": "youtube.abuseReports.insert",
+          "parameterOrder": [
+            "part"
+          ],
+          "parameters": {
+            "part": {
+              "description": "The <code><strong>part</strong></code> parameter serves two purposes in\nthis operation. It identifies the properties that the write operation will\nset as well as the properties that the API response will include.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/abuseReports",
+          "request": {
+            "$ref": "AbuseReport"
+          },
+          "response": {
+            "$ref": "AbuseReport"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl"
+          ]
+        }
+      }
+    },
     "activities": {
       "methods": {
         "list": {
@@ -2998,6 +3031,135 @@
         }
       }
     },
+    "thirdPartyLinks": {
+      "methods": {
+        "delete": {
+          "description": "Deletes a resource.",
+          "flatPath": "youtube/v3/thirdPartyLinks",
+          "httpMethod": "DELETE",
+          "id": "youtube.thirdPartyLinks.delete",
+          "parameterOrder": [
+            "linkingToken",
+            "type"
+          ],
+          "parameters": {
+            "linkingToken": {
+              "description": "Delete the partner links with the given linking token.",
+              "location": "query",
+              "required": true,
+              "type": "string"
+            },
+            "part": {
+              "description": "Do not use. Required for compatibility.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "resourceId": {
+              "location": "query",
+              "type": "string"
+            },
+            "type": {
+              "description": "Type of the link to be deleted.",
+              "enum": [
+                "linkUnspecified",
+                "channelToStoreLink"
+              ],
+              "location": "query",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/thirdPartyLinks"
+        },
+        "insert": {
+          "description": "Inserts a new resource into this collection.",
+          "flatPath": "youtube/v3/thirdPartyLinks",
+          "httpMethod": "POST",
+          "id": "youtube.thirdPartyLinks.insert",
+          "parameterOrder": [
+            "part"
+          ],
+          "parameters": {
+            "part": {
+              "description": "The <code><strong>part</strong></code> parameter specifies the\n<code>thirdPartyLink</code> resource parts that the API request and\nresponse will include. Supported values are <code>linkingToken</code>,\n<code>status</code>, and <code>snippet</code>.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/thirdPartyLinks",
+          "request": {
+            "$ref": "ThirdPartyLink"
+          },
+          "response": {
+            "$ref": "ThirdPartyLink"
+          }
+        },
+        "list": {
+          "description": "Retrieves a list of resources, possibly filtered.",
+          "flatPath": "youtube/v3/thirdPartyLinks",
+          "httpMethod": "GET",
+          "id": "youtube.thirdPartyLinks.list",
+          "parameterOrder": [
+            "part"
+          ],
+          "parameters": {
+            "linkingToken": {
+              "description": "Get a third party link with the given linking token.",
+              "location": "query",
+              "type": "string"
+            },
+            "part": {
+              "description": "The <code><strong>part</strong></code> parameter specifies the\n<code>thirdPartyLink</code> resource parts that the API response will\ninclude. Supported values are <code>linkingToken</code>,\n<code>status</code>, and <code>snippet</code>.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            },
+            "type": {
+              "description": "Get a third party link of the given type.",
+              "enum": [
+                "linkUnspecified",
+                "channelToStoreLink"
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/thirdPartyLinks",
+          "response": {
+            "$ref": "ThirdPartyLink"
+          }
+        },
+        "update": {
+          "description": "Updates an existing resource.",
+          "flatPath": "youtube/v3/thirdPartyLinks",
+          "httpMethod": "PUT",
+          "id": "youtube.thirdPartyLinks.update",
+          "parameterOrder": [
+            "part"
+          ],
+          "parameters": {
+            "part": {
+              "description": "The <code><strong>part</strong></code> parameter specifies the\n<code>thirdPartyLink</code> resource parts that the API request and\nresponse will include. Supported values are <code>linkingToken</code>,\n<code>status</code>, and <code>snippet</code>.",
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/thirdPartyLinks",
+          "request": {
+            "$ref": "ThirdPartyLink"
+          },
+          "response": {
+            "$ref": "ThirdPartyLink"
+          }
+        }
+      }
+    },
     "thumbnails": {
       "methods": {
         "set": {
@@ -3533,11 +3695,160 @@
           ]
         }
       }
+    },
+    "youtube": {
+      "resources": {
+        "v3": {
+          "methods": {
+            "infocards": {
+              "description": "Updates infocards for a given video.\nNote:\n* If the card id is not provided, a new card will be created.\n* If the card id is provided, that card will be updated.\n* Existing cards will be discarded if they're not included in the request.",
+              "flatPath": "youtube/v3/infocards",
+              "httpMethod": "POST",
+              "id": "youtube.youtube.v3.infocards",
+              "parameterOrder": [
+                "part"
+              ],
+              "parameters": {
+                "onBehalfOfContentOwner": {
+                  "description": "Content owner of the video.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "part": {
+                  "description": "The properties to update.",
+                  "location": "query",
+                  "repeated": true,
+                  "required": true,
+                  "type": "string"
+                },
+                "videoId": {
+                  "description": "Encrypted id of the video.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "youtube/v3/infocards",
+              "request": {
+                "$ref": "InfoCards"
+              },
+              "response": {
+                "$ref": "InfoCards"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/youtube",
+                "https://www.googleapis.com/auth/youtube.force-ssl",
+                "https://www.googleapis.com/auth/youtubepartner"
+              ]
+            }
+          },
+          "resources": {
+            "infocards": {
+              "methods": {
+                "list": {
+                  "description": "Retrieves all infocards for a given video.",
+                  "flatPath": "youtube/v3/infocards",
+                  "httpMethod": "GET",
+                  "id": "youtube.youtube.v3.infocards.list",
+                  "parameterOrder": [
+                    "part"
+                  ],
+                  "parameters": {
+                    "onBehalfOfContentOwner": {
+                      "description": "Content owner of the video.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "part": {
+                      "description": "The properties to return.",
+                      "location": "query",
+                      "repeated": true,
+                      "required": true,
+                      "type": "string"
+                    },
+                    "videoId": {
+                      "description": "Encrypted id of the video.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "youtube/v3/infocards",
+                  "response": {
+                    "$ref": "InfocardListResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/youtube",
+                    "https://www.googleapis.com/auth/youtube.force-ssl",
+                    "https://www.googleapis.com/auth/youtubepartner"
+                  ]
+                }
+              }
+            },
+            "tests": {
+              "methods": {
+                "create": {
+                  "description": "POST method.",
+                  "flatPath": "youtube/v3/tests",
+                  "httpMethod": "POST",
+                  "id": "youtube.youtube.v3.tests.create",
+                  "parameterOrder": [],
+                  "parameters": {
+                    "part": {
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "youtube/v3/tests",
+                  "request": {
+                    "$ref": "TestItem"
+                  },
+                  "response": {
+                    "$ref": "TestItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20200528",
+  "revision": "20200706",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
+    "AbuseReport": {
+      "id": "AbuseReport",
+      "properties": {
+        "abuseTypes": {
+          "items": {
+            "$ref": "AbuseType"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "relatedEntities": {
+          "items": {
+            "$ref": "RelatedEntity"
+          },
+          "type": "array"
+        },
+        "subject": {
+          "$ref": "Entity"
+        }
+      },
+      "type": "object"
+    },
+    "AbuseType": {
+      "id": "AbuseType",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccessPolicy": {
       "description": "Rights management policy for YouTube resources.",
       "id": "AccessPolicy",
@@ -4338,6 +4649,20 @@
       },
       "type": "object"
     },
+    "ChannelCard": {
+      "id": "ChannelCard",
+      "properties": {
+        "channelId": {
+          "description": "External channel ID.\nRequired.",
+          "type": "string"
+        },
+        "customMessage": {
+          "description": "Each card can have a custom message.\nRequired.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ChannelContentDetails": {
       "description": "Details about the content of a channel.",
       "id": "ChannelContentDetails",
@@ -4899,6 +5224,21 @@
       },
       "type": "object"
     },
+    "ChannelToStoreLinkDetails": {
+      "description": "Information specific to a store on a merchandising platform linked to a\nYouTube channel.",
+      "id": "ChannelToStoreLinkDetails",
+      "properties": {
+        "storeName": {
+          "description": "Name of the store.",
+          "type": "string"
+        },
+        "storeUrl": {
+          "description": "Landing page of the store.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ChannelTopicDetails": {
       "description": "Freebase topic information related to the channel.",
       "id": "ChannelTopicDetails",
@@ -5363,7 +5703,8 @@
             "catvPg",
             "catv14plus",
             "catv18plus",
-            "catvUnrated"
+            "catvUnrated",
+            "catvE"
           ],
           "enumDescriptions": [
             "",
@@ -5373,6 +5714,7 @@
             "PG",
             "14+",
             "18+",
+            "",
             ""
           ],
           "type": "string"
@@ -5386,7 +5728,8 @@
             "catvfr13plus",
             "catvfr16plus",
             "catvfr18plus",
-            "catvfrUnrated"
+            "catvfrUnrated",
+            "catvfrE"
           ],
           "enumDescriptions": [
             "",
@@ -5395,6 +5738,7 @@
             "13+",
             "16+",
             "18+",
+            "",
             ""
           ],
           "type": "string"
@@ -6934,6 +7278,21 @@
       },
       "type": "object"
     },
+    "Entity": {
+      "id": "Entity",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "typeId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GeoPoint": {
       "description": "Geographical coordinates of a point, in WGS84.",
       "id": "GeoPoint",
@@ -7270,6 +7629,101 @@
       },
       "type": "object"
     },
+    "InfoCard": {
+      "id": "InfoCard",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "id": {
+          "description": "UUID for this infocard.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#infocard",
+          "description": "Identifies what kind of resource this is.",
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "InfoCardSnippet",
+          "description": "The snippet object contains basic details about the infocard."
+        }
+      },
+      "type": "object"
+    },
+    "InfoCardSnippet": {
+      "id": "InfoCardSnippet",
+      "properties": {
+        "channelInfocard": {
+          "$ref": "ChannelCard"
+        },
+        "linkInfocard": {
+          "$ref": "LinkCard"
+        },
+        "playlistInfocard": {
+          "$ref": "PlaylistCard"
+        },
+        "teaser": {
+          "$ref": "InfoCardSnippetTeaser",
+          "description": "Each card can have a teaser.\nRequired."
+        },
+        "videoInfocard": {
+          "$ref": "VideoCard"
+        }
+      },
+      "type": "object"
+    },
+    "InfoCardSnippetTeaser": {
+      "id": "InfoCardSnippetTeaser",
+      "properties": {
+        "teaserStartOffset": {
+          "description": "The offset from the video start at which the teaser should be displayed\n(activated), in milliseconds.\nRequired.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "teaserText": {
+          "description": "The teaser text to show at the top of the player for the info-card.\nRequired for channel and link type cards.\nOptional for video and playlist type cards.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InfoCards": {
+      "id": "InfoCards",
+      "properties": {
+        "items": {
+          "description": "A list of infocards.",
+          "items": {
+            "$ref": "InfoCard"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InfocardListResponse": {
+      "id": "InfocardListResponse",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of infocards.",
+          "items": {
+            "$ref": "InfoCard"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "youtube#infocardListResponse",
+          "description": "Identifies what kind of resource this is.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IngestionInfo": {
       "description": "Describes information necessary for ingesting an RTMP or an HTTP stream.",
       "id": "IngestionInfo",
@@ -7427,6 +7881,47 @@
       "properties": {
         "displayName": {
           "description": "The name that should be used when referring to this level.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkCard": {
+      "id": "LinkCard",
+      "properties": {
+        "customLinkText": {
+          "description": "Custom text to show as the website link.\nRequired.",
+          "type": "string"
+        },
+        "externalImageUrl": {
+          "description": "URL to an externally hosted image.",
+          "type": "string"
+        },
+        "targetUrl": {
+          "description": "The URL to which this card points.\nRequired.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title to show on the card.\nRequired.",
+          "type": "string"
+        },
+        "uploadedImage": {
+          "$ref": "LinkCardUploadedImage",
+          "description": "Previously uploaded image."
+        }
+      },
+      "type": "object"
+    },
+    "LinkCardUploadedImage": {
+      "id": "LinkCardUploadedImage",
+      "properties": {
+        "imageFile": {
+          "description": "Image reference on the thumbnail service.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version in the thumbnail service.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -8887,6 +9382,24 @@
       },
       "type": "object"
     },
+    "PlaylistCard": {
+      "id": "PlaylistCard",
+      "properties": {
+        "customMessage": {
+          "description": "Each card can have a custom message.\nOptional.",
+          "type": "string"
+        },
+        "playlistId": {
+          "description": "External playlist ID.\nRequired.",
+          "type": "string"
+        },
+        "startVideoId": {
+          "description": "Starting video, if not the first.\nOptional.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PlaylistContentDetails": {
       "id": "PlaylistContentDetails",
       "properties": {
@@ -9268,6 +9781,15 @@
         "value": {
           "description": "The property's value.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedEntity": {
+      "id": "RelatedEntity",
+      "properties": {
+        "entity": {
+          "$ref": "Entity"
         }
       },
       "type": "object"
@@ -9797,6 +10319,96 @@
       },
       "type": "object"
     },
+    "TestItem": {
+      "id": "TestItem",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "TestItemTestItemSnippet"
+        }
+      },
+      "type": "object"
+    },
+    "TestItemTestItemSnippet": {
+      "id": "TestItemTestItemSnippet",
+      "properties": {},
+      "type": "object"
+    },
+    "ThirdPartyLink": {
+      "description": "A <code><strong>third party account link</strong></code> resource represents\na link between a YouTube account or a channel and an account on a\nthird-party service.",
+      "id": "ThirdPartyLink",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#thirdPartyLink",
+          "description": "Identifies what kind of resource this is. Value: the fixed string\n<code>\"youtube#thirdPartyLink\"</code>.",
+          "type": "string"
+        },
+        "linkingToken": {
+          "description": "The <code>linking_token</code> identifies a YouTube account and\nchannel with which the third party account is linked.",
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "ThirdPartyLinkSnippet",
+          "description": "The <code>snippet</code> object contains basic details about the third-\nparty account link."
+        },
+        "status": {
+          "$ref": "ThirdPartyLinkStatus",
+          "description": "The <code>status</code> object contains information about the status\nof the link."
+        }
+      },
+      "type": "object"
+    },
+    "ThirdPartyLinkSnippet": {
+      "description": "Basic information about a third party account link, including its type and\ntype-specific information.",
+      "id": "ThirdPartyLinkSnippet",
+      "properties": {
+        "channelToStoreLink": {
+          "$ref": "ChannelToStoreLinkDetails",
+          "description": "Information specific to a link between a channel and a store on a\nmerchandising platform."
+        },
+        "type": {
+          "description": "Type of the link named after the entities that are being linked.",
+          "enum": [
+            "linkUnspecified",
+            "channelToStoreLink"
+          ],
+          "enumDescriptions": [
+            "",
+            "A link that is connecting (or about to connect) a channel with a store on a\nmerchandising platform in order to enable retail commerce capabilities for\nthat channel on YouTube."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ThirdPartyLinkStatus": {
+      "description": "The <code>third-party link status</code> object contains information about\nthe status of the link.",
+      "id": "ThirdPartyLinkStatus",
+      "properties": {
+        "linkStatus": {
+          "enum": [
+            "unknown",
+            "failed",
+            "pending",
+            "linked"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Thumbnail": {
       "description": "A thumbnail is an image representing a YouTube resource.",
       "id": "Thumbnail",
@@ -10101,6 +10713,25 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoCard": {
+      "id": "VideoCard",
+      "properties": {
+        "customMessage": {
+          "description": "Each card can have a custom message.\nOptional.",
+          "type": "string"
+        },
+        "playbackStartOffset": {
+          "description": "Playback start time offset in milliseconds.\nOptional.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "videoId": {
+          "description": "Encrypted Video ID.\nRequired.",
           "type": "string"
         }
       },
