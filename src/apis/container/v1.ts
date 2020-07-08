@@ -149,6 +149,10 @@ export namespace container_v1 {
      */
     cloudRunConfig?: Schema$CloudRunConfig;
     /**
+     * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
+     */
+    dnsCacheConfig?: Schema$DnsCacheConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -323,7 +327,7 @@ export namespace container_v1 {
      */
     currentNodeCount?: number | null;
     /**
-     * [Output only] Deprecated, use [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they&#39;re in the process of being upgraded, this reflects the minimum version of all nodes.
+     * [Output only] Deprecated, use [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they&#39;re in the process of being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string | null;
     /**
@@ -359,7 +363,7 @@ export namespace container_v1 {
      */
     initialClusterVersion?: string | null;
     /**
-     * The number of nodes to create in this cluster. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.  This field is deprecated, use node_pool.initial_node_count instead.
+     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.  This field is deprecated, use node_pool.initial_node_count instead.
      */
     initialNodeCount?: number | null;
     /**
@@ -438,6 +442,10 @@ export namespace container_v1 {
      * Configuration for private cluster.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * Release channel configuration.
+     */
+    releaseChannel?: Schema$ReleaseChannel;
     /**
      * The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
      */
@@ -569,6 +577,10 @@ export namespace container_v1 {
      */
     desiredNodeVersion?: string | null;
     /**
+     * The desired release channel configuration.
+     */
+    desiredReleaseChannel?: Schema$ReleaseChannel;
+    /**
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
@@ -620,7 +632,7 @@ export namespace container_v1 {
    */
   export interface Schema$CreateClusterRequest {
     /**
-     * Required. A [cluster resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
+     * Required. A [cluster resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      */
     cluster?: Schema$Cluster;
     /**
@@ -686,6 +698,15 @@ export namespace container_v1 {
      * Denotes the state of etcd encryption.
      */
     state?: string | null;
+  }
+  /**
+   * Configuration for NodeLocal DNSCache
+   */
+  export interface Schema$DnsCacheConfig {
+    /**
+     * Whether NodeLocal DNSCache is enabled for this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -1095,6 +1116,10 @@ export namespace container_v1 {
      */
     accelerators?: Schema$AcceleratorConfig[];
     /**
+     *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     */
+    bootDiskKmsKey?: string | null;
+    /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB.  If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
@@ -1197,7 +1222,7 @@ export namespace container_v1 {
      */
     config?: Schema$NodeConfig;
     /**
-     * The initial node count for the pool. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota.
+     * The initial node count for the pool. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota.
      */
     initialNodeCount?: number | null;
     /**
@@ -1408,6 +1433,32 @@ export namespace container_v1 {
     window?: Schema$TimeWindow;
   }
   /**
+   * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled.
+   */
+  export interface Schema$ReleaseChannel {
+    /**
+     * channel specifies which release channel the cluster is subscribed to.
+     */
+    channel?: string | null;
+  }
+  /**
+   * ReleaseChannelConfig exposes configuration for a release channel.
+   */
+  export interface Schema$ReleaseChannelConfig {
+    /**
+     * The release channel this configuration applies to.
+     */
+    channel?: string | null;
+    /**
+     * The default version for newly created clusters on the channel.
+     */
+    defaultVersion?: string | null;
+    /**
+     * List of valid versions for the channel.
+     */
+    validVersions?: string[] | null;
+  }
+  /**
    * [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) is the configuration of desired reservation which instances could take capacity from.
    */
   export interface Schema$ReservationAffinity {
@@ -1497,6 +1548,10 @@ export namespace container_v1 {
    */
   export interface Schema$ServerConfig {
     /**
+     * List of release channel configurations.
+     */
+    channels?: Schema$ReleaseChannelConfig[];
+    /**
      * Version of Kubernetes the service deploys by default.
      */
     defaultClusterVersion?: string | null;
@@ -1509,11 +1564,11 @@ export namespace container_v1 {
      */
     validImageTypes?: string[] | null;
     /**
-     * List of valid master versions.
+     * List of valid master versions, in descending order.
      */
     validMasterVersions?: string[] | null;
     /**
-     * List of valid node upgrade target versions.
+     * List of valid node upgrade target versions, in descending order.
      */
     validNodeVersions?: string[] | null;
   }
@@ -2352,6 +2407,7 @@ export namespace container_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "channels": [],
      *   //   "defaultClusterVersion": "my_defaultClusterVersion",
      *   //   "defaultImageType": "my_defaultImageType",
      *   //   "validImageTypes": [],
@@ -3042,6 +3098,7 @@ export namespace container_v1 {
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
      *   //   "privateClusterConfig": {},
+     *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
      *   //   "selfLink": "my_selfLink",
@@ -7874,6 +7931,7 @@ export namespace container_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "channels": [],
      *   //   "defaultClusterVersion": "my_defaultClusterVersion",
      *   //   "defaultImageType": "my_defaultImageType",
      *   //   "validImageTypes": [],
@@ -8748,6 +8806,7 @@ export namespace container_v1 {
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
      *   //   "privateClusterConfig": {},
+     *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
      *   //   "selfLink": "my_selfLink",

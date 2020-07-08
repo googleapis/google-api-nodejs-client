@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200619",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2485,6 +2485,10 @@
         "cloudRunConfig": {
           "$ref": "CloudRunConfig",
           "description": "Configuration for the Cloud Run addon, which allows the user to use a\nmanaged Knative service."
+        },
+        "dnsCacheConfig": {
+          "$ref": "DnsCacheConfig",
+          "description": "Configuration for NodeLocalDNS, a dns cache running on cluster nodes"
         },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
@@ -2688,7 +2692,7 @@
           "type": "integer"
         },
         "currentNodeVersion": {
-          "description": "[Output only] Deprecated, use\n[NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)\ninstead. The current version of the node software components. If they are\ncurrently at multiple versions because they're in the process of being\nupgraded, this reflects the minimum version of all nodes.",
+          "description": "[Output only] Deprecated, use\n[NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)\ninstead. The current version of the node software components. If they are\ncurrently at multiple versions because they're in the process of being\nupgraded, this reflects the minimum version of all nodes.",
           "type": "string"
         },
         "databaseEncryption": {
@@ -2724,7 +2728,7 @@
           "type": "string"
         },
         "initialNodeCount": {
-          "description": "The number of nodes to create in this cluster. You must ensure that your\nCompute Engine <a href=\"/compute/docs/resource-quotas\">resource quota</a>\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.\nFor requests, this field should only be used in lieu of a\n\"node_pool\" object, since this configuration (along with the\n\"node_config\") will be used to create a \"NodePool\" object with an\nauto-generated name. Do not use this and a node_pool at the same time.\n\nThis field is deprecated, use node_pool.initial_node_count instead.",
+          "description": "The number of nodes to create in this cluster. You must ensure that your\nCompute Engine [resource quota](https://cloud.google.com/compute/quotas)\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.\nFor requests, this field should only be used in lieu of a\n\"node_pool\" object, since this configuration (along with the\n\"node_config\") will be used to create a \"NodePool\" object with an\nauto-generated name. Do not use this and a node_pool at the same time.\n\nThis field is deprecated, use node_pool.initial_node_count instead.",
           "format": "int32",
           "type": "integer"
         },
@@ -2813,6 +2817,10 @@
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "Configuration for private cluster."
+        },
+        "releaseChannel": {
+          "$ref": "ReleaseChannel",
+          "description": "Release channel configuration."
         },
         "resourceLabels": {
           "additionalProperties": {
@@ -2978,6 +2986,10 @@
           "description": "The Kubernetes version to change the nodes to (typically an\nupgrade).\n\nUsers may specify either explicit versions offered by\nKubernetes Engine or version aliases, which have the following behavior:\n\n- \"latest\": picks the highest valid Kubernetes version\n- \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version\n- \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version\n- \"1.X.Y-gke.N\": picks an explicit Kubernetes version\n- \"-\": picks the Kubernetes master version",
           "type": "string"
         },
+        "desiredReleaseChannel": {
+          "$ref": "ReleaseChannel",
+          "description": "The desired release channel configuration."
+        },
         "desiredResourceUsageExportConfig": {
           "$ref": "ResourceUsageExportConfig",
           "description": "The desired configuration for exporting resource usage."
@@ -3037,7 +3049,7 @@
       "properties": {
         "cluster": {
           "$ref": "Cluster",
-          "description": "Required. A [cluster\nresource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)"
+          "description": "Required. A [cluster\nresource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)"
         },
         "parent": {
           "description": "The parent (project and location) where the cluster will be created.\nSpecified in the format `projects/*/locations/*`.",
@@ -3117,6 +3129,17 @@
             "Secrets in etcd are stored in plain text (at etcd level) - this is\nunrelated to Compute Engine level full disk encryption."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsCacheConfig": {
+      "description": "Configuration for NodeLocal DNSCache",
+      "id": "DnsCacheConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether NodeLocal DNSCache is enabled for this cluster.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3633,6 +3656,10 @@
           },
           "type": "array"
         },
+        "bootDiskKmsKey": {
+          "description": "\nThe Customer Managed Encryption Key used to encrypt the boot disk attached\nto each node in the node pool. This should be of the form\nprojects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].\nFor more information about protecting resources with Cloud KMS Keys please\nsee:\nhttps://cloud.google.com/compute/docs/disks/customer-managed-encryption",
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Size of the disk attached to each node, specified in GB.\nThe smallest allowed disk size is 10GB.\n\nIf unspecified, the default disk size is 100GB.",
           "format": "int32",
@@ -3760,7 +3787,7 @@
           "description": "The node configuration of the pool."
         },
         "initialNodeCount": {
-          "description": "The initial node count for the pool. You must ensure that your\nCompute Engine <a href=\"/compute/docs/resource-quotas\">resource quota</a>\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.",
+          "description": "The initial node count for the pool. You must ensure that your\nCompute Engine [resource quota](https://cloud.google.com/compute/quotas)\nis sufficient for this number of instances. You must also have available\nfirewall and routes quota.",
           "format": "int32",
           "type": "integer"
         },
@@ -4102,6 +4129,63 @@
       },
       "type": "object"
     },
+    "ReleaseChannel": {
+      "description": "ReleaseChannel indicates which release channel a cluster is\nsubscribed to. Release channels are arranged in order of risk.\n\nWhen a cluster is subscribed to a release channel, Google maintains\nboth the master version and the node version. Node auto-upgrade\ndefaults to true and cannot be disabled.",
+      "id": "ReleaseChannel",
+      "properties": {
+        "channel": {
+          "description": "channel specifies which release channel the cluster is subscribed to.",
+          "enum": [
+            "UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
+          ],
+          "enumDescriptions": [
+            "No channel specified.",
+            "RAPID channel is offered on an early access basis for customers who want\nto test new releases.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not subject to any\nSLAs.",
+            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features.",
+            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReleaseChannelConfig": {
+      "description": "ReleaseChannelConfig exposes configuration for a release channel.",
+      "id": "ReleaseChannelConfig",
+      "properties": {
+        "channel": {
+          "description": "The release channel this configuration applies to.",
+          "enum": [
+            "UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
+          ],
+          "enumDescriptions": [
+            "No channel specified.",
+            "RAPID channel is offered on an early access basis for customers who want\nto test new releases.\n\nWARNING: Versions available in the RAPID Channel may be subject to\nunresolved issues with no known workaround and are not subject to any\nSLAs.",
+            "Clusters subscribed to REGULAR receive versions that are considered GA\nquality. REGULAR is intended for production users who want to take\nadvantage of new features.",
+            "Clusters subscribed to STABLE receive versions that are known to be\nstable and reliable in production."
+          ],
+          "type": "string"
+        },
+        "defaultVersion": {
+          "description": "The default version for newly created clusters on the channel.",
+          "type": "string"
+        },
+        "validVersions": {
+          "description": "List of valid versions for the channel.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReservationAffinity": {
       "description": "[ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)\nis the configuration of desired reservation which instances could take\ncapacity from.",
       "id": "ReservationAffinity",
@@ -4226,6 +4310,13 @@
       "description": "Kubernetes Engine service configuration.",
       "id": "ServerConfig",
       "properties": {
+        "channels": {
+          "description": "List of release channel configurations.",
+          "items": {
+            "$ref": "ReleaseChannelConfig"
+          },
+          "type": "array"
+        },
         "defaultClusterVersion": {
           "description": "Version of Kubernetes the service deploys by default.",
           "type": "string"
@@ -4242,14 +4333,14 @@
           "type": "array"
         },
         "validMasterVersions": {
-          "description": "List of valid master versions.",
+          "description": "List of valid master versions, in descending order.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "validNodeVersions": {
-          "description": "List of valid node upgrade target versions.",
+          "description": "List of valid node upgrade target versions, in descending order.",
           "items": {
             "type": "string"
           },
