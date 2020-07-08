@@ -434,17 +434,13 @@ export namespace cloudbuild_v1alpha2 {
     value?: string | null;
   }
   /**
-   * The response message for Operations.ListOperations.
+   * HTTPDelivery is the delivery configuration for an HTTP notification.
    */
-  export interface Schema$ListOperationsResponse {
+  export interface Schema$HTTPDelivery {
     /**
-     * The standard List next-page token.
+     * The URI to which JSON-containing HTTP POST requests should be sent.
      */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
+    uri?: string | null;
   }
   /**
    * Response containing existing `WorkerPools`.
@@ -463,6 +459,100 @@ export namespace cloudbuild_v1alpha2 {
      * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to WorkerPool.project_id on the default network. Must be in the format `projects/{project}/global/networks/{network}`, where {project} is a project number, such as `12345`, and {network} is the name of a VPC network in the project.
      */
     peeredNetwork?: string | null;
+  }
+  /**
+   * Notification is the container which holds the data that is relevant to this particular notification.
+   */
+  export interface Schema$Notification {
+    /**
+     * The filter string to use for notification filtering. Currently, this is assumed to be a CEL program. See https://opensource.google/projects/cel for more.
+     */
+    filter?: string | null;
+    /**
+     * Configuration for HTTP delivery.
+     */
+    httpDelivery?: Schema$HTTPDelivery;
+    /**
+     * Configuration for Slack delivery.
+     */
+    slackDelivery?: Schema$SlackDelivery;
+    /**
+     * Configuration for SMTP (email) delivery.
+     */
+    smtpDelivery?: Schema$SMTPDelivery;
+    /**
+     * Escape hatch for users to supply custom delivery configs.
+     */
+    structDelivery?: {[key: string]: any} | null;
+  }
+  /**
+   * NotifierConfig is the top-level configuration message.
+   */
+  export interface Schema$NotifierConfig {
+    /**
+     * The API version of this configuration format.
+     */
+    apiVersion?: string | null;
+    /**
+     * The type of notifier to use (e.g. SMTPNotifier).
+     */
+    kind?: string | null;
+    /**
+     * Metadata for referring to/handling/deploying this notifier.
+     */
+    metadata?: Schema$NotifierMetadata;
+    /**
+     * The actual configuration for this notifier.
+     */
+    spec?: Schema$NotifierSpec;
+  }
+  /**
+   * NotifierMetadata contains the data which can be used to reference or describe this notifier.
+   */
+  export interface Schema$NotifierMetadata {
+    /**
+     * The human-readable and user-given name for the notifier. For example: &quot;repo-merge-email-notifier&quot;.
+     */
+    name?: string | null;
+    /**
+     * The string representing the name and version of notifier to deploy. Expected to be of the form of &quot;&lt;registry-path&gt;/&lt;name&gt;:&lt;version&gt;&quot;. For example: &quot;gcr.io/my-project/notifiers/smtp:1.2.34&quot;.
+     */
+    notifier?: string | null;
+  }
+  /**
+   * NotifierSecret is the container that maps a secret name (reference) to its Google Cloud Secret Manager resource path.
+   */
+  export interface Schema$NotifierSecret {
+    /**
+     * Name is the local name of the secret, such as the verbatim string &quot;my-smtp-password&quot;.
+     */
+    name?: string | null;
+    /**
+     * Value is interpreted to be a resource path for fetching the actual (versioned) secret data for this secret. For example, this would be a Google Cloud Secret Manager secret version resource path like: &quot;projects/my-project/secrets/my-secret/versions/latest&quot;.
+     */
+    value?: string | null;
+  }
+  /**
+   * NotifierSecretRef contains the reference to a secret stored in the corresponding NotifierSpec.
+   */
+  export interface Schema$NotifierSecretRef {
+    /**
+     * The value of `secret_ref` should be a `name` that is registered in a `Secret` in the `secrets` list of the `Spec`.
+     */
+    secretRef?: string | null;
+  }
+  /**
+   * NotifierSpec is the configuration container for notifications.
+   */
+  export interface Schema$NotifierSpec {
+    /**
+     * The configuration of this particular notifier.
+     */
+    notification?: Schema$Notification;
+    /**
+     * Configurations for secret resources used by this particular notifier.
+     */
+    secrets?: Schema$NotifierSecret[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -567,6 +657,44 @@ export namespace cloudbuild_v1alpha2 {
      * Map of environment variable name to its encrypted value.  Secret environment variables must be unique across all of a build&#39;s secrets, and must be used by at least one build step. Values can be at most 64 KB in size. There can be at most 100 secret values across all of a build&#39;s secrets.
      */
     secretEnv?: {[key: string]: string} | null;
+  }
+  /**
+   * SlackDelivery is the delivery configuration for delivering Slack messages via webhooks. See Slack webhook documentation at: https://api.slack.com/messaging/webhooks.
+   */
+  export interface Schema$SlackDelivery {
+    /**
+     * The secret reference for the Slack webhook URI for sending messages to a channel.
+     */
+    webhookUri?: Schema$NotifierSecretRef;
+  }
+  /**
+   * SMTPDelivery is the delivery configuration for an SMTP (email) notification.
+   */
+  export interface Schema$SMTPDelivery {
+    /**
+     * This is the SMTP account/email that appears in the `From:` of the email. If empty, it is assumed to be sender.
+     */
+    fromAddress?: string | null;
+    /**
+     * The SMTP sender&#39;s password.
+     */
+    password?: Schema$NotifierSecretRef;
+    /**
+     * The SMTP port of the server.
+     */
+    port?: string | null;
+    /**
+     * This is the list of addresses to which we send the email (i.e. in the `To:` of the email).
+     */
+    recipientAddresses?: string[] | null;
+    /**
+     * This is the SMTP account/email that is used to send the message.
+     */
+    senderAddress?: string | null;
+    /**
+     * The address of the SMTP server.
+     */
+    server?: string | null;
   }
   /**
    * Location of the source in a supported storage service.
@@ -1004,152 +1132,6 @@ export namespace cloudbuild_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * cloudbuild.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias cloudbuild.projects.locations.operations.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Operations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha2/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Operations$Cancel
@@ -1170,25 +1152,6 @@ export namespace cloudbuild_v1alpha2 {
      * The name of the operation resource.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
   }
 
   export class Resource$Projects$Workerpools {
