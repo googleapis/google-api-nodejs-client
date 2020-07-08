@@ -7168,7 +7168,7 @@ export namespace storage_v1 {
      *     ifGenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
      *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     *     // Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
      *     kmsKeyName: 'placeholder-value',
      *     // The project to be billed for this request if the target bucket is requester-pays bucket.
      *     provisionalUserProject: 'placeholder-value',
@@ -7238,7 +7238,7 @@ export namespace storage_v1 {
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     * @param {string=} params.kmsKeyName Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
      * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {().ComposeRequest} params.requestBody Request body data
@@ -9765,7 +9765,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationMatch?: string;
     /**
-     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     * Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad Request.
      */
     kmsKeyName?: string;
     /**
