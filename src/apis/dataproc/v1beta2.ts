@@ -320,6 +320,10 @@ export namespace dataproc_v1beta2 {
      */
     softwareConfig?: Schema$SoftwareConfig;
     /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket.
+     */
+    tempBucket?: string | null;
+    /**
      * Optional. The Compute Engine config settings for worker instances in a cluster.
      */
     workerConfig?: Schema$InstanceGroupConfig;
@@ -868,7 +872,7 @@ export namespace dataproc_v1beta2 {
      */
     jobId?: string | null;
     /**
-     * Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * Optional. The ID of the Google Cloud Platform project that the job belongs to. If specified, must match the request project ID.
      */
     projectId?: string | null;
   }
@@ -1624,6 +1628,18 @@ export namespace dataproc_v1beta2 {
      */
     createCluster?: Schema$ClusterOperation;
     /**
+     * Output only. DAG end time, only set for workflows with dag_timeout when DAG ends.
+     */
+    dagEndTime?: string | null;
+    /**
+     * Output only. DAG start time, only set for workflows with dag_timeout when DAG begins.
+     */
+    dagStartTime?: string | null;
+    /**
+     * Output only. The timeout duration for the DAG of jobs. Minimum timeout duration is 10 minutes and maximum is 24 hours, expressed as a google.protobuf.Duration. For example, &quot;1800&quot; = 1800 seconds/30 minutes duration.
+     */
+    dagTimeout?: string | null;
+    /**
      * Output only. The delete cluster operation metadata.
      */
     deleteCluster?: Schema$ClusterOperation;
@@ -1682,13 +1698,17 @@ export namespace dataproc_v1beta2 {
     stepId?: string | null;
   }
   /**
-   * A Dataproc workflow template resource. Next ID: 11
+   * A Dataproc workflow template resource.
    */
   export interface Schema$WorkflowTemplate {
     /**
      * Output only. The time template was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. Timeout for DAG of jobs. The timer begins when the first job is submitted. Minimum duration of 10 minutes, max of 24 hours.
+     */
+    dagTimeout?: string | null;
     /**
      * Required. The template id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters..
      */
@@ -3076,6 +3096,7 @@ export namespace dataproc_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -3092,6 +3113,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -3369,6 +3391,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -3800,6 +3823,7 @@ export namespace dataproc_v1beta2 {
      *         // request body parameters
      *         // {
      *         //   "createTime": "my_createTime",
+     *         //   "dagTimeout": "my_dagTimeout",
      *         //   "id": "my_id",
      *         //   "jobs": [],
      *         //   "labels": {},
@@ -4399,6 +4423,7 @@ export namespace dataproc_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -4415,6 +4440,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -10603,6 +10629,7 @@ export namespace dataproc_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -10619,6 +10646,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -10896,6 +10924,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -11327,6 +11356,7 @@ export namespace dataproc_v1beta2 {
      *         // request body parameters
      *         // {
      *         //   "createTime": "my_createTime",
+     *         //   "dagTimeout": "my_dagTimeout",
      *         //   "id": "my_id",
      *         //   "jobs": [],
      *         //   "labels": {},
@@ -11926,6 +11956,7 @@ export namespace dataproc_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -11942,6 +11973,7 @@ export namespace dataproc_v1beta2 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
