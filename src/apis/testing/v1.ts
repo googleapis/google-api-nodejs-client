@@ -864,7 +864,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each shard. The number of shard_test_targets must be &gt;= 1 and &lt;= 50.
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected,  the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -933,7 +933,7 @@ export namespace testing_v1 {
      */
     content?: Schema$FileReference;
     /**
-     * Required. Where to put the content on the device. Must be an absolute, whitelisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are whitelisted: &lt;p&gt;${EXTERNAL_STORAGE}, or /sdcard&lt;/p&gt; &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt; &lt;p&gt;Specifying a path outside of these directory trees is invalid.  &lt;p&gt; The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there.  &lt;p&gt; It is strongly advised to use the &lt;a href= &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt; Environment API&lt;/a&gt; in app and test code to access files on the device in a portable way.
+     * Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: &lt;p&gt;${EXTERNAL_STORAGE}, /sdcard, or /storage&lt;/p&gt; &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt; &lt;p&gt;Specifying a path outside of these directory trees is invalid.  &lt;p&gt; The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there.  &lt;p&gt; It is strongly advised to use the &lt;a href= &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt; Environment API&lt;/a&gt; in app and test code to access files on the device in a portable way.
      */
     devicePath?: string | null;
   }
@@ -1190,9 +1190,13 @@ export namespace testing_v1 {
      */
     additionalApks?: Schema$Apk[];
     /**
-     * List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and /  Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.
+     * List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard, /storage or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and /  Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.
      */
     directoriesToPull?: string[] | null;
+    /**
+     * Whether to prevent all runtime permissions to be granted at app install
+     */
+    dontAutograntPermissions?: boolean | null;
     /**
      * Environment variables to set for the test (only applicable for instrumentation tests).
      */
@@ -1345,7 +1349,7 @@ export namespace testing_v1 {
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. Total number of shards. The number must be &gt;= 1 and &lt;= 50.
+     * Required. Total number of shards. When any physical devices are selected, the number must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
      */
     numShards?: number | null;
   }
