@@ -903,7 +903,7 @@ export namespace remotebuildexecution_v1 {
      */
     reserved?: boolean | null;
     /**
-     * Output only. The name of the image used by each VM.
+     * The name of the image used by each VM.
      */
     vmImage?: string | null;
   }
