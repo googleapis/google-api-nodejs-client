@@ -57,6 +57,10 @@ export namespace run_v1 {
      */
     '$.xgafv'?: string;
     /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
      * Data format for response.
      */
     alt?: string;
@@ -72,6 +76,10 @@ export namespace run_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -1066,9 +1074,6 @@ export namespace run_v1 {
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
      */
     serviceAccountName?: string | null;
-    /**
-     * TimeoutSeconds holds the max duration the instance is allowed for responding to a request. Not currently used by Cloud Run.
-     */
     timeoutSeconds?: number | null;
     volumes?: Schema$Volume[];
   }
