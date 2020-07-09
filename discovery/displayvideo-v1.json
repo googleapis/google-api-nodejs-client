@@ -43,6 +43,11 @@
       "location": "query",
       "type": "string"
     },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
     "alt": {
       "default": "json",
       "description": "Data format for response.",
@@ -71,6 +76,11 @@
     },
     "key": {
       "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
       "location": "query",
       "type": "string"
     },
@@ -567,8 +577,43 @@
         },
         "channels": {
           "methods": {
+            "create": {
+              "description": "Creates a new channel. Returns the newly created channel if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/channels",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.channels.create",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the created channel.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the created channel.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/channels",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
             "get": {
-              "description": "Updates an existing inventory source.\nReturns the updated inventory source if successful.\nGets a channel for a partner or advertiser.",
+              "description": "Gets a channel for a partner or advertiser.",
               "flatPath": "v1/advertisers/{advertisersId}/channels/{channelsId}",
               "httpMethod": "GET",
               "id": "displayvideo.advertisers.channels.get",
@@ -1027,7 +1072,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by creative properties.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restriction for the same field must be combined by `OR`.\n* Restriction for different fields must be combined by `AND`.\n* Between `(` and `)` there can only be restrictions combined by `OR`\nfor the same field.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)` for the following fields:\n    - `entityStatus`\n    - `creativeType`.\n    - `dimensions`\n    - `minDuration`\n    - `maxDuration`\n    - `approvalStatus`\n    - `exchangeReviewStatus`\n    - `dynamic`\n* The operator must be `HAS (:)` for the following fields:\n    - `lineItemIds`\n* For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may\nbe at most one restriction.\n* For `dimensions`, the value is in the form of `\"{width}x{height}\"`.\n* For `exchangeReviewStatus`, the value is in the form of\n`{exchange}-{reviewStatus}`.\n* For `minDuration` and `maxDuration`, the value is in the form of\n`\"{duration}s\"`. Only seconds are supported with millisecond granularity.\n* There may be multiple `lineItemIds` restrictions in order to search\nagainst multiple possible line item IDs.\n\nExamples:\n\n* All native creatives: `creativeType=\"CREATIVE_TYPE_NATIVE\"`\n* All active creatives with 300x400 or 50x100 dimensions:\n`entityStatus=\"ENTITY_STATUS_ACTIVE\" AND (dimensions=\"300x400\"\nOR dimensions=\"50x100\")`\n* All dynamic creatives that are approved by AdX or\nAppNexus, with a minimum duration of 5 seconds and 200ms.\n`dynamic=\"true\" AND minDuration=\"5.2s\" AND\n(exchangeReviewStatus=\"EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED\"\nOR exchangeReviewStatus=\"EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED\")`\n* All video creatives that are associated with line item ID 1 or 2:\ncreativeType=\"CREATIVE_TYPE_VIDEO\" AND (lineItemIds:1 OR lineItemIds:2)\n\nThe length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by creative properties.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restriction for the same field must be combined by `OR`.\n* Restriction for different fields must be combined by `AND`.\n* Between `(` and `)` there can only be restrictions combined by `OR`\nfor the same field.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)` for the following fields:\n    - `entityStatus`\n    - `creativeType`.\n    - `dimensions`\n    - `minDuration`\n    - `maxDuration`\n    - `approvalStatus`\n    - `exchangeReviewStatus`\n    - `dynamic`\n    - `creativeId`\n* The operator must be `HAS (:)` for the following fields:\n    - `lineItemIds`\n* For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may\nbe at most one restriction.\n* For `dimensions`, the value is in the form of `\"{width}x{height}\"`.\n* For `exchangeReviewStatus`, the value is in the form of\n`{exchange}-{reviewStatus}`.\n* For `minDuration` and `maxDuration`, the value is in the form of\n`\"{duration}s\"`. Only seconds are supported with millisecond granularity.\n* There may be multiple `lineItemIds` restrictions in order to search\nagainst multiple possible line item IDs.\n* There may be multiple `creativeId` restrictions in order to search\nagainst multiple possible creative IDs.\n\nExamples:\n\n* All native creatives: `creativeType=\"CREATIVE_TYPE_NATIVE\"`\n* All active creatives with 300x400 or 50x100 dimensions:\n`entityStatus=\"ENTITY_STATUS_ACTIVE\" AND (dimensions=\"300x400\"\nOR dimensions=\"50x100\")`\n* All dynamic creatives that are approved by AdX or\nAppNexus, with a minimum duration of 5 seconds and 200ms.\n`dynamic=\"true\" AND minDuration=\"5.2s\" AND\n(exchangeReviewStatus=\"EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED\"\nOR exchangeReviewStatus=\"EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED\")`\n* All video creatives that are associated with line item ID 1 or 2:\n`creativeType=\"CREATIVE_TYPE_VIDEO\" AND (lineItemIds:1 OR lineItemIds:2)`\n* Find creatives by multiple creative IDs:\n`creativeId=1 OR creativeId=2`\n\nThe length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3942,8 +3987,43 @@
       "resources": {
         "channels": {
           "methods": {
+            "create": {
+              "description": "Creates a new channel. Returns the newly created channel if successful.",
+              "flatPath": "v1/partners/{partnersId}/channels",
+              "httpMethod": "POST",
+              "id": "displayvideo.partners.channels.create",
+              "parameterOrder": [
+                "partnerId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the created channel.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the created channel.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/partners/{+partnerId}/channels",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
             "get": {
-              "description": "Updates an existing inventory source.\nReturns the updated inventory source if successful.\nGets a channel for a partner or advertiser.",
+              "description": "Gets a channel for a partner or advertiser.",
               "flatPath": "v1/partners/{partnersId}/channels/{channelsId}",
               "httpMethod": "GET",
               "id": "displayvideo.partners.channels.get",
@@ -4519,7 +4599,7 @@
       }
     }
   },
-  "revision": "20200611",
+  "revision": "20200707",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -5067,7 +5147,7 @@
       "type": "object"
     },
     "AssignedTargetingOption": {
-      "description": "A single assigned targeting option, which defines the state of a targeting\noption for an entity with targeting settings, such as a Line Item or\nInsertion Order.",
+      "description": "A single assigned targeting option, which defines the state of a targeting\noption for an entity with targeting settings.",
       "id": "AssignedTargetingOption",
       "properties": {
         "ageRangeDetails": {
@@ -6368,7 +6448,8 @@
             "SDF_VERSION_4_1",
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
-            "SDF_VERSION_5_1"
+            "SDF_VERSION_5_1",
+            "SDF_VERSION_5_2"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -6377,7 +6458,8 @@
             "SDF version 4.1",
             "SDF version 4.2",
             "SDF version 5.",
-            "SDF version 5.1"
+            "SDF version 5.1",
+            "SDF version 5.2;"
           ],
           "type": "string"
         }
@@ -7897,8 +7979,85 @@
       "description": "Describes a first or third party audience list used for targeting.\nFirst party audiences are created via usage of client data.\nThird party audiences are provided by Third Party data providers and can only\nbe licensed to customers.",
       "id": "FirstAndThirdPartyAudience",
       "properties": {
+        "activeDisplayAudienceSize": {
+          "description": "Output only. The estimated audience size for the Display network in the past month.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "audienceSource": {
+          "description": "Output only. The source of the audience.",
+          "enum": [
+            "AUDIENCE_SOURCE_UNSPECIFIED",
+            "DISPLAY_VIDEO_360",
+            "CAMPAIGN_MANAGER",
+            "AD_MANAGER",
+            "SEARCH_ADS_360",
+            "YOUTUBE",
+            "ADS_DATA_HUB"
+          ],
+          "enumDescriptions": [
+            "Default value when audience source is not specified or is unknown.",
+            "Originated from Display & Video 360.",
+            "Originated from Campaign Manager.",
+            "Originated from Google Ad Manager.",
+            "Originated from Search Ads 360.",
+            "Originated from Youtube.",
+            "Originated from Ads Data Hub."
+          ],
+          "type": "string"
+        },
+        "audienceType": {
+          "description": "Output only. The type of the audience.",
+          "enum": [
+            "AUDIENCE_TYPE_UNSPECIFIED",
+            "CUSTOMER_MATCH_CONTACT_INFO",
+            "CUSTOMER_MATCH_DEVICE_ID",
+            "CUSTOMER_MATCH_USER_ID",
+            "ACTIVITY_BASED",
+            "FREQUENCY_CAP",
+            "TAG_BASED",
+            "YOUTUBE_USERS",
+            "LICENSED"
+          ],
+          "enumDescriptions": [
+            "Default value when type is not specified or is unknown.",
+            "Audience was generated through matching customers to known contact\ninformation.",
+            "Audience was generated through matching customers to known Mobile device\nIDs.",
+            "Audience was generated through matching customers to known User IDs.",
+            "Audience was created based on campaign activity.",
+            "Audience was created based on excluding the number of impressions they\nwere served.",
+            "Audience was created based on custom variables attached to pixel.",
+            "Audience was created based on past interactions with videos, TrueView\nads, or YouTube channel.",
+            "Subtype of third party audience type."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "The user-provided description of the audience.\n\nOnly applicable to first party audiences.",
+          "type": "string"
+        },
+        "displayAudienceSize": {
+          "description": "Output only. The estimated audience size for the Display network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayDesktopAudienceSize": {
+          "description": "Output only. The estimated desktop audience size in Display network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly applicable to first party audiences.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayMobileAppAudienceSize": {
+          "description": "Output only. The estimated mobile app audience size in Display network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly applicable to first party audiences.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayMobileWebAudienceSize": {
+          "description": "Output only. The estimated mobile web audience size in Display network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly applicable to first party audiences.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
         "displayName": {
-          "description": "Output only. The display name of the first and third party audience.\n.",
+          "description": "The display name of the first and third party audience.",
           "type": "string"
         },
         "firstAndThirdPartyAudienceId": {
@@ -7907,7 +8066,7 @@
           "type": "string"
         },
         "firstAndThirdPartyAudienceType": {
-          "description": "Output only. Whether the audience is a first or third party audience.\n.",
+          "description": "Output only. Whether the audience is a first or third party audience.",
           "enum": [
             "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_UNSPECIFIED",
             "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_FIRST_PARTY",
@@ -7920,8 +8079,23 @@
           ],
           "type": "string"
         },
+        "gmailAudienceSize": {
+          "description": "Output only. The estimated audience size for Gmail network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly applicable to first party audiences.\n\nOnly returned in GET request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "membershipDurationDays": {
+          "description": "The duration in days that an entry remains in the audience after the\nqualifying event.\n\nOnly applicable to first party audiences.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The resource name of the first and third party audience.",
+          "type": "string"
+        },
+        "youtubeAudienceSize": {
+          "description": "Output only. The estimated audience size for YouTube network.\n\nIf the size is less than 1000, the number will be hidden and 0 will be\nreturned due to privacy reasons. Otherwise, the number will be rounded off\nto two significant digits.\n\nOnly applicable to first party audiences.\n\nOnly returned in GET request.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -10801,7 +10975,8 @@
             "SDF_VERSION_4_1",
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
-            "SDF_VERSION_5_1"
+            "SDF_VERSION_5_1",
+            "SDF_VERSION_5_2"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -10810,7 +10985,8 @@
             "SDF version 4.1",
             "SDF version 4.2",
             "SDF version 5.",
-            "SDF version 5.1"
+            "SDF version 5.1",
+            "SDF version 5.2;"
           ],
           "type": "string"
         }
@@ -10851,7 +11027,8 @@
             "SDF_VERSION_4_1",
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
-            "SDF_VERSION_5_1"
+            "SDF_VERSION_5_1",
+            "SDF_VERSION_5_2"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -10860,7 +11037,8 @@
             "SDF version 4.1",
             "SDF version 4.2",
             "SDF version 5.",
-            "SDF version 5.1"
+            "SDF version 5.1",
+            "SDF version 5.2;"
           ],
           "type": "string"
         }
