@@ -418,7 +418,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200618",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -751,7 +751,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data.",
+          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data. This can be used to filter messages on the\nsubscription.",
           "type": "object"
         },
         "data": {
