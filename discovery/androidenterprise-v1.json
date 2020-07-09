@@ -500,8 +500,8 @@
             "keyType": {
               "description": "The type of credential to return with the service account. Required.",
               "enum": [
-                "GOOGLE_CREDENTIALS",
-                "PKCS12"
+                "googleCredentials",
+                "pkcs12"
               ],
               "location": "query",
               "type": "string"
@@ -573,8 +573,8 @@
             "requestMode": {
               "description": "The request mode for pulling notifications.\n<br>\nSpecifying <code>waitForNotifications</code> will cause the request to\nblock and wait until one or more notifications are present, or return an\nempty notification list if no notifications are present after some time.\n<br>\nSpeciying <code>returnImmediately</code> will cause the request to\nimmediately return the pending notifications, or an empty list if no\nnotifications are present.\n<br>\nIf omitted, defaults to <code>waitForNotifications</code>.",
               "enum": [
-                "WAIT_FOR_NOTIFICATIONS",
-                "RETURN_IMMEDIATELY"
+                "waitForNotifications",
+                "returnImmediately"
               ],
               "location": "query",
               "type": "string"
@@ -2602,7 +2602,7 @@
       }
     }
   },
-  "revision": "20200606",
+  "revision": "20200707",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -2648,9 +2648,9 @@
           ],
           "items": {
             "enum": [
-              "UNKNOWN",
-              "APPROVE_APPS",
-              "MANAGE_MCM"
+              "unknown",
+              "approveApps",
+              "manageMcm"
             ],
             "type": "string"
           },
@@ -2798,14 +2798,14 @@
         "restrictionType": {
           "description": "The type of the restriction.",
           "enum": [
-            "BOOL",
-            "STRING",
-            "INTEGER",
-            "CHOICE",
-            "MULTISELECT",
-            "HIDDEN",
-            "BUNDLE",
-            "BUNDLE_ARRAY"
+            "bool",
+            "string",
+            "integer",
+            "choice",
+            "multiselect",
+            "hidden",
+            "bundle",
+            "bundleArray"
           ],
           "enumDescriptions": [
             "A restriction of boolean type.",
@@ -2833,14 +2833,14 @@
         "type": {
           "description": "The type of the value being provided.",
           "enum": [
-            "BOOL",
-            "STRING",
-            "INTEGER",
-            "CHOICE",
-            "MULTISELECT",
-            "HIDDEN",
-            "BUNDLE",
-            "BUNDLE_ARRAY"
+            "bool",
+            "string",
+            "integer",
+            "choice",
+            "multiselect",
+            "hidden",
+            "bundle",
+            "bundleArray"
           ],
           "enumDescriptions": [
             "A restriction of boolean type.",
@@ -2917,10 +2917,10 @@
         "track": {
           "description": "Deprecated, use <code>trackId</code> instead.",
           "enum": [
-            "APP_TRACK_UNSPECIFIED",
-            "PRODUCTION",
-            "BETA",
-            "ALPHA"
+            "appTrackUnspecified",
+            "production",
+            "beta",
+            "alpha"
           ],
           "enumDescriptions": [
             "",
@@ -2978,9 +2978,9 @@
         "chargingStateConstraint": {
           "description": "Charging state constraint.",
           "enum": [
-            "CHARGING_STATE_CONSTRAINT_UNSPECIFIED",
-            "CHARGING_NOT_REQUIRED",
-            "CHARGING_REQUIRED"
+            "chargingStateConstraintUnspecified",
+            "chargingNotRequired",
+            "chargingRequired"
           ],
           "enumDescriptions": [
             "",
@@ -2992,9 +2992,9 @@
         "deviceIdleStateConstraint": {
           "description": "Device idle state constraint.",
           "enum": [
-            "DEVICE_IDLE_STATE_CONSTRAINT_UNSPECIFIED",
-            "DEVICE_IDLE_NOT_REQUIRED",
-            "DEVICE_IDLE_REQUIRED"
+            "deviceIdleStateConstraintUnspecified",
+            "deviceIdleNotRequired",
+            "deviceIdleRequired"
           ],
           "enumDescriptions": [
             "",
@@ -3006,9 +3006,9 @@
         "networkTypeConstraint": {
           "description": "Network type constraint.",
           "enum": [
-            "NETWORK_TYPE_CONSTRAINT_UNSPECIFIED",
-            "ANY_NETWORK",
-            "UNMETERED_NETWORK"
+            "networkTypeConstraintUnspecified",
+            "anyNetwork",
+            "unmeteredNetwork"
           ],
           "enumDescriptions": [
             "",
@@ -3033,10 +3033,10 @@
         "autoInstallMode": {
           "description": "The auto-install mode. If unset defaults to \"doNotAutoInstall\".",
           "enum": [
-            "AUTO_INSTALL_MODE_UNSPECIFIED",
-            "DO_NOT_AUTO_INSTALL",
-            "AUTO_INSTALL_ONCE",
-            "FORCE_AUTO_INSTALL"
+            "autoInstallModeUnspecified",
+            "doNotAutoInstall",
+            "autoInstallOnce",
+            "forceAutoInstall"
           ],
           "enumDescriptions": [
             "",
@@ -3088,10 +3088,10 @@
         "managementType": {
           "description": "Identifies the extent to which the device is controlled by a managed\nGoogle Play EMM in various deployment configurations. <br><br>\nPossible values include:\n<ul><li>\"<code>managedDevice</code>\", a device that has the EMM's device\npolicy controller (DPC) as the device owner.</li>\n<li>\"<code>managedProfile</code>\", a device that has a profile managed\nby the DPC (DPC is profile owner) in addition to a separate, personal\nprofile that is unavailable to the DPC.</li>\n<li>\"<code>containerApp</code>\", no longer used (deprecated).</li>\n<li>\"<code>unmanagedProfile</code>\", a device that has been allowed (by the\ndomain's admin, using the Admin Console to enable the privilege) to use\nmanaged Google Play, but the profile is itself\nnot owned by a DPC.</li></ul>",
           "enum": [
-            "MANAGED_DEVICE",
-            "MANAGED_PROFILE",
-            "CONTAINER_APP",
-            "UNMANAGED_PROFILE"
+            "managedDevice",
+            "managedProfile",
+            "containerApp",
+            "unmanagedProfile"
           ],
           "enumDescriptions": [
             "",
@@ -3157,8 +3157,8 @@
         "accountState": {
           "description": "The state of the Google account on the device. \"enabled\" indicates that\nthe Google account on the device can be used to access Google services\n(including Google Play), while \"disabled\" means that it cannot.\nA new device is initially in the \"disabled\" state.",
           "enum": [
-            "ENABLED",
-            "DISABLED"
+            "enabled",
+            "disabled"
           ],
           "enumDescriptions": [
             "",
@@ -3257,9 +3257,9 @@
         "reason": {
           "description": "The reason for the entitlement. For example, <code class=\"\">\"free\"</code>\nfor free apps. This property is temporary: it will be replaced by the <code\nclass=\"\">acquisition kind</code> field of group licenses.",
           "enum": [
-            "FREE",
-            "GROUP_LICENSE",
-            "USER_PURCHASE"
+            "free",
+            "groupLicense",
+            "userPurchase"
           ],
           "enumDescriptions": [
             "",
@@ -3291,8 +3291,8 @@
         "acquisitionKind": {
           "description": "How this group license was acquired. <code>&quot;bulkPurchase&quot;</code>\nmeans that this Grouplicenses resource was created because the enterprise\npurchased licenses for this product; otherwise, the value is\n<code>&quot;free&quot;</code> (for free products).",
           "enum": [
-            "FREE",
-            "BULK_PURCHASE"
+            "free",
+            "bulkPurchase"
           ],
           "enumDescriptions": [
             "",
@@ -3303,8 +3303,8 @@
         "approval": {
           "description": "Whether the product to which this group license relates is currently\napproved by the enterprise. Products are approved when a group license is\nfirst created, but this approval may be revoked by an enterprise admin via\nGoogle Play. Unapproved products will not be visible to end users in\ncollections, and new entitlements to them should not normally be created.",
           "enum": [
-            "APPROVED",
-            "UNAPPROVED"
+            "approved",
+            "unapproved"
           ],
           "enumDescriptions": [
             "",
@@ -3325,9 +3325,9 @@
         "permissions": {
           "description": "The permission approval status of the product. This field\nis only set if the product is approved. Possible states are:<ul>\n<li>\"<code>currentApproved</code>\", the current set\nof permissions is approved, but additional permissions will require the\nadministrator to reapprove the product (If the product was approved\nwithout specifying the approved permissions setting, then this is the\ndefault behavior.),</li>\n<li>\"<code>needsReapproval</code>\", the product has unapproved permissions.\nNo additional product licenses can be assigned until the product is\nreapproved,</li>\n<li>\"<code>allCurrentAndFutureApproved</code>\",\nthe current permissions are approved and any future permission updates\nwill be automatically approved without administrator review.</li></ul>",
           "enum": [
-            "CURRENT_APPROVED",
-            "NEEDS_REAPPROVAL",
-            "ALL_CURRENT_AND_FUTURE_APPROVED"
+            "currentApproved",
+            "needsReapproval",
+            "allCurrentAndFutureApproved"
           ],
           "enumDescriptions": [
             "",
@@ -3376,8 +3376,8 @@
         "installState": {
           "description": "Install state. The state <code>&quot;installPending&quot;</code>\nmeans that an install request has recently been made and download to the\ndevice is in progress. The state <code>&quot;installed&quot;</code>\nmeans that the app has been installed. This field is read-only.",
           "enum": [
-            "INSTALLED",
-            "INSTALL_PENDING"
+            "installed",
+            "installPending"
           ],
           "enumDescriptions": [
             "",
@@ -3412,8 +3412,8 @@
         "failureReason": {
           "description": "The reason for the installation failure.\nThis field will always be present.",
           "enum": [
-            "UNKNOWN",
-            "TIMEOUT"
+            "unknown",
+            "timeout"
           ],
           "enumDescriptions": [
             "Used whenever no better reason for failure can be provided.",
@@ -3464,9 +3464,9 @@
         "severity": {
           "description": "Severity of the app state.\nThis field will always be present.",
           "enum": [
-            "SEVERITY_UNKNOWN",
-            "SEVERITY_INFO",
-            "SEVERITY_ERROR"
+            "severityUnknown",
+            "severityInfo",
+            "severityError"
           ],
           "enumDescriptions": [
             "",
@@ -3671,8 +3671,8 @@
         "managementType": {
           "description": "Identifies the extent to which the device is controlled by an Android\nEMM in various deployment configurations. <br><br>\nPossible values include:\n<ul><li>\"<code>managedDevice</code>\", a device where the DPC is set as\ndevice owner,</li>\n<li>\"<code>managedProfile</code>\", a device where the DPC is set as profile\nowner.</li></ul>",
           "enum": [
-            "MANAGED_DEVICE",
-            "MANAGED_PROFILE"
+            "managedDevice",
+            "managedProfile"
           ],
           "enumDescriptions": [
             "",
@@ -3747,16 +3747,16 @@
         "notificationType": {
           "description": "Type of the notification.",
           "enum": [
-            "UNKNOWN",
-            "TEST_NOTIFICATION",
-            "PRODUCT_APPROVAL",
-            "INSTALL_FAILURE",
-            "APP_UPDATE",
-            "NEW_PERMISSIONS",
-            "APP_RESTRICIONS_SCHEMA_CHANGE",
-            "PRODUCT_AVAILABILITY_CHANGE",
-            "NEW_DEVICE",
-            "DEVICE_REPORT_UPDATE"
+            "unknown",
+            "testNotification",
+            "productApproval",
+            "installFailure",
+            "appUpdate",
+            "newPermissions",
+            "appRestricionsSchemaChange",
+            "productAvailabilityChange",
+            "newDevice",
+            "deviceReportUpdate"
           ],
           "enumDescriptions": [
             "",
@@ -3854,11 +3854,11 @@
         "autoUpdatePolicy": {
           "description": "The auto-update policy for apps installed on the device. \"choiceToTheUser\"\nallows the device's user to configure the app update policy. \"always\"\nenables auto updates. \"never\" disables auto updates. \"wifiOnly\" enables\nauto updates only when the device is connected to wifi.",
           "enum": [
-            "AUTO_UPDATE_POLICY_UNSPECIFIED",
-            "CHOICE_TO_THE_USER",
-            "NEVER",
-            "WIFI_ONLY",
-            "ALWAYS"
+            "autoUpdatePolicyUnspecified",
+            "choiceToTheUser",
+            "never",
+            "wifiOnly",
+            "always"
           ],
           "enumDescriptions": [
             "The auto update policy is not set.",
@@ -3872,9 +3872,9 @@
         "deviceReportPolicy": {
           "description": "Whether the device reports app states to the EMM. The default value is\n\"deviceReportDisabled\".",
           "enum": [
-            "DEVICE_REPORT_POLICY_UNSPECIFIED",
-            "DEVICE_REPORT_DISABLED",
-            "DEVICE_REPORT_ENABLED"
+            "deviceReportPolicyUnspecified",
+            "deviceReportDisabled",
+            "deviceReportEnabled"
           ],
           "enumDescriptions": [
             "The device report policy is not set.",
@@ -3890,9 +3890,9 @@
         "productAvailabilityPolicy": {
           "description": "The availability granted to the device for the specified products. \"all\"\ngives the device access to all products, regardless of approval status.\n\"all\" does not enable automatic visibility of \"alpha\" or \"beta\" tracks.\n\"whitelist\" grants the device access the products specified in\nproductPolicy[]. Only products that are approved or products that were\npreviously approved (products with revoked approval) by the enterprise can\nbe whitelisted. If no value is provided, the availability set at the user\nlevel is applied by default.",
           "enum": [
-            "PRODUCT_AVAILABILITY_POLICY_UNSPECIFIED",
-            "WHITELIST",
-            "ALL"
+            "productAvailabilityPolicyUnspecified",
+            "whitelist",
+            "all"
           ],
           "enumDescriptions": [
             "Unspecified, applies the user available product set by default.",
@@ -3950,10 +3950,10 @@
           ],
           "items": {
             "enum": [
-              "APP_TRACK_UNSPECIFIED",
-              "PRODUCTION",
-              "BETA",
-              "ALPHA"
+              "appTrackUnspecified",
+              "production",
+              "beta",
+              "alpha"
             ],
             "type": "string"
           },
@@ -3966,11 +3966,11 @@
         "contentRating": {
           "description": "The content rating for this app.",
           "enum": [
-            "RATING_UNKNOWN",
-            "ALL",
-            "PRE_TEEN",
-            "TEEN",
-            "MATURE"
+            "ratingUnknown",
+            "all",
+            "preTeen",
+            "teen",
+            "mature"
           ],
           "enumDescriptions": [
             "",
@@ -3992,9 +3992,9 @@
         "distributionChannel": {
           "description": "How and to whom the package is made available.\nThe value <code>publicGoogleHosted</code> means that the package is\navailable through the Play store and not restricted to a specific\nenterprise. The value <code>privateGoogleHosted</code> means that the\npackage is a private app (restricted to an enterprise) but hosted by\nGoogle. The value <code>privateSelfHosted</code> means that the package is\na private app (restricted to an enterprise) and is privately hosted.",
           "enum": [
-            "PUBLIC_GOOGLE_HOSTED",
-            "PRIVATE_GOOGLE_HOSTED",
-            "PRIVATE_SELF_HOSTED"
+            "publicGoogleHosted",
+            "privateGoogleHosted",
+            "privateSelfHosted"
           ],
           "enumDescriptions": [
             "",
@@ -4011,8 +4011,8 @@
           ],
           "items": {
             "enum": [
-              "FEATURE_UNKNOWN",
-              "VPN_APP"
+              "featureUnknown",
+              "vpnApp"
             ],
             "type": "string"
           },
@@ -4046,10 +4046,10 @@
         "productPricing": {
           "description": "Whether this product is free, free with in-app purchases, or paid.\nIf the pricing is unknown, this means the product is not generally\navailable anymore (even though it might still be available to\npeople who own it).",
           "enum": [
-            "UNKNOWN",
-            "FREE",
-            "FREE_WITH_IN_APP_PURCHASE",
-            "PAID"
+            "unknown",
+            "free",
+            "freeWithInAppPurchase",
+            "paid"
           ],
           "enumDescriptions": [
             "Unknown pricing, used to denote an approved product that is not\ngenerally available.",
@@ -4100,9 +4100,9 @@
         "approved": {
           "description": "Whether the product was approved or unapproved.\nThis field will always be present.",
           "enum": [
-            "UNKNOWN",
-            "APPROVED",
-            "UNAPPROVED"
+            "unknown",
+            "approved",
+            "unapproved"
           ],
           "enumDescriptions": [
             "Conveys no information.",
@@ -4125,10 +4125,10 @@
         "availabilityStatus": {
           "description": "The new state of the product.\nThis field will always be present.",
           "enum": [
-            "UNKNOWN",
-            "AVAILABLE",
-            "REMOVED",
-            "UNPUBLISHED"
+            "unknown",
+            "available",
+            "removed",
+            "unpublished"
           ],
           "enumDescriptions": [
             "Conveys no information.",
@@ -4156,8 +4156,8 @@
         "state": {
           "description": "Whether the permission has been accepted or not.",
           "enum": [
-            "REQUIRED",
-            "ACCEPTED"
+            "required",
+            "accepted"
           ],
           "enumDescriptions": [
             "The permission is required by the app but has not yet been accepted by\nthe enterprise.",
@@ -4219,10 +4219,10 @@
           ],
           "items": {
             "enum": [
-              "APP_TRACK_UNSPECIFIED",
-              "PRODUCTION",
-              "BETA",
-              "ALPHA"
+              "appTrackUnspecified",
+              "production",
+              "beta",
+              "alpha"
             ],
             "type": "string"
           },
@@ -4245,10 +4245,10 @@
         "productSetBehavior": {
           "description": "The interpretation of this product set. \"unknown\" should never be sent and\nis ignored if received. \"whitelist\" means that the user is entitled to\naccess the product set. \"includeAll\" means that all products are\naccessible, including products that are approved, products with revoked\napproval, and products that have never been approved. \"allApproved\" means\nthat the user is entitled to access all products that are approved for the\nenterprise. If the value is \"allApproved\" or \"includeAll\", the productId\nfield is ignored. If no value is provided, it is interpreted as\n\"whitelist\" for backwards compatibility.\nFurther \"allApproved\" or \"includeAll\" does not enable automatic\nvisibility of \"alpha\" or \"beta\" tracks for Android app. Use\nProductVisibility to enable \"alpha\" or \"beta\" tracks per user.",
           "enum": [
-            "UNKNOWN",
-            "WHITELIST",
-            "INCLUDE_ALL",
-            "ALL_APPROVED"
+            "unknown",
+            "whitelist",
+            "includeAll",
+            "allApproved"
           ],
           "enumDescriptions": [
             "This value should never be sent and ignored if received.",
@@ -4307,10 +4307,10 @@
           ],
           "items": {
             "enum": [
-              "APP_TRACK_UNSPECIFIED",
-              "PRODUCTION",
-              "BETA",
-              "ALPHA"
+              "appTrackUnspecified",
+              "production",
+              "beta",
+              "alpha"
             ],
             "type": "string"
           },
@@ -4329,8 +4329,8 @@
         "approvedPermissions": {
           "description": "Sets how new permission requests for the product are handled.\n\"allPermissions\" automatically approves all current and future\npermissions for the product. \"currentPermissionsOnly\" approves the\ncurrent set of permissions for the product, but any future permissions\nadded through updates will require manual reapproval. If not specified,\nonly the current set of permissions will be approved.",
           "enum": [
-            "CURRENT_PERMISSIONS_ONLY",
-            "ALL_PERMISSIONS"
+            "currentPermissionsOnly",
+            "allPermissions"
           ],
           "enumDescriptions": [
             "Approve only the permissions the product requires at approval time.\nIf an update requires additional permissions, the app will not be updated\non devices associated with enterprise users until the additional\npermissions are approved.",
@@ -4411,8 +4411,8 @@
           },
           "description": "The file format of the generated key data.",
           "enum": [
-            "GOOGLE_CREDENTIALS",
-            "PKCS12"
+            "googleCredentials",
+            "pkcs12"
           ],
           "enumDescriptions": [
             "Google Credentials File format.",
@@ -4495,9 +4495,9 @@
         "storeLayoutType": {
           "description": "The store layout type. By default, this value is set to \"basic\"\nif the homepageId field is not set, and to \"custom\" otherwise.\nIf set to \"basic\", the layout will consist of all approved apps that\nhave been whitelisted for the user.",
           "enum": [
-            "UNKNOWN",
-            "BASIC",
-            "CUSTOM"
+            "unknown",
+            "basic",
+            "custom"
           ],
           "enumDescriptions": [
             "",
@@ -4610,8 +4610,8 @@
           },
           "description": "The type of account that this user represents. A <code>userAccount</code>\ncan be installed on multiple devices, but a <code>deviceAccount</code> is\nspecific to a single device. An EMM-managed user (<code>emmManaged</code>)\ncan be either type (<code>userAccount</code>, <code>deviceAccount</code>),\nbut a Google-managed user (<code>googleManaged</code>) is always a\n<code>userAccount</code>.",
           "enum": [
-            "DEVICE_ACCOUNT",
-            "USER_ACCOUNT"
+            "deviceAccount",
+            "userAccount"
           ],
           "enumDescriptions": [
             "",
@@ -4630,8 +4630,8 @@
         "managementType": {
           "description": "The entity that manages the user.  With <code>googleManaged</code> users,\nthe source of truth is Google so EMMs have to make sure a Google Account\nexists for the user.  With <code>emmManaged</code> users, the\nEMM is in charge.",
           "enum": [
-            "GOOGLE_MANAGED",
-            "EMM_MANAGED"
+            "googleManaged",
+            "emmManaged"
           ],
           "enumDescriptions": [
             "",
@@ -4681,10 +4681,10 @@
         "displayMode": {
           "description": "The display mode of the web app. <br><br>\nPossible values include:\n<ul><li>\"<code>minimalUi</code>\", the device's status bar, navigation bar,\nthe app's URL, and a refresh button are visible when the app is open. For\nHTTP URLs, you can only select this option.\n<li>\"<code>standalone</code>\", the device's status bar and navigation\nbar are visible when the app is open.\n<li>\"<code>fullScreen</code>\", the app opens in full screen mode, hiding\nthe device's status and navigation bars.  All browser UI elements, page\nURL, system status bar and back button are not visible, and the web app\ntakes up the entirety of the available display area.\n</ul>",
           "enum": [
-            "DISPLAY_MODE_UNSPECIFIED",
-            "MINIMAL_UI",
-            "STANDALONE",
-            "FULL_SCREEN"
+            "displayModeUnspecified",
+            "minimalUi",
+            "standalone",
+            "fullScreen"
           ],
           "enumDescriptions": [
             "",

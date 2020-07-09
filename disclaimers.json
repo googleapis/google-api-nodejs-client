@@ -69,11 +69,15 @@
   },
   {
     "api": "firestore",
-    "package": "@google-cloud/firestore-session"
+    "package": "@google-cloud/connect-firestore"
   },
   {
     "api": "gameservices",
     "package": "@google-cloud/game-servers"
+  },
+  {
+    "api": "bigqueryconnection",
+    "package": "@google-cloud/bigquery-connection"
   },
   {
     "api": "bigquerydatatransfer",
