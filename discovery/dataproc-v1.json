@@ -2129,7 +2129,7 @@
       }
     }
   },
-  "revision": "20200528",
+  "revision": "20200703",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2322,6 +2322,10 @@
           "$ref": "EncryptionConfig",
           "description": "Optional. Encryption settings for the cluster."
         },
+        "endpointConfig": {
+          "$ref": "EndpointConfig",
+          "description": "Optional. Port/endpoint configuration for this cluster"
+        },
         "gceClusterConfig": {
           "$ref": "GceClusterConfig",
           "description": "Optional. The shared Compute Engine config settings for all instances in a cluster."
@@ -2352,6 +2356,10 @@
         "softwareConfig": {
           "$ref": "SoftwareConfig",
           "description": "Optional. The config settings for software inside the cluster."
+        },
+        "tempBucket": {
+          "description": "Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket.",
+          "type": "string"
         },
         "workerConfig": {
           "$ref": "InstanceGroupConfig",
@@ -2605,6 +2613,24 @@
         "gcePdKmsKeyName": {
           "description": "Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndpointConfig": {
+      "description": "Endpoint config for this cluster",
+      "id": "EndpointConfig",
+      "properties": {
+        "enableHttpPortAccess": {
+          "description": "Optional. If true, enable http access to specific ports on the cluster from external sources. Defaults to false.",
+          "type": "boolean"
+        },
+        "httpPorts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The map of port descriptions to URLs. Will only be populated if enable_http_port_access is true.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -3050,7 +3076,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Required. The ID of the Google Cloud Platform project that the job belongs to.",
+          "description": "Optional. The ID of the Google Cloud Platform project that the job belongs to. If specified, must match the request project ID.",
           "type": "string"
         }
       },
@@ -3763,7 +3789,7 @@
         "optionalComponents": {
           "description": "Optional. The set of components to activate on the cluster.",
           "enumDescriptions": [
-            "Unspecified component.",
+            "Unspecified component. Specifying this will cause Cluster creation to fail.",
             "The Anaconda python distribution.",
             "The Hive Web HCatalog (the REST service for accessing HCatalog).",
             "The Jupyter Notebook.",
@@ -4202,7 +4228,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Optional. emplate parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.",
+          "description": "Optional. Template parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.",
           "items": {
             "$ref": "TemplateParameter"
           },

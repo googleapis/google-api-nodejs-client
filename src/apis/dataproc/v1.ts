@@ -284,6 +284,10 @@ export namespace dataproc_v1 {
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
+     * Optional. Port/endpoint configuration for this cluster
+     */
+    endpointConfig?: Schema$EndpointConfig;
+    /**
      * Optional. The shared Compute Engine config settings for all instances in a cluster.
      */
     gceClusterConfig?: Schema$GceClusterConfig;
@@ -311,6 +315,10 @@ export namespace dataproc_v1 {
      * Optional. The config settings for software inside the cluster.
      */
     softwareConfig?: Schema$SoftwareConfig;
+    /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket.
+     */
+    tempBucket?: string | null;
     /**
      * Optional. The Compute Engine config settings for worker instances in a cluster.
      */
@@ -480,6 +488,19 @@ export namespace dataproc_v1 {
      * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
      */
     gcePdKmsKeyName?: string | null;
+  }
+  /**
+   * Endpoint config for this cluster
+   */
+  export interface Schema$EndpointConfig {
+    /**
+     * Optional. If true, enable http access to specific ports on the cluster from external sources. Defaults to false.
+     */
+    enableHttpPortAccess?: boolean | null;
+    /**
+     * Output only. The map of port descriptions to URLs. Will only be populated if enable_http_port_access is true.
+     */
+    httpPorts?: {[key: string]: string} | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -830,7 +851,7 @@ export namespace dataproc_v1 {
      */
     jobId?: string | null;
     /**
-     * Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * Optional. The ID of the Google Cloud Platform project that the job belongs to. If specified, must match the request project ID.
      */
     projectId?: string | null;
   }
@@ -1626,7 +1647,7 @@ export namespace dataproc_v1 {
      */
     name?: string | null;
     /**
-     * Optional. emplate parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.
+     * Optional. Template parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.
      */
     parameters?: Schema$TemplateParameter[];
     /**
