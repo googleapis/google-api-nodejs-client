@@ -525,7 +525,7 @@ export namespace admob_v1 {
      *
      *   // Do the magic
      *   const res = await admob.accounts.get({
-     *     // Resource name of the publisher account to retrieve.
+     *     // Required. Resource name of the publisher account to retrieve.
      *     // Example: accounts/pub-9876543210987654
      *     name: 'accounts/my-account',
      *   });
@@ -549,7 +549,7 @@ export namespace admob_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
+     * @param {string} params.name Required. Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -774,7 +774,7 @@ export namespace admob_v1 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
+     * Required. Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
      */
     name?: string;
   }
