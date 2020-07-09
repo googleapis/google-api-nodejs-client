@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace gameservices_v1beta {
+export namespace gameservices_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -105,12 +105,12 @@ export namespace gameservices_v1beta {
    *
    * @example
    * const {google} = require('googleapis');
-   * const gameservices = google.gameservices('v1beta');
+   * const gameservices = google.gameservices('v1');
    *
    * @namespace gameservices
    * @type {Function}
-   * @version v1beta
-   * @variation v1beta
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Gameservices
    */
   export class Gameservices {
@@ -1160,7 +1160,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1259,7 +1259,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1292,7 +1292,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1406,7 +1406,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1484,7 +1484,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1603,7 +1603,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gameServerDeployments').replace(
+            url: (rootUrl + '/v1/{+parent}/gameServerDeployments').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1639,7 +1639,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1743,7 +1743,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1776,7 +1776,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1891,7 +1891,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:fetchDeploymentState').replace(
+            url: (rootUrl + '/v1/{+name}:fetchDeploymentState').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1929,7 +1929,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2037,7 +2037,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2070,7 +2070,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2188,7 +2188,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2224,7 +2224,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2336,7 +2336,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/rollout').replace(
+            url: (rootUrl + '/v1/{+name}/rollout').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2372,7 +2372,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2495,7 +2495,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gameServerDeployments').replace(
+            url: (rootUrl + '/v1/{+parent}/gameServerDeployments').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2533,7 +2533,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2662,7 +2662,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2695,7 +2695,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2847,7 +2847,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/rollout:preview').replace(
+            url: (rootUrl + '/v1/{+name}/rollout:preview').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2885,7 +2885,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2999,7 +2999,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3035,7 +3035,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3150,7 +3150,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3186,7 +3186,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3315,7 +3315,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/rollout').replace(
+            url: (rootUrl + '/v1/{+name}/rollout').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3518,7 +3518,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3640,7 +3640,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/configs').replace(
+            url: (rootUrl + '/v1/{+parent}/configs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3676,7 +3676,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3780,7 +3780,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3813,7 +3813,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3919,7 +3919,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3952,7 +3952,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4078,7 +4078,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/configs').replace(
+            url: (rootUrl + '/v1/{+parent}/configs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4177,7 +4177,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4277,10 +4277,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -4313,7 +4310,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4406,7 +4403,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -4439,7 +4436,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4538,7 +4535,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -4571,7 +4568,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4681,7 +4678,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4774,7 +4771,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4892,7 +4889,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/realms').replace(
+            url: (rootUrl + '/v1/{+parent}/realms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4928,7 +4925,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5028,7 +5025,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5061,7 +5058,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5163,7 +5160,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5196,7 +5193,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5315,7 +5312,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/realms').replace(
+            url: (rootUrl + '/v1/{+parent}/realms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5351,7 +5348,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5475,7 +5472,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -5508,7 +5505,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5639,7 +5636,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:previewUpdate').replace(
+            url: (rootUrl + '/v1/{+name}:previewUpdate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5772,7 +5769,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5892,7 +5889,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gameServerClusters').replace(
+            url: (rootUrl + '/v1/{+parent}/gameServerClusters').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5928,7 +5925,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6031,7 +6028,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -6064,7 +6061,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6173,7 +6170,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -6206,7 +6203,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6330,7 +6327,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gameServerClusters').replace(
+            url: (rootUrl + '/v1/{+parent}/gameServerClusters').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6368,7 +6365,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6498,7 +6495,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -6531,7 +6528,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6665,7 +6662,7 @@ export namespace gameservices_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta/{+parent}/gameServerClusters:previewCreate'
+              rootUrl + '/v1/{+parent}/gameServerClusters:previewCreate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -6701,7 +6698,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6817,7 +6814,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:previewDelete').replace(
+            url: (rootUrl + '/v1/{+name}:previewDelete').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6855,7 +6852,7 @@ export namespace gameservices_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gameservices = google.gameservices('v1beta');
+     * const gameservices = google.gameservices('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6998,7 +6995,7 @@ export namespace gameservices_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:previewUpdate').replace(
+            url: (rootUrl + '/v1/{+name}:previewUpdate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
