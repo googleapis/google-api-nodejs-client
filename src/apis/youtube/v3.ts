@@ -115,6 +115,7 @@ export namespace youtube_v3 {
    */
   export class Youtube {
     context: APIRequestContext;
+    abuseReports: Resource$Abusereports;
     activities: Resource$Activities;
     captions: Resource$Captions;
     channelBanners: Resource$Channelbanners;
@@ -138,11 +139,13 @@ export namespace youtube_v3 {
     sponsors: Resource$Sponsors;
     subscriptions: Resource$Subscriptions;
     superChatEvents: Resource$Superchatevents;
+    thirdPartyLinks: Resource$Thirdpartylinks;
     thumbnails: Resource$Thumbnails;
     videoAbuseReportReasons: Resource$Videoabusereportreasons;
     videoCategories: Resource$Videocategories;
     videos: Resource$Videos;
     watermarks: Resource$Watermarks;
+    youtube: Resource$Youtube;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -150,6 +153,7 @@ export namespace youtube_v3 {
         google,
       };
 
+      this.abuseReports = new Resource$Abusereports(this.context);
       this.activities = new Resource$Activities(this.context);
       this.captions = new Resource$Captions(this.context);
       this.channelBanners = new Resource$Channelbanners(this.context);
@@ -173,6 +177,7 @@ export namespace youtube_v3 {
       this.sponsors = new Resource$Sponsors(this.context);
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.superChatEvents = new Resource$Superchatevents(this.context);
+      this.thirdPartyLinks = new Resource$Thirdpartylinks(this.context);
       this.thumbnails = new Resource$Thumbnails(this.context);
       this.videoAbuseReportReasons = new Resource$Videoabusereportreasons(
         this.context
@@ -180,9 +185,19 @@ export namespace youtube_v3 {
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
+      this.youtube = new Resource$Youtube(this.context);
     }
   }
 
+  export interface Schema$AbuseReport {
+    abuseTypes?: Schema$AbuseType[];
+    description?: string | null;
+    relatedEntities?: Schema$RelatedEntity[];
+    subject?: Schema$Entity;
+  }
+  export interface Schema$AbuseType {
+    id?: string | null;
+  }
   /**
    * Rights management policy for YouTube resources.
    */
@@ -744,6 +759,16 @@ export namespace youtube_v3 {
      */
     watch?: Schema$WatchSettings;
   }
+  export interface Schema$ChannelCard {
+    /**
+     * External channel ID. Required.
+     */
+    channelId?: string | null;
+    /**
+     * Each card can have a custom message. Required.
+     */
+    customMessage?: string | null;
+  }
   /**
    * Details about the content of a channel.
    */
@@ -1129,6 +1154,19 @@ export namespace youtube_v3 {
      * A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the &lt;a href=&quot;http://wiki.freebase.com/wiki/Topic_API&quot;&gt;Freebase Topic API&lt;/a&gt;.
      */
     topicIds?: string[] | null;
+  }
+  /**
+   * Information specific to a store on a merchandising platform linked to a YouTube channel.
+   */
+  export interface Schema$ChannelToStoreLinkDetails {
+    /**
+     * Name of the store.
+     */
+    storeName?: string | null;
+    /**
+     * Landing page of the store.
+     */
+    storeUrl?: string | null;
   }
   /**
    * A &lt;code&gt;&lt;strong&gt;comment&lt;/strong&gt;&lt;/code&gt; represents a single YouTube comment.
@@ -1633,6 +1671,11 @@ export namespace youtube_v3 {
      */
     ytRating?: string | null;
   }
+  export interface Schema$Entity {
+    id?: string | null;
+    typeId?: string | null;
+    url?: string | null;
+  }
   /**
    * Geographical coordinates of a point, in WGS84.
    */
@@ -1915,6 +1958,64 @@ export namespace youtube_v3 {
     trackingImageUrl?: string | null;
     watchIconImageUrl?: string | null;
   }
+  export interface Schema$InfoCard {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * UUID for this infocard.
+     */
+    id?: string | null;
+    /**
+     * Identifies what kind of resource this is.
+     */
+    kind?: string | null;
+    /**
+     * The snippet object contains basic details about the infocard.
+     */
+    snippet?: Schema$InfoCardSnippet;
+  }
+  export interface Schema$InfocardListResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * A list of infocards.
+     */
+    items?: Schema$InfoCard[];
+    /**
+     * Identifies what kind of resource this is.
+     */
+    kind?: string | null;
+  }
+  export interface Schema$InfoCards {
+    /**
+     * A list of infocards.
+     */
+    items?: Schema$InfoCard[];
+  }
+  export interface Schema$InfoCardSnippet {
+    channelInfocard?: Schema$ChannelCard;
+    linkInfocard?: Schema$LinkCard;
+    playlistInfocard?: Schema$PlaylistCard;
+    /**
+     * Each card can have a teaser. Required.
+     */
+    teaser?: Schema$InfoCardSnippetTeaser;
+    videoInfocard?: Schema$VideoCard;
+  }
+  export interface Schema$InfoCardSnippetTeaser {
+    /**
+     * The offset from the video start at which the teaser should be displayed (activated), in milliseconds. Required.
+     */
+    teaserStartOffset?: string | null;
+    /**
+     * The teaser text to show at the top of the player for the info-card. Required for channel and link type cards. Optional for video and playlist type cards.
+     */
+    teaserText?: string | null;
+  }
   /**
    * Describes information necessary for ingesting an RTMP or an HTTP stream.
    */
@@ -2024,6 +2125,38 @@ export namespace youtube_v3 {
      * The name that should be used when referring to this level.
      */
     displayName?: string | null;
+  }
+  export interface Schema$LinkCard {
+    /**
+     * Custom text to show as the website link. Required.
+     */
+    customLinkText?: string | null;
+    /**
+     * URL to an externally hosted image.
+     */
+    externalImageUrl?: string | null;
+    /**
+     * The URL to which this card points. Required.
+     */
+    targetUrl?: string | null;
+    /**
+     * The title to show on the card. Required.
+     */
+    title?: string | null;
+    /**
+     * Previously uploaded image.
+     */
+    uploadedImage?: Schema$LinkCardUploadedImage;
+  }
+  export interface Schema$LinkCardUploadedImage {
+    /**
+     * Image reference on the thumbnail service.
+     */
+    imageFile?: string | null;
+    /**
+     * The version in the thumbnail service.
+     */
+    version?: string | null;
   }
   /**
    * A &lt;code&gt;&lt;strong&gt;liveBroadcast&lt;/strong&gt;&lt;/code&gt; resource represents an event that will be streamed, via live video, on YouTube.
@@ -2946,6 +3079,20 @@ export namespace youtube_v3 {
      */
     status?: Schema$PlaylistStatus;
   }
+  export interface Schema$PlaylistCard {
+    /**
+     * Each card can have a custom message. Optional.
+     */
+    customMessage?: string | null;
+    /**
+     * External playlist ID. Required.
+     */
+    playlistId?: string | null;
+    /**
+     * Starting video, if not the first. Optional.
+     */
+    startVideoId?: string | null;
+  }
   export interface Schema$PlaylistContentDetails {
     /**
      * The number of videos in the playlist.
@@ -3240,6 +3387,9 @@ export namespace youtube_v3 {
      * The property&#39;s value.
      */
     value?: string | null;
+  }
+  export interface Schema$RelatedEntity {
+    entity?: Schema$Entity;
   }
   /**
    * A resource id is a generic reference that points to another YouTube resource.
@@ -3652,6 +3802,55 @@ export namespace youtube_v3 {
      */
     stickerId?: string | null;
   }
+  export interface Schema$TestItem {
+    id?: string | null;
+    snippet?: Schema$TestItemTestItemSnippet;
+  }
+  export interface Schema$TestItemTestItemSnippet {}
+  /**
+   * A &lt;code&gt;&lt;strong&gt;third party account link&lt;/strong&gt;&lt;/code&gt; resource represents a link between a YouTube account or a channel and an account on a third-party service.
+   */
+  export interface Schema$ThirdPartyLink {
+    /**
+     * Etag of this resource
+     */
+    etag?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;youtube#thirdPartyLink&quot;&lt;/code&gt;.
+     */
+    kind?: string | null;
+    /**
+     * The &lt;code&gt;linking_token&lt;/code&gt; identifies a YouTube account and channel with which the third party account is linked.
+     */
+    linkingToken?: string | null;
+    /**
+     * The &lt;code&gt;snippet&lt;/code&gt; object contains basic details about the third- party account link.
+     */
+    snippet?: Schema$ThirdPartyLinkSnippet;
+    /**
+     * The &lt;code&gt;status&lt;/code&gt; object contains information about the status of the link.
+     */
+    status?: Schema$ThirdPartyLinkStatus;
+  }
+  /**
+   * Basic information about a third party account link, including its type and type-specific information.
+   */
+  export interface Schema$ThirdPartyLinkSnippet {
+    /**
+     * Information specific to a link between a channel and a store on a merchandising platform.
+     */
+    channelToStoreLink?: Schema$ChannelToStoreLinkDetails;
+    /**
+     * Type of the link named after the entities that are being linked.
+     */
+    type?: string | null;
+  }
+  /**
+   * The &lt;code&gt;third-party link status&lt;/code&gt; object contains information about the status of the link.
+   */
+  export interface Schema$ThirdPartyLinkStatus {
+    linkStatus?: string | null;
+  }
   /**
    * A thumbnail is an image representing a YouTube resource.
    */
@@ -3898,6 +4097,20 @@ export namespace youtube_v3 {
      * Video game rating, if any.
      */
     videoGameRating?: string | null;
+  }
+  export interface Schema$VideoCard {
+    /**
+     * Each card can have a custom message. Optional.
+     */
+    customMessage?: string | null;
+    /**
+     * Playback start time offset in milliseconds. Optional.
+     */
+    playbackStartOffset?: string | null;
+    /**
+     * Encrypted Video ID. Required.
+     */
+    videoId?: string | null;
   }
   /**
    * A &lt;code&gt;&lt;strong&gt;videoCategory&lt;/strong&gt;&lt;/code&gt; resource identifies a category that has been or could be associated with uploaded videos.
@@ -4526,6 +4739,177 @@ export namespace youtube_v3 {
      * The background color for the video watch page&#39;s branded area.
      */
     textColor?: string | null;
+  }
+
+  export class Resource$Abusereports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.abuseReports.insert
+     * @desc Inserts a new resource into this collection.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.abuseReports.insert({
+     *     // The <code><strong>part</strong></code> parameter serves two purposes in
+     *     // this operation. It identifies the properties that the write operation will
+     *     // set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "abuseTypes": [],
+     *       //   "description": "my_description",
+     *       //   "relatedEntities": [],
+     *       //   "subject": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "abuseTypes": [],
+     *   //   "description": "my_description",
+     *   //   "relatedEntities": [],
+     *   //   "subject": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.abuseReports.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.part The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {().AbuseReport} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params: Params$Resource$Abusereports$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Abusereports$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AbuseReport>;
+    insert(
+      params: Params$Resource$Abusereports$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Abusereports$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AbuseReport>,
+      callback: BodyResponseCallback<Schema$AbuseReport>
+    ): void;
+    insert(
+      params: Params$Resource$Abusereports$Insert,
+      callback: BodyResponseCallback<Schema$AbuseReport>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$AbuseReport>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Abusereports$Insert
+        | BodyResponseCallback<Schema$AbuseReport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AbuseReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AbuseReport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AbuseReport> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Abusereports$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Abusereports$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/abuseReports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AbuseReport>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AbuseReport>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Abusereports$Insert
+    extends StandardParameters {
+    /**
+     * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AbuseReport;
   }
 
   export class Resource$Activities {
@@ -16190,6 +16574,644 @@ export namespace youtube_v3 {
     part?: string[];
   }
 
+  export class Resource$Thirdpartylinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.thirdPartyLinks.delete
+     * @desc Deletes a resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.delete({
+     *     // Delete the partner links with the given linking token.
+     *     linkingToken: 'placeholder-value',
+     *     // Do not use. Required for compatibility.
+     *     part: 'placeholder-value',
+     *     // Type of the link to be deleted.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLinks.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.linkingToken Delete the partner links with the given linking token.
+     * @param {string=} params.part Do not use. Required for compatibility.
+     * @param {string} params.type Type of the link to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Thirdpartylinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Thirdpartylinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Thirdpartylinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Thirdpartylinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Thirdpartylinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylinks$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['linkingToken', 'type'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * youtube.thirdPartyLinks.insert
+     * @desc Inserts a new resource into this collection.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.insert({
+     *     // The <code><strong>part</strong></code> parameter specifies the
+     *     // <code>thirdPartyLink</code> resource parts that the API request and
+     *     // response will include. Supported values are <code>linkingToken</code>,
+     *     // <code>status</code>, and <code>snippet</code>.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLinks.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API request and response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     * @param {().ThirdPartyLink} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params: Params$Resource$Thirdpartylinks$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Thirdpartylinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    insert(
+      params: Params$Resource$Thirdpartylinks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Thirdpartylinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    insert(
+      params: Params$Resource$Thirdpartylinks$Insert,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylinks$Insert
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylinks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylinks$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+      }
+    }
+
+    /**
+     * youtube.thirdPartyLinks.list
+     * @desc Retrieves a list of resources, possibly filtered.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.list({
+     *     // Get a third party link with the given linking token.
+     *     linkingToken: 'placeholder-value',
+     *     // The <code><strong>part</strong></code> parameter specifies the
+     *     // <code>thirdPartyLink</code> resource parts that the API response will
+     *     // include. Supported values are <code>linkingToken</code>,
+     *     // <code>status</code>, and <code>snippet</code>.
+     *     part: 'placeholder-value',
+     *     // Get a third party link of the given type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLinks.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.linkingToken Get a third party link with the given linking token.
+     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     * @param {string=} params.type Get a third party link of the given type.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Thirdpartylinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylinks$List
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+      }
+    }
+
+    /**
+     * youtube.thirdPartyLinks.update
+     * @desc Updates an existing resource.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.update({
+     *     // The <code><strong>part</strong></code> parameter specifies the
+     *     // <code>thirdPartyLink</code> resource parts that the API request and
+     *     // response will include. Supported values are <code>linkingToken</code>,
+     *     // <code>status</code>, and <code>snippet</code>.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLinks.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.part The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API request and response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     * @param {().ThirdPartyLink} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params: Params$Resource$Thirdpartylinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Thirdpartylinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    update(
+      params: Params$Resource$Thirdpartylinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Thirdpartylinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    update(
+      params: Params$Resource$Thirdpartylinks$Update,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylinks$Update
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylinks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylinks$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Thirdpartylinks$Delete
+    extends StandardParameters {
+    /**
+     * Delete the partner links with the given linking token.
+     */
+    linkingToken?: string;
+    /**
+     * Do not use. Required for compatibility.
+     */
+    part?: string[];
+    /**
+     * Type of the link to be deleted.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Thirdpartylinks$Insert
+    extends StandardParameters {
+    /**
+     * The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API request and response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ThirdPartyLink;
+  }
+  export interface Params$Resource$Thirdpartylinks$List
+    extends StandardParameters {
+    /**
+     * Get a third party link with the given linking token.
+     */
+    linkingToken?: string;
+    /**
+     * The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     */
+    part?: string[];
+    /**
+     * Get a third party link of the given type.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Thirdpartylinks$Update
+    extends StandardParameters {
+    /**
+     * The <code><strong>part</strong></code> parameter specifies the <code>thirdPartyLink</code> resource parts that the API request and response will include. Supported values are <code>linkingToken</code>, <code>status</code>, and <code>snippet</code>.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ThirdPartyLink;
+  }
+
   export class Resource$Thumbnails {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -18516,5 +19538,525 @@ export namespace youtube_v3 {
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+  }
+
+  export class Resource$Youtube {
+    context: APIRequestContext;
+    v3: Resource$Youtube$V3;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v3 = new Resource$Youtube$V3(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3 {
+    context: APIRequestContext;
+    infocards: Resource$Youtube$V3$Infocards;
+    tests: Resource$Youtube$V3$Tests;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.infocards = new Resource$Youtube$V3$Infocards(this.context);
+      this.tests = new Resource$Youtube$V3$Tests(this.context);
+    }
+
+    /**
+     * youtube.youtube.v3.infocards
+     * @desc Updates infocards for a given video. Note: * If the card id is not provided, a new card will be created. * If the card id is provided, that card will be updated. * Existing cards will be discarded if they're not included in the request.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.infocards({
+     *     // Content owner of the video.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The properties to update.
+     *     part: 'placeholder-value',
+     *     // Encrypted id of the video.
+     *     videoId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "items": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.youtube.v3.infocards
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner Content owner of the video.
+     * @param {string} params.part The properties to update.
+     * @param {string=} params.videoId Encrypted id of the video.
+     * @param {().InfoCards} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    infocards(
+      params: Params$Resource$Youtube$V3$Infocards,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    infocards(
+      params?: Params$Resource$Youtube$V3$Infocards,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InfoCards>;
+    infocards(
+      params: Params$Resource$Youtube$V3$Infocards,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    infocards(
+      params: Params$Resource$Youtube$V3$Infocards,
+      options: MethodOptions | BodyResponseCallback<Schema$InfoCards>,
+      callback: BodyResponseCallback<Schema$InfoCards>
+    ): void;
+    infocards(
+      params: Params$Resource$Youtube$V3$Infocards,
+      callback: BodyResponseCallback<Schema$InfoCards>
+    ): void;
+    infocards(callback: BodyResponseCallback<Schema$InfoCards>): void;
+    infocards(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Infocards
+        | BodyResponseCallback<Schema$InfoCards>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InfoCards>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InfoCards>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InfoCards> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Infocards;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Infocards;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/infocards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InfoCards>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$InfoCards>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Infocards
+    extends StandardParameters {
+    /**
+     * Content owner of the video.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * The properties to update.
+     */
+    part?: string[];
+    /**
+     * Encrypted id of the video.
+     */
+    videoId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InfoCards;
+  }
+
+  export class Resource$Youtube$V3$Infocards {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.youtube.v3.infocards.list
+     * @desc Retrieves all infocards for a given video.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.infocards.list({
+     *     // Content owner of the video.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // The properties to return.
+     *     part: 'placeholder-value',
+     *     // Encrypted id of the video.
+     *     videoId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.youtube.v3.infocards.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner Content owner of the video.
+     * @param {string} params.part The properties to return.
+     * @param {string=} params.videoId Encrypted id of the video.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Youtube$V3$Infocards$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Youtube$V3$Infocards$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InfocardListResponse>;
+    list(
+      params: Params$Resource$Youtube$V3$Infocards$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Youtube$V3$Infocards$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InfocardListResponse>,
+      callback: BodyResponseCallback<Schema$InfocardListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Youtube$V3$Infocards$List,
+      callback: BodyResponseCallback<Schema$InfocardListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$InfocardListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Infocards$List
+        | BodyResponseCallback<Schema$InfocardListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InfocardListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InfocardListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InfocardListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Infocards$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Infocards$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/infocards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InfocardListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$InfocardListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Infocards$List
+    extends StandardParameters {
+    /**
+     * Content owner of the video.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * The properties to return.
+     */
+    part?: string[];
+    /**
+     * Encrypted id of the video.
+     */
+    videoId?: string;
+  }
+
+  export class Resource$Youtube$V3$Tests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.youtube.v3.tests.create
+     * @desc POST method.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.tests.create({
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "id": "my_id",
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.youtube.v3.tests.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.part
+     * @param {().TestItem} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Youtube$V3$Tests$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestItem>;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TestItem>,
+      callback: BodyResponseCallback<Schema$TestItem>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Tests$Create,
+      callback: BodyResponseCallback<Schema$TestItem>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TestItem>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Tests$Create
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TestItem> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Tests$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Tests$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/tests').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$TestItem>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Tests$Create
+    extends StandardParameters {
+    /**
+     *
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestItem;
   }
 }
