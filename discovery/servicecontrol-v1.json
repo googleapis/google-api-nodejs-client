@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20200601",
+  "revision": "20200703",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1164,6 +1164,17 @@
           "description": "End time of the operation.\nRequired when the operation is used in ServiceController.Report,\nbut optional when the operation is used in ServiceController.Check.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "extensions": {
+          "description": "Unimplemented.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "importance": {
           "description": "DO NOT USE. This is an experimental field.",
