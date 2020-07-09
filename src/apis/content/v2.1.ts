@@ -2942,7 +2942,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefundItemItem {
     /**
-     * The amount that is refunded. In case of multiple refunds,   - If the quantity of refunded items changed, this should contain the total refund per item.  - If the quantity of the refunded items remained the same, this should be the newly refunded amount.
+     * The total amount that is refunded. (e.g. refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer.
      */
     amount?: Schema$MonetaryAmount;
     /**
@@ -3881,6 +3881,10 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
+     * Link to the canonical version of the landing page.
+     */
+    canonicalLink?: string | null;
+    /**
      * Required. The item&#39;s channel (online or local).  Acceptable values are:   - &quot;`local`&quot;  - &quot;`online`&quot;
      */
     channel?: string | null;
@@ -3989,7 +3993,7 @@ export namespace content_v2_1 {
      */
     includedDestinations?: string[] | null;
     /**
-     * Number and amount of installments to pay for an item. Brazil only.
+     * Number and amount of installments to pay for an item.
      */
     installment?: Schema$Installment;
     /**
@@ -4057,6 +4061,14 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
+     * Technical specification or additional product details
+     */
+    productDetails?: Schema$ProductProductDetail[];
+    /**
+     * List of important bullet points describing the product
+     */
+    productHighlights?: string[] | null;
+    /**
      * Categories of the item (formatted as in products data specification).
      */
     productTypes?: string[] | null;
@@ -4117,6 +4129,10 @@ export namespace content_v2_1 {
      */
     source?: string | null;
     /**
+     * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
+     */
+    subscriptionCost?: Schema$ProductSubscriptionCost;
+    /**
      * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
@@ -4158,6 +4174,20 @@ export namespace content_v2_1 {
      * Tax value.
      */
     taxAmount?: Schema$Price;
+  }
+  export interface Schema$ProductProductDetail {
+    /**
+     * The name of the product detail.
+     */
+    attributeName?: string | null;
+    /**
+     * The value of the product detail.
+     */
+    attributeValue?: string | null;
+    /**
+     * The section header used to group a set of product details.
+     */
+    sectionName?: string | null;
   }
   export interface Schema$ProductsCustomBatchRequest {
     /**
@@ -4333,7 +4363,7 @@ export namespace content_v2_1 {
      */
     destination?: string | null;
     /**
-     * Destination approval status in targetCountry of the offer.
+     * Destination approval status in `targetCountry` of the offer.
      */
     status?: string | null;
   }
@@ -4444,6 +4474,20 @@ export namespace content_v2_1 {
      * How this issue affects serving of the offer.
      */
     servability?: string | null;
+  }
+  export interface Schema$ProductSubscriptionCost {
+    /**
+     * The amount the buyer has to pay per subscription period.
+     */
+    amount?: Schema$Price;
+    /**
+     * The type of subscription period.
+     */
+    period?: string | null;
+    /**
+     * The number of subscription periods the buyer has to pay.
+     */
+    periodLength?: string | null;
   }
   export interface Schema$ProductTax {
     /**
@@ -5320,6 +5364,10 @@ export namespace content_v2_1 {
   }
   export interface Schema$TestOrder {
     /**
+     * Overrides the predefined delivery details if provided.
+     */
+    deliveryDetails?: Schema$TestOrderDeliveryDetails;
+    /**
      * Whether the orderinvoices service should support this order.
      */
     enableOrderinvoices?: boolean | null;
@@ -5335,6 +5383,10 @@ export namespace content_v2_1 {
      * Restricted. Do not use.
      */
     notificationMode?: string | null;
+    /**
+     * Overrides the predefined pickup details if provided.
+     */
+    pickupDetails?: Schema$TestOrderPickupDetails;
     /**
      * Required. The billing address.  Acceptable values are:   - &quot;`dwight`&quot;  - &quot;`jim`&quot;  - &quot;`pam`&quot;
      */
@@ -5363,6 +5415,50 @@ export namespace content_v2_1 {
      * Required. The requested shipping option.  Acceptable values are:   - &quot;`economy`&quot;  - &quot;`expedited`&quot;  - &quot;`oneDay`&quot;  - &quot;`sameDay`&quot;  - &quot;`standard`&quot;  - &quot;`twoDay`&quot;
      */
     shippingOption?: string | null;
+  }
+  export interface Schema$TestOrderAddress {
+    /**
+     * CLDR country code (e.g. &quot;US&quot;).
+     */
+    country?: string | null;
+    /**
+     * Strings representing the lines of the printed label for mailing the order, for example: John Smith 1600 Amphitheatre Parkway Mountain View, CA, 94043 United States
+     */
+    fullAddress?: string[] | null;
+    /**
+     * Whether the address is a post office box.
+     */
+    isPostOfficeBox?: boolean | null;
+    /**
+     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     */
+    locality?: string | null;
+    /**
+     * Postal Code or ZIP (e.g. &quot;94043&quot;).
+     */
+    postalCode?: string | null;
+    /**
+     * Name of the recipient.
+     */
+    recipientName?: string | null;
+    /**
+     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     */
+    region?: string | null;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string[] | null;
+  }
+  export interface Schema$TestOrderDeliveryDetails {
+    /**
+     * The delivery address
+     */
+    address?: Schema$TestOrderAddress;
+    /**
+     * The phone number of the person receiving the delivery.
+     */
+    phoneNumber?: string | null;
   }
   export interface Schema$TestOrderLineItem {
     /**
@@ -5435,6 +5531,34 @@ export namespace content_v2_1 {
      * Variant attributes for the item. Optional.
      */
     variantAttributes?: Schema$OrderLineItemProductVariantAttribute[];
+  }
+  export interface Schema$TestOrderPickupDetails {
+    /**
+     * Required. Code of the location defined by provider or merchant.
+     */
+    locationCode?: string | null;
+    /**
+     * Required. Pickup location address.
+     */
+    pickupLocationAddress?: Schema$TestOrderAddress;
+    /**
+     * Pickup location type.  Acceptable values are:   - &quot;`locker`&quot;  - &quot;`store`&quot;  - &quot;`curbside`&quot;
+     */
+    pickupLocationType?: string | null;
+    /**
+     * Required. all pickup persons set by users.
+     */
+    pickupPersons?: Schema$TestOrderPickupDetailsPickupPerson[];
+  }
+  export interface Schema$TestOrderPickupDetailsPickupPerson {
+    /**
+     * Required. Full name of the pickup person.
+     */
+    name?: string | null;
+    /**
+     * Required. The phone number of the person picking up the items.
+     */
+    phoneNumber?: string | null;
   }
   export interface Schema$TransitTable {
     /**
@@ -6837,7 +6961,7 @@ export namespace content_v2_1 {
 
     /**
      * content.accounts.update
-     * @desc Updates a Merchant Center account.
+     * @desc Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8034,7 +8158,7 @@ export namespace content_v2_1 {
 
     /**
      * content.accounttax.update
-     * @desc Updates the tax settings of the account.
+     * @desc Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9085,7 +9209,7 @@ export namespace content_v2_1 {
 
     /**
      * content.datafeeds.update
-     * @desc Updates a datafeed configuration of your Merchant Center account.
+     * @desc Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11181,7 +11305,7 @@ export namespace content_v2_1 {
 
     /**
      * content.liasettings.update
-     * @desc Updates the LIA settings of the account.
+     * @desc Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18301,6 +18425,7 @@ export namespace content_v2_1 {
      *   //   "availability": "my_availability",
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
      *   //   "channel": "my_channel",
      *   //   "color": "my_color",
      *   //   "condition": "my_condition",
@@ -18345,6 +18470,8 @@ export namespace content_v2_1 {
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
      *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHighlights": [],
      *   //   "productTypes": [],
      *   //   "promotionIds": [],
      *   //   "salePrice": {},
@@ -18360,6 +18487,7 @@ export namespace content_v2_1 {
      *   //   "sizeType": "my_sizeType",
      *   //   "sizes": [],
      *   //   "source": "my_source",
+     *   //   "subscriptionCost": {},
      *   //   "targetCountry": "my_targetCountry",
      *   //   "taxCategory": "my_taxCategory",
      *   //   "taxes": [],
@@ -18507,6 +18635,7 @@ export namespace content_v2_1 {
      *       //   "availability": "my_availability",
      *       //   "availabilityDate": "my_availabilityDate",
      *       //   "brand": "my_brand",
+     *       //   "canonicalLink": "my_canonicalLink",
      *       //   "channel": "my_channel",
      *       //   "color": "my_color",
      *       //   "condition": "my_condition",
@@ -18551,6 +18680,8 @@ export namespace content_v2_1 {
      *       //   "offerId": "my_offerId",
      *       //   "pattern": "my_pattern",
      *       //   "price": {},
+     *       //   "productDetails": [],
+     *       //   "productHighlights": [],
      *       //   "productTypes": [],
      *       //   "promotionIds": [],
      *       //   "salePrice": {},
@@ -18566,6 +18697,7 @@ export namespace content_v2_1 {
      *       //   "sizeType": "my_sizeType",
      *       //   "sizes": [],
      *       //   "source": "my_source",
+     *       //   "subscriptionCost": {},
      *       //   "targetCountry": "my_targetCountry",
      *       //   "taxCategory": "my_taxCategory",
      *       //   "taxes": [],
@@ -18589,6 +18721,7 @@ export namespace content_v2_1 {
      *   //   "availability": "my_availability",
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
      *   //   "channel": "my_channel",
      *   //   "color": "my_color",
      *   //   "condition": "my_condition",
@@ -18633,6 +18766,8 @@ export namespace content_v2_1 {
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
      *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHighlights": [],
      *   //   "productTypes": [],
      *   //   "promotionIds": [],
      *   //   "salePrice": {},
@@ -18648,6 +18783,7 @@ export namespace content_v2_1 {
      *   //   "sizeType": "my_sizeType",
      *   //   "sizes": [],
      *   //   "source": "my_source",
+     *   //   "subscriptionCost": {},
      *   //   "targetCountry": "my_targetCountry",
      *   //   "taxCategory": "my_taxCategory",
      *   //   "taxes": [],
@@ -23058,7 +23194,7 @@ export namespace content_v2_1 {
 
     /**
      * content.shippingsettings.update
-     * @desc Updates the shipping settings of the account.
+     * @desc Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

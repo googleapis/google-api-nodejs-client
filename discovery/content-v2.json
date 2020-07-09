@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/QidsRUtueh34L5qHte4rvUj6Z5Y\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/seWVFIM6TQ0ZbicGCsWtCvIDWuo\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -320,7 +320,7 @@
           ]
         },
         "update": {
-          "description": "Updates a Merchant Center account.",
+          "description": "Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.accounts.update",
           "parameterOrder": [
@@ -551,7 +551,7 @@
           ]
         },
         "update": {
-          "description": "Updates the tax settings of the account.",
+          "description": "Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.accounttax.update",
           "parameterOrder": [
@@ -787,7 +787,7 @@
           ]
         },
         "update": {
-          "description": "Updates a datafeed configuration of your Merchant Center account.",
+          "description": "Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.datafeeds.update",
           "parameterOrder": [
@@ -1320,7 +1320,7 @@
           ]
         },
         "update": {
-          "description": "Updates the LIA settings of the account.",
+          "description": "Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.liasettings.update",
           "parameterOrder": [
@@ -3120,7 +3120,7 @@
           ]
         },
         "update": {
-          "description": "Updates the shipping settings of the account.",
+          "description": "Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.",
           "httpMethod": "PUT",
           "id": "content.shippingsettings.update",
           "parameterOrder": [
@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20200529",
+  "revision": "20200617",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8845,6 +8845,10 @@
           "description": "Brand of the item.",
           "type": "string"
         },
+        "canonicalLink": {
+          "description": "Link to the canonical version of the landing page.",
+          "type": "string"
+        },
         "channel": {
           "annotations": {
             "required": [
@@ -8978,7 +8982,7 @@
         },
         "installment": {
           "$ref": "Installment",
-          "description": "Number and amount of installments to pay for an item. Brazil only."
+          "description": "Number and amount of installments to pay for an item."
         },
         "isBundle": {
           "description": "Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.",
