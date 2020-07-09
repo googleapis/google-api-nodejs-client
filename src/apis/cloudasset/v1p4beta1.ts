@@ -226,11 +226,11 @@ export namespace cloudasset_v1p4beta1 {
     uri?: string | null;
   }
   /**
-   * A role or permission that appears in an access control list.
+   * An IAM role or permission under analysis.
    */
   export interface Schema$GoogleCloudAssetV1p4beta1Access {
     /**
-     * The analysis state of this access node.
+     * The analysis state of this access.
      */
     analysisState?: Schema$GoogleCloudAssetV1p4beta1AnalysisState;
     /**
@@ -260,7 +260,7 @@ export namespace cloudasset_v1p4beta1 {
     resources?: Schema$GoogleCloudAssetV1p4beta1Resource[];
   }
   /**
-   * Represents analysis state of each node in the result graph or non-critical errors in the response.
+   * Represents the detailed state of an entity under analysis, such as a resource, an identity or an access.
    */
   export interface Schema$GoogleCloudAssetV1p4beta1AnalysisState {
     /**
@@ -268,7 +268,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     cause?: string | null;
     /**
-     * The Google standard error code that best describes the state. For example: - OK means the node has been successfully explored; - PERMISSION_DENIED means an access denied error is encountered; - DEADLINE_EXCEEDED means the node hasn&#39;t been explored in time;
+     * The Google standard error code that best describes the state. For example: - OK means the analysis on this entity has been successfully finished; - PERMISSION_DENIED means an access denied error is encountered; - DEADLINE_EXCEEDED means the analysis on this entity hasn&#39;t been started in time;
      */
     code?: string | null;
   }
@@ -286,11 +286,11 @@ export namespace cloudasset_v1p4beta1 {
     targetNode?: string | null;
   }
   /**
-   * An identity that appears in an access control list.
+   * An identity under analysis.
    */
   export interface Schema$GoogleCloudAssetV1p4beta1Identity {
     /**
-     * The analysis state of this identity node.
+     * The analysis state of this identity.
      */
     analysisState?: Schema$GoogleCloudAssetV1p4beta1AnalysisState;
     /**
@@ -309,11 +309,11 @@ export namespace cloudasset_v1p4beta1 {
     identities?: Schema$GoogleCloudAssetV1p4beta1Identity[];
   }
   /**
-   * A GCP resource that appears in an access control list.
+   * A Google Cloud resource under analysis.
    */
   export interface Schema$GoogleCloudAssetV1p4beta1Resource {
     /**
-     * The analysis state of this resource node.
+     * The analysis state of this resource.
      */
     analysisState?: Schema$GoogleCloudAssetV1p4beta1AnalysisState;
     /**
@@ -352,11 +352,11 @@ export namespace cloudasset_v1p4beta1 {
    */
   export interface Schema$IamPolicyAnalysisQuery {
     /**
-     * Optional. Specifies roles or permissions for analysis. Leaving it empty means ANY.
+     * Optional. Specifies roles or permissions for analysis. This is optional.
      */
     accessSelector?: Schema$AccessSelector;
     /**
-     * Optional. Specifies an identity for analysis. Leaving it empty means ANY.
+     * Optional. Specifies an identity for analysis. Either ResourceSelector or IdentitySelector must be specified.
      */
     identitySelector?: Schema$IdentitySelector;
     /**
@@ -364,7 +364,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     parent?: string | null;
     /**
-     * Optional. Specifies a resource for analysis. Leaving it empty means ANY.
+     * Optional. Specifies a resource for analysis. Either ResourceSelector or IdentitySelector must be specified.
      */
     resourceSelector?: Schema$ResourceSelector;
   }
@@ -381,7 +381,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     attachedResourceFullName?: string | null;
     /**
-     * Represents whether all nodes in the transitive closure of the iam_binding node have been explored.
+     * Represents whether all analyses on the iam_binding have successfully finished.
      */
     fullyExplored?: boolean | null;
     /**
@@ -457,7 +457,7 @@ export namespace cloudasset_v1p4beta1 {
     outputResourceEdges?: boolean | null;
   }
   /**
-   * Specifies the resource to analyze for access policies, which may be set directly on the resource, or on ancestors such as organizations, folders or projects. Either ResourceSelector or IdentitySelector must be specified in a request.
+   * Specifies the resource to analyze for access policies, which may be set directly on the resource, or on ancestors such as organizations, folders or projects.
    */
   export interface Schema$ResourceSelector {
     /**
@@ -491,7 +491,7 @@ export namespace cloudasset_v1p4beta1 {
 
     /**
      * cloudasset.analyzeIamPolicy
-     * @desc Analyzes IAM policies based on the specified request. Returns a list of IamPolicyAnalysisResult matching the request.
+     * @desc Analyzes IAM policies to answer which identities have what accesses on which resources.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -744,7 +744,7 @@ export namespace cloudasset_v1p4beta1 {
 
     /**
      * cloudasset.exportIamPolicyAnalysis
-     * @desc Exports IAM policy analysis based on the specified request. This API implements the google.longrunning.Operation API allowing you to keep track of the export. The metadata contains the request to help callers to map responses to requests.
+     * @desc Exports the answers of which identities have what accesses on which resources to a Google Cloud Storage destination. The output format is the JSON format that represents a AnalyzeIamPolicyResponse in the JSON format. This method implements the google.longrunning.Operation, which allows you to keep track of the export. We recommend intervals of at least 2 seconds with exponential retry to poll the export operation result. The metadata contains the request to help callers to map responses to requests.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
