@@ -550,7 +550,7 @@
       }
     }
   },
-  "revision": "20200516",
+  "revision": "20200707",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -923,7 +923,7 @@
           "type": "array"
         },
         "ownerType": {
-          "description": "Whether the device is owned by the company or an individual",
+          "description": "Output only. Whether the device is owned by the company or an individual",
           "enum": [
             "DEVICE_OWNERSHIP_UNSPECIFIED",
             "COMPANY",
@@ -1348,6 +1348,24 @@
             "$ref": "MembershipRole"
           },
           "type": "array"
+        },
+        "type": {
+          "description": "Output only. The type of the membership.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "SERVICE_ACCOUNT",
+            "GROUP",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Default. Should not be used.",
+            "Represents user type.",
+            "Represents service account type.",
+            "Represents group type.",
+            "Represents other type."
+          ],
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The time when the `Membership` was last updated.",
