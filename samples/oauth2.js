@@ -21,7 +21,8 @@ const opn = require('open');
 const destroyer = require('server-destroy');
 
 const {google} = require('googleapis');
-const plus = google.plus('v1');
+
+const analyticsadmin = require('@google-analytics/admin');
 
 /**
  * To use OAuth2 authentication, we need access to a a CLIENT_ID, CLIENT_SECRET, AND REDIRECT_URI.  To get these credentials for your application, visit https://console.cloud.google.com/apis/credentials.
@@ -81,12 +82,17 @@ async function authenticate(scopes) {
 }
 
 async function runSample() {
-  // retrieve user profile
-  const res = await plus.people.get({userId: 'me'});
-  console.log(res.data);
+  const client = new analyticsadmin.AnalyticsAdminServiceClient();
+
+  const [accounts] = await client.listAccounts();
+  console.log('Accounts:');
+  accounts.forEach(account => {
+        console.log(account);
+      }
+  );
 }
 
-const scopes = ['https://www.googleapis.com/auth/plus.me'];
+const scopes = ['https://www.googleapis.com/auth/analytics.readonly'];
 authenticate(scopes)
   .then(client => runSample(client))
   .catch(console.error);
