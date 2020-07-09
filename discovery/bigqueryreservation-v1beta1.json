@@ -736,7 +736,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200702",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -752,12 +752,14 @@
           "enum": [
             "JOB_TYPE_UNSPECIFIED",
             "PIPELINE",
-            "QUERY"
+            "QUERY",
+            "ML_EXTERNAL"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Pipeline (load/export) jobs from the project will use the reservation.",
-            "Query jobs from the project will use the reservation."
+            "Query jobs from the project will use the reservation.",
+            "BigQuery ML jobs that use services external to BigQuery for model\ntraining. These jobs will not utilize idle slots from other reservations."
           ],
           "type": "string"
         },
@@ -809,6 +811,11 @@
       "properties": {
         "commitmentEndTime": {
           "description": "Output only. The end of the current commitment period. It is applicable only for ACTIVE\ncapacity commitments.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "commitmentStartTime": {
+          "description": "Output only. The start of the current commitment period. It is applicable only for\nACTIVE capacity commitments.",
           "format": "google-datetime",
           "type": "string"
         },

@@ -176,6 +176,10 @@ export namespace bigqueryreservation_v1 {
      */
     commitmentEndTime?: string | null;
     /**
+     * Output only. The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.
+     */
+    commitmentStartTime?: string | null;
+    /**
      * Output only. For FAILED commitment plan, provides the reason of failure.
      */
     failureStatus?: Schema$Status;
@@ -324,6 +328,19 @@ export namespace bigqueryreservation_v1 {
      * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism.  Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false.  If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
     slotCapacity?: string | null;
+  }
+  /**
+   * The response for ReservationService.SearchAllAssignments.
+   */
+  export interface Schema$SearchAllAssignmentsResponse {
+    /**
+     * List of assignments visible to the user.
+     */
+    assignments?: Schema$Assignment[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response for ReservationService.SearchAssignments.
@@ -848,6 +865,170 @@ export namespace bigqueryreservation_v1 {
     }
 
     /**
+     * bigqueryreservation.projects.locations.searchAllAssignments
+     * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:  1. Assignments created on the project will be returned if they exist. 2. Otherwise assignments created on the closest ancestor will be    returned. 3. Assignments for different JobTypes will all be returned.  The same logic applies if the request is about a folder.  If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors).  Comparing to ListAssignments, there are some behavior differences:  1. permission on the assignee will be verified in this API. 2. Hierarchy lookup (project->folder->organization) happens in this API. 3. Parent here is `projects/x/locations/x`, instead of    `projects/x/locations/xreservations/x`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.searchAllAssignments(
+     *     {
+     *       // The maximum number of items to return per page.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name with location (project name could be the wildcard '-'),
+     *       // e.g.:
+     *       //   `projects/-/locations/US`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Please specify resource name as assignee in the query.
+     *       //
+     *       // Examples:
+     *       //
+     *       // * `assignee=projects/myproject`
+     *       // * `assignee=folders/123`
+     *       // * `assignee=organizations/456`
+     *       query: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigqueryreservation.projects.locations.searchAllAssignments
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of items to return per page.
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.parent Required. The resource name with location (project name could be the wildcard '-'), e.g.:   `projects/-/locations/US`.
+     * @param {string=} params.query Please specify resource name as assignee in the query.  Examples:  * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchAllAssignments(
+      params: Params$Resource$Projects$Locations$Searchallassignments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAllAssignments(
+      params?: Params$Resource$Projects$Locations$Searchallassignments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAllAssignmentsResponse>;
+    searchAllAssignments(
+      params: Params$Resource$Projects$Locations$Searchallassignments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchAllAssignments(
+      params: Params$Resource$Projects$Locations$Searchallassignments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAllAssignmentsResponse>,
+      callback: BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+    ): void;
+    searchAllAssignments(
+      params: Params$Resource$Projects$Locations$Searchallassignments,
+      callback: BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+    ): void;
+    searchAllAssignments(
+      callback: BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+    ): void;
+    searchAllAssignments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Searchallassignments
+        | BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllAssignmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllAssignmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Searchallassignments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Searchallassignments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:searchAllAssignments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchAllAssignmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchAllAssignmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * bigqueryreservation.projects.locations.searchAssignments
      * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:  1. Assignments created on the project will be returned if they exist. 2. Otherwise assignments created on the closest ancestor will be    returned. 3. Assignments for different JobTypes will all be returned.  The same logic applies if the request is about a folder.  If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors).  Comparing to ListAssignments, there are some behavior differences:  1. permission on the assignee will be verified in this API. 2. Hierarchy lookup (project->folder->organization) happens in this API. 3. Parent here is `projects/x/locations/x`, instead of    `projects/x/locations/xreservations/x`.  **Note** "-" cannot be used for projects nor locations.
      * @example
@@ -1167,6 +1348,25 @@ export namespace bigqueryreservation_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Searchallassignments
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name with location (project name could be the wildcard '-'), e.g.:   `projects/-/locations/US`.
+     */
+    parent?: string;
+    /**
+     * Please specify resource name as assignee in the query.  Examples:  * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
+     */
+    query?: string;
+  }
   export interface Params$Resource$Projects$Locations$Searchassignments
     extends StandardParameters {
     /**
@@ -1252,6 +1452,7 @@ export namespace bigqueryreservation_v1 {
      *         // request body parameters
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
@@ -1267,6 +1468,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -1551,6 +1753,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -1857,6 +2060,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -2007,6 +2211,7 @@ export namespace bigqueryreservation_v1 {
      *         // request body parameters
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
@@ -2022,6 +2227,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
