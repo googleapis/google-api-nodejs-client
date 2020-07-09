@@ -140,7 +140,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     customerId?: string | null;
     /**
-     * Required. The device identifier of the device to claim.
+     * Required. Required. The device identifier of the device to claim.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
@@ -179,7 +179,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$Company {
     /**
-     * Optional. Input only. Email address of customer&#39;s users in the admin role. Each email address must be associated with a Google Account.
+     * Optional. Email address of customer&#39;s users in the admin role. Each email address must be associated with a Google Account.
      */
     adminEmails?: string[] | null;
     /**
@@ -195,7 +195,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string | null;
     /**
-     * Input only. Email address of customer&#39;s users in the owner role. At least one `owner_email` is required. Each email address must be associated with a Google Account. Owners share the same access as admins but can also add, delete, and edit your organization&#39;s portal users.
+     * Required. Input only. Email address of customer&#39;s users in the owner role. At least one `owner_email` is required. Each email address must be associated with a Google Account. Owners share the same access as admins but can also add, delete, and edit your organization&#39;s portal users.
      */
     ownerEmails?: string[] | null;
     /**
@@ -349,11 +349,11 @@ export namespace androiddeviceprovisioning_v1 {
      */
     deviceId?: string | null;
     /**
-     * The hardware IDs that identify a manufactured device. To learn more, read [Identifiers](/zero-touch/guides/identifiers).
+     * The hardware IDs that identify a manufactured device. To learn more, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers).
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
-     * The metadata attached to the device. Structured as key-value pairs. To learn more, read [Device metadata](/zero-touch/guides/metadata).
+     * The metadata attached to the device. Structured as key-value pairs. To learn more, read [Device metadata](https://developers.google.com/zero-touch/guides/metadata).
      */
     deviceMetadata?: Schema$DeviceMetadata;
     /**
@@ -387,7 +387,7 @@ export namespace androiddeviceprovisioning_v1 {
     vacationModeStartTime?: string | null;
   }
   /**
-   * Encapsulates hardware and product IDs to identify a manufactured device. To understand requirements on identifier sets, read [Identifiers](/zero-touch/guides/identifiers).
+   * Encapsulates hardware and product IDs to identify a manufactured device. To understand requirements on identifier sets, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers).
    */
   export interface Schema$DeviceIdentifier {
     /**
@@ -412,7 +412,7 @@ export namespace androiddeviceprovisioning_v1 {
     serialNumber?: string | null;
   }
   /**
-   * Metadata entries that can be attached to a `Device`. To learn more, read [Device metadata](/zero-touch/guides/metadata).
+   * Metadata entries that can be attached to a `Device`. To learn more, read [Device metadata](https://developers.google.com/zero-touch/guides/metadata).
    */
   export interface Schema$DeviceMetadata {
     /**
@@ -421,7 +421,7 @@ export namespace androiddeviceprovisioning_v1 {
     entries?: {[key: string]: string} | null;
   }
   /**
-   * A `DeviceReference` is an API abstraction that lets you supply a _device_ argument to a method using one of the following identifier types:  * A numeric API resource ID. * Real-world hardware IDs, such as IMEI number, belonging to the manufactured   device.  Methods that operate on devices take a `DeviceReference` as a parameter type because it&#39;s more flexible for the caller. To learn more about device identifiers, read [Identifiers](/zero-touch/guides/identifiers).
+   * A `DeviceReference` is an API abstraction that lets you supply a _device_ argument to a method using one of the following identifier types:  * A numeric API resource ID. * Real-world hardware IDs, such as IMEI number, belonging to the manufactured   device.  Methods that operate on devices take a `DeviceReference` as a parameter type because it&#39;s more flexible for the caller. To learn more about device identifiers, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers).
    */
   export interface Schema$DeviceReference {
     /**
@@ -489,7 +489,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$FindDevicesByDeviceIdentifierRequest {
     /**
-     * Required. The device identifier to search for.
+     * Required. Required. The device identifier to search for.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
@@ -662,7 +662,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     customerId?: string | null;
     /**
-     * Required. Device identifier of the device.
+     * Required. Required. Device identifier of the device.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
@@ -679,11 +679,11 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$PartnerUnclaim {
     /**
-     * Device ID of the device.
+     * Required. Device ID of the device.
      */
     deviceId?: string | null;
     /**
-     * Device identifier of the device.
+     * Required. Device identifier of the device.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
@@ -691,11 +691,11 @@ export namespace androiddeviceprovisioning_v1 {
      */
     sectionType?: string | null;
     /**
-     * The duration of the vacation unlock starting from when the request is processed. (1 day is treated as 24 hours)
+     * Optional. The duration of the vacation unlock starting from when the request is processed. (1 day is treated as 24 hours)
      */
     vacationModeDays?: number | null;
     /**
-     * The expiration time of the vacation unlock.
+     * Optional. The expiration time of the vacation unlock.
      */
     vacationModeExpireTime?: string | null;
   }
@@ -742,11 +742,11 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$UnclaimDeviceRequest {
     /**
-     * The device ID returned by `ClaimDevice`.
+     * Required. The device ID returned by `ClaimDevice`.
      */
     deviceId?: string | null;
     /**
-     * The device identifier you used when you claimed this device.
+     * Required. The device identifier you used when you claimed this device.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
@@ -794,11 +794,11 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$UpdateMetadataArguments {
     /**
-     * Device ID of the device.
+     * Required. Device ID of the device.
      */
     deviceId?: string | null;
     /**
-     * Device identifier.
+     * Required. Device identifier.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
