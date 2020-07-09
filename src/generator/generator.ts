@@ -22,7 +22,6 @@ import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
 import * as minimist from 'yargs-parser';
-import * as rimraf from 'rimraf';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
@@ -176,9 +175,13 @@ export class Generator {
       const files: string[] = await readDir(path.join(apisPath, file));
       for (const version of files) {
         const parts = path.parse(version);
-        if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
+        if (
+          !version.endsWith('.d.ts') &&
+          parts.ext === '.ts' &&
+          version !== 'index.ts'
+        ) {
           apis[file][version] = parts.name;
-          const desc = metadata.filter(x => x.name === file)[0].description;
+          const desc = metadata.find(x => x.name === file)?.description;
           // generate the index.ts
           const apiIdxPath = path.join(apisPath, file, 'index.ts');
           const apiIndexData = {name: file, api: apis[file]};
@@ -282,9 +285,6 @@ async function main() {
       console.log('Generated API for ' + url);
     });
   } else {
-    console.log('Removing old APIs...');
-    const apiPath = path.join(__dirname, '../../../src/apis');
-    await util.promisify(rimraf)(apiPath);
     console.log('Generating APIs...');
     await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
     console.log('Finished generating APIs!');
