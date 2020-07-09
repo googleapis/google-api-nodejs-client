@@ -57,6 +57,10 @@ export namespace cloudresourcemanager_v1 {
      */
     '$.xgafv'?: string;
     /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
      * Data format for response.
      */
     alt?: string;
@@ -72,6 +76,10 @@ export namespace cloudresourcemanager_v1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -206,7 +214,7 @@ export namespace cloudresourcemanager_v1 {
     etag?: string | null;
   }
   /**
-   * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy adminstrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about Policies.  `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
+   * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy administrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about [Policies](/resource-manager/reference/rest/v1/Policy).  `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
    */
   export interface Schema$Constraint {
     /**
@@ -214,7 +222,7 @@ export namespace cloudresourcemanager_v1 {
      */
     booleanConstraint?: Schema$BooleanConstraint;
     /**
-     * The evaluation behavior of this constraint in the absense of &#39;Policy&#39;.
+     * The evaluation behavior of this constraint in the absence of &#39;Policy&#39;.
      */
     constraintDefault?: string | null;
     /**
@@ -298,7 +306,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$GetAncestryRequest {}
   /**
-   * Response from the GetAncestry method.
+   * Response from the projects.getAncestry method.
    */
   export interface Schema$GetAncestryResponse {
     /**
@@ -372,7 +380,7 @@ export namespace cloudresourcemanager_v1 {
     restrictions?: string[] | null;
   }
   /**
-   * The request sent to the [ListAvailableOrgPolicyConstraints] google.cloud.OrgPolicy.v1.ListAvailableOrgPolicyConstraints] method.
+   * The request sent to the `ListAvailableOrgPolicyConstraints` method on the project, folder, or organization.
    */
   export interface Schema$ListAvailableOrgPolicyConstraintsRequest {
     /**
@@ -385,7 +393,7 @@ export namespace cloudresourcemanager_v1 {
     pageToken?: string | null;
   }
   /**
-   * The response returned from the ListAvailableOrgPolicyConstraints method. Returns all `Constraints` that could be set at this level of the hierarchy (contrast with the response from `ListPolicies`, which returns all policies which are set).
+   * The response returned from the `ListAvailableOrgPolicyConstraints` method. Returns all `Constraints` that could be set at this level of the hierarchy (contrast with the response from `ListPolicies`, which returns all policies which are set).
    */
   export interface Schema$ListAvailableOrgPolicyConstraintsResponse {
     /**
@@ -437,7 +445,7 @@ export namespace cloudresourcemanager_v1 {
     pageToken?: string | null;
   }
   /**
-   * The response returned from the ListOrgPolicies method. It will be empty if no `Policies` are set on the resource.
+   * The response returned from the `ListOrgPolicies` method. It will be empty if no `Policies` are set on the resource.
    */
   export interface Schema$ListOrgPoliciesResponse {
     /**
@@ -466,7 +474,7 @@ export namespace cloudresourcemanager_v1 {
      */
     deniedValues?: string[] | null;
     /**
-     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {value: &quot;E3&quot; value: &quot;E4&quot; inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
+     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supersedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {value: &quot;E3&quot; value: &quot;E4&quot; inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
     inheritFromParent?: boolean | null;
     /**
@@ -555,7 +563,7 @@ export namespace cloudresourcemanager_v1 {
      */
     booleanPolicy?: Schema$BooleanPolicy;
     /**
-     * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  Immutable after creation.
+     * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  A [list of available constraints](/resource-manager/docs/organization-policy/org-policy-constraints) is available.  Immutable after creation.
      */
     constraint?: string | null;
     /**
@@ -609,7 +617,7 @@ export namespace cloudresourcemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
+     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}.  Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -5126,7 +5134,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.getIamPolicy
-     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.  Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project.  For additional information about resource structure and identification, see [Resource Names](/apis/design/resource_names).
+     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.  Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5453,15 +5461,16 @@ export namespace cloudresourcemanager_v1 {
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
      *     // An expression for filtering the results of the request.  Filter rules are
-     *     // case insensitive. The fields eligible for filtering are:
+     *     // case insensitive. Some eligible fields for filtering are:
      *     //
      *     // + `name`
      *     // + `id`
      *     // + `labels.<key>` (where *key* is the name of a label)
      *     // + `parent.type`
      *     // + `parent.id`
+     *     // + `lifecycleState`
      *     //
-     *     // Some examples of using labels as filters:
+     *     // Some examples of filter strings:
      *     //
      *     // | Filter           | Description                                         |
      *     // |------------------|-----------------------------------------------------|
@@ -5471,8 +5480,12 @@ export namespace cloudresourcemanager_v1 {
      *     // | NAME:howl        | Equivalent to above.                                |
      *     // | labels.color:*   | The project has the label `color`.                  |
      *     // | labels.color:red | The project's label `color` has the value `red`.    |
-     *     // | labels.color:red&nbsp;labels.size:big |The project's label `color` has
-     *     //   the value `red` and its label `size` has the value `big`.              |
+     *     // | labels.color:red&nbsp;labels.size:big | The project's label `color`    |
+     *     // :                                       : has the value `red` and its    :
+     *     // :                                       : label`size` has the value      :
+     *     // :                                       : `big`.                         :
+     *     // | lifecycleState:DELETE_REQUESTED       | Only show projects that are    |
+     *     // :                                       : pending deletion.              :
      *     //
      *     // If no filter is specified, the call will return projects for which the user
      *     // has the `resourcemanager.projects.get` permission.
@@ -5516,7 +5529,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
+     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. Some eligible fields for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState`  Some examples of filter strings:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big | The project's label `color`    | :                                       : has the value `red` and its    : :                                       : label`size` has the value      : :                                       : `big`.                         : | lifecycleState:DELETE_REQUESTED       | Only show projects that are    | :                                       : pending deletion.              :  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
      * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5923,7 +5936,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project.  CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings.  NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project.  CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings.  NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6216,7 +6229,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project.  There are no permissions required for making this API call.
+     * @desc Returns permissions that a caller has on the specified Project.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).  There are no permissions required for making this API call.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6739,7 +6752,7 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
     /**
-     * An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
+     * An expression for filtering the results of the request.  Filter rules are case insensitive. Some eligible fields for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState`  Some examples of filter strings:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big | The project's label `color`    | :                                       : has the value `red` and its    : :                                       : label`size` has the value      : :                                       : `big`.                         : | lifecycleState:DELETE_REQUESTED       | Only show projects that are    | :                                       : pending deletion.              :  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      */
     filter?: string;
     /**
