@@ -323,7 +323,7 @@ export namespace dlp_v2 {
      */
     min?: Schema$GooglePrivacyDlpV2Value;
     /**
-     * Replacement value for this bucket. If not provided the default behavior will be to hyphenate the min-max range.
+     * Required. Replacement value for this bucket.
      */
     replacementValue?: Schema$GooglePrivacyDlpV2Value;
   }
