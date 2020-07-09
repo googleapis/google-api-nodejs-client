@@ -1343,7 +1343,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Maximum number of items to return. Zero means no maximum.\n\nThe server may return fewer than the specified number of results.",
+                  "description": "Maximum number of items to return. The default is 30 if unspecified or `0`.\n\nThe server may return fewer than the specified number of results.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1479,7 +1479,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Maximum number of items to return. Zero means no maximum.\n\nThe server may return fewer than the specified number of results.",
+                  "description": "Maximum number of items to return. The default is 30 if unspecified or `0`.\n\nThe server may return fewer than the specified number of results.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1781,7 +1781,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Maximum number of items to return. Zero means no maximum.\n\nThe server may return fewer than the specified number of results.",
+              "description": "Maximum number of items to return. The default is 500 if unspecified or\n`0`.\n\nThe server may return fewer than the specified number of results.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -2153,7 +2153,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200706",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
