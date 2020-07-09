@@ -14,7 +14,6 @@
   "description": "Manages permission levels and related settings of a group.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/google-apps/groups-settings/get_started",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/V2V-RMnoYCfSSC985XKqZdYWInI\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -153,7 +152,7 @@
       }
     }
   },
-  "revision": "20190725",
+  "revision": "20200702",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Groups": {
@@ -251,7 +250,7 @@
           "type": "string"
         },
         "replyTo": {
-          "description": "Specifies who should the default reply go to. Possible values are:  \n- REPLY_TO_CUSTOM: For replies to messages, use the group's custom email address.\nWhen the group's ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property holds the custom email address used when replying to a message. If the group's ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property must have a value. Otherwise an error is returned.\n \n- REPLY_TO_SENDER: The reply sent to author of message. \n- REPLY_TO_LIST: This reply message is sent to the group. \n- REPLY_TO_OWNER: The reply is sent to the owner(s) of the group. This does not include the group's managers. \n- REPLY_TO_IGNORE: Group users individually decide where the message reply is sent. \n- REPLY_TO_MANAGERS: This reply message is sent to the group's managers, which includes all managers and the group owner.",
+          "description": "Specifies who receives the default reply. Possible values are:  \n- REPLY_TO_CUSTOM: For replies to messages, use the group's custom email address.\nWhen the group's ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property holds the custom email address used when replying to a message. If the group's ReplyTo property is set to REPLY_TO_CUSTOM, the customReplyTo property must have a value. Otherwise an error is returned.\n \n- REPLY_TO_SENDER: The reply sent to author of message. \n- REPLY_TO_LIST: This reply message is sent to the group. \n- REPLY_TO_OWNER: The reply is sent to the owner(s) of the group. This does not include the group's managers. \n- REPLY_TO_IGNORE: Group users individually decide where the message reply is sent. \n- REPLY_TO_MANAGERS: This reply message is sent to the group's managers, which includes all managers and the group owner.",
           "type": "string"
         },
         "sendMessageDenyNotification": {
