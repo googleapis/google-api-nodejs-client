@@ -203,23 +203,23 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
-     * Specifies the node management options for NAP created node-pools.
+     * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
     /**
-     * Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
      */
     minCpuPlatform?: string | null;
     /**
-     * Scopes that are used by NAP when creating node pools.
+     * The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account.  The following scopes are recommended, but not required, and by default are not included:  * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)).  If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
     oauthScopes?: string[] | null;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs.
+     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
      */
     serviceAccount?: string | null;
     /**
-     * Specifies the upgrade settings for NAP created node pools
+     * Upgrade settings control disruption and speed of the upgrade.
      */
     upgradeSettings?: Schema$UpgradeSettings;
   }
@@ -237,7 +237,7 @@ export namespace container_v1beta1 {
     description?: string | null;
   }
   /**
-   * AvailableVersion is an additional Kubernetes versions offered to users who subscribed to the release channel.
+   * Deprecated.
    */
   export interface Schema$AvailableVersion {
     /**
@@ -400,7 +400,7 @@ export namespace container_v1beta1 {
      */
     initialClusterVersion?: string | null;
     /**
-     * The number of nodes to create in this cluster. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.  This field is deprecated, use node_pool.initial_node_count instead.
+     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.  This field is deprecated, use node_pool.initial_node_count instead.
      */
     initialNodeCount?: number | null;
     /**
@@ -735,7 +735,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CreateClusterRequest {
     /**
-     * Required. A [cluster resource](https://cloud.google.com/container-engine/reference/rest/v1beta1/projects.zones.clusters)
+     * Required. A [cluster resource](https://cloud.google.com/container-engine/reference/rest/v1beta1/projects.locations.clusters)
      */
     cluster?: Schema$Cluster;
     /**
@@ -1070,6 +1070,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * Parameters that can be configured on Linux nodes.
+   */
+  export interface Schema$LinuxNodeConfig {
+    /**
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes.  The following parameters are supported.  net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
+     */
+    sysctls?: {[key: string]: string} | null;
+  }
+  /**
    * ListClustersResponse is the result of ListClustersRequest.
    */
   export interface Schema$ListClustersResponse {
@@ -1318,9 +1327,17 @@ export namespace container_v1beta1 {
      */
     imageType?: string | null;
     /**
+     * Node kubelet configs.
+     */
+    kubeletConfig?: Schema$NodeKubeletConfig;
+    /**
      * The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it&#39;s best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Parameters that can be configured on Linux nodes.
+     */
+    linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
      * The number of local SSD disks to be attached to the node.  The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
      */
@@ -1375,6 +1392,23 @@ export namespace container_v1beta1 {
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
   }
   /**
+   * Node kubelet configs.
+   */
+  export interface Schema$NodeKubeletConfig {
+    /**
+     * Enable CPU CFS quota enforcement for containers that specify CPU limits.  If this option is enabled, kubelet uses CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all.  Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits.  The default value is &#39;true&#39; if unspecified.
+     */
+    cpuCfsQuota?: boolean | null;
+    /**
+     * Set the CPU CFS quota period value &#39;cpu.cfs_period_us&#39;.  The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as &quot;300ms&quot;. Valid time units are &quot;ns&quot;, &quot;us&quot; (or &quot;µs&quot;), &quot;ms&quot;, &quot;s&quot;, &quot;m&quot;, &quot;h&quot;. The value must be a positive duration.
+     */
+    cpuCfsQuotaPeriod?: string | null;
+    /**
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/  The following values are allowed.   - &quot;none&quot;: the default, which represents the existing scheduling behavior.   - &quot;static&quot;: allows pods with certain resource characteristics to be               granted increased CPU affinity and exclusivity on the node.
+     */
+    cpuManagerPolicy?: string | null;
+  }
+  /**
    * NodeManagement defines the set of node management services turned on for the node pool.
    */
   export interface Schema$NodeManagement {
@@ -1408,7 +1442,7 @@ export namespace container_v1beta1 {
      */
     config?: Schema$NodeConfig;
     /**
-     * The initial node count for the pool. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota.
+     * The initial node count for the pool. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota.
      */
     initialNodeCount?: number | null;
     /**
@@ -1641,7 +1675,7 @@ export namespace container_v1beta1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk and frequency of updates.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled. Updates to version related fields (e.g. current_master_version) return an error.
+   * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled.
    */
   export interface Schema$ReleaseChannel {
     /**
@@ -1654,7 +1688,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$ReleaseChannelConfig {
     /**
-     * List of available versions for the release channel.
+     * Deprecated. This field has been deprecated and replaced with the valid_versions field.
      */
     availableVersions?: Schema$AvailableVersion[];
     /**
@@ -1665,6 +1699,10 @@ export namespace container_v1beta1 {
      * The default version for newly created clusters on the channel.
      */
     defaultVersion?: string | null;
+    /**
+     * List of valid versions for the channel.
+     */
+    validVersions?: string[] | null;
   }
   /**
    * [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) is the configuration of desired reservation which instances could take capacity from.
@@ -1776,11 +1814,11 @@ export namespace container_v1beta1 {
      */
     validImageTypes?: string[] | null;
     /**
-     * List of valid master versions.
+     * List of valid master versions, in descending order.
      */
     validMasterVersions?: string[] | null;
     /**
-     * List of valid node upgrade target versions.
+     * List of valid node upgrade target versions, in descending order.
      */
     validNodeVersions?: string[] | null;
   }
@@ -2256,6 +2294,14 @@ export namespace container_v1beta1 {
      * Required. The desired image type for the node pool.
      */
     imageType?: string | null;
+    /**
+     * Node kubelet configs.
+     */
+    kubeletConfig?: Schema$NodeKubeletConfig;
+    /**
+     * Parameters that can be configured on Linux nodes.
+     */
+    linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
      * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool&#39;s nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
@@ -7343,6 +7389,8 @@ export namespace container_v1beta1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
@@ -13061,6 +13109,8 @@ export namespace container_v1beta1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
