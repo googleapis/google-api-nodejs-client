@@ -556,6 +556,13 @@ export namespace admin_directory_v1 {
      */
     lastEnrollmentTime?: string | null;
     /**
+     * Contains last used network (Read-only)
+     */
+    lastKnownNetwork?: Array<{
+      ipAddress?: string;
+      wanIpAddress?: string;
+    }> | null;
+    /**
      * Date and time the device was last synchronized with the policy settings in the G Suite administrator control panel (Read-only)
      */
     lastSync?: string | null;
@@ -3119,6 +3126,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
      *   //   "macAddress": "my_macAddress",
      *   //   "manufactureDate": "my_manufactureDate",
@@ -3277,7 +3285,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     *     // Search string in the format provided by this Help Center article.
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -3308,7 +3316,7 @@ export namespace admin_directory_v1 {
      * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     * @param {string=} params.query Search string in the format provided by this Help Center article.
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3584,6 +3592,7 @@ export namespace admin_directory_v1 {
      *       //   "firmwareVersion": "my_firmwareVersion",
      *       //   "kind": "my_kind",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *       //   "lastKnownNetwork": [],
      *       //   "lastSync": "my_lastSync",
      *       //   "macAddress": "my_macAddress",
      *       //   "manufactureDate": "my_manufactureDate",
@@ -3626,6 +3635,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
      *   //   "macAddress": "my_macAddress",
      *   //   "manufactureDate": "my_manufactureDate",
@@ -3798,6 +3808,7 @@ export namespace admin_directory_v1 {
      *       //   "firmwareVersion": "my_firmwareVersion",
      *       //   "kind": "my_kind",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *       //   "lastKnownNetwork": [],
      *       //   "lastSync": "my_lastSync",
      *       //   "macAddress": "my_macAddress",
      *       //   "manufactureDate": "my_manufactureDate",
@@ -3840,6 +3851,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
+     *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
      *   //   "macAddress": "my_macAddress",
      *   //   "manufactureDate": "my_manufactureDate",
@@ -4016,7 +4028,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     * Search string in the format provided by this Help Center article.
      */
     query?: string;
     /**
@@ -8812,7 +8824,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.mobiledevices.list({
      *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
-     *     // Maximum number of results to return. Max allowed value is 100.
+     *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Column to use for sorting results
      *     orderBy: 'placeholder-value',
@@ -8820,7 +8832,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
+     *     // Search string in the format provided by this Help Center article.
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -8846,11 +8858,11 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 100.
+     * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
+     * @param {string=} params.query Search string in the format provided by this Help Center article.
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8985,7 +8997,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * Maximum number of results to return. Max allowed value is 100.
+     * Maximum number of results to return.
      */
     maxResults?: number;
     /**
@@ -9001,7 +9013,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
+     * Search string in the format provided by this Help Center article.
      */
     query?: string;
     /**
