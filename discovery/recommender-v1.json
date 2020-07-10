@@ -109,6 +109,108 @@
       "resources": {
         "locations": {
           "resources": {
+            "insightTypes": {
+              "resources": {
+                "insights": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the requested insight. Requires the recommender.*.get IAM permission\nfor the specified insight type.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights/{insightsId}",
+                      "httpMethod": "GET",
+                      "id": "recommender.projects.locations.insightTypes.insights.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the insight.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+/insights/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1Insight"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists insights for a Cloud project. Requires the recommender.*.list IAM\npermission for the specified insight type.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights",
+                      "httpMethod": "GET",
+                      "id": "recommender.projects.locations.insightTypes.insights.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported\nfilter fields: state\nEg: `state:\"DISMISSED\" or state:\"ACTIVE\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of results to return from this request.  Non-positive\nvalues are ignored. If not specified, the server will determine the number\nof results to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. If present, retrieves the next batch of results from the preceding call to\nthis method. `page_token` must be the value of `next_page_token` from the\nprevious response. The values of other method parameters must be identical\nto those in the previous call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The container resource on which to execute the request.\nAcceptable formats:\n\n1.\n\"projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]\",\n\nLOCATION here refers to GCP Locations:\nhttps://cloud.google.com/about/locations/",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/insights",
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1ListInsightsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "markAccepted": {
+                      "description": "Marks the Insight State as Accepted. Users can use this method to\nindicate to the Recommender API that they have applied some action based\non the insight. This stops the insight content from being updated.\n\nMarkInsightAccepted can be applied to insights in ACTIVE state. Requires\nthe recommender.*.update IAM permission for the specified insight.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights/{insightsId}:markAccepted",
+                      "httpMethod": "POST",
+                      "id": "recommender.projects.locations.insightTypes.insights.markAccepted",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the insight.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+/insights/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:markAccepted",
+                      "request": {
+                        "$ref": "GoogleCloudRecommenderV1MarkInsightAcceptedRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1Insight"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "recommenders": {
               "resources": {
                 "recommendations": {
@@ -272,7 +374,7 @@
       }
     }
   },
-  "revision": "20200530",
+  "revision": "20200704",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -320,6 +422,142 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommenderV1Insight": {
+      "description": "An insight along with the information used to derive the insight. The insight\nmay have associated recomendations as well.",
+      "id": "GoogleCloudRecommenderV1Insight",
+      "properties": {
+        "associatedRecommendations": {
+          "description": "Recommendations derived from this insight.",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1InsightRecommendationReference"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "Category being targeted by the insight.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "COST",
+            "SECURITY",
+            "PERFORMANCE",
+            "MANAGEABILITY"
+          ],
+          "enumDescriptions": [
+            "Unspecified category.",
+            "The insight is related to cost.",
+            "The insight is related to security.",
+            "The insight is related to performance.",
+            "This insight is related to manageability."
+          ],
+          "type": "string"
+        },
+        "content": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "A struct of custom fields to explain the insight.\nExample: \"grantedPermissionsCount\": \"1000\"",
+          "type": "object"
+        },
+        "description": {
+          "description": "Free-form human readable summary in English. The maximum length is 500\ncharacters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Fingerprint of the Insight. Provides optimistic locking when updating\nstates.",
+          "type": "string"
+        },
+        "insightSubtype": {
+          "description": "Insight subtype. Insight content schema will be stable for a given subtype.",
+          "type": "string"
+        },
+        "lastRefreshTime": {
+          "description": "Timestamp of the latest data used to generate the insight.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the insight.",
+          "type": "string"
+        },
+        "observationPeriod": {
+          "description": "Observation period that led to the insight. The source data used to\ngenerate the insight ends at last_refresh_time and begins at\n(last_refresh_time - observation_period).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "stateInfo": {
+          "$ref": "GoogleCloudRecommenderV1InsightStateInfo",
+          "description": "Information state and metadata."
+        },
+        "targetResources": {
+          "description": "Fully qualified resource names that this insight is targeting.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1InsightRecommendationReference": {
+      "description": "Reference to an associated recommendation.",
+      "id": "GoogleCloudRecommenderV1InsightRecommendationReference",
+      "properties": {
+        "recommendation": {
+          "description": "Recommendation resource name, e.g.\nprojects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1InsightStateInfo": {
+      "description": "Information related to insight state.",
+      "id": "GoogleCloudRecommenderV1InsightStateInfo",
+      "properties": {
+        "state": {
+          "description": "Insight state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ACCEPTED",
+            "DISMISSED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Insight is active. Content for ACTIVE insights can be updated by Google.\nACTIVE insights can be marked DISMISSED OR ACCEPTED.",
+            "Some action has been taken based on this insight. Insights become\naccepted when a recommendation derived from the insight has been marked\nCLAIMED, SUCCEEDED, or FAILED. ACTIVE insights can also be marked\nACCEPTED explicitly. Content for ACCEPTED insights is immutable. ACCEPTED\ninsights can only be marked ACCEPTED (which may update state metadata).",
+            "Insight is dismissed. Content for DISMISSED insights can be updated by\nGoogle. DISMISSED insights can be marked as ACTIVE."
+          ],
+          "type": "string"
+        },
+        "stateMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of metadata for the state, provided by user or automations systems.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1ListInsightsResponse": {
+      "description": "Response to the `ListInsights` method.",
+      "id": "GoogleCloudRecommenderV1ListInsightsResponse",
+      "properties": {
+        "insights": {
+          "description": "The set of insights for the `parent` resource.",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1Insight"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be used to request the next page of results. This field is\nempty if there are no additional results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecommenderV1ListRecommendationsResponse": {
       "description": "Response to the `ListRecommendations` method.",
       "id": "GoogleCloudRecommenderV1ListRecommendationsResponse",
@@ -334,6 +572,24 @@
             "$ref": "GoogleCloudRecommenderV1Recommendation"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1MarkInsightAcceptedRequest": {
+      "description": "Request for the `MarkInsightAccepted` method.",
+      "id": "GoogleCloudRecommenderV1MarkInsightAcceptedRequest",
+      "properties": {
+        "etag": {
+          "description": "Required. Fingerprint of the Insight. Provides optimistic locking.",
+          "type": "string"
+        },
+        "stateMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. State properties user wish to include with this state.  Full replace of the\ncurrent state_metadata.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -470,6 +726,13 @@
           },
           "type": "array"
         },
+        "associatedInsights": {
+          "description": "Insights that led to this recommendation.",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1RecommendationInsightReference"
+          },
+          "type": "array"
+        },
         "content": {
           "$ref": "GoogleCloudRecommenderV1RecommendationContent",
           "description": "Content of the recommendation describing recommended changes to resources."
@@ -516,6 +779,17 @@
             "$ref": "GoogleCloudRecommenderV1OperationGroup"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1RecommendationInsightReference": {
+      "description": "Reference to an associated insight.",
+      "id": "GoogleCloudRecommenderV1RecommendationInsightReference",
+      "properties": {
+        "insight": {
+          "description": "Insight resource name, e.g.\nprojects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]",
+          "type": "string"
         }
       },
       "type": "object"
