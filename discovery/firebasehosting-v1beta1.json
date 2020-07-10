@@ -676,7 +676,7 @@
                   ]
                 },
                 "populateFiles": {
-                  "description": "Adds content files to a version.",
+                  "description": "Adds content files to a version.\nEach file must be under 2 GB.",
                   "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions/{versionsId}:populateFiles",
                   "httpMethod": "POST",
                   "id": "firebasehosting.projects.sites.versions.populateFiles",
@@ -1293,7 +1293,7 @@
               ]
             },
             "populateFiles": {
-              "description": "Adds content files to a version.",
+              "description": "Adds content files to a version.\nEach file must be under 2 GB.",
               "flatPath": "v1beta1/sites/{sitesId}/versions/{versionsId}:populateFiles",
               "httpMethod": "POST",
               "id": "firebasehosting.sites.versions.populateFiles",
@@ -1381,7 +1381,7 @@
       }
     }
   },
-  "revision": "20200601",
+  "revision": "20200709",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
