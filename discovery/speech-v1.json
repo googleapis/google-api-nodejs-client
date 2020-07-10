@@ -290,7 +290,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200701",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ListOperationsResponse": {
@@ -331,7 +331,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Output only. The URI of the audio file being transcribed. Empty if the audio was sent\nas byte content. ",
+          "description": "Output only. The URI of the audio file being transcribed. Empty if the audio was sent\nas byte content.",
           "type": "string"
         }
       },
