@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20200522",
+  "revision": "20200704",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
@@ -381,7 +381,7 @@
           "type": "array"
         },
         "subaccounts": {
-          "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying\nthat usage from only this set of subaccounts should be included in the\nbudget. If a subaccount is set to the name of the master account, usage\nfrom the master account will be included. If omitted, the report will\ninclude usage from the master account and all subaccounts, if they exist.",
+          "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying\nthat usage from only this set of subaccounts should be included in the\nbudget. If a subaccount is set to the name of the resller account, usage\nfrom the reseller account will be included. If omitted, the report will\ninclude usage from the reseller account and all subaccounts, if they exist.",
           "items": {
             "type": "string"
           },
