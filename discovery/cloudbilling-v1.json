@@ -495,7 +495,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200623",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {
@@ -537,7 +537,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -555,7 +555,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
@@ -670,6 +670,36 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeoTaxonomy": {
+      "description": "Encapsulates the geographic taxonomy data for a sku.",
+      "id": "GeoTaxonomy",
+      "properties": {
+        "regions": {
+          "description": "The list of regions associated with a sku. Empty for Global skus, which are\nassociated with all GCP regions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "The type of Geo Taxonomy: GLOBAL, REGIONAL, or MULTI_REGIONAL.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GLOBAL",
+            "REGIONAL",
+            "MULTI_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "The type is not specified.",
+            "The sku is global in nature, e.g. a license sku. Global skus are\navailable in all regions, and so have an empty region list.",
+            "The sku is available in a specific region, e.g. \"us-west2\".",
+            "The sku is associated with multiple regions, e.g. \"us-west2\" and\n\"us-east1\"."
+          ],
           "type": "string"
         }
       },
@@ -941,6 +971,10 @@
         "description": {
           "description": "A human readable description of the SKU, has a maximum length of 256\ncharacters.",
           "type": "string"
+        },
+        "geoTaxonomy": {
+          "$ref": "GeoTaxonomy",
+          "description": "The geographic taxonomy for this sku."
         },
         "name": {
           "description": "The resource name for the SKU.\nExample: \"services/DA34-426B-A397/skus/AA95-CD31-42FE\"",
