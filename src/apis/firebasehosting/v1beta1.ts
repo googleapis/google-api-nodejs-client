@@ -3238,7 +3238,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.projects.sites.versions.populateFiles
-     * @desc Adds content files to a version.
+     * @desc Adds content files to a version. Each file must be under 2 GB.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6124,7 +6124,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.sites.versions.populateFiles
-     * @desc Adds content files to a version.
+     * @desc Adds content files to a version. Each file must be under 2 GB.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
