@@ -481,7 +481,7 @@ export namespace firebase_v1beta1 {
      */
     locationId?: string | null;
     /**
-     * The resource name of the GCP `Project` to which Firebase resources can be added, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt;
+     * The resource name of the GCP `Project` to which Firebase resources can be added, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;PROJECT_NUMBER&lt;/var&gt;&lt;/code&gt;
      */
     project?: string | null;
   }
@@ -510,7 +510,7 @@ export namespace firebase_v1beta1 {
      */
     certType?: string | null;
     /**
-     * The fully qualified resource name of the `sha-key`, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;/sha/&lt;var&gt;shaId&lt;/var&gt;&lt;/code&gt;
+     * The fully qualified resource name of the `sha-key`, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;PROJECT_NUMBER&lt;/var&gt;/androidApps/&lt;var&gt;APP_ID&lt;/var&gt;/sha/&lt;var&gt;SHA_ID&lt;/var&gt;&lt;/code&gt;
      */
     name?: string | null;
     /**
@@ -569,7 +569,7 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$StreamMapping {
     /**
-     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/webApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
+     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;PROJECT_NUMBER&lt;/var&gt;/androidApps/&lt;var&gt;APP_ID&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;PROJECT_NUMBER&lt;/var&gt;/iosApps/&lt;var&gt;APP_ID&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;PROJECT_NUMBER&lt;/var&gt;/webApps/&lt;var&gt;APP_ID&lt;/var&gt;&lt;/code&gt;
      */
     app?: string | null;
     /**
@@ -1008,7 +1008,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.addFirebase
-     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `projectId`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>To call `AddFirebase`, a project member or service account must have the following permissions (the IAM roles of Editor and Owner contain these permissions): `firebase.projects.update`, `resourcemanager.projects.get`, `serviceusage.services.enable`, and `serviceusage.services.get`.
+     * @desc Adds Firebase resources to the specified existing [Google Cloud Platform (GCP) `Project`] (https://cloud.google.com/resource-manager/reference/rest/v1/projects). <br> <br>Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` uses underlying GCP identifiers (most importantly, the `PROJECT_NUMBER`) as its own for easy interop with GCP APIs. <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. <br> <br>This method does not modify any billing account information on the underlying GCP `Project`. <br> <br>To call `AddFirebase`, a project member or service account must have the following permissions (the IAM roles of Editor and Owner contain these permissions): `firebase.projects.update`, `resourcemanager.projects.get`, `serviceusage.services.enable`, and `serviceusage.services.get`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1038,10 +1038,10 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.addFirebase({
      *     // The resource name of the GCP `Project` to which Firebase resources will be
      *     // added, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     // After calling `AddFirebase`, the
-     *     // [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)
-     *     // of the GCP `Project` is also the `projectId` of the FirebaseProject.
+     *     // [`project_id`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)
+     *     // of the GCP `Project` is also the `project_id` of the FirebaseProject.
      *     project: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1075,7 +1075,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
+     * @param {string} params.project The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code> After calling `AddFirebase`, the [`project_id`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `project_id` of the FirebaseProject.
      * @param {().AddFirebaseRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1192,7 +1192,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.addGoogleAnalytics({
      *     // The parent `FirebaseProject` to link to an existing Google Analytics
      *     // account, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1225,7 +1225,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().AddGoogleAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1343,7 +1343,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.get({
      *     // The fully qualified resource name of the Project, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     name: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1367,7 +1367,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1480,7 +1480,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.getAdminSdkConfig({
      *     // The fully qualified resource name of the Project, in the format:
-     *     // <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/adminSdkConfig</code>
      *     name: 'projects/my-project/adminSdkConfig',
      *   });
      *   console.log(res.data);
@@ -1503,7 +1503,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
+     * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/adminSdkConfig</code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1619,7 +1619,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.getAnalyticsDetails({
      *     // The fully qualified resource name, in the format:
-     *     // <br><code>projects/<var>projectId</var>/analyticsDetails</code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/analyticsDetails</code>
      *     name: 'projects/my-project/analyticsDetails',
      *   });
      *   console.log(res.data);
@@ -1640,7 +1640,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
+     * @param {string} params.name The fully qualified resource name, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/analyticsDetails</code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2062,7 +2062,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.removeAnalytics({
      *     // The parent `FirebaseProject` to unlink from its Google Analytics account,
      *     // in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2088,7 +2088,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().RemoveAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2217,7 +2217,7 @@ export namespace firebase_v1beta1 {
      *     // where in the set of Apps to resume listing.
      *     pageToken: 'placeholder-value',
      *     // The parent Project for which to list Apps, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2240,7 +2240,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      * @param {string=} params.pageToken Token returned from a previous call to `SearchFirebaseApps` indicating where in the set of Apps to resume listing.
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2335,7 +2335,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Addfirebase
     extends StandardParameters {
     /**
-     * The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
+     * The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code> After calling `AddFirebase`, the [`project_id`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `project_id` of the FirebaseProject.
      */
     project?: string;
 
@@ -2347,7 +2347,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Addgoogleanalytics
     extends StandardParameters {
     /**
-     * The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -2358,21 +2358,21 @@ export namespace firebase_v1beta1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
+     * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getadminsdkconfig
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var>/adminSdkConfig</code>
+     * The fully qualified resource name of the Project, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/adminSdkConfig</code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getanalyticsdetails
     extends StandardParameters {
     /**
-     * The fully qualified resource name, in the format: <br><code>projects/<var>projectId</var>/analyticsDetails</code>
+     * The fully qualified resource name, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/analyticsDetails</code>
      */
     name?: string;
   }
@@ -2404,7 +2404,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Removeanalytics
     extends StandardParameters {
     /**
-     * The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -2424,7 +2424,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
   }
@@ -2468,7 +2468,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.create({
      *     // The parent Project in which to create an App, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2504,7 +2504,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2622,10 +2622,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.get({
      *     // The fully qualified resource name of the App, in the format:
-     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     // <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/androidApps/my-androidApp',
      *   });
      *   console.log(res.data);
@@ -2649,7 +2649,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2763,10 +2763,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.getConfig({
      *     // The resource name of the App configuration to download, in the format:
-     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/config</code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     // <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/androidApps/my-androidApp/config',
      *   });
      *   console.log(res.data);
@@ -2787,7 +2787,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2910,7 +2910,7 @@ export namespace firebase_v1beta1 {
      *     // in the set of Apps to resume listing.
      *     pageToken: 'placeholder-value',
      *     // The parent Project for which to list Apps, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2933,7 +2933,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      * @param {string=} params.pageToken Token returned from a previous call to `ListAndroidApps` indicating where in the set of Apps to resume listing.
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3056,7 +3056,7 @@ export namespace firebase_v1beta1 {
      *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
      *     name: 'projects/my-project/androidApps/my-androidApp',
      *     // Specifies which fields to update.
-     *     // <br>Note that the fields `name`, `appId`, `projectId`, and `packageName`
+     *     // <br>Note that the fields `name`, `app_id`, `project_id`, and `package_name`
      *     // are all immutable.
      *     updateMask: 'placeholder-value',
      *
@@ -3094,7 +3094,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
-     * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `packageName` are all immutable.
+     * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `app_id`, `project_id`, and `package_name` are all immutable.
      * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3180,7 +3180,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Create
     extends StandardParameters {
     /**
-     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -3192,14 +3192,14 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Get
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * The fully qualified resource name of the App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$Getconfig
     extends StandardParameters {
     /**
-     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
@@ -3214,7 +3214,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
   }
@@ -3225,7 +3225,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `packageName` are all immutable.
+     * Specifies which fields to update. <br>Note that the fields `name`, `app_id`, `project_id`, and `package_name` are all immutable.
      */
     updateMask?: string;
 
@@ -3272,10 +3272,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.create({
      *     // The parent App to which a SHA certificate will be added, in the format:
-     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     // <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      *     parent: 'projects/my-project/androidApps/my-androidApp',
      *
      *     // Request body metadata
@@ -3307,7 +3307,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * @param {string} params.parent The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      * @param {().ShaCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3423,7 +3423,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.delete({
      *     // The fully qualified resource name of the `sha-key`, in the format:
-     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/sha/<var>SHA_ID</var></code>
      *     // <br>You can obtain the full name from the response of
      *     // [`ListShaCertificates`](../projects.androidApps.sha/list) or the original
      *     // [`CreateShaCertificate`](../projects.androidApps.sha/create).
@@ -3444,7 +3444,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
+     * @param {string} params.name The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/sha/<var>SHA_ID</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3558,10 +3558,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.androidApps.sha.list({
      *     // The parent App for which to list SHA certificates, in the format:
-     *     // <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/androidApps/<var>appId</var></code>
+     *     // <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      *     parent: 'projects/my-project/androidApps/my-androidApp',
      *   });
      *   console.log(res.data);
@@ -3581,7 +3581,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * @param {string} params.parent The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3676,7 +3676,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Sha$Create
     extends StandardParameters {
     /**
-     * The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      */
     parent?: string;
 
@@ -3688,14 +3688,14 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Androidapps$Sha$Delete
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var>/sha/<var>shaId</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
+     * The fully qualified resource name of the `sha-key`, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var>/sha/<var>SHA_ID</var></code> <br>You can obtain the full name from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Androidapps$Sha$List
     extends StandardParameters {
     /**
-     * The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
+     * The parent App for which to list SHA certificates, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/androidApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>APP_ID</var></code>
      */
     parent?: string;
   }
@@ -3708,7 +3708,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.availableLocations.list
-     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>One of these locations can be selected as the Project's [_default_ GCP resource location](https://firebase.google.com/docs/projects/locations), which is the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. However, if the default GCP resource location has already been set for the Project, then this setting cannot be changed. <br> <br>This call checks for any possible [location restrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations) for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `projectId` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
+     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>One of these locations can be selected as the Project's [_default_ GCP resource location](https://firebase.google.com/docs/projects/locations), which is the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. However, if the default GCP resource location has already been set for the Project, then this setting cannot be changed. <br> <br>This call checks for any possible [location restrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations) for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `PROJECT_NUMBER` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3750,7 +3750,7 @@ export namespace firebase_v1beta1 {
      *     // where in the list of locations to resume listing.
      *     pageToken: 'placeholder-value',
      *     // The Project for which to list GCP resource locations, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     // <br>If no project is specified (that is, `projects/-`), the returned list
      *     // does not take into account org-specific or project-specific location
      *     // restrictions.
@@ -3776,7 +3776,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of locations to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. <br> <br>This value cannot be negative.
      * @param {string=} params.pageToken Token returned from a previous call to `ListAvailableLocations` indicating where in the list of locations to resume listing.
-     * @param {string} params.parent The Project for which to list GCP resource locations, in the format: <br><code>projects/<var>projectId</var></code> <br>If no project is specified (that is, `projects/-`), the returned list does not take into account org-specific or project-specific location restrictions.
+     * @param {string} params.parent The Project for which to list GCP resource locations, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code> <br>If no project is specified (that is, `projects/-`), the returned list does not take into account org-specific or project-specific location restrictions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3881,7 +3881,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The Project for which to list GCP resource locations, in the format: <br><code>projects/<var>projectId</var></code> <br>If no project is specified (that is, `projects/-`), the returned list does not take into account org-specific or project-specific location restrictions.
+     * The Project for which to list GCP resource locations, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code> <br>If no project is specified (that is, `projects/-`), the returned list does not take into account org-specific or project-specific location restrictions.
      */
     parent?: string;
   }
@@ -3924,7 +3924,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.defaultLocation.finalize({
      *     // The resource name of the Project for which the default GCP resource
      *     // location will be set, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3956,7 +3956,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().FinalizeDefaultLocationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4044,7 +4044,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Defaultlocation$Finalize
     extends StandardParameters {
     /**
-     * The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
+     * The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -4091,7 +4091,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.create({
      *     // The parent Project in which to create an App, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -4128,7 +4128,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4246,10 +4246,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.get({
      *     // The fully qualified resource name of the App, in the format:
-     *     // <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var></code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/iosApps/<var>appId</var></code>
+     *     // <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/iosApps/my-iosApp',
      *   });
      *   console.log(res.data);
@@ -4274,7 +4274,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the App, in the format: <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
+     * @param {string} params.name The fully qualified resource name of the App, in the format: <code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4388,10 +4388,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.iosApps.getConfig({
      *     // The resource name of the App configuration to download, in the format:
-     *     // <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var>/config</code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/iosApps/<var>appId</var></code>
+     *     // <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/iosApps/my-iosApp/config',
      *   });
      *   console.log(res.data);
@@ -4412,7 +4412,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
+     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4535,7 +4535,7 @@ export namespace firebase_v1beta1 {
      *     // the set of Apps to resume listing.
      *     pageToken: 'placeholder-value',
      *     // The parent Project for which to list Apps, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4558,7 +4558,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      * @param {string=} params.pageToken Token returned from a previous call to `ListIosApps` indicating where in the set of Apps to resume listing.
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4805,7 +4805,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Create
     extends StandardParameters {
     /**
-     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -4817,14 +4817,14 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Iosapps$Get
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the App, in the format: <code>projects/<var>projectId</var>/iosApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
+     * The fully qualified resource name of the App, in the format: <code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Iosapps$Getconfig
     extends StandardParameters {
     /**
-     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>appId</var></code>
+     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/iosApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/iosApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
@@ -4839,7 +4839,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
   }
@@ -4897,7 +4897,7 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.webApps.create({
      *     // The parent Project in which to create an App, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -4933,7 +4933,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5051,10 +5051,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.webApps.get({
      *     // The fully qualified resource name of the App, in the format:
-     *     // <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var></code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/webApps/<var>appId</var></code>
+     *     // <br><code>projects/-/webApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/webApps/my-webApp',
      *   });
      *   console.log(res.data);
@@ -5078,7 +5078,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
+     * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5192,10 +5192,10 @@ export namespace firebase_v1beta1 {
      *   // Do the magic
      *   const res = await firebase.projects.webApps.getConfig({
      *     // The resource name of the App configuration to download, in the format:
-     *     // <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code>
-     *     // <br>As an <var>appId</var> is a unique identifier, the Unique Resource
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var>/config</code>
+     *     // <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource
      *     // from Sub-Collection access pattern may be used here, in the format:
-     *     // <br><code>projects/-/webApps/<var>appId</var></code>
+     *     // <br><code>projects/-/webApps/<var>APP_ID</var></code>
      *     name: 'projects/my-project/webApps/my-webApp/config',
      *   });
      *   console.log(res.data);
@@ -5223,7 +5223,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
+     * @param {string} params.name The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>APP_ID</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5346,7 +5346,7 @@ export namespace firebase_v1beta1 {
      *     // the set of Apps to resume listing.
      *     pageToken: 'placeholder-value',
      *     // The parent Project for which to list Apps, in the format:
-     *     // <br><code>projects/<var>projectId</var></code>
+     *     // <br><code>projects/<var>PROJECT_NUMBER</var></code>
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -5369,7 +5369,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of Apps to return in the response. <br> <br>The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      * @param {string=} params.pageToken Token returned from a previous call to `ListWebApps` indicating where in the set of Apps to resume listing.
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5614,7 +5614,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Create
     extends StandardParameters {
     /**
-     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
 
@@ -5626,14 +5626,14 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Webapps$Get
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
+     * The fully qualified resource name of the App, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var></code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Webapps$Getconfig
     extends StandardParameters {
     /**
-     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var>/config</code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>appId</var></code>
+     * The resource name of the App configuration to download, in the format: <br><code>projects/<var>PROJECT_NUMBER</var>/webApps/<var>APP_ID</var>/config</code> <br>As an <var>APP_ID</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/webApps/<var>APP_ID</var></code>
      */
     name?: string;
   }
@@ -5648,7 +5648,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>PROJECT_NUMBER</var></code>
      */
     parent?: string;
   }
