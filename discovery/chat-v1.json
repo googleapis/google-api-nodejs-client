@@ -317,7 +317,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200701",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -963,7 +963,7 @@
       "id": "Space",
       "properties": {
         "displayName": {
-          "description": "Output only. The display name (only if the space is a room).",
+          "description": "Output only. The display name (only if the space is a room).\nPlease note that this field might not be populated in direct messages\nbetween humans.",
           "type": "string"
         },
         "name": {

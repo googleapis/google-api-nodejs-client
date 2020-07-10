@@ -506,7 +506,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * Output only. The display name (only if the space is a room).
+     * Output only. The display name (only if the space is a room). Please note that this field might not be populated in direct messages between humans.
      */
     displayName?: string | null;
     /**
