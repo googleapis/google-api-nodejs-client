@@ -942,6 +942,10 @@ export namespace monitoring_v3 {
      * The notification channels defined for the specified project.
      */
     notificationChannels?: Schema$NotificationChannel[];
+    /**
+     * The total number of notification channels in all pages. This number is only an estimate, and may change in subsequent pages. https://aip.dev/158
+     */
+    totalSize?: number | null;
   }
   /**
    * The ListServiceLevelObjectives response.
@@ -1072,7 +1076,7 @@ export namespace monitoring_v3 {
     trigger?: Schema$Trigger;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.The following are specific rules for service defined Monitoring metric descriptors: type, metric_kind, value_type, description, display_name,  launch_stage fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION. Maximum of default 500 metric descriptors per service is allowed. Maximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -1084,7 +1088,7 @@ export namespace monitoring_v3 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type.The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are  allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1108,11 +1112,11 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded.All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must follow: Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are  allowed. The maximum number of characters allowed for the relative_metric_name is  100.All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -1201,7 +1205,7 @@ export namespace monitoring_v3 {
     type?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API.
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different services can support different monitored resource types.The following are specific rules to service defined monitored resources for Monitoring and Logging: The type, display_name, description, labels and launch_stage  fields are all required. The first label of the monitored resource descriptor must be  resource_container. There are legacy monitored resource descritptors  start with project_id. It must include a location label. Maximum of default 5 service defined monitored resource descriptors  is allowed per service. Maximum of default 10 labels per monitored resource is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -1213,7 +1217,7 @@ export namespace monitoring_v3 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are  allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, an individual Google Cloud SQL database is identified by values for the labels database_id and location.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1225,7 +1229,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+     * Required. The monitored resource type. For example, the type cloudsql_database represents databases in Google Cloud SQL.All service defined monitored resource types must be prefixed with the service name, in the format of {service name}/{relative resource name}. The relative resource name must follow: Only upper and lower-case letters and digits are allowed. It must start with upper case character and is recommended to use Upper  Camel Case style. The maximum number of characters allowed for the relative_resource_name  is 100.Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
@@ -1317,7 +1321,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The type of notification channel, such as &quot;email&quot;, &quot;sms&quot;, etc. Notification channel types are globally unique.
+     * The type of notification channel, such as &quot;email&quot; and &quot;sms&quot;. To view the full list of channels, see Channel descriptors (https://cloud.google.com/monitoring/alerts/using-channels-api#ncd). Notification channel types are globally unique.
      */
     type?: string | null;
   }
@@ -1612,7 +1616,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$TimeSeries {
     /**
-     * Output only. The associated monitored resource metadata. When reading a timeseries, this field will include metadata labels that are explicitly named in the reduction. When creating a timeseries, this field is ignored.
+     * Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored.
      */
     metadata?: Schema$MonitoredResourceMetadata;
     /**
@@ -1650,7 +1654,7 @@ export namespace monitoring_v3 {
     pointData?: Schema$PointData[];
   }
   /**
-   * A descriptor for the labels and points in a timeseries.
+   * A descriptor for the labels and points in a time series.
    */
   export interface Schema$TimeSeriesDescriptor {
     /**
@@ -5950,7 +5954,8 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "notificationChannels": []
+     *   //   "notificationChannels": [],
+     *   //   "totalSize": 0
      *   // }
      * }
      *
@@ -8498,11 +8503,14 @@ export namespace monitoring_v3 {
      *     // - `identifier_case`
      *     // - `app_engine.module_id`
      *     // - `cloud_endpoints.service`
-     *     // - `cluster_istio.location`
-     *     // - `cluster_istio.cluster_name`
-     *     // - `cluster_istio.service_namespace`
-     *     // - `cluster_istio.service_name`
-     *     // identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
+     *     // - `mesh_istio.mesh_uid`
+     *     // - `mesh_istio.service_namespace`
+     *     // - `mesh_istio.service_name`
+     *     // - `cluster_istio.location` (deprecated)
+     *     // - `cluster_istio.cluster_name` (deprecated)
+     *     // - `cluster_istio.service_namespace` (deprecated)
+     *     // - `cluster_istio.service_name` (deprecated)
+     *     // identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", "MESH_ISTIO", and "CLUSTER_ISTIO" (deprecated),
      *     filter: 'placeholder-value',
      *     // A non-negative number that is the maximum number of results to return. When 0, use default page size.
      *     pageSize: 'placeholder-value',
@@ -8532,7 +8540,7 @@ export namespace monitoring_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
+     * @param {string=} params.filter A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", "MESH_ISTIO", and "CLUSTER_ISTIO" (deprecated),
      * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      * @param {string} params.parent Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
@@ -8811,7 +8819,7 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$List extends StandardParameters {
     /**
-     * A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
+     * A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", "MESH_ISTIO", and "CLUSTER_ISTIO" (deprecated),
      */
     filter?: string;
     /**
