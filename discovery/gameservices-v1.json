@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "gameservices:v1beta",
+  "id": "gameservices:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://gameservices.mtls.googleapis.com/",
   "name": "gameservices",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "gameservices.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "gameservices.projects.locations.list",
               "parameterOrder": [
@@ -172,7 +172,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -186,7 +186,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new game server deployment in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.create",
                   "parameterOrder": [
@@ -206,7 +206,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/gameServerDeployments",
+                  "path": "v1/{+parent}/gameServerDeployments",
                   "request": {
                     "$ref": "GameServerDeployment"
                   },
@@ -219,7 +219,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single game server deployment.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
                   "httpMethod": "DELETE",
                   "id": "gameservices.projects.locations.gameServerDeployments.delete",
                   "parameterOrder": [
@@ -234,7 +234,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -244,7 +244,7 @@
                 },
                 "fetchDeploymentState": {
                   "description": "Retrieves information about the current state of the game server\ndeployment. Gathers all the Agones fleets and Agones autoscalers,\nincluding fleets running an older version of the game server deployment.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:fetchDeploymentState",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:fetchDeploymentState",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.fetchDeploymentState",
                   "parameterOrder": [
@@ -259,7 +259,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:fetchDeploymentState",
+                  "path": "v1/{+name}:fetchDeploymentState",
                   "request": {
                     "$ref": "FetchDeploymentStateRequest"
                   },
@@ -272,7 +272,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single game server deployment.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.gameServerDeployments.get",
                   "parameterOrder": [
@@ -287,7 +287,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "GameServerDeployment"
                   },
@@ -297,7 +297,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.gameServerDeployments.getIamPolicy",
                   "parameterOrder": [
@@ -318,7 +318,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
                   },
@@ -328,7 +328,7 @@
                 },
                 "getRollout": {
                   "description": "Gets details a single game server deployment rollout.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.gameServerDeployments.getRollout",
                   "parameterOrder": [
@@ -343,7 +343,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/rollout",
+                  "path": "v1/{+name}/rollout",
                   "response": {
                     "$ref": "GameServerDeploymentRollout"
                   },
@@ -353,7 +353,7 @@
                 },
                 "list": {
                   "description": "Lists game server deployments in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.gameServerDeployments.list",
                   "parameterOrder": [
@@ -389,7 +389,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/gameServerDeployments",
+                  "path": "v1/{+parent}/gameServerDeployments",
                   "response": {
                     "$ref": "ListGameServerDeploymentsResponse"
                   },
@@ -399,7 +399,7 @@
                 },
                 "patch": {
                   "description": "Patches a game server deployment.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.gameServerDeployments.patch",
                   "parameterOrder": [
@@ -420,7 +420,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "GameServerDeployment"
                   },
@@ -433,7 +433,7 @@
                 },
                 "previewRollout": {
                   "description": "Previews the game server deployment rollout. This API does not mutate the\nrollout resource.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout:preview",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout:preview",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.gameServerDeployments.previewRollout",
                   "parameterOrder": [
@@ -460,7 +460,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/rollout:preview",
+                  "path": "v1/{+name}/rollout:preview",
                   "request": {
                     "$ref": "GameServerDeploymentRollout"
                   },
@@ -473,7 +473,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.setIamPolicy",
                   "parameterOrder": [
@@ -488,7 +488,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -501,7 +501,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.testIamPermissions",
                   "parameterOrder": [
@@ -516,7 +516,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
@@ -529,7 +529,7 @@
                 },
                 "updateRollout": {
                   "description": "Patches a single game server deployment rollout.\nThe method will not return an error if the update does not affect any\nexisting realms. For example - if the default_game_server_config is changed\nbut all existing realms use the override, that is valid. Similarly, if a\nnon existing realm is explicitly called out in game_server_config_overrides\nfield, that will also not result in an error.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.gameServerDeployments.updateRollout",
                   "parameterOrder": [
@@ -550,7 +550,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/rollout",
+                  "path": "v1/{+name}/rollout",
                   "request": {
                     "$ref": "GameServerDeploymentRollout"
                   },
@@ -567,7 +567,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new game server config in a given project, location, and game\nserver deployment. Game server configs are immutable, and are not applied\nuntil referenced in the game server deployment rollout resource.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
                       "httpMethod": "POST",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.create",
                       "parameterOrder": [
@@ -587,7 +587,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/configs",
+                      "path": "v1/{+parent}/configs",
                       "request": {
                         "$ref": "GameServerConfig"
                       },
@@ -600,7 +600,7 @@
                     },
                     "delete": {
                       "description": "Deletes a single game server config. The deletion will fail if the game\nserver config is referenced in a game server deployment rollout.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs/{configsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs/{configsId}",
                       "httpMethod": "DELETE",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.delete",
                       "parameterOrder": [
@@ -615,7 +615,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -625,7 +625,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single game server config.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs/{configsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs/{configsId}",
                       "httpMethod": "GET",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.get",
                       "parameterOrder": [
@@ -640,7 +640,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "GameServerConfig"
                       },
@@ -650,7 +650,7 @@
                     },
                     "list": {
                       "description": "Lists game server configs in a given project, location, and game server\ndeployment.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
                       "httpMethod": "GET",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.list",
                       "parameterOrder": [
@@ -686,7 +686,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/configs",
+                      "path": "v1/{+parent}/configs",
                       "response": {
                         "$ref": "ListGameServerConfigsResponse"
                       },
@@ -702,7 +702,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -717,7 +717,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -730,7 +730,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "gameservices.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -745,7 +745,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -755,7 +755,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.operations.get",
                   "parameterOrder": [
@@ -770,7 +770,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -780,7 +780,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.operations.list",
                   "parameterOrder": [
@@ -811,7 +811,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -825,7 +825,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new realm in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.realms.create",
                   "parameterOrder": [
@@ -845,7 +845,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/realms",
+                  "path": "v1/{+parent}/realms",
                   "request": {
                     "$ref": "Realm"
                   },
@@ -858,7 +858,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single realm.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
                   "httpMethod": "DELETE",
                   "id": "gameservices.projects.locations.realms.delete",
                   "parameterOrder": [
@@ -873,7 +873,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -883,7 +883,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single realm.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.realms.get",
                   "parameterOrder": [
@@ -898,7 +898,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Realm"
                   },
@@ -908,7 +908,7 @@
                 },
                 "list": {
                   "description": "Lists realms in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.realms.list",
                   "parameterOrder": [
@@ -944,7 +944,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/realms",
+                  "path": "v1/{+parent}/realms",
                   "response": {
                     "$ref": "ListRealmsResponse"
                   },
@@ -954,7 +954,7 @@
                 },
                 "patch": {
                   "description": "Patches a single realm.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.realms.patch",
                   "parameterOrder": [
@@ -975,7 +975,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Realm"
                   },
@@ -988,7 +988,7 @@
                 },
                 "previewUpdate": {
                   "description": "Previews patches to a single realm.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}:previewUpdate",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}:previewUpdate",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.realms.previewUpdate",
                   "parameterOrder": [
@@ -1015,7 +1015,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:previewUpdate",
+                  "path": "v1/{+name}:previewUpdate",
                   "request": {
                     "$ref": "Realm"
                   },
@@ -1032,7 +1032,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new game server cluster in a given project and location.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters",
                       "httpMethod": "POST",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.create",
                       "parameterOrder": [
@@ -1052,7 +1052,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/gameServerClusters",
+                      "path": "v1/{+parent}/gameServerClusters",
                       "request": {
                         "$ref": "GameServerCluster"
                       },
@@ -1065,7 +1065,7 @@
                     },
                     "delete": {
                       "description": "Deletes a single game server cluster.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
                       "httpMethod": "DELETE",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.delete",
                       "parameterOrder": [
@@ -1080,7 +1080,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -1090,7 +1090,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single game server cluster.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
                       "httpMethod": "GET",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.get",
                       "parameterOrder": [
@@ -1105,7 +1105,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "GameServerCluster"
                       },
@@ -1115,7 +1115,7 @@
                     },
                     "list": {
                       "description": "Lists game server clusters in a given project and location.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters",
                       "httpMethod": "GET",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.list",
                       "parameterOrder": [
@@ -1151,7 +1151,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/gameServerClusters",
+                      "path": "v1/{+parent}/gameServerClusters",
                       "response": {
                         "$ref": "ListGameServerClustersResponse"
                       },
@@ -1161,7 +1161,7 @@
                     },
                     "patch": {
                       "description": "Patches a single game server cluster.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}",
                       "httpMethod": "PATCH",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.patch",
                       "parameterOrder": [
@@ -1182,7 +1182,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "request": {
                         "$ref": "GameServerCluster"
                       },
@@ -1195,7 +1195,7 @@
                     },
                     "previewCreate": {
                       "description": "Previews creation of a new game server cluster in a given project and\nlocation.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters:previewCreate",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters:previewCreate",
                       "httpMethod": "POST",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.previewCreate",
                       "parameterOrder": [
@@ -1221,7 +1221,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/gameServerClusters:previewCreate",
+                      "path": "v1/{+parent}/gameServerClusters:previewCreate",
                       "request": {
                         "$ref": "GameServerCluster"
                       },
@@ -1234,7 +1234,7 @@
                     },
                     "previewDelete": {
                       "description": "Previews deletion of a single game server cluster.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}:previewDelete",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}:previewDelete",
                       "httpMethod": "DELETE",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.previewDelete",
                       "parameterOrder": [
@@ -1255,7 +1255,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}:previewDelete",
+                      "path": "v1/{+name}:previewDelete",
                       "response": {
                         "$ref": "PreviewDeleteGameServerClusterResponse"
                       },
@@ -1265,7 +1265,7 @@
                     },
                     "previewUpdate": {
                       "description": "Previews updating a GameServerCluster.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}:previewUpdate",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters/{gameServerClustersId}:previewUpdate",
                       "httpMethod": "PATCH",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.previewUpdate",
                       "parameterOrder": [
@@ -1292,7 +1292,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}:previewUpdate",
+                      "path": "v1/{+name}:previewUpdate",
                       "request": {
                         "$ref": "GameServerCluster"
                       },
@@ -2744,6 +2744,6 @@
   },
   "servicePath": "",
   "title": "Game Services API",
-  "version": "v1beta",
+  "version": "v1",
   "version_module": true
 }
