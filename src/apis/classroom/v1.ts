@@ -6754,7 +6754,7 @@ export namespace classroom_v1 {
      *     // This identifier can be either the Classroom-assigned identifier or an
      *     // alias.
      *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. Zero means no maximum.
+     *     // Maximum number of items to return. The default is 30 if unspecified or `0`.
      *     //
      *     // The server may return fewer than the specified number of results.
      *     pageSize: 'placeholder-value',
@@ -6786,7 +6786,7 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * @param {integer=} params.pageSize Maximum number of items to return. The default is 30 if unspecified or `0`.  The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6922,7 +6922,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * Maximum number of items to return. The default is 30 if unspecified or `0`.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
@@ -7410,7 +7410,7 @@ export namespace classroom_v1 {
      *     // This identifier can be either the Classroom-assigned identifier or an
      *     // alias.
      *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. Zero means no maximum.
+     *     // Maximum number of items to return. The default is 30 if unspecified or `0`.
      *     //
      *     // The server may return fewer than the specified number of results.
      *     pageSize: 'placeholder-value',
@@ -7442,7 +7442,7 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * @param {integer=} params.pageSize Maximum number of items to return. The default is 30 if unspecified or `0`.  The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7574,7 +7574,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * Maximum number of items to return. The default is 30 if unspecified or `0`.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
@@ -8973,7 +8973,8 @@ export namespace classroom_v1 {
      *     // Restricts returned invitations to those for a course with the specified
      *     // identifier.
      *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. Zero means no maximum.
+     *     // Maximum number of items to return. The default is 500 if unspecified or
+     *     // `0`.
      *     //
      *     // The server may return fewer than the specified number of results.
      *     pageSize: 'placeholder-value',
@@ -9012,7 +9013,7 @@ export namespace classroom_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.courseId Restricts returned invitations to those for a course with the specified identifier.
-     * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * @param {integer=} params.pageSize Maximum number of items to return. The default is 500 if unspecified or `0`.  The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
      * @param {string=} params.userId Restricts returned invitations to those for a specific user. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9133,7 +9134,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+     * Maximum number of items to return. The default is 500 if unspecified or `0`.  The server may return fewer than the specified number of results.
      */
     pageSize?: number;
     /**
