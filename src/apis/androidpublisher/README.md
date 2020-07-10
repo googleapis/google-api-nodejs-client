@@ -2,7 +2,7 @@
 
 # androidpublisher
 
-> Accesses Android application developers&#39; Google Play accounts.
+> Lets Android application developers access their Google Play accounts.
 
 ## Installation
 
