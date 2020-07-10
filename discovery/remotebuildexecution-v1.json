@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20200513",
+  "revision": "20200702",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1402,7 +1402,7 @@
           "type": "boolean"
         },
         "vmImage": {
-          "description": "Output only. The name of the image used by each VM.",
+          "description": "The name of the image used by each VM.",
           "type": "string"
         }
       },
