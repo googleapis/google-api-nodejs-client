@@ -4174,6 +4174,10 @@ export namespace content_v2 {
      */
     brand?: string | null;
     /**
+     * Link to the canonical version of the landing page.
+     */
+    canonicalLink?: string | null;
+    /**
      * Required. The item&#39;s channel (online or local).  Acceptable values are:   - &quot;`local`&quot;  - &quot;`online`&quot;
      */
     channel?: string | null;
@@ -4282,7 +4286,7 @@ export namespace content_v2 {
      */
     imageLink?: string | null;
     /**
-     * Number and amount of installments to pay for an item. Brazil only.
+     * Number and amount of installments to pay for an item.
      */
     installment?: Schema$Installment;
     /**
@@ -6595,7 +6599,7 @@ export namespace content_v2 {
 
     /**
      * content.accounts.update
-     * @desc Updates a Merchant Center account.
+     * @desc Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7801,7 +7805,7 @@ export namespace content_v2 {
 
     /**
      * content.accounttax.update
-     * @desc Updates the tax settings of the account.
+     * @desc Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8886,7 +8890,7 @@ export namespace content_v2 {
 
     /**
      * content.datafeeds.update
-     * @desc Updates a datafeed configuration of your Merchant Center account.
+     * @desc Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11376,7 +11380,7 @@ export namespace content_v2 {
 
     /**
      * content.liasettings.update
-     * @desc Updates the LIA settings of the account.
+     * @desc Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17978,6 +17982,7 @@ export namespace content_v2 {
      *   //   "availability": "my_availability",
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
      *   //   "channel": "my_channel",
      *   //   "color": "my_color",
      *   //   "condition": "my_condition",
@@ -18187,6 +18192,7 @@ export namespace content_v2 {
      *       //   "availability": "my_availability",
      *       //   "availabilityDate": "my_availabilityDate",
      *       //   "brand": "my_brand",
+     *       //   "canonicalLink": "my_canonicalLink",
      *       //   "channel": "my_channel",
      *       //   "color": "my_color",
      *       //   "condition": "my_condition",
@@ -18272,6 +18278,7 @@ export namespace content_v2 {
      *   //   "availability": "my_availability",
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
      *   //   "channel": "my_channel",
      *   //   "color": "my_color",
      *   //   "condition": "my_condition",
@@ -20074,7 +20081,7 @@ export namespace content_v2 {
 
     /**
      * content.shippingsettings.update
-     * @desc Updates the shipping settings of the account.
+     * @desc Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
