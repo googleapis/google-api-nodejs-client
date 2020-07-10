@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200708",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -457,12 +457,14 @@
           "enum": [
             "DEVICE_FORM_UNSPECIFIED",
             "VIRTUAL",
-            "PHYSICAL"
+            "PHYSICAL",
+            "EMULATOR"
           ],
           "enumDescriptions": [
             "Do not use.  For proto versioning only.",
-            "A software stack that simulates the device.",
-            "Actual hardware."
+            "Android virtual device using Compute Engine native virtualization. Firebase\nTest Lab only.",
+            "Actual hardware.",
+            "Android virtual device using emulator in nested virtualization. Equivalent\nto Android Studio."
           ],
           "type": "string"
         },
@@ -1285,7 +1287,7 @@
       "id": "ManualSharding",
       "properties": {
         "testTargetsForShard": {
-          "description": "Required. Group of packages, classes, and/or test methods to be run for\neach shard. The number of shard_test_targets must be >= 1 and <= 50.",
+          "description": "Required. Group of packages, classes, and/or test methods to be run for\neach shard. When any physical devices are selected,  the number of\ntest_targets_for_shard must be >= 1 and <= 50. When no physical devices are\nselected, the number must be >= 1 and <= 250.",
           "items": {
             "$ref": "TestTargetsForShard"
           },
@@ -1381,7 +1383,7 @@
           "description": "Required. The source file."
         },
         "devicePath": {
-          "description": "Required. Where to put the content on the device. Must be an absolute,\nwhitelisted path. If the file exists, it will be replaced.\nThe following device-side directories and any of their subdirectories are\nwhitelisted:\n<p>${EXTERNAL_STORAGE}, or /sdcard</p>\n<p>${ANDROID_DATA}/local/tmp, or /data/local/tmp</p>\n<p>Specifying a path outside of these directory trees is invalid.\n\n<p> The paths /sdcard and /data will be made available and treated as\nimplicit path substitutions. E.g. if /sdcard on a particular device does\nnot map to external storage, the system will replace it with the external\nstorage path prefix for that device and copy the file there.\n\n<p> It is strongly advised to use the <a href=\n\"http://developer.android.com/reference/android/os/Environment.html\">\nEnvironment API</a> in app and test code to access files on the device in a\nportable way.",
+          "description": "Required. Where to put the content on the device. Must be an absolute,\nallowlisted path. If the file exists, it will be replaced.\nThe following device-side directories and any of their subdirectories are\nallowlisted:\n<p>${EXTERNAL_STORAGE}, /sdcard, or /storage</p>\n<p>${ANDROID_DATA}/local/tmp, or /data/local/tmp</p>\n<p>Specifying a path outside of these directory trees is invalid.\n\n<p> The paths /sdcard and /data will be made available and treated as\nimplicit path substitutions. E.g. if /sdcard on a particular device does\nnot map to external storage, the system will replace it with the external\nstorage path prefix for that device and copy the file there.\n\n<p> It is strongly advised to use the <a href=\n\"http://developer.android.com/reference/android/os/Environment.html\">\nEnvironment API</a> in app and test code to access files on the device in a\nportable way.",
           "type": "string"
         }
       },
@@ -1835,11 +1837,15 @@
           "type": "array"
         },
         "directoriesToPull": {
-          "description": "List of directories on the device to upload to GCS at the end of the test;\nthey must be absolute paths under /sdcard or /data/local/tmp.\nPath names are restricted to characters a-z A-Z 0-9 _ - . + and /\n\nNote: The paths /sdcard and /data will be made available and treated as\nimplicit path substitutions. E.g. if /sdcard on a particular device does\nnot map to external storage, the system will replace it with the external\nstorage path prefix for that device.",
+          "description": "List of directories on the device to upload to GCS at the end of the test;\nthey must be absolute paths under /sdcard, /storage or /data/local/tmp.\nPath names are restricted to characters a-z A-Z 0-9 _ - . + and /\n\nNote: The paths /sdcard and /data will be made available and treated as\nimplicit path substitutions. E.g. if /sdcard on a particular device does\nnot map to external storage, the system will replace it with the external\nstorage path prefix for that device.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "dontAutograntPermissions": {
+          "description": "Whether to prevent all runtime permissions to be granted at app install",
+          "type": "boolean"
         },
         "environmentVariables": {
           "description": "Environment variables to set for the test (only applicable for\ninstrumentation tests).",
@@ -2022,7 +2028,7 @@
       "id": "UniformSharding",
       "properties": {
         "numShards": {
-          "description": "Required. Total number of shards. The number must be >= 1 and <= 50.",
+          "description": "Required. Total number of shards. When any physical devices are selected,\nthe number must be >= 1 and <= 50. When no physical devices are selected,\nthe number must be >= 1 and <= 250.",
           "format": "int32",
           "type": "integer"
         }
