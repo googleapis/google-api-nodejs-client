@@ -112,7 +112,7 @@
         "snapshots": {
           "methods": {
             "create": {
-              "description": "Creates a snapshot from the requested subscription. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot.\n<br><br>If the snapshot already exists, returns `ALREADY_EXISTS`.\nIf the requested subscription doesn't exist, returns `NOT_FOUND`.\nIf the backlog in the subscription is too old -- and the resulting snapshot\nwould expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.\nSee also the `Snapshot.expire_time` field. If the name is not provided in\nthe request, the server will assign a random\nname for this snapshot on the same project as the subscription, conforming\nto the\n[resource name\nformat](https://cloud.google.com/pubsub/docs/admin#resource_names). The\ngenerated name is populated in the returned Snapshot object. Note that for\nREST API requests, you must specify a name in the request.",
+              "description": "Creates a snapshot from the requested subscription. Snapshots are used in\n[Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,\nwhich allow you to manage message acknowledgments in bulk. That is, you can\nset the acknowledgment state of messages in an existing subscription to the\nstate captured by a snapshot.\nIf the snapshot already exists, returns `ALREADY_EXISTS`.\nIf the requested subscription doesn't exist, returns `NOT_FOUND`.\nIf the backlog in the subscription is too old -- and the resulting snapshot\nwould expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.\nSee also the `Snapshot.expire_time` field. If the name is not provided in\nthe request, the server will assign a random\nname for this snapshot on the same project as the subscription, conforming\nto the [resource name format]\n(https://cloud.google.com/pubsub/docs/admin#resource_names). The\ngenerated name is populated in the returned Snapshot object. Note that for\nREST API requests, you must specify a name in the request.",
               "flatPath": "v1/projects/{projectsId}/snapshots/{snapshotsId}",
               "httpMethod": "PUT",
               "id": "pubsub.projects.snapshots.create",
@@ -141,7 +141,7 @@
               ]
             },
             "delete": {
-              "description": "Removes an existing snapshot. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot.<br><br>\nWhen the snapshot is deleted, all messages retained in the snapshot\nare immediately dropped. After a snapshot is deleted, a new one may be\ncreated with the same name, but the new one has no association with the old\nsnapshot or its subscription, unless the same subscription is specified.",
+              "description": "Removes an existing snapshot. Snapshots are used in [Seek]\n(https://cloud.google.com/pubsub/docs/replay-overview) operations, which\nallow you to manage message acknowledgments in bulk. That is, you can set\nthe acknowledgment state of messages in an existing subscription to the\nstate captured by a snapshot.\nWhen the snapshot is deleted, all messages retained in the snapshot\nare immediately dropped. After a snapshot is deleted, a new one may be\ncreated with the same name, but the new one has no association with the old\nsnapshot or its subscription, unless the same subscription is specified.",
               "flatPath": "v1/projects/{projectsId}/snapshots/{snapshotsId}",
               "httpMethod": "DELETE",
               "id": "pubsub.projects.snapshots.delete",
@@ -225,7 +225,7 @@
               ]
             },
             "list": {
-              "description": "Lists the existing snapshots. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot.",
+              "description": "Lists the existing snapshots. Snapshots are used in [Seek](\nhttps://cloud.google.com/pubsub/docs/replay-overview) operations, which\nallow you to manage message acknowledgments in bulk. That is, you can set\nthe acknowledgment state of messages in an existing subscription to the\nstate captured by a snapshot.",
               "flatPath": "v1/projects/{projectsId}/snapshots",
               "httpMethod": "GET",
               "id": "pubsub.projects.snapshots.list",
@@ -382,7 +382,7 @@
               ]
             },
             "create": {
-              "description": "Creates a subscription to a given topic. See the\n<a href=\"https://cloud.google.com/pubsub/docs/admin#resource_names\">\nresource name rules</a>.\nIf the subscription already exists, returns `ALREADY_EXISTS`.\nIf the corresponding topic doesn't exist, returns `NOT_FOUND`.\n\nIf the name is not provided in the request, the server will assign a random\nname for this subscription on the same project as the topic, conforming\nto the\n[resource name\nformat](https://cloud.google.com/pubsub/docs/admin#resource_names). The\ngenerated name is populated in the returned Subscription object. Note that\nfor REST API requests, you must specify a name in the request.",
+              "description": "Creates a subscription to a given topic. See the [resource name rules]\n(https://cloud.google.com/pubsub/docs/admin#resource_names).\nIf the subscription already exists, returns `ALREADY_EXISTS`.\nIf the corresponding topic doesn't exist, returns `NOT_FOUND`.\n\nIf the name is not provided in the request, the server will assign a random\nname for this subscription on the same project as the topic, conforming\nto the [resource name format]\n(https://cloud.google.com/pubsub/docs/admin#resource_names). The generated\nname is populated in the returned Subscription object. Note that for REST\nAPI requests, you must specify a name in the request.",
               "flatPath": "v1/projects/{projectsId}/subscriptions/{subscriptionsId}",
               "httpMethod": "PUT",
               "id": "pubsub.projects.subscriptions.create",
@@ -674,7 +674,7 @@
               ]
             },
             "seek": {
-              "description": "Seeks an existing subscription to a point in time or to a given snapshot,\nwhichever is provided in the request. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot. Note that both the subscription and the snapshot\nmust be on the same topic.",
+              "description": "Seeks an existing subscription to a point in time or to a given snapshot,\nwhichever is provided in the request. Snapshots are used in [Seek](\nhttps://cloud.google.com/pubsub/docs/replay-overview) operations, which\nallow you to manage message acknowledgments in bulk. That is, you can set\nthe acknowledgment state of messages in an existing subscription to the\nstate captured by a snapshot. Note that both the subscription and the\nsnapshot must be on the same topic.",
               "flatPath": "v1/projects/{projectsId}/subscriptions/{subscriptionsId}:seek",
               "httpMethod": "POST",
               "id": "pubsub.projects.subscriptions.seek",
@@ -765,7 +765,7 @@
         "topics": {
           "methods": {
             "create": {
-              "description": "Creates the given topic with the given name. See the\n<a href=\"https://cloud.google.com/pubsub/docs/admin#resource_names\">\nresource name rules</a>.",
+              "description": "Creates the given topic with the given name. See the [resource name rules](\nhttps://cloud.google.com/pubsub/docs/admin#resource_names).",
               "flatPath": "v1/projects/{projectsId}/topics/{topicsId}",
               "httpMethod": "PUT",
               "id": "pubsub.projects.topics.create",
@@ -1035,7 +1035,7 @@
             "snapshots": {
               "methods": {
                 "list": {
-                  "description": "Lists the names of the snapshots on this topic. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot.",
+                  "description": "Lists the names of the snapshots on this topic. Snapshots are used in\n[Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,\nwhich allow you to manage message acknowledgments in bulk. That is, you can\nset the acknowledgment state of messages in an existing subscription to the\nstate captured by a snapshot.",
                   "flatPath": "v1/projects/{projectsId}/topics/{topicsId}/snapshots",
                   "httpMethod": "GET",
                   "id": "pubsub.projects.topics.snapshots.list",
@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200627",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1441,14 +1441,14 @@
       "type": "object"
     },
     "PubsubMessage": {
-      "description": "A message that is published by publishers and consumed by subscribers. The\nmessage must contain either a non-empty data field or at least one attribute.\nNote that client libraries represent this object differently\ndepending on the language. See the corresponding\n<a href=\"https://cloud.google.com/pubsub/docs/reference/libraries\">client\nlibrary documentation</a> for more information. See\n<a href=\"https://cloud.google.com/pubsub/quotas\">Quotas and limits</a>\nfor more information about message limits.",
+      "description": "A message that is published by publishers and consumed by subscribers. The\nmessage must contain either a non-empty data field or at least one attribute.\nNote that client libraries represent this object differently\ndepending on the language. See the corresponding [client library\ndocumentation](https://cloud.google.com/pubsub/docs/reference/libraries) for\nmore information. See [quotas and limits]\n(https://cloud.google.com/pubsub/quotas) for more information about message\nlimits.",
       "id": "PubsubMessage",
       "properties": {
         "attributes": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data.",
+          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data. This can be used to filter messages on the\nsubscription.",
           "type": "object"
         },
         "data": {
@@ -1591,7 +1591,7 @@
       "type": "object"
     },
     "Snapshot": {
-      "description": "A snapshot resource. Snapshots are used in\n<a href=\"https://cloud.google.com/pubsub/docs/replay-overview\">Seek</a>\noperations, which allow\nyou to manage message acknowledgments in bulk. That is, you can set the\nacknowledgment state of messages in an existing subscription to the state\ncaptured by a snapshot.",
+      "description": "A snapshot resource. Snapshots are used in\n[Seek](https://cloud.google.com/pubsub/docs/replay-overview)\noperations, which allow you to manage message acknowledgments in bulk. That\nis, you can set the acknowledgment state of messages in an existing\nsubscription to the state captured by a snapshot.",
       "id": "Snapshot",
       "properties": {
         "expireTime": {
@@ -1603,7 +1603,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See <a href=\"https://cloud.google.com/pubsub/docs/labels\"> Creating and\nmanaging labels</a>.",
+          "description": "See [Creating and managing labels]\n(https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "name": {
@@ -1635,7 +1635,7 @@
           "description": "A policy that specifies the conditions for this subscription's expiration.\nA subscription is considered active as long as any connected subscriber is\nsuccessfully consuming messages from the subscription or is issuing\noperations on the subscription. If `expiration_policy` is not set, a\n*default policy* with `ttl` of 31 days will be used. The minimum allowed\nvalue for `expiration_policy.ttl` is 1 day."
         },
         "filter": {
-          "description": "An expression written in the Cloud Pub/Sub filter language. If non-empty,\nthen only `PubsubMessage`s whose `attributes` field matches the filter are\ndelivered on this subscription. If empty, then no messages are filtered\nout.",
+          "description": "An expression written in the Pub/Sub [filter\nlanguage](https://cloud.google.com/pubsub/docs/filtering). If non-empty,\nthen only `PubsubMessage`s whose `attributes` field matches the filter are\ndelivered on this subscription. If empty, then no messages are filtered\nout.",
           "type": "string"
         },
         "labels": {
@@ -1659,7 +1659,7 @@
           "description": "If push delivery is used with this subscription, this field is\nused to configure it. An empty `pushConfig` signifies that the subscriber\nwill pull and ack messages using API methods."
         },
         "retainAckedMessages": {
-          "description": "Indicates whether to retain acknowledged messages. If true, then\nmessages are not expunged from the subscription's backlog, even if they are\nacknowledged, until they fall out of the `message_retention_duration`\nwindow. This must be true if you would like to\n<a\nhref=\"https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time\">\nSeek to a timestamp</a>.",
+          "description": "Indicates whether to retain acknowledged messages. If true, then\nmessages are not expunged from the subscription's backlog, even if they are\nacknowledged, until they fall out of the `message_retention_duration`\nwindow. This must be true if you would like to [Seek to a timestamp]\n(https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).",
           "type": "boolean"
         },
         "retryPolicy": {
@@ -1713,7 +1713,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See <a href=\"https://cloud.google.com/pubsub/docs/labels\"> Creating and\nmanaging labels</a>.",
+          "description": "See [Creating and managing labels]\n(https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "messageStoragePolicy": {
