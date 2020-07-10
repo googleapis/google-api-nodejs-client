@@ -53,9 +53,21 @@ export namespace civicinfo_v2 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,13 +85,17 @@ export namespace civicinfo_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -148,7 +164,6 @@ export namespace civicinfo_v2 {
      * A URL provided by this administrative body for information on absentee voting.
      */
     absenteeVotingInfoUrl?: string | null;
-    addressLines?: string[] | null;
     /**
      * A URL provided by this administrative body to give contest information to the voter.
      */
@@ -293,7 +308,11 @@ export namespace civicinfo_v2 {
      */
     office?: string | null;
     /**
-     * If this is a partisan election, the name of the party it is for.
+     * If this is a partisan election, the name of the party/parties it is for.
+     */
+    primaryParties?: string[] | null;
+    /**
+     * [DEPRECATED] If this is a partisan election, the name of the party it is for. This field as deprecated in favor of the array &quot;primaryParties&quot;, as contests may contain more than one party.
      */
     primaryParty?: string | null;
     /**
@@ -353,21 +372,6 @@ export namespace civicinfo_v2 {
      */
     type?: string | null;
   }
-  export interface Schema$ContextParams {
-    clientProfile?: string | null;
-  }
-  /**
-   * A request to look up representative information for a single division.
-   */
-  export interface Schema$DivisionRepresentativeInfoRequest {
-    contextParams?: Schema$ContextParams;
-  }
-  /**
-   * A search request for political geographies.
-   */
-  export interface Schema$DivisionSearchRequest {
-    contextParams?: Schema$ContextParams;
-  }
   /**
    * The result of a division search query.
    */
@@ -391,7 +395,7 @@ export namespace civicinfo_v2 {
      */
     name?: string | null;
     /**
-     * The unique Open Civic Data identifier for this division.
+     * The unique Open Civic Data identifier for this division
      */
     ocdId?: string | null;
   }
@@ -441,9 +445,6 @@ export namespace civicinfo_v2 {
      */
     title?: string | null;
   }
-  export interface Schema$ElectionsQueryRequest {
-    contextParams?: Schema$ContextParams;
-  }
   /**
    * The list of elections available for this version of the API.
    */
@@ -465,7 +466,6 @@ export namespace civicinfo_v2 {
      * An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
      */
     id?: string | null;
-    kgForeignKey?: string | null;
     /**
      * The name of the district.
      */
@@ -475,15 +475,12 @@ export namespace civicinfo_v2 {
      */
     scope?: string | null;
   }
-  export interface Schema$FieldMetadataProto {
-    internal?: Schema$InternalFieldMetadataProto;
-  }
   /**
    * Describes a political geography.
    */
   export interface Schema$GeographicDivision {
     /**
-     * Any other valid OCD IDs that refer to the same division.  Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.  For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
+     * Any other valid OCD IDs that refer to the same division.x/x/Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.x/x/For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
      */
     alsoKnownAs?: string[] | null;
     /**
@@ -494,14 +491,6 @@ export namespace civicinfo_v2 {
      * List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
      */
     officeIndices?: number[] | null;
-  }
-  export interface Schema$InternalFieldMetadataProto {
-    isAuto?: boolean | null;
-    sourceSummary?: Schema$InternalSourceSummaryProto;
-  }
-  export interface Schema$InternalSourceSummaryProto {
-    dataset?: string | null;
-    provider?: string | null;
   }
   /**
    * Information about an Office held by one or more Officials.
@@ -569,11 +558,6 @@ export namespace civicinfo_v2 {
      */
     urls?: string[] | null;
   }
-  export interface Schema$PointProto {
-    latE7?: number | null;
-    lngE7?: number | null;
-    metadata?: Schema$FieldMetadataProto;
-  }
   /**
    * A location where a voter can vote. This may be an early vote site, an election day voting location, or a drop off location for a completed ballot.
    */
@@ -623,43 +607,9 @@ export namespace civicinfo_v2 {
      */
     voterServices?: string | null;
   }
-  export interface Schema$PostalAddress {
-    addressLines?: string[] | null;
-    administrativeAreaName?: string | null;
-    countryName?: string | null;
-    countryNameCode?: string | null;
-    dependentLocalityName?: string | null;
-    dependentThoroughfareName?: string | null;
-    firmName?: string | null;
-    isDisputed?: boolean | null;
-    languageCode?: string | null;
-    localityName?: string | null;
-    postalCodeNumber?: string | null;
-    postalCodeNumberExtension?: string | null;
-    postBoxNumber?: string | null;
-    premiseName?: string | null;
-    recipientName?: string | null;
-    sortingCode?: string | null;
-    subAdministrativeAreaName?: string | null;
-    subPremiseName?: string | null;
-    thoroughfareName?: string | null;
-    thoroughfareNumber?: string | null;
-  }
-  export interface Schema$Provenance {
-    collidedSegmentSource?: Schema$StreetSegmentList;
-    ctclContestUuid?: string | null;
-    ctclOfficeUuid?: string | null;
-    datasetId?: string | null;
-    precinctId?: string | null;
-    precinctSplitId?: string | null;
-    tsStreetSegmentId?: string | null;
-    vip5PrecinctId?: string | null;
-    vip5StreetSegmentId?: string | null;
-    vipStreetSegmentId?: string | null;
-  }
   export interface Schema$RepresentativeInfoData {
     /**
-     * Political geographic divisions that contain the requested address.
+     * A map of political geographic divisions that contain the requested address, keyed by the unique Open Civic Data identifier for this division.
      */
     divisions?: {[key: string]: Schema$GeographicDivision} | null;
     /**
@@ -672,17 +622,11 @@ export namespace civicinfo_v2 {
     officials?: Schema$Official[];
   }
   /**
-   * A request for political geography and representative information for an address.
-   */
-  export interface Schema$RepresentativeInfoRequest {
-    contextParams?: Schema$ContextParams;
-  }
-  /**
    * The result of a representative info lookup query.
    */
   export interface Schema$RepresentativeInfoResponse {
     /**
-     * Political geographic divisions that contain the requested address.
+     * A map of political geographic divisions that contain the requested address, keyed by the unique Open Civic Data identifier for this division.
      */
     divisions?: {[key: string]: Schema$GeographicDivision} | null;
     /**
@@ -748,63 +692,6 @@ export namespace civicinfo_v2 {
      */
     official?: boolean | null;
   }
-  export interface Schema$StreetSegment {
-    administrationRegionIds?: string[] | null;
-    beforeGeocodeId?: string | null;
-    catalistUniquePrecinctCode?: string | null;
-    city?: string | null;
-    cityCouncilDistrict?: string | null;
-    congressionalDistrict?: string | null;
-    contestIds?: string[] | null;
-    countyCouncilDistrict?: string | null;
-    countyFips?: string | null;
-    datasetId?: string | null;
-    earlyVoteSiteByIds?: string[] | null;
-    endHouseNumber?: string | null;
-    geocodedPoint?: Schema$PointProto;
-    geographicDivisionOcdIds?: string[] | null;
-    id?: string | null;
-    judicialDistrict?: string | null;
-    mailOnly?: boolean | null;
-    municipalDistrict?: string | null;
-    ncoaAddress?: string | null;
-    oddOrEvens?: string[] | null;
-    originalId?: string | null;
-    pollinglocationByIds?: string[] | null;
-    precinctName?: string | null;
-    precinctOcdId?: string | null;
-    provenances?: Schema$Provenance[];
-    published?: boolean | null;
-    schoolDistrict?: string | null;
-    startHouseNumber?: string | null;
-    startLatE7?: number | null;
-    startLngE7?: number | null;
-    state?: string | null;
-    stateHouseDistrict?: string | null;
-    stateSenateDistrict?: string | null;
-    streetName?: string | null;
-    subAdministrativeAreaName?: string | null;
-    surrogateId?: string | null;
-    targetsmartUniquePrecinctCode?: string | null;
-    townshipDistrict?: string | null;
-    unitNumber?: string | null;
-    unitType?: string | null;
-    vanPrecinctCode?: string | null;
-    voterGeographicDivisionOcdIds?: string[] | null;
-    wardDistrict?: string | null;
-    wildcard?: boolean | null;
-    zip?: string | null;
-  }
-  export interface Schema$StreetSegmentList {
-    segments?: Schema$StreetSegment[];
-  }
-  /**
-   * A request for information about a voter.
-   */
-  export interface Schema$VoterInfoRequest {
-    contextParams?: Schema$ContextParams;
-    voterInfoSegmentResult?: Schema$VoterInfoSegmentResult;
-  }
   /**
    * The result of a voter info lookup query.
    */
@@ -846,17 +733,10 @@ export namespace civicinfo_v2 {
      */
     pollingLocations?: Schema$PollingLocation[];
     precinctId?: string | null;
-    segments?: Schema$StreetSegment[];
     /**
      * Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
      */
     state?: Schema$AdministrationRegion[];
-  }
-  export interface Schema$VoterInfoSegmentResult {
-    generatedMillis?: string | null;
-    postalAddress?: Schema$PostalAddress;
-    request?: Schema$VoterInfoRequest;
-    response?: Schema$VoterInfoResponse;
   }
 
   export class Resource$Divisions {
@@ -894,14 +774,6 @@ export namespace civicinfo_v2 {
      *   const res = await civicinfo.divisions.search({
      *     // The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      *     query: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contextParams": {}
-     *       // }
-     *     },
      *   });
      *   console.log(res.data);
      *
@@ -922,7 +794,6 @@ export namespace civicinfo_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     * @param {().DivisionSearchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -983,7 +854,7 @@ export namespace civicinfo_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1016,11 +887,6 @@ export namespace civicinfo_v2 {
      * The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      */
     query?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DivisionSearchRequest;
   }
 
   export class Resource$Elections {
@@ -1055,15 +921,7 @@ export namespace civicinfo_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await civicinfo.elections.electionQuery({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contextParams": {}
-     *       // }
-     *     },
-     *   });
+     *   const res = await civicinfo.elections.electionQuery({});
      *   console.log(res.data);
      *
      *   // Example response
@@ -1082,7 +940,6 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ElectionsQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1146,7 +1003,7 @@ export namespace civicinfo_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1202,21 +1059,12 @@ export namespace civicinfo_v2 {
      *   const res = await civicinfo.elections.voterInfoQuery({
      *     // The registered address of the voter to look up.
      *     address: 'placeholder-value',
-     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      *     electionId: 'placeholder-value',
      *     // If set to true, only data from official state sources will be returned.
      *     officialOnly: 'placeholder-value',
-     *     // If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+     *     // If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      *     returnAllAvailableData: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contextParams": {},
-     *       //   "voterInfoSegmentResult": {}
-     *       // }
-     *     },
      *   });
      *   console.log(res.data);
      *
@@ -1232,7 +1080,6 @@ export namespace civicinfo_v2 {
      *   //   "otherElections": [],
      *   //   "pollingLocations": [],
      *   //   "precinctId": "my_precinctId",
-     *   //   "segments": [],
      *   //   "state": []
      *   // }
      * }
@@ -1247,10 +1094,9 @@ export namespace civicinfo_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.address The registered address of the voter to look up.
-     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
-     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-     * @param {().VoterInfoRequest} params.requestBody Request body data
+     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1312,7 +1158,7 @@ export namespace civicinfo_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1341,12 +1187,7 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Elections$Electionquery
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ElectionsQueryRequest;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Elections$Voterinfoquery
     extends StandardParameters {
     /**
@@ -1354,7 +1195,7 @@ export namespace civicinfo_v2 {
      */
     address?: string;
     /**
-     * The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     * The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
      */
     electionId?: string;
     /**
@@ -1362,14 +1203,9 @@ export namespace civicinfo_v2 {
      */
     officialOnly?: boolean;
     /**
-     * If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+     * If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      */
     returnAllAvailableData?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$VoterInfoRequest;
   }
 
   export class Resource$Representatives {
@@ -1405,7 +1241,7 @@ export namespace civicinfo_v2 {
      *
      *   // Do the magic
      *   const res = await civicinfo.representatives.representativeInfoByAddress({
-     *     // The address to look up. May only be specified if the field ocdId is not given in the URL.
+     *     // The address to look up. May only be specified if the field ocdId is not given in the URL
      *     address: 'placeholder-value',
      *     // Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      *     includeOffices: 'placeholder-value',
@@ -1413,14 +1249,6 @@ export namespace civicinfo_v2 {
      *     levels: 'placeholder-value',
      *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      *     roles: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contextParams": {}
-     *       // }
-     *     },
      *   });
      *   console.log(res.data);
      *
@@ -1443,11 +1271,10 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL.
+     * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL
      * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {().RepresentativeInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1511,7 +1338,7 @@ export namespace civicinfo_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1573,14 +1400,6 @@ export namespace civicinfo_v2 {
      *     recursive: 'placeholder-value',
      *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      *     roles: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contextParams": {}
-     *       // }
-     *     },
      *   });
      *   console.log(res.data);
      *
@@ -1605,7 +1424,6 @@ export namespace civicinfo_v2 {
      * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
      * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {().DivisionRepresentativeInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1669,7 +1487,7 @@ export namespace civicinfo_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1700,7 +1518,7 @@ export namespace civicinfo_v2 {
   export interface Params$Resource$Representatives$Representativeinfobyaddress
     extends StandardParameters {
     /**
-     * The address to look up. May only be specified if the field ocdId is not given in the URL.
+     * The address to look up. May only be specified if the field ocdId is not given in the URL
      */
     address?: string;
     /**
@@ -1715,11 +1533,6 @@ export namespace civicinfo_v2 {
      * A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      */
     roles?: string[];
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RepresentativeInfoRequest;
   }
   export interface Params$Resource$Representatives$Representativeinfobydivision
     extends StandardParameters {
@@ -1739,10 +1552,5 @@ export namespace civicinfo_v2 {
      * A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      */
     roles?: string[];
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DivisionRepresentativeInfoRequest;
   }
 }
