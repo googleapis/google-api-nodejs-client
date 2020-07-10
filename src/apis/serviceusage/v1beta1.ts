@@ -1026,6 +1026,19 @@ export namespace serviceusage_v1beta1 {
     policies?: Schema$AdminQuotaPolicy[];
   }
   /**
+   * Request message for ImportConsumerOverrides
+   */
+  export interface Schema$ImportConsumerOverridesRequest {
+    /**
+     * Whether to force the creation of the quota overrides. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean | null;
+    /**
+     * The import data is specified in the request message itself
+     */
+    inlineSource?: Schema$OverrideInlineSource;
+  }
+  /**
    * Response message for ImportConsumerOverrides
    */
   export interface Schema$ImportConsumerOverridesResponse {
@@ -1254,7 +1267,7 @@ export namespace serviceusage_v1beta1 {
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values.  Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..  If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`.  Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`).  The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10^3) * `M`     mega    (10^6) * `G`     giga    (10^9) * `T`     tera    (10^12) * `P`     peta    (10^15) * `E`     exa     (10^18) * `Z`     zetta   (10^21) * `Y`     yotta   (10^24)  * `m`     milli   (10^-3) * `u`     micro   (10^-6) * `n`     nano    (10^-9) * `p`     pico    (10^-12) * `f`     femto   (10^-15) * `a`     atto    (10^-18) * `z`     zepto   (10^-21) * `y`     yocto   (10^-24)  * `Ki`    kibi    (2^10) * `Mi`    mebi    (2^20) * `Gi`    gibi    (2^30) * `Ti`    tebi    (2^40) * `Pi`    pebi    (2^50)  **Grammar**  The grammar also includes these connectors:  * `/`    division or ratio (as an infix operator). For examples,          `kBy/{email}` or `MiBy/10ms` (although you should almost never          have `/s` in a metric `unit`; rates should always be computed at          query time from the underlying cumulative or delta value). * `.`    multiplication or composition (as an infix operator). For          examples, `GBy.d` or `k{watt}.h`.  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT`. If the annotation    is used alone, then the unit is equivalent to `1`. For examples,    `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing `{` or `}`. * `1` represents a unitary [dimensionless    unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such    as in `1/s`. It is typically used when none of the basic units are    appropriate. For example, &quot;new users per day&quot; can be represented as    `1/d` or `{new-users}/d` (and a metric value `5` would mean &quot;5 new    users). Alternatively, &quot;thousands of page views per day&quot; would be    represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric    value of `5.3` would mean &quot;5300 page views per day&quot;). * `%` represents dimensionless value of 1/100, and annotates values giving    a percentage (so the metric values are typically in the range of 0..100,    and a metric value `3` means &quot;3 percent&quot;). * `10^2.%` indicates a metric contains a ratio, typically in the range    0..1, that will be multiplied by 100 and displayed as a percentage    (so a metric value `0.03` means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values.  Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..  If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`.  Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`).  The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day * `1`     dimensionless  **Prefixes (PREFIX)**  * `k`     kilo    (10^3) * `M`     mega    (10^6) * `G`     giga    (10^9) * `T`     tera    (10^12) * `P`     peta    (10^15) * `E`     exa     (10^18) * `Z`     zetta   (10^21) * `Y`     yotta   (10^24)  * `m`     milli   (10^-3) * `u`     micro   (10^-6) * `n`     nano    (10^-9) * `p`     pico    (10^-12) * `f`     femto   (10^-15) * `a`     atto    (10^-18) * `z`     zepto   (10^-21) * `y`     yocto   (10^-24)  * `Ki`    kibi    (2^10) * `Mi`    mebi    (2^20) * `Gi`    gibi    (2^30) * `Ti`    tebi    (2^40) * `Pi`    pebi    (2^50)  **Grammar**  The grammar also includes these connectors:  * `/`    division or ratio (as an infix operator). For examples,          `kBy/{email}` or `MiBy/10ms` (although you should almost never          have `/s` in a metric `unit`; rates should always be computed at          query time from the underlying cumulative or delta value). * `.`    multiplication or composition (as an infix operator). For          examples, `GBy.d` or `k{watt}.h`.  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT`. If the annotation    is used alone, then the unit is equivalent to `1`. For examples,    `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing `{` or `}`. * `1` represents a unitary [dimensionless    unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such    as in `1/s`. It is typically used when none of the basic units are    appropriate. For example, &quot;new users per day&quot; can be represented as    `1/d` or `{new-users}/d` (and a metric value `5` would mean &quot;5 new    users). Alternatively, &quot;thousands of page views per day&quot; would be    represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric    value of `5.3` would mean &quot;5300 page views per day&quot;). * `%` represents dimensionless value of 1/100, and annotates values giving    a percentage (so the metric values are typically in the range of 0..100,    and a metric value `3` means &quot;3 percent&quot;). * `10^2.%` indicates a metric contains a ratio, typically in the range    0..1, that will be multiplied by 100 and displayed as a percentage    (so a metric value `0.03` means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -1330,7 +1343,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string | null;
     /**
-     * Note there are legacy service monitored resources not following this rule.
+     * Required. The monitored resource type. For example, the type `cloudsql_database` represents databases in Google Cloud SQL.  All service defined monitored resource types must be prefixed with the service name, in the format of `{service name}/{relative resource name}`. The relative resource name must follow:  * Only upper and lower-case letters and digits are allowed. * It must start with upper case character and is recommended to use Upper   Camel Case style. * The maximum number of characters allowed for the relative_resource_name   is 100.  Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
@@ -1415,6 +1428,15 @@ export namespace serviceusage_v1beta1 {
      * The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
      */
     value?: {[key: string]: any} | null;
+  }
+  /**
+   * Import data embedded in the request message
+   */
+  export interface Schema$OverrideInlineSource {
+    /**
+     * The overrides to create. Each override must have a value for &#39;metric&#39; and &#39;unit&#39;, to specify which metric and which limit the override should be applied to.
+     */
+    overrides?: Schema$QuotaOverride[];
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent nested documentation set structure.
@@ -1524,6 +1546,10 @@ export namespace serviceusage_v1beta1 {
    * A quota override
    */
   export interface Schema$QuotaOverride {
+    /**
+     * The resource name of the ancestor that requested the override. For example: &quot;organizations/12345&quot; or &quot;folders/67890&quot;. Used by admin overrides only.
+     */
+    adminOverrideAncestor?: string | null;
     /**
      * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota overrides     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
      */
@@ -3200,6 +3226,161 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
+     * serviceusage.services.consumerQuotaMetrics.importConsumerOverrides
+     * @desc Create or update multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceusage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.importConsumerOverrides(
+     *     {
+     *       // The resource name of the consumer.
+     *       //
+     *       // An example name would be:
+     *       // `projects/123/services/compute.googleapis.com`
+     *       parent: '[^/]+/[^/]+/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "force": false,
+     *         //   "inlineSource": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias serviceusage.services.consumerQuotaMetrics.importConsumerOverrides
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The resource name of the consumer.  An example name would be: `projects/123/services/compute.googleapis.com`
+     * @param {().ImportConsumerOverridesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    importConsumerOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importConsumerOverrides(
+      params?: Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    importConsumerOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importConsumerOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importConsumerOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importConsumerOverrides(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importConsumerOverrides(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/consumerQuotaMetrics:importConsumerOverrides'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * serviceusage.services.consumerQuotaMetrics.list
      * @desc Retrieves a summary of all quota information visible to the service consumer, organized by service metric. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.
      * @example
@@ -3369,6 +3550,18 @@ export namespace serviceusage_v1beta1 {
      * Specifies the level of detail for quota information in the response.
      */
     view?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides
+    extends StandardParameters {
+    /**
+     * The resource name of the consumer.  An example name would be: `projects/123/services/compute.googleapis.com`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportConsumerOverridesRequest;
   }
   export interface Params$Resource$Services$Consumerquotametrics$List
     extends StandardParameters {
@@ -3618,6 +3811,7 @@ export namespace serviceusage_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
      *         //   "dimensions": {},
      *         //   "metric": "my_metric",
      *         //   "name": "my_name",
@@ -4089,6 +4283,7 @@ export namespace serviceusage_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
      *         //   "dimensions": {},
      *         //   "metric": "my_metric",
      *         //   "name": "my_name",
@@ -4322,6 +4517,7 @@ export namespace serviceusage_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
      *         //   "dimensions": {},
      *         //   "metric": "my_metric",
      *         //   "name": "my_name",
@@ -4795,6 +4991,7 @@ export namespace serviceusage_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
      *         //   "dimensions": {},
      *         //   "metric": "my_metric",
      *         //   "name": "my_name",
