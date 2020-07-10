@@ -418,7 +418,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200703",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -744,14 +744,14 @@
       "type": "object"
     },
     "PubsubMessage": {
-      "description": "A message that is published by publishers and consumed by subscribers. The\nmessage must contain either a non-empty data field or at least one attribute.\nNote that client libraries represent this object differently\ndepending on the language. See the corresponding\n<a href=\"https://cloud.google.com/pubsub/docs/reference/libraries\">client\nlibrary documentation</a> for more information. See\n<a href=\"https://cloud.google.com/pubsub/quotas\">Quotas and limits</a>\nfor more information about message limits.",
+      "description": "A message that is published by publishers and consumed by subscribers. The\nmessage must contain either a non-empty data field or at least one attribute.\nNote that client libraries represent this object differently\ndepending on the language. See the corresponding [client library\ndocumentation](https://cloud.google.com/pubsub/docs/reference/libraries) for\nmore information. See [quotas and limits]\n(https://cloud.google.com/pubsub/quotas) for more information about message\nlimits.",
       "id": "PubsubMessage",
       "properties": {
         "attributes": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data.",
+          "description": "Attributes for this message. If this field is empty, the message must\ncontain non-empty data. This can be used to filter messages on the\nsubscription.",
           "type": "object"
         },
         "data": {
