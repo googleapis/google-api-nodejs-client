@@ -57,6 +57,10 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     '$.xgafv'?: string;
     /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
      * Data format for response.
      */
     alt?: string;
@@ -72,6 +76,10 @@ export namespace cloudresourcemanager_v1beta1 {
      * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
     /**
      * Returns response with indentations and line breaks.
      */
@@ -229,11 +237,11 @@ export namespace cloudresourcemanager_v1beta1 {
     errorMessageId?: string | null;
   }
   /**
-   * The request sent to the GetAncestry method.
+   * The request sent to the [google.cloudresourcemanager.projects.v1beta1.DeveloperProjects.GetAncestry] method.
    */
   export interface Schema$GetAncestryRequest {}
   /**
-   * Response from the GetAncestry method.
+   * Response from the projects.getAncestry method.
    */
   export interface Schema$GetAncestryResponse {
     /**
@@ -353,7 +361,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
+     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}.  Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
     labels?: {[key: string]: string} | null;
     /**
