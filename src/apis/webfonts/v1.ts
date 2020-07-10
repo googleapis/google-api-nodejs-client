@@ -53,9 +53,21 @@ export namespace webfonts_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace webfonts_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Google Fonts Developer API
+   * Web Fonts Developer API
    *
-   * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
+   * The Google Web Fonts Developer API lets you retrieve information about web fonts served     by Google.
    *
    * @example
    * const {google} = require('googleapis');
@@ -111,6 +127,9 @@ export namespace webfonts_v1 {
     }
   }
 
+  /**
+   * Metadata describing a family of fonts.
+   */
   export interface Schema$Webfont {
     /**
      * The category of the font.
@@ -145,6 +164,9 @@ export namespace webfonts_v1 {
      */
     version?: string | null;
   }
+  /**
+   * Response containing the list of fonts currently served by the Google Fonts API.
+   */
   export interface Schema$WebfontList {
     /**
      * The list of fonts currently served by the Google Fonts API.
@@ -164,7 +186,7 @@ export namespace webfonts_v1 {
 
     /**
      * webfonts.webfonts.list
-     * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API
+     * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -189,7 +211,7 @@ export namespace webfonts_v1 {
      *
      *   // Do the magic
      *   const res = await webfonts.webfonts.list({
-     *     // Enables sorting of the list
+     *     // Enables sorting of the list.
      *     sort: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -209,8 +231,8 @@ export namespace webfonts_v1 {
      * @alias webfonts.webfonts.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.sort Enables sorting of the list
+     * @param {object} params Parameters for request
+     * @param {string=} params.sort Enables sorting of the list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -270,10 +292,7 @@ export namespace webfonts_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/webfonts/v1/webfonts').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/webfonts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -296,7 +315,7 @@ export namespace webfonts_v1 {
 
   export interface Params$Resource$Webfonts$List extends StandardParameters {
     /**
-     * Enables sorting of the list
+     * Enables sorting of the list.
      */
     sort?: string;
   }
