@@ -2,7 +2,7 @@
 
 # pagespeedonline
 
-> Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
+> The PageSpeed Insights API lets you analyze the performance of your website with a simple API. It offers tailored suggestions for how you can optimize your site, and lets you easily integrate PageSpeed Insights analysis into your development tools and workflow.
 
 ## Installation
 
