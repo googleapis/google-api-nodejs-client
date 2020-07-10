@@ -1243,6 +1243,7 @@ export namespace accessapproval_v1 {
      *     //   <li>PENDING: Only pending requests.</li>
      *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
      *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
      *     // </ol>
      *     filter: 'placeholder-value',
      *     // Requested page size.
@@ -1271,7 +1272,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -1403,7 +1404,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -2372,6 +2373,7 @@ export namespace accessapproval_v1 {
      *     //   <li>PENDING: Only pending requests.</li>
      *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
      *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
      *     // </ol>
      *     filter: 'placeholder-value',
      *     // Requested page size.
@@ -2400,7 +2402,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -2532,7 +2534,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -3501,6 +3503,7 @@ export namespace accessapproval_v1 {
      *     //   <li>PENDING: Only pending requests.</li>
      *     //   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>
      *     //   <li>DISMISSED: Only dismissed (including expired) requests.</li>
+     *     //   <li>HISTORY: Active and dismissed (including expired) requests.</li>
      *     // </ol>
      *     filter: 'placeholder-value',
      *     // Requested page size.
@@ -3529,7 +3532,7 @@ export namespace accessapproval_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      * @param {integer=} params.pageSize Requested page size.
      * @param {string=} params.pageToken A token identifying the page of results to return.
      * @param {string} params.parent The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
@@ -3661,7 +3664,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li>   <li>HISTORY: Active and dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
