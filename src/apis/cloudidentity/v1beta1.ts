@@ -351,7 +351,7 @@ export namespace cloudidentity_v1beta1 {
      */
     otherAccounts?: string[] | null;
     /**
-     * Whether the device is owned by the company or an individual
+     * Output only. Whether the device is owned by the company or an individual
      */
     ownerType?: string | null;
     /**
@@ -649,6 +649,10 @@ export namespace cloudidentity_v1beta1 {
      * The `MembershipRole`s that apply to the `Membership`.  If unspecified, defaults to a single `MembershipRole` with `name` `MEMBER`.  Must not contain duplicate `MembershipRole`s with the same `name`.
      */
     roles?: Schema$MembershipRole[];
+    /**
+     * Output only. The type of the membership.
+     */
+    type?: string | null;
     /**
      * Output only. The time when the `Membership` was last updated.
      */
@@ -2015,6 +2019,7 @@ export namespace cloudidentity_v1beta1 {
      *       //   "name": "my_name",
      *       //   "preferredMemberKey": {},
      *       //   "roles": [],
+     *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -2311,6 +2316,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "name": "my_name",
      *   //   "preferredMemberKey": {},
      *   //   "roles": [],
+     *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
