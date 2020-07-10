@@ -8,32 +8,60 @@
       }
     }
   },
-  "basePath": "/playcustomapp/v1/accounts/",
-  "baseUrl": "https://www.googleapis.com/playcustomapp/v1/accounts/",
+  "basePath": "",
+  "baseUrl": "https://www.googleapis.com/",
   "batchPath": "batch/playcustomapp/v1",
-  "description": "An API to publish custom Android apps.",
+  "description": "API to create and publish custom Android apps",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/android/work/play/custom-app-api",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/7giQS2sn1aiNssvTbYUqqbUEOO8\"",
+  "documentationLink": "https://developers.google.com/android/work/play/custom-app-api/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
-    "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-    "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
   "id": "playcustomapp:v1",
   "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
   "name": "playcustomapp",
   "ownerDomain": "google.com",
   "ownerName": "Google",
   "parameters": {
-    "alt": {
-      "default": "json",
-      "description": "Data format for the response.",
+    "$.xgafv": {
+      "description": "V1 error format.",
       "enum": [
-        "json"
+        "1",
+        "2"
       ],
       "enumDescriptions": [
-        "Responses with Content-Type of application/json"
+        "v1 error format",
+        "v2 error format"
       ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
       "location": "query",
       "type": "string"
     },
@@ -59,12 +87,17 @@
       "type": "boolean"
     },
     "quotaUser": {
-      "description": "An opaque string that represents a user for quota purposes. Must not exceed 40 characters.",
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
       "location": "query",
       "type": "string"
     },
-    "userIp": {
-      "description": "Deprecated. Please use quotaUser instead.",
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
       "location": "query",
       "type": "string"
     }
@@ -76,19 +109,16 @@
         "customApps": {
           "methods": {
             "create": {
-              "description": "Create and publish a new custom app.",
+              "description": "Creates a new custom app.",
+              "flatPath": "playcustomapp/v1/accounts/{account}/customApps",
               "httpMethod": "POST",
               "id": "playcustomapp.accounts.customApps.create",
               "mediaUpload": {
                 "accept": [
                   "*/*"
                 ],
-                "maxSize": "100MB",
+                "maxSize": "10737418240",
                 "protocols": {
-                  "resumable": {
-                    "multipart": true,
-                    "path": "/resumable/upload/playcustomapp/v1/accounts/{account}/customApps"
-                  },
                   "simple": {
                     "multipart": true,
                     "path": "/upload/playcustomapp/v1/accounts/{account}/customApps"
@@ -107,7 +137,7 @@
                   "type": "string"
                 }
               },
-              "path": "{account}/customApps",
+              "path": "playcustomapp/v1/accounts/{account}/customApps",
               "request": {
                 "$ref": "CustomApp"
               },
@@ -124,7 +154,7 @@
       }
     }
   },
-  "revision": "20170622",
+  "revision": "20200707",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "CustomApp": {
@@ -135,6 +165,10 @@
           "description": "Default listing language in BCP 47 format.",
           "type": "string"
         },
+        "packageName": {
+          "description": "Output only. Package name of the created Android app.\nOnly present in the API response.",
+          "type": "string"
+        },
         "title": {
           "description": "Title for the Android app.",
           "type": "string"
@@ -143,7 +177,7 @@
       "type": "object"
     }
   },
-  "servicePath": "playcustomapp/v1/accounts/",
+  "servicePath": "",
   "title": "Google Play Custom App Publishing API",
   "version": "v1"
 }
