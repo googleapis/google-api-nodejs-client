@@ -210,6 +210,48 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "searchAllAssignments": {
+              "description": "Looks up assignments for a specified resource for a particular region.\nIf the request is about a project:\n\n1. Assignments created on the project will be returned if they exist.\n2. Otherwise assignments created on the closest ancestor will be\n   returned.\n3. Assignments for different JobTypes will all be returned.\n\nThe same logic applies if the request is about a folder.\n\nIf the request is about an organization, then assignments created on the\norganization will be returned (organization doesn't have ancestors).\n\nComparing to ListAssignments, there are some behavior\ndifferences:\n\n1. permission on the assignee will be verified in this API.\n2. Hierarchy lookup (project->folder->organization) happens in this API.\n3. Parent here is `projects/*/locations/*`, instead of\n   `projects/*/locations/*reservations/*`.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchAllAssignments",
+              "httpMethod": "GET",
+              "id": "bigqueryreservation.projects.locations.searchAllAssignments",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of items to return per page.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The next_page_token value returned from a previous List request, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name with location (project name could be the wildcard '-'),\ne.g.:\n  `projects/-/locations/US`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Please specify resource name as assignee in the query.\n\nExamples:\n\n* `assignee=projects/myproject`\n* `assignee=folders/123`\n* `assignee=organizations/456`",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:searchAllAssignments",
+              "response": {
+                "$ref": "SearchAllAssignmentsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "searchAssignments": {
               "description": "Looks up assignments for a specified resource for a particular region.\nIf the request is about a project:\n\n1. Assignments created on the project will be returned if they exist.\n2. Otherwise assignments created on the closest ancestor will be\n   returned.\n3. Assignments for different JobTypes will all be returned.\n\nThe same logic applies if the request is about a folder.\n\nIf the request is about an organization, then assignments created on the\norganization will be returned (organization doesn't have ancestors).\n\nComparing to ListAssignments, there are some behavior\ndifferences:\n\n1. permission on the assignee will be verified in this API.\n2. Hierarchy lookup (project->folder->organization) happens in this API.\n3. Parent here is `projects/*/locations/*`, instead of\n   `projects/*/locations/*reservations/*`.\n\n**Note** \"-\" cannot be used for projects\nnor locations.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchAssignments",
@@ -803,7 +845,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200702",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -819,12 +861,14 @@
           "enum": [
             "JOB_TYPE_UNSPECIFIED",
             "PIPELINE",
-            "QUERY"
+            "QUERY",
+            "ML_EXTERNAL"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Pipeline (load/export) jobs from the project will use the reservation.",
-            "Query jobs from the project will use the reservation."
+            "Query jobs from the project will use the reservation.",
+            "BigQuery ML jobs that use services external to BigQuery for model\ntraining. These jobs will not utilize idle slots from other reservations."
           ],
           "type": "string"
         },
@@ -876,6 +920,11 @@
       "properties": {
         "commitmentEndTime": {
           "description": "Output only. The end of the current commitment period. It is applicable only for ACTIVE\ncapacity commitments.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "commitmentStartTime": {
+          "description": "Output only. The start of the current commitment period. It is applicable only for\nACTIVE capacity commitments.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1111,6 +1160,24 @@
         "slotCapacity": {
           "description": "Minimum slots available to this reservation. A slot is a unit of\ncomputational power in BigQuery, and serves as the unit of parallelism.\n\nQueries using this reservation might use more slots during runtime if\nignore_idle_slots is set to false.\n\nIf the new reservation's slot capacity exceed the parent's slot capacity or\nif total slot capacity of the new reservation and its siblings exceeds the\nparent's slot capacity, the request will fail with\n`google.rpc.Code.RESOURCE_EXHAUSTED`.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchAllAssignmentsResponse": {
+      "description": "The response for ReservationService.SearchAllAssignments.",
+      "id": "SearchAllAssignmentsResponse",
+      "properties": {
+        "assignments": {
+          "description": "List of assignments visible to the user.",
+          "items": {
+            "$ref": "Assignment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
           "type": "string"
         }
       },

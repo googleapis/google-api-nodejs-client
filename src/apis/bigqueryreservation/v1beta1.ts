@@ -174,6 +174,10 @@ export namespace bigqueryreservation_v1beta1 {
      */
     commitmentEndTime?: string | null;
     /**
+     * Output only. The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.
+     */
+    commitmentStartTime?: string | null;
+    /**
      * Output only. For FAILED commitment plan, provides the reason of failure.
      */
     failureStatus?: Schema$Status;
@@ -903,6 +907,7 @@ export namespace bigqueryreservation_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
@@ -918,6 +923,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -1202,6 +1208,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -1508,6 +1515,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
@@ -1657,6 +1665,7 @@ export namespace bigqueryreservation_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
+     *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
@@ -1672,6 +1681,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Example response
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
+     *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
