@@ -235,7 +235,7 @@ export namespace iam_v1 {
      */
     role?: Schema$Role;
     /**
-     * The role ID to use for this role.
+     * The role ID to use for this role.  A role ID may contain alphanumeric characters, underscores (`_`), and periods (`.`). It must contain a minimum of 3 characters and a maximum of 64 characters.
      */
     roleId?: string | null;
   }
@@ -495,7 +495,7 @@ export namespace iam_v1 {
      */
     fullResourceName?: string | null;
     /**
-     * Optional limit on the number of roles to include in the response.
+     * Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      */
     pageSize?: number | null;
     /**
@@ -526,7 +526,7 @@ export namespace iam_v1 {
      */
     fullResourceName?: string | null;
     /**
-     * Optional limit on the number of permissions to include in the response.
+     * Optional limit on the number of permissions to include in the response.  The default is 100, and the maximum is 1,000.
      */
     pageSize?: number | null;
     /**
@@ -1598,6 +1598,8 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.organizations.roles.list({
      *     // Optional limit on the number of roles to include in the response.
+     *     //
+     *     // The default is 300, and the maximum is 1,000.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token returned in an earlier ListRolesResponse.
      *     pageToken: 'placeholder-value',
@@ -1655,7 +1657,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
+     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string} params.parent The `parent` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.   This method doesn't require a resource; it simply returns all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles`  * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):   `projects/{PROJECT_ID}`. This method lists all project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):   `organizations/{ORGANIZATION_ID}`. This method lists all   organization-level [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
@@ -2116,7 +2118,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Organizations$Roles$List
     extends StandardParameters {
     /**
-     * Optional limit on the number of roles to include in the response.
+     * Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      */
     pageSize?: number;
     /**
@@ -2857,6 +2859,8 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.roles.list({
      *     // Optional limit on the number of roles to include in the response.
+     *     //
+     *     // The default is 300, and the maximum is 1,000.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token returned in an earlier ListRolesResponse.
      *     pageToken: 'placeholder-value',
@@ -2914,7 +2918,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
+     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string} params.parent The `parent` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.   This method doesn't require a resource; it simply returns all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles`  * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):   `projects/{PROJECT_ID}`. This method lists all project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):   `organizations/{ORGANIZATION_ID}`. This method lists all   organization-level [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
@@ -3375,7 +3379,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Roles$List
     extends StandardParameters {
     /**
-     * Optional limit on the number of roles to include in the response.
+     * Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      */
     pageSize?: number;
     /**
@@ -4312,6 +4316,8 @@ export namespace iam_v1 {
      *     // response. Further accounts can subsequently be obtained by including the
      *     // ListServiceAccountsResponse.next_page_token
      *     // in a subsequent request.
+     *     //
+     *     // The default is 20, and the maximum is 100.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token returned in an earlier
      *     // ListServiceAccountsResponse.next_page_token.
@@ -4336,7 +4342,7 @@ export namespace iam_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
-     * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.
+     * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.  The default is 20, and the maximum is 100.
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListServiceAccountsResponse.next_page_token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5565,7 +5571,7 @@ export namespace iam_v1 {
      */
     name?: string;
     /**
-     * Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.
+     * Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.  The default is 20, and the maximum is 100.
      */
     pageSize?: number;
     /**
@@ -6645,6 +6651,8 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.roles.list({
      *     // Optional limit on the number of roles to include in the response.
+     *     //
+     *     // The default is 300, and the maximum is 1,000.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token returned in an earlier ListRolesResponse.
      *     pageToken: 'placeholder-value',
@@ -6702,7 +6710,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.
+     * @param {integer=} params.pageSize Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string=} params.parent The `parent` parameter's value depends on the target resource for the request, namely [`roles`](/iam/reference/rest/v1/roles), [`projects`](/iam/reference/rest/v1/projects.roles), or [`organizations`](/iam/reference/rest/v1/organizations.roles). Each resource type's `parent` value format is described below:  * [`roles.list()`](/iam/reference/rest/v1/roles/list): An empty string.   This method doesn't require a resource; it simply returns all   [predefined roles](/iam/docs/understanding-roles#predefined_roles) in   Cloud IAM. Example request URL:   `https://iam.googleapis.com/v1/roles`  * [`projects.roles.list()`](/iam/reference/rest/v1/projects.roles/list):   `projects/{PROJECT_ID}`. This method lists all project-level   [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/projects/{PROJECT_ID}/roles`  * [`organizations.roles.list()`](/iam/reference/rest/v1/organizations.roles/list):   `organizations/{ORGANIZATION_ID}`. This method lists all   organization-level [custom roles](/iam/docs/understanding-custom-roles).   Example request URL:   `https://iam.googleapis.com/v1/organizations/{ORGANIZATION_ID}/roles`  Note: Wildcard (*) values are invalid; you must specify a complete project ID or organization ID.
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
@@ -6945,7 +6953,7 @@ export namespace iam_v1 {
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
     /**
-     * Optional limit on the number of roles to include in the response.
+     * Optional limit on the number of roles to include in the response.  The default is 300, and the maximum is 1,000.
      */
     pageSize?: number;
     /**
