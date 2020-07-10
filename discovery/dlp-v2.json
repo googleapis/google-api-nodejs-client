@@ -3126,7 +3126,7 @@
       }
     }
   },
-  "revision": "20200606",
+  "revision": "20200706",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3366,7 +3366,7 @@
         },
         "replacementValue": {
           "$ref": "GooglePrivacyDlpV2Value",
-          "description": "Replacement value for this bucket. If not provided\nthe default behavior will be to hyphenate the min-max range."
+          "description": "Required. Replacement value for this bucket."
         }
       },
       "type": "object"
@@ -3406,7 +3406,9 @@
             "TEXT_UTF8",
             "WORD_DOCUMENT",
             "PDF",
-            "AVRO"
+            "AVRO",
+            "CSV",
+            "TSV"
           ],
           "enumDescriptions": [
             "Unused",
@@ -3418,7 +3420,9 @@
             "plain text",
             "docx, docm, dotx, dotm",
             "pdf",
-            "avro"
+            "avro",
+            "csv",
+            "tsv"
           ],
           "type": "string"
         }
@@ -3586,7 +3590,9 @@
             "Included file extensions:\n  bmp, gif, jpg, jpeg, jpe, png.\nbytes_limit_per_file has no effect on image files.\nImage inspection is restricted to 'global', 'us', 'asia', and 'europe'.",
             "Word files >30 MB will be scanned as binary files.\nIncluded file extensions:\n  docx, dotx, docm, dotm",
             "PDF files >30 MB will be scanned as binary files.\nIncluded file extensions:\n  pdf",
-            "Included file extensions:\n  avro"
+            "Included file extensions:\n  avro",
+            "Included file extensions:\n  csv",
+            "Included file extensions:\n  tsv"
           ],
           "items": {
             "enum": [
@@ -3596,7 +3602,9 @@
               "IMAGE",
               "WORD",
               "PDF",
-              "AVRO"
+              "AVRO",
+              "CSV",
+              "TSV"
             ],
             "type": "string"
           },
