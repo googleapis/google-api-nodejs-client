@@ -353,11 +353,104 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        },
+        "searchAllIamPolicies": {
+          "description": "Searches all the IAM policies within the given accessible scope (e.g., a\nproject, a folder or an organization). Callers should have\n`cloud.assets.SearchAllIamPolicies` permission upon the requested scope,\notherwise the request will be rejected.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:searchAllIamPolicies",
+          "httpMethod": "GET",
+          "id": "cloudasset.searchAllIamPolicies",
+          "parameterOrder": [
+            "scope"
+          ],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even\nif a larger value is given. If set to zero, server will pick an appropriate\ndefault. Returned results may be fewer than requested. When this happens,\nthere could be more results as long as `next_page_token` is returned.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. If present, retrieve the next batch of results from the preceding call to\nthis method. `page_token` must be the value of `next_page_token` from the\nprevious response. The values of all other method parameters must be\nidentical to those in the previous call.",
+              "location": "query",
+              "type": "string"
+            },
+            "query": {
+              "description": "Optional. The query statement. An empty query can be specified to search all the IAM\npolicies within the given `scope`.\n\nExamples:\n\n* `policy : \"amy@gmail.com\"` to find Cloud IAM policy bindings that\n  specify user \"amy@gmail.com\".\n* `policy : \"roles/compute.admin\"` to find Cloud IAM policy bindings that\n  specify the Compute Admin role.\n* `policy.role.permissions : \"storage.buckets.update\"` to find Cloud IAM\n  policy bindings that specify a role containing \"storage.buckets.update\"\n  permission.\n* `resource : \"organizations/123\"` to find Cloud IAM policy bindings that\n  are set on \"organizations/123\".\n* `(resource : (\"organizations/123\" OR \"folders/1234\") AND policy : \"amy\")`\n  to find Cloud IAM policy bindings that are set on \"organizations/123\" or\n  \"folders/1234\", and also specify user \"amy\".\n\nSee [how to construct a\nquery](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)\nfor more details.",
+              "location": "query",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Required. A scope can be a project, a folder or an organization. The search is\nlimited to the IAM policies within the `scope`.\n\nThe allowed values are:\n\n* projects/{PROJECT_ID}\n* projects/{PROJECT_NUMBER}\n* folders/{FOLDER_NUMBER}\n* organizations/{ORGANIZATION_NUMBER}",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+scope}:searchAllIamPolicies",
+          "response": {
+            "$ref": "SearchAllIamPoliciesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "searchAllResources": {
+          "description": "Searches all the resources within the given accessible scope (e.g., a\nproject, a folder or an organization). Callers should have\n`cloud.assets.SearchAllResources` permission upon the requested scope,\notherwise the request will be rejected.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:searchAllResources",
+          "httpMethod": "GET",
+          "id": "cloudasset.searchAllResources",
+          "parameterOrder": [
+            "scope"
+          ],
+          "parameters": {
+            "assetTypes": {
+              "description": "Optional. A list of asset types that this request searches for. If empty, it will\nsearch all the [searchable asset\ntypes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Optional. A comma separated list of fields specifying the sorting order of the\nresults. The default order is ascending. Add \" DESC\" after the field name\nto indicate descending order. Redundant space characters are ignored.\nExample: \"location DESC, name\". Only string fields in the response are\nsortable, including `name`, `displayName`, `description`, `location`. All\nthe other fields such as repeated fields (e.g., `networkTags`), map\nfields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)\nare not supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even\nif a larger value is given. If set to zero, server will pick an appropriate\ndefault. Returned results may be fewer than requested. When this happens,\nthere could be more results as long as `next_page_token` is returned.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. If present, then retrieve the next batch of results from the preceding call\nto this method. `page_token` must be the value of `next_page_token` from\nthe previous response. The values of all other method parameters, must be\nidentical to those in the previous call.",
+              "location": "query",
+              "type": "string"
+            },
+            "query": {
+              "description": "Optional. The query statement. An empty query can be specified to search all the\nresources of certain `asset_types` within the given `scope`.\n\nExamples:\n\n* `name : \"Important\"` to find Cloud resources whose name contains\n  \"Important\" as a word.\n* `displayName : \"Impor*\"` to find Cloud resources whose display name\n  contains \"Impor\" as a word prefix.\n* `description : \"*por*\"` to find Cloud resources whose description\n  contains \"por\" as a substring.\n* `location : \"us-west*\"` to find Cloud resources whose location is\n  prefixed with \"us-west\".\n* `labels : \"prod\"` to find Cloud resources whose labels contain \"prod\" as\n  a key or value.\n* `labels.env : \"prod\"` to find Cloud resources which have a label \"env\"\n  and its value is \"prod\".\n* `labels.env : *` to find Cloud resources which have a label \"env\".\n* `\"Important\"` to find Cloud resources which contain \"Important\" as a word\n  in any of the searchable fields.\n* `\"Impor*\"` to find Cloud resources which contain \"Impor\" as a word prefix\n  in any of the searchable fields.\n* `\"*por*\"` to find Cloud resources which contain \"por\" as a substring in\n  any of the searchable fields.\n* `(\"Important\" AND location : (\"us-west1\" OR \"global\"))` to find Cloud\n  resources which contain \"Important\" as a word in any of the searchable\n  fields and are also located in the \"us-west1\" region or the \"global\"\n  location.\n\nSee [how to construct a\nquery](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)\nfor more details.",
+              "location": "query",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Required. A scope can be a project, a folder or an organization. The search is\nlimited to the resources within the `scope`.\n\nThe allowed values are:\n\n* projects/{PROJECT_ID}\n* projects/{PROJECT_NUMBER}\n* folders/{FOLDER_NUMBER}\n* organizations/{ORGANIZATION_NUMBER}",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+scope}:searchAllResources",
+          "response": {
+            "$ref": "SearchAllResourcesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       }
     }
   },
-  "revision": "20200613",
+  "revision": "20200707",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -538,12 +631,26 @@
       "properties": {},
       "type": "object"
     },
+    "Explanation": {
+      "description": "Explanation about the IAM policy search result.",
+      "id": "Explanation",
+      "properties": {
+        "matchedPermissions": {
+          "additionalProperties": {
+            "$ref": "Permissions"
+          },
+          "description": "The map from roles to their included permissions that match the\npermission query (i.e., a query containing `policy.role.permissions:`).\nExample: if query `policy.role.permissions : \"compute.disk.get\"`\nmatches a policy binding that contains owner role, the\nmatched_permissions will be `{\"roles/owner\": [\"compute.disk.get\"]}`. The\nroles can also be found in the returned `policy` bindings. Note that the\nmap is populated only for requests with permission queries.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ExportAssetsRequest": {
       "description": "Export asset request.",
       "id": "ExportAssetsRequest",
       "properties": {
         "assetTypes": {
-          "description": "A list of asset types of which to take a snapshot for. Example:\n\"compute.googleapis.com/Disk\". If specified, only matching assets will be\nreturned. See [Introduction to Cloud Asset\nInventory](https://cloud.google.com/asset-inventory/docs/overview)\nfor all supported asset types.",
+          "description": "A list of asset types to take a snapshot for. For example:\n\"compute.googleapis.com/Disk\".\n\nRegular expressions are also supported. For example:\n\n* \"compute.googleapis.com.*\" snapshots resources whose asset type starts\nwith \"compute.googleapis.com\".\n* \".*Instance\" snapshots resources whose asset type ends with \"Instance\".\n* \".*Instance.*\" snapshots resources whose asset type contains \"Instance\".\n\nSee [RE2](https://github.com/google/re2/wiki/Syntax) for all supported\nregular expression syntax. If the regular expression does not match any\nsupported asset type, an INVALID_ARGUMENT error will be returned.\n\nIf specified, only matching assets will be returned, otherwise, it will\nsnapshot all asset types. See [Introduction to Cloud Asset\nInventory](https://cloud.google.com/asset-inventory/docs/overview)\nfor all supported asset types.",
           "items": {
             "type": "string"
           },
@@ -619,6 +726,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "condition": {
+          "$ref": "Expr",
+          "description": "A condition which determines whether an asset update should be published.\nIf specified, an asset will be returned only when the expression evaluates\nto true.\nWhen set, `expression` field in the `Expr` must be a valid [CEL expression]\n(https://github.com/google/cel-spec) on a TemporalAsset with name\n`temporal_asset`. Example: a Feed with expression (\"temporal_asset.deleted\n== true\") will only publish Asset deletions. Other fields of `Expr` are\noptional."
         },
         "contentType": {
           "description": "Asset content type. If not specified, no content but the asset name and\ntype will be returned.",
@@ -1097,6 +1208,29 @@
       },
       "type": "object"
     },
+    "IamPolicySearchResult": {
+      "description": "A result of IAM Policy search, containing information of an IAM policy.",
+      "id": "IamPolicySearchResult",
+      "properties": {
+        "explanation": {
+          "$ref": "Explanation",
+          "description": "Explanation about the IAM policy search result. It contains additional\ninformation to explain why the search result matches the query."
+        },
+        "policy": {
+          "$ref": "Policy",
+          "description": "The IAM policy directly set on the given resource. Note that the original\nIAM policy can contain multiple bindings. This only contains the bindings\nthat match the given query. For queries that don't contain a constrain on\npolicies (e.g., an empty query), this contains all the bindings.\n\nTo search against the `policy` bindings:\n\n* use a field query, as following:\n    - query by the policy contained members. Example:\n      `policy : \"amy@gmail.com\"`\n    - query by the policy contained roles. Example:\n      `policy : \"roles/compute.admin\"`\n    - query by the policy contained roles' implied permissions. Example:\n      `policy.role.permissions : \"compute.instances.create\"`"
+        },
+        "project": {
+          "description": "The project that the associated GCP resource belongs to, in the form of\nprojects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM\ninstance, Cloud Storage bucket), the project field will indicate the\nproject that contains the resource. If an IAM policy is set on a folder or\norgnization, the project field will be empty.\n\nTo search against the `project`:\n\n* specify the `scope` field as this project in your search request.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The full resource name of the resource associated with this IAM policy.\nExample:\n`//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.\nSee [Cloud Asset Inventory Resource Name\nFormat](https://cloud.google.com/asset-inventory/docs/resource-name-format)\nfor more information.\n\nTo search against the `resource`:\n\n* use a field query. Example: `resource : \"organizations/123\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListFeedsResponse": {
       "id": "ListFeedsResponse",
       "properties": {
@@ -1156,6 +1290,20 @@
         "gcsDestination": {
           "$ref": "GcsDestination",
           "description": "Destination on Cloud Storage."
+        }
+      },
+      "type": "object"
+    },
+    "Permissions": {
+      "description": "IAM permissions",
+      "id": "Permissions",
+      "properties": {
+        "permissions": {
+          "description": "A list of permissions. A sample permission string: `compute.disk.get`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1241,6 +1389,95 @@
       },
       "type": "object"
     },
+    "ResourceSearchResult": {
+      "description": "A result of Resource Search, containing information of a cloud resoure.",
+      "id": "ResourceSearchResult",
+      "properties": {
+        "additionalAttributes": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The additional attributes of this resource. The attributes may vary from\none resource type to another. Examples: `projectId` for Project,\n`dnsName` for DNS ManagedZone. This field contains a subset of the resource\nmetadata fields that are returned by the List or Get APIs provided by the\ncorresponding GCP service (e.g., Compute Engine). see [API\nreferences](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_resource_types)\nof CAIS supported resource types. You can search values of these fields\nthrough free text search. However, you should not consume the field\nprogramically as the field names and values may change as the GCP service\n(e.g., Compute Engine) updates to a new incompatible API version.\n\nTo search against the `additional_attributes`:\n\n* use a free text query to match the attributes values. Example: to search\n  `additional_attributes = { dnsName: \"foobar\" }`, you can issue a query\n  `\"foobar\"`.",
+          "type": "object"
+        },
+        "assetType": {
+          "description": "The type of this resource. Example: `compute.googleapis.com/Disk`.\n\nTo search against the `asset_type`:\n\n* specify the `asset_type` field in your search request.",
+          "type": "string"
+        },
+        "description": {
+          "description": "One or more paragraphs of text description of this resource. Maximum length\ncould be up to 1M bytes.\n\nTo search against the `description`:\n\n* use a field query. Example: `description : \"*important instance*\"`\n* use a free text query. Example: `\"*important instance*\"`",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of this resource.\n\nTo search against the `display_name`:\n\n* use a field query. Example: `displayName : \"My Instance\"`\n* use a free text query. Example: `\"My Instance\"`",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels associated with this resource. See [Labelling and grouping GCP\nresources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)\nfor more information.\n\nTo search against the `labels`:\n\n* use a field query, as following:\n    - query on any label's key or value. Example: `labels : \"prod\"`\n    - query by a given label. Example: `labels.env : \"prod\"`\n    - query by a given label'sexistence. Example: `labels.env : *`\n* use a free text query. Example: `\"prod\"`",
+          "type": "object"
+        },
+        "location": {
+          "description": "Location can be `global`, regional like `us-east1`, or zonal like\n`us-west1-b`.\n\nTo search against the `location`:\n\n* use a field query. Example: `location : \"us-west*\"`\n* use a free text query. Example: `\"us-west*\"`",
+          "type": "string"
+        },
+        "name": {
+          "description": "The full resource name of this resource. Example:\n`//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.\nSee [Cloud Asset Inventory Resource Name\nFormat](https://cloud.google.com/asset-inventory/docs/resource-name-format)\nfor more information.\n\nTo search against the `name`:\n\n* use a field query. Example: `name : \"instance1\"`\n* use a free text query. Example: `\"instance1\"`",
+          "type": "string"
+        },
+        "networkTags": {
+          "description": "Network tags associated with this resource. Like labels, network tags are a\ntype of annotations used to group GCP resources. See [Labelling GCP\nresources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)\nfor more information.\n\nTo search against the `network_tags`:\n\n* use a field query. Example: `networkTags : \"internal\"`\n* use a free text query. Example: `\"internal\"`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "project": {
+          "description": "The project that this resource belongs to, in the form of\nprojects/{PROJECT_NUMBER}.\n\nTo search against the `project`:\n\n* specify the `scope` field as this project in your search request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchAllIamPoliciesResponse": {
+      "description": "Search all IAM policies response.",
+      "id": "SearchAllIamPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Set if there are more results than those appearing in this response; to get\nthe next set of results, call this method again, using this value as the\n`page_token`.",
+          "type": "string"
+        },
+        "results": {
+          "description": "A list of IamPolicy that match the search query. Related information such\nas the associated resource is returned along with the policy.",
+          "items": {
+            "$ref": "IamPolicySearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchAllResourcesResponse": {
+      "description": "Search all resources response.",
+      "id": "SearchAllResourcesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there are more results than those appearing in this response, then\n`next_page_token` is included. To get the next set of results, call this\nmethod again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "results": {
+          "description": "A list of Resources that match the search query. It contains the resource\nstandard metadata information.",
+          "items": {
+            "$ref": "ResourceSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1279,6 +1516,28 @@
         "deleted": {
           "description": "Whether the asset has been deleted or not.",
           "type": "boolean"
+        },
+        "priorAsset": {
+          "$ref": "Asset",
+          "description": "Prior copy of the asset. Populated if prior_asset_state is PRESENT.\nCurrently this is only set for responses in Real-Time Feed."
+        },
+        "priorAssetState": {
+          "description": "State of prior_asset.",
+          "enum": [
+            "PRIOR_ASSET_STATE_UNSPECIFIED",
+            "PRESENT",
+            "INVALID",
+            "DOES_NOT_EXIST",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "prior_asset is not applicable for the current asset.",
+            "prior_asset is populated correctly.",
+            "Failed to set prior_asset.",
+            "Current asset is the first known state.",
+            "prior_asset is a deletion."
+          ],
+          "type": "string"
         },
         "window": {
           "$ref": "TimeWindow",
