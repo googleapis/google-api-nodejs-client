@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20200618",
+  "revision": "20200629",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -657,6 +657,10 @@
           "description": "The amount of memory in MB available for a function.\nDefaults to 256MB.",
           "format": "int32",
           "type": "integer"
+        },
+        "buildId": {
+          "description": "Output only. The Cloud Build ID of the latest successful deployment of the\nfunction.",
+          "type": "string"
         },
         "description": {
           "description": "User-provided description of a function.",
@@ -1035,6 +1039,10 @@
       "description": "Metadata describing an Operation",
       "id": "OperationMetadataV1",
       "properties": {
+        "buildId": {
+          "description": "The Cloud Build ID of the function created or updated by an API call.\nThis field is only populated for Create and Update operations.",
+          "type": "string"
+        },
         "request": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
