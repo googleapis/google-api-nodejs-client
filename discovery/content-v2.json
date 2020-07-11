@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/seWVFIM6TQ0ZbicGCsWtCvIDWuo\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/5KKlwzUaNNeAkffCpewpBXEAfq8\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20200617",
+  "revision": "20200702",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8846,7 +8846,7 @@
           "type": "string"
         },
         "canonicalLink": {
-          "description": "Link to the canonical version of the landing page.",
+          "description": "URL for the canonical version of your item's landing page.",
           "type": "string"
         },
         "channel": {
@@ -9028,7 +9028,7 @@
           "type": "string"
         },
         "mobileLink": {
-          "description": "Link to a mobile-optimized version of the landing page.",
+          "description": "URL for the mobile-optimized version of your item's landing page.",
           "type": "string"
         },
         "mpn": {

@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/mM9QQ9Q-yi6Xw-ieynL_CsfCUJ8\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/k6Dlgm4cXQYWKFVP_brVT7p-gd0\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3678,7 +3678,7 @@
       }
     }
   },
-  "revision": "20200617",
+  "revision": "20200702",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -9013,7 +9013,7 @@
           "type": "string"
         },
         "canonicalLink": {
-          "description": "Link to the canonical version of the landing page.",
+          "description": "URL for the canonical version of your item's landing page.",
           "type": "string"
         },
         "channel": {
@@ -9195,7 +9195,7 @@
           "type": "string"
         },
         "mobileLink": {
-          "description": "Link to a mobile-optimized version of the landing page.",
+          "description": "URL for the mobile-optimized version of your item's landing page.",
           "type": "string"
         },
         "mpn": {
@@ -9225,14 +9225,14 @@
           "description": "Price of the item."
         },
         "productDetails": {
-          "description": "Technical specification or additional product details",
+          "description": "Technical specification or additional product details.",
           "items": {
             "$ref": "ProductProductDetail"
           },
           "type": "array"
         },
         "productHighlights": {
-          "description": "List of important bullet points describing the product",
+          "description": "Bullet points describing the most relevant highlights of a product.",
           "items": {
             "type": "string"
           },
