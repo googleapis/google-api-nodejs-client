@@ -3881,7 +3881,7 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Link to the canonical version of the landing page.
+     * URL for the canonical version of your item&#39;s landing page.
      */
     canonicalLink?: string | null;
     /**
@@ -4037,7 +4037,7 @@ export namespace content_v2_1 {
      */
     minHandlingTime?: string | null;
     /**
-     * Link to a mobile-optimized version of the landing page.
+     * URL for the mobile-optimized version of your item&#39;s landing page.
      */
     mobileLink?: string | null;
     /**
@@ -4061,11 +4061,11 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * Technical specification or additional product details
+     * Technical specification or additional product details.
      */
     productDetails?: Schema$ProductProductDetail[];
     /**
-     * List of important bullet points describing the product
+     * Bullet points describing the most relevant highlights of a product.
      */
     productHighlights?: string[] | null;
     /**
