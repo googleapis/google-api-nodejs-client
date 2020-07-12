@@ -203,6 +203,35 @@
                     "https://www.googleapis.com/auth/datastore"
                   ]
                 },
+                "batchWrite": {
+                  "description": "Applies a batch of write operations.\n\nThe BatchWrite method does not apply the write operations atomically\nand can apply them out of order. Method does not allow more than one write\nper document. Each write succeeds or fails independently. See the\nBatchWriteResponse for the success status of each write.\n\nIf you require an atomically applied set of writes, use\nCommit instead.",
+                  "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:batchWrite",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.documents.batchWrite",
+                  "parameterOrder": [
+                    "database"
+                  ],
+                  "parameters": {
+                    "database": {
+                      "description": "Required. The database name. In the format:\n`projects/{project_id}/databases/{database_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+database}/documents:batchWrite",
+                  "request": {
+                    "$ref": "BatchWriteRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchWriteResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
                 "beginTransaction": {
                   "description": "Starts a new transaction.",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:beginTransaction",
@@ -519,6 +548,35 @@
                     "https://www.googleapis.com/auth/datastore"
                   ]
                 },
+                "partitionQuery": {
+                  "description": "Partitions a query by returning partition cursors that can be used to run\nthe query in parallel. The returned partition cursors are split points that\ncan be used by RunQuery as starting/end points for the query results.",
+                  "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}:partitionQuery",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.documents.partitionQuery",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name. In the format:\n`projects/{project_id}/databases/{database_id}/documents`.\nDocument resource names are not supported; only database resource names\ncan be specified.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/documents/[^/]+/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}:partitionQuery",
+                  "request": {
+                    "$ref": "PartitionQueryRequest"
+                  },
+                  "response": {
+                    "$ref": "PartitionQueryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
                 "patch": {
                   "description": "Updates or inserts a document.",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}",
@@ -791,7 +849,7 @@
       }
     }
   },
-  "revision": "20200405",
+  "revision": "20200709",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -861,6 +919,48 @@
           "description": "The transaction that was started as part of this request.\nWill only be set in the first response, and only if\nBatchGetDocumentsRequest.new_transaction was set in the request.",
           "format": "byte",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchWriteRequest": {
+      "description": "The request for Firestore.BatchWrite.",
+      "id": "BatchWriteRequest",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels associated with this batch write.",
+          "type": "object"
+        },
+        "writes": {
+          "description": "The writes to apply.\n\nMethod does not apply writes atomically and does not guarantee ordering.\nEach write succeeds or fails independently. You cannot write to the same\ndocument more than once per request.",
+          "items": {
+            "$ref": "Write"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchWriteResponse": {
+      "description": "The response from Firestore.BatchWrite.",
+      "id": "BatchWriteResponse",
+      "properties": {
+        "status": {
+          "description": "The status of applying the writes.\n\nThis i-th write status corresponds to the i-th write in the\nrequest.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
+        "writeResults": {
+          "description": "The result of applying the writes.\n\nThis i-th write result corresponds to the i-th write in the\nrequest.",
+          "items": {
+            "$ref": "WriteResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1180,14 +1280,14 @@
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "Less than. Requires that the field come first in `order_by`.",
-            "Less than or equal. Requires that the field come first in `order_by`.",
-            "Greater than. Requires that the field come first in `order_by`.",
-            "Greater than or equal. Requires that the field come first in\n`order_by`.",
-            "Equal.",
-            "Contains. Requires that the field is an array.",
-            "In. Requires that `value` is a non-empty ArrayValue with at most 10\nvalues.",
-            "Contains any. Requires that the field is an array and\n`value` is a non-empty ArrayValue with at most 10 values."
+            "The given `field` is less than the given `value`.\n\nRequires:\n\n* That `field` come first in `order_by`.",
+            "The given `field` is less than or equal to the given `value`.\n\nRequires:\n\n* That `field` come first in `order_by`.",
+            "The given `field` is greater than the given `value`.\n\nRequires:\n\n* That `field` come first in `order_by`.",
+            "The given `field` is greater than or equal to the given `value`.\n\nRequires:\n\n* That `field` come first in `order_by`.",
+            "The given `field` is equal to the given `value`.",
+            "The given `field` is an array that contains the given `value`.",
+            "The given `field` is equal to at least one value in the given array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN`, `ARRAY_CONTAINS_ANY`, or `NOT_IN`.",
+            "The given `field` is an array that contains any of the values in the\ngiven array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN`, `ARRAY_CONTAINS_ANY`, or `NOT_IN`."
           ],
           "type": "string"
         },
@@ -1777,6 +1877,49 @@
       },
       "type": "object"
     },
+    "PartitionQueryRequest": {
+      "description": "The request for Firestore.PartitionQuery.",
+      "id": "PartitionQueryRequest",
+      "properties": {
+        "pageSize": {
+          "description": "The maximum number of partitions to return in this call, subject to\n`partition_count`.\n\nFor example, if `partition_count` = 10 and `page_size` = 8, the first call\nto PartitionQuery will return up to 8 partitions and a `next_page_token`\nif more results exist. A second call to PartitionQuery will return up to\n2 partitions, to complete the total of 10 specified in `partition_count`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "The `next_page_token` value returned from a previous call to\nPartitionQuery that may be used to get an additional set of results.\nThere are no ordering guarantees between sets of results. Thus, using\nmultiple sets of results will require merging the different result sets.\n\nFor example, two subsequent calls using a page_token may return:\n\n * cursor B, cursor M, cursor Q\n * cursor A, cursor U, cursor W\n\nTo obtain a complete result set ordered with respect to the results of the\nquery supplied to PartitionQuery, the results sets should be merged:\ncursor A, cursor B, cursor M, cursor Q, cursor U, cursor W",
+          "type": "string"
+        },
+        "partitionCount": {
+          "description": "The desired maximum number of partition points.\nThe partitions may be returned across multiple pages of results.\nThe number must be strictly positive. The actual number of partitions\nreturned may be fewer.\n\nFor example, this may be set to one fewer than the number of parallel\nqueries to be run, or in running a data pipeline job, one fewer than the\nnumber of workers or compute instances available.",
+          "format": "int64",
+          "type": "string"
+        },
+        "structuredQuery": {
+          "$ref": "StructuredQuery",
+          "description": "A structured query.\nFilters, order bys, limits, offsets, and start/end cursors are not\nsupported."
+        }
+      },
+      "type": "object"
+    },
+    "PartitionQueryResponse": {
+      "description": "The response for Firestore.PartitionQuery.",
+      "id": "PartitionQueryResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A page token that may be used to request an additional set of results, up\nto the number specified by `partition_count` in the PartitionQuery request.\nIf blank, there are no more results.",
+          "type": "string"
+        },
+        "partitions": {
+          "description": "Partition results.\nEach partition is a split point that can be used by RunQuery as a starting\nor end point for the query results. The RunQuery requests must be made with\nthe same query supplied to this PartitionQuery request. The partition\ncursors will be ordered according to same ordering as the results of the\nquery supplied to PartitionQuery.\n\nFor example, if a PartitionQuery request returns partition cursors A and B,\nrunning the following three queries will return the entire result set of\nthe original query:\n\n * query, end_at A\n * query, start_at A, end_at B\n * query, start_at B",
+          "items": {
+            "$ref": "Cursor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Precondition": {
       "description": "A precondition on a document, used for conditional operations.",
       "id": "Precondition",
@@ -2096,8 +2239,8 @@
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "Test if a field is equal to NaN.",
-            "Test if an expression evaluates to Null."
+            "The given `field` is equal to `NaN`.",
+            "The given `field` is equal to `NULL`."
           ],
           "type": "string"
         }
