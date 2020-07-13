@@ -625,7 +625,7 @@
       }
     }
   },
-  "revision": "20200510",
+  "revision": "20200709",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -1028,7 +1028,7 @@
       "type": "object"
     },
     "GoogleDatastoreAdminV1Index": {
-      "description": "A minimal index definition.",
+      "description": "Datastore composite index definition.",
       "id": "GoogleDatastoreAdminV1Index",
       "properties": {
         "ancestor": {
