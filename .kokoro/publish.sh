@@ -24,7 +24,7 @@ python3 -m releasetool publish-reporter-script > /tmp/publisher-script; source /
 
 cd $(dirname $0)/..
 
-NPM_TOKEN=$(cat $KOKORO_GFILE_DIR/secret_manager/npm_publish_token
+NPM_TOKEN=$(cat $KOKORO_GFILE_DIR/secret_manager/npm_publish_token)
 echo "//wombat-dressing-room.appspot.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 
 npm install
