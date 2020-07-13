@@ -629,7 +629,7 @@ export namespace osconfig_v1beta {
      */
     recurringSchedule?: Schema$RecurringSchedule;
     /**
-     * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](&quot;https://www.ietf.org/rfc/rfc3339.txt) text format.
+     * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     updateTime?: string | null;
   }
@@ -650,7 +650,7 @@ export namespace osconfig_v1beta {
      */
     instanceNamePrefixes?: string[] | null;
     /**
-     * Targets any of the VM instances specified. Instances are specified by their URI in the form `zones/[ZONE]/instances/[INSTANCE_NAME], `projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`, or `https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`
+     * Targets any of the VM instances specified. Instances are specified by their URI in the form `zones/[ZONE]/instances/[INSTANCE_NAME]`, `projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`, or `https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`
      */
     instances?: string[] | null;
     /**
