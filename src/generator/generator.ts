@@ -189,7 +189,7 @@ export class Generator {
           // generate the package.json
           const pkgPath = path.join(apisPath, file, 'package.json');
           const packageData = {name: file, desc};
-          await this.render('package.json.njk', packageData, pkgPath);
+          await this.render('package.json', packageData, pkgPath);
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
           const disclaimer = disclaimers.find(disclaimer => {
