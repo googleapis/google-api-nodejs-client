@@ -34,7 +34,7 @@
   "devDependencies": {
     "gts": "^2.0.0",
     "null-loader": "^4.0.0",
-    "ts-loader": "^8.0.0",
+    "ts-loader": "^7.0.0",
     "typedoc": "^0.17.0",
     "typescript": "~3.7.0",
     "webpack": "^4.35.3",
