@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20200601",
+  "revision": "20200706",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -743,7 +743,7 @@
           "description": "Required. Schedule recurring executions."
         },
         "updateTime": {
-          "description": "Output only. Time the patch deployment was last updated. Timestamp is in\n[RFC3339](\"https://www.ietf.org/rfc/rfc3339.txt) text format.",
+          "description": "Output only. Time the patch deployment was last updated. Timestamp is in\n[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -773,7 +773,7 @@
           "type": "array"
         },
         "instances": {
-          "description": "Targets any of the VM instances specified. Instances are specified by their\nURI in the form `zones/[ZONE]/instances/[INSTANCE_NAME],\n`projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`, or\n`https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`",
+          "description": "Targets any of the VM instances specified. Instances are specified by their\nURI in the form `zones/[ZONE]/instances/[INSTANCE_NAME]`,\n`projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`, or\n`https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`",
           "items": {
             "type": "string"
           },
