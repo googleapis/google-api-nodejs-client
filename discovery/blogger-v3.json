@@ -247,7 +247,6 @@
               "type": "string"
             },
             "status": {
-              "default": "LIVE",
               "description": "Default value of status is LIVE.",
               "enum": [
                 "LIVE",
@@ -1556,7 +1555,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200711",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {

@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200713",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdTechnologyProviders": {
@@ -1162,13 +1162,15 @@
             "REDIRECTION_ERROR_UNSPECIFIED",
             "TOO_MANY_REDIRECTS",
             "INVALID_REDIRECT",
-            "EMPTY_REDIRECT"
+            "EMPTY_REDIRECT",
+            "REDIRECT_ERROR_UNKNOWN"
           ],
           "enumDescriptions": [
             "Default value that should never be used.",
             "Too many redirect hops.",
             "Got a redirect but it was invalid.",
-            "Got a redirect but it was empty."
+            "Got a redirect but it was empty.",
+            "Unknown redirect error."
           ],
           "type": "string"
         },

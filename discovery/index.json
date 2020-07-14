@@ -365,12 +365,13 @@
       "id": "androidpublisher:v3",
       "name": "androidpublisher",
       "version": "v3",
-      "title": "Google Play Android Developer API",
-      "description": "Lets Android application developers access their Google Play accounts.",
-      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v3",
+      "title": "Google Play Developer API",
+      "description": "Accesses Android application developers' Google Play accounts.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/androidpublisher/v3/rest",
+      "discoveryLink": "./apis/androidpublisher/v3/rest",
       "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+        "x16": "https://www.google.com/images/icons/product/android-16.png",
+        "x32": "https://www.google.com/images/icons/product/android-32.png"
       },
       "documentationLink": "https://developers.google.com/android-publisher",
       "preferred": true
@@ -3111,6 +3112,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/authorized-buyers/apis/realtimebidding/reference/rest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "recommendationengine:v1beta1",
+      "name": "recommendationengine",
+      "version": "v1beta1",
+      "title": "Recommendations AI",
+      "description": "Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.",
+      "discoveryRestUrl": "https://recommendationengine.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/recommendations/docs/",
       "preferred": true
     },
     {
