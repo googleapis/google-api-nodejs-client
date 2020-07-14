@@ -276,7 +276,7 @@ export namespace cloudtrace_v2 {
      */
     links?: Schema$Links;
     /**
-     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     name?: string | null;
     /**
@@ -292,7 +292,7 @@ export namespace cloudtrace_v2 {
      */
     spanId?: string | null;
     /**
-     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
+     * Optional. Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      */
     spanKind?: string | null;
     /**
@@ -455,7 +455,7 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.batchWrite
-     * @desc Sends new spans to new or existing traces. You cannot update existing spans. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @desc Sends new spans to new or existing traces. You cannot update existing spans.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -617,7 +617,7 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.spans.createSpan
-     * @desc Creates a new span. In this case, writing traces is not considered an active developer method since traces are machine generated.
+     * @desc Creates a new span.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -645,7 +645,7 @@ export namespace cloudtrace_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.spans.createSpan({
-     *     // The resource name of the span in the following format:
+     *     // Required. The resource name of the span in the following format:
      *     //
      *     //     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;
      *     // it is a 32-character hexadecimal encoding of a 16-byte array.
@@ -705,7 +705,7 @@ export namespace cloudtrace_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * @param {string} params.name Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      * @param {().Span} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -791,7 +791,7 @@ export namespace cloudtrace_v2 {
   export interface Params$Resource$Projects$Traces$Spans$Createspan
     extends StandardParameters {
     /**
-     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     name?: string;
 
