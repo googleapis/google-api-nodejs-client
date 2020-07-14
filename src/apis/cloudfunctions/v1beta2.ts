@@ -412,6 +412,10 @@ export namespace cloudfunctions_v1beta2 {
    */
   export interface Schema$OperationMetadataV1 {
     /**
+     * The Cloud Build ID of the function created or updated by an API call. This field is only populated for Create and Update operations.
+     */
+    buildId?: string | null;
+    /**
      * The original request that started the operation.
      */
     request?: {[key: string]: any} | null;
