@@ -504,7 +504,7 @@ export namespace datastore_v1 {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A minimal index definition.
+   * Datastore composite index definition.
    */
   export interface Schema$GoogleDatastoreAdminV1Index {
     /**
