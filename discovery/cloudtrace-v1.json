@@ -114,7 +114,7 @@
     "projects": {
       "methods": {
         "patchTraces": {
-          "description": "Sends new traces to Stackdriver Trace or updates existing traces. If the ID\nof a trace that you send matches that of an existing trace, any fields\nin the existing trace and its spans are overwritten by the provided values,\nand any new fields provided are merged with the existing trace data. If the\nID does not match, a new trace is created.\nIn this case, writing traces is not considered an active developer\nmethod since traces are machine generated.",
+          "description": "Sends new traces to Stackdriver Trace or updates existing traces. If the ID\nof a trace that you send matches that of an existing trace, any fields\nin the existing trace and its spans are overwritten by the provided values,\nand any new fields provided are merged with the existing trace data. If the\nID does not match, a new trace is created.",
           "flatPath": "v1/projects/{projectId}/traces",
           "httpMethod": "PATCH",
           "id": "cloudtrace.projects.patchTraces",
@@ -146,7 +146,7 @@
         "traces": {
           "methods": {
             "get": {
-              "description": "Gets a single trace by its ID.\nIn this case, getting for traces is considered an active developer method,\neven though it is technically a read-only method.",
+              "description": "Gets a single trace by its ID.",
               "flatPath": "v1/projects/{projectId}/traces/{traceId}",
               "httpMethod": "GET",
               "id": "cloudtrace.projects.traces.get",
@@ -178,7 +178,7 @@
               ]
             },
             "list": {
-              "description": "Returns of a list of traces that match the specified filter conditions.\nIn this case, listing for traces is considered an active developer method,\neven though it is technically a read-only method.",
+              "description": "Returns of a list of traces that match the specified filter conditions.",
               "flatPath": "v1/projects/{projectId}/traces",
               "httpMethod": "GET",
               "id": "cloudtrace.projects.traces.list",
@@ -251,7 +251,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200707",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {

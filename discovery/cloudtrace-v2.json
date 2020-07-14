@@ -113,7 +113,7 @@
         "traces": {
           "methods": {
             "batchWrite": {
-              "description": "Sends new spans to new or existing traces. You cannot update\nexisting spans.\nIn this case, writing traces is not considered an active developer\nmethod since traces are machine generated.",
+              "description": "Sends new spans to new or existing traces. You cannot update\nexisting spans.",
               "flatPath": "v2/projects/{projectsId}/traces:batchWrite",
               "httpMethod": "POST",
               "id": "cloudtrace.projects.traces.batchWrite",
@@ -146,7 +146,7 @@
             "spans": {
               "methods": {
                 "createSpan": {
-                  "description": "Creates a new span.\nIn this case, writing traces is not considered an active developer\nmethod since traces are machine generated.",
+                  "description": "Creates a new span.",
                   "flatPath": "v2/projects/{projectsId}/traces/{tracesId}/spans/{spansId}",
                   "httpMethod": "POST",
                   "id": "cloudtrace.projects.traces.spans.createSpan",
@@ -155,7 +155,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the span in the following format:\n\n    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;\nit is a 32-character hexadecimal encoding of a 16-byte array.\n\n[SPAN_ID] is a unique identifier for a span within a trace; it\nis a 16-character hexadecimal encoding of an 8-byte array.",
+                      "description": "Required. The resource name of the span in the following format:\n\n    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;\nit is a 32-character hexadecimal encoding of a 16-byte array.\n\n[SPAN_ID] is a unique identifier for a span within a trace; it\nis a 16-character hexadecimal encoding of an 8-byte array.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/traces/[^/]+/spans/[^/]+$",
                       "required": true,
@@ -181,7 +181,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200707",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Annotation": {
@@ -388,7 +388,7 @@
           "description": "Links associated with the span. You can have up to 128 links per Span."
         },
         "name": {
-          "description": "The resource name of the span in the following format:\n\n    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;\nit is a 32-character hexadecimal encoding of a 16-byte array.\n\n[SPAN_ID] is a unique identifier for a span within a trace; it\nis a 16-character hexadecimal encoding of an 8-byte array.",
+          "description": "Required. The resource name of the span in the following format:\n\n    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;\nit is a 32-character hexadecimal encoding of a 16-byte array.\n\n[SPAN_ID] is a unique identifier for a span within a trace; it\nis a 16-character hexadecimal encoding of an 8-byte array.",
           "type": "string"
         },
         "parentSpanId": {
@@ -404,7 +404,7 @@
           "type": "string"
         },
         "spanKind": {
-          "description": "Distinguishes between spans generated in a particular context. For example,\ntwo spans with the same name may be distinguished using `CLIENT` (caller)\nand `SERVER` (callee) to identify an RPC call.",
+          "description": "Optional. Distinguishes between spans generated in a particular context. For example,\ntwo spans with the same name may be distinguished using `CLIENT` (caller)\nand `SERVER` (callee) to identify an RPC call.",
           "enum": [
             "SPAN_KIND_UNSPECIFIED",
             "INTERNAL",
@@ -419,7 +419,7 @@
             "Indicates that the span covers server-side handling of an RPC or other\nremote network request.",
             "Indicates that the span covers the client-side wrapper around an RPC or\nother remote request.",
             "Indicates that the span describes producer sending a message to a broker.\nUnlike client and  server, there is no direct critical path latency\nrelationship between producer and consumer spans (e.g. publishing a\nmessage to a pubsub service).",
-            "Indicates that the span describes consumer recieving a message from a\nbroker. Unlike client and  server, there is no direct critical path\nlatency relationship between producer and consumer spans (e.g. receiving\na message from a pubsub service subscription)."
+            "Indicates that the span describes consumer receiving a message from a\nbroker. Unlike client and  server, there is no direct critical path\nlatency relationship between producer and consumer spans (e.g. receiving\na message from a pubsub service subscription)."
           ],
           "type": "string"
         },
