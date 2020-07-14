@@ -810,7 +810,7 @@
       }
     }
   },
-  "revision": "20200630",
+  "revision": "20200707",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -3848,7 +3848,7 @@
       "type": "object"
     },
     "GridRange": {
-      "description": "A range on a sheet.\nAll indexes are zero-based.\nIndexes are half open, e.g the start index is inclusive\nand the end index is exclusive -- [start_index, end_index).\nMissing indexes indicate the range is unbounded on that side.\n\nFor example, if `\"Sheet1\"` is sheet ID 0, then:\n\n  `Sheet1!A1:A1 == sheet_id: 0,\n                  start_row_index: 0, end_row_index: 1,\n                  start_column_index: 0, end_column_index: 1`\n\n  `Sheet1!A3:B4 == sheet_id: 0,\n                  start_row_index: 2, end_row_index: 4,\n                  start_column_index: 0, end_column_index: 2`\n\n  `Sheet1!A:B == sheet_id: 0,\n                start_column_index: 0, end_column_index: 2`\n\n  `Sheet1!A5:B == sheet_id: 0,\n                 start_row_index: 4,\n                 start_column_index: 0, end_column_index: 2`\n\n  `Sheet1 == sheet_id:0`\n\nThe start index must always be less than or equal to the end index.\nIf the start index equals the end index, then the range is empty.\nEmpty ranges are typically not meaningful and are usually rendered in the\nUI as `#REF!`.",
+      "description": "A range on a sheet.\nAll indexes are zero-based.\nIndexes are half open, i.e. the start index is inclusive\nand the end index is exclusive -- [start_index, end_index).\nMissing indexes indicate the range is unbounded on that side.\n\nFor example, if `\"Sheet1\"` is sheet ID 0, then:\n\n  `Sheet1!A1:A1 == sheet_id: 0,\n                  start_row_index: 0, end_row_index: 1,\n                  start_column_index: 0, end_column_index: 1`\n\n  `Sheet1!A3:B4 == sheet_id: 0,\n                  start_row_index: 2, end_row_index: 4,\n                  start_column_index: 0, end_column_index: 2`\n\n  `Sheet1!A:B == sheet_id: 0,\n                start_column_index: 0, end_column_index: 2`\n\n  `Sheet1!A5:B == sheet_id: 0,\n                 start_row_index: 4,\n                 start_column_index: 0, end_column_index: 2`\n\n  `Sheet1 == sheet_id:0`\n\nThe start index must always be less than or equal to the end index.\nIf the start index equals the end index, then the range is empty.\nEmpty ranges are typically not meaningful and are usually rendered in the\nUI as `#REF!`.",
       "id": "GridRange",
       "properties": {
         "endColumnIndex": {
