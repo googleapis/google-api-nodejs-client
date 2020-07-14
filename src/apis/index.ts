@@ -141,6 +141,7 @@ import * as poly from './poly';
 import * as prod_tt_sasportal from './prod_tt_sasportal';
 import * as pubsub from './pubsub';
 import * as realtimebidding from './realtimebidding';
+import * as recommendationengine from './recommendationengine';
 import * as recommender from './recommender';
 import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
@@ -323,6 +324,7 @@ export const APIS: APIList = {
   prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
   pubsub: pubsub.VERSIONS,
   realtimebidding: realtimebidding.VERSIONS,
+  recommendationengine: recommendationengine.VERSIONS,
   recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
   remotebuildexecution: remotebuildexecution.VERSIONS,
@@ -502,6 +504,7 @@ export class GeneratedAPIs {
   prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
   pubsub = pubsub.pubsub;
   realtimebidding = realtimebidding.realtimebidding;
+  recommendationengine = recommendationengine.recommendationengine;
   recommender = recommender.recommender;
   redis = redis.redis;
   remotebuildexecution = remotebuildexecution.remotebuildexecution;

@@ -189,6 +189,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getDeployedIngressConfig": {
+          "description": "Gets the deployed ingress configuration for an organization.",
+          "flatPath": "v1/organizations/{organizationsId}/deployedIngressConfig",
+          "httpMethod": "GET",
+          "id": "apigee.organizations.getDeployedIngressConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Name of the deployed configuration for the organization in the following\nformat: 'organizations/{org}/deployedIngressConfig'.",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/deployedIngressConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleCloudApigeeV1IngressConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getSyncAuthorization": {
           "description": "Lists the service accounts with the permissions required to allow\nthe Synchronizer to download environment data from the control plane.\n\nAn ETag is returned in the response to `getSyncAuthorization`.\nPass that ETag when calling [setSyncAuthorization](setSyncAuthorization)\nto ensure that you are updating the correct version. If you don't pass the\nETag in the call to `setSyncAuthorization`, then the existing authorization\nis overwritten indiscriminately.\n\nFor more information, see\n[Enable Synchronizer\naccess](https://docs.apigee.com/hybrid/latest/synchronizer-access#enable-synchronizer-access).\n\n**Note**: Available to Apigee hybrid only.",
           "flatPath": "v1/organizations/{organizationsId}:getSyncAuthorization",
@@ -1980,6 +2005,283 @@
             }
           }
         },
+        "envgroups": {
+          "methods": {
+            "create": {
+              "description": "Creates a new environment group.",
+              "flatPath": "v1/organizations/{organizationsId}/envgroups",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.envgroups.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "ID of the environment group. Overrides any ID in the environment_group\nresource.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Name of the organization in which to create the environment group in the\nfollowing format: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/envgroups",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1EnvironmentGroup"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an environment group.",
+              "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.envgroups.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets an environment group.",
+              "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.envgroups.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1EnvironmentGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all environment groups.",
+              "flatPath": "v1/organizations/{organizationsId}/envgroups",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.envgroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Maximum number of environment groups to return. The page size defaults\nto 25.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Page token, returned from a previous ListEnvironmentGroups call, that you\ncan use to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Name of the organization for which to list environment groups in the\nfollowing format: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/envgroups",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListEnvironmentGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an environment group.",
+              "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.envgroups.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the environment group to update in the format:\n`organizations/{org}/envgroups/{envgroup}.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1EnvironmentGroup"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "attachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new attachment of an environment to an environment group.",
+                  "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}/attachments",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.envgroups.attachments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "EnvironmentGroup under which to create the attachment in the following\nformat: `organizations/{org}/envgroups/{envgroup}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/attachments",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1EnvironmentGroupAttachment"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an environment group attachment.",
+                  "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}/attachments/{attachmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.envgroups.attachments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of the environment group attachment to delete in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/envgroups/[^/]+/attachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an environment group attachment.",
+                  "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}/attachments/{attachmentsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.envgroups.attachments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of the environment group attachment in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/envgroups/[^/]+/attachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1EnvironmentGroupAttachment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all attachments of an environment group.",
+                  "flatPath": "v1/organizations/{organizationsId}/envgroups/{envgroupsId}/attachments",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.envgroups.attachments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of environment group attachments to return. The page size\ndefaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned by a previous ListEnvironmentGroupAttachments call,\nthat you can use to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Name of the organization in the following format: `organizations/{org}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/attachments",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "environments": {
           "methods": {
             "create": {
@@ -2627,6 +2929,70 @@
                               ]
                             }
                           }
+                        }
+                      }
+                    },
+                    "deployments": {
+                      "methods": {
+                        "generateDeployChangeReport": {
+                          "description": "Generates a report for a dry run analysis of a DeployApiProxy request\nwithout committing the deployment.\n\nIn addition to the standard validations performed when adding deployments,\nadditional analysis will be done to detect possible traffic routing changes\nthat would result from this deployment being created. Any potential routing\nconflicts or unsafe changes will be reported in the response. This routing\nanalysis is not performed for a non-dry-run DeployApiProxy request.",
+                          "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments:generateDeployChangeReport",
+                          "httpMethod": "POST",
+                          "id": "apigee.organizations.environments.apis.revisions.deployments.generateDeployChangeReport",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "basepath": {
+                              "description": "Base path where the API proxy revision should be deployed. Defaults to '/'\nif not provided.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the API proxy revision deployment in the following format:\n  `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "override": {
+                              "description": "Flag that specifies whether to force the deployment of the new revision\nover the currently deployed revision by overriding conflict checks.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1/{+name}/deployments:generateDeployChangeReport",
+                          "response": {
+                            "$ref": "GoogleCloudApigeeV1DeploymentChangeReport"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "generateUndeployChangeReport": {
+                          "description": "Generates a report for a dry run analysis of an UndeployApiProxy request\nwithout committing the undeploy.\n\nIn addition to the standard validations performed when removing\ndeployments, additional analysis will be done to detect possible traffic\nrouting changes that would result from this deployment being removed. Any\npotential routing conflicts or unsafe changes will be reported in the\nresponse. This routing analysis is not performed for a non-dry-run\nUndeployApiProxy request.",
+                          "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/apis/{apisId}/revisions/{revisionsId}/deployments:generateUndeployChangeReport",
+                          "httpMethod": "POST",
+                          "id": "apigee.organizations.environments.apis.revisions.deployments.generateUndeployChangeReport",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Name of the API proxy revision deployment in the following format:\n  `organizations/{org}/environments/{env}/apis/{api}/revisions/{rev}`",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/deployments:generateUndeployChangeReport",
+                          "response": {
+                            "$ref": "GoogleCloudApigeeV1DeploymentChangeReport"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     }
@@ -4003,6 +4369,272 @@
             }
           }
         },
+        "instances": {
+          "methods": {
+            "create": {
+              "description": "Creates an Apigee runtime instance. The instance is accessible from the\nauthorized network configured on the organization.\n\n**Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/instances",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.instances.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the organization. Use the following structure in your request:\n  `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/instances",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Instance"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an Apigee runtime instance. The instance stops serving\nrequests and the runtime data is deleted.\n\n**Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.instances.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instance/{instance}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets the details for an Apigee runtime instance.\n\n**Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.instances.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1Instance"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all Apigee runtime instances for the organization.\n\n**Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/instances",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.instances.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Maximum number of instances to return. Defaults to 25.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Page token, returned from a previous ListInstances call, that you can\nuse to retrieve the next page of content.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Name of the organization. Use the following structure in your request:\n  `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/instances",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListInstancesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "reportStatus": {
+              "description": "Reports the latest status for a runtime instance.",
+              "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}:reportStatus",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.instances.reportStatus",
+              "parameterOrder": [
+                "instance"
+              ],
+              "parameters": {
+                "instance": {
+                  "description": "The name of the instance reporting this status. For SaaS the request\nwill be rejected if no instance exists under this name.\nFormat is organizations/{org}/instances/{instance}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+instance}:reportStatus",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1ReportInstanceStatusRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ReportInstanceStatusResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "attachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new attachment of an environment to an instance.\n\n**Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/attachments",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.attachments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/attachments",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1InstanceAttachment"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an attachment.\n\n**Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/attachments/{attachmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.instances.attachments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the attachment. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}/attachments/{attachment}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/attachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an attachment.\n\n**Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/attachments/{attachmentsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.attachments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the attachment. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}/attachments/{attachment}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/attachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1InstanceAttachment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all attachments to an instance.\n\n**Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/attachments",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.attachments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of instance attachments to return. Defaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned by a previous ListInstanceAttachments call, that you\ncan use to retrieve the next page of content.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the organization. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/attachments",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListInstanceAttachmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "keyvaluemaps": {
           "methods": {
             "create": {
@@ -4554,7 +5186,7 @@
       }
     }
   },
-  "revision": "20200625",
+  "revision": "20200706",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5573,8 +6205,22 @@
           "description": "Environment.",
           "type": "string"
         },
+        "errors": {
+          "description": "Errors reported for this deployment. Populated only when state == ERROR.\nThis field is not populated in List APIs.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "instances": {
+          "description": "Status reported by each runtime instance.\nThis field is not populated in List APIs.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1InstanceDeploymentStatus"
+          },
+          "type": "array"
+        },
         "pods": {
-          "description": "Status reported by runtime pods.",
+          "description": "Status reported by runtime pods. This field is not populated for List\nAPIs.",
           "items": {
             "$ref": "GoogleCloudApigeeV1PodStatus"
           },
@@ -5582,6 +6228,125 @@
         },
         "revision": {
           "description": "API proxy revision.",
+          "type": "string"
+        },
+        "routeConflicts": {
+          "description": "Conflicts in the desired state routing configuration. The presence of\nconflicts does not cause the state to be ERROR, but it will mean that\nsome of the deployments basepaths are not routed to its environment. If\nthe conflicts change, the state will transition to PROGRESSING until the\nlatest configuration is rolled out to all instances.\nThis field is not populated in List APIs.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Current state of the deployment.\nThis field is not populated in List APIs.",
+          "enum": [
+            "RUNTIME_STATE_UNSPECIFIED",
+            "READY",
+            "PROGRESSING",
+            "ERROR",
+            "TIMED_OUT"
+          ],
+          "enumDescriptions": [
+            "This value should never be returned.",
+            "The runtime has loaded the deployment.",
+            "The deployment is still rolling out to the runtime.",
+            "There is an error with the deployment that requires intervention.",
+            "The deployment has taken too long and is likely failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeploymentChangeReport": {
+      "description": "Response for\nGenerateDeployChangeReport\nand\nGenerateUndeployChangeReport.\n\nThis report contains any validation failures that would cause the deployment\nto be rejected, as well changes and conflicts in routing that may occur due\nto the new deployment.\n\nThe existence of a routing warning does not necessarily imply that the\ndeployment request is bad, if the desired state of the deployment request is\nto effect a routing change. The primary purposes of the routing messages are:\n\n1) To inform users of routing changes that may have an effect on traffic\ncurrently being routed to other existing deployments.\n\n2) To warn users if some basepath in the proxy will not receive traffic due\nto an existing deployment having already claimed that basepath.\n\nThe presence of routing conflicts/changes will not cause non-dry-run\nDeployApiProxy/UndeployApiProxy requests to be rejected.",
+      "id": "GoogleCloudApigeeV1DeploymentChangeReport",
+      "properties": {
+        "routingChanges": {
+          "description": "All routing changes that may result from a deployment request.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingChange"
+          },
+          "type": "array"
+        },
+        "routingConflicts": {
+          "description": "All basepath conflicts detected for a deployment request.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict"
+          },
+          "type": "array"
+        },
+        "validationErrors": {
+          "$ref": "GoogleRpcPreconditionFailure",
+          "description": "Validation errors that would cause the deployment change request to be\nrejected."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeploymentChangeReportRoutingChange": {
+      "description": "Describes a potential routing change that may occur as a result\nof some deployment operation.",
+      "id": "GoogleCloudApigeeV1DeploymentChangeReportRoutingChange",
+      "properties": {
+        "description": {
+          "description": "A human-readable description of this routing change.",
+          "type": "string"
+        },
+        "environmentGroup": {
+          "description": "The name of the environment group affected by this routing change.",
+          "type": "string"
+        },
+        "fromDeployment": {
+          "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment",
+          "description": "The basepath/deployment that may stop receiving some traffic."
+        },
+        "shouldSequenceRollout": {
+          "description": "True if using sequenced rollout would make this routing change safer.\nNote: this does not necessarily imply that automated sequenced rollout\nmode is supported for the operation.",
+          "type": "boolean"
+        },
+        "toDeployment": {
+          "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment",
+          "description": "The basepath/deployment that may start receiving that traffic. May be\nnull if no deployment is able to receive the traffic."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict": {
+      "description": "Describes a routing conflict that may cause a deployment not to receive\ntraffic at some basepath.",
+      "id": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict",
+      "properties": {
+        "conflictingDeployment": {
+          "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment",
+          "description": "The existing basepath/deployment causing the conflict."
+        },
+        "description": {
+          "description": "A human-readable description of this conflict.",
+          "type": "string"
+        },
+        "environmentGroup": {
+          "description": "The name of the environment group in which this conflict exists.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment": {
+      "description": "A tuple representing a basepath and the deployment containing it.",
+      "id": "GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment",
+      "properties": {
+        "apiProxy": {
+          "description": "The name of the deployed proxy revision containing the basepath.",
+          "type": "string"
+        },
+        "basepath": {
+          "description": "The basepath receiving traffic.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "The name of the environment in which the proxy is deployed.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "The name of the deployed proxy revision containing the basepath.",
           "type": "string"
         }
       },
@@ -5983,6 +6748,88 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1EnvironmentGroup": {
+      "description": "EnvironmentGroup configuration. An environment group is used to group one or\nmore Apigee environments under a single host name.",
+      "id": "GoogleCloudApigeeV1EnvironmentGroup",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. The time at which the environment group was created as milliseconds since\nepoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "hostnames": {
+          "description": "Required. Host names for this environment group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. The time at which the environment group was last updated as milliseconds\nsince epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "ID of the environment group.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1EnvironmentGroupAttachment": {
+      "description": "EnvironmentGroupAttachment is a resource which defines an attachment of an\nenvironment to an environment group.",
+      "id": "GoogleCloudApigeeV1EnvironmentGroupAttachment",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. The time at which the environment group attachment was created as\nmilliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "environment": {
+          "description": "Required. ID of the attached environment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "ID of the environment group attachment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1EnvironmentGroupConfig": {
+      "description": "EnvironmentGroupConfig is a revisioned snapshot of an EnvironmentGroup and\nits associated routing rules.",
+      "id": "GoogleCloudApigeeV1EnvironmentGroupConfig",
+      "properties": {
+        "hostnames": {
+          "description": "Host names for the environment group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Revision id that defines the ordering of the EnvironmentGroupConfig\nresource. The higher the revision, the more recently the\nconfiguration was deployed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "routingRules": {
+          "description": "Ordered list of routing rules defining how traffic to this environment\ngroup's hostnames should be routed to different environments.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RoutingRule"
+          },
+          "type": "array"
+        },
+        "uid": {
+          "description": "A unique id for the environment group config that will only change if\nthe environment group is deleted and recreated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1FlowHook": {
       "id": "GoogleCloudApigeeV1FlowHook",
       "properties": {
@@ -6027,6 +6874,172 @@
       "description": "Request for\nGetSyncAuthorization.",
       "id": "GoogleCloudApigeeV1GetSyncAuthorizationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1IngressConfig": {
+      "id": "GoogleCloudApigeeV1IngressConfig",
+      "properties": {
+        "createTime": {
+          "description": "Time at which the IngressConfig was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "environmentGroups": {
+          "description": "List of environment groups in the organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1EnvironmentGroupConfig"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the resource in the following format:\n`organizations/{org}/deployedIngressConfig`.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Revision id that defines the ordering on IngressConfig resources.\nThe higher the revision, the more recently the configuration\nwas deployed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sequenceNumber": {
+          "description": "DEPRECATED: Use revision_id",
+          "format": "int64",
+          "type": "string"
+        },
+        "uid": {
+          "description": "A unique id for the ingress config that will only change if the\norganization is deleted and recreated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1Instance": {
+      "description": "Apigee runtime instance.",
+      "id": "GoogleCloudApigeeV1Instance",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. Time the instance was created in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the instance.",
+          "type": "string"
+        },
+        "diskEncryptionKeyName": {
+          "description": "Optional. Customer Managed Encryption Key (CMEK) used for disk & volume encryption.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the instance.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Output only. Hostname or IP address of the exposed Apigee endpoint used by clients to\nconnect to the service.",
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Time the instance was last modified in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Resource ID of the instance. Values must match the\nregular expression `^a-z{0,30}[a-z\\d]$`.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Output only. Port number of the exposed Apigee endpoint.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Required. Region where the instance resides.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1InstanceAttachment": {
+      "description": "InstanceAttachment represents the installation of an environment onto an\ninstance.",
+      "id": "GoogleCloudApigeeV1InstanceAttachment",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. Time the attachment was created in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "environment": {
+          "description": "ID of the attached environment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. ID of the attachment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1InstanceDeploymentStatus": {
+      "description": "The status of a deployment as reported by a single instance.",
+      "id": "GoogleCloudApigeeV1InstanceDeploymentStatus",
+      "properties": {
+        "deployedRevisions": {
+          "description": "Revisions currently deployed in MPs.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRevision"
+          },
+          "type": "array"
+        },
+        "deployedRoutes": {
+          "description": "The current routes deployed in the ingress routing table. A route which is\nmissing will be shown with no destination environment.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute"
+          },
+          "type": "array"
+        },
+        "instance": {
+          "description": "ID of the instance reporting the status.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRevision": {
+      "description": "Revisions deployed in the MPs.",
+      "id": "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRevision",
+      "properties": {
+        "percentage": {
+          "description": "The percentage of MP replicas reporting this revision",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "description": "The proxy revision reported as deployed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute": {
+      "description": "A route deployed in the ingress routing table.",
+      "id": "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute",
+      "properties": {
+        "basepath": {
+          "description": "The basepath in the routing table.",
+          "type": "string"
+        },
+        "envgroup": {
+          "description": "The envgroup where this route is installed.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "The destination environment. This will be empty if the route is not yet\nreported.",
+          "type": "string"
+        },
+        "percentage": {
+          "description": "The percentage of ingress replicas reporting this route.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudApigeeV1KeyAliasReference": {
@@ -6200,6 +7213,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse": {
+      "description": "Response for\nListEnvironmentGroupAttachments.",
+      "id": "GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse",
+      "properties": {
+        "environmentGroupAttachments": {
+          "description": "EnvironmentGroupAttachments for the specified environment group.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1EnvironmentGroupAttachment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListEnvironmentGroupAttachments\nrequest to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListEnvironmentGroupsResponse": {
+      "description": "Response for\nListEnvironmentGroups.",
+      "id": "GoogleCloudApigeeV1ListEnvironmentGroupsResponse",
+      "properties": {
+        "environmentGroups": {
+          "description": "EnvironmentGroups in the specified organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1EnvironmentGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListEnvironmentGroups request to\nretrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListEnvironmentResourcesResponse": {
       "description": "Response for\nListEnvironmentResources",
       "id": "GoogleCloudApigeeV1ListEnvironmentResourcesResponse",
@@ -6223,6 +7272,42 @@
             "$ref": "GoogleCloudApigeeV1ServiceIssuersMapping"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListInstanceAttachmentsResponse": {
+      "description": "Response for\nListInstanceAttachments.",
+      "id": "GoogleCloudApigeeV1ListInstanceAttachmentsResponse",
+      "properties": {
+        "attachments": {
+          "description": "Attachments for the instance.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1InstanceAttachment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListInstanceAttachments request to\nretrieve the next page of content. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListInstancesResponse": {
+      "description": "Response for ListInstances.",
+      "id": "GoogleCloudApigeeV1ListInstancesResponse",
+      "properties": {
+        "instances": {
+          "description": "Instances in the specified organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Instance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListInstance request to retrieve\nthe next page of content. If omitted, no subsequent pages exist.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6408,6 +7493,15 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "authorizedNetwork": {
+          "description": "Compute Engine network used for ServiceNetworking to\nbe peered with Apigee runtime instances. See\n[Getting started with the Service Networking\nAPI](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started).\nValid only when [RuntimeType] is set to CLOUD. The value can be updated\nonly when there are no runtime instances.\nFor example: \"default\".\n\n**Note:** Not supported for Apigee hybrid.",
+          "type": "string"
+        },
+        "caCertificate": {
+          "description": "Output only. Base64-encoded public certificate for the root CA of the Apigee\norganization. Valid only when [RuntimeType] is CLOUD.",
+          "format": "byte",
+          "type": "string"
         },
         "createdAt": {
           "description": "Output only. Time that the Apigee organization was created in milliseconds since epoch.",
@@ -6758,6 +7852,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ReportInstanceStatusRequest": {
+      "description": "Request for ReportInstanceStatus.",
+      "id": "GoogleCloudApigeeV1ReportInstanceStatusRequest",
+      "properties": {
+        "instanceUid": {
+          "description": "A unique ID for the instance which is guaranteed to be unique in case the\nuser installs multiple hybrid runtimes with the same instance ID.",
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "The time the report was generated in the runtime. Used to prevent an old\nstatus from overwriting a newer one. An instance should space out it's\nstatus reports so that clock skew does not play a factor.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resources": {
+          "description": "Status for config resources",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ResourceStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ReportInstanceStatusResponse": {
+      "description": "Placeholder for future enhancements to status reporting protocol",
+      "id": "GoogleCloudApigeeV1ReportInstanceStatusResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ReportProperty": {
       "id": "GoogleCloudApigeeV1ReportProperty",
       "properties": {
@@ -6818,6 +7941,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ResourceStatus": {
+      "description": "The status of a resource loaded in the runtime.",
+      "id": "GoogleCloudApigeeV1ResourceStatus",
+      "properties": {
+        "resource": {
+          "description": "The resource name. Currently only two resources are supported:\nEnvironmentGroup - organizations/{org}/envgroups/{envgroup}\nEnvironmentConfig -\norganizations/{org}/environments/{environment}/deployedConfig",
+          "type": "string"
+        },
+        "revisions": {
+          "description": "Revisions of the resource currently deployed in the instance.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RevisionStatus"
+          },
+          "type": "array"
+        },
+        "totalReplicas": {
+          "description": "The total number of replicas that should have this resource.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "uid": {
+          "description": "The uid of the resource. In the unexpected case that the instance has\nmultiple uids for the same name, they should be reported under separate\nResourceStatuses.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Result": {
       "description": "Result is short for \"action result\", could be different types identified by\n\"action_result\" field. Supported types:\n1. DebugInfo : generic debug info collected by runtime recorded as a list of\nproperties. For example, the contents could be virtual host info, state\nchange result, or execution metadata. Required fields : properties, timestamp\n\n2. RequestMessage: information of a http request. Contains headers, request\nURI and http methods type.Required fields : headers, uri, verb\n\n3. ResponseMessage: information of a http response. Contains headers, reason\nphrase and http status code. Required fields : headers, reasonPhrase,\nstatusCode\n\n4. ErrorMessage: information of a http error message. Contains detail error\nmessage, reason phrase and status code. Required fields : content, headers,\nreasonPhrase, statusCode\n\n5. VariableAccess: a list of variable access actions, can be Get, Set and\nRemove. Required fields : accessList",
       "id": "GoogleCloudApigeeV1Result",
@@ -6866,6 +8016,47 @@
         },
         "verb": {
           "description": "HTTP method verb",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RevisionStatus": {
+      "description": "The status of a specific resource revision.",
+      "id": "GoogleCloudApigeeV1RevisionStatus",
+      "properties": {
+        "errors": {
+          "description": "Errors reported when attempting to load this revision.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1UpdateError"
+          },
+          "type": "array"
+        },
+        "jsonSpec": {
+          "description": "The json content of the resource revision.",
+          "type": "string"
+        },
+        "replicas": {
+          "description": "The number of replicas that have successfully loaded this revision.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revisionId": {
+          "description": "The revision of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RoutingRule": {
+      "id": "GoogleCloudApigeeV1RoutingRule",
+      "properties": {
+        "basepath": {
+          "description": "URI path prefix used to route to the specified environment. May contain\none or more wildcards. For example, path segments consisting of a single\n`*` character will match any string.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "Name of an environment bound to the environment group in the following\nformat: `organizations/{org}/environments/{env}`.",
           "type": "string"
         }
       },
@@ -7306,6 +8497,67 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1UpdateError": {
+      "description": "Details on why a resource update failed in the runtime.",
+      "id": "GoogleCloudApigeeV1UpdateError",
+      "properties": {
+        "code": {
+          "description": "Status code.",
+          "enum": [
+            "OK",
+            "CANCELLED",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS"
+          ],
+          "enumDescriptions": [
+            "Not an error; returned on success\n\nHTTP Mapping: 200 OK",
+            "The operation was cancelled, typically by the caller.\n\nHTTP Mapping: 499 Client Closed Request",
+            "Unknown error.  For example, this error may be returned when\na `Status` value received from another address space belongs to\nan error space that is not known in this address space.  Also\nerrors raised by APIs that do not return enough error information\nmay be converted to this error.\n\nHTTP Mapping: 500 Internal Server Error",
+            "The client specified an invalid argument.  Note that this differs\nfrom `FAILED_PRECONDITION`.  `INVALID_ARGUMENT` indicates arguments\nthat are problematic regardless of the state of the system\n(e.g., a malformed file name).\n\nHTTP Mapping: 400 Bad Request",
+            "The deadline expired before the operation could complete. For operations\nthat change the state of the system, this error may be returned\neven if the operation has completed successfully.  For example, a\nsuccessful response from a server could have been delayed long\nenough for the deadline to expire.\n\nHTTP Mapping: 504 Gateway Timeout",
+            "Some requested entity (e.g., file or directory) was not found.\n\nNote to server developers: if a request is denied for an entire class\nof users, such as gradual feature rollout or undocumented whitelist,\n`NOT_FOUND` may be used. If a request is denied for some users within\na class of users, such as user-based access control, `PERMISSION_DENIED`\nmust be used.\n\nHTTP Mapping: 404 Not Found",
+            "The entity that a client attempted to create (e.g., file or directory)\nalready exists.\n\nHTTP Mapping: 409 Conflict",
+            "The caller does not have permission to execute the specified\noperation. `PERMISSION_DENIED` must not be used for rejections\ncaused by exhausting some resource (use `RESOURCE_EXHAUSTED`\ninstead for those errors). `PERMISSION_DENIED` must not be\nused if the caller can not be identified (use `UNAUTHENTICATED`\ninstead for those errors). This error code does not imply the\nrequest is valid or the requested entity exists or satisfies\nother pre-conditions.\n\nHTTP Mapping: 403 Forbidden",
+            "The request does not have valid authentication credentials for the\noperation.\n\nHTTP Mapping: 401 Unauthorized",
+            "Some resource has been exhausted, perhaps a per-user quota, or\nperhaps the entire file system is out of space.\n\nHTTP Mapping: 429 Too Many Requests",
+            "The operation was rejected because the system is not in a state\nrequired for the operation's execution.  For example, the directory\nto be deleted is non-empty, an rmdir operation is applied to\na non-directory, etc.\n\nService implementors can use the following guidelines to decide\nbetween `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`:\n (a) Use `UNAVAILABLE` if the client can retry just the failing call.\n (b) Use `ABORTED` if the client should retry at a higher level\n     (e.g., when a client-specified test-and-set fails, indicating the\n     client should restart a read-modify-write sequence).\n (c) Use `FAILED_PRECONDITION` if the client should not retry until\n     the system state has been explicitly fixed.  E.g., if an \"rmdir\"\n     fails because the directory is non-empty, `FAILED_PRECONDITION`\n     should be returned since the client should not retry unless\n     the files are deleted from the directory.\n\nHTTP Mapping: 400 Bad Request",
+            "The operation was aborted, typically due to a concurrency issue such as\na sequencer check failure or transaction abort.\n\nSee the guidelines above for deciding between `FAILED_PRECONDITION`,\n`ABORTED`, and `UNAVAILABLE`.\n\nHTTP Mapping: 409 Conflict",
+            "The operation was attempted past the valid range.  E.g., seeking or\nreading past end-of-file.\n\nUnlike `INVALID_ARGUMENT`, this error indicates a problem that may\nbe fixed if the system state changes. For example, a 32-bit file\nsystem will generate `INVALID_ARGUMENT` if asked to read at an\noffset that is not in the range [0,2^32-1], but it will generate\n`OUT_OF_RANGE` if asked to read from an offset past the current\nfile size.\n\nThere is a fair bit of overlap between `FAILED_PRECONDITION` and\n`OUT_OF_RANGE`.  We recommend using `OUT_OF_RANGE` (the more specific\nerror) when it applies so that callers who are iterating through\na space can easily look for an `OUT_OF_RANGE` error to detect when\nthey are done.\n\nHTTP Mapping: 400 Bad Request",
+            "The operation is not implemented or is not supported/enabled in this\nservice.\n\nHTTP Mapping: 501 Not Implemented",
+            "Internal errors.  This means that some invariants expected by the\nunderlying system have been broken.  This error code is reserved\nfor serious errors.\n\nHTTP Mapping: 500 Internal Server Error",
+            "The service is currently unavailable.  This is most likely a\ntransient condition, which can be corrected by retrying with\na backoff. Note that it is not always safe to retry\nnon-idempotent operations.\n\nSee the guidelines above for deciding between `FAILED_PRECONDITION`,\n`ABORTED`, and `UNAVAILABLE`.\n\nHTTP Mapping: 503 Service Unavailable",
+            "Unrecoverable data loss or corruption.\n\nHTTP Mapping: 500 Internal Server Error"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "User-friendly error message.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The sub resource specific to this error (e.g. a proxy deployed within the\nEnvironmentConfig). If empty the error refers to the top level resource.",
+          "type": "string"
+        },
+        "type": {
+          "description": "A string that uniquely identifies the type of error. This provides a\nmore reliable means to deduplicate errors across revisions and instances.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleIamV1AuditConfig": {
       "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "GoogleIamV1AuditConfig",
@@ -7508,6 +8760,39 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "GoogleProtobufEmpty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleRpcPreconditionFailure": {
+      "description": "Describes what preconditions have failed.\n\nFor example, if an RPC failed because it required the Terms of Service to be\nacknowledged, it could list the terms of service violation in the\nPreconditionFailure message.",
+      "id": "GoogleRpcPreconditionFailure",
+      "properties": {
+        "violations": {
+          "description": "Describes all precondition violations.",
+          "items": {
+            "$ref": "GoogleRpcPreconditionFailureViolation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleRpcPreconditionFailureViolation": {
+      "description": "A message type used to describe a single precondition failure.",
+      "id": "GoogleRpcPreconditionFailureViolation",
+      "properties": {
+        "description": {
+          "description": "A description of how the precondition failed. Developers can use this\ndescription to understand how to fix the failure.\n\nFor example: \"Terms of service not accepted\".",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject, relative to the type, that failed.\nFor example, \"google.com/cloud\" relative to the \"TOS\" type would indicate\nwhich terms of service is being referenced.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of PreconditionFailure. We recommend using a service-specific\nenum type to define the supported precondition violation subjects. For\nexample, \"TOS\" for \"Terms of Service violation\".",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleRpcStatus": {
