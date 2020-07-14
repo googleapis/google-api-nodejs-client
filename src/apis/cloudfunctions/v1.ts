@@ -207,6 +207,10 @@ export namespace cloudfunctions_v1 {
      */
     availableMemoryMb?: number | null;
     /**
+     * Output only. The Cloud Build ID of the latest successful deployment of the function.
+     */
+    buildId?: string | null;
+    /**
      * User-provided description of a function.
      */
     description?: string | null;
@@ -479,6 +483,10 @@ export namespace cloudfunctions_v1 {
    * Metadata describing an Operation
    */
   export interface Schema$OperationMetadataV1 {
+    /**
+     * The Cloud Build ID of the function created or updated by an API call. This field is only populated for Create and Update operations.
+     */
+    buildId?: string | null;
     /**
      * The original request that started the operation.
      */
@@ -1291,6 +1299,7 @@ export namespace cloudfunctions_v1 {
      *       // request body parameters
      *       // {
      *       //   "availableMemoryMb": 0,
+     *       //   "buildId": "my_buildId",
      *       //   "description": "my_description",
      *       //   "entryPoint": "my_entryPoint",
      *       //   "environmentVariables": {},
@@ -1889,6 +1898,7 @@ export namespace cloudfunctions_v1 {
      *   // Example response
      *   // {
      *   //   "availableMemoryMb": 0,
+     *   //   "buildId": "my_buildId",
      *   //   "description": "my_description",
      *   //   "entryPoint": "my_entryPoint",
      *   //   "environmentVariables": {},
@@ -2345,6 +2355,7 @@ export namespace cloudfunctions_v1 {
      *       // request body parameters
      *       // {
      *       //   "availableMemoryMb": 0,
+     *       //   "buildId": "my_buildId",
      *       //   "description": "my_description",
      *       //   "entryPoint": "my_entryPoint",
      *       //   "environmentVariables": {},

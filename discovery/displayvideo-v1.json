@@ -4599,7 +4599,7 @@
       }
     }
   },
-  "revision": "20200707",
+  "revision": "20200709",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10749,12 +10749,12 @@
           "type": "string"
         },
         "performanceGoalAmountMicros": {
-          "description": "Required. The performance goal the bidding strategy will attempt to\nmeet or beat, in micros of the advertiser's currency.\nMust be greater than or equal to a billable unit of the given currency and\nsmaller or equal to upper bounds. Each\nperformance_goal_type\nhas its upper bound:\n\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`,\nupper bound is 10000.00 USD.\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`,\nupper bound is 1000.00 USD.\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is\n1000.00 USD.\n\nExample: If set to\n`BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will\nbe based on the probability that each available impression will be\nviewable. For example, if viewable CPM target is $2 and an impression is\n40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2).\n\nFor example, 1500000 represents 1.5 standard units of the currency.",
+          "description": "Required. The performance goal the bidding strategy will attempt to\nmeet or beat, in micros of the advertiser's currency or in micro of the\nROAS (Return On Advertising Spend) value which is also based on\nadvertiser's currency. Must be greater than or equal to a billable unit of\nthe given currency and smaller or equal to upper bounds. Each\nperformance_goal_type\nhas its upper bound:\n\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`,\nupper bound is 10000.00 USD.\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`,\nupper bound is 1000.00 USD.\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is\n1000.00 USD.\n* when\nperformance_goal_type\nis `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`, upper bound is\n1000.00 and lower bound is 0.01.\n\nExample: If set to\n`BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will\nbe based on the probability that each available impression will be\nviewable. For example, if viewable CPM target is $2 and an impression is\n40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2).\n\nFor example, 1500000 represents 1.5 standard units of the currency or ROAS\nvalue.",
           "format": "int64",
           "type": "string"
         },
         "performanceGoalType": {
-          "description": "Required. The type of the performance goal that the bidding strategy\nwill try to meet or beat.\n\nFor line item level usage, the value must be one of:\n\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`.",
+          "description": "Required. The type of the performance goal that the bidding strategy\nwill try to meet or beat.\n\nFor line item level usage, the value must be one of:\n\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`\n* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.",
           "enum": [
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_UNSPECIFIED",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA",

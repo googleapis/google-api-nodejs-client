@@ -263,11 +263,20 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Explanation about the IAM policy search result.
+   */
+  export interface Schema$Explanation {
+    /**
+     * The map from roles to their included permissions that match the permission query (i.e., a query containing `policy.role.permissions:`). Example: if query `policy.role.permissions : &quot;compute.disk.get&quot;` matches a policy binding that contains owner role, the matched_permissions will be `{&quot;roles/owner&quot;: [&quot;compute.disk.get&quot;]}`. The roles can also be found in the returned `policy` bindings. Note that the map is populated only for requests with permission queries.
+     */
+    matchedPermissions?: {[key: string]: Schema$Permissions} | null;
+  }
+  /**
    * Export asset request.
    */
   export interface Schema$ExportAssetsRequest {
     /**
-     * A list of asset types of which to take a snapshot for. Example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
+     * A list of asset types to take a snapshot for. For example: &quot;compute.googleapis.com/Disk&quot;.  Regular expressions are also supported. For example:  * &quot;compute.googleapis.com.*&quot; snapshots resources whose asset type starts with &quot;compute.googleapis.com&quot;. * &quot;.*Instance&quot; snapshots resources whose asset type ends with &quot;Instance&quot;. * &quot;.*Instance.*&quot; snapshots resources whose asset type contains &quot;Instance&quot;.  See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned.  If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
      */
     assetTypes?: string[] | null;
     /**
@@ -316,6 +325,10 @@ export namespace cloudasset_v1 {
      * A list of types of the assets to receive updates. You must specify either or both of asset_names and asset_types. Only asset updates matching specified asset_names or asset_types are exported to the feed. Example: `&quot;compute.googleapis.com/Disk&quot;`  See [this topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for a list of all supported asset types.
      */
     assetTypes?: string[] | null;
+    /**
+     * A condition which determines whether an asset update should be published. If specified, an asset will be returned only when the expression evaluates to true. When set, `expression` field in the `Expr` must be a valid [CEL expression] (https://github.com/google/cel-spec) on a TemporalAsset with name `temporal_asset`. Example: a Feed with expression (&quot;temporal_asset.deleted == true&quot;) will only publish Asset deletions. Other fields of `Expr` are optional.
+     */
+    condition?: Schema$Expr;
     /**
      * Asset content type. If not specified, no content but the asset name and type will be returned.
      */
@@ -632,6 +645,27 @@ export namespace cloudasset_v1 {
      */
     enableRestriction?: boolean | null;
   }
+  /**
+   * A result of IAM Policy search, containing information of an IAM policy.
+   */
+  export interface Schema$IamPolicySearchResult {
+    /**
+     * Explanation about the IAM policy search result. It contains additional information to explain why the search result matches the query.
+     */
+    explanation?: Schema$Explanation;
+    /**
+     * The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don&#39;t contain a constrain on policies (e.g., an empty query), this contains all the bindings.  To search against the `policy` bindings:  * use a field query, as following:     - query by the policy contained members. Example:       `policy : &quot;amy@gmail.com&quot;`     - query by the policy contained roles. Example:       `policy : &quot;roles/compute.admin&quot;`     - query by the policy contained roles&#39; implied permissions. Example:       `policy.role.permissions : &quot;compute.instances.create&quot;`
+     */
+    policy?: Schema$Policy;
+    /**
+     * The project that the associated GCP resource belongs to, in the form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.  To search against the `project`:  * specify the `scope` field as this project in your search request.
+     */
+    project?: string | null;
+    /**
+     * The full resource name of the resource associated with this IAM policy. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.  To search against the `resource`:  * use a field query. Example: `resource : &quot;organizations/123&quot;`
+     */
+    resource?: string | null;
+  }
   export interface Schema$ListFeedsResponse {
     /**
      * A list of feeds.
@@ -675,6 +709,15 @@ export namespace cloudasset_v1 {
      * Destination on Cloud Storage.
      */
     gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * IAM permissions
+   */
+  export interface Schema$Permissions {
+    /**
+     * A list of permissions. A sample permission string: `compute.disk.get`.
+     */
+    permissions?: string[] | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -740,6 +783,73 @@ export namespace cloudasset_v1 {
     version?: string | null;
   }
   /**
+   * A result of Resource Search, containing information of a cloud resoure.
+   */
+  export interface Schema$ResourceSearchResult {
+    /**
+     * The additional attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding GCP service (e.g., Compute Engine). see [API references](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_resource_types) of CAIS supported resource types. You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the GCP service (e.g., Compute Engine) updates to a new incompatible API version.  To search against the `additional_attributes`:  * use a free text query to match the attributes values. Example: to search   `additional_attributes = { dnsName: &quot;foobar&quot; }`, you can issue a query   `&quot;foobar&quot;`.
+     */
+    additionalAttributes?: {[key: string]: any} | null;
+    /**
+     * The type of this resource. Example: `compute.googleapis.com/Disk`.  To search against the `asset_type`:  * specify the `asset_type` field in your search request.
+     */
+    assetType?: string | null;
+    /**
+     * One or more paragraphs of text description of this resource. Maximum length could be up to 1M bytes.  To search against the `description`:  * use a field query. Example: `description : &quot;*important instance*&quot;` * use a free text query. Example: `&quot;*important instance*&quot;`
+     */
+    description?: string | null;
+    /**
+     * The display name of this resource.  To search against the `display_name`:  * use a field query. Example: `displayName : &quot;My Instance&quot;` * use a free text query. Example: `&quot;My Instance&quot;`
+     */
+    displayName?: string | null;
+    /**
+     * Labels associated with this resource. See [Labelling and grouping GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.  To search against the `labels`:  * use a field query, as following:     - query on any label&#39;s key or value. Example: `labels : &quot;prod&quot;`     - query by a given label. Example: `labels.env : &quot;prod&quot;`     - query by a given label&#39;sexistence. Example: `labels.env : *` * use a free text query. Example: `&quot;prod&quot;`
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Location can be `global`, regional like `us-east1`, or zonal like `us-west1-b`.  To search against the `location`:  * use a field query. Example: `location : &quot;us-west*&quot;` * use a free text query. Example: `&quot;us-west*&quot;`
+     */
+    location?: string | null;
+    /**
+     * The full resource name of this resource. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.  To search against the `name`:  * use a field query. Example: `name : &quot;instance1&quot;` * use a free text query. Example: `&quot;instance1&quot;`
+     */
+    name?: string | null;
+    /**
+     * Network tags associated with this resource. Like labels, network tags are a type of annotations used to group GCP resources. See [Labelling GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.  To search against the `network_tags`:  * use a field query. Example: `networkTags : &quot;internal&quot;` * use a free text query. Example: `&quot;internal&quot;`
+     */
+    networkTags?: string[] | null;
+    /**
+     * The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER}.  To search against the `project`:  * specify the `scope` field as this project in your search request.
+     */
+    project?: string | null;
+  }
+  /**
+   * Search all IAM policies response.
+   */
+  export interface Schema$SearchAllIamPoliciesResponse {
+    /**
+     * Set if there are more results than those appearing in this response; to get the next set of results, call this method again, using this value as the `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of IamPolicy that match the search query. Related information such as the associated resource is returned along with the policy.
+     */
+    results?: Schema$IamPolicySearchResult[];
+  }
+  /**
+   * Search all resources response.
+   */
+  export interface Schema$SearchAllResourcesResponse {
+    /**
+     * If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of Resources that match the search query. It contains the resource standard metadata information.
+     */
+    results?: Schema$ResourceSearchResult[];
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -768,6 +878,14 @@ export namespace cloudasset_v1 {
      * Whether the asset has been deleted or not.
      */
     deleted?: boolean | null;
+    /**
+     * Prior copy of the asset. Populated if prior_asset_state is PRESENT. Currently this is only set for responses in Real-Time Feed.
+     */
+    priorAsset?: Schema$Asset;
+    /**
+     * State of prior_asset.
+     */
+    priorAssetState?: string | null;
     /**
      * The time window when the asset data and state was observed.
      */
@@ -855,6 +973,7 @@ export namespace cloudasset_v1 {
      *   // {
      *   //   "assetNames": [],
      *   //   "assetTypes": [],
+     *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
      *   //   "name": "my_name"
@@ -1121,6 +1240,7 @@ export namespace cloudasset_v1 {
      *   // {
      *   //   "assetNames": [],
      *   //   "assetTypes": [],
+     *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
      *   //   "name": "my_name"
@@ -1402,6 +1522,7 @@ export namespace cloudasset_v1 {
      *   // {
      *   //   "assetNames": [],
      *   //   "assetTypes": [],
+     *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
      *   //   "name": "my_name"
@@ -2001,6 +2122,398 @@ export namespace cloudasset_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * cloudasset.searchAllIamPolicies
+     * @desc Searches all the IAM policies within the given accessible scope (e.g., a project, a folder or an organization). Callers should have `cloud.assets.SearchAllIamPolicies` permission upon the requested scope, otherwise the request will be rejected.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.searchAllIamPolicies({
+     *     // Optional. The page size for search result pagination. Page size is capped at 500 even
+     *     // if a larger value is given. If set to zero, server will pick an appropriate
+     *     // default. Returned results may be fewer than requested. When this happens,
+     *     // there could be more results as long as `next_page_token` is returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, retrieve the next batch of results from the preceding call to
+     *     // this method. `page_token` must be the value of `next_page_token` from the
+     *     // previous response. The values of all other method parameters must be
+     *     // identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. The query statement. An empty query can be specified to search all the IAM
+     *     // policies within the given `scope`.
+     *     //
+     *     // Examples:
+     *     //
+     *     // * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that
+     *     //   specify user "amy@gmail.com".
+     *     // * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that
+     *     //   specify the Compute Admin role.
+     *     // * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM
+     *     //   policy bindings that specify a role containing "storage.buckets.update"
+     *     //   permission.
+     *     // * `resource : "organizations/123"` to find Cloud IAM policy bindings that
+     *     //   are set on "organizations/123".
+     *     // * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`
+     *     //   to find Cloud IAM policy bindings that are set on "organizations/123" or
+     *     //   "folders/1234", and also specify user "amy".
+     *     //
+     *     // See [how to construct a
+     *     // query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
+     *     // for more details.
+     *     query: 'placeholder-value',
+     *     // Required. A scope can be a project, a folder or an organization. The search is
+     *     // limited to the IAM policies within the `scope`.
+     *     //
+     *     // The allowed values are:
+     *     //
+     *     // * projects/{PROJECT_ID}
+     *     // * projects/{PROJECT_NUMBER}
+     *     // * folders/{FOLDER_NUMBER}
+     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.searchAllIamPolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     * @param {string=} params.pageToken Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
+     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
+     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAllIamPolicies(
+      params?: Params$Resource$V1$Searchalliampolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAllIamPoliciesResponse>;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      params: Params$Resource$V1$Searchalliampolicies,
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      callback: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+    ): void;
+    searchAllIamPolicies(
+      paramsOrCallback?:
+        | Params$Resource$V1$Searchalliampolicies
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllIamPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Searchalliampolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Searchalliampolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:searchAllIamPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudasset.searchAllResources
+     * @desc Searches all the resources within the given accessible scope (e.g., a project, a folder or an organization). Callers should have `cloud.assets.SearchAllResources` permission upon the requested scope, otherwise the request will be rejected.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.searchAllResources({
+     *     // Optional. A list of asset types that this request searches for. If empty, it will
+     *     // search all the [searchable asset
+     *     // types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *     assetTypes: 'placeholder-value',
+     *     // Optional. A comma separated list of fields specifying the sorting order of the
+     *     // results. The default order is ascending. Add " DESC" after the field name
+     *     // to indicate descending order. Redundant space characters are ignored.
+     *     // Example: "location DESC, name". Only string fields in the response are
+     *     // sortable, including `name`, `displayName`, `description`, `location`. All
+     *     // the other fields such as repeated fields (e.g., `networkTags`), map
+     *     // fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
+     *     // are not supported.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The page size for search result pagination. Page size is capped at 500 even
+     *     // if a larger value is given. If set to zero, server will pick an appropriate
+     *     // default. Returned results may be fewer than requested. When this happens,
+     *     // there could be more results as long as `next_page_token` is returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call
+     *     // to this method. `page_token` must be the value of `next_page_token` from
+     *     // the previous response. The values of all other method parameters, must be
+     *     // identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. The query statement. An empty query can be specified to search all the
+     *     // resources of certain `asset_types` within the given `scope`.
+     *     //
+     *     // Examples:
+     *     //
+     *     // * `name : "Important"` to find Cloud resources whose name contains
+     *     //   "Important" as a word.
+     *     // * `displayName : "Impor*"` to find Cloud resources whose display name
+     *     //   contains "Impor" as a word prefix.
+     *     // * `description : "*por*"` to find Cloud resources whose description
+     *     //   contains "por" as a substring.
+     *     // * `location : "us-west*"` to find Cloud resources whose location is
+     *     //   prefixed with "us-west".
+     *     // * `labels : "prod"` to find Cloud resources whose labels contain "prod" as
+     *     //   a key or value.
+     *     // * `labels.env : "prod"` to find Cloud resources which have a label "env"
+     *     //   and its value is "prod".
+     *     // * `labels.env : *` to find Cloud resources which have a label "env".
+     *     // * `"Important"` to find Cloud resources which contain "Important" as a word
+     *     //   in any of the searchable fields.
+     *     // * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix
+     *     //   in any of the searchable fields.
+     *     // * `"*por*"` to find Cloud resources which contain "por" as a substring in
+     *     //   any of the searchable fields.
+     *     // * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud
+     *     //   resources which contain "Important" as a word in any of the searchable
+     *     //   fields and are also located in the "us-west1" region or the "global"
+     *     //   location.
+     *     //
+     *     // See [how to construct a
+     *     // query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *     // for more details.
+     *     query: 'placeholder-value',
+     *     // Required. A scope can be a project, a folder or an organization. The search is
+     *     // limited to the resources within the `scope`.
+     *     //
+     *     // The allowed values are:
+     *     //
+     *     // * projects/{PROJECT_ID}
+     *     // * projects/{PROJECT_NUMBER}
+     *     // * folders/{FOLDER_NUMBER}
+     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias cloudasset.searchAllResources
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.assetTypes Optional. A list of asset types that this request searches for. If empty, it will search all the [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     * @param {string=} params.orderBy Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
+     * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
+     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
+     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAllResources(
+      params?: Params$Resource$V1$Searchallresources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAllResourcesResponse>;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      params: Params$Resource$V1$Searchallresources,
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      callback: BodyResponseCallback<Schema$SearchAllResourcesResponse>
+    ): void;
+    searchAllResources(
+      paramsOrCallback?:
+        | Params$Resource$V1$Searchallresources
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Searchallresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Searchallresources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:searchAllResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchAllResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchAllResourcesResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$V1$Batchgetassetshistory
@@ -2036,5 +2549,51 @@ export namespace cloudasset_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ExportAssetsRequest;
+  }
+  export interface Params$Resource$V1$Searchalliampolicies
+    extends StandardParameters {
+    /**
+     * Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
+     */
+    query?: string;
+    /**
+     * Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     */
+    scope?: string;
+  }
+  export interface Params$Resource$V1$Searchallresources
+    extends StandardParameters {
+    /**
+     * Optional. A list of asset types that this request searches for. If empty, it will search all the [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     */
+    assetTypes?: string[];
+    /**
+     * Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
+     */
+    query?: string;
+    /**
+     * Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     */
+    scope?: string;
   }
 }

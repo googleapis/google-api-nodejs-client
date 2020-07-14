@@ -4174,7 +4174,7 @@ export namespace content_v2 {
      */
     brand?: string | null;
     /**
-     * Link to the canonical version of the landing page.
+     * URL for the canonical version of your item&#39;s landing page.
      */
     canonicalLink?: string | null;
     /**
@@ -4330,7 +4330,7 @@ export namespace content_v2 {
      */
     minHandlingTime?: string | null;
     /**
-     * Link to a mobile-optimized version of the landing page.
+     * URL for the mobile-optimized version of your item&#39;s landing page.
      */
     mobileLink?: string | null;
     /**

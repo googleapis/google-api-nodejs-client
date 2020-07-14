@@ -183,6 +183,32 @@ export namespace firestore_v1 {
     transaction?: string | null;
   }
   /**
+   * The request for Firestore.BatchWrite.
+   */
+  export interface Schema$BatchWriteRequest {
+    /**
+     * Labels associated with this batch write.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The writes to apply.  Method does not apply writes atomically and does not guarantee ordering. Each write succeeds or fails independently. You cannot write to the same document more than once per request.
+     */
+    writes?: Schema$Write[];
+  }
+  /**
+   * The response from Firestore.BatchWrite.
+   */
+  export interface Schema$BatchWriteResponse {
+    /**
+     * The status of applying the writes.  This i-th write status corresponds to the i-th write in the request.
+     */
+    status?: Schema$Status[];
+    /**
+     * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
+     */
+    writeResults?: Schema$WriteResult[];
+  }
+  /**
    * The request for Firestore.BeginTransaction.
    */
   export interface Schema$BeginTransactionRequest {
@@ -944,6 +970,40 @@ export namespace firestore_v1 {
      * The field to order by.
      */
     field?: Schema$FieldReference;
+  }
+  /**
+   * The request for Firestore.PartitionQuery.
+   */
+  export interface Schema$PartitionQueryRequest {
+    /**
+     * The maximum number of partitions to return in this call, subject to `partition_count`.  For example, if `partition_count` = 10 and `page_size` = 8, the first call to PartitionQuery will return up to 8 partitions and a `next_page_token` if more results exist. A second call to PartitionQuery will return up to 2 partitions, to complete the total of 10 specified in `partition_count`.
+     */
+    pageSize?: number | null;
+    /**
+     * The `next_page_token` value returned from a previous call to PartitionQuery that may be used to get an additional set of results. There are no ordering guarantees between sets of results. Thus, using multiple sets of results will require merging the different result sets.  For example, two subsequent calls using a page_token may return:   * cursor B, cursor M, cursor Q  * cursor A, cursor U, cursor W  To obtain a complete result set ordered with respect to the results of the query supplied to PartitionQuery, the results sets should be merged: cursor A, cursor B, cursor M, cursor Q, cursor U, cursor W
+     */
+    pageToken?: string | null;
+    /**
+     * The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be strictly positive. The actual number of partitions returned may be fewer.  For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.
+     */
+    partitionCount?: string | null;
+    /**
+     * A structured query. Filters, order bys, limits, offsets, and start/end cursors are not supported.
+     */
+    structuredQuery?: Schema$StructuredQuery;
+  }
+  /**
+   * The response for Firestore.PartitionQuery.
+   */
+  export interface Schema$PartitionQueryResponse {
+    /**
+     * A page token that may be used to request an additional set of results, up to the number specified by `partition_count` in the PartitionQuery request. If blank, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery.  For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query:   * query, end_at A  * query, start_at A, end_at B  * query, start_at B
+     */
+    partitions?: Schema$Cursor[];
   }
   /**
    * A precondition on a document, used for conditional operations.
@@ -3057,6 +3117,155 @@ export namespace firestore_v1 {
     }
 
     /**
+     * firestore.projects.databases.documents.batchWrite
+     * @desc Applies a batch of write operations.  The BatchWrite method does not apply the write operations atomically and can apply them out of order. Method does not allow more than one write per document. Each write succeeds or fails independently. See the BatchWriteResponse for the success status of each write.  If you require an atomically applied set of writes, use Commit instead.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.batchWrite({
+     *     // Required. The database name. In the format:
+     *     // `projects/{project_id}/databases/{database_id}`.
+     *     database: 'projects/my-project/databases/my-database',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labels": {},
+     *       //   "writes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "status": [],
+     *   //   "writeResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firestore.projects.databases.documents.batchWrite
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.database Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     * @param {().BatchWriteRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchWrite(
+      params: Params$Resource$Projects$Databases$Documents$Batchwrite,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchWrite(
+      params?: Params$Resource$Projects$Databases$Documents$Batchwrite,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchWriteResponse>;
+    batchWrite(
+      params: Params$Resource$Projects$Databases$Documents$Batchwrite,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchWrite(
+      params: Params$Resource$Projects$Databases$Documents$Batchwrite,
+      options: MethodOptions | BodyResponseCallback<Schema$BatchWriteResponse>,
+      callback: BodyResponseCallback<Schema$BatchWriteResponse>
+    ): void;
+    batchWrite(
+      params: Params$Resource$Projects$Databases$Documents$Batchwrite,
+      callback: BodyResponseCallback<Schema$BatchWriteResponse>
+    ): void;
+    batchWrite(callback: BodyResponseCallback<Schema$BatchWriteResponse>): void;
+    batchWrite(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Batchwrite
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchWriteResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Batchwrite;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Batchwrite;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+database}/documents:batchWrite').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['database'],
+        pathParams: ['database'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchWriteResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchWriteResponse>(parameters);
+      }
+    }
+
+    /**
      * firestore.projects.databases.documents.beginTransaction
      * @desc Starts a new transaction.
      * @example
@@ -4285,6 +4494,164 @@ export namespace firestore_v1 {
     }
 
     /**
+     * firestore.projects.databases.documents.partitionQuery
+     * @desc Partitions a query by returning partition cursors that can be used to run the query in parallel. The returned partition cursors are split points that can be used by RunQuery as starting/end points for the query results.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.partitionQuery({
+     *     // Required. The parent resource name. In the format:
+     *     // `projects/{project_id}/databases/{database_id}/documents`.
+     *     // Document resource names are not supported; only database resource names
+     *     // can be specified.
+     *     parent:
+     *       'projects/my-project/databases/my-database/documents/my-document/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "partitionCount": "my_partitionCount",
+     *       //   "structuredQuery": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partitions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias firestore.projects.databases.documents.partitionQuery
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents`. Document resource names are not supported; only database resource names can be specified.
+     * @param {().PartitionQueryRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    partitionQuery(
+      params: Params$Resource$Projects$Databases$Documents$Partitionquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    partitionQuery(
+      params?: Params$Resource$Projects$Databases$Documents$Partitionquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PartitionQueryResponse>;
+    partitionQuery(
+      params: Params$Resource$Projects$Databases$Documents$Partitionquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    partitionQuery(
+      params: Params$Resource$Projects$Databases$Documents$Partitionquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PartitionQueryResponse>,
+      callback: BodyResponseCallback<Schema$PartitionQueryResponse>
+    ): void;
+    partitionQuery(
+      params: Params$Resource$Projects$Databases$Documents$Partitionquery,
+      callback: BodyResponseCallback<Schema$PartitionQueryResponse>
+    ): void;
+    partitionQuery(
+      callback: BodyResponseCallback<Schema$PartitionQueryResponse>
+    ): void;
+    partitionQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Partitionquery
+        | BodyResponseCallback<Schema$PartitionQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartitionQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartitionQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PartitionQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Partitionquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Partitionquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:partitionQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PartitionQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$PartitionQueryResponse>(parameters);
+      }
+    }
+
+    /**
      * firestore.projects.databases.documents.patch
      * @desc Updates or inserts a document.
      * @example
@@ -4908,6 +5275,18 @@ export namespace firestore_v1 {
      */
     requestBody?: Schema$BatchGetDocumentsRequest;
   }
+  export interface Params$Resource$Projects$Databases$Documents$Batchwrite
+    extends StandardParameters {
+    /**
+     * Required. The database name. In the format: `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchWriteRequest;
+  }
   export interface Params$Resource$Projects$Databases$Documents$Begintransaction
     extends StandardParameters {
     /**
@@ -5052,6 +5431,18 @@ export namespace firestore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ListenRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Partitionquery
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents`. Document resource names are not supported; only database resource names can be specified.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PartitionQueryRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Patch
     extends StandardParameters {

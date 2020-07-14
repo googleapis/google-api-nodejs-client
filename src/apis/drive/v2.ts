@@ -7618,13 +7618,13 @@ export namespace drive_v2 {
      *     fileId: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      *     modifiedDateBehavior: 'placeholder-value',
-     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      *     newRevision: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      *     ocr: 'placeholder-value',
      *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      *     pinned: 'placeholder-value',
      *     // Comma-separated list of parent IDs to remove.
      *     removeParents: 'placeholder-value',
@@ -7809,10 +7809,10 @@ export namespace drive_v2 {
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file to update.
      * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -8576,13 +8576,13 @@ export namespace drive_v2 {
      *     fileId: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      *     modifiedDateBehavior: 'placeholder-value',
-     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      *     newRevision: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      *     ocr: 'placeholder-value',
      *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      *     pinned: 'placeholder-value',
      *     // Comma-separated list of parent IDs to remove.
      *     removeParents: 'placeholder-value',
@@ -8771,10 +8771,10 @@ export namespace drive_v2 {
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file to update.
      * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -9321,7 +9321,7 @@ export namespace drive_v2 {
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      */
     newRevision?: boolean;
     /**
@@ -9333,7 +9333,7 @@ export namespace drive_v2 {
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      */
     pinned?: boolean;
     /**
@@ -9438,7 +9438,7 @@ export namespace drive_v2 {
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      */
     newRevision?: boolean;
     /**
@@ -9450,7 +9450,7 @@ export namespace drive_v2 {
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
      */
     pinned?: boolean;
     /**
