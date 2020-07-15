@@ -312,12 +312,40 @@
                 "$ref": "Message"
               }
             }
+          },
+          "resources": {
+            "attachments": {
+              "methods": {
+                "get": {
+                  "description": "Gets the metadata of a message attachment. The attachment data is fetched\nusing the media API.",
+                  "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/attachments/{attachmentsId}",
+                  "httpMethod": "GET",
+                  "id": "chat.spaces.messages.attachments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Resource name of the attachment, in the form\n\"spaces/*/messages/*/attachments/*\".",
+                      "location": "path",
+                      "pattern": "^spaces/[^/]+/messages/[^/]+/attachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Attachment"
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "revision": "20200701",
+  "revision": "20200708",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -391,6 +419,66 @@
         "userMention": {
           "$ref": "UserMentionMetadata",
           "description": "The metadata of user mention."
+        }
+      },
+      "type": "object"
+    },
+    "Attachment": {
+      "description": "An attachment in Hangouts Chat.",
+      "id": "Attachment",
+      "properties": {
+        "attachmentDataRef": {
+          "$ref": "AttachmentDataRef",
+          "description": "A reference to the attachment data. This is used with the media API to\ndownload the attachment data."
+        },
+        "contentName": {
+          "description": "The original file name for the content, not the full path.",
+          "type": "string"
+        },
+        "contentType": {
+          "description": "The content type (MIME type) of the file.",
+          "type": "string"
+        },
+        "downloadUri": {
+          "description": "Output only. The download URL which should be used to allow a human user to\ndownload the attachment. Bots should not use this URL to download\nattachment content.",
+          "type": "string"
+        },
+        "driveDataRef": {
+          "$ref": "DriveDataRef",
+          "description": "A reference to the drive attachment. This is used with the Drive API."
+        },
+        "name": {
+          "description": "Resource name of the attachment, in the form\n\"spaces/*/messages/*/attachments/*\".",
+          "type": "string"
+        },
+        "source": {
+          "description": "The source of the attachment.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "DRIVE_FILE",
+            "UPLOADED_CONTENT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "thumbnailUri": {
+          "description": "Output only. The thumbnail URL which should be used to preview the\nattachment to a human user. Bots should not use this URL to download\nattachment content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttachmentDataRef": {
+      "description": "A reference to the data of an attachment.",
+      "id": "AttachmentDataRef",
+      "properties": {
+        "resourceName": {
+          "description": "The resource name of the attachment data. This is used with the media API\nto download the attachment data.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -540,6 +628,17 @@
         "user": {
           "$ref": "User",
           "description": "The user that triggered the event."
+        }
+      },
+      "type": "object"
+    },
+    "DriveDataRef": {
+      "description": "A reference to the data of a drive attachment.",
+      "id": "DriveDataRef",
+      "properties": {
+        "driveFileId": {
+          "description": "The id for the drive file, for use with the Drive API.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -870,6 +969,13 @@
         "argumentText": {
           "description": "Plain-text body of the message with all bot mentions stripped out.",
           "type": "string"
+        },
+        "attachment": {
+          "description": "User uploaded attachment.",
+          "items": {
+            "$ref": "Attachment"
+          },
+          "type": "array"
         },
         "cards": {
           "description": "Rich, formatted and interactive cards that can be used to display UI\nelements such as: formatted texts, buttons, clickable images. Cards are\nnormally displayed below the plain-text body of the message.",

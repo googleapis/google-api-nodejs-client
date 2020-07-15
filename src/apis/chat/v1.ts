@@ -175,6 +175,52 @@ export namespace chat_v1 {
     userMention?: Schema$UserMentionMetadata;
   }
   /**
+   * An attachment in Hangouts Chat.
+   */
+  export interface Schema$Attachment {
+    /**
+     * A reference to the attachment data. This is used with the media API to download the attachment data.
+     */
+    attachmentDataRef?: Schema$AttachmentDataRef;
+    /**
+     * The original file name for the content, not the full path.
+     */
+    contentName?: string | null;
+    /**
+     * The content type (MIME type) of the file.
+     */
+    contentType?: string | null;
+    /**
+     * Output only. The download URL which should be used to allow a human user to download the attachment. Bots should not use this URL to download attachment content.
+     */
+    downloadUri?: string | null;
+    /**
+     * A reference to the drive attachment. This is used with the Drive API.
+     */
+    driveDataRef?: Schema$DriveDataRef;
+    /**
+     * Resource name of the attachment, in the form &quot;spaces/x/messages/x/attachments/*&quot;.
+     */
+    name?: string | null;
+    /**
+     * The source of the attachment.
+     */
+    source?: string | null;
+    /**
+     * Output only. The thumbnail URL which should be used to preview the attachment to a human user. Bots should not use this URL to download attachment content.
+     */
+    thumbnailUri?: string | null;
+  }
+  /**
+   * A reference to the data of an attachment.
+   */
+  export interface Schema$AttachmentDataRef {
+    /**
+     * The resource name of the attachment data. This is used with the media API to download the attachment data.
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A button. Can be a text button or an image button.
    */
   export interface Schema$Button {
@@ -279,6 +325,15 @@ export namespace chat_v1 {
      * The user that triggered the event.
      */
     user?: Schema$User;
+  }
+  /**
+   * A reference to the data of a drive attachment.
+   */
+  export interface Schema$DriveDataRef {
+    /**
+     * The id for the drive file, for use with the Drive API.
+     */
+    driveFileId?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -429,6 +484,10 @@ export namespace chat_v1 {
      * Plain-text body of the message with all bot mentions stripped out.
      */
     argumentText?: string | null;
+    /**
+     * User uploaded attachment.
+     */
+    attachment?: Schema$Attachment[];
     /**
      * Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
      */
@@ -1221,8 +1280,10 @@ export namespace chat_v1 {
 
   export class Resource$Spaces$Messages {
     context: APIRequestContext;
+    attachments: Resource$Spaces$Messages$Attachments;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.attachments = new Resource$Spaces$Messages$Attachments(this.context);
     }
 
     /**
@@ -1273,6 +1334,7 @@ export namespace chat_v1 {
      *       //   "actionResponse": {},
      *       //   "annotations": [],
      *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
@@ -1292,6 +1354,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
@@ -1568,6 +1631,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
@@ -1716,6 +1780,7 @@ export namespace chat_v1 {
      *       //   "actionResponse": {},
      *       //   "annotations": [],
      *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
@@ -1735,6 +1800,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
@@ -1885,5 +1951,156 @@ export namespace chat_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Message;
+  }
+
+  export class Resource$Spaces$Messages$Attachments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * chat.spaces.messages.attachments.get
+     * @desc Gets the metadata of a message attachment. The attachment data is fetched using the media API.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.attachments.get({
+     *     // Resource name of the attachment, in the form
+     *     // "spaces/x/messages/x/attachments/x".
+     *     name: 'spaces/my-space/messages/my-message/attachments/my-attachment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attachmentDataRef": {},
+     *   //   "contentName": "my_contentName",
+     *   //   "contentType": "my_contentType",
+     *   //   "downloadUri": "my_downloadUri",
+     *   //   "driveDataRef": {},
+     *   //   "name": "my_name",
+     *   //   "source": "my_source",
+     *   //   "thumbnailUri": "my_thumbnailUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias chat.spaces.messages.attachments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Spaces$Messages$Attachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Spaces$Messages$Attachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attachment>;
+    get(
+      params: Params$Resource$Spaces$Messages$Attachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Spaces$Messages$Attachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
+    get(
+      params: Params$Resource$Spaces$Messages$Attachments$Get,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Attachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Attachments$Get
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Attachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Attachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Attachment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Attachment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Spaces$Messages$Attachments$Get
+    extends StandardParameters {
+    /**
+     * Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     */
+    name?: string;
   }
 }
