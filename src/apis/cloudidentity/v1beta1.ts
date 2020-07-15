@@ -459,6 +459,15 @@ export namespace cloudidentity_v1beta1 {
     namespace?: string | null;
   }
   /**
+   * The `MembershipRole` expiry details.
+   */
+  export interface Schema$ExpiryDetail {
+    /**
+     * The time at which the `MembershipRole` will expire.
+     */
+    expireTime?: string | null;
+  }
+  /**
    * The response message for MembershipsService.GetMembershipGraph.
    */
   export interface Schema$GetMembershipGraphResponse {
@@ -675,6 +684,10 @@ export namespace cloudidentity_v1beta1 {
    * A membership role within the Cloud Identity Groups API.  A `MembershipRole` defines the privileges granted to a `Membership`.
    */
   export interface Schema$MembershipRole {
+    /**
+     * The expiry details of the `MembershipRole`.  Expiry details are only supported for `MEMBER` `MembershipRoles`.  May be set if `name` is `MEMBER`. Must not be set if `name` is any other value.
+     */
+    expiryDetail?: Schema$ExpiryDetail;
     /**
      * The name of the `MembershipRole`.  Must be one of `OWNER`, `MANAGER`, `MEMBER`.
      */
