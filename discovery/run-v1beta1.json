@@ -296,7 +296,7 @@
       }
     }
   },
-  "revision": "20200622",
+  "revision": "20200706",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "CustomResourceColumnDefinition": {
@@ -892,7 +892,7 @@
     }
   },
   "servicePath": "",
-  "title": "Cloud Run API",
+  "title": "Cloud Run Admin API",
   "version": "v1beta1",
   "version_module": true
 }
