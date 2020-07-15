@@ -99,9 +99,9 @@ export namespace searchconsole_v1 {
   }
 
   /**
-   * Google Search Console URL Testing Tools API
+   * Google Search Console API
    *
-   * Provides tools for running validation tests against single URLs
+   * The Search Console API provides access to both Search Console data (verified users only) and to public information on an URL basis (anyone)
    *
    * @example
    * const {google} = require('googleapis');
