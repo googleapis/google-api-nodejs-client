@@ -99,7 +99,7 @@ export namespace run_v1alpha1 {
   }
 
   /**
-   * Cloud Run API
+   * Cloud Run Admin API
    *
    * Deploy and manage user provided container images that scale automatically based on HTTP traffic.
    *

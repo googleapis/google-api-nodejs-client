@@ -99,7 +99,7 @@ export namespace run_v1 {
   }
 
   /**
-   * Cloud Run API
+   * Cloud Run Admin API
    *
    * Deploy and manage user provided container images that scale automatically based on HTTP traffic.
    *
@@ -1074,6 +1074,9 @@ export namespace run_v1 {
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
      */
     serviceAccountName?: string | null;
+    /**
+     * TimeoutSeconds holds the max duration the instance is allowed for responding to a request.  Cloud Run fully managed: defaults to 300 seconds (5 minutes). Maximum allowed value is 900 seconds (15 minutes).  Cloud Run for Anthos: defaults to 300 seconds (5 minutes). Maximum allowed value is configurable by the cluster operator.
+     */
     timeoutSeconds?: number | null;
     volumes?: Schema$Volume[];
   }
