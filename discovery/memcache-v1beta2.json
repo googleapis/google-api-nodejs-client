@@ -615,7 +615,7 @@
       }
     }
   },
-  "revision": "20200608",
+  "revision": "20200714",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1042,7 +1042,7 @@
       "id": "Instance",
       "properties": {
         "authorizedNetwork": {
-          "description": "The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
+          "description": "The full name of the Google Compute Engine\n[network](https://cloud.google.com/vpc/docs/vpc) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
           "type": "string"
         },
         "createTime": {

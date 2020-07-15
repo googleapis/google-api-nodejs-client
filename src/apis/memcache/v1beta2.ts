@@ -437,7 +437,7 @@ export namespace memcache_v1beta2 {
   }
   export interface Schema$Instance {
     /**
-     * The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
+     * The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
     authorizedNetwork?: string | null;
     /**
