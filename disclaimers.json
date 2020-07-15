@@ -8,10 +8,6 @@
     "package": "@google-cloud/automl"
   },
   {
-    "api": "bigquery",
-    "package": "@google-cloud/bigquery"
-  },
-  {
     "api": "bigtable",
     "package": "@google-cloud/bigtable"
   },
@@ -76,12 +72,20 @@
     "package": "@google-cloud/game-servers"
   },
   {
+    "api": "bigquery",
+    "package": "@google-cloud/bigquery"
+  },
+  {
     "api": "bigqueryconnection",
     "package": "@google-cloud/bigquery-connection"
   },
   {
     "api": "bigquerydatatransfer",
     "package": "@google-cloud/bigquery-data-transfer"
+  },
+  {
+    "api": "bigqueryreservation",
+    "package": "@google-cloud/bigquery-reservation"
   },
   {
     "api": "bigquerystorage",
