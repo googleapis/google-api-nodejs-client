@@ -325,6 +325,178 @@
         }
       },
       "resources": {
+        "analytics": {
+          "resources": {
+            "datastores": {
+              "methods": {
+                "create": {
+                  "description": "Create a Datastore for an org",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.analytics.datastores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent organization name.\nMust be of the form `organizations/{org}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/analytics/datastores",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a Datastore from an org.",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores/{datastoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.analytics.datastores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Datastore to be deleted. Must be of the\nform `organizations/{org}/analytics/datastores/{datastoreId}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/analytics/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a Datastore",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores/{datastoresId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.analytics.datastores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Datastore to be get. Must be of the\nform `organizations/{org}/analytics/datastores/{datastoreId}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/analytics/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List Datastores",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.analytics.datastores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent organization name.\nMust be of the form `organizations/{org}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "targetType": {
+                      "description": "Optional. TargetType is used to fetch all Datastores that match the type",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/analytics/datastores",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListDatastoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "test": {
+                  "description": "Test if Datastore configuration is correct. This includes checking\nif credentials provided by customer have required permissions in target\ndestination storage",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores:test",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.analytics.datastores.test",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent organization name\nMust be of the form `organizations/{org}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/analytics/datastores:test",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1TestDatastoreResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Update a Datastore",
+                  "flatPath": "v1/organizations/{organizationsId}/analytics/datastores/{datastoresId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.analytics.datastores.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of datastore to be updated. Must be of the\nform `organizations/{org}/analytics/datastores/{datastoreId}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/analytics/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1Datastore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "apiproducts": {
           "methods": {
             "attributes": {
@@ -2022,7 +2194,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Name of the organization in which to create the environment group in the\nfollowing format: `organizations/{org}`.",
+                  "description": "Required. Name of the organization in which to create the environment group in the\nfollowing format: `organizations/{org}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2050,7 +2222,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
+                  "description": "Required. Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                   "required": true,
@@ -2075,7 +2247,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
+                  "description": "Required. Name of the environment group in the following format:\n`organizations/{org}/envgroups/{envgroup}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                   "required": true,
@@ -2111,7 +2283,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Name of the organization for which to list environment groups in the\nfollowing format: `organizations/{org}`.",
+                  "description": "Required. Name of the organization for which to list environment groups in the\nfollowing format: `organizations/{org}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2136,7 +2308,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the environment group to update in the format:\n`organizations/{org}/envgroups/{envgroup}.",
+                  "description": "Required. Name of the environment group to update in the format:\n`organizations/{org}/envgroups/{envgroup}.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                   "required": true,
@@ -2174,7 +2346,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "EnvironmentGroup under which to create the attachment in the following\nformat: `organizations/{org}/envgroups/{envgroup}`.",
+                      "description": "Required. EnvironmentGroup under which to create the attachment in the following\nformat: `organizations/{org}/envgroups/{envgroup}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                       "required": true,
@@ -2202,7 +2374,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of the environment group attachment to delete in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`.",
+                      "description": "Required. Name of the environment group attachment to delete in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/envgroups/[^/]+/attachments/[^/]+$",
                       "required": true,
@@ -2227,7 +2399,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of the environment group attachment in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`",
+                      "description": "Required. Name of the environment group attachment in the following format:\n`organizations/{org}/envgroups/{envgroup}/attachments/{attachment}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/envgroups/[^/]+/attachments/[^/]+$",
                       "required": true,
@@ -2263,7 +2435,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Name of the organization in the following format: `organizations/{org}`.",
+                      "description": "Required. Name of the organization in the following format: `organizations/{org}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/envgroups/[^/]+$",
                       "required": true,
@@ -2683,6 +2855,88 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "GoogleCloudApigeeV1Schema"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "exports": {
+                  "methods": {
+                    "create": {
+                      "description": "Submit a data export job to be processed in the background.\nIf the request is successful, the API returns a 201 status, a URI that can\nbe used to retrieve the status of the export job, and the `state` value of\n\"enqueued\".",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/analytics/exports",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.environments.analytics.exports.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Names of the parent organization and environment.\nMust be of the form `organizations/{org}/environments/{env}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/analytics/exports",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1ExportRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1Export"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details and status of an analytics export job.\nIf the export job is still in progress, its `state` is set to \"running\".\nAfter the export job has completed successfully, its `state` is set to\n\"completed\".\nIf the export job fails, its `state` is set to `failed`.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/analytics/exports/{exportsId}",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.environments.analytics.exports.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the export to get.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/analytics/exports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1Export"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the details and status of all analytics export jobs belonging to the\nparent organization and environment.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/analytics/exports",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.environments.analytics.exports.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Names of the parent organization and environment.\nMust be of the form `organizations/{org}/environments/{env}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/analytics/exports",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1ListExportsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -5186,7 +5440,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200710",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6057,6 +6311,85 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1Datastore": {
+      "description": "The data store defines the connection to export data repository\n(Cloud Storage, BigQuery), including the credentials used to access the data\nrepository.",
+      "id": "GoogleCloudApigeeV1Datastore",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Datastore create time, in milliseconds since the epoch\nof 1970-01-01T00:00:00Z",
+          "format": "int64",
+          "type": "string"
+        },
+        "datastoreConfig": {
+          "$ref": "GoogleCloudApigeeV1DatastoreConfig",
+          "description": "Datastore Configurations."
+        },
+        "displayName": {
+          "description": "Required. Display name in UI",
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "description": "Output only. Datastore last update time, in milliseconds since the epoch\nof 1970-01-01T00:00:00Z",
+          "format": "int64",
+          "type": "string"
+        },
+        "org": {
+          "description": "Output only. Organization that the datastore belongs to",
+          "type": "string"
+        },
+        "self": {
+          "description": "Output only. Resource link of Datastore.\n\nExample: `/organizations/{org}/analytics/datastores/{uuid}`",
+          "type": "string"
+        },
+        "targetType": {
+          "description": "Destination storage type.\nSupported types `gcs` or `bigquery`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DatastoreConfig": {
+      "description": "Configuration detail for datastore",
+      "id": "GoogleCloudApigeeV1DatastoreConfig",
+      "properties": {
+        "bucketName": {
+          "description": "Name of the Cloud Storage bucket.\nRequired for `gcs` target_type.",
+          "type": "string"
+        },
+        "datasetName": {
+          "description": "BigQuery dataset name\nRequired for `bigquery` target_type.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path of Cloud Storage bucket\nRequired for `gcs` target_type.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. GCP project in which the datastore exists",
+          "type": "string"
+        },
+        "tablePrefix": {
+          "description": "Prefix of BigQuery table\nRequired for `bigquery` target_type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DateRange": {
+      "description": "Date range of the data to export.",
+      "id": "GoogleCloudApigeeV1DateRange",
+      "properties": {
+        "end": {
+          "description": "Required. End date (exclusive) of the data to export in the format `yyyy-mm-dd`.\nThe date range ends at 00:00:00 UTC on the end date- which will not be in\nthe output.",
+          "type": "string"
+        },
+        "start": {
+          "description": "Required. Start date of the data to export in the format `yyyy-mm-dd`.\nThe date range begins at 00:00:00 UTC on the start date.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1DebugMask": {
       "id": "GoogleCloudApigeeV1DebugMask",
       "properties": {
@@ -6243,15 +6576,13 @@
             "RUNTIME_STATE_UNSPECIFIED",
             "READY",
             "PROGRESSING",
-            "ERROR",
-            "TIMED_OUT"
+            "ERROR"
           ],
           "enumDescriptions": [
             "This value should never be returned.",
             "The runtime has loaded the deployment.",
-            "The deployment is still rolling out to the runtime.",
-            "There is an error with the deployment that requires intervention.",
-            "The deployment has taken too long and is likely failed."
+            "The deployment is not fully ready in the runtime.",
+            "There is an error with the deployment that requires intervention."
           ],
           "type": "string"
         }
@@ -6830,6 +7161,80 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1Export": {
+      "description": "Details of an export job.",
+      "id": "GoogleCloudApigeeV1Export",
+      "properties": {
+        "created": {
+          "description": "Output only. Time the export job was created.",
+          "type": "string"
+        },
+        "datastoreName": {
+          "description": "Name of the datastore that is the destination of the export job [datastore]",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the export job.",
+          "type": "string"
+        },
+        "error": {
+          "description": "Output only. Error is set when export fails",
+          "type": "string"
+        },
+        "executionTime": {
+          "description": "Output only. Execution time for this export job.\nIf the job is still in progress, it will be set to the amount of time that\nhas elapsed since`created`, in seconds.\nElse, it will set to (`updated` - `created`), in seconds.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Display name of the export job.",
+          "type": "string"
+        },
+        "self": {
+          "description": "Output only. Self link of the export job.\nA URI that can be used to retrieve the status of an export job.\n\nExample:\n`/organizations/myorg/environments/myenv/analytics/exports/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Status of the export job.\nValid values include `enqueued`, `running`, `completed`, and `failed`.",
+          "type": "string"
+        },
+        "updated": {
+          "description": "Output only. Time the export job was last updated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ExportRequest": {
+      "description": "Request body for [CreateExportRequest]",
+      "id": "GoogleCloudApigeeV1ExportRequest",
+      "properties": {
+        "csvDelimiter": {
+          "description": "Optional. Delimiter used in the CSV file, if `outputFormat` is set\nto `csv`. Defaults to the `,` (comma) character.\nSupported delimiter characters include comma (`,`), pipe (`|`),\nand tab (`\\t`).",
+          "type": "string"
+        },
+        "datastoreName": {
+          "description": "Required. Name of the preconfigured datastore.",
+          "type": "string"
+        },
+        "dateRange": {
+          "$ref": "GoogleCloudApigeeV1DateRange",
+          "description": "Required. Date range of the data to export."
+        },
+        "description": {
+          "description": "Optional. Description of the export job.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Display name of the export job.",
+          "type": "string"
+        },
+        "outputFormat": {
+          "description": "Optional. Output format of the export.\nValid values include: `csv` or `json`. Defaults to `json`.\nNote: Configure the delimiter for CSV output using the `csvDelimiter`\nproperty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1FlowHook": {
       "id": "GoogleCloudApigeeV1FlowHook",
       "properties": {
@@ -6942,16 +7347,16 @@
           "format": "int64",
           "type": "string"
         },
+        "location": {
+          "description": "Required. Compute Engine location where the instance resides.",
+          "type": "string"
+        },
         "name": {
           "description": "Required. Resource ID of the instance. Values must match the\nregular expression `^a-z{0,30}[a-z\\d]$`.",
           "type": "string"
         },
         "port": {
           "description": "Output only. Port number of the exposed Apigee endpoint.",
-          "type": "string"
-        },
-        "region": {
-          "description": "Required. Region where the instance resides.",
           "type": "string"
         }
       },
@@ -7170,6 +7575,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListDatastoresResponse": {
+      "description": "The response for ListDatastores",
+      "id": "GoogleCloudApigeeV1ListDatastoresResponse",
+      "properties": {
+        "datastores": {
+          "description": "A list of datastores",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Datastore"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListDebugSessionsResponse": {
       "id": "GoogleCloudApigeeV1ListDebugSessionsResponse",
       "properties": {
@@ -7257,6 +7676,20 @@
           "description": "List of resources files.",
           "items": {
             "$ref": "GoogleCloudApigeeV1ResourceFile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListExportsResponse": {
+      "description": "The response for ListExports",
+      "id": "GoogleCloudApigeeV1ListExportsResponse",
+      "properties": {
+        "exports": {
+          "description": "Details of the export jobs.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Export"
           },
           "type": "array"
         }
@@ -8382,6 +8815,21 @@
         "tlsInfo": {
           "$ref": "GoogleCloudApigeeV1TlsInfoConfig",
           "description": "TLS settings for the target."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1TestDatastoreResponse": {
+      "description": "The response for TestDatastore",
+      "id": "GoogleCloudApigeeV1TestDatastoreResponse",
+      "properties": {
+        "error": {
+          "description": "Output only. Error message of test connection failure",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. It could be `completed` or `failed`",
+          "type": "string"
         }
       },
       "type": "object"
