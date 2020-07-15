@@ -3,7 +3,7 @@
   "baseUrl": "https://searchconsole.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Search Console",
-  "description": "Provides tools for running validation tests against single URLs",
+  "description": "The Search Console API provides access to both Search Console data (verified users only) and to public information on an URL basis (anyone)",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/webmaster-tools/search-console-api/",
   "fullyEncodeReservedExpansion": true,
@@ -120,7 +120,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200714",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "BlockedResource": {
@@ -277,7 +277,7 @@
     }
   },
   "servicePath": "",
-  "title": "Google Search Console URL Testing Tools API",
+  "title": "Google Search Console API",
   "version": "v1",
   "version_module": true
 }
