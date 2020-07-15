@@ -575,7 +575,7 @@
               ]
             },
             "list": {
-              "description": "List the jobs of a project.\n\nTo list the jobs of a project in a region, we recommend using\n`projects.locations.jobs.get` with a [regional endpoint]\n(https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To\nlist the all jobs across all regions, use `projects.jobs.aggregated`. Using\n`projects.jobs.list` is not recommended, as you can only get the list of\njobs that are running in `us-central1`.",
+              "description": "List the jobs of a project.\n\nTo list the jobs of a project in a region, we recommend using\n`projects.locations.jobs.list` with a [regional endpoint]\n(https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To\nlist the all jobs across all regions, use `projects.jobs.aggregated`. Using\n`projects.jobs.list` is not recommended, as you can only get the list of\njobs that are running in `us-central1`.",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.list",
@@ -1194,7 +1194,7 @@
                   ]
                 },
                 "list": {
-                  "description": "List the jobs of a project.\n\nTo list the jobs of a project in a region, we recommend using\n`projects.locations.jobs.get` with a [regional endpoint]\n(https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To\nlist the all jobs across all regions, use `projects.jobs.aggregated`. Using\n`projects.jobs.list` is not recommended, as you can only get the list of\njobs that are running in `us-central1`.",
+                  "description": "List the jobs of a project.\n\nTo list the jobs of a project in a region, we recommend using\n`projects.locations.jobs.list` with a [regional endpoint]\n(https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To\nlist the all jobs across all regions, use `projects.jobs.aggregated`. Using\n`projects.jobs.list` is not recommended, as you can only get the list of\njobs that are running in `us-central1`.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.list",
@@ -2233,7 +2233,7 @@
       }
     }
   },
-  "revision": "20200507",
+  "revision": "20200703",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3920,6 +3920,13 @@
         "jobName": {
           "description": "Required. The job name to use for the created job.",
           "type": "string"
+        },
+        "launchOptions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Launch options for this flex template job. This is a common set of options\nacross languages and templates. This should not be used to pass job\nparameters.",
+          "type": "object"
         },
         "parameters": {
           "additionalProperties": {
@@ -6354,6 +6361,10 @@
       "description": "The Dataflow service's idea of the current state of a WorkItem\nbeing processed by a worker.",
       "id": "WorkItemServiceState",
       "properties": {
+        "completeWorkStatus": {
+          "$ref": "Status",
+          "description": "If set, a request to complete the work item with the given status. This\nwill not be set to OK, unless supported by the specific kind of WorkItem.\nIt can be used for the backend to indicate a WorkItem must terminate, e.g.,\nfor aborting work."
+        },
         "harnessData": {
           "additionalProperties": {
             "description": "Properties of the object.",

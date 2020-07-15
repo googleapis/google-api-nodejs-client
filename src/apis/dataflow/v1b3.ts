@@ -1303,6 +1303,10 @@ export namespace dataflow_v1b3 {
      */
     jobName?: string | null;
     /**
+     * Launch options for this flex template job. This is a common set of options across languages and templates. This should not be used to pass job parameters.
+     */
+    launchOptions?: {[key: string]: string} | null;
+    /**
      * The parameters for FlexTemplate. Ex. {&quot;num_workers&quot;:&quot;5&quot;}
      */
     parameters?: {[key: string]: string} | null;
@@ -3329,6 +3333,10 @@ export namespace dataflow_v1b3 {
    * The Dataflow service&#39;s idea of the current state of a WorkItem being processed by a worker.
    */
   export interface Schema$WorkItemServiceState {
+    /**
+     * If set, a request to complete the work item with the given status. This will not be set to OK, unless supported by the specific kind of WorkItem. It can be used for the backend to indicate a WorkItem must terminate, e.g., for aborting work.
+     */
+    completeWorkStatus?: Schema$Status;
     /**
      * Other data returned by the service, specific to the particular worker harness.
      */
@@ -5461,7 +5469,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.list
-     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7975,7 +7983,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.list
-     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * @desc List the jobs of a project.  To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
