@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/kQu8Vg9hIDq0iLeHAOTEY97OKEg\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/9EfNrGrWjA9UfyKATju_Xd_tlwU\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -763,7 +763,7 @@
     "files": {
       "methods": {
         "copy": {
-          "description": "Creates a copy of a file and applies any requested updates with patch semantics.",
+          "description": "Creates a copy of a file and applies any requested updates with patch semantics. Folders cannot be copied.",
           "httpMethod": "POST",
           "id": "drive.files.copy",
           "parameterOrder": [
@@ -1064,7 +1064,7 @@
           "id": "drive.files.list",
           "parameters": {
             "corpora": {
-              "description": "Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.",
+              "description": "Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.",
               "location": "query",
               "type": "string"
             },
@@ -1076,7 +1076,7 @@
               ],
               "enumDescriptions": [
                 "Files shared to the user's domain.",
-                "Files owned by or shared to the user."
+                "Files owned by or shared to the user. If a user has permissions on a Shared Drive, the files inside it won't be retrieved unless the user has created, opened, or shared the file."
               ],
               "location": "query",
               "type": "string"
@@ -1161,7 +1161,7 @@
           ]
         },
         "update": {
-          "description": "Updates a file's metadata and/or content with patch semantics.",
+          "description": "Updates a file's metadata and/or content. This method supports patch semantics.",
           "httpMethod": "PATCH",
           "id": "drive.files.update",
           "mediaUpload": {
@@ -2126,7 +2126,7 @@
       }
     }
   },
-  "revision": "20200618",
+  "revision": "20200706",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2498,6 +2498,34 @@
       },
       "type": "object"
     },
+    "ContentRestriction": {
+      "description": "A restriction for accessing the content of the file.",
+      "id": "ContentRestriction",
+      "properties": {
+        "readOnly": {
+          "description": "Whether the content of the file is read-only.",
+          "type": "boolean"
+        },
+        "reason": {
+          "description": "Reason for why the content of the file is restricted. This is only mutable on requests that also set readOnly=true.",
+          "type": "string"
+        },
+        "restrictingUser": {
+          "$ref": "User",
+          "description": "The user who set the content restriction. Only populated if readOnly is true."
+        },
+        "restrictionTime": {
+          "description": "The time at which the content restriction was set (formatted RFC 3339 timestamp). Only populated if readOnly is true.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the content restriction. Currently the only possible value is globalContentRestriction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Drive": {
       "description": "Representation of a shared drive.",
       "id": "Drive",
@@ -2753,6 +2781,10 @@
               "description": "Whether the current user can modify the content of this file.",
               "type": "boolean"
             },
+            "canModifyContentRestriction": {
+              "description": "Whether the current user can modify restrictions on content of this file.",
+              "type": "boolean"
+            },
             "canMoveChildrenOutOfDrive": {
               "description": "Whether the current user can move children of this folder outside of the shared drive. This is false when the item is not a folder. Only populated for items in shared drives.",
               "type": "boolean"
@@ -2860,6 +2892,13 @@
             }
           },
           "type": "object"
+        },
+        "contentRestrictions": {
+          "description": "Restrictions for accessing the content of the file. Only populated if such a restriction exists.",
+          "items": {
+            "$ref": "ContentRestriction"
+          },
+          "type": "array"
         },
         "copyRequiresWriterPermission": {
           "description": "Whether the options to copy, print, or download this file, should be disabled for readers and commenters.",
@@ -3183,7 +3222,7 @@
           "type": "string"
         },
         "trashed": {
-          "description": "Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file, and other users cannot see files in the owner's trash.",
+          "description": "Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.",
           "type": "boolean"
         },
         "trashedTime": {

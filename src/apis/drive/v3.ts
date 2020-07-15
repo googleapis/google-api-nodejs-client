@@ -385,6 +385,31 @@ export namespace drive_v3 {
     nextPageToken?: string | null;
   }
   /**
+   * A restriction for accessing the content of the file.
+   */
+  export interface Schema$ContentRestriction {
+    /**
+     * Whether the content of the file is read-only.
+     */
+    readOnly?: boolean | null;
+    /**
+     * Reason for why the content of the file is restricted. This is only mutable on requests that also set readOnly=true.
+     */
+    reason?: string | null;
+    /**
+     * The user who set the content restriction. Only populated if readOnly is true.
+     */
+    restrictingUser?: Schema$User;
+    /**
+     * The time at which the content restriction was set (formatted RFC 3339 timestamp). Only populated if readOnly is true.
+     */
+    restrictionTime?: string | null;
+    /**
+     * The type of the content restriction. Currently the only possible value is globalContentRestriction.
+     */
+    type?: string | null;
+  }
+  /**
    * Representation of a shared drive.
    */
   export interface Schema$Drive {
@@ -504,6 +529,7 @@ export namespace drive_v3 {
       canEdit?: boolean;
       canListChildren?: boolean;
       canModifyContent?: boolean;
+      canModifyContentRestriction?: boolean;
       canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
       canMoveChildrenWithinDrive?: boolean;
@@ -532,6 +558,10 @@ export namespace drive_v3 {
       indexableText?: string;
       thumbnail?: {image?: string; mimeType?: string};
     } | null;
+    /**
+     * Restrictions for accessing the content of the file. Only populated if such a restriction exists.
+     */
+    contentRestrictions?: Schema$ContentRestriction[];
     /**
      * Whether the options to copy, print, or download this file, should be disabled for readers and commenters.
      */
@@ -723,7 +753,7 @@ export namespace drive_v3 {
      */
     thumbnailVersion?: string | null;
     /**
-     * Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file, and other users cannot see files in the owner&#39;s trash.
+     * Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
      */
     trashed?: boolean | null;
     /**
@@ -4052,7 +4082,7 @@ export namespace drive_v3 {
 
     /**
      * drive.files.copy
-     * @desc Creates a copy of a file and applies any requested updates with patch semantics.
+     * @desc Creates a copy of a file and applies any requested updates with patch semantics. Folders cannot be copied.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4104,6 +4134,7 @@ export namespace drive_v3 {
      *       //   "appProperties": {},
      *       //   "capabilities": {},
      *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
@@ -4167,6 +4198,7 @@ export namespace drive_v3 {
      *   //   "appProperties": {},
      *   //   "capabilities": {},
      *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
@@ -4375,6 +4407,7 @@ export namespace drive_v3 {
      *       //   "appProperties": {},
      *       //   "capabilities": {},
      *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
@@ -4442,6 +4475,7 @@ export namespace drive_v3 {
      *   //   "appProperties": {},
      *   //   "capabilities": {},
      *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
@@ -5174,6 +5208,7 @@ export namespace drive_v3 {
      *   //   "appProperties": {},
      *   //   "capabilities": {},
      *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
@@ -5360,7 +5395,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.list({
-     *     // Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
+     *     // Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
      *     corpora: 'placeholder-value',
      *     // The source of files to list. Deprecated: use 'corpora' instead.
      *     corpus: 'placeholder-value',
@@ -5407,7 +5442,7 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.corpora Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
+     * @param {string=} params.corpora Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
      * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
@@ -5501,7 +5536,7 @@ export namespace drive_v3 {
 
     /**
      * drive.files.update
-     * @desc Updates a file's metadata and/or content with patch semantics.
+     * @desc Updates a file's metadata and/or content. This method supports patch semantics.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5558,6 +5593,7 @@ export namespace drive_v3 {
      *       //   "appProperties": {},
      *       //   "capabilities": {},
      *       //   "contentHints": {},
+     *       //   "contentRestrictions": [],
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
@@ -5625,6 +5661,7 @@ export namespace drive_v3 {
      *   //   "appProperties": {},
      *   //   "capabilities": {},
      *   //   "contentHints": {},
+     *   //   "contentRestrictions": [],
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
@@ -6106,7 +6143,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$List extends StandardParameters {
     /**
-     * Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
+     * Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
      */
     corpora?: string;
     /**
