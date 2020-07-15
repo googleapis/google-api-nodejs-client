@@ -550,7 +550,7 @@
       }
     }
   },
-  "revision": "20200707",
+  "revision": "20200711",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1097,6 +1097,18 @@
       },
       "type": "object"
     },
+    "ExpiryDetail": {
+      "description": "The `MembershipRole` expiry details.",
+      "id": "ExpiryDetail",
+      "properties": {
+        "expireTime": {
+          "description": "The time at which the `MembershipRole` will expire.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetMembershipGraphResponse": {
       "description": "The response message for MembershipsService.GetMembershipGraph.",
       "id": "GetMembershipGraphResponse",
@@ -1397,6 +1409,10 @@
       "description": "A membership role within the Cloud Identity Groups API.\n\nA `MembershipRole` defines the privileges granted to a `Membership`.",
       "id": "MembershipRole",
       "properties": {
+        "expiryDetail": {
+          "$ref": "ExpiryDetail",
+          "description": "The expiry details of the `MembershipRole`.\n\nExpiry details are only supported for `MEMBER` `MembershipRoles`.\n\nMay be set if `name` is `MEMBER`. Must not be set if `name` is any other\nvalue."
+        },
         "name": {
           "description": "The name of the `MembershipRole`.\n\nMust be one of `OWNER`, `MANAGER`, `MEMBER`.",
           "type": "string"
