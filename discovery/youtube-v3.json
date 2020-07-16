@@ -3255,7 +3255,7 @@
           ],
           "parameters": {
             "hl": {
-              "default": "en_US",
+              "default": "en-US",
               "location": "query",
               "type": "string"
             },
@@ -3809,7 +3809,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200715",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {
