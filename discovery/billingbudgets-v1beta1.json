@@ -256,19 +256,26 @@
       }
     }
   },
-  "revision": "20200704",
+  "revision": "20200711",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
-      "description": "AllUpdatesRule defines notifications that are sent on every update to the\nbilling account's spend, regardless of the thresholds defined using\nthreshold rules.",
+      "description": "AllUpdatesRule defines notifications that are sent based on budget spend\nand thresholds.",
       "id": "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule",
       "properties": {
+        "monitoringNotificationChannels": {
+          "description": "Optional. Targets to send notifications to when a threshold is exceeded. This is in\naddition to default recipients who have billing account roles.\nThe value is the full REST resource name of a monitoring notification\nchannel with the form\n`projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5\nchannels are allowed. See\nhttps://cloud.google.com/billing/docs/how-to/budgets-notification-recipients\nfor more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "pubsubTopic": {
-          "description": "Required. The name of the Cloud Pub/Sub topic where budget related messages will be\npublished, in the form `projects/{project_id}/topics/{topic_id}`. Updates\nare sent at regular intervals to the topic.\nThe topic needs to be created before the budget is created; see\nhttps://cloud.google.com/billing/docs/how-to/budgets#manage-notifications\nfor more details.\nCaller is expected to have\n`pubsub.topics.setIamPolicy` permission on the topic when it's set for a\nbudget, otherwise, the API call will fail with PERMISSION_DENIED. See\nhttps://cloud.google.com/pubsub/docs/access-control for more details on\nPub/Sub roles and permissions.",
+          "description": "Required. The name of the Cloud Pub/Sub topic where budget related messages will be\npublished, in the form `projects/{project_id}/topics/{topic_id}`. Updates\nare sent at regular intervals to the topic.\nThe topic needs to be created before the budget is created; see\nhttps://cloud.google.com/billing/docs/how-to/budgets#manage-notifications\nfor more details.\nCaller is expected to have\n`pubsub.topics.setIamPolicy` permission on the topic when it's set for a\nbudget, otherwise, the API call will fail with PERMISSION_DENIED. See\nhttps://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications\nfor more details on Pub/Sub roles and permissions.",
           "type": "string"
         },
         "schemaVersion": {
-          "description": "Required. The schema version of the notification.\nOnly \"1.0\" is accepted. It represents the JSON schema as defined in\nhttps://cloud.google.com/billing/docs/how-to/budgets#notification_format",
+          "description": "Required. The schema version of the notification sent to `pubsub_topic`.\nOnly \"1.0\" is accepted. It represents the JSON schema as defined in\nhttps://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format",
           "type": "string"
         }
       },
@@ -280,7 +287,7 @@
       "properties": {
         "allUpdatesRule": {
           "$ref": "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule",
-          "description": "Optional. Rules to apply to all updates to the actual spend, regardless\nof the thresholds set in `threshold_rules`."
+          "description": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
         },
         "amount": {
           "$ref": "GoogleCloudBillingBudgetsV1beta1BudgetAmount",
@@ -381,7 +388,7 @@
           "type": "array"
         },
         "subaccounts": {
-          "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying\nthat usage from only this set of subaccounts should be included in the\nbudget. If a subaccount is set to the name of the resller account, usage\nfrom the reseller account will be included. If omitted, the report will\ninclude usage from the reseller account and all subaccounts, if they exist.",
+          "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying\nthat usage from only this set of subaccounts should be included in the\nbudget. If a subaccount is set to the name of the parent account,\nusage from the parent account will be included. If omitted, the\nreport will include usage from the parent account and all\nsubaccounts, if they exist.",
           "items": {
             "type": "string"
           },
