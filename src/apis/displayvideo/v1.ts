@@ -10297,7 +10297,7 @@ export namespace displayvideo_v1 {
      *     //     - `campaignId`
      *     //     - `insertionOrderId`
      *     //     - `entityStatus`
-     *     //     - `lineItemType`.
+     *     //     - `lineItemType`
      *     //
      *     // Examples:
      *     //
@@ -10315,6 +10315,7 @@ export namespace displayvideo_v1 {
      *     //
      *     // * "displayName" (default)
      *     // * "entityStatus"
+     *     // * “flight.dateRange.endDate”
      *     //
      *     // The default sorting order is ascending. To specify descending order for
      *     // a field, a suffix "desc" should be added to the field name. Example:
@@ -10350,8 +10351,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list line items for.
-     * @param {string=} params.filter Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate”  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10710,11 +10711,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate”  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
