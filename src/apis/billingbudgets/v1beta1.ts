@@ -128,15 +128,19 @@ export namespace billingbudgets_v1beta1 {
   }
 
   /**
-   * AllUpdatesRule defines notifications that are sent on every update to the billing account&#39;s spend, regardless of the thresholds defined using threshold rules.
+   * AllUpdatesRule defines notifications that are sent based on budget spend and thresholds.
    */
   export interface Schema$GoogleCloudBillingBudgetsV1beta1AllUpdatesRule {
     /**
-     * Required. The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it&#39;s set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/pubsub/docs/access-control for more details on Pub/Sub roles and permissions.
+     * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
+     */
+    monitoringNotificationChannels?: string[] | null;
+    /**
+     * Required. The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it&#39;s set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.
      */
     pubsubTopic?: string | null;
     /**
-     * Required. The schema version of the notification. Only &quot;1.0&quot; is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets#notification_format
+     * Required. The schema version of the notification sent to `pubsub_topic`. Only &quot;1.0&quot; is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
      */
     schemaVersion?: string | null;
   }
@@ -145,7 +149,7 @@ export namespace billingbudgets_v1beta1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1beta1Budget {
     /**
-     * Optional. Rules to apply to all updates to the actual spend, regardless of the thresholds set in `threshold_rules`.
+     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      */
     allUpdatesRule?: Schema$GoogleCloudBillingBudgetsV1beta1AllUpdatesRule;
     /**
@@ -216,7 +220,7 @@ export namespace billingbudgets_v1beta1 {
      */
     services?: string[] | null;
     /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the resller account, usage from the reseller account will be included. If omitted, the report will include usage from the reseller account and all subaccounts, if they exist.
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If omitted, the report will include usage from the parent account and all subaccounts, if they exist.
      */
     subaccounts?: string[] | null;
   }
