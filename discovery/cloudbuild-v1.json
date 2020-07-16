@@ -594,7 +594,7 @@
       }
     }
   },
-  "revision": "20200704",
+  "revision": "20200715",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1053,7 +1053,7 @@
           "type": "string"
         },
         "disabled": {
-          "description": "If true, the trigger will never result in a build.",
+          "description": "If true, the trigger will never automatically execute a build.",
           "type": "boolean"
         },
         "filename": {

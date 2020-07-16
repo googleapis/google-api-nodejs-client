@@ -405,7 +405,7 @@ export namespace cloudbuild_v1 {
      */
     description?: string | null;
     /**
-     * If true, the trigger will never result in a build.
+     * If true, the trigger will never automatically execute a build.
      */
     disabled?: boolean | null;
     /**
