@@ -1554,12 +1554,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by line item properties.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by `AND` or `OR` logical operators. A\nsequence of restrictions implicitly uses `AND`.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `campaignId`\n    - `insertionOrderId`\n    - `entityStatus`\n    - `lineItemType`.\n\nExamples:\n\n* All line items under an insertion order: `insertionOrderId=\"1234\"`\n* All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`\nand `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser:\n`(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR\nentityStatus=\"ENTITY_STATUS_PAUSED\") AND\nlineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"`\n\nThe length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by line item properties.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by `AND` or `OR` logical operators. A\nsequence of restrictions implicitly uses `AND`.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `campaignId`\n    - `insertionOrderId`\n    - `entityStatus`\n    - `lineItemType`\n\nExamples:\n\n* All line items under an insertion order: `insertionOrderId=\"1234\"`\n* All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`\nand `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser:\n`(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR\nentityStatus=\"ENTITY_STATUS_PAUSED\") AND\nlineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"`\n\nThe length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field by which to sort the list.\nAcceptable values are:\n\n* \"displayName\" (default)\n* \"entityStatus\"\n\nThe default sorting order is ascending. To specify descending order for\na field, a suffix \"desc\" should be added to the field name. Example:\n`displayName desc`.",
+                  "description": "Field by which to sort the list.\nAcceptable values are:\n\n* \"displayName\" (default)\n* \"entityStatus\"\n* “flight.dateRange.endDate”\n\nThe default sorting order is ascending. To specify descending order for\na field, a suffix \"desc\" should be added to the field name. Example:\n`displayName desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -4599,7 +4599,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200714",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
