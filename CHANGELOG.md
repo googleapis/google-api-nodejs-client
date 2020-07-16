@@ -4,6 +4,26 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [54.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v54.1.0...v54.2.0) (2020-07-16)
+
+
+### Features
+
+* **billingbudgets:** update the API ([e476479](https://www.github.com/googleapis/google-api-nodejs-client/commit/e4764798941bedfdd4b3a2a35c6eb730e67e96e5))
+* regenerate index files ([2037fce](https://www.github.com/googleapis/google-api-nodejs-client/commit/2037fcec502b5c220c04e237937fe6548581ee7e))
+
+
+### Bug Fixes
+
+* **admob:** update the API ([36ff967](https://www.github.com/googleapis/google-api-nodejs-client/commit/36ff967ea0a25762d70aa45f8bf4e4049ecbe832))
+* **classroom:** update the API ([91b4aee](https://www.github.com/googleapis/google-api-nodejs-client/commit/91b4aee0df5a1ad7d8a18caf30d29a0293204a1a))
+* **cloudbuild:** update the API ([c2212f0](https://www.github.com/googleapis/google-api-nodejs-client/commit/c2212f0f75ad28fb80cfc483778d3cc9f48c176f))
+* **dataproc:** update the API ([c1dc387](https://www.github.com/googleapis/google-api-nodejs-client/commit/c1dc387db0102de8d6234d1685dd1449bfcafa4c))
+* **displayvideo:** update the API ([f0da5ea](https://www.github.com/googleapis/google-api-nodejs-client/commit/f0da5eaf555e8c7b9fc6bb6cb61fc4903aef3ee9))
+* **dlp:** update the API ([e6e9a36](https://www.github.com/googleapis/google-api-nodejs-client/commit/e6e9a36e142bd8622606fc9db65d709aad80dd1d))
+* **networkmanagement:** update the API ([6b31fbc](https://www.github.com/googleapis/google-api-nodejs-client/commit/6b31fbcbf09a642d74651f1d104235314587ed61))
+* **servicemanagement:** update the API ([3927a7a](https://www.github.com/googleapis/google-api-nodejs-client/commit/3927a7a03ac4fc730a3c6f8c3b19ea2aeb95bfd3))
+
 ## [54.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v54.0.0...v54.1.0) (2020-07-15)
 
 
