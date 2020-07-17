@@ -307,7 +307,7 @@
               "type": "string"
             },
             "sort": {
-              "description": "The sort expression to apply to the results.",
+              "description": "The sort expression to apply to the results. The sort parameter specifies\nthat the results be sorted according to the specified expression i.e. sort\nby date.\n[Example:\nsort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).",
               "location": "query",
               "type": "string"
             },
@@ -538,7 +538,7 @@
                   "type": "string"
                 },
                 "sort": {
-                  "description": "The sort expression to apply to the results.",
+                  "description": "The sort expression to apply to the results. The sort parameter specifies\nthat the results be sorted according to the specified expression i.e. sort\nby date.\n[Example:\nsort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).",
                   "location": "query",
                   "type": "string"
                 },
@@ -559,7 +559,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200715",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {
