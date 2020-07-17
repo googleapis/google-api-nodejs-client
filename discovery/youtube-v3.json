@@ -1407,6 +1407,7 @@
           ],
           "parameters": {
             "id": {
+              "description": "Broadcast to delete.",
               "location": "query",
               "required": true,
               "type": "string"
@@ -11463,7 +11464,7 @@
       "type": "object"
     },
     "VideoStatus": {
-      "description": "Basic details about a video category, such as its localized title.\nNext Id: 16",
+      "description": "Basic details about a video category, such as its localized title.\nNext Id: 17",
       "id": "VideoStatus",
       "properties": {
         "embeddable": {

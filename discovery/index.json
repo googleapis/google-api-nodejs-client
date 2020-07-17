@@ -1845,13 +1845,14 @@
       "name": "doubleclicksearch",
       "version": "v2",
       "title": "Search Ads 360 API",
-      "description": "The Search Ads 360 API allows developers to automate uploading conversions and downloading reports from Search Ads 360.",
-      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v2",
+      "description": "Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/doubleclicksearch/v2/rest",
+      "discoveryLink": "./apis/doubleclicksearch/v2/rest",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/search-ads",
+      "documentationLink": "https://developers.google.com/doubleclick-search/",
       "preferred": true
     },
     {
