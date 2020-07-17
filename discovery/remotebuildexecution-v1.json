@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20200702",
+  "revision": "20200714",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1013,6 +1013,7 @@
             "DOWNLOAD_INPUTS_ERROR",
             "UNKNOWN",
             "UPLOAD_OUTPUTS_ERROR",
+            "UPLOAD_OUTPUTS_BYTES_LIMIT_EXCEEDED",
             "DOCKER_LOGIN_ERROR",
             "DOCKER_IMAGE_PULL_ERROR",
             "DOCKER_IMAGE_EXIST_ERROR",
@@ -1051,6 +1052,7 @@
             "The bot failed to download the inputs.",
             "Unknown error.",
             "The bot failed to upload the outputs.",
+            "The bot tried to upload files having a total size that is too large.",
             "The bot failed to login to docker.",
             "The bot failed to pull docker image.",
             "The bot failed to check docker images.",
