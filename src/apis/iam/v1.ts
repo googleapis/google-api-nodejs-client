@@ -676,46 +676,46 @@ export namespace iam_v1 {
     updateMask?: string | null;
   }
   /**
-   * The service account sign blob request.
+   * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The service account sign blob request.
    */
   export interface Schema$SignBlobRequest {
     /**
-     * Required. The bytes to sign.
+     * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The bytes to sign.
      */
     bytesToSign?: string | null;
   }
   /**
-   * The service account sign blob response.
+   * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The service account sign blob response.
    */
   export interface Schema$SignBlobResponse {
     /**
-     * The id of the key used to sign the blob.
+     * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The id of the key used to sign the blob.
      */
     keyId?: string | null;
     /**
-     * The signed blob.
+     * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The signed blob.
      */
     signature?: string | null;
   }
   /**
-   * The service account sign JWT request.
+   * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The service account sign JWT request.
    */
   export interface Schema$SignJwtRequest {
     /**
-     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 1 hour in the future.  If the JWT Claims Set does not contain an expiration time (`exp`) claim, this claim is added automatically, with a timestamp that is 1 hour in the future.
+     * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}`  If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 1 hour in the future.  If the JWT Claims Set does not contain an expiration time (`exp`) claim, this claim is added automatically, with a timestamp that is 1 hour in the future.
      */
     payload?: string | null;
   }
   /**
-   * The service account sign JWT response.
+   * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The service account sign JWT response.
    */
   export interface Schema$SignJwtResponse {
     /**
-     * The id of the key used to sign the JWT.
+     * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The id of the key used to sign the JWT.
      */
     keyId?: string | null;
     /**
-     * The signed JWT.
+     * Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The signed JWT.
      */
     signedJwt?: string | null;
   }
@@ -4745,7 +4745,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.signBlob
-     * @desc **Note:** We are in the process of deprecating this method. Use the [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob) method in the IAM Service Account Credentials API instead.  Signs a blob using the system-managed private key for a ServiceAccount.
+     * @desc **Note:** This method is deprecated and will stop working on July 1, 2021. Use the [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob) method in the IAM Service Account Credentials API instead. If you currently use this method, see the [migration guide](https://cloud.google.com/iam/help/credentials/migrate-api) for instructions.  Signs a blob using the system-managed private key for a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4770,7 +4770,10 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.signBlob({
-     *     // Required. The resource name of the service account in the following format:
+     *     // Required. Deprecated. [Migrate to Service Account Credentials
+     *     // API](https://cloud.google.com/iam/help/credentials/migrate-api).
+     *     //
+     *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
@@ -4803,7 +4806,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {().SignBlobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4890,7 +4893,7 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.signJwt
-     * @desc **Note:** We are in the process of deprecating this method. Use the [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt) method in the IAM Service Account Credentials API instead.  Signs a JSON Web Token (JWT) using the system-managed private key for a ServiceAccount.
+     * @desc **Note:** This method is deprecated and will stop working on July 1, 2021. Use the [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt) method in the IAM Service Account Credentials API instead. If you currently use this method, see the [migration guide](https://cloud.google.com/iam/help/credentials/migrate-api) for instructions.  Signs a JSON Web Token (JWT) using the system-managed private key for a ServiceAccount.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4915,7 +4918,10 @@ export namespace iam_v1 {
      *
      *   // Do the magic
      *   const res = await iam.projects.serviceAccounts.signJwt({
-     *     // Required. The resource name of the service account in the following format:
+     *     // Required. Deprecated. [Migrate to Service Account Credentials
+     *     // API](https://cloud.google.com/iam/help/credentials/migrate-api).
+     *     //
+     *     // The resource name of the service account in the following format:
      *     // `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      *     // Using `-` as a wildcard for the `PROJECT_ID` will infer the project from
      *     // the account. The `ACCOUNT` value can be the `email` address or the
@@ -4948,7 +4954,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {string} params.name Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      * @param {().SignJwtRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5606,7 +5612,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
@@ -5618,7 +5624,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * Required. Deprecated. [Migrate to Service Account Credentials API](https://cloud.google.com/iam/help/credentials/migrate-api).  The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
 
