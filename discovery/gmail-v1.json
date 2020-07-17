@@ -156,7 +156,7 @@
           "parameters": {
             "userId": {
               "default": "me",
-              "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+              "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -185,7 +185,7 @@
           "parameters": {
             "userId": {
               "default": "me",
-              "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+              "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -210,7 +210,7 @@
           "parameters": {
             "userId": {
               "default": "me",
-              "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+              "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -235,7 +235,7 @@
         "drafts": {
           "methods": {
             "create": {
-              "description": "Creates a new draft with the <code>DRAFT</code> label.",
+              "description": "Creates a new draft with the `DRAFT` label.",
               "flatPath": "gmail/v1/users/{userId}/drafts",
               "httpMethod": "POST",
               "id": "gmail.users.drafts.create",
@@ -261,7 +261,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -300,7 +300,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -344,7 +344,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -372,7 +372,7 @@
               "parameters": {
                 "includeSpamTrash": {
                   "default": "false",
-                  "description": "Include drafts from <code>SPAM</code> and <code>TRASH</code>\nin the results.",
+                  "description": "Include drafts from `SPAM` and `TRASH`\nin the results.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -389,13 +389,13 @@
                   "type": "string"
                 },
                 "q": {
-                  "description": "Only return draft messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n<code>\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"</code>.",
+                  "description": "Only return draft messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n`\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"`.",
                   "location": "query",
                   "type": "string"
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -413,7 +413,7 @@
               ]
             },
             "send": {
-              "description": "Sends the specified, existing draft to the recipients in the\n<code>To</code>, <code>Cc</code>, and <code>Bcc</code> headers.",
+              "description": "Sends the specified, existing draft to the recipients in the\n`To`, `Cc`, and `Bcc` headers.",
               "flatPath": "gmail/v1/users/{userId}/drafts/send",
               "httpMethod": "POST",
               "id": "gmail.users.drafts.send",
@@ -439,7 +439,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -494,7 +494,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -520,7 +520,7 @@
         "history": {
           "methods": {
             "list": {
-              "description": "Lists the history of all changes to the given mailbox. History results are\nreturned in chronological order (increasing <code>historyId</code>).",
+              "description": "Lists the history of all changes to the given mailbox. History results are\nreturned in chronological order (increasing `historyId`).",
               "flatPath": "gmail/v1/users/{userId}/history",
               "httpMethod": "GET",
               "id": "gmail.users.history.list",
@@ -558,14 +558,14 @@
                   "type": "string"
                 },
                 "startHistoryId": {
-                  "description": "Required. Returns history records after the specified\n<code>startHistoryId</code>. The supplied <code>startHistoryId</code>\nshould be obtained from the <code>historyId</code> of a message, thread, or\nprevious <code>list</code> response. History IDs increase\nchronologically but are not contiguous with random gaps in between valid\nIDs. Supplying an invalid or out of date <code>startHistoryId</code>\ntypically returns an <code>HTTP 404</code> error code. A\n<code>historyId</code> is typically valid for at least a week, but in some\nrare circumstances may be valid for only a few hours. If you receive an\n<code>HTTP 404</code> error response, your  application should perform a\nfull sync. If you receive no <code>nextPageToken</code> in the response,\nthere are no updates to retrieve and you can store the returned\n<code>historyId</code> for a future request.",
+                  "description": "Required. Returns history records after the specified\n`startHistoryId`. The supplied `startHistoryId`\nshould be obtained from the `historyId` of a message, thread, or\nprevious `list` response. History IDs increase\nchronologically but are not contiguous with random gaps in between valid\nIDs. Supplying an invalid or out of date `startHistoryId`\ntypically returns an `HTTP 404` error code. A\n`historyId` is typically valid for at least a week, but in some\nrare circumstances may be valid for only a few hours. If you receive an\n`HTTP 404` error response, your  application should perform a\nfull sync. If you receive no `nextPageToken` in the response,\nthere are no updates to retrieve and you can store the returned\n`historyId` for a future request.",
                   "format": "uint64",
                   "location": "query",
                   "type": "string"
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -597,7 +597,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -634,7 +634,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -665,7 +665,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -694,7 +694,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -730,7 +730,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -767,7 +767,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -801,7 +801,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -826,7 +826,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -842,7 +842,7 @@
               ]
             },
             "delete": {
-              "description": "Immediately and permanently deletes the specified message. This operation\ncannot be undone.  Prefer <code>messages.trash</code> instead.",
+              "description": "Immediately and permanently deletes the specified message. This operation\ncannot be undone.  Prefer `messages.trash` instead.",
               "flatPath": "gmail/v1/users/{userId}/messages/{id}",
               "httpMethod": "DELETE",
               "id": "gmail.users.messages.delete",
@@ -859,7 +859,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -906,7 +906,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -981,7 +981,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1002,7 +1002,7 @@
               "supportsMediaUpload": true
             },
             "insert": {
-              "description": "Directly inserts a message into only this user's mailbox similar to\n<code>IMAP APPEND</code>, bypassing most scanning and classification.\nDoes not send a message.",
+              "description": "Directly inserts a message into only this user's mailbox similar to\n`IMAP APPEND`, bypassing most scanning and classification.\nDoes not send a message.",
               "flatPath": "gmail/v1/users/{userId}/messages",
               "httpMethod": "POST",
               "id": "gmail.users.messages.insert",
@@ -1044,7 +1044,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1075,7 +1075,7 @@
               "parameters": {
                 "includeSpamTrash": {
                   "default": "false",
-                  "description": "Include messages from <code>SPAM</code> and <code>TRASH</code>\nin the results.",
+                  "description": "Include messages from `SPAM` and `TRASH`\nin the results.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1098,13 +1098,13 @@
                   "type": "string"
                 },
                 "q": {
-                  "description": "Only return messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n<code>\"from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt;\nis:unread\"</code>. Parameter cannot be used when accessing the api\nusing the gmail.metadata scope.",
+                  "description": "Only return messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n`\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"`. Parameter cannot be used when accessing the api\nusing the gmail.metadata scope.",
                   "location": "query",
                   "type": "string"
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1139,7 +1139,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1158,7 +1158,7 @@
               ]
             },
             "send": {
-              "description": "Sends the specified message to the recipients in the\n<code>To</code>, <code>Cc</code>, and <code>Bcc</code> headers.",
+              "description": "Sends the specified message to the recipients in the\n`To`, `Cc`, and `Bcc` headers.",
               "flatPath": "gmail/v1/users/{userId}/messages/send",
               "httpMethod": "POST",
               "id": "gmail.users.messages.send",
@@ -1184,7 +1184,7 @@
               "parameters": {
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1224,7 +1224,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1257,7 +1257,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1301,7 +1301,7 @@
                     },
                     "userId": {
                       "default": "me",
-                      "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                      "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -1522,7 +1522,7 @@
               ]
             },
             "updateLanguage": {
-              "description": "Updates language settings.\n\nIf successful, the return object contains the <code>displayLanguage</code>\nthat was saved for the user, which may differ from the value passed into\nthe request. This is because the requested <code>displayLanguage</code> may\nnot be directly supported by Gmail but have a close variant that is, and so\nthe variant may be chosen and saved instead.",
+              "description": "Updates language settings.\n\nIf successful, the return object contains the `displayLanguage`\nthat was saved for the user, which may differ from the value passed into\nthe request. This is because the requested `displayLanguage` may\nnot be directly supported by Gmail but have a close variant that is, and so\nthe variant may be chosen and saved instead.",
               "flatPath": "gmail/v1/users/{userId}/settings/language",
               "httpMethod": "PUT",
               "id": "gmail.users.settings.updateLanguage",
@@ -1610,7 +1610,7 @@
             "delegates": {
               "methods": {
                 "create": {
-                  "description": "Adds a delegate with its verification status set directly to\n<code>accepted</code>, without sending any verification email.  The\ndelegate user must be a member of the same G Suite organization as the\ndelegator user.\n\nGmail imposes limitations on the number of delegates and delegators each\nuser in a G Suite organization can have. These limits depend on your\norganization, but in general each user can have up to 25 delegates and\nup to 10 delegators.\n\nNote that a delegate user must be referred to by their primary email\naddress, and not an email alias.\n\nAlso note that when a new delegate is created, there may be up to a one\nminute delay before the new delegate is available for use.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
+                  "description": "Adds a delegate with its verification status set directly to\n`accepted`, without sending any verification email.  The\ndelegate user must be a member of the same G Suite organization as the\ndelegator user.\n\nGmail imposes limitations on the number of delegates and delegators each\nuser in a G Suite organization can have. These limits depend on your\norganization, but in general each user can have up to 25 delegates and\nup to 10 delegators.\n\nNote that a delegate user must be referred to by their primary email\naddress, and not an email alias.\n\nAlso note that when a new delegate is created, there may be up to a one\nminute delay before the new delegate is available for use.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
                   "flatPath": "gmail/v1/users/{userId}/settings/delegates",
                   "httpMethod": "POST",
                   "id": "gmail.users.settings.delegates.create",
@@ -1858,7 +1858,7 @@
             "forwardingAddresses": {
               "methods": {
                 "create": {
-                  "description": "Creates a forwarding address.  If ownership verification is required, a\nmessage will be sent to the recipient and the resource's verification\nstatus will be set to <code>pending</code>; otherwise, the resource will be\ncreated with verification status set to <code>accepted</code>.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
+                  "description": "Creates a forwarding address.  If ownership verification is required, a\nmessage will be sent to the recipient and the resource's verification\nstatus will be set to `pending`; otherwise, the resource will be\ncreated with verification status set to `accepted`.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
                   "flatPath": "gmail/v1/users/{userId}/settings/forwardingAddresses",
                   "httpMethod": "POST",
                   "id": "gmail.users.settings.forwardingAddresses.create",
@@ -1982,7 +1982,7 @@
             "sendAs": {
               "methods": {
                 "create": {
-                  "description": "Creates a custom \"from\" send-as alias.  If an SMTP MSA is specified, Gmail\nwill attempt to connect to the SMTP service to validate the configuration\nbefore creating the alias.  If ownership verification is required for the\nalias, a message will be sent to the email address and the resource's\nverification status will be set to <code>pending</code>; otherwise, the\nresource will be created with verification status set to\n<code>accepted</code>.  If a signature is provided, Gmail will sanitize the\nHTML before saving it with the alias.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
+                  "description": "Creates a custom \"from\" send-as alias.  If an SMTP MSA is specified, Gmail\nwill attempt to connect to the SMTP service to validate the configuration\nbefore creating the alias.  If ownership verification is required for the\nalias, a message will be sent to the email address and the resource's\nverification status will be set to `pending`; otherwise, the\nresource will be created with verification status set to\n`accepted`.  If a signature is provided, Gmail will sanitize the\nHTML before saving it with the alias.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
                   "flatPath": "gmail/v1/users/{userId}/settings/sendAs",
                   "httpMethod": "POST",
                   "id": "gmail.users.settings.sendAs.create",
@@ -2174,7 +2174,7 @@
                   ]
                 },
                 "verify": {
-                  "description": "Sends a verification email to the specified send-as alias address.\nThe verification status must be <code>pending</code>.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
+                  "description": "Sends a verification email to the specified send-as alias address.\nThe verification status must be `pending`.\n\nThis method is only available to service account clients that have been\ndelegated domain-wide authority.",
                   "flatPath": "gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify",
                   "httpMethod": "POST",
                   "id": "gmail.users.settings.sendAs.verify",
@@ -2231,7 +2231,7 @@
                         },
                         "userId": {
                           "default": "me",
-                          "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                          "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2268,7 +2268,7 @@
                         },
                         "userId": {
                           "default": "me",
-                          "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                          "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2304,7 +2304,7 @@
                         },
                         "userId": {
                           "default": "me",
-                          "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                          "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2340,7 +2340,7 @@
                         },
                         "userId": {
                           "default": "me",
-                          "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                          "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2383,7 +2383,7 @@
                         },
                         "userId": {
                           "default": "me",
-                          "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                          "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2404,7 +2404,7 @@
         "threads": {
           "methods": {
             "delete": {
-              "description": "Immediately and permanently deletes the specified thread. This operation\ncannot be undone. Prefer <code>threads.trash</code> instead.",
+              "description": "Immediately and permanently deletes the specified thread. This operation\ncannot be undone. Prefer `threads.trash` instead.",
               "flatPath": "gmail/v1/users/{userId}/threads/{id}",
               "httpMethod": "DELETE",
               "id": "gmail.users.threads.delete",
@@ -2421,7 +2421,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2467,7 +2467,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2498,7 +2498,7 @@
               "parameters": {
                 "includeSpamTrash": {
                   "default": "false",
-                  "description": "Include threads from <code>SPAM</code> and <code>TRASH</code>\nin the results.",
+                  "description": "Include threads from `SPAM` and `TRASH`\nin the results.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -2521,13 +2521,13 @@
                   "type": "string"
                 },
                 "q": {
-                  "description": "Only return threads matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n<code>\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"</code>. Parameter cannot be used when accessing the api\nusing the gmail.metadata scope.",
+                  "description": "Only return threads matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n`\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"`. Parameter cannot be used when accessing the api\nusing the gmail.metadata scope.",
                   "location": "query",
                   "type": "string"
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2562,7 +2562,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2598,7 +2598,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2631,7 +2631,7 @@
                 },
                 "userId": {
                   "default": "me",
-                  "description": "The user's email address. The special value <code>me</code>\ncan be used to indicate the authenticated user.",
+                  "description": "The user's email address. The special value `me`\ncan be used to indicate the authenticated user.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2651,7 +2651,7 @@
       }
     }
   },
-  "revision": "20200608",
+  "revision": "20200713",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -2837,11 +2837,11 @@
           "type": "boolean"
         },
         "negatedQuery": {
-          "description": "Only return messages not matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n<code>\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"</code>.",
+          "description": "Only return messages not matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n`\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"`.",
           "type": "string"
         },
         "query": {
-          "description": "Only return messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n<code>\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"</code>.",
+          "description": "Only return messages matching the specified query. Supports the same\nquery format as the Gmail search box. For example,\n`\"from:someuser@example.com rfc822msgid:<somemsgid@example.com>\nis:unread\"`.",
           "type": "string"
         },
         "size": {
@@ -2923,7 +2923,7 @@
           "type": "array"
         },
         "messages": {
-          "description": "List of messages changed in this history record.  The fields for specific\nchange types, such as <code>messagesAdded</code> may duplicate messages in\nthis field.  We recommend using the specific change-type fields instead\nof this.",
+          "description": "List of messages changed in this history record.  The fields for specific\nchange types, such as `messagesAdded` may duplicate messages in\nthis field.  We recommend using the specific change-type fields instead\nof this.",
           "items": {
             "$ref": "Message"
           },
@@ -3038,7 +3038,7 @@
       "properties": {
         "color": {
           "$ref": "LabelColor",
-          "description": "The color to assign to the label. Color is only available for labels that\nhave their <code>type</code> set to <code>user</code>.\n@mutable gmail.users.labels.create gmail.users.labels.update"
+          "description": "The color to assign to the label. Color is only available for labels that\nhave their `type` set to `user`.\n@mutable gmail.users.labels.create gmail.users.labels.update"
         },
         "id": {
           "annotations": {
@@ -3118,7 +3118,7 @@
           "type": "integer"
         },
         "type": {
-          "description": "The owner type for the label. User labels are created by the user and\ncan be modified and deleted by the user and can be applied to any\nmessage or thread. System labels are internally created and cannot be\nadded, modified, or deleted. System labels may be able to be applied to or\nremoved from messages and threads under some circumstances but this is\nnot guaranteed. For example, users can apply and remove the\n<code>INBOX</code> and <code>UNREAD</code> labels from messages and\nthreads, but cannot apply or remove the <code>DRAFTS</code> or\n<code>SENT</code> labels from messages or threads.",
+          "description": "The owner type for the label. User labels are created by the user and\ncan be modified and deleted by the user and can be applied to any\nmessage or thread. System labels are internally created and cannot be\nadded, modified, or deleted. System labels may be able to be applied to or\nremoved from messages and threads under some circumstances but this is\nnot guaranteed. For example, users can apply and remove the\n`INBOX` and `UNREAD` labels from messages and\nthreads, but cannot apply or remove the `DRAFTS` or\n`SENT` labels from messages or threads.",
           "enum": [
             "system",
             "user"
@@ -3151,7 +3151,7 @@
       "id": "LanguageSettings",
       "properties": {
         "displayLanguage": {
-          "description": "The language to display Gmail in, formatted as an\n<a href=\"https://www.w3.org/International/articles/language-tags/\">RFC 3066\nLanguage Tag</a> (for example <code>en-GB</code>, <code>fr</code> or\n<code>ja</code> for British English, French, or Japanese respectively).\n\nThe set of languages supported by Gmail evolves over time, so please refer\nto the \"Language\" dropdown in the\n<a href=\"https://mail.google.com/mail/u/0/#settings/general\">Gmail settings\n</a> for all available options, as described in the\n<a href=\"https://support.google.com/mail/answer/17091\">language settings\nhelp article</a>. A table of sample values is also provided in the\n<a href=\"/gmail/api/guides/language_settings#display_language\">Managing\nLanguage Settings guide</a>\n\nNot all Gmail clients can display the same set of languages. In the case\nthat a user's display language is not available for use on a particular\nclient, said client automatically chooses to display in the closest\nsupported variant (or a reasonable default).",
+          "description": "The language to display Gmail in, formatted as an\n<a href=\"https://www.w3.org/International/articles/language-tags/\">RFC 3066\nLanguage Tag</a> (for example `en-GB`, `fr` or\n`ja` for British English, French, or Japanese respectively).\n\nThe set of languages supported by Gmail evolves over time, so please refer\nto the \"Language\" dropdown in the\n<a href=\"https://mail.google.com/mail/u/0/#settings/general\">Gmail settings\n</a> for all available options, as described in the\n<a href=\"https://support.google.com/mail/answer/17091\">language settings\nhelp article</a>. A table of sample values is also provided in the\n<a href=\"/gmail/api/guides/language_settings#display_language\">Managing\nLanguage Settings guide</a>\n\nNot all Gmail clients can display the same set of languages. In the case\nthat a user's display language is not available for use on a particular\nclient, said client automatically chooses to display in the closest\nsupported variant (or a reasonable default).",
           "type": "string"
         }
       },
@@ -3175,7 +3175,7 @@
       "id": "ListDraftsResponse",
       "properties": {
         "drafts": {
-          "description": "List of drafts. Note that the <code>Message</code> property in each\n<code>Draft</code> resource only contains an <code>id</code> and a\n<code>threadId</code>. The\n<a href=\"/gmail/api/v1/reference/users/messages/get\">messages.get</a>\nmethod can fetch additional message details.",
+          "description": "List of drafts. Note that the `Message` property in each\n`Draft` resource only contains an `id` and a\n`threadId`. The\n<a href=\"/gmail/api/v1/reference/users/messages/get\">messages.get</a>\nmethod can fetch additional message details.",
           "items": {
             "$ref": "Draft"
           },
@@ -3225,7 +3225,7 @@
       "id": "ListHistoryResponse",
       "properties": {
         "history": {
-          "description": "List of history records.  Any <code>messages</code> contained in the\nresponse will typically only have <code>id</code> and\n<code>threadId</code> fields populated.",
+          "description": "List of history records.  Any `messages` contained in the\nresponse will typically only have `id` and\n`threadId` fields populated.",
           "items": {
             "$ref": "History"
           },
@@ -3247,7 +3247,7 @@
       "id": "ListLabelsResponse",
       "properties": {
         "labels": {
-          "description": "List of labels. Note that each label resource only contains an\n<code>id</code>, <code>name</code>, <code>messageListVisibility</code>,\n<code>labelListVisibility</code>, and <code>type</code>. The\n<a href=\"/gmail/api/v1/reference/users/labels/get\">labels.get</a> method\ncan fetch additional label details.",
+          "description": "List of labels. Note that each label resource only contains an\n`id`, `name`, `messageListVisibility`,\n`labelListVisibility`, and `type`. The\n<a href=\"/gmail/api/v1/reference/users/labels/get\">labels.get</a> method\ncan fetch additional label details.",
           "items": {
             "$ref": "Label"
           },
@@ -3260,7 +3260,7 @@
       "id": "ListMessagesResponse",
       "properties": {
         "messages": {
-          "description": "List of messages. Note that each message resource contains only an\n<code>id</code> and a <code>threadId</code>. Additional message details can\nbe fetched using the\n<a href=\"/gmail/api/v1/reference/users/messages/get\">messages.get</a>\nmethod.",
+          "description": "List of messages. Note that each message resource contains only an\n`id` and a `threadId`. Additional message details can\nbe fetched using the\n<a href=\"/gmail/api/v1/reference/users/messages/get\">messages.get</a>\nmethod.",
           "items": {
             "$ref": "Message"
           },
@@ -3318,7 +3318,7 @@
           "type": "integer"
         },
         "threads": {
-          "description": "List of threads. Note that each thread resource does not contain a list of\n<code>messages</code>. The list of <code>messages</code> for a given thread\ncan be fetched using the\n<a href=\"/gmail/api/v1/reference/users/threads/get\">threads.get</a> method.",
+          "description": "List of threads. Note that each thread resource does not contain a list of\n`messages`. The list of `messages` for a given thread\ncan be fetched using the\n<a href=\"/gmail/api/v1/reference/users/threads/get\">threads.get</a> method.",
           "items": {
             "$ref": "Thread"
           },
@@ -3341,7 +3341,7 @@
           "type": "string"
         },
         "internalDate": {
-          "description": "The internal message creation timestamp (epoch ms), which determines\nordering in the inbox.  For normal SMTP-received email, this represents the\ntime the message was originally accepted by Google, which is more reliable\nthan the <code>Date</code> header. However, for API-migrated mail, it can\nbe configured by client to be based on the <code>Date</code> header.",
+          "description": "The internal message creation timestamp (epoch ms), which determines\nordering in the inbox.  For normal SMTP-received email, this represents the\ntime the message was originally accepted by Google, which is more reliable\nthan the `Date` header. However, for API-migrated mail, it can\nbe configured by client to be based on the `Date` header.",
           "format": "int64",
           "type": "string"
         },
@@ -3365,7 +3365,7 @@
               "gmail.users.messages.send"
             ]
           },
-          "description": "The entire email message in an RFC 2822 formatted and base64url\nencoded string. Returned in <code>messages.get</code> and\n<code>drafts.get</code> responses when the <code>format=RAW</code>\nparameter is supplied.\n@mutable gmail.users.messages.insert gmail.users.messages.send\n@mutable gmail.users.drafts.create gmail.users.drafts.update",
+          "description": "The entire email message in an RFC 2822 formatted and base64url\nencoded string. Returned in `messages.get` and\n`drafts.get` responses when the `format=RAW`\nparameter is supplied.\n@mutable gmail.users.messages.insert gmail.users.messages.send\n@mutable gmail.users.drafts.create gmail.users.drafts.update",
           "format": "byte",
           "type": "string"
         },
@@ -3379,7 +3379,7 @@
           "type": "string"
         },
         "threadId": {
-          "description": "The ID of the thread the message belongs to. To add a message or draft to\na thread, the following criteria must be met:\n<ol><li>The requested <code>threadId</code> must be specified on the\n<code>Message</code> or <code>Draft.Message</code> you supply with your\nrequest.</li>\n<li>The <code>References</code> and <code>In-Reply-To</code> headers must\nbe set in compliance with the\n<a href=\"https://tools.ietf.org/html/rfc2822\">RFC 2822</a> standard.</li>\n<li>The <code>Subject</code> headers must match.\n@mutable gmail.users.messages.insert gmail.users.messages.send\n@mutable gmail.users.drafts.create gmail.users.drafts.update",
+          "description": "The ID of the thread the message belongs to. To add a message or draft to\na thread, the following criteria must be met:\n<ol><li>The requested `threadId` must be specified on the\n`Message` or `Draft.Message` you supply with your\nrequest.</li>\n<li>The `References` and `In-Reply-To` headers must\nbe set in compliance with the\n<a href=\"https://tools.ietf.org/html/rfc2822\">RFC 2822</a> standard.</li>\n<li>The `Subject` headers must match.\n@mutable gmail.users.messages.insert gmail.users.messages.send\n@mutable gmail.users.drafts.create gmail.users.drafts.update",
           "type": "string"
         }
       },
@@ -3398,7 +3398,7 @@
           "type": "string"
         },
         "headers": {
-          "description": "List of headers on this message part. For the top-level message part,\nrepresenting the entire message payload, it will contain the standard\nRFC 2822 email headers such as <code>To</code>, <code>From</code>, and\n<code>Subject</code>.",
+          "description": "List of headers on this message part. For the top-level message part,\nrepresenting the entire message payload, it will contain the standard\nRFC 2822 email headers such as `To`, `From`, and\n`Subject`.",
           "items": {
             "$ref": "MessagePartHeader"
           },
@@ -3413,7 +3413,7 @@
           "type": "string"
         },
         "parts": {
-          "description": "The child MIME message parts of this part. This only applies to container\nMIME message parts, for example <code>multipart/*</code>. For non-\ncontainer MIME message part types, such as <code>text/plain</code>, this\nfield is empty. For more information, see\n<a href=\"http://www.ietf.org/rfc/rfc1521.txt\">RFC 1521</a>.",
+          "description": "The child MIME message parts of this part. This only applies to container\nMIME message parts, for example `multipart/*`. For non-\ncontainer MIME message part types, such as `text/plain`, this\nfield is empty. For more information, see\n<a href=\"http://www.ietf.org/rfc/rfc1521.txt\">RFC 1521</a>.",
           "items": {
             "$ref": "MessagePart"
           },
@@ -3427,7 +3427,7 @@
       "id": "MessagePartBody",
       "properties": {
         "attachmentId": {
-          "description": "When present, contains the ID of an external attachment that can be\nretrieved in a separate <code>messages.attachments.get</code> request.\nWhen not present, the entire content of the message part body is\ncontained in the data field.",
+          "description": "When present, contains the ID of an external attachment that can be\nretrieved in a separate `messages.attachments.get` request.\nWhen not present, the entire content of the message part body is\ncontained in the data field.",
           "type": "string"
         },
         "data": {
@@ -3447,11 +3447,11 @@
       "id": "MessagePartHeader",
       "properties": {
         "name": {
-          "description": "The name of the header before the <code>:</code> separator. For\nexample, <code>To</code>.",
+          "description": "The name of the header before the `:` separator. For\nexample, `To`.",
           "type": "string"
         },
         "value": {
-          "description": "The value of the header after the <code>:</code> separator. For example,\n<code>someuser@example.com</code>.",
+          "description": "The value of the header after the `:` separator. For example,\n`someuser@example.com`.",
           "type": "string"
         }
       },
@@ -3528,10 +3528,10 @@
           ],
           "enumDescriptions": [
             "Unspecified disposition.",
-            "Leave the message in the <code>INBOX</code>.",
+            "Leave the message in the `INBOX`.",
             "Archive the message.",
-            "Move the message to the <code>TRASH</code>.",
-            "Leave the message in the <code>INBOX</code> and mark it as read."
+            "Move the message to the `TRASH`.",
+            "Leave the message in the `INBOX` and mark it as read."
           ],
           "type": "string"
         }
@@ -3573,7 +3573,7 @@
           "type": "string"
         },
         "isDefault": {
-          "description": "Whether this address is selected as the default \"From:\" address in\nsituations such as composing a new message or sending a vacation\nauto-reply.  Every Gmail account has exactly one default send-as address,\nso the only legal value that clients may write to this field is\n<code>true</code>.  Changing this from <code>false</code> to\n<code>true</code> for an address will result in this field becoming\n<code>false</code> for the other previous default address.",
+          "description": "Whether this address is selected as the default \"From:\" address in\nsituations such as composing a new message or sending a vacation\nauto-reply.  Every Gmail account has exactly one default send-as address,\nso the only legal value that clients may write to this field is\n`true`.  Changing this from `false` to\n`true` for an address will result in this field becoming\n`false` for the other previous default address.",
           "type": "boolean"
         },
         "isPrimary": {
@@ -3730,16 +3730,16 @@
           "type": "boolean"
         },
         "endTime": {
-          "description": "An optional end time for sending auto-replies (epoch ms).\nWhen this is specified, Gmail will automatically reply only to messages\nthat it receives before the end time.  If both <code>startTime</code> and\n<code>endTime</code> are specified, <code>startTime</code> must precede\n<code>endTime</code>.",
+          "description": "An optional end time for sending auto-replies (epoch ms).\nWhen this is specified, Gmail will automatically reply only to messages\nthat it receives before the end time.  If both `startTime` and\n`endTime` are specified, `startTime` must precede\n`endTime`.",
           "format": "int64",
           "type": "string"
         },
         "responseBodyHtml": {
-          "description": "Response body in HTML format.  Gmail will sanitize the HTML before\nstoring it. If both <code>response_body_plain_text</code> and\n<code>response_body_html</code> are specified,\n<code>response_body_html</code> will be used.",
+          "description": "Response body in HTML format.  Gmail will sanitize the HTML before\nstoring it. If both `response_body_plain_text` and\n`response_body_html` are specified,\n`response_body_html` will be used.",
           "type": "string"
         },
         "responseBodyPlainText": {
-          "description": "Response body in plain text format. If both\n<code>response_body_plain_text</code> and <code>response_body_html</code>\nare specified, <code>response_body_html</code> will be used.",
+          "description": "Response body in plain text format. If both\n`response_body_plain_text` and `response_body_html`\nare specified, `response_body_html` will be used.",
           "type": "string"
         },
         "responseSubject": {
@@ -3755,7 +3755,7 @@
           "type": "boolean"
         },
         "startTime": {
-          "description": "An optional start time for sending auto-replies (epoch ms).\nWhen this is specified, Gmail will automatically reply only to messages\nthat it receives after the start time.  If both <code>startTime</code> and\n<code>endTime</code> are specified, <code>startTime</code> must precede\n<code>endTime</code>.",
+          "description": "An optional start time for sending auto-replies (epoch ms).\nWhen this is specified, Gmail will automatically reply only to messages\nthat it receives after the start time.  If both `startTime` and\n`endTime` are specified, `startTime` must precede\n`endTime`.",
           "format": "int64",
           "type": "string"
         }
@@ -3797,7 +3797,7 @@
       "id": "WatchResponse",
       "properties": {
         "expiration": {
-          "description": "When Gmail will stop sending notifications for mailbox updates\n(epoch millis). Call <code>watch</code> again before this time to renew\nthe watch.",
+          "description": "When Gmail will stop sending notifications for mailbox updates\n(epoch millis). Call `watch` again before this time to renew\nthe watch.",
           "format": "int64",
           "type": "string"
         },
