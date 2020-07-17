@@ -241,11 +241,11 @@ export namespace gmail_v1 {
      */
     hasAttachment?: boolean | null;
     /**
-     * Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, &lt;code&gt;&quot;from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread&quot;&lt;/code&gt;.
+     * Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, `&quot;from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread&quot;`.
      */
     negatedQuery?: string | null;
     /**
-     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, &lt;code&gt;&quot;from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread&quot;&lt;/code&gt;.
+     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `&quot;from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread&quot;`.
      */
     query?: string | null;
     /**
@@ -295,7 +295,7 @@ export namespace gmail_v1 {
      */
     labelsRemoved?: Schema$HistoryLabelRemoved[];
     /**
-     * List of messages changed in this history record.  The fields for specific change types, such as &lt;code&gt;messagesAdded&lt;/code&gt; may duplicate messages in this field.  We recommend using the specific change-type fields instead of this.
+     * List of messages changed in this history record.  The fields for specific change types, such as `messagesAdded` may duplicate messages in this field.  We recommend using the specific change-type fields instead of this.
      */
     messages?: Schema$Message[];
     /**
@@ -353,7 +353,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$Label {
     /**
-     * The color to assign to the label. Color is only available for labels that have their &lt;code&gt;type&lt;/code&gt; set to &lt;code&gt;user&lt;/code&gt;. @mutable gmail.users.labels.create gmail.users.labels.update
+     * The color to assign to the label. Color is only available for labels that have their `type` set to `user`. @mutable gmail.users.labels.create gmail.users.labels.update
      */
     color?: Schema$LabelColor;
     /**
@@ -389,7 +389,7 @@ export namespace gmail_v1 {
      */
     threadsUnread?: number | null;
     /**
-     * The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the &lt;code&gt;INBOX&lt;/code&gt; and &lt;code&gt;UNREAD&lt;/code&gt; labels from messages and threads, but cannot apply or remove the &lt;code&gt;DRAFTS&lt;/code&gt; or &lt;code&gt;SENT&lt;/code&gt; labels from messages or threads.
+     * The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the `INBOX` and `UNREAD` labels from messages and threads, but cannot apply or remove the `DRAFTS` or `SENT` labels from messages or threads.
      */
     type?: string | null;
   }
@@ -408,7 +408,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$LanguageSettings {
     /**
-     * The language to display Gmail in, formatted as an &lt;a href=&quot;https://www.w3.org/International/articles/language-tags/&quot;&gt;RFC 3066 Language Tag&lt;/a&gt; (for example &lt;code&gt;en-GB&lt;/code&gt;, &lt;code&gt;fr&lt;/code&gt; or &lt;code&gt;ja&lt;/code&gt; for British English, French, or Japanese respectively).  The set of languages supported by Gmail evolves over time, so please refer to the &quot;Language&quot; dropdown in the &lt;a href=&quot;https://mail.google.com/mail/u/0/#settings/general&quot;&gt;Gmail settings &lt;/a&gt; for all available options, as described in the &lt;a href=&quot;https://support.google.com/mail/answer/17091&quot;&gt;language settings help article&lt;/a&gt;. A table of sample values is also provided in the &lt;a href=&quot;/gmail/api/guides/language_settings#display_language&quot;&gt;Managing Language Settings guide&lt;/a&gt;  Not all Gmail clients can display the same set of languages. In the case that a user&#39;s display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
+     * The language to display Gmail in, formatted as an &lt;a href=&quot;https://www.w3.org/International/articles/language-tags/&quot;&gt;RFC 3066 Language Tag&lt;/a&gt; (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively).  The set of languages supported by Gmail evolves over time, so please refer to the &quot;Language&quot; dropdown in the &lt;a href=&quot;https://mail.google.com/mail/u/0/#settings/general&quot;&gt;Gmail settings &lt;/a&gt; for all available options, as described in the &lt;a href=&quot;https://support.google.com/mail/answer/17091&quot;&gt;language settings help article&lt;/a&gt;. A table of sample values is also provided in the &lt;a href=&quot;/gmail/api/guides/language_settings#display_language&quot;&gt;Managing Language Settings guide&lt;/a&gt;  Not all Gmail clients can display the same set of languages. In the case that a user&#39;s display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
      */
     displayLanguage?: string | null;
   }
@@ -423,7 +423,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListDraftsResponse {
     /**
-     * List of drafts. Note that the &lt;code&gt;Message&lt;/code&gt; property in each &lt;code&gt;Draft&lt;/code&gt; resource only contains an &lt;code&gt;id&lt;/code&gt; and a &lt;code&gt;threadId&lt;/code&gt;. The &lt;a href=&quot;/gmail/api/v1/reference/users/messages/get&quot;&gt;messages.get&lt;/a&gt; method can fetch additional message details.
+     * List of drafts. Note that the `Message` property in each `Draft` resource only contains an `id` and a `threadId`. The &lt;a href=&quot;/gmail/api/v1/reference/users/messages/get&quot;&gt;messages.get&lt;/a&gt; method can fetch additional message details.
      */
     drafts?: Schema$Draft[];
     /**
@@ -455,7 +455,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListHistoryResponse {
     /**
-     * List of history records.  Any &lt;code&gt;messages&lt;/code&gt; contained in the response will typically only have &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;threadId&lt;/code&gt; fields populated.
+     * List of history records.  Any `messages` contained in the response will typically only have `id` and `threadId` fields populated.
      */
     history?: Schema$History[];
     /**
@@ -469,13 +469,13 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListLabelsResponse {
     /**
-     * List of labels. Note that each label resource only contains an &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;messageListVisibility&lt;/code&gt;, &lt;code&gt;labelListVisibility&lt;/code&gt;, and &lt;code&gt;type&lt;/code&gt;. The &lt;a href=&quot;/gmail/api/v1/reference/users/labels/get&quot;&gt;labels.get&lt;/a&gt; method can fetch additional label details.
+     * List of labels. Note that each label resource only contains an `id`, `name`, `messageListVisibility`, `labelListVisibility`, and `type`. The &lt;a href=&quot;/gmail/api/v1/reference/users/labels/get&quot;&gt;labels.get&lt;/a&gt; method can fetch additional label details.
      */
     labels?: Schema$Label[];
   }
   export interface Schema$ListMessagesResponse {
     /**
-     * List of messages. Note that each message resource contains only an &lt;code&gt;id&lt;/code&gt; and a &lt;code&gt;threadId&lt;/code&gt;. Additional message details can be fetched using the &lt;a href=&quot;/gmail/api/v1/reference/users/messages/get&quot;&gt;messages.get&lt;/a&gt; method.
+     * List of messages. Note that each message resource contains only an `id` and a `threadId`. Additional message details can be fetched using the &lt;a href=&quot;/gmail/api/v1/reference/users/messages/get&quot;&gt;messages.get&lt;/a&gt; method.
      */
     messages?: Schema$Message[];
     /**
@@ -512,7 +512,7 @@ export namespace gmail_v1 {
      */
     resultSizeEstimate?: number | null;
     /**
-     * List of threads. Note that each thread resource does not contain a list of &lt;code&gt;messages&lt;/code&gt;. The list of &lt;code&gt;messages&lt;/code&gt; for a given thread can be fetched using the &lt;a href=&quot;/gmail/api/v1/reference/users/threads/get&quot;&gt;threads.get&lt;/a&gt; method.
+     * List of threads. Note that each thread resource does not contain a list of `messages`. The list of `messages` for a given thread can be fetched using the &lt;a href=&quot;/gmail/api/v1/reference/users/threads/get&quot;&gt;threads.get&lt;/a&gt; method.
      */
     threads?: Schema$Thread[];
   }
@@ -529,7 +529,7 @@ export namespace gmail_v1 {
      */
     id?: string | null;
     /**
-     * The internal message creation timestamp (epoch ms), which determines ordering in the inbox.  For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the &lt;code&gt;Date&lt;/code&gt; header. However, for API-migrated mail, it can be configured by client to be based on the &lt;code&gt;Date&lt;/code&gt; header.
+     * The internal message creation timestamp (epoch ms), which determines ordering in the inbox.  For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header.
      */
     internalDate?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace gmail_v1 {
      */
     payload?: Schema$MessagePart;
     /**
-     * The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in &lt;code&gt;messages.get&lt;/code&gt; and &lt;code&gt;drafts.get&lt;/code&gt; responses when the &lt;code&gt;format=RAW&lt;/code&gt; parameter is supplied. @mutable gmail.users.messages.insert gmail.users.messages.send @mutable gmail.users.drafts.create gmail.users.drafts.update
+     * The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @mutable gmail.users.messages.insert gmail.users.messages.send @mutable gmail.users.drafts.create gmail.users.drafts.update
      */
     raw?: string | null;
     /**
@@ -553,7 +553,7 @@ export namespace gmail_v1 {
      */
     snippet?: string | null;
     /**
-     * The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: &lt;ol&gt;&lt;li&gt;The requested &lt;code&gt;threadId&lt;/code&gt; must be specified on the &lt;code&gt;Message&lt;/code&gt; or &lt;code&gt;Draft.Message&lt;/code&gt; you supply with your request.&lt;/li&gt; &lt;li&gt;The &lt;code&gt;References&lt;/code&gt; and &lt;code&gt;In-Reply-To&lt;/code&gt; headers must be set in compliance with the &lt;a href=&quot;https://tools.ietf.org/html/rfc2822&quot;&gt;RFC 2822&lt;/a&gt; standard.&lt;/li&gt; &lt;li&gt;The &lt;code&gt;Subject&lt;/code&gt; headers must match. @mutable gmail.users.messages.insert gmail.users.messages.send @mutable gmail.users.drafts.create gmail.users.drafts.update
+     * The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: &lt;ol&gt;&lt;li&gt;The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request.&lt;/li&gt; &lt;li&gt;The `References` and `In-Reply-To` headers must be set in compliance with the &lt;a href=&quot;https://tools.ietf.org/html/rfc2822&quot;&gt;RFC 2822&lt;/a&gt; standard.&lt;/li&gt; &lt;li&gt;The `Subject` headers must match. @mutable gmail.users.messages.insert gmail.users.messages.send @mutable gmail.users.drafts.create gmail.users.drafts.update
      */
     threadId?: string | null;
   }
@@ -570,7 +570,7 @@ export namespace gmail_v1 {
      */
     filename?: string | null;
     /**
-     * List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as &lt;code&gt;To&lt;/code&gt;, &lt;code&gt;From&lt;/code&gt;, and &lt;code&gt;Subject&lt;/code&gt;.
+     * List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as `To`, `From`, and `Subject`.
      */
     headers?: Schema$MessagePartHeader[];
     /**
@@ -582,7 +582,7 @@ export namespace gmail_v1 {
      */
     partId?: string | null;
     /**
-     * The child MIME message parts of this part. This only applies to container MIME message parts, for example &lt;code&gt;multipart/*&lt;/code&gt;. For non- container MIME message part types, such as &lt;code&gt;text/plain&lt;/code&gt;, this field is empty. For more information, see &lt;a href=&quot;http://www.ietf.org/rfc/rfc1521.txt&quot;&gt;RFC 1521&lt;/a&gt;.
+     * The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/x. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see &lt;a href=&quot;http://www.ietf.org/rfc/rfc1521.txt&quot;&gt;RFC 1521&lt;/a&gt;.
      */
     parts?: Schema$MessagePart[];
   }
@@ -591,7 +591,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$MessagePartBody {
     /**
-     * When present, contains the ID of an external attachment that can be retrieved in a separate &lt;code&gt;messages.attachments.get&lt;/code&gt; request. When not present, the entire content of the message part body is contained in the data field.
+     * When present, contains the ID of an external attachment that can be retrieved in a separate `messages.attachments.get` request. When not present, the entire content of the message part body is contained in the data field.
      */
     attachmentId?: string | null;
     /**
@@ -605,11 +605,11 @@ export namespace gmail_v1 {
   }
   export interface Schema$MessagePartHeader {
     /**
-     * The name of the header before the &lt;code&gt;:&lt;/code&gt; separator. For example, &lt;code&gt;To&lt;/code&gt;.
+     * The name of the header before the `:` separator. For example, `To`.
      */
     name?: string | null;
     /**
-     * The value of the header after the &lt;code&gt;:&lt;/code&gt; separator. For example, &lt;code&gt;someuser@example.com&lt;/code&gt;.
+     * The value of the header after the `:` separator. For example, `someuser@example.com`.
      */
     value?: string | null;
   }
@@ -676,7 +676,7 @@ export namespace gmail_v1 {
      */
     displayName?: string | null;
     /**
-     * Whether this address is selected as the default &quot;From:&quot; address in situations such as composing a new message or sending a vacation auto-reply.  Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is &lt;code&gt;true&lt;/code&gt;.  Changing this from &lt;code&gt;false&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; for an address will result in this field becoming &lt;code&gt;false&lt;/code&gt; for the other previous default address.
+     * Whether this address is selected as the default &quot;From:&quot; address in situations such as composing a new message or sending a vacation auto-reply.  Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`.  Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address.
      */
     isDefault?: boolean | null;
     /**
@@ -796,15 +796,15 @@ export namespace gmail_v1 {
      */
     enableAutoReply?: boolean | null;
     /**
-     * An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time.  If both &lt;code&gt;startTime&lt;/code&gt; and &lt;code&gt;endTime&lt;/code&gt; are specified, &lt;code&gt;startTime&lt;/code&gt; must precede &lt;code&gt;endTime&lt;/code&gt;.
+     * An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time.  If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`.
      */
     endTime?: string | null;
     /**
-     * Response body in HTML format.  Gmail will sanitize the HTML before storing it. If both &lt;code&gt;response_body_plain_text&lt;/code&gt; and &lt;code&gt;response_body_html&lt;/code&gt; are specified, &lt;code&gt;response_body_html&lt;/code&gt; will be used.
+     * Response body in HTML format.  Gmail will sanitize the HTML before storing it. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used.
      */
     responseBodyHtml?: string | null;
     /**
-     * Response body in plain text format. If both &lt;code&gt;response_body_plain_text&lt;/code&gt; and &lt;code&gt;response_body_html&lt;/code&gt; are specified, &lt;code&gt;response_body_html&lt;/code&gt; will be used.
+     * Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used.
      */
     responseBodyPlainText?: string | null;
     /**
@@ -820,7 +820,7 @@ export namespace gmail_v1 {
      */
     restrictToDomain?: boolean | null;
     /**
-     * An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time.  If both &lt;code&gt;startTime&lt;/code&gt; and &lt;code&gt;endTime&lt;/code&gt; are specified, &lt;code&gt;startTime&lt;/code&gt; must precede &lt;code&gt;endTime&lt;/code&gt;.
+     * An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time.  If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`.
      */
     startTime?: string | null;
   }
@@ -846,7 +846,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$WatchResponse {
     /**
-     * When Gmail will stop sending notifications for mailbox updates (epoch millis). Call &lt;code&gt;watch&lt;/code&gt; again before this time to renew the watch.
+     * When Gmail will stop sending notifications for mailbox updates (epoch millis). Call `watch` again before this time to renew the watch.
      */
     expiration?: string | null;
     /**
@@ -906,7 +906,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.getProfile({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -930,7 +930,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1045,7 +1045,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.stop({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -1061,7 +1061,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1174,7 +1174,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.watch({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -1206,7 +1206,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().WatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1293,19 +1293,19 @@ export namespace gmail_v1 {
 
   export interface Params$Resource$Users$Getprofile extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Stop extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Watch extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -1323,7 +1323,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.drafts.create
-     * @desc Creates a new draft with the <code>DRAFT</code> label.
+     * @desc Creates a new draft with the `DRAFT` label.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1353,7 +1353,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.drafts.create({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -1388,7 +1388,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -1514,7 +1514,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.drafts.delete({
      *     // The ID of the draft to delete.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -1531,7 +1531,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the draft to delete.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1649,7 +1649,7 @@ export namespace gmail_v1 {
      *     format: 'placeholder-value',
      *     // The ID of the draft to retrieve.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -1673,7 +1673,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.format The format to return the draft in.
      * @param {string} params.id The ID of the draft to retrieve.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1788,7 +1788,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.drafts.list({
-     *     // Include drafts from <code>SPAM</code> and <code>TRASH</code>
+     *     // Include drafts from `SPAM` and `TRASH`
      *     // in the results.
      *     includeSpamTrash: 'placeholder-value',
      *     // Maximum number of drafts to return.
@@ -1797,10 +1797,10 @@ export namespace gmail_v1 {
      *     pageToken: 'placeholder-value',
      *     // Only return draft messages matching the specified query. Supports the same
      *     // query format as the Gmail search box. For example,
-     *     // <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com>
-     *     // is:unread"</code>.
+     *     // `"from:someuser@example.com rfc822msgid:<somemsgid@example.com>
+     *     // is:unread"`.
      *     q: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -1823,11 +1823,11 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include drafts from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * @param {boolean=} params.includeSpamTrash Include drafts from `SPAM` and `TRASH` in the results.
      * @param {integer=} params.maxResults Maximum number of drafts to return.
      * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"</code>.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1916,7 +1916,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.drafts.send
-     * @desc Sends the specified, existing draft to the recipients in the <code>To</code>, <code>Cc</code>, and <code>Bcc</code> headers.
+     * @desc Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1946,7 +1946,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.drafts.send({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -1988,7 +1988,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -2113,7 +2113,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.drafts.update({
      *     // The ID of the draft to update.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -2149,7 +2149,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the draft to update.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -2244,7 +2244,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Drafts$Create
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2275,7 +2275,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2289,14 +2289,14 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Drafts$List
     extends StandardParameters {
     /**
-     * Include drafts from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * Include drafts from `SPAM` and `TRASH` in the results.
      */
     includeSpamTrash?: boolean;
     /**
@@ -2308,18 +2308,18 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"</code>.
+     * Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`.
      */
     q?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Drafts$Send
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2350,7 +2350,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2383,7 +2383,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.history.list
-     * @desc Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing <code>historyId</code>).
+     * @desc Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2422,20 +2422,20 @@ export namespace gmail_v1 {
      *     // Page token to retrieve a specific page of results in the list.
      *     pageToken: 'placeholder-value',
      *     // Required. Returns history records after the specified
-     *     // <code>startHistoryId</code>. The supplied <code>startHistoryId</code>
-     *     // should be obtained from the <code>historyId</code> of a message, thread, or
-     *     // previous <code>list</code> response. History IDs increase
+     *     // `startHistoryId`. The supplied `startHistoryId`
+     *     // should be obtained from the `historyId` of a message, thread, or
+     *     // previous `list` response. History IDs increase
      *     // chronologically but are not contiguous with random gaps in between valid
-     *     // IDs. Supplying an invalid or out of date <code>startHistoryId</code>
-     *     // typically returns an <code>HTTP 404</code> error code. A
-     *     // <code>historyId</code> is typically valid for at least a week, but in some
+     *     // IDs. Supplying an invalid or out of date `startHistoryId`
+     *     // typically returns an `HTTP 404` error code. A
+     *     // `historyId` is typically valid for at least a week, but in some
      *     // rare circumstances may be valid for only a few hours. If you receive an
-     *     // <code>HTTP 404</code> error response, your  application should perform a
-     *     // full sync. If you receive no <code>nextPageToken</code> in the response,
+     *     // `HTTP 404` error response, your  application should perform a
+     *     // full sync. If you receive no `nextPageToken` in the response,
      *     // there are no updates to retrieve and you can store the returned
-     *     // <code>historyId</code> for a future request.
+     *     // `historyId` for a future request.
      *     startHistoryId: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -2462,8 +2462,8 @@ export namespace gmail_v1 {
      * @param {string=} params.labelId Only return messages with a label matching the ID.
      * @param {integer=} params.maxResults The maximum number of history records to return.
      * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.startHistoryId Required. Returns history records after the specified <code>startHistoryId</code>. The supplied <code>startHistoryId</code> should be obtained from the <code>historyId</code> of a message, thread, or previous <code>list</code> response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date <code>startHistoryId</code> typically returns an <code>HTTP 404</code> error code. A <code>historyId</code> is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an <code>HTTP 404</code> error response, your  application should perform a full sync. If you receive no <code>nextPageToken</code> in the response, there are no updates to retrieve and you can store the returned <code>historyId</code> for a future request.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string=} params.startHistoryId Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your  application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2570,11 +2570,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Returns history records after the specified <code>startHistoryId</code>. The supplied <code>startHistoryId</code> should be obtained from the <code>historyId</code> of a message, thread, or previous <code>list</code> response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date <code>startHistoryId</code> typically returns an <code>HTTP 404</code> error code. A <code>historyId</code> is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an <code>HTTP 404</code> error response, your  application should perform a full sync. If you receive no <code>nextPageToken</code> in the response, there are no updates to retrieve and you can store the returned <code>historyId</code> for a future request.
+     * Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your  application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request.
      */
     startHistoryId?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2616,7 +2616,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.labels.create({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -2663,7 +2663,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2781,7 +2781,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.labels.delete({
      *     // The ID of the label to delete.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -2798,7 +2798,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to delete.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2915,7 +2915,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.labels.get({
      *     // The ID of the label to retrieve.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -2946,7 +2946,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to retrieve.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3062,7 +3062,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.labels.list({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -3083,7 +3083,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3203,7 +3203,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.labels.patch({
      *     // The ID of the label to update.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -3251,7 +3251,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3369,7 +3369,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.labels.update({
      *     // The ID of the label to update.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -3417,7 +3417,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3506,7 +3506,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Labels$Create
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3522,7 +3522,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3532,14 +3532,14 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Labels$List
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3550,7 +3550,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3566,7 +3566,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3611,7 +3611,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.batchDelete({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -3635,7 +3635,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().BatchDeleteMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3747,7 +3747,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.batchModify({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -3773,7 +3773,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().BatchModifyMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3857,7 +3857,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.delete
-     * @desc Immediately and permanently deletes the specified message. This operation cannot be undone.  Prefer <code>messages.trash</code> instead.
+     * @desc Immediately and permanently deletes the specified message. This operation cannot be undone.  Prefer `messages.trash` instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3884,7 +3884,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.delete({
      *     // The ID of the message to delete.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -3901,7 +3901,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to delete.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4024,7 +4024,7 @@ export namespace gmail_v1 {
      *     id: 'placeholder-value',
      *     // When given and format is METADATA, only include headers specified.
      *     metadataHeaders: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -4056,7 +4056,7 @@ export namespace gmail_v1 {
      * @param {string=} params.format The format to return the message in.
      * @param {string} params.id The ID of the message to retrieve.
      * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4184,7 +4184,7 @@ export namespace gmail_v1 {
      *     // Process calendar invites in the email and add any extracted
      *     // meetings to the Google Calendar for this user.
      *     processForCalendar: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -4237,7 +4237,7 @@ export namespace gmail_v1 {
      * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
      * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
      * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -4330,7 +4330,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.insert
-     * @desc Directly inserts a message into only this user's mailbox similar to <code>IMAP APPEND</code>, bypassing most scanning and classification. Does not send a message.
+     * @desc Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4366,7 +4366,7 @@ export namespace gmail_v1 {
      *     deleted: 'placeholder-value',
      *     // Source for Gmail's internal date of the message.
      *     internalDateSource: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -4417,7 +4417,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in <a href="http://support.google.com/vault/">Google Vault</a> to a Vault administrator. Only used for G Suite accounts.
      * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -4540,7 +4540,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.list({
-     *     // Include messages from <code>SPAM</code> and <code>TRASH</code>
+     *     // Include messages from `SPAM` and `TRASH`
      *     // in the results.
      *     includeSpamTrash: 'placeholder-value',
      *     // Only return messages with labels that match all of the specified label IDs.
@@ -4551,11 +4551,11 @@ export namespace gmail_v1 {
      *     pageToken: 'placeholder-value',
      *     // Only return messages matching the specified query. Supports the same
      *     // query format as the Gmail search box. For example,
-     *     // <code>"from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt;
-     *     // is:unread"</code>. Parameter cannot be used when accessing the api
+     *     // `"from:someuser@example.com rfc822msgid:<somemsgid@example.com>
+     *     // is:unread"`. Parameter cannot be used when accessing the api
      *     // using the gmail.metadata scope.
      *     q: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -4578,12 +4578,12 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include messages from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * @param {boolean=} params.includeSpamTrash Include messages from `SPAM` and `TRASH` in the results.
      * @param {string=} params.labelIds Only return messages with labels that match all of the specified label IDs.
      * @param {integer=} params.maxResults Maximum number of messages to return.
      * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread"</code>. Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4704,7 +4704,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.modify({
      *     // The ID of the message to modify.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -4743,7 +4743,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to modify.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().ModifyMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4829,7 +4829,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.send
-     * @desc Sends the specified message to the recipients in the <code>To</code>, <code>Cc</code>, and <code>Bcc</code> headers.
+     * @desc Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4860,7 +4860,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.send({
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -4909,7 +4909,7 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -5032,7 +5032,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.trash({
      *     // The ID of the message to Trash.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -5062,7 +5062,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to Trash.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5177,7 +5177,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.untrash({
      *     // The ID of the message to remove from Trash.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -5207,7 +5207,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5294,7 +5294,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Batchdelete
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5306,7 +5306,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Batchmodify
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5322,7 +5322,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5341,7 +5341,7 @@ export namespace gmail_v1 {
      */
     metadataHeaders?: string[];
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5364,7 +5364,7 @@ export namespace gmail_v1 {
      */
     processForCalendar?: boolean;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5399,7 +5399,7 @@ export namespace gmail_v1 {
      */
     internalDateSource?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5426,7 +5426,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$List
     extends StandardParameters {
     /**
-     * Include messages from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * Include messages from `SPAM` and `TRASH` in the results.
      */
     includeSpamTrash?: boolean;
     /**
@@ -5442,11 +5442,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:&lt;somemsgid@example.com&gt; is:unread"</code>. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5457,7 +5457,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5469,7 +5469,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Send
     extends StandardParameters {
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5500,7 +5500,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5511,7 +5511,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5559,7 +5559,7 @@ export namespace gmail_v1 {
      *     id: 'placeholder-value',
      *     // The ID of the message containing the attachment.
      *     messageId: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -5584,7 +5584,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the attachment.
      * @param {string} params.messageId The ID of the message containing the attachment.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5680,7 +5680,7 @@ export namespace gmail_v1 {
      */
     messageId?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6693,7 +6693,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.updateLanguage
-     * @desc Updates language settings.  If successful, the return object contains the <code>displayLanguage</code> that was saved for the user, which may differ from the value passed into the request. This is because the requested <code>displayLanguage</code> may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+     * @desc Updates language settings.  If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7237,7 +7237,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.create
-     * @desc Adds a delegate with its verification status set directly to <code>accepted</code>, without sending any verification email.  The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @desc Adds a delegate with its verification status set directly to `accepted`, without sending any verification email.  The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8439,7 +8439,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.forwardingAddresses.create
-     * @desc Creates a forwarding address.  If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to <code>pending</code>; otherwise, the resource will be created with verification status set to <code>accepted</code>.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @desc Creates a forwarding address.  If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9054,7 +9054,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.create
-     * @desc Creates a custom "from" send-as alias.  If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias.  If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to <code>pending</code>; otherwise, the resource will be created with verification status set to <code>accepted</code>.  If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @desc Creates a custom "from" send-as alias.  If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias.  If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`.  If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9949,7 +9949,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.verify
-     * @desc Sends a verification email to the specified send-as alias address. The verification status must be <code>pending</code>.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @desc Sends a verification email to the specified send-as alias address. The verification status must be `pending`.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10202,7 +10202,7 @@ export namespace gmail_v1 {
      *     // The email address that appears in the "From:" header for mail sent using
      *     // this alias.
      *     sendAsEmail: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -10220,7 +10220,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10340,7 +10340,7 @@ export namespace gmail_v1 {
      *     // The email address that appears in the "From:" header for mail sent using
      *     // this alias.
      *     sendAsEmail: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -10369,7 +10369,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10486,7 +10486,7 @@ export namespace gmail_v1 {
      *     // The email address that appears in the "From:" header for mail sent using
      *     // this alias.
      *     sendAsEmail: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -10528,7 +10528,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().SmimeInfo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10649,7 +10649,7 @@ export namespace gmail_v1 {
      *     // The email address that appears in the "From:" header for mail sent using
      *     // this alias.
      *     sendAsEmail: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -10671,7 +10671,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10795,7 +10795,7 @@ export namespace gmail_v1 {
      *     // The email address that appears in the "From:" header for mail sent using
      *     // this alias.
      *     sendAsEmail: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -10813,7 +10813,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The immutable ID for the SmimeInfo.
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10907,7 +10907,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -10922,7 +10922,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -10933,7 +10933,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -10949,7 +10949,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -10964,7 +10964,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -10977,7 +10977,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.threads.delete
-     * @desc Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer <code>threads.trash</code> instead.
+     * @desc Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer `threads.trash` instead.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11004,7 +11004,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.threads.delete({
      *     // ID of the Thread to delete.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -11021,7 +11021,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id ID of the Thread to delete.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11144,7 +11144,7 @@ export namespace gmail_v1 {
      *     id: 'placeholder-value',
      *     // When given and format is METADATA, only include headers specified.
      *     metadataHeaders: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -11171,7 +11171,7 @@ export namespace gmail_v1 {
      * @param {string=} params.format The format to return the messages in.
      * @param {string} params.id The ID of the thread to retrieve.
      * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11287,7 +11287,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.threads.list({
-     *     // Include threads from <code>SPAM</code> and <code>TRASH</code>
+     *     // Include threads from `SPAM` and `TRASH`
      *     // in the results.
      *     includeSpamTrash: 'placeholder-value',
      *     // Only return threads with labels that match all of the specified label IDs.
@@ -11298,11 +11298,11 @@ export namespace gmail_v1 {
      *     pageToken: 'placeholder-value',
      *     // Only return threads matching the specified query. Supports the same
      *     // query format as the Gmail search box. For example,
-     *     // <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com>
-     *     // is:unread"</code>. Parameter cannot be used when accessing the api
+     *     // `"from:someuser@example.com rfc822msgid:<somemsgid@example.com>
+     *     // is:unread"`. Parameter cannot be used when accessing the api
      *     // using the gmail.metadata scope.
      *     q: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -11325,12 +11325,12 @@ export namespace gmail_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include threads from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * @param {boolean=} params.includeSpamTrash Include threads from `SPAM` and `TRASH` in the results.
      * @param {string=} params.labelIds Only return threads with labels that match all of the specified label IDs.
      * @param {integer=} params.maxResults Maximum number of threads to return.
      * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"</code>. Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11449,7 +11449,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.threads.modify({
      *     // The ID of the thread to modify.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *
@@ -11483,7 +11483,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to modify.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {().ModifyThreadRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11599,7 +11599,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.threads.trash({
      *     // The ID of the thread to Trash.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -11624,7 +11624,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to Trash.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11739,7 +11739,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.threads.untrash({
      *     // The ID of the thread to remove from Trash.
      *     id: 'placeholder-value',
-     *     // The user's email address. The special value <code>me</code>
+     *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
      *     userId: 'placeholder-value',
      *   });
@@ -11764,7 +11764,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11855,7 +11855,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -11874,14 +11874,14 @@ export namespace gmail_v1 {
      */
     metadataHeaders?: string[];
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Threads$List
     extends StandardParameters {
     /**
-     * Include threads from <code>SPAM</code> and <code>TRASH</code> in the results.
+     * Include threads from `SPAM` and `TRASH` in the results.
      */
     includeSpamTrash?: boolean;
     /**
@@ -11897,11 +11897,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, <code>"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"</code>. Parameter cannot be used when accessing the api using the gmail.metadata scope.
+     * Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -11912,7 +11912,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -11928,7 +11928,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -11939,7 +11939,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value <code>me</code> can be used to indicate the authenticated user.
+     * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
   }
