@@ -724,7 +724,11 @@ export namespace customsearch_v1 {
      *     //
      *     // * `"i"`: include
      *     siteSearchFilter: 'placeholder-value',
-     *     // The sort expression to apply to the results.
+     *     // The sort expression to apply to the results. The sort parameter specifies
+     *     // that the results be sorted according to the specified expression i.e. sort
+     *     // by date.
+     *     // [Example:
+     *     // sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      *     sort: 'placeholder-value',
      *     // The index of the first result to return. The default number of results per
      *     // page is 10, so `&start=11` would start at the top of the second page of
@@ -787,7 +791,7 @@ export namespace customsearch_v1 {
      * @param {string=} params.searchType Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
      * @param {string=} params.siteSearch Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
      * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
-     * @param {string=} params.sort The sort expression to apply to the results.
+     * @param {string=} params.sort The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      * @param {integer=} params.start The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -987,7 +991,7 @@ export namespace customsearch_v1 {
      */
     siteSearchFilter?: string;
     /**
-     * The sort expression to apply to the results.
+     * The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      */
     sort?: string;
     /**
@@ -1322,7 +1326,11 @@ export namespace customsearch_v1 {
      *     //
      *     // * `"i"`: include
      *     siteSearchFilter: 'placeholder-value',
-     *     // The sort expression to apply to the results.
+     *     // The sort expression to apply to the results. The sort parameter specifies
+     *     // that the results be sorted according to the specified expression i.e. sort
+     *     // by date.
+     *     // [Example:
+     *     // sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      *     sort: 'placeholder-value',
      *     // The index of the first result to return. The default number of results per
      *     // page is 10, so `&start=11` would start at the top of the second page of
@@ -1385,7 +1393,7 @@ export namespace customsearch_v1 {
      * @param {string=} params.searchType Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
      * @param {string=} params.siteSearch Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
      * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
-     * @param {string=} params.sort The sort expression to apply to the results.
+     * @param {string=} params.sort The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      * @param {integer=} params.start The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1590,7 +1598,7 @@ export namespace customsearch_v1 {
      */
     siteSearchFilter?: string;
     /**
-     * The sort expression to apply to the results.
+     * The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      */
     sort?: string;
     /**
