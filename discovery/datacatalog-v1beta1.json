@@ -1227,6 +1227,40 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
+                  },
+                  "resources": {
+                    "enumValues": {
+                      "methods": {
+                        "rename": {
+                          "description": "Renames an enum value in a tag template. The enum values have to be unique\nwithin one enum field. Thus, an enum value cannot be renamed with a name\nused in any other enum value within the same enum field.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tagTemplates/{tagTemplatesId}/fields/{fieldsId}/enumValues/{enumValuesId}:rename",
+                          "httpMethod": "POST",
+                          "id": "datacatalog.projects.locations.tagTemplates.fields.enumValues.rename",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the enum field value. Example:\n\n* projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+/enumValues/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:rename",
+                          "request": {
+                            "$ref": "GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDatacatalogV1beta1TagTemplateField"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -1774,7 +1808,7 @@
       }
     }
   },
-  "revision": "20200510",
+  "revision": "20200714",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2084,7 +2118,7 @@
       "id": "GoogleCloudDatacatalogV1beta1FieldTypeEnumType",
       "properties": {
         "allowedValues": {
-          "description": "Required on create; optional on update. The set of allowed values for\nthis enum. This set must not be empty, the display names of the values in\nthis set must not be empty and the display names of the values must be\ncase-insensitively unique within this set. Currently, enum values can\nonly be added to the list of allowed values. Deletion and renaming of\nenum values are not supported. Can have up to 500 allowed values.",
+          "description": "The set of allowed values for this enum. This set must not be empty, the\ndisplay names of the values in this set must not be empty and the display\nnames of the values must be case-insensitively unique within this set.\nThe order of items in this list is preserved. This field can be used to\ncreate, remove and reorder enum values. To rename enum values, use the\nRenameTagTemplateFieldEnumValue method. This list can include up to 500\nallowed values.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue"
           },
@@ -2128,7 +2162,7 @@
       "id": "GoogleCloudDatacatalogV1beta1GcsFilesetSpec",
       "properties": {
         "filePatterns": {
-          "description": "Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud\nStorage documentation](/storage/docs/gsutil/addlhelp/WildcardNames) for\nmore information. Note that bucket wildcards are currently not supported.\n\nExamples of valid file_patterns:\n\n * `gs://bucket_name/dir/*`: matches all files within `bucket_name/dir`\n                             directory.\n * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`\n                              spanning all subdirectories.\n * `gs://bucket_name/file*`: matches files prefixed by `file` in\n                             `bucket_name`\n * `gs://bucket_name/??.txt`: matches files with two characters followed by\n                              `.txt` in `bucket_name`\n * `gs://bucket_name/[aeiou].txt`: matches files that contain a single\n                                   vowel character followed by `.txt` in\n                                   `bucket_name`\n * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...\n                                 or `m` followed by `.txt` in `bucket_name`\n * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match\n                             `a/*/b` pattern, such as `a/c/b`, `a/d/b`\n * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`\n\nYou can combine wildcards to provide more powerful matches, for example:\n\n * `gs://bucket_name/[a-m]??.j*g`",
+          "description": "Required. Patterns to identify a set of files in Google Cloud Storage.\nSee [Cloud Storage\ndocumentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames)\nfor more information. Note that bucket wildcards are currently not\nsupported.\n\nExamples of valid file_patterns:\n\n * `gs://bucket_name/dir/*`: matches all files within `bucket_name/dir`\n                             directory.\n * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`\n                              spanning all subdirectories.\n * `gs://bucket_name/file*`: matches files prefixed by `file` in\n                             `bucket_name`\n * `gs://bucket_name/??.txt`: matches files with two characters followed by\n                              `.txt` in `bucket_name`\n * `gs://bucket_name/[aeiou].txt`: matches files that contain a single\n                                   vowel character followed by `.txt` in\n                                   `bucket_name`\n * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...\n                                 or `m` followed by `.txt` in `bucket_name`\n * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match\n                             `a/*/b` pattern, such as `a/c/b`, `a/d/b`\n * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`\n\nYou can combine wildcards to provide more powerful matches, for example:\n\n * `gs://bucket_name/[a-m]??.j*g`",
           "items": {
             "type": "string"
           },
@@ -2298,6 +2332,17 @@
         },
         "parentPolicyTag": {
           "description": "Resource name of this policy tag's parent policy tag (e.g. for the\n\"LatLong\" policy tag in the example above, this field contains the\nresource name of the \"Geolocation\" policy tag). If empty, it means this\npolicy tag is a top level policy tag (e.g. this field is empty for the\n\"Geolocation\" policy tag in the example above). If not set, defaults to an\nempty string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest": {
+      "description": "Request message for\nRenameTagTemplateFieldEnumValue.",
+      "id": "GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest",
+      "properties": {
+        "newEnumValueDisplayName": {
+          "description": "Required. The new display name of the enum value. For example, `my_new_enum_value`.",
           "type": "string"
         }
       },
