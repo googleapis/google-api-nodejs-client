@@ -181,6 +181,60 @@ export namespace bigtableadmin_v2 {
     logType?: string | null;
   }
   /**
+   * A backup of a Cloud Bigtable table.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. `end_time` is the time that the backup was finished. The row data in the backup will be no newer than this timestamp.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 30 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.
+     */
+    expireTime?: string | null;
+    /**
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Size of the backup in bytes.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/tables/{source_table}`.
+     */
+    sourceTable?: string | null;
+    /**
+     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received).  The row data in this backup will be no older than this timestamp.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information about a backup.
+   */
+  export interface Schema$BackupInfo {
+    /**
+     * Output only. Name of the backup.
+     */
+    backup?: string | null;
+    /**
+     * Output only. This time that the backup was finished. Row data in the backup will be no newer than this timestamp.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Name of the table the backup was created from.
+     */
+    sourceTable?: string | null;
+    /**
+     * Output only. The time that the backup was started. Row data in the backup will be no older than this timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -257,6 +311,27 @@ export namespace bigtableadmin_v2 {
      * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes.  NOTE: Garbage collection executes opportunistically in the background, and so it&#39;s possible for reads to return a cell even if it matches the active GC expression for its family.
      */
     gcRule?: Schema$GcRule;
+  }
+  /**
+   * Metadata type for the operation returned by CreateBackup.
+   */
+  export interface Schema$CreateBackupMetadata {
+    /**
+     * If set, the time at which this operation finished or was cancelled.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the backup being created.
+     */
+    name?: string | null;
+    /**
+     * The name of the table the backup is created from.
+     */
+    sourceTable?: string | null;
+    /**
+     * The time at which this operation started.
+     */
+    startTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by CreateCluster.
@@ -493,6 +568,19 @@ export namespace bigtableadmin_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * The response for ListBackups.
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * The list of matching backups.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * `next_page_token` can be sent in a subsequent ListBackups call to fetch more of the matching backups.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for BigtableInstanceAdmin.ListClusters.
    */
   export interface Schema$ListClustersResponse {
@@ -650,6 +738,36 @@ export namespace bigtableadmin_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Encapsulates progress related information for a Cloud Bigtable long running operation.
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * If set, the time at which this operation failed or was completed successfully.
+     */
+    endTime?: string | null;
+    /**
+     * Percent completion of the operation. Values are between 0 and 100 inclusive.
+     */
+    progressPercent?: number | null;
+    /**
+     * Time the request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation used to track the progress of optimizations performed on a newly restored table. This long-running operation is automatically created by the system after the successful completion of a table restore, and cannot be cancelled.
+   */
+  export interface Schema$OptimizeRestoredTableMetadata {
+    /**
+     * Name of the restored table being optimized.
+     */
+    name?: string | null;
+    /**
+     * The progress of the post-restore optimizations.
+     */
+    progress?: Schema$OperationProgress;
+  }
+  /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
    */
   export interface Schema$PartialUpdateInstanceRequest {
@@ -682,6 +800,54 @@ export namespace bigtableadmin_v2 {
      * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Information about a table restore.
+   */
+  export interface Schema$RestoreInfo {
+    /**
+     * Information about the backup used to restore the table. The backup may no longer exist.
+     */
+    backupInfo?: Schema$BackupInfo;
+    /**
+     * The type of the restore source.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation returned by RestoreTable.
+   */
+  export interface Schema$RestoreTableMetadata {
+    backupInfo?: Schema$BackupInfo;
+    /**
+     * Name of the table being created and restored to.
+     */
+    name?: string | null;
+    /**
+     * If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoreTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.
+     */
+    optimizeTableOperationName?: string | null;
+    /**
+     * The progress of the RestoreTable operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
+     * The type of the restore source.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * The request for RestoreTable.
+   */
+  export interface Schema$RestoreTableRequest {
+    /**
+     * Name of the backup from which to restore.  Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;/backups/&lt;backup&gt;`.
+     */
+    backup?: string | null;
+    /**
+     * Required. The id of the table to create and restore to. This table must not already exist. The `table_id` appended to `parent` forms the full table name of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table_id&gt;`.
+     */
+    tableId?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -755,6 +921,10 @@ export namespace bigtableadmin_v2 {
      * The unique name of the table. Values are of the form `projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      */
     name?: string | null;
+    /**
+     * Output only. If this table was restored from another data source (e.g. a backup), this field will be populated with information about the restore.
+     */
+    restoreInfo?: Schema$RestoreInfo;
   }
   /**
    * Progress info for copying a table&#39;s data to the new cluster.
@@ -4625,6 +4795,453 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * bigtableadmin.projects.instances.clusters.backups.create
+     * @desc Starts creating a new Cloud Bigtable Backup.  The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.create({
+     *     // Required. The id of the backup to be created. The `backup_id` along with
+     *     // the parent `parent` are combined as {parent}/backups/{backup_id} to create
+     *     // the full backup name, of the form:
+     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.
+     *     // This string must be between 1 and 50 characters in length and match the
+     *     // regex _a-zA-Z0-9*.
+     *     backupId: 'placeholder-value',
+     *     // Required. This must be one of the clusters in the instance in which this
+     *     // table is located. The backup will be stored in this cluster. Values are
+     *     // of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceTable": "my_sourceTable",
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.clusters.backups.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.backupId Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     * @param {string} params.parent Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param {().Backup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.clusters.backups.delete
+     * @desc Deletes a pending or completed Cloud Bigtable backup.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.delete({
+     *     // Required. Name of the backup to delete.
+     *     // Values are of the form
+     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     name:
+     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.clusters.backups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.clusters.backups.get
+     * @desc Gets metadata on a pending or completed Cloud Bigtable Backup.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.get({
+     *     // Required. Name of the backup.
+     *     // Values are of the form
+     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     *     name:
+     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceTable": "my_sourceTable",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.clusters.backups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Get,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Backup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Get
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
      * bigtableadmin.projects.instances.clusters.backups.getIamPolicy
      * @desc Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.
      * @example
@@ -4775,6 +5392,390 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.clusters.backups.list
+     * @desc Lists Cloud Bigtable backups. Returns both completed and pending backups.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.list({
+     *     // A filter expression that filters backups listed in the response.
+     *     // The expression must specify the field name, a comparison operator,
+     *     // and the value that you want to use for filtering. The value must be a
+     *     // string, a number, or a boolean. The comparison operator must be
+     *     // <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     *     // roughly synonymous with equality. Filter rules are case insensitive.
+     *     //
+     *     // The fields eligible for filtering are:
+     *     //   * `name`
+     *     //   * `source_table`
+     *     //   * `state`
+     *     //   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *     //   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *     //   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *     //   * `size_bytes`
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. By default, each expression is an AND expression. However,
+     *     // you can include AND, OR, and NOT expressions explicitly.
+     *     //
+     *     // Some examples of using filters are:
+     *     //
+     *     //   * `name:"exact"` --> The backup's name is the string "exact".
+     *     //   * `name:howl` --> The backup's name contains the string "howl".
+     *     //   * `source_table:prod`
+     *     //          --> The source_table's name contains the string "prod".
+     *     //   * `state:CREATING` --> The backup is pending creation.
+     *     //   * `state:READY` --> The backup is fully created and ready for use.
+     *     //   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *     //          --> The backup name contains the string "howl" and start_time
+     *     //              of the backup is before 2018-03-28T14:50:00Z.
+     *     //   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     *     filter: 'placeholder-value',
+     *     // An expression for specifying the sort order of the results of the request.
+     *     // The string value should specify one or more fields in Backup. The full
+     *     // syntax is described at https://aip.dev/132#ordering.
+     *     //
+     *     // Fields supported are:
+     *     //    * name
+     *     //    * source_table
+     *     //    * expire_time
+     *     //    * start_time
+     *     //    * end_time
+     *     //    * size_bytes
+     *     //    * state
+     *     //
+     *     // For example, "start_time". The default sorting order is ascending.
+     *     // To specify descending order for the field, a suffix " desc" should
+     *     // be appended to the field name. For example, "start_time desc".
+     *     // Redundant space characters in the syntax are insigificant.
+     *     //
+     *     // If order_by is empty, results will be sorted by `start_time` in descending
+     *     // order starting from the most recently created backup.
+     *     orderBy: 'placeholder-value',
+     *     // Number of backups to be returned in the response. If 0 or
+     *     // less, defaults to the server's maximum allowed page size.
+     *     pageSize: 'placeholder-value',
+     *     // If non-empty, `page_token` should contain a
+     *     // next_page_token from a
+     *     // previous ListBackupsResponse to the same `parent` and with the same
+     *     // `filter`.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The cluster to list backups from.  Values are of the
+     *     // form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     // Use `{cluster} = '-'` to list backups for all clusters in an instance,
+     *     // e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.clusters.backups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `source_table`   * `state`   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:"exact"` --> The backup's name is the string "exact".   * `name:howl` --> The backup's name contains the string "howl".   * `source_table:prod`          --> The source_table's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and start_time              of the backup is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * @param {string=} params.orderBy An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering.  Fields supported are:    * name    * source_table    * expire_time    * start_time    * end_time    * size_bytes    * state  For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant.  If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
+     * @param {integer=} params.pageSize Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
+     * @param {string} params.parent Required. The cluster to list backups from.  Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$List,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBackupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$List
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.clusters.backups.patch
+     * @desc Updates a pending or completed Cloud Bigtable Backup.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.patch({
+     *     // A globally unique identifier for the backup which cannot be
+     *     // changed. Values are of the form
+     *     // `projects/{project}/instances/{instance}/clusters/{cluster}/
+     *     //    backups/_a-zA-Z0-9*`
+     *     // The final segment of the name must be between 1 and 50 characters
+     *     // in length.
+     *     //
+     *     // The backup is stored in the cluster identified by the prefix of the backup
+     *     // name of the form
+     *     // `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *     name:
+     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *     // Required. A mask specifying which fields (e.g. `expire_time`) in the
+     *     // Backup resource should be updated. This mask is relative to the Backup
+     *     // resource, not to the request message. The field mask must always be
+     *     // specified; this prevents any future fields from being erased accidentally
+     *     // by clients that do not know about them.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "endTime": "my_endTime",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceTable": "my_sourceTable",
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceTable": "my_sourceTable",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.clusters.backups.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param {string=} params.updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     * @param {().Backup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    patch(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Patch,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Backup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Patch
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
       }
     }
 
@@ -5092,6 +6093,36 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the backup to be created. The `backup_id` along with the parent `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     */
+    backupId?: string;
+    /**
+     * Required. This must be one of the clusters in the instance in which this table is located. The backup will be stored in this cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the backup to delete. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the backup. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy
     extends StandardParameters {
     /**
@@ -5103,6 +6134,45 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `source_table`   * `state`   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:"exact"` --> The backup's name is the string "exact".   * `name:howl` --> The backup's name contains the string "howl".   * `source_table:prod`          --> The source_table's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and start_time              of the backup is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     */
+    filter?: string;
+    /**
+     * An expression for specifying the sort order of the results of the request. The string value should specify one or more fields in Backup. The full syntax is described at https://aip.dev/132#ordering.  Fields supported are:    * name    * source_table    * expire_time    * start_time    * end_time    * size_bytes    * state  For example, "start_time". The default sorting order is ascending. To specify descending order for the field, a suffix " desc" should be appended to the field name. For example, "start_time desc". Redundant space characters in the syntax are insigificant.  If order_by is empty, results will be sorted by `start_time` in descending order starting from the most recently created backup.
+     */
+    orderBy?: string;
+    /**
+     * Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The cluster to list backups from.  Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`. Use `{cluster} = '-'` to list backups for all clusters in an instance, e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Patch
+    extends StandardParameters {
+    /**
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     */
+    name?: string;
+    /**
+     * Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy
     extends StandardParameters {
@@ -5345,7 +6415,8 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "granularity": "my_granularity",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {}
      *   // }
      * }
      *
@@ -5934,7 +7005,8 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "granularity": "my_granularity",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {}
      *   // }
      * }
      *
@@ -6398,7 +7470,8 @@ export namespace bigtableadmin_v2 {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
      *   //   "granularity": "my_granularity",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "restoreInfo": {}
      *   // }
      * }
      *
@@ -6494,6 +7567,160 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.tables.restore
+     * @desc Create a new table by restoring from a completed backup. The new table must be in the same instance as the instance containing the backup.  The returned table long-running operation can be used to track the progress of the operation, and to cancel it.  The metadata field type is RestoreTableMetadata.  The response type is Table, if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.restore({
+     *     // Required. The name of the instance in which to create the restored
+     *     // table. This instance must be the parent of the source backup. Values are
+     *     // of the form `projects/<project>/instances/<instance>`.
+     *     parent: 'projects/my-project/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backup": "my_backup",
+     *       //   "tableId": "my_tableId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias bigtableadmin.projects.instances.tables.restore
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {().RestoreTableRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    restore(
+      params: Params$Resource$Projects$Instances$Tables$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Instances$Tables$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Instances$Tables$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Instances$Tables$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Instances$Tables$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Restore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Tables$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/tables:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -6913,6 +8140,18 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ModifyColumnFamiliesRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the instance in which to create the restored table. This instance must be the parent of the source backup. Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreTableRequest;
   }
   export interface Params$Resource$Projects$Instances$Tables$Setiampolicy
     extends StandardParameters {
