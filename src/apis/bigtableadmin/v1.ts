@@ -125,6 +125,60 @@ export namespace bigtableadmin_v1 {
   }
 
   /**
+   * A backup of a Cloud Bigtable table.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. `end_time` is the time that the backup was finished. The row data in the backup will be no newer than this timestamp.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 30 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.
+     */
+    expireTime?: string | null;
+    /**
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/    backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length.  The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Size of the backup in bytes.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/tables/{source_table}`.
+     */
+    sourceTable?: string | null;
+    /**
+     * Output only. `start_time` is the time that the backup was started (i.e. approximately the time the CreateBackup request is received).  The row data in this backup will be no older than this timestamp.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information about a backup.
+   */
+  export interface Schema$BackupInfo {
+    /**
+     * Output only. Name of the backup.
+     */
+    backup?: string | null;
+    /**
+     * Output only. This time that the backup was finished. Row data in the backup will be no newer than this timestamp.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Name of the table the backup was created from.
+     */
+    sourceTable?: string | null;
+    /**
+     * Output only. The time that the backup was started. Row data in the backup will be no older than this timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
    * A resizable group of nodes in a particular cloud location, capable of serving all Tables in the parent Instance.
    */
   export interface Schema$Cluster {
@@ -148,6 +202,27 @@ export namespace bigtableadmin_v1 {
      * Output only. The current state of the cluster.
      */
     state?: string | null;
+  }
+  /**
+   * Metadata type for the operation returned by CreateBackup.
+   */
+  export interface Schema$CreateBackupMetadata {
+    /**
+     * If set, the time at which this operation finished or was cancelled.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the backup being created.
+     */
+    name?: string | null;
+    /**
+     * The name of the table the backup is created from.
+     */
+    sourceTable?: string | null;
+    /**
+     * The time at which this operation started.
+     */
+    startTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by CreateCluster.
@@ -251,6 +326,36 @@ export namespace bigtableadmin_v1 {
     type?: string | null;
   }
   /**
+   * Encapsulates progress related information for a Cloud Bigtable long running operation.
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * If set, the time at which this operation failed or was completed successfully.
+     */
+    endTime?: string | null;
+    /**
+     * Percent completion of the operation. Values are between 0 and 100 inclusive.
+     */
+    progressPercent?: number | null;
+    /**
+     * Time the request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation used to track the progress of optimizations performed on a newly restored table. This long-running operation is automatically created by the system after the successful completion of a table restore, and cannot be cancelled.
+   */
+  export interface Schema$OptimizeRestoredTableMetadata {
+    /**
+     * Name of the restored table being optimized.
+     */
+    name?: string | null;
+    /**
+     * The progress of the post-restore optimizations.
+     */
+    progress?: Schema$OperationProgress;
+  }
+  /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
    */
   export interface Schema$PartialUpdateInstanceRequest {
@@ -262,6 +367,28 @@ export namespace bigtableadmin_v1 {
      * Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      */
     updateMask?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation returned by RestoreTable.
+   */
+  export interface Schema$RestoreTableMetadata {
+    backupInfo?: Schema$BackupInfo;
+    /**
+     * Name of the table being created and restored to.
+     */
+    name?: string | null;
+    /**
+     * If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoreTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.
+     */
+    optimizeTableOperationName?: string | null;
+    /**
+     * The progress of the RestoreTable operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
+     * The type of the restore source.
+     */
+    sourceType?: string | null;
   }
   /**
    * Progress info for copying a table&#39;s data to the new cluster.

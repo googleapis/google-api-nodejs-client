@@ -960,6 +960,101 @@
               "resources": {
                 "backups": {
                   "methods": {
+                    "create": {
+                      "description": "Starts creating a new Cloud Bigtable Backup.  The returned backup\nlong-running operation can be used to\ntrack creation of the backup. The\nmetadata field type is\nCreateBackupMetadata. The\nresponse field type is\nBackup, if successful. Cancelling the returned operation will stop the\ncreation and delete the backup.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "backupId": {
+                          "description": "Required. The id of the backup to be created. The `backup_id` along with\nthe parent `parent` are combined as {parent}/backups/{backup_id} to create\nthe full backup name, of the form:\n`projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`.\nThis string must be between 1 and 50 characters in length and match the\nregex _a-zA-Z0-9*.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. This must be one of the clusters in the instance in which this\ntable is located. The backup will be stored in this cluster. Values are\nof the form `projects/{project}/instances/{instance}/clusters/{cluster}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/backups",
+                      "request": {
+                        "$ref": "Backup"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a pending or completed Cloud Bigtable backup.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the backup to delete.\nValues are of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets metadata on a pending or completed Cloud Bigtable Backup.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the backup.\nValues are of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Backup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a Table resource.\nReturns an empty policy if the resource exists but does not have a policy\nset.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:getIamPolicy",
@@ -983,6 +1078,94 @@
                       },
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Cloud Bigtable backups. Returns both completed and pending\nbackups.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "A filter expression that filters backups listed in the response.\nThe expression must specify the field name, a comparison operator,\nand the value that you want to use for filtering. The value must be a\nstring, a number, or a boolean. The comparison operator must be\n<, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is\nroughly synonymous with equality. Filter rules are case insensitive.\n\nThe fields eligible for filtering are:\n  * `name`\n  * `source_table`\n  * `state`\n  * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)\n  * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)\n  * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)\n  * `size_bytes`\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. By default, each expression is an AND expression. However,\nyou can include AND, OR, and NOT expressions explicitly.\n\nSome examples of using filters are:\n\n  * `name:\"exact\"` --> The backup's name is the string \"exact\".\n  * `name:howl` --> The backup's name contains the string \"howl\".\n  * `source_table:prod`\n         --> The source_table's name contains the string \"prod\".\n  * `state:CREATING` --> The backup is pending creation.\n  * `state:READY` --> The backup is fully created and ready for use.\n  * `(name:howl) AND (start_time < \\\"2018-03-28T14:50:00Z\\\")`\n         --> The backup name contains the string \"howl\" and start_time\n             of the backup is before 2018-03-28T14:50:00Z.\n  * `size_bytes > 10000000000` --> The backup's size is greater than 10GB",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "An expression for specifying the sort order of the results of the request.\nThe string value should specify one or more fields in Backup. The full\nsyntax is described at https://aip.dev/132#ordering.\n\nFields supported are:\n   * name\n   * source_table\n   * expire_time\n   * start_time\n   * end_time\n   * size_bytes\n   * state\n\nFor example, \"start_time\". The default sorting order is ascending.\nTo specify descending order for the field, a suffix \" desc\" should\nbe appended to the field name. For example, \"start_time desc\".\nRedundant space characters in the syntax are insigificant.\n\nIf order_by is empty, results will be sorted by `start_time` in descending\norder starting from the most recently created backup.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Number of backups to be returned in the response. If 0 or\nless, defaults to the server's maximum allowed page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "If non-empty, `page_token` should contain a\nnext_page_token from a\nprevious ListBackupsResponse to the same `parent` and with the same\n`filter`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The cluster to list backups from.  Values are of the\nform `projects/{project}/instances/{instance}/clusters/{cluster}`.\nUse `{cluster} = '-'` to list backups for all clusters in an instance,\ne.g., `projects/{project}/instances/{instance}/clusters/-`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/backups",
+                      "response": {
+                        "$ref": "ListBackupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a pending or completed Cloud Bigtable Backup.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}",
+                      "httpMethod": "PATCH",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "A globally unique identifier for the backup which cannot be\nchanged. Values are of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}/\n   backups/_a-zA-Z0-9*`\nThe final segment of the name must be between 1 and 50 characters\nin length.\n\nThe backup is stored in the cluster identified by the prefix of the backup\nname of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. A mask specifying which fields (e.g. `expire_time`) in the\nBackup resource should be updated. This mask is relative to the Backup\nresource, not to the request message. The field mask must always be\nspecified; this prevents any future fields from being erased accidentally\nby clients that do not know about them.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "request": {
+                        "$ref": "Backup"
+                      },
+                      "response": {
+                        "$ref": "Backup"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/bigtable.admin",
@@ -1378,6 +1561,38 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restore": {
+                  "description": "Create a new table by restoring from a completed backup. The new table\nmust be in the same instance as the instance containing the backup.  The\nreturned table long-running operation can\nbe used to track the progress of the operation, and to cancel it.  The\nmetadata field type is\nRestoreTableMetadata.  The\nresponse type is\nTable, if successful.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables:restore",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.tables.restore",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the instance in which to create the restored\ntable. This instance must be the parent of the source backup. Values are\nof the form `projects/<project>/instances/<instance>`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/tables:restore",
+                  "request": {
+                    "$ref": "RestoreTableRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.table",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on a Table resource.\nReplaces any existing policy.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:setIamPolicy",
@@ -1531,7 +1746,7 @@
       }
     }
   },
-  "revision": "20200609",
+  "revision": "20200629",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1604,6 +1819,80 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Backup": {
+      "description": "A backup of a Cloud Bigtable table.",
+      "id": "Backup",
+      "properties": {
+        "endTime": {
+          "description": "Output only. `end_time` is the time that the backup was finished. The row\ndata in the backup will be no newer than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Required. The expiration time of the backup, with microseconds\ngranularity that must be at least 6 hours and at most 30 days\nfrom the time the request is received. Once the `expire_time`\nhas passed, Cloud Bigtable will delete the backup and free the\nresources used by the backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "A globally unique identifier for the backup which cannot be\nchanged. Values are of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}/\n   backups/_a-zA-Z0-9*`\nThe final segment of the name must be between 1 and 50 characters\nin length.\n\nThe backup is stored in the cluster identified by the prefix of the backup\nname of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}`.",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Size of the backup in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "Required. Immutable. Name of the table from which this backup was created. This needs\nto be in the same instance as the backup. Values are of the form\n`projects/{project}/instances/{instance}/tables/{source_table}`.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. `start_time` is the time that the backup was started\n(i.e. approximately the time the\nCreateBackup request is received).  The\nrow data in this backup will be no older than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The pending backup is still being created. Operations on the\nbackup may fail with `FAILED_PRECONDITION` in this state.",
+            "The backup is complete and ready for use."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupInfo": {
+      "description": "Information about a backup.",
+      "id": "BackupInfo",
+      "properties": {
+        "backup": {
+          "description": "Output only. Name of the backup.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. This time that the backup was finished. Row data in the\nbackup will be no newer than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "Output only. Name of the table the backup was created from.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time that the backup was started. Row data in the backup\nwill be no older than this timestamp.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -1716,14 +2005,16 @@
             "INITIALIZING",
             "PLANNED_MAINTENANCE",
             "UNPLANNED_MAINTENANCE",
-            "READY"
+            "READY",
+            "READY_OPTIMIZING"
           ],
           "enumDescriptions": [
             "The replication state of the table is unknown in this cluster.",
             "The cluster was recently created, and the table must finish copying\nover pre-existing data from other clusters before it can begin\nreceiving live replication updates and serving Data API requests.",
             "The table is temporarily unable to serve Data API requests from this\ncluster due to planned internal maintenance.",
             "The table is temporarily unable to serve Data API requests from this\ncluster due to unplanned or emergency maintenance.",
-            "The table can serve Data API requests from this cluster. Depending on\nreplication delay, reads may not immediately reflect the state of the\ntable in other clusters."
+            "The table can serve Data API requests from this cluster. Depending on\nreplication delay, reads may not immediately reflect the state of the\ntable in other clusters.",
+            "The table is fully created and ready for use after a restore, and is\nbeing optimized for performance. When optimizations are complete, the\ntable will transition to `READY` state."
           ],
           "type": "string"
         }
@@ -1737,6 +2028,31 @@
         "gcRule": {
           "$ref": "GcRule",
           "description": "Garbage collection rule specified as a protobuf.\nMust serialize to at most 500 bytes.\n\nNOTE: Garbage collection executes opportunistically in the background, and\nso it's possible for reads to return a cell even if it matches the active\nGC expression for its family."
+        }
+      },
+      "type": "object"
+    },
+    "CreateBackupMetadata": {
+      "description": "Metadata type for the operation returned by\nCreateBackup.",
+      "id": "CreateBackupMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup being created.",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "The name of the table the backup is created from.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2056,6 +2372,24 @@
       },
       "type": "object"
     },
+    "ListBackupsResponse": {
+      "description": "The response for ListBackups.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "The list of matching backups.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "`next_page_token` can be sent in a subsequent\nListBackups call to fetch more\nof the matching backups.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListClustersResponse": {
       "description": "Response message for BigtableInstanceAdmin.ListClusters.",
       "id": "ListClustersResponse",
@@ -2272,6 +2606,43 @@
       },
       "type": "object"
     },
+    "OperationProgress": {
+      "description": "Encapsulates progress related information for a Cloud Bigtable long\nrunning operation.",
+      "id": "OperationProgress",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation failed or was completed\nsuccessfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "progressPercent": {
+          "description": "Percent completion of the operation.\nValues are between 0 and 100 inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OptimizeRestoredTableMetadata": {
+      "description": "Metadata type for the long-running operation used to track the progress\nof optimizations performed on a newly restored table. This long-running\noperation is automatically created by the system after the successful\ncompletion of a table restore, and cannot be cancelled.",
+      "id": "OptimizeRestoredTableMetadata",
+      "properties": {
+        "name": {
+          "description": "Name of the restored table being optimized.",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the post-restore optimizations."
+        }
+      },
+      "type": "object"
+    },
     "PartialUpdateInstanceRequest": {
       "description": "Request message for BigtableInstanceAdmin.PartialUpdateInstance.",
       "id": "PartialUpdateInstanceRequest",
@@ -2315,6 +2686,78 @@
           "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreInfo": {
+      "description": "Information about a table restore.",
+      "id": "RestoreInfo",
+      "properties": {
+        "backupInfo": {
+          "$ref": "BackupInfo",
+          "description": "Information about the backup used to restore the table. The backup\nmay no longer exist."
+        },
+        "sourceType": {
+          "description": "The type of the restore source.",
+          "enum": [
+            "RESTORE_SOURCE_TYPE_UNSPECIFIED",
+            "BACKUP"
+          ],
+          "enumDescriptions": [
+            "No restore associated.",
+            "A backup was used as the source of the restore."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreTableMetadata": {
+      "description": "Metadata type for the long-running operation returned by\nRestoreTable.",
+      "id": "RestoreTableMetadata",
+      "properties": {
+        "backupInfo": {
+          "$ref": "BackupInfo"
+        },
+        "name": {
+          "description": "Name of the table being created and restored to.",
+          "type": "string"
+        },
+        "optimizeTableOperationName": {
+          "description": "If exists, the name of the long-running operation that will be used to\ntrack the post-restore optimization process to optimize the performance of\nthe restored table. The metadata type of the long-running operation is\nOptimizeRestoreTableMetadata. The response type is\nEmpty. This long-running operation may be\nautomatically created by the system if applicable after the\nRestoreTable long-running operation completes successfully. This operation\nmay not be created if the table is already optimized or the restore was\nnot successful.",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the RestoreTable\noperation."
+        },
+        "sourceType": {
+          "description": "The type of the restore source.",
+          "enum": [
+            "RESTORE_SOURCE_TYPE_UNSPECIFIED",
+            "BACKUP"
+          ],
+          "enumDescriptions": [
+            "No restore associated.",
+            "A backup was used as the source of the restore."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreTableRequest": {
+      "description": "The request for\nRestoreTable.",
+      "id": "RestoreTableRequest",
+      "properties": {
+        "backup": {
+          "description": "Name of the backup from which to restore.  Values are of the form\n`projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The id of the table to create and restore to. This\ntable must not already exist. The `table_id` appended to\n`parent` forms the full table name of the form\n`projects/<project>/instances/<instance>/tables/<table_id>`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2422,6 +2865,10 @@
         "name": {
           "description": "The unique name of the table. Values are of the form\n`projects/{project}/instances/{instance}/tables/_a-zA-Z0-9*`.\nViews: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`",
           "type": "string"
+        },
+        "restoreInfo": {
+          "$ref": "RestoreInfo",
+          "description": "Output only. If this table was restored from another data source (e.g. a backup), this\nfield will be populated with information about the restore."
         }
       },
       "type": "object"

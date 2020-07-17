@@ -96,9 +96,83 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20200512",
+  "revision": "20200629",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
+    "Backup": {
+      "description": "A backup of a Cloud Bigtable table.",
+      "id": "Backup",
+      "properties": {
+        "endTime": {
+          "description": "Output only. `end_time` is the time that the backup was finished. The row\ndata in the backup will be no newer than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Required. The expiration time of the backup, with microseconds\ngranularity that must be at least 6 hours and at most 30 days\nfrom the time the request is received. Once the `expire_time`\nhas passed, Cloud Bigtable will delete the backup and free the\nresources used by the backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "A globally unique identifier for the backup which cannot be\nchanged. Values are of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}/\n   backups/_a-zA-Z0-9*`\nThe final segment of the name must be between 1 and 50 characters\nin length.\n\nThe backup is stored in the cluster identified by the prefix of the backup\nname of the form\n`projects/{project}/instances/{instance}/clusters/{cluster}`.",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Size of the backup in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "Required. Immutable. Name of the table from which this backup was created. This needs\nto be in the same instance as the backup. Values are of the form\n`projects/{project}/instances/{instance}/tables/{source_table}`.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. `start_time` is the time that the backup was started\n(i.e. approximately the time the\nCreateBackup request is received).  The\nrow data in this backup will be no older than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The pending backup is still being created. Operations on the\nbackup may fail with `FAILED_PRECONDITION` in this state.",
+            "The backup is complete and ready for use."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupInfo": {
+      "description": "Information about a backup.",
+      "id": "BackupInfo",
+      "properties": {
+        "backup": {
+          "description": "Output only. Name of the backup.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. This time that the backup was finished. Row data in the\nbackup will be no newer than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "Output only. Name of the table the backup was created from.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time that the backup was started. Row data in the backup\nwill be no older than this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Cluster": {
       "description": "A resizable group of nodes in a particular cloud location, capable\nof serving all Tables in the parent\nInstance.",
       "id": "Cluster",
@@ -146,6 +220,31 @@
             "The cluster is currently being resized, and may revert to its previous\nnode count if the process encounters an error.\nA cluster is still capable of serving requests while being resized,\nbut may exhibit performance as if its number of allocated nodes is\nbetween the starting and requested states.",
             "The cluster has no backing nodes. The data (tables) still\nexist, but no operations can be performed on the cluster."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateBackupMetadata": {
+      "description": "Metadata type for the operation returned by\nCreateBackup.",
+      "id": "CreateBackupMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup being created.",
+          "type": "string"
+        },
+        "sourceTable": {
+          "description": "The name of the table the backup is created from.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -295,6 +394,43 @@
       },
       "type": "object"
     },
+    "OperationProgress": {
+      "description": "Encapsulates progress related information for a Cloud Bigtable long\nrunning operation.",
+      "id": "OperationProgress",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation failed or was completed\nsuccessfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "progressPercent": {
+          "description": "Percent completion of the operation.\nValues are between 0 and 100 inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OptimizeRestoredTableMetadata": {
+      "description": "Metadata type for the long-running operation used to track the progress\nof optimizations performed on a newly restored table. This long-running\noperation is automatically created by the system after the successful\ncompletion of a table restore, and cannot be cancelled.",
+      "id": "OptimizeRestoredTableMetadata",
+      "properties": {
+        "name": {
+          "description": "Name of the restored table being optimized.",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the post-restore optimizations."
+        }
+      },
+      "type": "object"
+    },
     "PartialUpdateInstanceRequest": {
       "description": "Request message for BigtableInstanceAdmin.PartialUpdateInstance.",
       "id": "PartialUpdateInstanceRequest",
@@ -306,6 +442,40 @@
         "updateMask": {
           "description": "Required. The subset of Instance fields which should be replaced.\nMust be explicitly set.",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreTableMetadata": {
+      "description": "Metadata type for the long-running operation returned by\nRestoreTable.",
+      "id": "RestoreTableMetadata",
+      "properties": {
+        "backupInfo": {
+          "$ref": "BackupInfo"
+        },
+        "name": {
+          "description": "Name of the table being created and restored to.",
+          "type": "string"
+        },
+        "optimizeTableOperationName": {
+          "description": "If exists, the name of the long-running operation that will be used to\ntrack the post-restore optimization process to optimize the performance of\nthe restored table. The metadata type of the long-running operation is\nOptimizeRestoreTableMetadata. The response type is\nEmpty. This long-running operation may be\nautomatically created by the system if applicable after the\nRestoreTable long-running operation completes successfully. This operation\nmay not be created if the table is already optimized or the restore was\nnot successful.",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the RestoreTable\noperation."
+        },
+        "sourceType": {
+          "description": "The type of the restore source.",
+          "enum": [
+            "RESTORE_SOURCE_TYPE_UNSPECIFIED",
+            "BACKUP"
+          ],
+          "enumDescriptions": [
+            "No restore associated.",
+            "A backup was used as the source of the restore."
+          ],
           "type": "string"
         }
       },
