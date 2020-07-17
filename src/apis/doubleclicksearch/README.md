@@ -2,7 +2,7 @@
 
 # doubleclicksearch
 
-> The Search Ads 360 API allows developers to automate uploading conversions and downloading reports from Search Ads 360.
+> Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
 
 ## Installation
 
