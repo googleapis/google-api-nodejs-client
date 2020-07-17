@@ -349,7 +349,7 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Schema$GoogleCloudDatacatalogV1beta1FieldTypeEnumType {
     /**
-     * Required on create; optional on update. The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. Currently, enum values can only be added to the list of allowed values. Deletion and renaming of enum values are not supported. Can have up to 500 allowed values.
+     * The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. The order of items in this list is preserved. This field can be used to create, remove and reorder enum values. To rename enum values, use the RenameTagTemplateFieldEnumValue method. This list can include up to 500 allowed values.
      */
     allowedValues?: Schema$GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue[];
   }
@@ -364,7 +364,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1GcsFilesetSpec {
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud Storage documentation](/storage/docs/gsutil/addlhelp/WildcardNames) for more information. Note that bucket wildcards are currently not supported.  Examples of valid file_patterns:   * `gs://bucket_name/dir/x: matches all files within `bucket_name/dir`                              directory.  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`                               spanning all subdirectories.  * `gs://bucket_name/file*`: matches files prefixed by `file` in                              `bucket_name`  * `gs://bucket_name/??.txt`: matches files with two characters followed by                               `.txt` in `bucket_name`  * `gs://bucket_name/[aeiou].txt`: matches files that contain a single                                    vowel character followed by `.txt` in                                    `bucket_name`  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...                                  or `m` followed by `.txt` in `bucket_name`  * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match                              `a/x/b` pattern, such as `a/c/b`, `a/d/b`  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`  You can combine wildcards to provide more powerful matches, for example:   * `gs://bucket_name/[a-m]??.j*g`
+     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for more information. Note that bucket wildcards are currently not supported.  Examples of valid file_patterns:   * `gs://bucket_name/dir/x: matches all files within `bucket_name/dir`                              directory.  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`                               spanning all subdirectories.  * `gs://bucket_name/file*`: matches files prefixed by `file` in                              `bucket_name`  * `gs://bucket_name/??.txt`: matches files with two characters followed by                               `.txt` in `bucket_name`  * `gs://bucket_name/[aeiou].txt`: matches files that contain a single                                    vowel character followed by `.txt` in                                    `bucket_name`  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...                                  or `m` followed by `.txt` in `bucket_name`  * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match                              `a/x/b` pattern, such as `a/c/b`, `a/d/b`  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`  You can combine wildcards to provide more powerful matches, for example:   * `gs://bucket_name/[a-m]??.j*g`
      */
     filePatterns?: string[] | null;
     /**
@@ -505,6 +505,15 @@ export namespace datacatalog_v1beta1 {
      * Resource name of this policy tag&#39;s parent policy tag (e.g. for the &quot;LatLong&quot; policy tag in the example above, this field contains the resource name of the &quot;Geolocation&quot; policy tag). If empty, it means this policy tag is a top level policy tag (e.g. this field is empty for the &quot;Geolocation&quot; policy tag in the example above). If not set, defaults to an empty string.
      */
     parentPolicyTag?: string | null;
+  }
+  /**
+   * Request message for RenameTagTemplateFieldEnumValue.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest {
+    /**
+     * Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     */
+    newEnumValueDisplayName?: string | null;
   }
   /**
    * Request message for RenameTagTemplateField.
@@ -6371,8 +6380,12 @@ export namespace datacatalog_v1beta1 {
 
   export class Resource$Projects$Locations$Tagtemplates$Fields {
     context: APIRequestContext;
+    enumValues: Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.enumValues = new Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues(
+        this.context
+      );
     }
 
     /**
@@ -7105,6 +7118,198 @@ export namespace datacatalog_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest;
+  }
+
+  export class Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * datacatalog.projects.locations.tagTemplates.fields.enumValues.rename
+     * @desc Renames an enum value in a tag template. The enum values have to be unique within one enum field. Thus, an enum value cannot be renamed with a name used in any other enum value within the same enum field.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.tagTemplates.fields.enumValues.rename(
+     *     {
+     *       // Required. The name of the enum field value. Example:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     *       name:
+     *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field/enumValues/my-enumValue',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "newEnumValueDisplayName": "my_newEnumValueDisplayName"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "isRequired": false,
+     *   //   "name": "my_name",
+     *   //   "order": 0,
+     *   //   "type": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias datacatalog.projects.locations.tagTemplates.fields.enumValues.rename
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the enum field value. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     * @param {().GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    rename(
+      params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rename(
+      params?: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>;
+    rename(
+      params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rename(
+      params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
+    ): void;
+    rename(
+      params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
+    ): void;
+    rename(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
+    ): void;
+    rename(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:rename').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename
+    extends StandardParameters {
+    /**
+     * Required. The name of the enum field value. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest;
   }
 
   export class Resource$Projects$Locations$Taxonomies {
