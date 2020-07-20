@@ -17,11 +17,11 @@ import {Schema, Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import {URL} from 'url';
 import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
 import * as minimist from 'yargs-parser';
+import {request} from 'gaxios';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
@@ -218,21 +218,15 @@ export class Generator {
    * @param apiDiscoveryUri URL or filename of discovery doc for API
    */
   async generateAPI(apiDiscoveryUrl: string) {
-    let parts: URL;
-    try {
-      parts = new URL(apiDiscoveryUrl);
-    } catch (e) {
-      // 🤷‍♂️
-    }
-    if (apiDiscoveryUrl && !parts!) {
+    const isUrl = apiDiscoveryUrl.startsWith('https://');
+    if (!isUrl) {
       this.log(`Reading from file ${path.relative('.', apiDiscoveryUrl)}`);
       const file = await readFile(apiDiscoveryUrl, 'utf-8');
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
-      this.logResult(apiDiscoveryUrl, apiDiscoveryUrl);
-      const file = await readFile(apiDiscoveryUrl, 'utf8');
-      const data = JSON.parse(file) as Schema;
-      await this.generate(apiDiscoveryUrl, data);
+      this.log(`Reading from url ${apiDiscoveryUrl}`);
+      const res = await request<Schema>({url: apiDiscoveryUrl});
+      await this.generate(apiDiscoveryUrl, res.data);
     }
   }
 
@@ -281,6 +275,7 @@ async function main() {
   const gen = new Generator({debug: true, includePrivate: false});
   if (!discoveryUrl && argv._.length > 0) {
     argv._.forEach(async url => {
+      console.log(`Generating API for ${url}`);
       await gen.generateAPI(url);
       console.log('Generated API for ' + url);
     });
