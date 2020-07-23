@@ -582,7 +582,7 @@ export namespace firebase_v1beta1 {
     streamId?: string | null;
   }
   /**
-   * Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type.  Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set.  To fill for known protocol type:   MyProtocolMsg proto;   TypedMessage typed_msg;   typed_msg.set_type_id(MyProtocolMsg::MESSAGE_TYPE_ID);   proto.AppendToCord(typed_msg.mutable_message());  To fill for unknown protocol type:   ProtocolMessage proto;   TypedMessage typed_msg;   typed_msg.set_type_id(proto.GetMapper()-&gt;type_id());   proto.AppendToCord(typed_msg.mutable_message());
+   * Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type.  Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set.  To embed &quot;proto&quot; inside &quot;typed_msg&quot;:   MyProtoMessage proto;   TypedMessage typed_msg;   typed_msg.set_type_id(proto2::bridge::GetTypeId(proto));   proto.AppendToCord(typed_msg.mutable_message());  Error handling is omitted from the sample code above. GetTypeId() will return 0 for messages that don&#39;t have a TypeId specified.
    */
   export interface Schema$TypedMessage {
     /**
