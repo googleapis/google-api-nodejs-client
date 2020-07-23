@@ -218,7 +218,7 @@ export namespace servicecontrol_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The name of the service method or operation. For API calls, this should be the name of the API method. For example,      &quot;google.datastore.v1.Datastore.RunQuery&quot;     &quot;google.logging.v1.LoggingService.DeleteLog&quot;
+     * The name of the service method or operation. For API calls, this should be the name of the API method. For example,      &quot;google.cloud.bigquery.v2.TableService.InsertTable&quot;     &quot;google.logging.v2.ConfigServiceV2.CreateSink&quot;
      */
     methodName?: string | null;
     /**
@@ -238,7 +238,7 @@ export namespace servicecontrol_v1 {
      */
     resourceLocation?: Schema$ResourceLocation;
     /**
-     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example:      &quot;shelves/SHELF_ID/books&quot;     &quot;shelves/SHELF_ID/books/BOOK_ID&quot;
+     * The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example:      &quot;projects/PROJECT_ID/zones/us-central1-a/instances&quot;     &quot;projects/PROJECT_ID/datasets/DATASET_ID&quot;
      */
     resourceName?: string | null;
     /**
@@ -250,11 +250,11 @@ export namespace servicecontrol_v1 {
      */
     response?: {[key: string]: any} | null;
     /**
-     * Deprecated, use `metadata` field instead. Other service-specific data about the request, response, and other activities.
+     * Deprecated. Use the `metadata` field instead. Other service-specific data about the request, response, and other activities.
      */
     serviceData?: {[key: string]: any} | null;
     /**
-     * The name of the API service performing the operation. For example, `&quot;datastore.googleapis.com&quot;`.
+     * The name of the API service performing the operation. For example, `&quot;compute.googleapis.com&quot;`.
      */
     serviceName?: string | null;
     /**
