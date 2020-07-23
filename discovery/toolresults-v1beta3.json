@@ -9,8 +9,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/toolresults/v1beta3",
+  "baseUrl": "https://toolresults.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Tool Results",
   "description": "API to publish and access results from developer tools.",
   "discoveryVersion": "v1",
@@ -21,7 +21,7 @@
   },
   "id": "toolresults:v1beta3",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://toolresults.mtls.googleapis.com/",
   "name": "toolresults",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -104,681 +104,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "clusters": {
-      "methods": {
-        "get": {
-          "description": "Retrieves a single screenshot cluster by its ID",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}",
-          "httpMethod": "GET",
-          "id": "toolresults.clusters.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "clusterId"
-          ],
-          "parameters": {
-            "clusterId": {
-              "description": "A Cluster id\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "executionId": {
-              "description": "An Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}",
-          "response": {
-            "$ref": "ScreenshotCluster"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Screenshot Clusters\n\nReturns the list of screenshot clusters corresponding to an execution.\nScreenshot clusters are created after the execution is finished.\nClusters are created from a set of screenshots. Between any two\nscreenshots, a matching score is calculated based off their metadata\nthat determines how similar they are. Screenshots are placed\nin the cluster that has screens which have the highest matching\nscores.",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters",
-          "httpMethod": "GET",
-          "id": "toolresults.clusters.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "An Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters",
-          "response": {
-            "$ref": "ListScreenshotClustersResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "environments": {
-      "methods": {
-        "get": {
-          "description": "Gets an Environment.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Environment does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}",
-          "httpMethod": "GET",
-          "id": "toolresults.environments.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "environmentId"
-          ],
-          "parameters": {
-            "environmentId": {
-              "description": "Required. An Environment id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "executionId": {
-              "description": "Required. An Execution id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "Required. A History id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Required. A Project id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}",
-          "response": {
-            "$ref": "Environment"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Environments for a given Execution.\n\nThe Environments are sorted by display name.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments",
-          "httpMethod": "GET",
-          "id": "toolresults.environments.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "Required. An Execution id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "Required. A History id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of Environments to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Required. A Project id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments",
-          "response": {
-            "$ref": "ListEnvironmentsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "executions": {
-      "methods": {
-        "create": {
-          "description": "Creates an Execution.\n\nThe returned Execution will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
-          "httpMethod": "POST",
-          "id": "toolresults.executions.create",
-          "parameterOrder": [
-            "projectId",
-            "historyId"
-          ],
-          "parameters": {
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
-          "request": {
-            "$ref": "Execution"
-          },
-          "response": {
-            "$ref": "Execution"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Gets an Execution.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
-          "httpMethod": "GET",
-          "id": "toolresults.executions.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "An Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
-          "response": {
-            "$ref": "Execution"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Executions for a given History.\n\nThe executions are sorted by creation_time in descending order. The\nexecution_id key will be used to order the executions with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
-          "httpMethod": "GET",
-          "id": "toolresults.executions.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId"
-          ],
-          "parameters": {
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of Executions to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
-          "response": {
-            "$ref": "ListExecutionsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "patch": {
-          "description": "Updates an existing Execution with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n- NOT_FOUND - if the containing History does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
-          "httpMethod": "PATCH",
-          "id": "toolresults.executions.patch",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "Required.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "Required.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
-          "request": {
-            "$ref": "Execution"
-          },
-          "response": {
-            "$ref": "Execution"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "histories": {
-      "methods": {
-        "create": {
-          "description": "Creates a History.\n\nThe returned History will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing project does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
-          "httpMethod": "POST",
-          "id": "toolresults.histories.create",
-          "parameterOrder": [
-            "projectId"
-          ],
-          "parameters": {
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories",
-          "request": {
-            "$ref": "History"
-          },
-          "response": {
-            "$ref": "History"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Gets a History.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}",
-          "httpMethod": "GET",
-          "id": "toolresults.histories.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId"
-          ],
-          "parameters": {
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}",
-          "response": {
-            "$ref": "History"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Histories for a given Project.\n\nThe histories are sorted by modification time in descending order. The\nhistory_id key will be used to order the history with the same\nmodification time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
-          "httpMethod": "GET",
-          "id": "toolresults.histories.list",
-          "parameterOrder": [
-            "projectId"
-          ],
-          "parameters": {
-            "filterByName": {
-              "description": "If set, only return histories with the given name.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of Histories to fetch.\n\nDefault value: 20. The server will use this default if the field is not set\nor has a value of 0. Any value greater than 100 will be treated as 100.\n\nOptional.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories",
-          "response": {
-            "$ref": "ListHistoriesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "perfMetricsSummary": {
-      "methods": {
-        "create": {
-          "description": "Creates a PerfMetricsSummary resource. Returns the existing one if it has\nalready been created.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The containing Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
-          "httpMethod": "POST",
-          "id": "toolresults.perfMetricsSummary.create",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
-          "request": {
-            "$ref": "PerfMetricsSummary"
-          },
-          "response": {
-            "$ref": "PerfMetricsSummary"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "perfSampleSeries": {
-      "methods": {
-        "create": {
-          "description": "Creates a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- ALREADY_EXISTS - PerfMetricSummary already exists for the given Step\n- NOT_FOUND - The containing Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
-          "httpMethod": "POST",
-          "id": "toolresults.perfSampleSeries.create",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
-          "request": {
-            "$ref": "PerfSampleSeries"
-          },
-          "response": {
-            "$ref": "PerfSampleSeries"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Gets a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfSampleSeries does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}",
-          "httpMethod": "GET",
-          "id": "toolresults.perfSampleSeries.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId",
-            "sampleSeriesId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "sampleSeriesId": {
-              "description": "A sample series id",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}",
-          "response": {
-            "$ref": "PerfSampleSeries"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists PerfSampleSeries for a given Step.\n\nThe request provides an optional filter which specifies one or more\nPerfMetricsType to include in the result; if none returns all.\nThe resulting PerfSampleSeries are sorted by ids.\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
-          "httpMethod": "GET",
-          "id": "toolresults.perfSampleSeries.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "filter": {
-              "description": "Specify one or more PerfMetricType values such as CPU to filter the result",
-              "enum": [
-                "PERF_METRIC_TYPE_UNSPECIFIED",
-                "MEMORY",
-                "CPU",
-                "NETWORK",
-                "GRAPHICS"
-              ],
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
-          "response": {
-            "$ref": "ListPerfSampleSeriesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "projects": {
       "methods": {
         "getSettings": {
@@ -829,625 +154,1310 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
-      }
-    },
-    "samples": {
-      "methods": {
-        "batchCreate": {
-          "description": "Creates a batch of PerfSamples\n- a client can submit multiple batches of Perf Samples through repeated\ncalls to this method in order to split up a large request payload\n- duplicates and existing timestamp entries will be ignored.\n- the batch operation may partially succeed\n- the set of elements successfully inserted is returned in the response\n(omits items which already existed in the database).\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate",
-          "httpMethod": "POST",
-          "id": "toolresults.samples.batchCreate",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId",
-            "sampleSeriesId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
+      },
+      "resources": {
+        "histories": {
+          "methods": {
+            "create": {
+              "description": "Creates a History.\n\nThe returned History will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing project does not exist",
+              "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
+              "httpMethod": "POST",
+              "id": "toolresults.projects.histories.create",
+              "parameterOrder": [
+                "projectId"
+              ],
+              "parameters": {
+                "projectId": {
+                  "description": "A Project id.\n\nRequired.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "requestId": {
+                  "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "toolresults/v1beta3/projects/{projectId}/histories",
+              "request": {
+                "$ref": "History"
+              },
+              "response": {
+                "$ref": "History"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
+            "get": {
+              "description": "Gets a History.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
+              "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}",
+              "httpMethod": "GET",
+              "id": "toolresults.projects.histories.get",
+              "parameterOrder": [
+                "projectId",
+                "historyId"
+              ],
+              "parameters": {
+                "historyId": {
+                  "description": "A History id.\n\nRequired.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "projectId": {
+                  "description": "A Project id.\n\nRequired.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}",
+              "response": {
+                "$ref": "History"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "sampleSeriesId": {
-              "description": "A sample series id",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
+            "list": {
+              "description": "Lists Histories for a given Project.\n\nThe histories are sorted by modification time in descending order. The\nhistory_id key will be used to order the history with the same\nmodification time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
+              "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
+              "httpMethod": "GET",
+              "id": "toolresults.projects.histories.list",
+              "parameterOrder": [
+                "projectId"
+              ],
+              "parameters": {
+                "filterByName": {
+                  "description": "If set, only return histories with the given name.\n\nOptional.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of Histories to fetch.\n\nDefault value: 20. The server will use this default if the field is not set\nor has a value of 0. Any value greater than 100 will be treated as 100.\n\nOptional.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "projectId": {
+                  "description": "A Project id.\n\nRequired.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "toolresults/v1beta3/projects/{projectId}/histories",
+              "response": {
+                "$ref": "ListHistoriesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate",
-          "request": {
-            "$ref": "BatchCreatePerfSamplesRequest"
-          },
-          "response": {
-            "$ref": "BatchCreatePerfSamplesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists the Performance Samples of a given Sample Series\n- The list results are sorted by timestamps ascending\n- The default page size is 500 samples; and maximum size allowed 5000\n- The response token indicates the last returned PerfSample timestamp\n- When the results size exceeds the page size, submit a subsequent request\nincluding the page token to return the rest of the samples up to the\npage limit\n\nMay return any of the following canonical error codes:\n- OUT_OF_RANGE - The specified request page_token is out of valid range\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples",
-          "httpMethod": "GET",
-          "id": "toolresults.samples.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId",
-            "sampleSeriesId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The default page size is 500 samples, and the maximum size is 5000. If\nthe page_size is greater than 5000, the effective page size will be 5000",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional, the next_page_token returned in the previous response",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "sampleSeriesId": {
-              "description": "A sample series id",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
+          "resources": {
+            "executions": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Execution.\n\nThe returned Execution will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
+                  "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
+                  "httpMethod": "POST",
+                  "id": "toolresults.projects.histories.executions.create",
+                  "parameterOrder": [
+                    "projectId",
+                    "historyId"
+                  ],
+                  "parameters": {
+                    "historyId": {
+                      "description": "A History id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "A Project id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
+                  "request": {
+                    "$ref": "Execution"
+                  },
+                  "response": {
+                    "$ref": "Execution"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Execution.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Execution does not exist",
+                  "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
+                  "httpMethod": "GET",
+                  "id": "toolresults.projects.histories.executions.get",
+                  "parameterOrder": [
+                    "projectId",
+                    "historyId",
+                    "executionId"
+                  ],
+                  "parameters": {
+                    "executionId": {
+                      "description": "An Execution id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "historyId": {
+                      "description": "A History id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "A Project id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
+                  "response": {
+                    "$ref": "Execution"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Executions for a given History.\n\nThe executions are sorted by creation_time in descending order. The\nexecution_id key will be used to order the executions with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
+                  "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
+                  "httpMethod": "GET",
+                  "id": "toolresults.projects.histories.executions.list",
+                  "parameterOrder": [
+                    "projectId",
+                    "historyId"
+                  ],
+                  "parameters": {
+                    "historyId": {
+                      "description": "A History id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of Executions to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "A Project id.\n\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
+                  "response": {
+                    "$ref": "ListExecutionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing Execution with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n- NOT_FOUND - if the containing History does not exist",
+                  "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
+                  "httpMethod": "PATCH",
+                  "id": "toolresults.projects.histories.executions.patch",
+                  "parameterOrder": [
+                    "projectId",
+                    "historyId",
+                    "executionId"
+                  ],
+                  "parameters": {
+                    "executionId": {
+                      "description": "Required.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "historyId": {
+                      "description": "Required.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "A Project id.\nRequired.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
+                  "request": {
+                    "$ref": "Execution"
+                  },
+                  "response": {
+                    "$ref": "Execution"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "clusters": {
+                  "methods": {
+                    "get": {
+                      "description": "Retrieves a single screenshot cluster by its ID",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.clusters.get",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "clusterId"
+                      ],
+                      "parameters": {
+                        "clusterId": {
+                          "description": "A Cluster id\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "executionId": {
+                          "description": "An Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}",
+                      "response": {
+                        "$ref": "ScreenshotCluster"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Screenshot Clusters\n\nReturns the list of screenshot clusters corresponding to an execution.\nScreenshot clusters are created after the execution is finished.\nClusters are created from a set of screenshots. Between any two\nscreenshots, a matching score is calculated based off their metadata\nthat determines how similar they are. Screenshots are placed\nin the cluster that has screens which have the highest matching\nscores.",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.clusters.list",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "An Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters",
+                      "response": {
+                        "$ref": "ListScreenshotClustersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "environments": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets an Environment.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Environment does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.environments.get",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "environmentId"
+                      ],
+                      "parameters": {
+                        "environmentId": {
+                          "description": "Required. An Environment id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "executionId": {
+                          "description": "Required. An Execution id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "Required. A History id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "Required. A Project id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}",
+                      "response": {
+                        "$ref": "Environment"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Environments for a given Execution.\n\nThe Environments are sorted by display name.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Execution does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.environments.list",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "Required. An Execution id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "Required. A History id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of Environments to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A continuation token to resume the query at the next item.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "Required. A Project id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments",
+                      "response": {
+                        "$ref": "ListEnvironmentsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "steps": {
+                  "methods": {
+                    "accessibilityClusters": {
+                      "description": "Lists accessibility clusters for a given Step\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if the locale format is incorrect\n- NOT_FOUND - if the containing Step does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectsId}/histories/{historiesId}/executions/{executionsId}/steps/{stepsId}:accessibilityClusters",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.steps.accessibilityClusters",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "locale": {
+                          "description": "The accepted format is the canonical Unicode format with hyphen as a\ndelimiter. Language must be lowercase, Language Script - Capitalized,\nRegion - UPPERCASE.\nSee http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for\ndetails.\n\nRequired.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "A full resource name of the step.\nFor example, projects/my-project/histories/bh.1234567890abcdef/executions/\n1234567890123456789/steps/bs.1234567890abcdef\n\nRequired.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/histories/[^/]+/executions/[^/]+/steps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/{+name}:accessibilityClusters",
+                      "response": {
+                        "$ref": "ListStepAccessibilityClustersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a Step.\n\nThe returned Step will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
+                      "httpMethod": "POST",
+                      "id": "toolresults.projects.histories.executions.steps.create",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "Required. An Execution id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "Required. A History id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "Required. A Project id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
+                      "request": {
+                        "$ref": "Step"
+                      },
+                      "response": {
+                        "$ref": "Step"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Step does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.steps.get",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "stepId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "A Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "stepId": {
+                          "description": "A Step id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
+                      "response": {
+                        "$ref": "Step"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getPerfMetricsSummary": {
+                      "description": "Retrieves a PerfMetricsSummary.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfMetricsSummary does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.steps.getPerfMetricsSummary",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "stepId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "A tool results execution ID.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A tool results history ID.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "The cloud project",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "stepId": {
+                          "description": "A tool results step ID.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
+                      "response": {
+                        "$ref": "PerfMetricsSummary"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Steps for a given Execution.\n\nThe steps are sorted by creation_time in descending order. The\nstep_id key will be used to order the steps with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if an attempt is made to list the\n                        children of a nonexistent Step\n- NOT_FOUND - if the containing Execution does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
+                      "httpMethod": "GET",
+                      "id": "toolresults.projects.histories.executions.steps.list",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "A Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of Steps to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
+                      "response": {
+                        "$ref": "ListStepsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates an existing Step with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n                        (e.g try to upload a duplicate xml file), if the\n                        updated step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
+                      "httpMethod": "PATCH",
+                      "id": "toolresults.projects.histories.executions.steps.patch",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "stepId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "A Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "stepId": {
+                          "description": "A Step id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
+                      "request": {
+                        "$ref": "Step"
+                      },
+                      "response": {
+                        "$ref": "Step"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "publishXunitXmlFiles": {
+                      "description": "Publish xml files to an existing Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal,\ne.g try to upload a duplicate xml file or a file too large.\n- NOT_FOUND - if the containing Execution does not exist",
+                      "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles",
+                      "httpMethod": "POST",
+                      "id": "toolresults.projects.histories.executions.steps.publishXunitXmlFiles",
+                      "parameterOrder": [
+                        "projectId",
+                        "historyId",
+                        "executionId",
+                        "stepId"
+                      ],
+                      "parameters": {
+                        "executionId": {
+                          "description": "A Execution id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "historyId": {
+                          "description": "A History id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "A Project id.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "stepId": {
+                          "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles",
+                      "request": {
+                        "$ref": "PublishXunitXmlFilesRequest"
+                      },
+                      "response": {
+                        "$ref": "Step"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "perfMetricsSummary": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a PerfMetricsSummary resource. Returns the existing one if it has\nalready been created.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The containing Step does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
+                          "httpMethod": "POST",
+                          "id": "toolresults.projects.histories.executions.steps.perfMetricsSummary.create",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A tool results execution ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A tool results history ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "The cloud project",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A tool results step ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
+                          "request": {
+                            "$ref": "PerfMetricsSummary"
+                          },
+                          "response": {
+                            "$ref": "PerfMetricsSummary"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "perfSampleSeries": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- ALREADY_EXISTS - PerfMetricSummary already exists for the given Step\n- NOT_FOUND - The containing Step does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
+                          "httpMethod": "POST",
+                          "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.create",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A tool results execution ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A tool results history ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "The cloud project",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A tool results step ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
+                          "request": {
+                            "$ref": "PerfSampleSeries"
+                          },
+                          "response": {
+                            "$ref": "PerfSampleSeries"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfSampleSeries does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}",
+                          "httpMethod": "GET",
+                          "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.get",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId",
+                            "sampleSeriesId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A tool results execution ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A tool results history ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "The cloud project",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "sampleSeriesId": {
+                              "description": "A sample series id",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A tool results step ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}",
+                          "response": {
+                            "$ref": "PerfSampleSeries"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists PerfSampleSeries for a given Step.\n\nThe request provides an optional filter which specifies one or more\nPerfMetricsType to include in the result; if none returns all.\nThe resulting PerfSampleSeries are sorted by ids.\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing Step does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
+                          "httpMethod": "GET",
+                          "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.list",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A tool results execution ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "filter": {
+                              "description": "Specify one or more PerfMetricType values such as CPU to filter the result",
+                              "enum": [
+                                "perfMetricTypeUnspecified",
+                                "memory",
+                                "cpu",
+                                "network",
+                                "graphics"
+                              ],
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A tool results history ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "The cloud project",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A tool results step ID.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
+                          "response": {
+                            "$ref": "ListPerfSampleSeriesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
+                      "resources": {
+                        "samples": {
+                          "methods": {
+                            "batchCreate": {
+                              "description": "Creates a batch of PerfSamples\n- a client can submit multiple batches of Perf Samples through repeated\ncalls to this method in order to split up a large request payload\n- duplicates and existing timestamp entries will be ignored.\n- the batch operation may partially succeed\n- the set of elements successfully inserted is returned in the response\n(omits items which already existed in the database).\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
+                              "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate",
+                              "httpMethod": "POST",
+                              "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate",
+                              "parameterOrder": [
+                                "projectId",
+                                "historyId",
+                                "executionId",
+                                "stepId",
+                                "sampleSeriesId"
+                              ],
+                              "parameters": {
+                                "executionId": {
+                                  "description": "A tool results execution ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "historyId": {
+                                  "description": "A tool results history ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "projectId": {
+                                  "description": "The cloud project",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "sampleSeriesId": {
+                                  "description": "A sample series id",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "stepId": {
+                                  "description": "A tool results step ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate",
+                              "request": {
+                                "$ref": "BatchCreatePerfSamplesRequest"
+                              },
+                              "response": {
+                                "$ref": "BatchCreatePerfSamplesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists the Performance Samples of a given Sample Series\n- The list results are sorted by timestamps ascending\n- The default page size is 500 samples; and maximum size allowed 5000\n- The response token indicates the last returned PerfSample timestamp\n- When the results size exceeds the page size, submit a subsequent request\nincluding the page token to return the rest of the samples up to the\npage limit\n\nMay return any of the following canonical error codes:\n- OUT_OF_RANGE - The specified request page_token is out of valid range\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
+                              "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples",
+                              "httpMethod": "GET",
+                              "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list",
+                              "parameterOrder": [
+                                "projectId",
+                                "historyId",
+                                "executionId",
+                                "stepId",
+                                "sampleSeriesId"
+                              ],
+                              "parameters": {
+                                "executionId": {
+                                  "description": "A tool results execution ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "historyId": {
+                                  "description": "A tool results history ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "The default page size is 500 samples, and the maximum size is 5000. If\nthe page_size is greater than 5000, the effective page size will be 5000",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional, the next_page_token returned in the previous response",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "projectId": {
+                                  "description": "The cloud project",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "sampleSeriesId": {
+                                  "description": "A sample series id",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "stepId": {
+                                  "description": "A tool results step ID.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples",
+                              "response": {
+                                "$ref": "ListPerfSamplesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "testCases": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a Test Case for a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Test Case does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}",
+                          "httpMethod": "GET",
+                          "id": "toolresults.projects.histories.executions.steps.testCases.get",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId",
+                            "testCaseId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A Execution id\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A History id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "A Project id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "testCaseId": {
+                              "description": "A Test Case id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}",
+                          "response": {
+                            "$ref": "TestCase"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists Test Cases attached to a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Step does not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases",
+                          "httpMethod": "GET",
+                          "id": "toolresults.projects.histories.executions.steps.testCases.list",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "A Execution id\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A History id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of TestCases to fetch.\n\nDefault value: 100. The server will use this default if the field is not\nset or has a value of 0.\n\nOptional.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "A Project id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases",
+                          "response": {
+                            "$ref": "ListTestCasesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "thumbnails": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists thumbnails of images attached to a step.\n\nMay return any of the following canonical error codes:\n- PERMISSION_DENIED - if the user is not authorized to read from the\n                      project, or from any of the images\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the step does not exist, or if any of the images\n              do not exist",
+                          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails",
+                          "httpMethod": "GET",
+                          "id": "toolresults.projects.histories.executions.steps.thumbnails.list",
+                          "parameterOrder": [
+                            "projectId",
+                            "historyId",
+                            "executionId",
+                            "stepId"
+                          ],
+                          "parameters": {
+                            "executionId": {
+                              "description": "An Execution id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "historyId": {
+                              "description": "A History id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of thumbnails to fetch.\n\nDefault value: 50. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "projectId": {
+                              "description": "A Project id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "stepId": {
+                              "description": "A Step id.\n\nRequired.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails",
+                          "response": {
+                            "$ref": "ListStepThumbnailsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples",
-          "response": {
-            "$ref": "ListPerfSamplesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "steps": {
-      "methods": {
-        "accessibilityClusters": {
-          "description": "Lists accessibility clusters for a given Step\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if the locale format is incorrect\n- NOT_FOUND - if the containing Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectsId}/histories/{historiesId}/executions/{executionsId}/steps/{stepsId}:accessibilityClusters",
-          "httpMethod": "GET",
-          "id": "toolresults.steps.accessibilityClusters",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "locale": {
-              "description": "The accepted format is the canonical Unicode format with hyphen as a\ndelimiter. Language must be lowercase, Language Script - Capitalized,\nRegion - UPPERCASE.\nSee http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for\ndetails.\n\nRequired.",
-              "location": "query",
-              "type": "string"
-            },
-            "name": {
-              "description": "A full resource name of the step.\nFor example, projects/my-project/histories/bh.1234567890abcdef/executions/\n1234567890123456789/steps/bs.1234567890abcdef\n\nRequired.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/histories/[^/]+/executions/[^/]+/steps/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/{+name}:accessibilityClusters",
-          "response": {
-            "$ref": "ListStepAccessibilityClustersResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "create": {
-          "description": "Creates a Step.\n\nThe returned Step will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
-          "httpMethod": "POST",
-          "id": "toolresults.steps.create",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "Required. An Execution id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "Required. A History id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Required. A Project id.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
-          "request": {
-            "$ref": "Step"
-          },
-          "response": {
-            "$ref": "Step"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Gets a Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
-          "httpMethod": "GET",
-          "id": "toolresults.steps.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
-          "response": {
-            "$ref": "Step"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "getPerfMetricsSummary": {
-          "description": "Retrieves a PerfMetricsSummary.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfMetricsSummary does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
-          "httpMethod": "GET",
-          "id": "toolresults.steps.getPerfMetricsSummary",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A tool results execution ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A tool results history ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "The cloud project",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A tool results step ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
-          "response": {
-            "$ref": "PerfMetricsSummary"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Steps for a given Execution.\n\nThe steps are sorted by creation_time in descending order. The\nstep_id key will be used to order the steps with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if an attempt is made to list the\n                        children of a nonexistent Step\n- NOT_FOUND - if the containing Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
-          "httpMethod": "GET",
-          "id": "toolresults.steps.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of Steps to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
-          "response": {
-            "$ref": "ListStepsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "patch": {
-          "description": "Updates an existing Step with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n                        (e.g try to upload a duplicate xml file), if the\n                        updated step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
-          "httpMethod": "PATCH",
-          "id": "toolresults.steps.patch",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
-              "location": "query",
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
-          "request": {
-            "$ref": "Step"
-          },
-          "response": {
-            "$ref": "Step"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "publishXunitXmlFiles": {
-          "description": "Publish xml files to an existing Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal,\ne.g try to upload a duplicate xml file or a file too large.\n- NOT_FOUND - if the containing Execution does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles",
-          "httpMethod": "POST",
-          "id": "toolresults.steps.publishXunitXmlFiles",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles",
-          "request": {
-            "$ref": "PublishXunitXmlFilesRequest"
-          },
-          "response": {
-            "$ref": "Step"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "testCases": {
-      "methods": {
-        "get": {
-          "description": "Gets details of a Test Case for a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Test Case does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}",
-          "httpMethod": "GET",
-          "id": "toolresults.testCases.get",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId",
-            "testCaseId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "testCaseId": {
-              "description": "A Test Case id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}",
-          "response": {
-            "$ref": "TestCase"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists Test Cases attached to a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Step does not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases",
-          "httpMethod": "GET",
-          "id": "toolresults.testCases.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "A Execution id\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of TestCases to fetch.\n\nDefault value: 100. The server will use this default if the field is not\nset or has a value of 0.\n\nOptional.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases",
-          "response": {
-            "$ref": "ListTestCasesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "thumbnails": {
-      "methods": {
-        "list": {
-          "description": "Lists thumbnails of images attached to a step.\n\nMay return any of the following canonical error codes:\n- PERMISSION_DENIED - if the user is not authorized to read from the\n                      project, or from any of the images\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the step does not exist, or if any of the images\n              do not exist",
-          "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails",
-          "httpMethod": "GET",
-          "id": "toolresults.thumbnails.list",
-          "parameterOrder": [
-            "projectId",
-            "historyId",
-            "executionId",
-            "stepId"
-          ],
-          "parameters": {
-            "executionId": {
-              "description": "An Execution id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "historyId": {
-              "description": "A History id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The maximum number of thumbnails to fetch.\n\nDefault value: 50. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
-              "location": "query",
-              "type": "string"
-            },
-            "projectId": {
-              "description": "A Project id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "stepId": {
-              "description": "A Step id.\n\nRequired.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails",
-          "response": {
-            "$ref": "ListStepThumbnailsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
+          }
         }
       }
     }
   },
-  "revision": "20200513",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200723",
+  "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
       "description": "Additional details for an ANR crash.",
@@ -1613,11 +1623,11 @@
       "properties": {
         "perfMetricType": {
           "enum": [
-            "PERF_METRIC_TYPE_UNSPECIFIED",
-            "MEMORY",
-            "CPU",
-            "NETWORK",
-            "GRAPHICS"
+            "perfMetricTypeUnspecified",
+            "memory",
+            "cpu",
+            "network",
+            "graphics"
           ],
           "enumDescriptions": [
             "",
@@ -1630,12 +1640,12 @@
         },
         "perfUnit": {
           "enum": [
-            "PERF_UNIT_UNSPECIFIED",
-            "KIBIBYTE",
-            "PERCENT",
-            "BYTES_PER_SECOND",
-            "FRAMES_PER_SECOND",
-            "BYTE"
+            "perfUnitUnspecified",
+            "kibibyte",
+            "percent",
+            "bytesPerSecond",
+            "framesPerSecond",
+            "byte"
           ],
           "enumDescriptions": [
             "",
@@ -1649,19 +1659,19 @@
         },
         "sampleSeriesLabel": {
           "enum": [
-            "SAMPLE_SERIES_TYPE_UNSPECIFIED",
-            "MEMORY_RSS_PRIVATE",
-            "MEMORY_RSS_SHARED",
-            "MEMORY_RSS_TOTAL",
-            "MEMORY_TOTAL",
-            "CPU_USER",
-            "CPU_KERNEL",
-            "CPU_TOTAL",
-            "NT_BYTES_TRANSFERRED",
-            "NT_BYTES_RECEIVED",
-            "NETWORK_SENT",
-            "NETWORK_RECEIVED",
-            "GRAPHICS_FRAME_RATE"
+            "sampleSeriesTypeUnspecified",
+            "memoryRssPrivate",
+            "memoryRssShared",
+            "memoryRssTotal",
+            "memoryTotal",
+            "cpuUser",
+            "cpuKernel",
+            "cpuTotal",
+            "ntBytesTransferred",
+            "ntBytesReceived",
+            "networkSent",
+            "networkReceived",
+            "graphicsFrameRate"
           ],
           "enumDescriptions": [
             "",
@@ -1909,10 +1919,10 @@
         "state": {
           "description": "The initial state is IN_PROGRESS.\n\nThe only legal state transitions is from IN_PROGRESS to COMPLETE.\n\nA PRECONDITION_FAILED will be returned if an invalid transition is\nrequested.\n\nThe state can only be set to COMPLETE once. A FAILED_PRECONDITION will be\nreturned if the state is set to COMPLETE multiple times.\n\nIf the state is set to COMPLETE, all the in-progress steps within the\nexecution will be set as COMPLETE. If the outcome of the step is not set,\nthe outcome will be set to INCONCLUSIVE.\n\n- In response always set\n- In create/update request: optional",
           "enum": [
-            "UNKNOWN_STATE",
-            "PENDING",
-            "IN_PROGRESS",
-            "COMPLETE"
+            "unknownState",
+            "pending",
+            "inProgress",
+            "complete"
           ],
           "enumDescriptions": [
             "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
@@ -1941,6 +1951,10 @@
       "properties": {
         "crashed": {
           "description": "If the failure was severe because the system (app) under test crashed.",
+          "type": "boolean"
+        },
+        "failedRoboscript": {
+          "description": "If the Roboscript failed to complete successfully, e.g., because a\nRoboscript action or assertion failed or a Roboscript action could not be\nmatched during the entire crawl.",
           "type": "boolean"
         },
         "notInstalled": {
@@ -2088,9 +2102,9 @@
         "testPlatform": {
           "description": "The platform of the test history.\n\n- In response: always set. Returns the platform of the last execution if\nunknown.",
           "enum": [
-            "UNKNOWN_PLATFORM",
-            "ANDROID",
-            "IOS"
+            "unknownPlatform",
+            "android",
+            "ios"
           ],
           "enumDescriptions": [
             "",
@@ -2172,12 +2186,12 @@
         },
         "outcomeSummary": {
           "enum": [
-            "UNSET",
-            "SUCCESS",
-            "FAILURE",
-            "INCONCLUSIVE",
-            "SKIPPED",
-            "FLAKY"
+            "unset",
+            "success",
+            "failure",
+            "inconclusive",
+            "skipped",
+            "flaky"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -2503,10 +2517,10 @@
         "state": {
           "description": "State of the resource",
           "enum": [
-            "UNKNOWN_STATE",
-            "PENDING",
-            "IN_PROGRESS",
-            "COMPLETE"
+            "unknownState",
+            "pending",
+            "inProgress",
+            "complete"
           ],
           "enumDescriptions": [
             "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
@@ -2706,12 +2720,12 @@
         "summary": {
           "description": "The simplest way to interpret a result.\n\nRequired",
           "enum": [
-            "UNSET",
-            "SUCCESS",
-            "FAILURE",
-            "INCONCLUSIVE",
-            "SKIPPED",
-            "FLAKY"
+            "unset",
+            "success",
+            "failure",
+            "inconclusive",
+            "skipped",
+            "flaky"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -2804,11 +2818,11 @@
           ],
           "items": {
             "enum": [
-              "PERF_METRIC_TYPE_UNSPECIFIED",
-              "MEMORY",
-              "CPU",
-              "NETWORK",
-              "GRAPHICS"
+              "perfMetricTypeUnspecified",
+              "memory",
+              "cpu",
+              "network",
+              "graphics"
             ],
             "type": "string"
           },
@@ -2904,12 +2918,12 @@
         "rollUp": {
           "description": "Rollup test status of multiple steps that were run with the same\nconfiguration as a group.",
           "enum": [
-            "UNSET",
-            "SUCCESS",
-            "FAILURE",
-            "INCONCLUSIVE",
-            "SKIPPED",
-            "FLAKY"
+            "unset",
+            "success",
+            "failure",
+            "inconclusive",
+            "skipped",
+            "flaky"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -3230,10 +3244,10 @@
         "state": {
           "description": "The initial state is IN_PROGRESS.\nThe only legal state transitions are\n* IN_PROGRESS -> COMPLETE\n\nA PRECONDITION_FAILED will be returned if an invalid transition is\nrequested.\n\nIt is valid to create Step with a state set to COMPLETE.\nThe state can only be set to COMPLETE once. A PRECONDITION_FAILED will be\nreturned if the state is set to COMPLETE multiple times.\n\n- In response: always set\n- In create/update request: optional",
           "enum": [
-            "UNKNOWN_STATE",
-            "PENDING",
-            "IN_PROGRESS",
-            "COMPLETE"
+            "unknownState",
+            "pending",
+            "inProgress",
+            "complete"
           ],
           "enumDescriptions": [
             "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
@@ -3306,11 +3320,11 @@
         "category": {
           "description": "Category in which these types of suggestions should appear.\nAlways set.",
           "enum": [
-            "UNKNOWN_CATEGORY",
-            "CONTENT_LABELING",
-            "TOUCH_TARGET_SIZE",
-            "LOW_CONTRAST",
-            "IMPLEMENTATION"
+            "unknownCategory",
+            "contentLabeling",
+            "touchTargetSize",
+            "lowContrast",
+            "implementation"
           ],
           "enumDescriptions": [
             "",
@@ -3345,10 +3359,10 @@
         "priority": {
           "description": "Relative importance of a suggestion.\nAlways set.",
           "enum": [
-            "UNKNOWN_PRIORITY",
-            "ERROR",
-            "WARNING",
-            "INFO"
+            "unknownPriority",
+            "error",
+            "warning",
+            "info"
           ],
           "enumDescriptions": [
             "",
@@ -3419,11 +3433,11 @@
         "status": {
           "description": "The status of the test case.\n\nRequired.",
           "enum": [
-            "PASSED",
-            "FAILED",
-            "ERROR",
-            "SKIPPED",
-            "FLAKY"
+            "passed",
+            "failed",
+            "error",
+            "skipped",
+            "flaky"
           ],
           "enumDescriptions": [
             "Test passed.",
@@ -3507,9 +3521,9 @@
         "category": {
           "description": "Category of issue.\nRequired.",
           "enum": [
-            "UNSPECIFIED_CATEGORY",
-            "COMMON",
-            "ROBO"
+            "unspecifiedCategory",
+            "common",
+            "robo"
           ],
           "enumDescriptions": [
             "Default unspecified category.\nDo not use. For versioning only.",
@@ -3525,11 +3539,11 @@
         "severity": {
           "description": "Severity of issue.\nRequired.",
           "enum": [
-            "UNSPECIFIED_SEVERITY",
-            "INFO",
-            "SUGGESTION",
-            "WARNING",
-            "SEVERE"
+            "unspecifiedSeverity",
+            "info",
+            "suggestion",
+            "warning",
+            "severe"
           ],
           "enumDescriptions": [
             "Default unspecified severity.\nDo not use. For versioning only.",
@@ -3547,34 +3561,35 @@
         "type": {
           "description": "Type of issue.\nRequired.",
           "enum": [
-            "UNSPECIFIED_TYPE",
-            "FATAL_EXCEPTION",
-            "NATIVE_CRASH",
-            "ANR",
-            "UNUSED_ROBO_DIRECTIVE",
-            "COMPATIBLE_WITH_ORCHESTRATOR",
-            "LAUNCHER_ACTIVITY_NOT_FOUND",
-            "START_ACTIVITY_NOT_FOUND",
-            "INCOMPLETE_ROBO_SCRIPT_EXECUTION",
-            "COMPLETE_ROBO_SCRIPT_EXECUTION",
-            "FAILED_TO_INSTALL",
-            "AVAILABLE_DEEP_LINKS",
-            "NON_SDK_API_USAGE_VIOLATION",
-            "NON_SDK_API_USAGE_REPORT",
-            "ENCOUNTERED_NON_ANDROID_UI_WIDGET_SCREEN",
-            "ENCOUNTERED_LOGIN_SCREEN",
-            "PERFORMED_GOOGLE_LOGIN",
-            "IOS_EXCEPTION",
-            "IOS_CRASH",
-            "PERFORMED_MONKEY_ACTIONS",
-            "USED_ROBO_DIRECTIVE",
-            "USED_ROBO_IGNORE_DIRECTIVE",
-            "INSUFFICIENT_COVERAGE",
-            "IN_APP_PURCHASES",
-            "CRASH_DIALOG_ERROR",
-            "UI_ELEMENTS_TOO_DEEP",
-            "BLANK_SCREEN",
-            "OVERLAPPING_UI_ELEMENTS"
+            "unspecifiedType",
+            "fatalException",
+            "nativeCrash",
+            "anr",
+            "unusedRoboDirective",
+            "compatibleWithOrchestrator",
+            "launcherActivityNotFound",
+            "startActivityNotFound",
+            "incompleteRoboScriptExecution",
+            "completeRoboScriptExecution",
+            "failedToInstall",
+            "availableDeepLinks",
+            "nonSdkApiUsageViolation",
+            "nonSdkApiUsageReport",
+            "encounteredNonAndroidUiWidgetScreen",
+            "encounteredLoginScreen",
+            "performedGoogleLogin",
+            "iosException",
+            "iosCrash",
+            "performedMonkeyActions",
+            "usedRoboDirective",
+            "usedRoboIgnoreDirective",
+            "insufficientCoverage",
+            "inAppPurchases",
+            "crashDialogError",
+            "uiElementsTooDeep",
+            "blankScreen",
+            "overlappingUiElements",
+            "unityException"
           ],
           "enumDescriptions": [
             "Default unspecified type.\nDo not use. For versioning only.",
@@ -3604,7 +3619,8 @@
             "Crash dialog was detected during the test execution",
             "UI element depth is greater than the threshold",
             "Blank screen is found in the Robo crawl",
-            "Overlapping UI elements are found in the Robo crawl"
+            "Overlapping UI elements are found in the Robo crawl",
+            "An uncaught Unity exception was detected (these don't crash apps)."
           ],
           "type": "string"
         },

@@ -115,17 +115,7 @@ export namespace toolresults_v1beta3 {
    */
   export class Toolresults {
     context: APIRequestContext;
-    clusters: Resource$Clusters;
-    environments: Resource$Environments;
-    executions: Resource$Executions;
-    histories: Resource$Histories;
-    perfMetricsSummary: Resource$Perfmetricssummary;
-    perfSampleSeries: Resource$Perfsampleseries;
     projects: Resource$Projects;
-    samples: Resource$Samples;
-    steps: Resource$Steps;
-    testCases: Resource$Testcases;
-    thumbnails: Resource$Thumbnails;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -133,17 +123,7 @@ export namespace toolresults_v1beta3 {
         google,
       };
 
-      this.clusters = new Resource$Clusters(this.context);
-      this.environments = new Resource$Environments(this.context);
-      this.executions = new Resource$Executions(this.context);
-      this.histories = new Resource$Histories(this.context);
-      this.perfMetricsSummary = new Resource$Perfmetricssummary(this.context);
-      this.perfSampleSeries = new Resource$Perfsampleseries(this.context);
       this.projects = new Resource$Projects(this.context);
-      this.samples = new Resource$Samples(this.context);
-      this.steps = new Resource$Steps(this.context);
-      this.testCases = new Resource$Testcases(this.context);
-      this.thumbnails = new Resource$Thumbnails(this.context);
     }
   }
 
@@ -472,6 +452,10 @@ export namespace toolresults_v1beta3 {
      * If the failure was severe because the system (app) under test crashed.
      */
     crashed?: boolean | null;
+    /**
+     * If the Roboscript failed to complete successfully, e.g., because a Roboscript action or assertion failed or a Roboscript action could not be matched during the entire crawl.
+     */
+    failedRoboscript?: boolean | null;
     /**
      * If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.
      */
@@ -1783,2678 +1767,12 @@ export namespace toolresults_v1beta3 {
     resourceName?: string | null;
   }
 
-  export class Resource$Clusters {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.clusters.get
-     * @desc Retrieves a single screenshot cluster by its ID
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.clusters.get({
-     *     // A Cluster id
-     *     //
-     *     // Required.
-     *     clusterId: 'placeholder-value',
-     *     // An Execution id.
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activity": "my_activity",
-     *   //   "clusterId": "my_clusterId",
-     *   //   "keyScreen": {},
-     *   //   "screens": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.clusters.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId A Cluster id  Required.
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Clusters$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Clusters$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ScreenshotCluster>;
-    get(
-      params: Params$Resource$Clusters$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Clusters$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$ScreenshotCluster>,
-      callback: BodyResponseCallback<Schema$ScreenshotCluster>
-    ): void;
-    get(
-      params: Params$Resource$Clusters$Get,
-      callback: BodyResponseCallback<Schema$ScreenshotCluster>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Clusters$Get
-        | BodyResponseCallback<Schema$ScreenshotCluster>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ScreenshotCluster>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ScreenshotCluster>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ScreenshotCluster>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Clusters$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Clusters$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
-        pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ScreenshotCluster>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ScreenshotCluster>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.clusters.list
-     * @desc Lists Screenshot Clusters  Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.clusters.list({
-     *     // An Execution id.
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clusters": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.clusters.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Clusters$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Clusters$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListScreenshotClustersResponse>;
-    list(
-      params: Params$Resource$Clusters$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Clusters$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-    ): void;
-    list(
-      params: Params$Resource$Clusters$List,
-      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Clusters$List
-        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListScreenshotClustersResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Clusters$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Clusters$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId'],
-        pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListScreenshotClustersResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListScreenshotClustersResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Clusters$Get extends StandardParameters {
-    /**
-     * A Cluster id  Required.
-     */
-    clusterId?: string;
-    /**
-     * An Execution id.  Required.
-     */
-    executionId?: string;
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Clusters$List extends StandardParameters {
-    /**
-     * An Execution id.  Required.
-     */
-    executionId?: string;
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-
-  export class Resource$Environments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.environments.get
-     * @desc Gets an Environment.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.environments.get({
-     *     // Required. An Environment id.
-     *     environmentId: 'placeholder-value',
-     *     // Required. An Execution id.
-     *     executionId: 'placeholder-value',
-     *     // Required. A History id.
-     *     historyId: 'placeholder-value',
-     *     // Required. A Project id.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "completionTime": {},
-     *   //   "creationTime": {},
-     *   //   "dimensionValue": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "environmentId": "my_environmentId",
-     *   //   "environmentResult": {},
-     *   //   "executionId": "my_executionId",
-     *   //   "historyId": "my_historyId",
-     *   //   "projectId": "my_projectId",
-     *   //   "resultsStorage": {},
-     *   //   "shardSummaries": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.environments.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.environmentId Required. An Environment id.
-     * @param {string} params.executionId Required. An Execution id.
-     * @param {string} params.historyId Required. A History id.
-     * @param {string} params.projectId Required. A Project id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Environments$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Environments$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Environment>;
-    get(
-      params: Params$Resource$Environments$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Environments$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
-      callback: BodyResponseCallback<Schema$Environment>
-    ): void;
-    get(
-      params: Params$Resource$Environments$Get,
-      callback: BodyResponseCallback<Schema$Environment>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Environment>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Environments$Get
-        | BodyResponseCallback<Schema$Environment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Environment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Environment>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Environments$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Environments$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [
-          'projectId',
-          'historyId',
-          'executionId',
-          'environmentId',
-        ],
-        pathParams: ['environmentId', 'executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Environment>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Environment>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.environments.list
-     * @desc Lists Environments for a given Execution.  The Environments are sorted by display name.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.environments.list({
-     *     // Required. An Execution id.
-     *     executionId: 'placeholder-value',
-     *     // Required. A History id.
-     *     historyId: 'placeholder-value',
-     *     // The maximum number of Environments to fetch.
-     *     //
-     *     // Default value: 25. The server will use this default if the field is not set
-     *     // or has a value of 0.
-     *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     pageToken: 'placeholder-value',
-     *     // Required. A Project id.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "environments": [],
-     *   //   "executionId": "my_executionId",
-     *   //   "historyId": "my_historyId",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "projectId": "my_projectId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.environments.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId Required. An Execution id.
-     * @param {string} params.historyId Required. A History id.
-     * @param {integer=} params.pageSize The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.
-     * @param {string} params.projectId Required. A Project id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Environments$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Environments$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
-    list(
-      params: Params$Resource$Environments$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Environments$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Environments$List,
-      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Environments$List
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListEnvironmentsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Environments$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Environments$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId'],
-        pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListEnvironmentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Environments$Get extends StandardParameters {
-    /**
-     * Required. An Environment id.
-     */
-    environmentId?: string;
-    /**
-     * Required. An Execution id.
-     */
-    executionId?: string;
-    /**
-     * Required. A History id.
-     */
-    historyId?: string;
-    /**
-     * Required. A Project id.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Environments$List
-    extends StandardParameters {
-    /**
-     * Required. An Execution id.
-     */
-    executionId?: string;
-    /**
-     * Required. A History id.
-     */
-    historyId?: string;
-    /**
-     * The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
-     */
-    pageSize?: number;
-    /**
-     * A continuation token to resume the query at the next item.
-     */
-    pageToken?: string;
-    /**
-     * Required. A Project id.
-     */
-    projectId?: string;
-  }
-
-  export class Resource$Executions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.executions.create
-     * @desc Creates an Execution.  The returned Execution will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.executions.create({
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "completionTime": {},
-     *       //   "creationTime": {},
-     *       //   "dimensionDefinitions": [],
-     *       //   "executionId": "my_executionId",
-     *       //   "outcome": {},
-     *       //   "specification": {},
-     *       //   "state": "my_state",
-     *       //   "testExecutionMatrixId": "my_testExecutionMatrixId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "completionTime": {},
-     *   //   "creationTime": {},
-     *   //   "dimensionDefinitions": [],
-     *   //   "executionId": "my_executionId",
-     *   //   "outcome": {},
-     *   //   "specification": {},
-     *   //   "state": "my_state",
-     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.executions.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().Execution} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-      params: Params$Resource$Executions$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Executions$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
-    create(
-      params: Params$Resource$Executions$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Executions$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    create(
-      params: Params$Resource$Executions$Create,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Execution>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Executions$Create
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Executions$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Executions$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId'],
-        pathParams: ['historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Execution>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Execution>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.executions.get
-     * @desc Gets an Execution.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.executions.get({
-     *     // An Execution id.
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "completionTime": {},
-     *   //   "creationTime": {},
-     *   //   "dimensionDefinitions": [],
-     *   //   "executionId": "my_executionId",
-     *   //   "outcome": {},
-     *   //   "specification": {},
-     *   //   "state": "my_state",
-     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.executions.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Executions$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Executions$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
-    get(
-      params: Params$Resource$Executions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Executions$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    get(
-      params: Params$Resource$Executions$Get,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Execution>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Executions$Get
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Executions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Executions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId'],
-        pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Execution>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Execution>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.executions.list
-     * @desc Lists Executions for a given History.  The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.executions.list({
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // The maximum number of Executions to fetch.
-     *     //
-     *     // Default value: 25. The server will use this default if the field is not set
-     *     // or has a value of 0.
-     *     //
-     *     // Optional.
-     *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
-     *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.executions.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Executions$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Executions$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListExecutionsResponse>;
-    list(
-      params: Params$Resource$Executions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Executions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>,
-      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Executions$List,
-      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Executions$List
-        | BodyResponseCallback<Schema$ListExecutionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListExecutionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListExecutionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Executions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Executions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId'],
-        pathParams: ['historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListExecutionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.executions.patch
-     * @desc Updates an existing Execution with the supplied partial entity.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.executions.patch({
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "completionTime": {},
-     *       //   "creationTime": {},
-     *       //   "dimensionDefinitions": [],
-     *       //   "executionId": "my_executionId",
-     *       //   "outcome": {},
-     *       //   "specification": {},
-     *       //   "state": "my_state",
-     *       //   "testExecutionMatrixId": "my_testExecutionMatrixId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "completionTime": {},
-     *   //   "creationTime": {},
-     *   //   "dimensionDefinitions": [],
-     *   //   "executionId": "my_executionId",
-     *   //   "outcome": {},
-     *   //   "specification": {},
-     *   //   "state": "my_state",
-     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.executions.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId Required.
-     * @param {string} params.historyId Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().Execution} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params: Params$Resource$Executions$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Executions$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Execution>;
-    patch(
-      params: Params$Resource$Executions$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Executions$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    patch(
-      params: Params$Resource$Executions$Patch,
-      callback: BodyResponseCallback<Schema$Execution>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Execution>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Executions$Patch
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Executions$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Executions$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId'],
-        pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Execution>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Execution>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Executions$Create
-    extends StandardParameters {
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-    /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     */
-    requestId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Execution;
-  }
-  export interface Params$Resource$Executions$Get extends StandardParameters {
-    /**
-     * An Execution id.  Required.
-     */
-    executionId?: string;
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Executions$List extends StandardParameters {
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     */
-    pageSize?: number;
-    /**
-     * A continuation token to resume the query at the next item.  Optional.
-     */
-    pageToken?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Executions$Patch extends StandardParameters {
-    /**
-     * Required.
-     */
-    executionId?: string;
-    /**
-     * Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id. Required.
-     */
-    projectId?: string;
-    /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     */
-    requestId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Execution;
-  }
-
-  export class Resource$Histories {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.histories.create
-     * @desc Creates a History.  The returned History will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.histories.create({
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "historyId": "my_historyId",
-     *       //   "name": "my_name",
-     *       //   "testPlatform": "my_testPlatform"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "historyId": "my_historyId",
-     *   //   "name": "my_name",
-     *   //   "testPlatform": "my_testPlatform"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.histories.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().History} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-      params: Params$Resource$Histories$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Histories$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$History>;
-    create(
-      params: Params$Resource$Histories$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Histories$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$History>,
-      callback: BodyResponseCallback<Schema$History>
-    ): void;
-    create(
-      params: Params$Resource$Histories$Create,
-      callback: BodyResponseCallback<Schema$History>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$History>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Histories$Create
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$History> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Histories$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Histories$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$History>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$History>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.histories.get
-     * @desc Gets a History.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.histories.get({
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "historyId": "my_historyId",
-     *   //   "name": "my_name",
-     *   //   "testPlatform": "my_testPlatform"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.histories.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Histories$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Histories$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$History>;
-    get(
-      params: Params$Resource$Histories$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Histories$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$History>,
-      callback: BodyResponseCallback<Schema$History>
-    ): void;
-    get(
-      params: Params$Resource$Histories$Get,
-      callback: BodyResponseCallback<Schema$History>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$History>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Histories$Get
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$History> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Histories$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Histories$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId'],
-        pathParams: ['historyId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$History>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$History>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.histories.list
-     * @desc Lists Histories for a given Project.  The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.histories.list({
-     *     // If set, only return histories with the given name.
-     *     //
-     *     // Optional.
-     *     filterByName: 'placeholder-value',
-     *     // The maximum number of Histories to fetch.
-     *     //
-     *     // Default value: 20. The server will use this default if the field is not set
-     *     // or has a value of 0. Any value greater than 100 will be treated as 100.
-     *     //
-     *     // Optional.
-     *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
-     *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "histories": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.histories.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filterByName If set, only return histories with the given name.  Optional.
-     * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Histories$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Histories$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListHistoriesResponse>;
-    list(
-      params: Params$Resource$Histories$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Histories$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHistoriesResponse>,
-      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Histories$List,
-      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Histories$List
-        | BodyResponseCallback<Schema$ListHistoriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListHistoriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListHistoriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListHistoriesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Histories$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Histories$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListHistoriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListHistoriesResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Histories$Create extends StandardParameters {
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-    /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     */
-    requestId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$History;
-  }
-  export interface Params$Resource$Histories$Get extends StandardParameters {
-    /**
-     * A History id.  Required.
-     */
-    historyId?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Histories$List extends StandardParameters {
-    /**
-     * If set, only return histories with the given name.  Optional.
-     */
-    filterByName?: string;
-    /**
-     * The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
-     */
-    pageSize?: number;
-    /**
-     * A continuation token to resume the query at the next item.  Optional.
-     */
-    pageToken?: string;
-    /**
-     * A Project id.  Required.
-     */
-    projectId?: string;
-  }
-
-  export class Resource$Perfmetricssummary {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.perfMetricsSummary.create
-     * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created.  May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.perfMetricsSummary.create({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
-     *     projectId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appStartTime": {},
-     *       //   "executionId": "my_executionId",
-     *       //   "graphicsStats": {},
-     *       //   "historyId": "my_historyId",
-     *       //   "perfEnvironment": {},
-     *       //   "perfMetrics": [],
-     *       //   "projectId": "my_projectId",
-     *       //   "stepId": "my_stepId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appStartTime": {},
-     *   //   "executionId": "my_executionId",
-     *   //   "graphicsStats": {},
-     *   //   "historyId": "my_historyId",
-     *   //   "perfEnvironment": {},
-     *   //   "perfMetrics": [],
-     *   //   "projectId": "my_projectId",
-     *   //   "stepId": "my_stepId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.perfMetricsSummary.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfMetricsSummary} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-      params: Params$Resource$Perfmetricssummary$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Perfmetricssummary$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$PerfMetricsSummary>;
-    create(
-      params: Params$Resource$Perfmetricssummary$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Perfmetricssummary$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$PerfMetricsSummary>,
-      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
-    ): void;
-    create(
-      params: Params$Resource$Perfmetricssummary$Create,
-      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Perfmetricssummary$Create
-        | BodyResponseCallback<Schema$PerfMetricsSummary>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$PerfMetricsSummary>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$PerfMetricsSummary>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$PerfMetricsSummary>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Perfmetricssummary$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Perfmetricssummary$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$PerfMetricsSummary>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Perfmetricssummary$Create
-    extends StandardParameters {
-    /**
-     * A tool results execution ID.
-     */
-    executionId?: string;
-    /**
-     * A tool results history ID.
-     */
-    historyId?: string;
-    /**
-     * The cloud project
-     */
-    projectId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$PerfMetricsSummary;
-  }
-
-  export class Resource$Perfsampleseries {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * toolresults.perfSampleSeries.create
-     * @desc Creates a PerfSampleSeries.  May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.perfSampleSeries.create({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
-     *     projectId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "basicPerfSampleSeries": {},
-     *       //   "executionId": "my_executionId",
-     *       //   "historyId": "my_historyId",
-     *       //   "projectId": "my_projectId",
-     *       //   "sampleSeriesId": "my_sampleSeriesId",
-     *       //   "stepId": "my_stepId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicPerfSampleSeries": {},
-     *   //   "executionId": "my_executionId",
-     *   //   "historyId": "my_historyId",
-     *   //   "projectId": "my_projectId",
-     *   //   "sampleSeriesId": "my_sampleSeriesId",
-     *   //   "stepId": "my_stepId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.perfSampleSeries.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfSampleSeries} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-      params: Params$Resource$Perfsampleseries$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Perfsampleseries$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$PerfSampleSeries>;
-    create(
-      params: Params$Resource$Perfsampleseries$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Perfsampleseries$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
-      callback: BodyResponseCallback<Schema$PerfSampleSeries>
-    ): void;
-    create(
-      params: Params$Resource$Perfsampleseries$Create,
-      callback: BodyResponseCallback<Schema$PerfSampleSeries>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Perfsampleseries$Create
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PerfSampleSeries> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Perfsampleseries$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Perfsampleseries$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$PerfSampleSeries>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$PerfSampleSeries>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.perfSampleSeries.get
-     * @desc Gets a PerfSampleSeries.  May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.perfSampleSeries.get({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
-     *     projectId: 'placeholder-value',
-     *     // A sample series id
-     *     sampleSeriesId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicPerfSampleSeries": {},
-     *   //   "executionId": "my_executionId",
-     *   //   "historyId": "my_historyId",
-     *   //   "projectId": "my_projectId",
-     *   //   "sampleSeriesId": "my_sampleSeriesId",
-     *   //   "stepId": "my_stepId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.perfSampleSeries.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params: Params$Resource$Perfsampleseries$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Perfsampleseries$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$PerfSampleSeries>;
-    get(
-      params: Params$Resource$Perfsampleseries$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Perfsampleseries$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
-      callback: BodyResponseCallback<Schema$PerfSampleSeries>
-    ): void;
-    get(
-      params: Params$Resource$Perfsampleseries$Get,
-      callback: BodyResponseCallback<Schema$PerfSampleSeries>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Perfsampleseries$Get
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$PerfSampleSeries>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$PerfSampleSeries> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Perfsampleseries$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Perfsampleseries$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [
-          'projectId',
-          'historyId',
-          'executionId',
-          'stepId',
-          'sampleSeriesId',
-        ],
-        pathParams: [
-          'executionId',
-          'historyId',
-          'projectId',
-          'sampleSeriesId',
-          'stepId',
-        ],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$PerfSampleSeries>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$PerfSampleSeries>(parameters);
-      }
-    }
-
-    /**
-     * toolresults.perfSampleSeries.list
-     * @desc Lists PerfSampleSeries for a given Step.  The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids.  May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const toolresults = google.toolresults('v1beta3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await toolresults.perfSampleSeries.list({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // Specify one or more PerfMetricType values such as CPU to filter the result
-     *     filter: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
-     *     projectId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "perfSampleSeries": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias toolresults.perfSampleSeries.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string=} params.filter Specify one or more PerfMetricType values such as CPU to filter the result
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params: Params$Resource$Perfsampleseries$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Perfsampleseries$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPerfSampleSeriesResponse>;
-    list(
-      params: Params$Resource$Perfsampleseries$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Perfsampleseries$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Perfsampleseries$List,
-      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Perfsampleseries$List
-        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListPerfSampleSeriesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Perfsampleseries$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Perfsampleseries$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Perfsampleseries$Create
-    extends StandardParameters {
-    /**
-     * A tool results execution ID.
-     */
-    executionId?: string;
-    /**
-     * A tool results history ID.
-     */
-    historyId?: string;
-    /**
-     * The cloud project
-     */
-    projectId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$PerfSampleSeries;
-  }
-  export interface Params$Resource$Perfsampleseries$Get
-    extends StandardParameters {
-    /**
-     * A tool results execution ID.
-     */
-    executionId?: string;
-    /**
-     * A tool results history ID.
-     */
-    historyId?: string;
-    /**
-     * The cloud project
-     */
-    projectId?: string;
-    /**
-     * A sample series id
-     */
-    sampleSeriesId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
-  }
-  export interface Params$Resource$Perfsampleseries$List
-    extends StandardParameters {
-    /**
-     * A tool results execution ID.
-     */
-    executionId?: string;
-    /**
-     * Specify one or more PerfMetricType values such as CPU to filter the result
-     */
-    filter?: string[];
-    /**
-     * A tool results history ID.
-     */
-    historyId?: string;
-    /**
-     * The cloud project
-     */
-    projectId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
-  }
-
   export class Resource$Projects {
     context: APIRequestContext;
+    histories: Resource$Projects$Histories;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.histories = new Resource$Projects$Histories(this.context);
     }
 
     /**
@@ -4564,7 +1882,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4699,7 +2017,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4742,15 +2060,19 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
 
-  export class Resource$Samples {
+  export class Resource$Projects$Histories {
     context: APIRequestContext;
+    executions: Resource$Projects$Histories$Executions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.executions = new Resource$Projects$Histories$Executions(
+        this.context
+      );
     }
 
     /**
-     * toolresults.samples.batchCreate
-     * @desc Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database).  May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * toolresults.projects.histories.create
+     * @desc Creates a History.  The returned History will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4774,23 +2096,25 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.samples.batchCreate({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
+     *   const res = await toolresults.projects.histories.create({
+     *     // A Project id.
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
-     *     // A sample series id
-     *     sampleSeriesId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
+     *     // A unique request ID for server to detect duplicated requests.
+     *     // For example, a UUID.
+     *     //
+     *     // Optional, but strongly recommended.
+     *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "perfSamples": []
+     *       //   "displayName": "my_displayName",
+     *       //   "historyId": "my_historyId",
+     *       //   "name": "my_name",
+     *       //   "testPlatform": "my_testPlatform"
      *       // }
      *     },
      *   });
@@ -4798,7 +2122,10 @@ export namespace toolresults_v1beta3 {
      *
      *   // Example response
      *   // {
-     *   //   "perfSamples": []
+     *   //   "displayName": "my_displayName",
+     *   //   "historyId": "my_historyId",
+     *   //   "name": "my_name",
+     *   //   "testPlatform": "my_testPlatform"
      *   // }
      * }
      *
@@ -4807,71 +2134,61 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.samples.batchCreate
+     * @alias toolresults.projects.histories.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().BatchCreatePerfSamplesRequest} params.requestBody Request body data
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {().History} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchCreate(
-      params: Params$Resource$Samples$Batchcreate,
+    create(
+      params: Params$Resource$Projects$Histories$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    batchCreate(
-      params?: Params$Resource$Samples$Batchcreate,
+    create(
+      params?: Params$Resource$Projects$Histories$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
-    batchCreate(
-      params: Params$Resource$Samples$Batchcreate,
+    ): GaxiosPromise<Schema$History>;
+    create(
+      params: Params$Resource$Projects$Histories$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    batchCreate(
-      params: Params$Resource$Samples$Batchcreate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    create(
+      params: Params$Resource$Projects$Histories$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback: BodyResponseCallback<Schema$History>
     ): void;
-    batchCreate(
-      params: Params$Resource$Samples$Batchcreate,
-      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    create(
+      params: Params$Resource$Projects$Histories$Create,
+      callback: BodyResponseCallback<Schema$History>
     ): void;
-    batchCreate(
-      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
-    ): void;
-    batchCreate(
+    create(callback: BodyResponseCallback<Schema$History>): void;
+    create(
       paramsOrCallback?:
-        | Params$Resource$Samples$Batchcreate
-        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | Params$Resource$Projects$Histories$Create
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>
-      | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$History> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Samples$Batchcreate;
+        {}) as Params$Resource$Projects$Histories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Samples$Batchcreate;
+        params = {} as Params$Resource$Projects$Histories$Create;
         options = {};
       }
 
@@ -4880,50 +2197,35 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate'
+              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: [
-          'projectId',
-          'historyId',
-          'executionId',
-          'stepId',
-          'sampleSeriesId',
-        ],
-        pathParams: [
-          'executionId',
-          'historyId',
-          'projectId',
-          'sampleSeriesId',
-          'stepId',
-        ],
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
+        createAPIRequest<Schema$History>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$History>(parameters);
       }
     }
 
     /**
-     * toolresults.samples.list
-     * @desc Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit  May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * toolresults.projects.histories.get
+     * @desc Gets a History.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4947,29 +2249,24 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.samples.list({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
+     *   const res = await toolresults.projects.histories.get({
+     *     // A History id.
+     *     //
+     *     // Required.
      *     historyId: 'placeholder-value',
-     *     // The default page size is 500 samples, and the maximum size is 5000. If
-     *     // the page_size is greater than 5000, the effective page size will be 5000
-     *     pageSize: 'placeholder-value',
-     *     // Optional, the next_page_token returned in the previous response
-     *     pageToken: 'placeholder-value',
-     *     // The cloud project
+     *     // A Project id.
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
-     *     // A sample series id
-     *     sampleSeriesId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "perfSamples": []
+     *   //   "displayName": "my_displayName",
+     *   //   "historyId": "my_historyId",
+     *   //   "name": "my_name",
+     *   //   "testPlatform": "my_testPlatform"
      *   // }
      * }
      *
@@ -4978,69 +2275,60 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.samples.list
+     * @alias toolresults.projects.histories.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {integer=} params.pageSize The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
-     * @param {string=} params.pageToken Optional, the next_page_token returned in the previous response
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(
-      params: Params$Resource$Samples$List,
+    get(
+      params: Params$Resource$Projects$Histories$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Samples$List,
+    get(
+      params?: Params$Resource$Projects$Histories$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListPerfSamplesResponse>;
-    list(
-      params: Params$Resource$Samples$List,
+    ): GaxiosPromise<Schema$History>;
+    get(
+      params: Params$Resource$Projects$Histories$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    list(
-      params: Params$Resource$Samples$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    get(
+      params: Params$Resource$Projects$Histories$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback: BodyResponseCallback<Schema$History>
     ): void;
-    list(
-      params: Params$Resource$Samples$List,
-      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    get(
+      params: Params$Resource$Projects$Histories$Get,
+      callback: BodyResponseCallback<Schema$History>
     ): void;
-    list(callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
-    list(
+    get(callback: BodyResponseCallback<Schema$History>): void;
+    get(
       paramsOrCallback?:
-        | Params$Resource$Samples$List
-        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | Params$Resource$Projects$Histories$Get
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListPerfSamplesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Samples$List;
+    ): void | GaxiosPromise<Schema$History> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Samples$List;
+        params = {} as Params$Resource$Projects$Histories$Get;
         options = {};
       }
 
@@ -5049,13 +2337,1460 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl +
-              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples'
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId'],
+        pathParams: ['historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$History>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$History>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.list
+     * @desc Lists Histories for a given Project.  The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.list({
+     *     // If set, only return histories with the given name.
+     *     //
+     *     // Optional.
+     *     filterByName: 'placeholder-value',
+     *     // The maximum number of Histories to fetch.
+     *     //
+     *     // Default value: 20. The server will use this default if the field is not set
+     *     // or has a value of 0. Any value greater than 100 will be treated as 100.
+     *     //
+     *     // Optional.
+     *     pageSize: 'placeholder-value',
+     *     // A continuation token to resume the query at the next item.
+     *     //
+     *     // Optional.
+     *     pageToken: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "histories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filterByName If set, only return histories with the given name.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHistoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHistoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$List,
+      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$List
+        | BodyResponseCallback<Schema$ListHistoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHistoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHistoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHistoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListHistoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListHistoriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Create
+    extends StandardParameters {
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$History;
+  }
+  export interface Params$Resource$Projects$Histories$Get
+    extends StandardParameters {
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$List
+    extends StandardParameters {
+    /**
+     * If set, only return histories with the given name.  Optional.
+     */
+    filterByName?: string;
+    /**
+     * The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
+  export class Resource$Projects$Histories$Executions {
+    context: APIRequestContext;
+    clusters: Resource$Projects$Histories$Executions$Clusters;
+    environments: Resource$Projects$Histories$Executions$Environments;
+    steps: Resource$Projects$Histories$Executions$Steps;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clusters = new Resource$Projects$Histories$Executions$Clusters(
+        this.context
+      );
+      this.environments = new Resource$Projects$Histories$Executions$Environments(
+        this.context
+      );
+      this.steps = new Resource$Projects$Histories$Executions$Steps(
+        this.context
+      );
+    }
+
+    /**
+     * toolresults.projects.histories.executions.create
+     * @desc Creates an Execution.  The returned Execution will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.create({
+     *     // A History id.
+     *     //
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *     // A unique request ID for server to detect duplicated requests.
+     *     // For example, a UUID.
+     *     //
+     *     // Optional, but strongly recommended.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "completionTime": {},
+     *       //   "creationTime": {},
+     *       //   "dimensionDefinitions": [],
+     *       //   "executionId": "my_executionId",
+     *       //   "outcome": {},
+     *       //   "specification": {},
+     *       //   "state": "my_state",
+     *       //   "testExecutionMatrixId": "my_testExecutionMatrixId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionTime": {},
+     *   //   "creationTime": {},
+     *   //   "dimensionDefinitions": [],
+     *   //   "executionId": "my_executionId",
+     *   //   "outcome": {},
+     *   //   "specification": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {().Execution} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Histories$Executions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Execution>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Create
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId'],
+        pathParams: ['historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Execution>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Execution>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.get
+     * @desc Gets an Execution.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.get({
+     *     // An Execution id.
+     *     //
+     *     // Required.
+     *     executionId: 'placeholder-value',
+     *     // A History id.
+     *     //
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionTime": {},
+     *   //   "creationTime": {},
+     *   //   "dimensionDefinitions": [],
+     *   //   "executionId": "my_executionId",
+     *   //   "outcome": {},
+     *   //   "specification": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId An Execution id.  Required.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Execution>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Get
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId'],
+        pathParams: ['executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Execution>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Execution>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.list
+     * @desc Lists Executions for a given History.  The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.list({
+     *     // A History id.
+     *     //
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // The maximum number of Executions to fetch.
+     *     //
+     *     // Default value: 25. The server will use this default if the field is not set
+     *     // or has a value of 0.
+     *     //
+     *     // Optional.
+     *     pageSize: 'placeholder-value',
+     *     // A continuation token to resume the query at the next item.
+     *     //
+     *     // Optional.
+     *     pageToken: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.historyId A History id.  Required.
+     * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$Executions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExecutionsResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$List,
+      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$List
+        | BodyResponseCallback<Schema$ListExecutionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExecutionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExecutionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExecutionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId'],
+        pathParams: ['historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExecutionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.patch
+     * @desc Updates an existing Execution with the supplied partial entity.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.patch({
+     *     // Required.
+     *     executionId: 'placeholder-value',
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // A Project id.
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *     // A unique request ID for server to detect duplicated requests.
+     *     // For example, a UUID.
+     *     //
+     *     // Optional, but strongly recommended.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "completionTime": {},
+     *       //   "creationTime": {},
+     *       //   "dimensionDefinitions": [],
+     *       //   "executionId": "my_executionId",
+     *       //   "outcome": {},
+     *       //   "specification": {},
+     *       //   "state": "my_state",
+     *       //   "testExecutionMatrixId": "my_testExecutionMatrixId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionTime": {},
+     *   //   "creationTime": {},
+     *   //   "dimensionDefinitions": [],
+     *   //   "executionId": "my_executionId",
+     *   //   "outcome": {},
+     *   //   "specification": {},
+     *   //   "state": "my_state",
+     *   //   "testExecutionMatrixId": "my_testExecutionMatrixId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId Required.
+     * @param {string} params.historyId Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {().Execution} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Histories$Executions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
+    patch(
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Execution>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Patch
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId'],
+        pathParams: ['executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Execution>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Execution>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Create
+    extends StandardParameters {
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Execution;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Get
+    extends StandardParameters {
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$List
+    extends StandardParameters {
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Patch
+    extends StandardParameters {
+    /**
+     * Required.
+     */
+    executionId?: string;
+    /**
+     * Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id. Required.
+     */
+    projectId?: string;
+    /**
+     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Execution;
+  }
+
+  export class Resource$Projects$Histories$Executions$Clusters {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * toolresults.projects.histories.executions.clusters.get
+     * @desc Retrieves a single screenshot cluster by its ID
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.clusters.get({
+     *     // A Cluster id
+     *     //
+     *     // Required.
+     *     clusterId: 'placeholder-value',
+     *     // An Execution id.
+     *     //
+     *     // Required.
+     *     executionId: 'placeholder-value',
+     *     // A History id.
+     *     //
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activity": "my_activity",
+     *   //   "clusterId": "my_clusterId",
+     *   //   "keyScreen": {},
+     *   //   "screens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.clusters.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterId A Cluster id  Required.
+     * @param {string} params.executionId An Execution id.  Required.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScreenshotCluster>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ScreenshotCluster>,
+      callback: BodyResponseCallback<Schema$ScreenshotCluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      callback: BodyResponseCallback<Schema$ScreenshotCluster>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Clusters$Get
+        | BodyResponseCallback<Schema$ScreenshotCluster>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScreenshotCluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScreenshotCluster>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ScreenshotCluster>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Clusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
+        pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ScreenshotCluster>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ScreenshotCluster>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.clusters.list
+     * @desc Lists Screenshot Clusters  Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.clusters.list({
+     *     // An Execution id.
+     *     //
+     *     // Required.
+     *     executionId: 'placeholder-value',
+     *     // A History id.
+     *     //
+     *     // Required.
+     *     historyId: 'placeholder-value',
+     *     // A Project id.
+     *     //
+     *     // Required.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.clusters.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId An Execution id.  Required.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScreenshotClustersResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Clusters$List
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListScreenshotClustersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Clusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId'],
+        pathParams: ['executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListScreenshotClustersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListScreenshotClustersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
+    extends StandardParameters {
+    /**
+     * A Cluster id  Required.
+     */
+    clusterId?: string;
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$List
+    extends StandardParameters {
+    /**
+     * An Execution id.  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
+  export class Resource$Projects$Histories$Executions$Environments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * toolresults.projects.histories.executions.environments.get
+     * @desc Gets an Environment.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.environments.get({
+     *     // Required. An Environment id.
+     *     environmentId: 'placeholder-value',
+     *     // Required. An Execution id.
+     *     executionId: 'placeholder-value',
+     *     // Required. A History id.
+     *     historyId: 'placeholder-value',
+     *     // Required. A Project id.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "completionTime": {},
+     *   //   "creationTime": {},
+     *   //   "dimensionValue": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "environmentId": "my_environmentId",
+     *   //   "environmentResult": {},
+     *   //   "executionId": "my_executionId",
+     *   //   "historyId": "my_historyId",
+     *   //   "projectId": "my_projectId",
+     *   //   "resultsStorage": {},
+     *   //   "shardSummaries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.environments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.environmentId Required. An Environment id.
+     * @param {string} params.executionId Required. An Execution id.
+     * @param {string} params.historyId Required. A History id.
+     * @param {string} params.projectId Required. A Project id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Environment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Environments$Get
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Environments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Environments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -5066,96 +3801,246 @@ export namespace toolresults_v1beta3 {
           'projectId',
           'historyId',
           'executionId',
-          'stepId',
-          'sampleSeriesId',
+          'environmentId',
         ],
-        pathParams: [
-          'executionId',
-          'historyId',
-          'projectId',
-          'sampleSeriesId',
-          'stepId',
-        ],
+        pathParams: ['environmentId', 'executionId', 'historyId', 'projectId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListPerfSamplesResponse>(
+        createAPIRequest<Schema$Environment>(
           parameters,
           callback as BodyResponseCallback<{} | void>
         );
       } else {
-        return createAPIRequest<Schema$ListPerfSamplesResponse>(parameters);
+        return createAPIRequest<Schema$Environment>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.environments.list
+     * @desc Lists Environments for a given Execution.  The Environments are sorted by display name.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.environments.list(
+     *     {
+     *       // Required. An Execution id.
+     *       executionId: 'placeholder-value',
+     *       // Required. A History id.
+     *       historyId: 'placeholder-value',
+     *       // The maximum number of Environments to fetch.
+     *       //
+     *       // Default value: 25. The server will use this default if the field is not set
+     *       // or has a value of 0.
+     *       pageSize: 'placeholder-value',
+     *       // A continuation token to resume the query at the next item.
+     *       pageToken: 'placeholder-value',
+     *       // Required. A Project id.
+     *       projectId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environments": [],
+     *   //   "executionId": "my_executionId",
+     *   //   "historyId": "my_historyId",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "projectId": "my_projectId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.environments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId Required. An Execution id.
+     * @param {string} params.historyId Required. A History id.
+     * @param {integer=} params.pageSize The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item.
+     * @param {string} params.projectId Required. A Project id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Environments$List
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEnvironmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Environments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Environments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId'],
+        pathParams: ['executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEnvironmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Samples$Batchcreate
+  export interface Params$Resource$Projects$Histories$Executions$Environments$Get
     extends StandardParameters {
     /**
-     * A tool results execution ID.
+     * Required. An Environment id.
+     */
+    environmentId?: string;
+    /**
+     * Required. An Execution id.
      */
     executionId?: string;
     /**
-     * A tool results history ID.
+     * Required. A History id.
      */
     historyId?: string;
     /**
-     * The cloud project
+     * Required. A Project id.
      */
     projectId?: string;
-    /**
-     * A sample series id
-     */
-    sampleSeriesId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
-  export interface Params$Resource$Samples$List extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Environments$List
+    extends StandardParameters {
     /**
-     * A tool results execution ID.
+     * Required. An Execution id.
      */
     executionId?: string;
     /**
-     * A tool results history ID.
+     * Required. A History id.
      */
     historyId?: string;
     /**
-     * The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
+     * The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
      */
     pageSize?: number;
     /**
-     * Optional, the next_page_token returned in the previous response
+     * A continuation token to resume the query at the next item.
      */
     pageToken?: string;
     /**
-     * The cloud project
+     * Required. A Project id.
      */
     projectId?: string;
-    /**
-     * A sample series id
-     */
-    sampleSeriesId?: string;
-    /**
-     * A tool results step ID.
-     */
-    stepId?: string;
   }
 
-  export class Resource$Steps {
+  export class Resource$Projects$Histories$Executions$Steps {
     context: APIRequestContext;
+    perfMetricsSummary: Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
+    perfSampleSeries: Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
+    testCases: Resource$Projects$Histories$Executions$Steps$Testcases;
+    thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.perfMetricsSummary = new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
+        this.context
+      );
+      this.perfSampleSeries = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
+        this.context
+      );
+      this.testCases = new Resource$Projects$Histories$Executions$Steps$Testcases(
+        this.context
+      );
+      this.thumbnails = new Resource$Projects$Histories$Executions$Steps$Thumbnails(
+        this.context
+      );
     }
 
     /**
-     * toolresults.steps.accessibilityClusters
+     * toolresults.projects.histories.executions.steps.accessibilityClusters
      * @desc Lists accessibility clusters for a given Step  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be                         invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
      * @example
      * // Before running the sample:
@@ -5180,23 +4065,25 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.accessibilityClusters({
-     *     // The accepted format is the canonical Unicode format with hyphen as a
-     *     // delimiter. Language must be lowercase, Language Script - Capitalized,
-     *     // Region - UPPERCASE.
-     *     // See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for
-     *     // details.
-     *     //
-     *     // Required.
-     *     locale: 'placeholder-value',
-     *     // A full resource name of the step.
-     *     // For example, projects/my-project/histories/bh.1234567890abcdef/executions/
-     *     // 1234567890123456789/steps/bs.1234567890abcdef
-     *     //
-     *     // Required.
-     *     name:
-     *       'projects/my-project/histories/my-historie/executions/my-execution/steps/my-step',
-     *   });
+     *   const res = await toolresults.projects.histories.executions.steps.accessibilityClusters(
+     *     {
+     *       // The accepted format is the canonical Unicode format with hyphen as a
+     *       // delimiter. Language must be lowercase, Language Script - Capitalized,
+     *       // Region - UPPERCASE.
+     *       // See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for
+     *       // details.
+     *       //
+     *       // Required.
+     *       locale: 'placeholder-value',
+     *       // A full resource name of the step.
+     *       // For example, projects/my-project/histories/bh.1234567890abcdef/executions/
+     *       // 1234567890123456789/steps/bs.1234567890abcdef
+     *       //
+     *       // Required.
+     *       name:
+     *         'projects/my-project/histories/my-historie/executions/my-execution/steps/my-step',
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5211,7 +4098,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.accessibilityClusters
+     * @alias toolresults.projects.histories.executions.steps.accessibilityClusters
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5222,20 +4109,20 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     accessibilityClusters(
-      params: Params$Resource$Steps$Accessibilityclusters,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     accessibilityClusters(
-      params?: Params$Resource$Steps$Accessibilityclusters,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListStepAccessibilityClustersResponse>;
     accessibilityClusters(
-      params: Params$Resource$Steps$Accessibilityclusters,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     accessibilityClusters(
-      params: Params$Resource$Steps$Accessibilityclusters,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>,
@@ -5244,7 +4131,7 @@ export namespace toolresults_v1beta3 {
       >
     ): void;
     accessibilityClusters(
-      params: Params$Resource$Steps$Accessibilityclusters,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
       callback: BodyResponseCallback<
         Schema$ListStepAccessibilityClustersResponse
       >
@@ -5256,7 +4143,7 @@ export namespace toolresults_v1beta3 {
     ): void;
     accessibilityClusters(
       paramsOrCallback?:
-        | Params$Resource$Steps$Accessibilityclusters
+        | Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
         | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5272,12 +4159,12 @@ export namespace toolresults_v1beta3 {
       | GaxiosPromise<Schema$ListStepAccessibilityClustersResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Steps$Accessibilityclusters;
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Accessibilityclusters;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
         options = {};
       }
 
@@ -5286,7 +4173,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5315,7 +4202,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.create
+     * toolresults.projects.histories.executions.steps.create
      * @desc Creates a Step.  The returned Step will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
@@ -5340,7 +4227,7 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.create({
+     *   const res = await toolresults.projects.histories.executions.steps.create({
      *     // Required. An Execution id.
      *     executionId: 'placeholder-value',
      *     // Required. A History id.
@@ -5402,7 +4289,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.create
+     * @alias toolresults.projects.histories.executions.steps.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5416,31 +4303,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-      params: Params$Resource$Steps$Create,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     create(
-      params?: Params$Resource$Steps$Create,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Step>;
     create(
-      params: Params$Resource$Steps$Create,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     create(
-      params: Params$Resource$Steps$Create,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Step>,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     create(
-      params: Params$Resource$Steps$Create,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     create(callback: BodyResponseCallback<Schema$Step>): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Steps$Create
+        | Params$Resource$Projects$Histories$Executions$Steps$Create
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5452,12 +4339,13 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Step> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Steps$Create;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Create;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Create;
         options = {};
       }
 
@@ -5466,7 +4354,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5494,7 +4382,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.get
+     * toolresults.projects.histories.executions.steps.get
      * @desc Gets a Step.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist
      * @example
      * // Before running the sample:
@@ -5519,7 +4407,7 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.get({
+     *   const res = await toolresults.projects.histories.executions.steps.get({
      *     // A Execution id.
      *     //
      *     // Required.
@@ -5564,7 +4452,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.get
+     * @alias toolresults.projects.histories.executions.steps.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5577,31 +4465,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     get(
-      params: Params$Resource$Steps$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Steps$Get,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Step>;
     get(
-      params: Params$Resource$Steps$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Steps$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Step>,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     get(
-      params: Params$Resource$Steps$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     get(callback: BodyResponseCallback<Schema$Step>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Steps$Get
+        | Params$Resource$Projects$Histories$Executions$Steps$Get
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5613,12 +4501,13 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Step> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Steps$Get;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Get;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Get;
         options = {};
       }
 
@@ -5627,7 +4516,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5655,7 +4544,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.getPerfMetricsSummary
+     * toolresults.projects.histories.executions.steps.getPerfMetricsSummary
      * @desc Retrieves a PerfMetricsSummary.  May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist
      * @example
      * // Before running the sample:
@@ -5680,16 +4569,18 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.getPerfMetricsSummary({
-     *     // A tool results execution ID.
-     *     executionId: 'placeholder-value',
-     *     // A tool results history ID.
-     *     historyId: 'placeholder-value',
-     *     // The cloud project
-     *     projectId: 'placeholder-value',
-     *     // A tool results step ID.
-     *     stepId: 'placeholder-value',
-     *   });
+     *   const res = await toolresults.projects.histories.executions.steps.getPerfMetricsSummary(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5710,7 +4601,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.getPerfMetricsSummary
+     * @alias toolresults.projects.histories.executions.steps.getPerfMetricsSummary
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5723,25 +4614,25 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     getPerfMetricsSummary(
-      params: Params$Resource$Steps$Getperfmetricssummary,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     getPerfMetricsSummary(
-      params?: Params$Resource$Steps$Getperfmetricssummary,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PerfMetricsSummary>;
     getPerfMetricsSummary(
-      params: Params$Resource$Steps$Getperfmetricssummary,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     getPerfMetricsSummary(
-      params: Params$Resource$Steps$Getperfmetricssummary,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
       options: MethodOptions | BodyResponseCallback<Schema$PerfMetricsSummary>,
       callback: BodyResponseCallback<Schema$PerfMetricsSummary>
     ): void;
     getPerfMetricsSummary(
-      params: Params$Resource$Steps$Getperfmetricssummary,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
       callback: BodyResponseCallback<Schema$PerfMetricsSummary>
     ): void;
     getPerfMetricsSummary(
@@ -5749,7 +4640,7 @@ export namespace toolresults_v1beta3 {
     ): void;
     getPerfMetricsSummary(
       paramsOrCallback?:
-        | Params$Resource$Steps$Getperfmetricssummary
+        | Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
         | BodyResponseCallback<Schema$PerfMetricsSummary>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5765,12 +4656,12 @@ export namespace toolresults_v1beta3 {
       | GaxiosPromise<Schema$PerfMetricsSummary>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Steps$Getperfmetricssummary;
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Getperfmetricssummary;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
         options = {};
       }
 
@@ -5779,7 +4670,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5807,7 +4698,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.list
+     * toolresults.projects.histories.executions.steps.list
      * @desc Lists Steps for a given Execution.  The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be                         invalid; e.g. if an attempt is made to list the                         children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
@@ -5832,7 +4723,7 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.list({
+     *   const res = await toolresults.projects.histories.executions.steps.list({
      *     // A Execution id.
      *     //
      *     // Required.
@@ -5871,7 +4762,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.list
+     * @alias toolresults.projects.histories.executions.steps.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5885,31 +4776,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-      params: Params$Resource$Steps$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Steps$List,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListStepsResponse>;
     list(
-      params: Params$Resource$Steps$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Steps$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListStepsResponse>,
       callback: BodyResponseCallback<Schema$ListStepsResponse>
     ): void;
     list(
-      params: Params$Resource$Steps$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
       callback: BodyResponseCallback<Schema$ListStepsResponse>
     ): void;
     list(callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Steps$List
+        | Params$Resource$Projects$Histories$Executions$Steps$List
         | BodyResponseCallback<Schema$ListStepsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5924,12 +4815,13 @@ export namespace toolresults_v1beta3 {
       | void
       | GaxiosPromise<Schema$ListStepsResponse>
       | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Steps$List;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$List;
         options = {};
       }
 
@@ -5938,7 +4830,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5966,7 +4858,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.patch
+     * toolresults.projects.histories.executions.steps.patch
      * @desc Updates an existing Step with the supplied partial entity.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal                         (e.g try to upload a duplicate xml file), if the                         updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
@@ -5991,7 +4883,7 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.patch({
+     *   const res = await toolresults.projects.histories.executions.steps.patch({
      *     // A Execution id.
      *     //
      *     // Required.
@@ -6063,7 +4955,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.patch
+     * @alias toolresults.projects.histories.executions.steps.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6078,31 +4970,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     patch(
-      params: Params$Resource$Steps$Patch,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     patch(
-      params?: Params$Resource$Steps$Patch,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Step>;
     patch(
-      params: Params$Resource$Steps$Patch,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     patch(
-      params: Params$Resource$Steps$Patch,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Step>,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     patch(
-      params: Params$Resource$Steps$Patch,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     patch(callback: BodyResponseCallback<Schema$Step>): void;
     patch(
       paramsOrCallback?:
-        | Params$Resource$Steps$Patch
+        | Params$Resource$Projects$Histories$Executions$Steps$Patch
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -6114,12 +5006,13 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Step> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Steps$Patch;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Patch;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Patch;
         options = {};
       }
 
@@ -6128,7 +5021,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6156,7 +5049,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.steps.publishXunitXmlFiles
+     * toolresults.projects.histories.executions.steps.publishXunitXmlFiles
      * @desc Publish xml files to an existing Step.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
@@ -6181,33 +5074,35 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.steps.publishXunitXmlFiles({
-     *     // A Execution id.
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A Step id.
-     *     // Note: This step must include a TestExecutionStep.
-     *     //
-     *     // Required.
-     *     stepId: 'placeholder-value',
+     *   const res = await toolresults.projects.histories.executions.steps.publishXunitXmlFiles(
+     *     {
+     *       // A Execution id.
+     *       //
+     *       // Required.
+     *       executionId: 'placeholder-value',
+     *       // A History id.
+     *       //
+     *       // Required.
+     *       historyId: 'placeholder-value',
+     *       // A Project id.
+     *       //
+     *       // Required.
+     *       projectId: 'placeholder-value',
+     *       // A Step id.
+     *       // Note: This step must include a TestExecutionStep.
+     *       //
+     *       // Required.
+     *       stepId: 'placeholder-value',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "xunitXmlFiles": []
-     *       // }
-     *     },
-     *   });
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "xunitXmlFiles": []
+     *         // }
+     *       },
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6235,7 +5130,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.steps.publishXunitXmlFiles
+     * @alias toolresults.projects.histories.executions.steps.publishXunitXmlFiles
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6249,31 +5144,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     publishXunitXmlFiles(
-      params: Params$Resource$Steps$Publishxunitxmlfiles,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     publishXunitXmlFiles(
-      params?: Params$Resource$Steps$Publishxunitxmlfiles,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Step>;
     publishXunitXmlFiles(
-      params: Params$Resource$Steps$Publishxunitxmlfiles,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     publishXunitXmlFiles(
-      params: Params$Resource$Steps$Publishxunitxmlfiles,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
       options: MethodOptions | BodyResponseCallback<Schema$Step>,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     publishXunitXmlFiles(
-      params: Params$Resource$Steps$Publishxunitxmlfiles,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
       callback: BodyResponseCallback<Schema$Step>
     ): void;
     publishXunitXmlFiles(callback: BodyResponseCallback<Schema$Step>): void;
     publishXunitXmlFiles(
       paramsOrCallback?:
-        | Params$Resource$Steps$Publishxunitxmlfiles
+        | Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -6286,12 +5181,12 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Step> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Steps$Publishxunitxmlfiles;
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Steps$Publishxunitxmlfiles;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
         options = {};
       }
 
@@ -6300,7 +5195,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6328,7 +5223,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Steps$Accessibilityclusters
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
     extends StandardParameters {
     /**
      * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
@@ -6339,7 +5234,8 @@ export namespace toolresults_v1beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Steps$Create extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Create
+    extends StandardParameters {
     /**
      * Required. An Execution id.
      */
@@ -6362,7 +5258,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Steps$Get extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Get
+    extends StandardParameters {
     /**
      * A Execution id.  Required.
      */
@@ -6380,7 +5277,7 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Steps$Getperfmetricssummary
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
     extends StandardParameters {
     /**
      * A tool results execution ID.
@@ -6399,7 +5296,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Steps$List extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$List
+    extends StandardParameters {
     /**
      * A Execution id.  Required.
      */
@@ -6421,7 +5319,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Steps$Patch extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
+    extends StandardParameters {
     /**
      * A Execution id.  Required.
      */
@@ -6448,7 +5347,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Steps$Publishxunitxmlfiles
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
     extends StandardParameters {
     /**
      * A Execution id.  Required.
@@ -6473,14 +5372,1185 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$PublishXunitXmlFilesRequest;
   }
 
-  export class Resource$Testcases {
+  export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * toolresults.testCases.get
+     * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
+     * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created.  May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfMetricsSummary.create(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "appStartTime": {},
+     *         //   "executionId": "my_executionId",
+     *         //   "graphicsStats": {},
+     *         //   "historyId": "my_historyId",
+     *         //   "perfEnvironment": {},
+     *         //   "perfMetrics": [],
+     *         //   "projectId": "my_projectId",
+     *         //   "stepId": "my_stepId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appStartTime": {},
+     *   //   "executionId": "my_executionId",
+     *   //   "graphicsStats": {},
+     *   //   "historyId": "my_historyId",
+     *   //   "perfEnvironment": {},
+     *   //   "perfMetrics": [],
+     *   //   "projectId": "my_projectId",
+     *   //   "stepId": "my_stepId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfMetricsSummary.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string} params.historyId A tool results history ID.
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.stepId A tool results step ID.
+     * @param {().PerfMetricsSummary} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfMetricsSummary>;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
+        | BodyResponseCallback<Schema$PerfMetricsSummary>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PerfMetricsSummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PerfMetricsSummary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PerfMetricsSummary>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PerfMetricsSummary>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PerfMetricsSummary;
+  }
+
+  export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
+    context: APIRequestContext;
+    samples: Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.samples = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
+        this.context
+      );
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.perfSampleSeries.create
+     * @desc Creates a PerfSampleSeries.  May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.create(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "basicPerfSampleSeries": {},
+     *         //   "executionId": "my_executionId",
+     *         //   "historyId": "my_historyId",
+     *         //   "projectId": "my_projectId",
+     *         //   "sampleSeriesId": "my_sampleSeriesId",
+     *         //   "stepId": "my_stepId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicPerfSampleSeries": {},
+     *   //   "executionId": "my_executionId",
+     *   //   "historyId": "my_historyId",
+     *   //   "projectId": "my_projectId",
+     *   //   "sampleSeriesId": "my_sampleSeriesId",
+     *   //   "stepId": "my_stepId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string} params.historyId A tool results history ID.
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.stepId A tool results step ID.
+     * @param {().PerfSampleSeries} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfSampleSeries>;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PerfSampleSeries> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PerfSampleSeries>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$PerfSampleSeries>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.perfSampleSeries.get
+     * @desc Gets a PerfSampleSeries.  May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.get(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A sample series id
+     *       sampleSeriesId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basicPerfSampleSeries": {},
+     *   //   "executionId": "my_executionId",
+     *   //   "historyId": "my_historyId",
+     *   //   "projectId": "my_projectId",
+     *   //   "sampleSeriesId": "my_sampleSeriesId",
+     *   //   "stepId": "my_stepId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string} params.historyId A tool results history ID.
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.sampleSeriesId A sample series id
+     * @param {string} params.stepId A tool results step ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfSampleSeries>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PerfSampleSeries>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PerfSampleSeries> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
+        ],
+        pathParams: [
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PerfSampleSeries>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$PerfSampleSeries>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.perfSampleSeries.list
+     * @desc Lists PerfSampleSeries for a given Step.  The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids.  May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.list(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // Specify one or more PerfMetricType values such as CPU to filter the result
+     *       filter: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "perfSampleSeries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string=} params.filter Specify one or more PerfMetricType values such as CPU to filter the result
+     * @param {string} params.historyId A tool results history ID.
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.stepId A tool results step ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPerfSampleSeriesResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPerfSampleSeriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PerfSampleSeries;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * Specify one or more PerfMetricType values such as CPU to filter the result
+     */
+    filter?: string[];
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+
+  export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
+     * @desc Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database).  May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A sample series id
+     *       sampleSeriesId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "perfSamples": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "perfSamples": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string} params.historyId A tool results history ID.
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.sampleSeriesId A sample series id
+     * @param {string} params.stepId A tool results step ID.
+     * @param {().BatchCreatePerfSamplesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
+        ],
+        pathParams: [
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
+     * @desc Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit  May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const toolresults = google.toolresults('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list(
+     *     {
+     *       // A tool results execution ID.
+     *       executionId: 'placeholder-value',
+     *       // A tool results history ID.
+     *       historyId: 'placeholder-value',
+     *       // The default page size is 500 samples, and the maximum size is 5000. If
+     *       // the page_size is greater than 5000, the effective page size will be 5000
+     *       pageSize: 'placeholder-value',
+     *       // Optional, the next_page_token returned in the previous response
+     *       pageToken: 'placeholder-value',
+     *       // The cloud project
+     *       projectId: 'placeholder-value',
+     *       // A sample series id
+     *       sampleSeriesId: 'placeholder-value',
+     *       // A tool results step ID.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "perfSamples": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A tool results execution ID.
+     * @param {string} params.historyId A tool results history ID.
+     * @param {integer=} params.pageSize The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
+     * @param {string=} params.pageToken Optional, the next_page_token returned in the previous response
+     * @param {string} params.projectId The cloud project
+     * @param {string} params.sampleSeriesId A sample series id
+     * @param {string} params.stepId A tool results step ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPerfSamplesResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPerfSamplesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
+        ],
+        pathParams: [
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPerfSamplesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPerfSamplesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreatePerfSamplesRequest;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
+    extends StandardParameters {
+    /**
+     * A tool results execution ID.
+     */
+    executionId?: string;
+    /**
+     * A tool results history ID.
+     */
+    historyId?: string;
+    /**
+     * The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
+     */
+    pageSize?: number;
+    /**
+     * Optional, the next_page_token returned in the previous response
+     */
+    pageToken?: string;
+    /**
+     * The cloud project
+     */
+    projectId?: string;
+    /**
+     * A sample series id
+     */
+    sampleSeriesId?: string;
+    /**
+     * A tool results step ID.
+     */
+    stepId?: string;
+  }
+
+  export class Resource$Projects$Histories$Executions$Steps$Testcases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * toolresults.projects.histories.executions.steps.testCases.get
      * @desc Gets details of a Test Case for a Step. Experimental test cases API. Still in active development.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist
      * @example
      * // Before running the sample:
@@ -6505,29 +6575,31 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.testCases.get({
-     *     // A Execution id
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A Step id.
-     *     // Note: This step must include a TestExecutionStep.
-     *     //
-     *     // Required.
-     *     stepId: 'placeholder-value',
-     *     // A Test Case id.
-     *     //
-     *     // Required.
-     *     testCaseId: 'placeholder-value',
-     *   });
+     *   const res = await toolresults.projects.histories.executions.steps.testCases.get(
+     *     {
+     *       // A Execution id
+     *       //
+     *       // Required.
+     *       executionId: 'placeholder-value',
+     *       // A History id.
+     *       //
+     *       // Required.
+     *       historyId: 'placeholder-value',
+     *       // A Project id.
+     *       //
+     *       // Required.
+     *       projectId: 'placeholder-value',
+     *       // A Step id.
+     *       // Note: This step must include a TestExecutionStep.
+     *       //
+     *       // Required.
+     *       stepId: 'placeholder-value',
+     *       // A Test Case id.
+     *       //
+     *       // Required.
+     *       testCaseId: 'placeholder-value',
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6549,7 +6621,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.testCases.get
+     * @alias toolresults.projects.histories.executions.steps.testCases.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6563,31 +6635,31 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     get(
-      params: Params$Resource$Testcases$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Testcases$Get,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestCase>;
     get(
-      params: Params$Resource$Testcases$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Testcases$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TestCase>,
       callback: BodyResponseCallback<Schema$TestCase>
     ): void;
     get(
-      params: Params$Resource$Testcases$Get,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
       callback: BodyResponseCallback<Schema$TestCase>
     ): void;
     get(callback: BodyResponseCallback<Schema$TestCase>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Testcases$Get
+        | Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
         | BodyResponseCallback<Schema$TestCase>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -6599,12 +6671,13 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$TestCase>
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$TestCase> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Testcases$Get;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Testcases$Get;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
         options = {};
       }
 
@@ -6613,7 +6686,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6653,7 +6726,7 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.testCases.list
+     * toolresults.projects.histories.executions.steps.testCases.list
      * @desc Lists Test Cases attached to a Step. Experimental test cases API. Still in active development.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist
      * @example
      * // Before running the sample:
@@ -6678,36 +6751,38 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.testCases.list({
-     *     // A Execution id
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // The maximum number of TestCases to fetch.
-     *     //
-     *     // Default value: 100. The server will use this default if the field is not
-     *     // set or has a value of 0.
-     *     //
-     *     // Optional.
-     *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
-     *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A Step id.
-     *     // Note: This step must include a TestExecutionStep.
-     *     //
-     *     // Required.
-     *     stepId: 'placeholder-value',
-     *   });
+     *   const res = await toolresults.projects.histories.executions.steps.testCases.list(
+     *     {
+     *       // A Execution id
+     *       //
+     *       // Required.
+     *       executionId: 'placeholder-value',
+     *       // A History id.
+     *       //
+     *       // Required.
+     *       historyId: 'placeholder-value',
+     *       // The maximum number of TestCases to fetch.
+     *       //
+     *       // Default value: 100. The server will use this default if the field is not
+     *       // set or has a value of 0.
+     *       //
+     *       // Optional.
+     *       pageSize: 'placeholder-value',
+     *       // A continuation token to resume the query at the next item.
+     *       //
+     *       // Optional.
+     *       pageToken: 'placeholder-value',
+     *       // A Project id.
+     *       //
+     *       // Required.
+     *       projectId: 'placeholder-value',
+     *       // A Step id.
+     *       // Note: This step must include a TestExecutionStep.
+     *       //
+     *       // Required.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6722,7 +6797,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.testCases.list
+     * @alias toolresults.projects.histories.executions.steps.testCases.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6737,33 +6812,33 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-      params: Params$Resource$Testcases$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Testcases$List,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTestCasesResponse>;
     list(
-      params: Params$Resource$Testcases$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Testcases$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListTestCasesResponse>,
       callback: BodyResponseCallback<Schema$ListTestCasesResponse>
     ): void;
     list(
-      params: Params$Resource$Testcases$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       callback: BodyResponseCallback<Schema$ListTestCasesResponse>
     ): void;
     list(callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Testcases$List
+        | Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
         | BodyResponseCallback<Schema$ListTestCasesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -6778,12 +6853,13 @@ export namespace toolresults_v1beta3 {
       | void
       | GaxiosPromise<Schema$ListTestCasesResponse>
       | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Testcases$List;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Testcases$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
         options = {};
       }
 
@@ -6792,7 +6868,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6820,7 +6896,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Testcases$Get extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
+    extends StandardParameters {
     /**
      * A Execution id  Required.
      */
@@ -6842,7 +6919,8 @@ export namespace toolresults_v1beta3 {
      */
     testCaseId?: string;
   }
-  export interface Params$Resource$Testcases$List extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
+    extends StandardParameters {
     /**
      * A Execution id  Required.
      */
@@ -6869,14 +6947,14 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
 
-  export class Resource$Thumbnails {
+  export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * toolresults.thumbnails.list
+     * toolresults.projects.histories.executions.steps.thumbnails.list
      * @desc Lists thumbnails of images attached to a step.  May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the                       project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images               do not exist
      * @example
      * // Before running the sample:
@@ -6901,35 +6979,37 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.thumbnails.list({
-     *     // An Execution id.
-     *     //
-     *     // Required.
-     *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
-     *     historyId: 'placeholder-value',
-     *     // The maximum number of thumbnails to fetch.
-     *     //
-     *     // Default value: 50. The server will use this default if the field is not set
-     *     // or has a value of 0.
-     *     //
-     *     // Optional.
-     *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
-     *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
-     *     projectId: 'placeholder-value',
-     *     // A Step id.
-     *     //
-     *     // Required.
-     *     stepId: 'placeholder-value',
-     *   });
+     *   const res = await toolresults.projects.histories.executions.steps.thumbnails.list(
+     *     {
+     *       // An Execution id.
+     *       //
+     *       // Required.
+     *       executionId: 'placeholder-value',
+     *       // A History id.
+     *       //
+     *       // Required.
+     *       historyId: 'placeholder-value',
+     *       // The maximum number of thumbnails to fetch.
+     *       //
+     *       // Default value: 50. The server will use this default if the field is not set
+     *       // or has a value of 0.
+     *       //
+     *       // Optional.
+     *       pageSize: 'placeholder-value',
+     *       // A continuation token to resume the query at the next item.
+     *       //
+     *       // Optional.
+     *       pageToken: 'placeholder-value',
+     *       // A Project id.
+     *       //
+     *       // Required.
+     *       projectId: 'placeholder-value',
+     *       // A Step id.
+     *       //
+     *       // Required.
+     *       stepId: 'placeholder-value',
+     *     }
+     *   );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6944,7 +7024,7 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.thumbnails.list
+     * @alias toolresults.projects.histories.executions.steps.thumbnails.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6959,27 +7039,27 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-      params: Params$Resource$Thumbnails$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Thumbnails$List,
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListStepThumbnailsResponse>;
     list(
-      params: Params$Resource$Thumbnails$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Thumbnails$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
       callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
     ): void;
     list(
-      params: Params$Resource$Thumbnails$List,
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
     ): void;
     list(
@@ -6987,7 +7067,7 @@ export namespace toolresults_v1beta3 {
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Thumbnails$List
+        | Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
         | BodyResponseCallback<Schema$ListStepThumbnailsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -7002,12 +7082,13 @@ export namespace toolresults_v1beta3 {
       | void
       | GaxiosPromise<Schema$ListStepThumbnailsResponse>
       | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Thumbnails$List;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Thumbnails$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
         options = {};
       }
 
@@ -7016,7 +7097,7 @@ export namespace toolresults_v1beta3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://toolresults.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7044,7 +7125,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Thumbnails$List extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
+    extends StandardParameters {
     /**
      * An Execution id.  Required.
      */
