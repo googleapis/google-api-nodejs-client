@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20200707",
+  "revision": "20200722",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1754,7 +1754,7 @@
       "type": "object"
     },
     "TypedMessage": {
-      "description": "Message that groups a protocol type_id (as defined by MessageSet),\nwith an encoded message of that type.  Its use is similar to\nMessageSet, except it represents a single (type, encoded message)\ninstead of a set.\n\nTo fill for known protocol type:\n  MyProtocolMsg proto;\n  TypedMessage typed_msg;\n  typed_msg.set_type_id(MyProtocolMsg::MESSAGE_TYPE_ID);\n  proto.AppendToCord(typed_msg.mutable_message());\n\nTo fill for unknown protocol type:\n  ProtocolMessage proto;\n  TypedMessage typed_msg;\n  typed_msg.set_type_id(proto.GetMapper()->type_id());\n  proto.AppendToCord(typed_msg.mutable_message());",
+      "description": "Message that groups a protocol type_id (as defined by MessageSet),\nwith an encoded message of that type.  Its use is similar to\nMessageSet, except it represents a single (type, encoded message)\ninstead of a set.\n\nTo embed \"proto\" inside \"typed_msg\":\n  MyProtoMessage proto;\n  TypedMessage typed_msg;\n  typed_msg.set_type_id(proto2::bridge::GetTypeId(proto));\n  proto.AppendToCord(typed_msg.mutable_message());\n\nError handling is omitted from the sample code above. GetTypeId() will return\n0 for messages that don't have a TypeId specified.",
       "id": "TypedMessage",
       "properties": {
         "message": {
