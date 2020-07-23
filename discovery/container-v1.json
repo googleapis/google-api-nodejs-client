@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20200619",
+  "revision": "20200709",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3698,6 +3698,10 @@
         },
         "minCpuPlatform": {
           "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
+          "type": "string"
+        },
+        "nodeGroup": {
+          "description": "Setting this field will assign instances of this\npool to run on the specified node group. This is useful for running\nworkloads on [sole tenant\nnodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).",
           "type": "string"
         },
         "oauthScopes": {

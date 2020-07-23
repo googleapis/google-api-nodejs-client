@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20200619",
+  "revision": "20200709",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3998,6 +3998,10 @@
           "description": "Minimum CPU platform to be used by this instance. The instance may be\nscheduled on the specified or newer CPU platform. Applicable values are the\nfriendly names of CPU platforms, such as\n<code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or\n<code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more\ninformation, read [how to specify min CPU\nplatform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
           "type": "string"
         },
+        "nodeGroup": {
+          "description": "Setting this field will assign instances of this\npool to run on the specified node group. This is useful for running\nworkloads on [sole tenant\nnodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).",
+          "type": "string"
+        },
         "oauthScopes": {
           "description": "The set of Google API scopes to be made available on all of the\nnode VMs under the \"default\" service account.\n\nThe following scopes are recommended, but not required, and by default are\nnot included:\n\n* `https://www.googleapis.com/auth/compute` is required for mounting\npersistent storage on your nodes.\n* `https://www.googleapis.com/auth/devstorage.read_only` is required for\ncommunicating with **gcr.io**\n(the [Google Container\nRegistry](https://cloud.google.com/container-registry/)).\n\nIf unspecified, no scopes are added, unless Cloud Logging or Cloud\nMonitoring are enabled, in which case their required scopes will be added.",
           "items": {
@@ -5395,6 +5399,10 @@
       "properties": {
         "identityNamespace": {
           "description": "IAM Identity Namespace to attach all Kubernetes Service Accounts to.",
+          "type": "string"
+        },
+        "identityProvider": {
+          "description": "identity provider is the third party identity provider.",
           "type": "string"
         },
         "workloadPool": {
