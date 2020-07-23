@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20200703",
+  "revision": "20200717",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -324,7 +324,7 @@
           "type": "object"
         },
         "methodName": {
-          "description": "The name of the service method or operation.\nFor API calls, this should be the name of the API method.\nFor example,\n\n    \"google.datastore.v1.Datastore.RunQuery\"\n    \"google.logging.v1.LoggingService.DeleteLog\"",
+          "description": "The name of the service method or operation.\nFor API calls, this should be the name of the API method.\nFor example,\n\n    \"google.cloud.bigquery.v2.TableService.InsertTable\"\n    \"google.logging.v2.ConfigServiceV2.CreateSink\"",
           "type": "string"
         },
         "numResponseItems": {
@@ -349,7 +349,7 @@
           "description": "The resource location information."
         },
         "resourceName": {
-          "description": "The resource or collection that is the target of the operation.\nThe name is a scheme-less URI, not including the API service name.\nFor example:\n\n    \"shelves/SHELF_ID/books\"\n    \"shelves/SHELF_ID/books/BOOK_ID\"",
+          "description": "The resource or collection that is the target of the operation.\nThe name is a scheme-less URI, not including the API service name.\nFor example:\n\n    \"projects/PROJECT_ID/zones/us-central1-a/instances\"\n    \"projects/PROJECT_ID/datasets/DATASET_ID\"",
           "type": "string"
         },
         "resourceOriginalState": {
@@ -373,11 +373,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Deprecated, use `metadata` field instead.\nOther service-specific data about the request, response, and other\nactivities.",
+          "description": "Deprecated. Use the `metadata` field instead.\nOther service-specific data about the request, response, and other\nactivities.",
           "type": "object"
         },
         "serviceName": {
-          "description": "The name of the API service performing the operation. For example,\n`\"datastore.googleapis.com\"`.",
+          "description": "The name of the API service performing the operation. For example,\n`\"compute.googleapis.com\"`.",
           "type": "string"
         },
         "status": {
