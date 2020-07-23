@@ -12,8 +12,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/games/v1",
+  "baseUrl": "https://games.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "Games",
   "description": "The Google Play games service allows developers to enhance games with social leaderboards,\n    achievements, game state, sign-in with Google, and more.",
   "discoveryVersion": "v1",
@@ -24,7 +24,7 @@
   },
   "id": "games:v1",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://games.mtls.googleapis.com/",
   "name": "games",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -1128,8 +1128,8 @@
       }
     }
   },
-  "revision": "20200701",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200720",
+  "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
       "description": "An achievement definition object.",
@@ -1335,6 +1335,7 @@
       "type": "object"
     },
     "AchievementUpdateMultipleResponse": {
+      "description": "Response message for UpdateMultipleAchievements rpc.",
       "id": "AchievementUpdateMultipleResponse",
       "properties": {
         "kind": {

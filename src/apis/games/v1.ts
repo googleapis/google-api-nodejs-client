@@ -296,6 +296,9 @@ export namespace games_v1 {
      */
     updates?: Schema$AchievementUpdateRequest[];
   }
+  /**
+   * Response message for UpdateMultipleAchievements rpc.
+   */
   export interface Schema$AchievementUpdateMultipleResponse {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateMultipleResponse`.
@@ -1678,7 +1681,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1851,7 +1854,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2008,7 +2011,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2148,7 +2151,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2290,7 +2293,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2430,7 +2433,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2574,7 +2577,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2802,7 +2805,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2922,7 +2925,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3062,7 +3065,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3240,7 +3243,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3385,7 +3388,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3533,7 +3536,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3717,7 +3720,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3863,7 +3866,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4027,7 +4030,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4182,7 +4185,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4359,7 +4362,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4505,7 +4508,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4681,7 +4684,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4858,7 +4861,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5015,7 +5018,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5181,7 +5184,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5335,7 +5338,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5483,7 +5486,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5758,7 +5761,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5910,7 +5913,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6082,7 +6085,7 @@ export namespace games_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

@@ -2,7 +2,7 @@
 
 # games
 
-> The API for Google Play Game Services.
+> The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.
 
 ## Installation
 
