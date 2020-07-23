@@ -1355,6 +1355,10 @@ export namespace container_v1beta1 {
      */
     minCpuPlatform?: string | null;
     /**
+     * Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     */
+    nodeGroup?: string | null;
+    /**
      * The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account.  The following scopes are recommended, but not required, and by default are not included:  * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)).  If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
     oauthScopes?: string[] | null;
@@ -2407,6 +2411,10 @@ export namespace container_v1beta1 {
      * IAM Identity Namespace to attach all Kubernetes Service Accounts to.
      */
     identityNamespace?: string | null;
+    /**
+     * identity provider is the third party identity provider.
+     */
+    identityProvider?: string | null;
     /**
      * The workload pool to attach all Kubernetes service accounts to.
      */
