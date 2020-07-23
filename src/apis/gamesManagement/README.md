@@ -2,7 +2,7 @@
 
 # gamesManagement
 
-> The Management API for Google Play Game Services.
+> The Google Play Game Management API allows developers to manage resources from the Google Play Game service.
 
 ## Installation
 
