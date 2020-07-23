@@ -2,7 +2,7 @@
 
 # gamesConfiguration
 
-> The Publishing API for Google Play Game Services.
+> The Google Play Game Services Publishing API allows developers to configure their games in Game Services.
 
 ## Installation
 
