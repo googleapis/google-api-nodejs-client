@@ -1880,7 +1880,7 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1Image {
     /**
-     * Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
+     * Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateImages requests. It does not work for AsyncBatchAnnotateImages requests.
      */
     content?: string | null;
     /**
