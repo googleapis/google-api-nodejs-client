@@ -411,7 +411,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$CreateTenancyUnitRequest {
     /**
-     * Optional service producer-provided identifier of the tenancy unit. Must be no longer than 40 characters and preferably URI friendly. If it isn&#39;t provided, a UID for the tenancy unit is automatically generated. The identifier must be unique across a managed service. If the tenancy unit already exists for the managed service and service consumer pair, calling `CreateTenancyUnit` returns the existing tenancy unit if the provided identifier is identical or empty, otherwise the call fails.
+     * Optional. Optional service producer-provided identifier of the tenancy unit. Must be no longer than 40 characters and preferably URI friendly. If it isn&#39;t provided, a UID for the tenancy unit is automatically generated. The identifier must be unique across a managed service. If the tenancy unit already exists for the managed service and service consumer pair, calling `CreateTenancyUnit` returns the existing tenancy unit if the provided identifier is identical or empty, otherwise the call fails.
      */
     tenancyUnitId?: string | null;
   }
@@ -824,7 +824,7 @@ export namespace serviceconsumermanagement_v1 {
     syntax?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type`, `description`, and `display_name`   fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type` and `description`   fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -2348,23 +2348,19 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.search({
-     *     // The maximum number of results returned by this request. Currently, the
+     *     // Optional. The maximum number of results returned by this request. Currently, the
      *     // default maximum is set to 1000. If `page_size` isn't provided or the size
      *     // provided is a number larger than 1000, it's automatically set to 1000.
-     *     //
-     *     // Optional.
      *     pageSize: 'placeholder-value',
-     *     // The continuation token, which is used to page through large result sets.
+     *     // Optional. The continuation token, which is used to page through large result sets.
      *     // To get the next page of results, set this parameter to the value of
      *     // `nextPageToken` from the previous response.
-     *     //
-     *     // Optional.
      *     pageToken: 'placeholder-value',
      *     // Service for which search is performed.
      *     // services/{service}
      *     // {service} the name of a service, for example 'service.googleapis.com'.
      *     parent: 'services/my-service',
-     *     // Set a query `{expression}` for querying tenancy units. Your `{expression}`
+     *     // Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}`
      *     // must be in the format: `field_name=literal_string`. The `field_name` is the
      *     // name of the field you want to compare. Supported fields are
      *     // `tenant_resources.tag` and `tenant_resources.resource`.
@@ -2378,8 +2374,6 @@ export namespace serviceconsumermanagement_v1 {
      *     // Multiple expressions can be joined with `AND`s. Tenancy units must match
      *     // all expressions to be included in the result set. For example,
      *     // `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
-     *     //
-     *     // Optional.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2400,10 +2394,10 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
+     * @param {integer=} params.pageSize Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.
+     * @param {string=} params.pageToken Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
+     * @param {string=} params.query Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2497,11 +2491,11 @@ export namespace serviceconsumermanagement_v1 {
 
   export interface Params$Resource$Services$Search extends StandardParameters {
     /**
-     * The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
+     * Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.
      */
     pageSize?: number;
     /**
-     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
+     * Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
     /**
@@ -2509,7 +2503,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     parent?: string;
     /**
-     * Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
+     * Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`
      */
     query?: string;
   }
@@ -2968,7 +2962,7 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.create
-     * @desc Creates a tenancy unit with no tenant resources. If tenancy unit already exists, it will be returned, however, in this case, returned TenancyUnit does not have tenant_resources field set and ListTenancyUnit has to be used to get a complete TenancyUnit with all fields populated.
+     * @desc Creates a tenancy unit with no tenant resources. If tenancy unit already exists, it will be returned, however, in this case, returned TenancyUnit does not have tenant_resources field set and ListTenancyUnits has to be used to get a complete TenancyUnit with all fields populated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

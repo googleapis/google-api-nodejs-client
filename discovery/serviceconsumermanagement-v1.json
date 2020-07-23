@@ -240,13 +240,13 @@
           ],
           "parameters": {
             "pageSize": {
-              "description": "The maximum number of results returned by this request. Currently, the\ndefault maximum is set to 1000. If `page_size` isn't provided or the size\nprovided is a number larger than 1000, it's automatically set to 1000.\n\nOptional.",
+              "description": "Optional. The maximum number of results returned by this request. Currently, the\ndefault maximum is set to 1000. If `page_size` isn't provided or the size\nprovided is a number larger than 1000, it's automatically set to 1000.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "The continuation token, which is used to page through large result sets.\nTo get the next page of results, set this parameter to the value of\n`nextPageToken` from the previous response.\n\nOptional.",
+              "description": "Optional. The continuation token, which is used to page through large result sets.\nTo get the next page of results, set this parameter to the value of\n`nextPageToken` from the previous response.",
               "location": "query",
               "type": "string"
             },
@@ -258,7 +258,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Set a query `{expression}` for querying tenancy units. Your `{expression}`\nmust be in the format: `field_name=literal_string`. The `field_name` is the\nname of the field you want to compare. Supported fields are\n`tenant_resources.tag` and `tenant_resources.resource`.\n\nFor example, to search tenancy units that contain at least one tenant\nresource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`.\nTo search tenancy units that contain at least one tenant resource with\na given resource name 'projects/123456', use the query\n`tenant_resources.resource=projects/123456`.\n\nMultiple expressions can be joined with `AND`s. Tenancy units must match\nall expressions to be included in the result set. For example,\n`tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`\n\nOptional.",
+              "description": "Optional. Set a query `{expression}` for querying tenancy units. Your `{expression}`\nmust be in the format: `field_name=literal_string`. The `field_name` is the\nname of the field you want to compare. Supported fields are\n`tenant_resources.tag` and `tenant_resources.resource`.\n\nFor example, to search tenancy units that contain at least one tenant\nresource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`.\nTo search tenancy units that contain at least one tenant resource with\na given resource name 'projects/123456', use the query\n`tenant_resources.resource=projects/123456`.\n\nMultiple expressions can be joined with `AND`s. Tenancy units must match\nall expressions to be included in the result set. For example,\n`tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`",
               "location": "query",
               "type": "string"
             }
@@ -360,7 +360,7 @@
               ]
             },
             "create": {
-              "description": "Creates a tenancy unit with no tenant resources.\nIf tenancy unit already exists, it will be returned,\nhowever, in this case, returned TenancyUnit does not have tenant_resources\nfield set and ListTenancyUnit has to be used to get a complete\nTenancyUnit with all fields populated.",
+              "description": "Creates a tenancy unit with no tenant resources.\nIf tenancy unit already exists, it will be returned,\nhowever, in this case, returned TenancyUnit does not have tenant_resources\nfield set and ListTenancyUnits has to be used to get a complete\nTenancyUnit with all fields populated.",
               "flatPath": "v1/services/{servicesId}/{servicesId1}/{servicesId2}/tenancyUnits",
               "httpMethod": "POST",
               "id": "serviceconsumermanagement.services.tenancyUnits.create",
@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20200711",
+  "revision": "20200722",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -929,7 +929,7 @@
       "id": "CreateTenancyUnitRequest",
       "properties": {
         "tenancyUnitId": {
-          "description": "Optional service producer-provided identifier of the tenancy unit.\nMust be no longer than 40 characters and preferably URI friendly.\nIf it isn't provided, a UID for the tenancy unit is automatically\ngenerated. The identifier must be unique across a managed service.\nIf the tenancy unit already exists for the managed service and service\nconsumer pair, calling `CreateTenancyUnit` returns the existing tenancy\nunit if the provided identifier is identical or empty, otherwise the call\nfails.",
+          "description": "Optional. Optional service producer-provided identifier of the tenancy unit.\nMust be no longer than 40 characters and preferably URI friendly.\nIf it isn't provided, a UID for the tenancy unit is automatically\ngenerated. The identifier must be unique across a managed service.\nIf the tenancy unit already exists for the managed service and service\nconsumer pair, calling `CreateTenancyUnit` returns the existing tenancy\nunit if the provided identifier is identical or empty, otherwise the call\nfails.",
           "type": "string"
         }
       },
@@ -1523,7 +1523,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type`, `description`, and `display_name`\n  fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type` and `description`\n  fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
