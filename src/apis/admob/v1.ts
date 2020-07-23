@@ -395,7 +395,7 @@ export namespace admob_v1 {
    */
   export interface Schema$ReportFooter {
     /**
-     * Total number of rows that did match the request.
+     * Total number of rows that matched the request.  Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response.
      */
     matchingRowCount?: string | null;
     /**

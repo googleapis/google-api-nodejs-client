@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20200716",
+  "revision": "20200722",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {
@@ -808,7 +808,7 @@
       "id": "ReportFooter",
       "properties": {
         "matchingRowCount": {
-          "description": "Total number of rows that did match the request.",
+          "description": "Total number of rows that matched the request.\n\nWarning: This count does NOT always match the number of rows in the\nresponse. Do not make that assumption when processing the response.",
           "format": "int64",
           "type": "string"
         },
