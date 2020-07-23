@@ -249,7 +249,8 @@
                 "ANDROID",
                 "IOS",
                 "NETWORK_CONFIGURATION",
-                "PROVIDED_SOFTWARE"
+                "PROVIDED_SOFTWARE",
+                "DEVICE_IP_BLOCKS"
               ],
               "location": "path",
               "required": true,
@@ -273,7 +274,7 @@
       }
     }
   },
-  "revision": "20200708",
+  "revision": "20200722",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -863,6 +864,51 @@
         "regularFile": {
           "$ref": "RegularFile",
           "description": "A reference to a regular file."
+        }
+      },
+      "type": "object"
+    },
+    "DeviceIpBlock": {
+      "description": "A single device IP block",
+      "id": "DeviceIpBlock",
+      "properties": {
+        "addedDate": {
+          "$ref": "Date",
+          "description": "The date this block was added to Firebase Test Lab"
+        },
+        "block": {
+          "description": "An IP address block in CIDR notation eg: 34.68.194.64/29",
+          "type": "string"
+        },
+        "form": {
+          "description": "Whether this block is used by physical or virtual devices",
+          "enum": [
+            "DEVICE_FORM_UNSPECIFIED",
+            "VIRTUAL",
+            "PHYSICAL",
+            "EMULATOR"
+          ],
+          "enumDescriptions": [
+            "Do not use.  For proto versioning only.",
+            "Android virtual device using Compute Engine native virtualization. Firebase\nTest Lab only.",
+            "Actual hardware.",
+            "Android virtual device using emulator in nested virtualization. Equivalent\nto Android Studio."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceIpBlockCatalog": {
+      "description": "List of IP blocks used by the Firebase Test Lab",
+      "id": "DeviceIpBlockCatalog",
+      "properties": {
+        "ipBlocks": {
+          "description": "The device IP blocks used by Firebase Test Lab",
+          "items": {
+            "$ref": "DeviceIpBlock"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1557,6 +1603,10 @@
         "androidDeviceCatalog": {
           "$ref": "AndroidDeviceCatalog",
           "description": "Supported Android devices."
+        },
+        "deviceIpBlockCatalog": {
+          "$ref": "DeviceIpBlockCatalog",
+          "description": "The IP blocks used by devices in the test environment."
         },
         "iosDeviceCatalog": {
           "$ref": "IosDeviceCatalog",

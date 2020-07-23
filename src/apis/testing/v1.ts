@@ -550,6 +550,32 @@ export namespace testing_v1 {
     regularFile?: Schema$RegularFile;
   }
   /**
+   * A single device IP block
+   */
+  export interface Schema$DeviceIpBlock {
+    /**
+     * The date this block was added to Firebase Test Lab
+     */
+    addedDate?: Schema$Date;
+    /**
+     * An IP address block in CIDR notation eg: 34.68.194.64/29
+     */
+    block?: string | null;
+    /**
+     * Whether this block is used by physical or virtual devices
+     */
+    form?: string | null;
+  }
+  /**
+   * List of IP blocks used by the Firebase Test Lab
+   */
+  export interface Schema$DeviceIpBlockCatalog {
+    /**
+     * The device IP blocks used by Firebase Test Lab
+     */
+    ipBlocks?: Schema$DeviceIpBlock[];
+  }
+  /**
    * Data about the relative number of devices running a given configuration of the Android platform.
    */
   export interface Schema$Distribution {
@@ -1066,6 +1092,10 @@ export namespace testing_v1 {
      * Supported Android devices.
      */
     androidDeviceCatalog?: Schema$AndroidDeviceCatalog;
+    /**
+     * The IP blocks used by devices in the test environment.
+     */
+    deviceIpBlockCatalog?: Schema$DeviceIpBlockCatalog;
     /**
      * Supported iOS devices.
      */
@@ -2083,6 +2113,7 @@ export namespace testing_v1 {
      *   // Example response
      *   // {
      *   //   "androidDeviceCatalog": {},
+     *   //   "deviceIpBlockCatalog": {},
      *   //   "iosDeviceCatalog": {},
      *   //   "networkConfigurationCatalog": {},
      *   //   "softwareCatalog": {}
