@@ -36,7 +36,7 @@ NAME=$(cat .repo-metadata.json | json name)
 
 mkdir ./_devsite
 cp ./yaml/$NAME/* ./_devsite
-cp ./yaml/toc.yml ./_devsite/_toc.yaml
+cp ./yaml/toc.yml ./_devsite/toc.yml
 
 # create docs.metadata, based on package.json and .repo-metadata.json.
 pip install -U pip

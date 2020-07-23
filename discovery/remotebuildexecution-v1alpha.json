@@ -388,7 +388,7 @@
       }
     }
   },
-  "revision": "20200714",
+  "revision": "20200721",
   "rootUrl": "https://admin-remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1107,7 +1107,8 @@
             "DOCKER_INCOMPATIBLE_OS_ERROR",
             "DOCKER_CREATE_RUNTIME_FILE_NOT_FOUND",
             "DOCKER_CREATE_RUNTIME_PERMISSION_DENIED",
-            "DOCKER_CREATE_PROCESS_FILE_NOT_FOUND"
+            "DOCKER_CREATE_PROCESS_FILE_NOT_FOUND",
+            "DOCKER_CREATE_COMPUTE_SYSTEM_INCORRECT_PARAMETER_ERROR"
           ],
           "enumDescriptions": [
             "The command succeeded.",
@@ -1146,7 +1147,8 @@
             "Docker incompatible operating system error.",
             "Docker failed to create OCI runtime because of file not found.",
             "Docker failed to create OCI runtime because of permission denied.",
-            "Docker failed to create process because of file not found."
+            "Docker failed to create process because of file not found.",
+            "Docker failed to run containers with CreateComputeSystem error that\ninvolves an incorrect parameter (more specific version of\nDOCKER_CREATE_COMPUTE_SYSTEM_ERROR that is user-caused)."
           ],
           "type": "string"
         },

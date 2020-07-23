@@ -73,6 +73,7 @@ export {cloudasset_v1} from './apis/cloudasset/v1';
 export {cloudasset_v1beta1} from './apis/cloudasset/v1beta1';
 export {cloudasset_v1p1beta1} from './apis/cloudasset/v1p1beta1';
 export {cloudasset_v1p4beta1} from './apis/cloudasset/v1p4beta1';
+export {cloudasset_v1p5beta1} from './apis/cloudasset/v1p5beta1';
 export {cloudbilling_v1} from './apis/cloudbilling/v1';
 export {cloudbuild_v1} from './apis/cloudbuild/v1';
 export {cloudbuild_v1alpha1} from './apis/cloudbuild/v1alpha1';

@@ -3032,6 +3032,37 @@
         }
       }
     },
+    "tests": {
+      "methods": {
+        "insert": {
+          "description": "POST method.",
+          "flatPath": "youtube/v3/tests",
+          "httpMethod": "POST",
+          "id": "youtube.tests.insert",
+          "parameterOrder": [
+            "part"
+          ],
+          "parameters": {
+            "part": {
+              "location": "query",
+              "repeated": true,
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/tests",
+          "request": {
+            "$ref": "TestItem"
+          },
+          "response": {
+            "$ref": "TestItem"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube.readonly"
+          ]
+        }
+      }
+    },
     "thirdPartyLinks": {
       "methods": {
         "delete": {
@@ -3779,38 +3810,13 @@
                   ]
                 }
               }
-            },
-            "tests": {
-              "methods": {
-                "create": {
-                  "description": "POST method.",
-                  "flatPath": "youtube/v3/tests",
-                  "httpMethod": "POST",
-                  "id": "youtube.youtube.v3.tests.create",
-                  "parameterOrder": [],
-                  "parameters": {
-                    "part": {
-                      "location": "query",
-                      "repeated": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "youtube/v3/tests",
-                  "request": {
-                    "$ref": "TestItem"
-                  },
-                  "response": {
-                    "$ref": "TestItem"
-                  }
-                }
-              }
             }
           }
         }
       }
     }
   },
-  "revision": "20200715",
+  "revision": "20200721",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {

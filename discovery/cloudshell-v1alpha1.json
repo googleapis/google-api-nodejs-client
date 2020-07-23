@@ -288,11 +288,11 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200721",
   "rootUrl": "https://cloudshell.googleapis.com/",
   "schemas": {
     "AuthorizeEnvironmentRequest": {
-      "description": "Request message for AuthorizeEnvironment.",
+      "description": "Request message for\nAuthorizeEnvironment.",
       "id": "AuthorizeEnvironmentRequest",
       "properties": {
         "accessToken": {
@@ -312,7 +312,7 @@
       "type": "object"
     },
     "CreatePublicKeyRequest": {
-      "description": "Request message for CreatePublicKey.",
+      "description": "Request message for\nCreatePublicKey.",
       "id": "CreatePublicKeyRequest",
       "properties": {
         "key": {
@@ -515,7 +515,7 @@
       "type": "object"
     },
     "StartEnvironmentRequest": {
-      "description": "Request message for StartEnvironment.",
+      "description": "Request message for\nStartEnvironment.",
       "id": "StartEnvironmentRequest",
       "properties": {
         "accessToken": {
@@ -533,7 +533,7 @@
       "type": "object"
     },
     "StartEnvironmentResponse": {
-      "description": "Message included in the response field of operations returned from\nStartEnvironment once the\noperation is complete.",
+      "description": "Message included in the response field of operations returned from\nStartEnvironment\nonce the operation is complete.",
       "id": "StartEnvironmentResponse",
       "properties": {
         "environment": {

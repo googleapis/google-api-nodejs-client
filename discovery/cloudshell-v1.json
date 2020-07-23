@@ -229,7 +229,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200721",
   "rootUrl": "https://cloudshell.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -449,7 +449,7 @@
       "type": "object"
     },
     "StartEnvironmentResponse": {
-      "description": "Message included in the response field of operations returned from\nStartEnvironment once the\noperation is complete.",
+      "description": "Message included in the response field of operations returned from\nStartEnvironment\nonce the operation is complete.",
       "id": "StartEnvironmentResponse",
       "properties": {
         "environment": {

@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200723",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdTechnologyProviders": {
@@ -1179,12 +1179,14 @@
           "enum": [
             "URL_REJECTED_UNSPECIFIED",
             "BAD_REQUEST",
-            "MALFORMED_URL"
+            "MALFORMED_URL",
+            "URL_REJECTED_UNKNOWN"
           ],
           "enumDescriptions": [
             "Default value that should never be used.",
             "URL rejected because of a malformed request.",
-            "URL rejected because of a malformed URL."
+            "URL rejected because of a malformed URL.",
+            "URL rejected because of unknown reason."
           ],
           "type": "string"
         }

@@ -17,7 +17,7 @@
   "description": "Creates and manages your customers and their subscriptions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/google-apps/reseller/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/4xq0Bw2LuAbeJZTw0U29AruL5y4\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/4xq0Bw2LuAbeJZTw0U29AruL5y4\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -389,7 +389,7 @@
               ],
               "enumDescriptions": [
                 "Cancels the subscription immediately. This does not apply to a G Suite subscription.",
-                "Transfers a subscription directly to Google.  The customer is immediately transferred to a direct billing relationship with Google and is given a short amount of time with no service interruption. The customer can then choose to set up billing directly with Google by using a credit card, or they can transfer to another reseller."
+                "Transfers a subscription directly to Google.  The customer is immediately transferred to a direct billing relationship with Google and is given a short amount of time with no service interruption. The customer can then choose to set up billing directly with Google by using a credit card, or they can transfer to another reseller."
               ],
               "location": "query",
               "required": true,

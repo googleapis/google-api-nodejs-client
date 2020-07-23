@@ -72,6 +72,10 @@
     "package": "@google-cloud/game-servers"
   },
   {
+    "api": "analyticsadmin",
+    "package": "@google-analytics/admin"
+  },
+  {
     "api": "bigquery",
     "package": "@google-cloud/bigquery"
   },

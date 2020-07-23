@@ -731,7 +731,7 @@
       "name": "chat",
       "version": "v1",
       "title": "Hangouts Chat API",
-      "description": "Create bots and extend the new Hangouts Chat.",
+      "description": "Enables bots to fetch information and perform actions in Hangouts Chat.",
       "discoveryRestUrl": "https://chat.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -808,6 +808,21 @@
       "title": "Cloud Asset API",
       "description": "The cloud asset API manages the history and inventory of cloud resources.",
       "discoveryRestUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1p4beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/asset-inventory/docs/quickstart",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudasset:v1p5beta1",
+      "name": "cloudasset",
+      "version": "v1p5beta1",
+      "title": "Cloud Asset API",
+      "description": "The cloud asset API manages the history and inventory of cloud resources.",
+      "discoveryRestUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1p5beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1758,6 +1773,54 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "dns:v1",
+      "name": "dns",
+      "version": "v1",
+      "title": "Google Cloud DNS API",
+      "description": "Configures and serves authoritative DNS records.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v1/rest",
+      "discoveryLink": "./apis/dns/v1/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/cloud-dns",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dns:v1beta2",
+      "name": "dns",
+      "version": "v1beta2",
+      "title": "Google Cloud DNS API",
+      "description": "Configures and serves authoritative DNS records.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v1beta2/rest",
+      "discoveryLink": "./apis/dns/v1beta2/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/cloud-dns",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dns:v2beta1",
+      "name": "dns",
+      "version": "v2beta1",
+      "title": "Google Cloud DNS API",
+      "description": "Configures and serves authoritative DNS records.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v2beta1/rest",
+      "discoveryLink": "./apis/dns/v2beta1/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/cloud-dns",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "docs:v1",
       "name": "docs",
       "version": "v1",
@@ -2133,15 +2196,14 @@
       "id": "games:v1",
       "name": "games",
       "version": "v1",
-      "title": "Google Play Game Services API",
-      "description": "The API for Google Play Game Services.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/games/v1/rest",
-      "discoveryLink": "./apis/games/v1/rest",
+      "title": "Google Play Game Services",
+      "description": "The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.",
+      "discoveryRestUrl": "https://games.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/games/services/",
+      "documentationLink": "https://developers.google.com/games/",
       "preferred": true
     },
     {
@@ -2150,14 +2212,13 @@
       "name": "gamesConfiguration",
       "version": "v1configuration",
       "title": "Google Play Game Services Publishing API",
-      "description": "The Publishing API for Google Play Game Services.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/gamesConfiguration/v1configuration/rest",
-      "discoveryLink": "./apis/gamesConfiguration/v1configuration/rest",
+      "description": "The Google Play Game Services Publishing API allows developers to configure their games in Game Services.",
+      "discoveryRestUrl": "https://gamesconfiguration.googleapis.com/$discovery/rest?version=v1configuration",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/games/services",
+      "documentationLink": "https://developers.google.com/games/",
       "preferred": true
     },
     {
@@ -2165,15 +2226,14 @@
       "id": "gamesManagement:v1management",
       "name": "gamesManagement",
       "version": "v1management",
-      "title": "Google Play Game Services Management API",
-      "description": "The Management API for Google Play Game Services.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/gamesManagement/v1management/rest",
-      "discoveryLink": "./apis/gamesManagement/v1management/rest",
+      "title": "Google Play Game Management",
+      "description": "The Google Play Game Management API allows developers to manage resources from the Google Play Game service.",
+      "discoveryRestUrl": "https://gamesmanagement.googleapis.com/$discovery/rest?version=v1management",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/games/services",
+      "documentationLink": "https://developers.google.com/games/",
       "preferred": true
     },
     {
@@ -3709,7 +3769,7 @@
       "version": "v1beta4",
       "title": "Cloud SQL Admin API",
       "description": "API for Cloud SQL database instance management",
-      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1beta4",
+      "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3885,7 +3945,7 @@
       "version": "v1beta3",
       "title": "Cloud Tool Results API",
       "description": "API to publish and access results from developer tools.",
-      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1beta3",
+      "discoveryRestUrl": "https://toolresults.googleapis.com/$discovery/rest?version=v1beta3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
