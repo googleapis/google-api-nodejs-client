@@ -315,6 +315,10 @@ export namespace content_v2 {
      */
     force?: boolean | null;
     /**
+     * Label IDs for the &#39;updatelabels&#39; request.
+     */
+    labelIds?: string[] | null;
+    /**
      * Details about the `link` request.
      */
     linkRequest?: Schema$AccountsCustomBatchRequestEntryLinkRequest;
