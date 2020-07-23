@@ -418,7 +418,7 @@
       }
     }
   },
-  "revision": "20200703",
+  "revision": "20200716",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -761,6 +761,10 @@
         },
         "messageId": {
           "description": "ID of this message, assigned by the server when the message is published.\nGuaranteed to be unique within the topic. This value may be read by a\nsubscriber that receives a `PubsubMessage` via a `Pull` call or a push\ndelivery. It must not be populated by the publisher in a `Publish` call.",
+          "type": "string"
+        },
+        "orderingKey": {
+          "description": "If non-empty, identifies related messages for which publish order should be\nrespected. If a `Subscription` has `enable_message_ordering` set to `true`,\nmessages published with the same non-empty `ordering_key` value will be\ndelivered to subscribers in the order in which they are received by the\nPub/Sub system. All `PubsubMessage`s published in a given `PublishRequest`\nmust specify the same `ordering_key` value.",
           "type": "string"
         },
         "publishTime": {
