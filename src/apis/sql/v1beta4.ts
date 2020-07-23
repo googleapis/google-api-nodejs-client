@@ -148,11 +148,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$AclEntry {
     /**
-     * The time when this access control entry expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time when this access control entry expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     expirationTime?: string | null;
     /**
-     * This is always &lt;code&gt;sql#aclEntry&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#aclEntry&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -190,7 +190,7 @@ export namespace sql_v1beta4 {
      */
     enabled?: boolean | null;
     /**
-     * This is always &lt;code&gt;sql#backupConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#backupConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -206,7 +206,7 @@ export namespace sql_v1beta4 {
      */
     replicationLogArchivingEnabled?: boolean | null;
     /**
-     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - &lt;code&gt;HH:MM&lt;/code&gt;.
+     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - &lt;b&gt;HH:MM&lt;/b&gt;.
      */
     startTime?: string | null;
   }
@@ -214,6 +214,10 @@ export namespace sql_v1beta4 {
    * A BackupRun resource.
    */
   export interface Schema$BackupRun {
+    /**
+     * Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.
+     */
+    backupKind?: string | null;
     /**
      * The description of this run, only applicable to on-demand backups.
      */
@@ -227,11 +231,11 @@ export namespace sql_v1beta4 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * The time the backup operation completed in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time the backup operation completed in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     endTime?: string | null;
     /**
-     * The time the run was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time the run was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     enqueuedTime?: string | null;
     /**
@@ -247,7 +251,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;code&gt;sql#backupRun&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#backupRun&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -259,7 +263,7 @@ export namespace sql_v1beta4 {
      */
     selfLink?: string | null;
     /**
-     * The time the backup operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time the backup operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     startTime?: string | null;
     /**
@@ -271,7 +275,7 @@ export namespace sql_v1beta4 {
      */
     type?: string | null;
     /**
-     * The start time of the backup window during which this the backup was attempted in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The start time of the backup window during which this the backup was attempted in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     windowStartTime?: string | null;
   }
@@ -284,7 +288,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$BackupRun[];
     /**
-     * This is always &lt;code&gt;sql#backupRunsList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#backupRunsList&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -305,7 +309,7 @@ export namespace sql_v1beta4 {
      */
     binLogPosition?: string | null;
     /**
-     * This is always &lt;code&gt;sql#binLogCoordinates&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#binLogCoordinates&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -322,7 +326,7 @@ export namespace sql_v1beta4 {
      */
     destinationInstanceName?: string | null;
     /**
-     * This is always &lt;code&gt;sql#cloneContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#cloneContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -339,11 +343,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$Database {
     /**
-     * The MySQL charset value.
+     * The Cloud SQL charset value.
      */
     charset?: string | null;
     /**
-     * The MySQL collation value.
+     * The Cloud SQL collation value.
      */
     collation?: string | null;
     /**
@@ -355,7 +359,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;code&gt;sql#database&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#database&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -381,16 +385,16 @@ export namespace sql_v1beta4 {
      */
     name?: string | null;
     /**
-     * The value of the flag. Booleans should be set to &lt;code&gt;on&lt;/code&gt; for true and &lt;code&gt;off&lt;/code&gt; for false. This field must be omitted if the flag doesn&#39;t take a value.
+     * The value of the flag. Booleans should be set to &lt;b&gt;on&lt;/b&gt; for true and &lt;b&gt;off&lt;/b&gt; for false. This field must be omitted if the flag doesn&#39;t take a value.
      */
     value?: string | null;
   }
   /**
-   * A Cloud SQL instance resource.
+   * A Cloud SQL instance resource. Next field: 34
    */
   export interface Schema$DatabaseInstance {
     /**
-     * &lt;code&gt;FIRST_GEN&lt;/code&gt;: First Generation instance. MySQL only. &lt;br /&gt;&lt;code&gt;SECOND_GEN&lt;/code&gt;: Second Generation instance or PostgreSQL instance. &lt;br /&gt;&lt;code&gt;EXTERNAL&lt;/code&gt;: A database server that is not managed by Google. &lt;br&gt;This property is read-only; use the &lt;code&gt;tier&lt;/code&gt; property in the &lt;code&gt;settings&lt;/code&gt; object to determine the database type and Second or First Generation.
+     * &lt;br&gt;&lt;b&gt;SECOND_GEN&lt;/b&gt;: Cloud SQL database instance. &lt;br&gt;&lt;b&gt;EXTERNAL&lt;/b&gt;: A database server that is not managed by Google. &lt;br&gt;This property is read-only; use the &lt;b&gt;tier&lt;/b&gt; property in the &lt;b&gt;settings&lt;/b&gt; object to determine the database type.
      */
     backendType?: string | null;
     /**
@@ -402,7 +406,7 @@ export namespace sql_v1beta4 {
      */
     currentDiskSize?: string | null;
     /**
-     * The database engine type and version. The &lt;code&gt;databaseVersion&lt;/code&gt; field can not be changed after instance creation.  MySQL Second Generation instances: &lt;code&gt;MYSQL_5_7&lt;/code&gt; (default) or &lt;code&gt;MYSQL_5_6&lt;/code&gt;. PostgreSQL instances: &lt;code&gt;POSTGRES_9_6&lt;/code&gt; (default) or &lt;code&gt;POSTGRES_11 Beta&lt;/code&gt; MySQL First Generation instances: &lt;code&gt;MYSQL_5_6&lt;/code&gt; (default) or &lt;code&gt;MYSQL_5_5&lt;/code&gt;
+     * The database engine type and version. The &lt;b&gt;databaseVersion&lt;/b&gt; field cannot be changed after instance creation. &lt;br&gt;MySQL instances: &lt;b&gt;MYSQL_5_7&lt;/b&gt; (default), or &lt;b&gt;MYSQL_5_6&lt;/b&gt;. &lt;br&gt;PostgreSQL instances: &lt;b&gt;POSTGRES_9_6&lt;/b&gt; (default), or &lt;b&gt;POSTGRES_10&lt;/b&gt;, or &lt;b&gt;POSTGRES_11 Beta&lt;/b&gt;, or &lt;b&gt;POSTGRES_12&lt;/b&gt;. &lt;br&gt;SQL Server instances: &lt;b&gt;SQLSERVER_2017_STANDARD&lt;/b&gt; (default), &lt;b&gt;SQLSERVER_2017_ENTERPRISE&lt;/b&gt;, &lt;b&gt;SQLSERVER_2017_EXPRESS&lt;/b&gt;, or &lt;b&gt;SQLSERVER_2017_WEB&lt;/b&gt;.
      */
     databaseVersion?: string | null;
     /**
@@ -414,7 +418,7 @@ export namespace sql_v1beta4 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * This field is deprecated and will be removed from a future version of the API. Use the &lt;code&gt;settings.settingsVersion&lt;/code&gt; field instead.
+     * This field is deprecated and will be removed from a future version of the API. Use the &lt;b&gt;settings.settingsVersion&lt;/b&gt; field instead.
      */
     etag?: string | null;
     /**
@@ -426,7 +430,7 @@ export namespace sql_v1beta4 {
      */
     gceZone?: string | null;
     /**
-     * The instance type. This can be one of the following. &lt;br&gt;&lt;code&gt;CLOUD_SQL_INSTANCE&lt;/code&gt;: A Cloud SQL instance that is not replicating from a master. &lt;br&gt;&lt;code&gt;ON_PREMISES_INSTANCE&lt;/code&gt;: An instance running on the customer&#39;s premises. &lt;br&gt;&lt;code&gt;READ_REPLICA_INSTANCE&lt;/code&gt;: A Cloud SQL instance configured as a read-replica.
+     * The instance type. This can be one of the following. &lt;br&gt;&lt;b&gt;CLOUD_SQL_INSTANCE&lt;/b&gt;: A Cloud SQL instance that is not replicating from a master. &lt;br&gt;&lt;b&gt;ON_PREMISES_INSTANCE&lt;/b&gt;: An instance running on the customer&#39;s premises. &lt;br&gt;&lt;b&gt;READ_REPLICA_INSTANCE&lt;/b&gt;: A Cloud SQL instance configured as a read-replica.
      */
     instanceType?: string | null;
     /**
@@ -434,11 +438,11 @@ export namespace sql_v1beta4 {
      */
     ipAddresses?: Schema$IpMapping[];
     /**
-     * The IPv6 address assigned to the instance. This property is applicable only to First Generation instances.
+     * The IPv6 address assigned to the instance. (Deprecated) This property was applicable only to First Generation instances.
      */
     ipv6Address?: string | null;
     /**
-     * This is always &lt;code&gt;sql#instance&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#instance&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -462,7 +466,7 @@ export namespace sql_v1beta4 {
      */
     project?: string | null;
     /**
-     * The geographical region. Can be &lt;code&gt;us-central&lt;/code&gt; (&lt;code&gt;FIRST_GEN&lt;/code&gt; instances only), &lt;code&gt;us-central1&lt;/code&gt; (&lt;code&gt;SECOND_GEN&lt;/code&gt; instances only), &lt;code&gt;asia-east1&lt;/code&gt; or &lt;code&gt;europe-west1&lt;/code&gt;. Defaults to &lt;code&gt;us-central&lt;/code&gt; or &lt;code&gt;us-central1&lt;/code&gt; depending on the instance type (First Generation or Second Generation). The region can not be changed after instance creation.
+     * The geographical region. Can be &lt;br&gt;&lt;b&gt;us-central&lt;/b&gt; (&lt;b&gt;FIRST_GEN&lt;/b&gt; instances only) &lt;br&gt;&lt;b&gt;us-central1&lt;/b&gt; (&lt;b&gt;SECOND_GEN&lt;/b&gt; instances only) &lt;br&gt;&lt;b&gt;asia-east1&lt;/b&gt; or &lt;b&gt;europe-west1&lt;/b&gt;. &lt;br&gt;Defaults to &lt;b&gt;us-central&lt;/b&gt; or &lt;b&gt;us-central1&lt;/b&gt; depending on the instance type. The region cannot be changed after instance creation.
      */
     region?: string | null;
     /**
@@ -498,7 +502,7 @@ export namespace sql_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. &lt;br&gt;&lt;code&gt;RUNNABLE&lt;/code&gt;: The instance is running, or is ready to run when accessed. &lt;br&gt;&lt;code&gt;SUSPENDED&lt;/code&gt;: The instance is not available, for example due to problems with billing. &lt;br&gt;&lt;code&gt;PENDING_CREATE&lt;/code&gt;: The instance is being created. &lt;br&gt;&lt;code&gt;MAINTENANCE&lt;/code&gt;: The instance is down for maintenance. &lt;br&gt;&lt;code&gt;FAILED&lt;/code&gt;: The instance creation failed. &lt;br&gt;&lt;code&gt;UNKNOWN_STATE&lt;/code&gt;: The state of the instance is unknown.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. &lt;br&gt;&lt;b&gt;RUNNABLE&lt;/b&gt;: The instance is running, or is ready to run when accessed. &lt;br&gt;&lt;b&gt;SUSPENDED&lt;/b&gt;: The instance is not available, for example due to problems with billing. &lt;br&gt;&lt;b&gt;PENDING_CREATE&lt;/b&gt;: The instance is being created. &lt;br&gt;&lt;b&gt;MAINTENANCE&lt;/b&gt;: The instance is down for maintenance. &lt;br&gt;&lt;b&gt;FAILED&lt;/b&gt;: The instance creation failed. &lt;br&gt;&lt;b&gt;UNKNOWN_STATE&lt;/b&gt;: The state of the instance is unknown.
      */
     state?: string | null;
     /**
@@ -515,7 +519,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Database[];
     /**
-     * This is always &lt;code&gt;sql#databasesList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#databasesList&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -524,11 +528,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DemoteMasterConfiguration {
     /**
-     * This is always &lt;code&gt;sql#demoteMasterConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#demoteMasterConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;code&gt;master.info&lt;/code&gt; in the data directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;b&gt;master.info&lt;/b&gt; in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$DemoteMasterMySqlReplicaConfiguration;
   }
@@ -537,7 +541,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DemoteMasterContext {
     /**
-     * This is always &lt;code&gt;sql#demoteMasterContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#demoteMasterContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -549,7 +553,7 @@ export namespace sql_v1beta4 {
      */
     replicaConfiguration?: Schema$DemoteMasterConfiguration;
     /**
-     * Verify GTID consistency for demote operation. Default value: &lt;code&gt;True&lt;/code&gt;. Second Generation instances only.  Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
+     * Verify GTID consistency for demote operation. Default value: &lt;b&gt;True&lt;/b&gt;. Second Generation instances only.  Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
      */
     verifyGtidConsistency?: boolean | null;
   }
@@ -570,7 +574,7 @@ export namespace sql_v1beta4 {
      */
     clientKey?: string | null;
     /**
-     * This is always &lt;code&gt;sql#demoteMasterMysqlReplicaConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#demoteMasterMysqlReplicaConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -587,7 +591,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DiskEncryptionConfiguration {
     /**
-     * This is always &lt;code&gt;sql#diskEncryptionConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#diskEncryptionConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -600,7 +604,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DiskEncryptionStatus {
     /**
-     * This is always &lt;code&gt;sql#diskEncryptionStatus&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#diskEncryptionStatus&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -617,21 +621,17 @@ export namespace sql_v1beta4 {
      */
     csvExportOptions?: {selectQuery?: string} | null;
     /**
-     * Databases to be exported. &lt;br /&gt; &lt;b&gt;MySQL instances:&lt;/b&gt; If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;SQL&lt;/code&gt; and no database is specified, all databases are exported, except for the &lt;code&gt;mysql&lt;/code&gt; system database. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;CSV&lt;/code&gt;, you can specify one database, either by using this property or by using the &lt;code&gt;csvExportOptions.selectQuery&lt;/code&gt; property, which takes precedence over this property. &lt;br /&gt; &lt;b&gt;PostgreSQL instances:&lt;/b&gt; You must specify one database to be exported. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;CSV&lt;/code&gt;, this database must match the one specified in the &lt;code&gt;csvExportOptions.selectQuery&lt;/code&gt; property.
+     * Databases to be exported. &lt;br /&gt; &lt;b&gt;MySQL instances:&lt;/b&gt; If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt; and no database is specified, all databases are exported, except for the &lt;b&gt;mysql&lt;/b&gt; system database. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, you can specify one database, either by using this property or by using the &lt;b&gt;csvExportOptions.selectQuery&lt;/b&gt; property, which takes precedence over this property. &lt;br /&gt; &lt;b&gt;PostgreSQL instances:&lt;/b&gt; You must specify one database to be exported. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, this database must match the one specified in the &lt;b&gt;csvExportOptions.selectQuery&lt;/b&gt; property.
      */
     databases?: string[] | null;
     /**
-     * The file type for the specified uri. &lt;br&gt;&lt;code&gt;SQL&lt;/code&gt;: The file contains SQL statements. &lt;br&gt;&lt;code&gt;CSV&lt;/code&gt;: The file contains CSV data.
+     * The file type for the specified uri. &lt;br&gt;&lt;b&gt;SQL&lt;/b&gt;: The file contains SQL statements. &lt;br&gt;&lt;b&gt;CSV&lt;/b&gt;: The file contains CSV data.
      */
     fileType?: string | null;
     /**
-     * This is always &lt;code&gt;sql#exportContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#exportContext&lt;/b&gt;.
      */
     kind?: string | null;
-    /**
-     * Option for export offload.
-     */
-    offload?: boolean | null;
     /**
      * Options for exporting data as SQL statements.
      */
@@ -641,7 +641,7 @@ export namespace sql_v1beta4 {
       tables?: string[];
     } | null;
     /**
-     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;code&gt;fileType&lt;/code&gt; is // &lt;code&gt;SQL&lt;/code&gt; and the filename ends with .gz, the contents are // compressed.
+     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;b&gt;gs: //bucketName/fileName&lt;/b&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;b&gt;fileType&lt;/b&gt; is // &lt;b&gt;SQL&lt;/b&gt; and the filename ends with .gz, the contents are // compressed.
      */
     uri?: string | null;
   }
@@ -650,7 +650,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$FailoverContext {
     /**
-     * This is always &lt;code&gt;sql#failoverContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#failoverContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -667,11 +667,11 @@ export namespace sql_v1beta4 {
      */
     allowedIntValues?: string[] | null;
     /**
-     * For &lt;code&gt;STRING&lt;/code&gt; flags, a list of strings that the value can be set to.
+     * For &lt;b&gt;STRING&lt;/b&gt; flags, a list of strings that the value can be set to.
      */
     allowedStringValues?: string[] | null;
     /**
-     * The database version this flag applies to. Can be &lt;code&gt;MYSQL_5_5&lt;/code&gt;, &lt;code&gt;MYSQL_5_6&lt;/code&gt;, or &lt;code&gt;MYSQL_5_7&lt;/code&gt;. &lt;code&gt;MYSQL_5_7&lt;/code&gt; is applicable only to Second Generation instances.
+     * The database version this flag applies to. Can be &lt;b&gt;MYSQL_5_5&lt;/b&gt;, &lt;b&gt;MYSQL_5_6&lt;/b&gt;, or &lt;b&gt;MYSQL_5_7&lt;/b&gt;. &lt;b&gt;MYSQL_5_7&lt;/b&gt; is applicable only to Second Generation instances.
      */
     appliesTo?: string[] | null;
     /**
@@ -679,19 +679,19 @@ export namespace sql_v1beta4 {
      */
     inBeta?: boolean | null;
     /**
-     * This is always &lt;code&gt;sql#flag&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#flag&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * For &lt;code&gt;INTEGER&lt;/code&gt; flags, the maximum allowed value.
+     * For &lt;b&gt;INTEGER&lt;/b&gt; flags, the maximum allowed value.
      */
     maxValue?: string | null;
     /**
-     * For &lt;code&gt;INTEGER&lt;/code&gt; flags, the minimum allowed value.
+     * For &lt;b&gt;INTEGER&lt;/b&gt; flags, the minimum allowed value.
      */
     minValue?: string | null;
     /**
-     * This is the name of the flag. Flag names always use underscores, not hyphens, e.g. &lt;code&gt;max_allowed_packet&lt;/code&gt;
+     * This is the name of the flag. Flag names always use underscores, not hyphens, e.g. &lt;b&gt;max_allowed_packet&lt;/b&gt;
      */
     name?: string | null;
     /**
@@ -699,7 +699,7 @@ export namespace sql_v1beta4 {
      */
     requiresRestart?: boolean | null;
     /**
-     * The type of the flag. Flags are typed to being &lt;code&gt;BOOLEAN&lt;/code&gt;, &lt;code&gt;STRING&lt;/code&gt;, &lt;code&gt;INTEGER&lt;/code&gt; or &lt;code&gt;NONE&lt;/code&gt;. &lt;code&gt;NONE&lt;/code&gt; is used for flags which do not take a value, such as &lt;code&gt;skip_grant_tables&lt;/code&gt;.
+     * The type of the flag. Flags are typed to being &lt;b&gt;BOOLEAN&lt;/b&gt;, &lt;b&gt;STRING&lt;/b&gt;, &lt;b&gt;INTEGER&lt;/b&gt; or &lt;b&gt;NONE&lt;/b&gt;. &lt;b&gt;NONE&lt;/b&gt; is used for flags which do not take a value, such as &lt;b&gt;skip_grant_tables&lt;/b&gt;.
      */
     type?: string | null;
   }
@@ -712,7 +712,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Flag[];
     /**
-     * This is always &lt;code&gt;sql#flagsList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#flagsList&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -735,11 +735,11 @@ export namespace sql_v1beta4 {
      */
     csvImportOptions?: {columns?: string[]; table?: string} | null;
     /**
-     * The target database for the import. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;SQL&lt;/code&gt;, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;CSV&lt;/code&gt;, one database must be specified.
+     * The target database for the import. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt;, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;CSV&lt;/b&gt;, one database must be specified.
      */
     database?: string | null;
     /**
-     * The file type for the specified uri. &lt;br&gt;&lt;code&gt;SQL&lt;/code&gt;: The file contains SQL statements. &lt;br&gt;&lt;code&gt;CSV&lt;/code&gt;: The file contains CSV data.
+     * The file type for the specified uri. &lt;br&gt;&lt;b&gt;SQL&lt;/b&gt;: The file contains SQL statements. &lt;br&gt;&lt;b&gt;CSV&lt;/b&gt;: The file contains CSV data.
      */
     fileType?: string | null;
     /**
@@ -747,11 +747,11 @@ export namespace sql_v1beta4 {
      */
     importUser?: string | null;
     /**
-     * This is always &lt;code&gt;sql#importContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#importContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * Path to the import file in Cloud Storage, in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. Compressed gzip files (.gz) are supported // when &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;SQL&lt;/code&gt;. The instance must have // write permissions to the bucket and read access to the file.
+     * Path to the import file in Cloud Storage, in the form &lt;b&gt;gs: //bucketName/fileName&lt;/b&gt;. Compressed gzip files (.gz) are supported // when &lt;b&gt;fileType&lt;/b&gt; is &lt;b&gt;SQL&lt;/b&gt;. The instance must have // write permissions to the bucket and read access to the file.
      */
     uri?: string | null;
   }
@@ -809,7 +809,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$DatabaseInstance[];
     /**
-     * This is always &lt;code&gt;sql#instancesList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#instancesList&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -831,7 +831,7 @@ export namespace sql_v1beta4 {
      */
     certs?: Schema$SslCert[];
     /**
-     * This is always &lt;code&gt;sql#instancesListServerCas&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#instancesListServerCas&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -867,7 +867,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The list of external networks that are allowed to connect to the instance using the IP. In &lt;a href=&quot;http://en.wikipedia.org/wiki/CIDR_notation#CIDR_notation&quot;&gt;CIDR notation&lt;/a&gt;, also known as &#39;slash&#39; notation (e.g. &lt;code&gt;192.168.100.0/24&lt;/code&gt;).
+     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (e.g. &lt;b&gt;192.168.100.0/24&lt;/b&gt;).
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
@@ -875,7 +875,7 @@ export namespace sql_v1beta4 {
      */
     ipv4Enabled?: boolean | null;
     /**
-     * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, &lt;code&gt;/projects/myProject/global/networks/default&lt;/code&gt;. This setting can be updated, but it cannot be removed after it is set.
+     * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, &lt;b&gt;/projects/myProject/global/networks/default&lt;/b&gt;. This setting can be updated, but it cannot be removed after it is set.
      */
     privateNetwork?: string | null;
     /**
@@ -892,11 +892,11 @@ export namespace sql_v1beta4 {
      */
     ipAddress?: string | null;
     /**
-     * The due time for this IP to be retired in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;. This field is only available when the IP is scheduled to be retired.
+     * The due time for this IP to be retired in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;. This field is only available when the IP is scheduled to be retired.
      */
     timeToRetire?: string | null;
     /**
-     * The type of this IP address. A &lt;code&gt;PRIMARY&lt;/code&gt; address is a public address that can accept incoming connections. A &lt;code&gt;PRIVATE&lt;/code&gt; address is a private address that can accept incoming connections. An &lt;code&gt;OUTGOING&lt;/code&gt; address is the source address of connections originating from the instance, if supported.
+     * The type of this IP address. A &lt;b&gt;PRIMARY&lt;/b&gt; address is a public address that can accept incoming connections. A &lt;b&gt;PRIVATE&lt;/b&gt; address is a private address that can accept incoming connections. An &lt;b&gt;OUTGOING&lt;/b&gt; address is the source address of connections originating from the instance, if supported.
      */
     type?: string | null;
   }
@@ -905,11 +905,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$LocationPreference {
     /**
-     * The AppEngine application to follow, it must be in the same region as the Cloud SQL instance.
+     * The App Engine application to follow, it must be in the same region as the Cloud SQL instance.
      */
     followGaeApplication?: string | null;
     /**
-     * This is always &lt;code&gt;sql#locationPreference&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#locationPreference&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -930,11 +930,11 @@ export namespace sql_v1beta4 {
      */
     hour?: number | null;
     /**
-     * This is always &lt;code&gt;sql#maintenanceWindow&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#maintenanceWindow&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * Maintenance timing setting: &lt;code&gt;canary&lt;/code&gt; (Earlier) or &lt;code&gt;stable&lt;/code&gt; (Later). &lt;br /&gt;&lt;a href=&quot;/sql/docs/db_path/instance-settings#maintenance-timing-2ndgen&quot;&gt; Learn more&lt;/a&gt;.
+     * Maintenance timing setting: &lt;b&gt;canary&lt;/b&gt; (Earlier) or &lt;b&gt;stable&lt;/b&gt; (Later). &lt;br /&gt;&lt;a href=&quot;/sql/docs/db_path/instance-settings#maintenance-timing-2ndgen&quot;&gt; Learn more&lt;/a&gt;.
      */
     updateTrack?: string | null;
   }
@@ -959,11 +959,11 @@ export namespace sql_v1beta4 {
      */
     connectRetryInterval?: number | null;
     /**
-     * Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs: //bucketName/fileName. Compressed gzip files (.gz) are also supported. // Dumps should have the binlog co-ordinates from which replication should // begin. This can be accomplished by setting --master-data to 1 when using // mysqldump.
+     * Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump.
      */
     dumpFilePath?: string | null;
     /**
-     * This is always &lt;code&gt;sql#mysqlReplicaConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#mysqlReplicaConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1012,7 +1012,7 @@ export namespace sql_v1beta4 {
      */
     hostPort?: string | null;
     /**
-     * This is always &lt;code&gt;sql#onPremisesConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#onPremisesConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1029,7 +1029,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$Operation {
     /**
-     * The time this operation finished in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time this operation finished in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     endTime?: string | null;
     /**
@@ -1045,11 +1045,11 @@ export namespace sql_v1beta4 {
      */
     importContext?: Schema$ImportContext;
     /**
-     * The time this operation was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time this operation was enqueued in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     insertTime?: string | null;
     /**
-     * This is always &lt;code&gt;sql#operation&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#operation&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1057,7 +1057,7 @@ export namespace sql_v1beta4 {
      */
     name?: string | null;
     /**
-     * The type of the operation. Valid values are &lt;code&gt;CREATE&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, &lt;code&gt;UPDATE&lt;/code&gt;, &lt;code&gt;RESTART&lt;/code&gt;, &lt;code&gt;IMPORT&lt;/code&gt;, &lt;code&gt;EXPORT&lt;/code&gt;, &lt;code&gt;BACKUP_VOLUME&lt;/code&gt;, &lt;code&gt;RESTORE_VOLUME&lt;/code&gt;, &lt;code&gt;CREATE_USER&lt;/code&gt;, &lt;code&gt;DELETE_USER&lt;/code&gt;, &lt;code&gt;CREATE_DATABASE&lt;/code&gt;, &lt;code&gt;DELETE_DATABASE&lt;/code&gt; .
+     * The type of the operation. Valid values are: &lt;br&gt;&lt;b&gt;CREATE&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE&lt;/b&gt; &lt;br&gt;&lt;b&gt;UPDATE&lt;/b&gt; &lt;br&gt;&lt;b&gt;RESTART&lt;/b&gt; &lt;br&gt;&lt;b&gt;IMPORT&lt;/b&gt; &lt;br&gt;&lt;b&gt;EXPORT&lt;/b&gt; &lt;br&gt;&lt;b&gt;BACKUP_VOLUME&lt;/b&gt; &lt;br&gt;&lt;b&gt;RESTORE_VOLUME&lt;/b&gt; &lt;br&gt;&lt;b&gt;CREATE_USER&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE_USER&lt;/b&gt; &lt;br&gt;&lt;b&gt;CREATE_DATABASE&lt;/b&gt; &lt;br&gt;&lt;b&gt;DELETE_DATABASE&lt;/b&gt;
      */
     operationType?: string | null;
     /**
@@ -1065,11 +1065,11 @@ export namespace sql_v1beta4 {
      */
     selfLink?: string | null;
     /**
-     * The time this operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time this operation actually started in UTC timezone in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     startTime?: string | null;
     /**
-     * The status of an operation. Valid values are &lt;code&gt;PENDING&lt;/code&gt;, &lt;code&gt;RUNNING&lt;/code&gt;, &lt;code&gt;DONE&lt;/code&gt;, &lt;code&gt;SQL_OPERATION_STATUS_UNSPECIFIED&lt;/code&gt;.
+     * The status of an operation. Valid values are: &lt;br&gt;&lt;b&gt;PENDING&lt;/b&gt; &lt;br&gt;&lt;b&gt;RUNNING&lt;/b&gt; &lt;br&gt;&lt;b&gt;DONE&lt;/b&gt; &lt;br&gt;&lt;b&gt;SQL_OPERATION_STATUS_UNSPECIFIED&lt;/b&gt;
      */
     status?: string | null;
     /**
@@ -1095,7 +1095,7 @@ export namespace sql_v1beta4 {
      */
     code?: string | null;
     /**
-     * This is always &lt;code&gt;sql#operationError&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#operationError&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1112,7 +1112,7 @@ export namespace sql_v1beta4 {
      */
     errors?: Schema$OperationError[];
     /**
-     * This is always &lt;code&gt;sql#operationErrors&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#operationErrors&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -1125,7 +1125,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Operation[];
     /**
-     * This is always &lt;code&gt;sql#operationsList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#operationsList&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1138,15 +1138,15 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$ReplicaConfiguration {
     /**
-     * Specifies if the replica is the failover target. If the field is set to &lt;code&gt;true&lt;/code&gt; the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance.  &lt;p&gt;Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
+     * Specifies if the replica is the failover target. If the field is set to &lt;b&gt;true&lt;/b&gt; the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance.  &lt;p&gt;Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
      */
     failoverTarget?: boolean | null;
     /**
-     * This is always &lt;code&gt;sql#replicaConfiguration&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#replicaConfiguration&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;code&gt;master.info&lt;/code&gt; in the data directory.
+     * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;b&gt;master.info&lt;/b&gt; in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
@@ -1156,7 +1156,7 @@ export namespace sql_v1beta4 {
      */
     rescheduleType?: string | null;
     /**
-     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     scheduleTime?: string | null;
   }
@@ -1173,7 +1173,7 @@ export namespace sql_v1beta4 {
      */
     instanceId?: string | null;
     /**
-     * This is always &lt;code&gt;sql#restoreBackupContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#restoreBackupContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1186,7 +1186,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$RotateServerCaContext {
     /**
-     * This is always &lt;code&gt;sql#rotateServerCaContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#rotateServerCaContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1199,15 +1199,15 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$Settings {
     /**
-     * The activation policy specifies when the instance is activated; it is applicable only when the instance state is &lt;code&gt;RUNNABLE&lt;/code&gt;. Valid values: &lt;br&gt;&lt;code&gt;ALWAYS&lt;/code&gt;: The instance is on, and remains so even in the absence of connection requests. &lt;br&gt;&lt;code&gt;NEVER&lt;/code&gt;: The instance is off; it is not activated, even if a connection request arrives. &lt;br&gt;&lt;code&gt;ON_DEMAND&lt;/code&gt;: First Generation instances only. The instance responds to incoming requests, and turns itself off when not in use. Instances with &lt;code&gt;PER_USE&lt;/code&gt; pricing turn off after 15 minutes of inactivity. Instances with &lt;code&gt;PER_PACKAGE&lt;/code&gt; pricing turn off after 12 hours of inactivity.
+     * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values:   &lt;br&gt;&lt;b&gt;ALWAYS&lt;/b&gt;: The instance is on, and remains so even in the absence of connection requests.   &lt;br&gt;&lt;b&gt;NEVER&lt;/b&gt;: The instance is off; it is not activated, even if a   connection request arrives.
      */
     activationPolicy?: string | null;
     /**
-     * The App Engine app IDs that can access this instance. First Generation instances only.
+     * The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only.
      */
     authorizedGaeApplications?: string[] | null;
     /**
-     * Availability type (PostgreSQL and MySQL instances only). Potential values: &lt;br&gt;&lt;code&gt;ZONAL&lt;/code&gt;: The instance serves data from only one zone. Outages in that zone affect data accessibility. &lt;br&gt;&lt;code&gt;REGIONAL&lt;/code&gt;: The instance can serve data from more than one zone in a region (it is highly available). &lt;br&gt;For more information, see &lt;a href=&quot;https://cloud.google.com/sql/docs/postgres/high-availability&quot;&gt;Overview of the High Availability Configuration&lt;/a&gt;.
+     * Availability type. Potential values:   &lt;br&gt;&lt;b&gt;ZONAL&lt;/b&gt;: The instance serves data from only one zone. Outages in that zone affect data accessibility.   &lt;br&gt;&lt;b&gt;REGIONAL&lt;/b&gt;: The instance can serve data from more than one zone   in a region (it is highly available). &lt;br&gt;For more information, see &lt;a href=&quot;/sql/docs/postgres/high-availability&quot;&gt; Overview of the High Availability Configuration&lt;/a&gt;.
      */
     availabilityType?: string | null;
     /**
@@ -1215,7 +1215,11 @@ export namespace sql_v1beta4 {
      */
     backupConfiguration?: Schema$BackupConfiguration;
     /**
-     * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property is only applicable to First Generation instances.
+     * The name of server Instance collation.
+     */
+    collation?: string | null;
+    /**
+     * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.
      */
     crashSafeReplicationEnabled?: boolean | null;
     /**
@@ -1227,11 +1231,11 @@ export namespace sql_v1beta4 {
      */
     databaseReplicationEnabled?: boolean | null;
     /**
-     * The size of data disk, in GB. The data disk size minimum is 10GB. Not used for First Generation instances.
+     * The size of data disk, in GB. The data disk size minimum is 10GB.
      */
     dataDiskSizeGb?: string | null;
     /**
-     * The type of data disk: &lt;code&gt;PD_SSD&lt;/code&gt; (default) or &lt;code&gt;PD_HDD&lt;/code&gt;. Not used for First Generation instances.
+     * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First Generation instances.
      */
     dataDiskType?: string | null;
     /**
@@ -1239,23 +1243,23 @@ export namespace sql_v1beta4 {
      */
     ipConfiguration?: Schema$IpConfiguration;
     /**
-     * This is always &lt;code&gt;sql#settings&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#settings&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location is only applicable to First Generation instances.
+     * The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location was only applicable to First Generation instances.
      */
     locationPreference?: Schema$LocationPreference;
     /**
-     * The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes. Not used for First Generation instances.
+     * The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * The pricing plan for this instance. This can be either &lt;code&gt;PER_USE&lt;/code&gt; or &lt;code&gt;PACKAGE&lt;/code&gt;. Only &lt;code&gt;PER_USE&lt;/code&gt; is supported for Second Generation instances.
+     * The pricing plan for this instance. This can be either &lt;b&gt;PER_USE&lt;/b&gt; or &lt;b&gt;PACKAGE&lt;/b&gt;. Only &lt;b&gt;PER_USE&lt;/b&gt; is supported for Second Generation instances.
      */
     pricingPlan?: string | null;
     /**
-     * The type of replication this instance uses. This can be either &lt;code&gt;ASYNCHRONOUS&lt;/code&gt; or &lt;code&gt;SYNCHRONOUS&lt;/code&gt;. This property is only applicable to First Generation instances.
+     * The type of replication this instance uses. This can be either &lt;b&gt;ASYNCHRONOUS&lt;/b&gt; or &lt;b&gt;SYNCHRONOUS&lt;/b&gt;. (Deprecated_ This property was only applicable to First Generation instances.
      */
     replicationType?: string | null;
     /**
@@ -1263,15 +1267,15 @@ export namespace sql_v1beta4 {
      */
     settingsVersion?: string | null;
     /**
-     * Configuration to increase storage size automatically. The default value is true. Not used for First Generation instances.
+     * Configuration to increase storage size automatically. The default value is true.
      */
     storageAutoResize?: boolean | null;
     /**
-     * The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. Not used for First Generation instances.
+     * The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit.
      */
     storageAutoResizeLimit?: string | null;
     /**
-     * The tier (or machine type) for this instance, for example &lt;code&gt;db-n1-standard-1&lt;/code&gt; (MySQL instances) or &lt;code&gt;db-custom-1-3840&lt;/code&gt; (PostgreSQL instances). For MySQL instances, this property determines whether the instance is First or Second Generation. For more information, see &lt;a href=&quot;/sql/docs/db_path/instance-settings&quot;&gt;Instance Settings&lt;/a&gt;.
+     * The tier (or machine type) for this instance, for example &lt;b&gt;db-n1-standard-1&lt;/b&gt; (MySQL instances) or &lt;b&gt;db-custom-1-3840&lt;/b&gt; (PostgreSQL instances).
      */
     tier?: string | null;
     /**
@@ -1288,7 +1292,7 @@ export namespace sql_v1beta4 {
      */
     detail?: string | null;
     /**
-     * This is always &lt;code&gt;sql#migrationSettingError&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#migrationSettingError&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1314,7 +1318,7 @@ export namespace sql_v1beta4 {
      */
     errors?: Schema$SqlExternalSyncSettingError[];
     /**
-     * This is always &lt;code&gt;sql#migrationSettingErrorList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#migrationSettingErrorList&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -1375,11 +1379,11 @@ export namespace sql_v1beta4 {
      */
     commonName?: string | null;
     /**
-     * The time when the certificate was created in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;
+     * The time when the certificate was created in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;
      */
     createTime?: string | null;
     /**
-     * The time when the certificate expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
+     * The time when the certificate expires in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;b&gt;2012-11-15T16:19:00.094Z&lt;/b&gt;.
      */
     expirationTime?: string | null;
     /**
@@ -1387,7 +1391,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always &lt;code&gt;sql#sslCert&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#sslCert&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1435,11 +1439,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$SslCertsInsertResponse {
     /**
-     * The new client certificate and private key.  For First Generation instances, the new certificate does not take effect until the instance is restarted.
+     * The new client certificate and private key.
      */
     clientCert?: Schema$SslCertDetail;
     /**
-     * This is always &lt;code&gt;sql#sslCertsInsert&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#sslCertsInsert&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1460,7 +1464,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$SslCert[];
     /**
-     * This is always &lt;code&gt;sql#sslCertsList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#sslCertsList&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -1473,7 +1477,7 @@ export namespace sql_v1beta4 {
      */
     DiskQuota?: string | null;
     /**
-     * This is always &lt;code&gt;sql#tier&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#tier&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1498,7 +1502,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$Tier[];
     /**
-     * This is always &lt;code&gt;sql#tiersList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#tiersList&lt;/b&gt;.
      */
     kind?: string | null;
   }
@@ -1507,11 +1511,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$TruncateLogContext {
     /**
-     * This is always &lt;code&gt;sql#truncateLogContext&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#truncateLogContext&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * The type of log to truncate. Valid values are &lt;code&gt;MYSQL_GENERAL_TABLE&lt;/code&gt; and &lt;code&gt;MYSQL_SLOW_TABLE&lt;/code&gt;.
+     * The type of log to truncate. Valid values are &lt;b&gt;MYSQL_GENERAL_TABLE&lt;/b&gt; and &lt;b&gt;MYSQL_SLOW_TABLE&lt;/b&gt;.
      */
     logType?: string | null;
   }
@@ -1524,19 +1528,19 @@ export namespace sql_v1beta4 {
      */
     etag?: string | null;
     /**
-     * The host name from which the user can connect. For &lt;code&gt;insert&lt;/code&gt; operations, host defaults to an empty string. For &lt;code&gt;update&lt;/code&gt; operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
+     * The host name from which the user can connect. For &lt;b&gt;insert&lt;/b&gt; operations, host defaults to an empty string. For &lt;b&gt;update&lt;/b&gt; operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
      */
     host?: string | null;
     /**
-     * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for &lt;code&gt;update&lt;/code&gt; since it is already specified on the URL.
+     * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified on the URL.
      */
     instance?: string | null;
     /**
-     * This is always &lt;code&gt;sql#user&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#user&lt;/b&gt;.
      */
     kind?: string | null;
     /**
-     * The name of the user in the Cloud SQL instance. Can be omitted for &lt;code&gt;update&lt;/code&gt; since it is already specified in the URL.
+     * The name of the user in the Cloud SQL instance. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified in the URL.
      */
     name?: string | null;
     /**
@@ -1544,7 +1548,7 @@ export namespace sql_v1beta4 {
      */
     password?: string | null;
     /**
-     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for &lt;code&gt;update&lt;/code&gt; since it is already specified on the URL.
+     * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for &lt;b&gt;update&lt;/b&gt; since it is already specified on the URL.
      */
     project?: string | null;
     sqlserverUserDetails?: Schema$SqlServerUserDetails;
@@ -1558,7 +1562,7 @@ export namespace sql_v1beta4 {
      */
     items?: Schema$User[];
     /**
-     * This is always &lt;code&gt;sql#usersList&lt;/code&gt;.
+     * This is always &lt;b&gt;sql#usersList&lt;/b&gt;.
      */
     kind?: string | null;
     /**
@@ -1702,7 +1706,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1770,6 +1774,7 @@ export namespace sql_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupKind": "my_backupKind",
      *   //   "description": "my_description",
      *   //   "diskEncryptionConfiguration": {},
      *   //   "diskEncryptionStatus": {},
@@ -1855,7 +1860,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1921,6 +1926,7 @@ export namespace sql_v1beta4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backupKind": "my_backupKind",
      *       //   "description": "my_description",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
@@ -2029,7 +2035,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2179,7 +2185,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2403,7 +2409,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2550,7 +2556,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2717,7 +2723,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2859,7 +2865,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3029,7 +3035,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3199,7 +3205,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3436,7 +3442,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3598,7 +3604,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3758,7 +3764,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3908,7 +3914,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4067,7 +4073,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4223,7 +4229,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4383,7 +4389,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4547,7 +4553,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4702,7 +4708,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4887,7 +4893,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5045,7 +5051,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5190,7 +5196,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5379,7 +5385,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5529,7 +5535,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5680,7 +5686,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5831,7 +5837,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5991,7 +5997,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6151,7 +6157,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6302,7 +6308,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6453,7 +6459,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6613,7 +6619,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6800,7 +6806,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7238,7 +7244,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7387,7 +7393,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7593,7 +7599,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7747,7 +7753,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7912,7 +7918,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8126,7 +8132,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8279,7 +8285,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8426,7 +8432,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8579,7 +8585,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8721,7 +8727,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8935,7 +8941,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9105,7 +9111,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9271,7 +9277,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9412,7 +9418,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9584,7 +9590,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
