@@ -484,7 +484,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -618,7 +619,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -738,7 +740,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -861,7 +864,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -991,7 +995,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1165,7 +1170,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1311,7 +1317,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1429,7 +1436,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1549,7 +1557,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1672,7 +1681,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1802,7 +1812,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1959,7 +1970,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2086,7 +2098,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2253,7 +2266,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2387,7 +2401,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2507,7 +2522,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2630,7 +2646,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2760,7 +2777,8 @@ export namespace gamesManagement_v1management {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://gamesmanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
