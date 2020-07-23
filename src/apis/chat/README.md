@@ -2,7 +2,7 @@
 
 # chat
 
-> Create bots and extend the new Hangouts Chat.
+> Enables bots to fetch information and perform actions in Hangouts Chat.
 
 ## Installation
 
