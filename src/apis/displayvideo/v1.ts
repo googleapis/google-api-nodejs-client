@@ -162,11 +162,11 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * The minimum visible video duration required (in seconds) in order for an impression to be recorded.  You must specify minimum_duration, minimum_quartile or both. If both are specified, an impression meets the metric criteria if either requirement is met (whichever happens first).
+     * The minimum visible video duration required (in seconds) in order for an impression to be recorded. You must specify minimum_duration, minimum_quartile or both. If both are specified, an impression meets the metric criteria if either requirement is met (whichever happens first).
      */
     minimumDuration?: string | null;
     /**
-     * The minimum visible video duration required, based on the video quartiles, in order for an impression to be recorded.  You must specify minimum_duration, minimum_quartile or both. If both are specified, an impression meets the metric criteria if either requirement is met (whichever happens first).
+     * The minimum visible video duration required, based on the video quartiles, in order for an impression to be recorded. You must specify minimum_duration, minimum_quartile or both. If both are specified, an impression meets the metric criteria if either requirement is met (whichever happens first).
      */
     minimumQuartile?: string | null;
     /**
@@ -208,11 +208,11 @@ export namespace displayvideo_v1 {
      */
     dataAccessConfig?: Schema$AdvertiserDataAccessConfig;
     /**
-     * Required. The display name of the advertiser.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the advertiser. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
-     * Required. Controls whether or not insertion orders and line items of the advertiser can spend their budgets and bid on inventory.  * Accepted values are `ENTITY_STATUS_ACTIVE` and `ENTITY_STATUS_SCHEDULED_FOR_DELETION`. * If set to `ENTITY_STATUS_SCHEDULED_FOR_DELETION`, the advertiser will be deleted 30 days from when it was first scheduled for deletion.
+     * Required. Controls whether or not insertion orders and line items of the advertiser can spend their budgets and bid on inventory. * Accepted values are `ENTITY_STATUS_ACTIVE` and `ENTITY_STATUS_SCHEDULED_FOR_DELETION`. * If set to `ENTITY_STATUS_SCHEDULED_FOR_DELETION`, the advertiser will be deleted 30 days from when it was first scheduled for deletion.
      */
     entityStatus?: string | null;
     /**
@@ -266,11 +266,11 @@ export namespace displayvideo_v1 {
      */
     iasClientId?: string | null;
     /**
-     * Whether or not to use DV360&#39;s Online Behavioral Advertising (OBA) compliance.  Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
+     * Whether or not to use DV360&#39;s Online Behavioral Advertising (OBA) compliance. Warning: Changing OBA settings may cause the audit status of your creatives to be reset by some ad exchanges, making them ineligible to serve until they are re-approved.
      */
     obaComplianceDisabled?: boolean | null;
     /**
-     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display &amp; Video 360 advertiser to provide reporting and features related to the advertiser&#39;s television campaigns.  Applicable only when the advertiser has a CM hybrid ad server configuration.
+     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display &amp; Video 360 advertiser to provide reporting and features related to the advertiser&#39;s television campaigns. Applicable only when the advertiser has a CM hybrid ad server configuration.
      */
     videoCreativeDataSharingAuthorized?: boolean | null;
   }
@@ -279,7 +279,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AdvertiserDataAccessConfig {
     /**
-     * Structured Data Files (SDF) settings for the advertiser.  If not specified, the SDF settings of the parent partner are used.
+     * Structured Data Files (SDF) settings for the advertiser. If not specified, the SDF settings of the parent partner are used.
      */
     sdfConfig?: Schema$AdvertiserSdfConfig;
   }
@@ -288,15 +288,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AdvertiserGeneralConfig {
     /**
-     * Required. Immutable. Advertiser&#39;s currency in ISO 4217 format.  Accepted codes and the currencies they represent are:  Currency Code : Currency Name  * `ARS` : Argentine Peso * `AUD` : Australian Dollar * `BRL` : Brazilian Real * `CAD` : Canadian Dollar * `CHF` : Swiss Franc * `CLP` : Chilean Peso * `CNY` : Chinese Yuan * `COP` : Colombian Peso * `CZK` : Czech Koruna * `DKK` : Danish Krone * `EGP` : Egyption Pound * `EUR` : Euro * `GBP` : British Pound * `HKD` : Hong Kong Dollar * `HUF` : Hungarian Forint * `IDR` : Indonesian Rupiah * `ILS` : Israeli Shekel * `INR` : Indian Rupee * `JPY` : Japanese Yen * `KRW` : South Korean Won * `MXN` : Mexican Pesos * `MYR` : Malaysian Ringgit * `NGN` : Nigerian Naira * `NOK` : Norwegian Krone * `NZD` : New Zealand Dollar * `PEN` : Peruvian Nuevo Sol * `PLN` : Polish Zloty * `RON` : New Romanian Leu * `RUB` : Russian Ruble * `SEK` : Swedish Krona * `TRY` : Turkish Lira * `TWD` : New Taiwan Dollar * `USD` : US Dollar * `ZAR` : South African Rand
+     * Required. Immutable. Advertiser&#39;s currency in ISO 4217 format. Accepted codes and the currencies they represent are: Currency Code : Currency Name * `ARS` : Argentine Peso * `AUD` : Australian Dollar * `BRL` : Brazilian Real * `CAD` : Canadian Dollar * `CHF` : Swiss Franc * `CLP` : Chilean Peso * `CNY` : Chinese Yuan * `COP` : Colombian Peso * `CZK` : Czech Koruna * `DKK` : Danish Krone * `EGP` : Egyption Pound * `EUR` : Euro * `GBP` : British Pound * `HKD` : Hong Kong Dollar * `HUF` : Hungarian Forint * `IDR` : Indonesian Rupiah * `ILS` : Israeli Shekel * `INR` : Indian Rupee * `JPY` : Japanese Yen * `KRW` : South Korean Won * `MXN` : Mexican Pesos * `MYR` : Malaysian Ringgit * `NGN` : Nigerian Naira * `NOK` : Norwegian Krone * `NZD` : New Zealand Dollar * `PEN` : Peruvian Nuevo Sol * `PLN` : Polish Zloty * `RON` : New Romanian Leu * `RUB` : Russian Ruble * `SEK` : Swedish Krona * `TRY` : Turkish Lira * `TWD` : New Taiwan Dollar * `USD` : US Dollar * `ZAR` : South African Rand
      */
     currencyCode?: string | null;
     /**
-     * Required. The domain URL of the advertiser&#39;s primary website. The system will send this information to publishers that require website URL to associate a campaign with an advertiser.  Provide a URL with no path or query string, beginning with `http:` or `https:`. For example, http://www.example.com
+     * Required. The domain URL of the advertiser&#39;s primary website. The system will send this information to publishers that require website URL to associate a campaign with an advertiser. Provide a URL with no path or query string, beginning with `http:` or `https:`. For example, http://www.example.com
      */
     domainUrl?: string | null;
     /**
-     * Output only. The standard TZ database name of the advertiser&#39;s time zone. For example, `America/New_York`.  See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones  For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.
+     * Output only. The standard TZ database name of the advertiser&#39;s time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.
      */
     timeZone?: string | null;
   }
@@ -305,11 +305,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AdvertiserSdfConfig {
     /**
-     * Whether or not this advertiser overrides the SDF configuration of its parent partner.  By default, an advertiser inherits the SDF configuration from the parent partner. To override the partner configuration, set this field to `true` and provide the new configuration in sdfConfig.
+     * Whether or not this advertiser overrides the SDF configuration of its parent partner. By default, an advertiser inherits the SDF configuration from the parent partner. To override the partner configuration, set this field to `true` and provide the new configuration in sdfConfig.
      */
     overridePartnerSdfConfig?: boolean | null;
     /**
-     * The SDF configuration for the advertiser.  * Required when overridePartnerSdfConfig is `true`. * Output only when overridePartnerSdfConfig is `false`.
+     * The SDF configuration for the advertiser. * Required when overridePartnerSdfConfig is `true`. * Output only when overridePartnerSdfConfig is `false`.
      */
     sdfConfig?: Schema$SdfConfig;
   }
@@ -349,7 +349,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AppAssignedTargetingOptionDetails {
     /**
-     * Required. The ID of the app.  Android&#39;s Play store app uses bundle ID, for example `com.google.android.gm`. Apple&#39;s App store app ID uses 9 digit string, for example `422689480`.
+     * Required. The ID of the app. Android&#39;s Play store app uses bundle ID, for example `com.google.android.gm`. Apple&#39;s App store app ID uses 9 digit string, for example `422689480`.
      */
     appId?: string | null;
     /**
@@ -472,7 +472,7 @@ export namespace displayvideo_v1 {
      */
     audienceGroupDetails?: Schema$AudienceGroupAssignedTargetingOptionDetails;
     /**
-     * Authorized seller status details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`.  You can only target one authorized seller status option per line item.  If a line item doesn&#39;t have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
+     * Authorized seller status details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per line item. If a line item doesn&#39;t have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
      */
     authorizedSellerStatusDetails?: Schema$AuthorizedSellerStatusAssignedTargetingOptionDetails;
     /**
@@ -484,7 +484,7 @@ export namespace displayvideo_v1 {
      */
     carrierAndIspDetails?: Schema$CarrierAndIspAssignedTargetingOptionDetails;
     /**
-     * Category details. This field will be populated when the TargetingType is `TARGETING_TYPE_CATEGORY`.  Targeting a category will also target its subcategories. If a category is excluded from targeting and a subcategory is included, the exclusion will take precedence.
+     * Category details. This field will be populated when the TargetingType is `TARGETING_TYPE_CATEGORY`. Targeting a category will also target its subcategories. If a category is excluded from targeting and a subcategory is included, the exclusion will take precedence.
      */
     categoryDetails?: Schema$CategoryAssignedTargetingOptionDetails;
     /**
@@ -512,7 +512,7 @@ export namespace displayvideo_v1 {
      */
     deviceTypeDetails?: Schema$DeviceTypeAssignedTargetingOptionDetails;
     /**
-     * Digital content label details. This field will be populated when the TargetingType is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`.  Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude content labels in addition to advertiser exclusions, but can&#39;t override them. A line item won&#39;t serve if all the digital content labels are excluded.
+     * Digital content label details. This field will be populated when the TargetingType is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude content labels in addition to advertiser exclusions, but can&#39;t override them. A line item won&#39;t serve if all the digital content labels are excluded.
      */
     digitalContentLabelExclusionDetails?: Schema$DigitalContentLabelAssignedTargetingOptionDetails;
     /**
@@ -548,7 +548,7 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupDetails?: Schema$InventorySourceGroupAssignedTargetingOptionDetails;
     /**
-     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_KEYWORD`.  A maximum of 5000 direct negative keywords can be assigned to a line item. No limit on number of positive keywords that can be assigned.
+     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_KEYWORD`. A maximum of 5000 direct negative keywords can be assigned to a line item. No limit on number of positive keywords that can be assigned.
      */
     keywordDetails?: Schema$KeywordAssignedTargetingOptionDetails;
     /**
@@ -560,7 +560,7 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`.  A maximum of 4 negative keyword lists can be assigned to a line item.
+     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`. A maximum of 4 negative keyword lists can be assigned to a line item.
      */
     negativeKeywordListDetails?: Schema$NegativeKeywordListAssignedTargetingOptionDetails;
     /**
@@ -584,7 +584,7 @@ export namespace displayvideo_v1 {
      */
     regionalLocationListDetails?: Schema$RegionalLocationListAssignedTargetingOptionDetails;
     /**
-     * Sensitive category details. This field will be populated when the TargetingType is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`.  Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude sensitive categories in addition to advertiser exclusions, but can&#39;t override them.
+     * Sensitive category details. This field will be populated when the TargetingType is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren&#39;t visible in line item settings). Line item settings can exclude sensitive categories in addition to advertiser exclusions, but can&#39;t override them.
      */
     sensitiveCategoryExclusionDetails?: Schema$SensitiveCategoryAssignedTargetingOptionDetails;
     /**
@@ -612,7 +612,7 @@ export namespace displayvideo_v1 {
      */
     videoPlayerSizeDetails?: Schema$VideoPlayerSizeAssignedTargetingOptionDetails;
     /**
-     * Viewability details. This field will be populated when the TargetingType is `TARGETING_TYPE_VIEWABILITY`.  You can only target one viewability option per line item.
+     * Viewability details. This field will be populated when the TargetingType is `TARGETING_TYPE_VIEWABILITY`. You can only target one viewability option per line item.
      */
     viewabilityDetails?: Schema$ViewabilityAssignedTargetingOptionDetails;
   }
@@ -689,7 +689,7 @@ export namespace displayvideo_v1 {
      */
     fixedBid?: Schema$FixedBidStrategy;
     /**
-     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget.  At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, when performance_goal_type is one of:  * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` ,  the line_item_type of the insertion order line items must be either:  * `LINE_ITEM_TYPE_DISPLAY_DEFAULT` * `LINE_ITEM_TYPE_VIDEO_DEFAULT` ,  and when performance_goal_type is either:  * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN`  the line_item_type of the insertion order line items must be `LINE_ITEM_TYPE_VIDEO_DEFAULT`.
+     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, when performance_goal_type is one of: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` , the line_item_type of the insertion order line items must be either: * `LINE_ITEM_TYPE_DISPLAY_DEFAULT` * `LINE_ITEM_TYPE_VIDEO_DEFAULT` , and when performance_goal_type is either: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` the line_item_type of the insertion order line items must be `LINE_ITEM_TYPE_VIDEO_DEFAULT`.
      */
     maximizeSpendAutoBid?: Schema$MaximizeSpendBidStrategy;
     /**
@@ -738,7 +738,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
+     * The list of assigned targeting options that have been successfully created. This list will be absent if empty.
      */
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
@@ -747,7 +747,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditAssignedInventorySourcesRequest {
     /**
-     * The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to these assigned inventory sources.
+     * The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to these assigned inventory sources.
      */
     advertiserId?: string | null;
     /**
@@ -759,7 +759,7 @@ export namespace displayvideo_v1 {
      */
     deletedAssignedInventorySources?: string[] | null;
     /**
-     * The ID of the partner that owns the inventory source group.  Only this partner has write access to these assigned inventory sources.
+     * The ID of the partner that owns the inventory source group. Only this partner has write access to these assigned inventory sources.
      */
     partnerId?: string | null;
   }
@@ -768,7 +768,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditAssignedInventorySourcesResponse {
     /**
-     * The list of assigned inventory sources that have been successfully created.  This list will be absent if empty.
+     * The list of assigned inventory sources that have been successfully created. This list will be absent if empty.
      */
     assignedInventorySources?: Schema$AssignedInventorySource[];
   }
@@ -790,7 +790,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditAssignedLocationsResponse {
     /**
-     * The list of assigned locations that have been successfully created.  This list will be absent if empty.
+     * The list of assigned locations that have been successfully created. This list will be absent if empty.
      */
     assignedLocations?: Schema$AssignedLocation[];
   }
@@ -809,7 +809,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$BulkEditLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
+     * The list of assigned targeting options that have been successfully created. This list will be absent if empty.
      */
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
@@ -831,7 +831,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditNegativeKeywordsResponse {
     /**
-     * The list of negative keywords that have been successfully created.  This list will be absent if empty.
+     * The list of negative keywords that have been successfully created. This list will be absent if empty.
      */
     negativeKeywords?: Schema$NegativeKeyword[];
   }
@@ -861,13 +861,13 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditSitesResponse {
     /**
-     * The list of sites that have been successfully created.  This list will be absent if empty.
+     * The list of sites that have been successfully created. This list will be absent if empty.
      */
     sites?: Schema$Site[];
   }
   export interface Schema$BulkListAdvertiserAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.  This list will be absent if empty.
+     * The list of assigned targeting options. This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -877,7 +877,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$BulkListLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.  This list will be absent if empty.
+     * The list of assigned targeting options. This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -906,11 +906,11 @@ export namespace displayvideo_v1 {
      */
     campaignId?: string | null;
     /**
-     * Required. The display name of the campaign.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the campaign. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
-     * Required. Controls whether or not the insertion orders under this campaign can spend their budgets and bid on inventory.  * Accepted values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. * For CreateCampaign method, `ENTITY_STATUS_ARCHIVED` is not allowed.
+     * Required. Controls whether or not the insertion orders under this campaign can spend their budgets and bid on inventory. * Accepted values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. * For CreateCampaign method, `ENTITY_STATUS_ARCHIVED` is not allowed.
      */
     entityStatus?: string | null;
     /**
@@ -931,11 +931,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$CampaignFlight {
     /**
-     * Required. The dates that the campaign is expected to run. They are resolved relative to the parent advertiser&#39;s time zone.  * The dates specified here will not affect serving. They are used to generate alerts and warnings. For example, if the flight date of any child insertion order is outside the range of these dates, the user interface will show a warning. * `start_date` is required and must be the current date or later. * `end_date` is optional. If specified, it must be the `start_date` or later. * Any specified date must be before the year 2037.
+     * Required. The dates that the campaign is expected to run. They are resolved relative to the parent advertiser&#39;s time zone. * The dates specified here will not affect serving. They are used to generate alerts and warnings. For example, if the flight date of any child insertion order is outside the range of these dates, the user interface will show a warning. * `start_date` is required and must be the current date or later. * `end_date` is optional. If specified, it must be the `start_date` or later. * Any specified date must be before the year 2037.
      */
     plannedDates?: Schema$DateRange;
     /**
-     * The amount the campaign is expected to spend for its given planned_dates. This will not limit serving, but will be used for tracking spend in the DV360 UI.  The amount is in micros. Must be greater than or equal to 0. For example, 500000000 represents 500 standard units of the currency.
+     * The amount the campaign is expected to spend for its given planned_dates. This will not limit serving, but will be used for tracking spend in the DV360 UI. The amount is in micros. Must be greater than or equal to 0. For example, 500000000 represents 500 standard units of the currency.
      */
     plannedSpendAmountMicros?: string | null;
   }
@@ -948,7 +948,7 @@ export namespace displayvideo_v1 {
      */
     campaignGoalType?: string | null;
     /**
-     * Required. The performance goal of the campaign.  Acceptable values for performance_goal_type are:  * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY` * `PERFORMANCE_GOAL_TYPE_OTHER`
+     * Required. The performance goal of the campaign. Acceptable values for performance_goal_type are: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY` * `PERFORMANCE_GOAL_TYPE_OTHER`
      */
     performanceGoal?: Schema$PerformanceGoal;
   }
@@ -1063,7 +1063,7 @@ export namespace displayvideo_v1 {
      */
     cmFloodlightLinkingAuthorized?: boolean | null;
     /**
-     * A list of CM sites whose placements will be synced to DV360 as creatives.  If absent or empty in CreateAdvertiser method, the system will automatically create a CM site.  Removing sites from this list may cause DV360 creatives synced from CM to be deleted. At least one site must be specified.
+     * A list of CM sites whose placements will be synced to DV360 as creatives. If absent or empty in CreateAdvertiser method, the system will automatically create a CM site. Removing sites from this list may cause DV360 creatives synced from CM to be deleted. At least one site must be specified.
      */
     cmSyncableSiteIds?: string[] | null;
     /**
@@ -1172,15 +1172,15 @@ export namespace displayvideo_v1 {
     contentOutstreamPosition?: string | null;
   }
   /**
-   * Settings that control how conversions are counted.  All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
+   * Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
    */
   export interface Schema$ConversionCountingConfig {
     /**
-     * The Floodlight activity configs used to track conversions.  The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field.
+     * The Floodlight activity configs used to track conversions. The number of conversions counted is the sum of all of the conversions counted by all of the Floodlight activity IDs specified in this field.
      */
     floodlightActivityConfigs?: Schema$TrackingFloodlightActivityConfig[];
     /**
-     * The percentage of post-view conversions to count, in millis (1/1000 of a percent). Must be between 0 and 100000 inclusive.  For example, to track 50% of the post-click conversions, set a value of 50000.
+     * The percentage of post-view conversions to count, in millis (1/1000 of a percent). Must be between 0 and 100000 inclusive. For example, to track 50% of the post-click conversions, set a value of 50000.
      */
     postViewCountPercentageMillis?: string | null;
   }
@@ -1202,7 +1202,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$CreateAssetRequest {
     /**
-     * Required. The filename of the asset, including the file extension.  The filename must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The filename of the asset, including the file extension. The filename must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     filename?: string | null;
   }
@@ -1245,7 +1245,7 @@ export namespace displayvideo_v1 {
      */
     inventorySourceFilter?: Schema$InventorySourceFilter;
     /**
-     * Filters on selected file types. The entities in each file are filtered  by a chosen set of filter entities. The filter entities must be the same  type as, or a parent type of, the selected file types.
+     * Filters on selected file types. The entities in each file are filtered by a chosen set of filter entities. The filter entities must be the same type as, or a parent type of, the selected file types.
      */
     parentEntityFilter?: Schema$ParentEntityFilter;
     /**
@@ -1262,7 +1262,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$Creative {
     /**
-     * Additional dimensions. Applicable when creative_type is one of:  * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_PUBLISHER_HOSTED`  If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
+     * Additional dimensions. Applicable when creative_type is one of: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_PUBLISHER_HOSTED` If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
      */
     additionalDimensions?: Schema$Dimensions[];
     /**
@@ -1274,7 +1274,7 @@ export namespace displayvideo_v1 {
      */
     appendedTag?: string | null;
     /**
-     * Required. Assets associated to this creative. Assets can be associated to the creative in one of following roles:  * `ASSET_ROLE_UNSPECIFIED` * `ASSET_ROLE_MAIN` * `ASSET_ROLE_BACKUP` * `ASSET_ROLE_POLITE_LOAD`
+     * Required. Assets associated to this creative. Assets can be associated to the creative in one of following roles: * `ASSET_ROLE_UNSPECIFIED` * `ASSET_ROLE_MAIN` * `ASSET_ROLE_BACKUP` * `ASSET_ROLE_POLITE_LOAD`
      */
     assets?: Schema$AssetAssociation[];
     /**
@@ -1282,11 +1282,11 @@ export namespace displayvideo_v1 {
      */
     cmPlacementId?: string | null;
     /**
-     * The Campaign Manager tracking ad associated with the creative.  Optional for the following creative_type when created by an advertiser that uses both Campaign Manager and third-party ad serving:  * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE`  Output only for other cases.
+     * The Campaign Manager tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases.
      */
     cmTrackingAd?: Schema$CmTrackingAd;
     /**
-     * The IDs of companion creatives for a video creative.  You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher&#39;s video player. Companions display around the video player while the video is playing and remain after the video has completed.  Creatives contain additional dimensions can not be companion creatives.  This field is only supported for following creative_type:  * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
+     * The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher&#39;s video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     companionCreativeIds?: string[] | null;
     /**
@@ -1310,11 +1310,11 @@ export namespace displayvideo_v1 {
      */
     creativeType?: string | null;
     /**
-     * Required. Primary dimensions of the creative. Applicable to all creative types. The value of width_pixels and height_pixels defaults to `0` when creative_type is one of:  * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_INTERSTITIAL` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO`
+     * Required. Primary dimensions of the creative. Applicable to all creative types. The value of width_pixels and height_pixels defaults to `0` when creative_type is one of: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_INTERSTITIAL` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO`
      */
     dimensions?: Schema$Dimensions;
     /**
-     * Required. The display name of the creative.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the creative. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
@@ -1322,19 +1322,19 @@ export namespace displayvideo_v1 {
      */
     dynamic?: boolean | null;
     /**
-     * Required. Controls whether or not the creative can serve.  Accepted values are:  * `ENTITY_STATUS_ACTIVE` * `ENTITY_STATUS_ARCHIVED` * `ENTITY_STATUS_PAUSED`
+     * Required. Controls whether or not the creative can serve. Accepted values are: * `ENTITY_STATUS_ACTIVE` * `ENTITY_STATUS_ARCHIVED` * `ENTITY_STATUS_PAUSED`
      */
     entityStatus?: string | null;
     /**
-     * Required. Exit events for this creative. An exit (also known as a click tag) is any area in your creative that someone can click or tap to open an advertiser&#39;s landing page. Every creative must include at least one exit. You can add an exit to your creative in any of the following ways:  * Use Google Web Designer&#39;s tap area. * Define a JavaScript variable called &quot;clickTag&quot;. * Use the Enabler (Enabler.exit()) to track exits in rich media formats.
+     * Required. Exit events for this creative. An exit (also known as a click tag) is any area in your creative that someone can click or tap to open an advertiser&#39;s landing page. Every creative must include at least one exit. You can add an exit to your creative in any of the following ways: * Use Google Web Designer&#39;s tap area. * Define a JavaScript variable called &quot;clickTag&quot;. * Use the Enabler (Enabler.exit()) to track exits in rich media formats.
      */
     exitEvents?: Schema$ExitEvent[];
     /**
-     * Optional. Specifies the expanding direction of the creative.  Required and only valid for third-party expandable creatives.  Third-party expandable creatives are creatives with following hosting source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_EXPANDABLE`
+     * Optional. Specifies the expanding direction of the creative. Required and only valid for third-party expandable creatives. Third-party expandable creatives are creatives with following hosting source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_EXPANDABLE`
      */
     expandingDirection?: string | null;
     /**
-     * Optional. Indicates the creative will automatically expand on hover.  Optional and only valid for third-party expandable creatives. Third-party expandable creatives are creatives with following hosting source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_EXPANDABLE`
+     * Optional. Indicates the creative will automatically expand on hover. Optional and only valid for third-party expandable creatives. Third-party expandable creatives are creatives with following hosting source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_EXPANDABLE`
      */
     expandOnHover?: boolean | null;
     /**
@@ -1342,7 +1342,7 @@ export namespace displayvideo_v1 {
      */
     hostingSource?: string | null;
     /**
-     * Output only. Indicates the third-party VAST tag creative requires HTML5 Video support.  Output only and only valid for third-party VAST tag creatives.  Third-party VAST tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Output only. Indicates the third-party VAST tag creative requires HTML5 Video support. Output only and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     html5Video?: boolean | null;
     /**
@@ -1354,15 +1354,15 @@ export namespace displayvideo_v1 {
      */
     integrationCode?: string | null;
     /**
-     * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported.  This field is only supported in following creative_type:  * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     jsTrackerUrl?: string | null;
     /**
-     * Output only. The IDs of the line items this creative is associated with.  To associate a creative to a line item, use LineItem.creative_ids instead.
+     * Output only. The IDs of the line items this creative is associated with. To associate a creative to a line item, use LineItem.creative_ids instead.
      */
     lineItemIds?: string[] | null;
     /**
-     * Output only. Media duration of the creative. Applicable when creative_type is one of:  * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_PUBLISHER_HOSTED`
+     * Output only. Media duration of the creative. Applicable when creative_type is one of: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_PUBLISHER_HOSTED`
      */
     mediaDuration?: string | null;
     /**
@@ -1374,23 +1374,23 @@ export namespace displayvideo_v1 {
      */
     notes?: string | null;
     /**
-     * Specifies the OBA icon for a video creative.  This field is only supported in following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Specifies the OBA icon for a video creative. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     obaIcon?: Schema$ObaIcon;
     /**
-     * Amount of time to play the video before counting a view.  This field is required when skippable is true.  This field is only supported for the following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Amount of time to play the video before counting a view. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     progressOffset?: Schema$AudioVideoOffset;
     /**
-     * Optional. Indicates that the creative relies on HTML5 to render properly.  Optional and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
+     * Optional. Indicates that the creative relies on HTML5 to render properly. Optional and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
      */
     requireHtml5?: boolean | null;
     /**
-     * Optional. Indicates that the creative requires MRAID (Mobile Rich Media Ad Interface Definitions system).  Set this if the creative relies on mobile gestures for interactivity, such as swiping or tapping.  Optional and only valid for third-party tag creatives.  Third-party tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
+     * Optional. Indicates that the creative requires MRAID (Mobile Rich Media Ad Interface Definitions system). Set this if the creative relies on mobile gestures for interactivity, such as swiping or tapping. Optional and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
      */
     requireMraid?: boolean | null;
     /**
-     * Optional. Indicates that the creative will wait for a return ping for attribution.  Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro.  Optional and only valid for third-party tag creatives or third-party VAST tag creatives.  Third-party tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`  Third-party VAST tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     requirePingForAttribution?: boolean | null;
     /**
@@ -1398,19 +1398,19 @@ export namespace displayvideo_v1 {
      */
     reviewStatus?: Schema$ReviewStatusInfo;
     /**
-     * Amount of time to play the video before the skip button appears.  This field is required when skippable is true.  This field is only supported for the following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Amount of time to play the video before the skip button appears. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     skipOffset?: Schema$AudioVideoOffset;
     /**
-     * Whether the user can choose to skip a video creative.  This field is only supported for the following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Whether the user can choose to skip a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     skippable?: boolean | null;
     /**
-     * Optional. The original third-party tag used for the creative.  Required and only valid for third-party tag creatives.  Third-party tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
+     * Optional. The original third-party tag used for the creative. Required and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
      */
     thirdPartyTag?: string | null;
     /**
-     * Tracking URLs from third parties to track interactions with a video creative.  This field is only supported for the following creative_type:  * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Tracking URLs from third parties to track interactions with a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     thirdPartyUrls?: Schema$ThirdPartyUrl[];
     /**
@@ -1418,15 +1418,15 @@ export namespace displayvideo_v1 {
      */
     timerEvents?: Schema$TimerEvent[];
     /**
-     * Tracking URLs for analytics providers or third-party ad technology vendors.  The URLs must start with https (except on inventory that doesn&#39;t require SSL compliance). If using macros in your URL, use only macros supported by Display &amp; Video 360.  Standard URLs only, no IMG or SCRIPT tags.  This field is only supported in following creative_type:  * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn&#39;t require SSL compliance). If using macros in your URL, use only macros supported by Display &amp; Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     trackerUrls?: string[] | null;
     /**
-     * Output only. Audio/Video transcodes.  Display &amp; Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths.  These transcodes give a publisher&#39;s system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size.  This field is only supported in following creative_type:  * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
+     * Output only. Audio/Video transcodes. Display &amp; Video 360 transcodes the main asset into a number of alternative versions that use different file formats or have different properties (resolution, audio bit rate, and video bit rate), each designed for specific video players or bandwidths. These transcodes give a publisher&#39;s system more options to choose from for each impression on your video and ensures that the appropriate file serves based on the viewer’s connection and screen size. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_AUDIO`
      */
     transcodes?: Schema$Transcode[];
     /**
-     * Optional. An optional creative identifier provided by a registry that is unique across all platforms.  Universal Ad ID is part of the VAST 4.0 standard. It can be modified after the creative is created.  This field is only supported for the following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Optional. An optional creative identifier provided by a registry that is unique across all platforms. Universal Ad ID is part of the VAST 4.0 standard. It can be modified after the creative is created. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     universalAdId?: Schema$UniversalAdId;
     /**
@@ -1434,11 +1434,11 @@ export namespace displayvideo_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The URL of the VAST tag for a third-party VAST tag creative.  Required and only valid for third-party VAST tag creatives.  Third-party VAST tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     vastTagUrl?: string | null;
     /**
-     * Output only. Indicates the third-party VAST tag creative requires VPAID (Digital Video Player-Ad Interface).  Output only and only valid for third-party VAST tag creatives.  Third-party VAST tag creatives are creatives with following hosting_source:  * `HOSTING_SOURCE_THIRD_PARTY`  combined with following creative_type:  * `CREATIVE_TYPE_VIDEO`
+     * Output only. Indicates the third-party VAST tag creative requires VPAID (Digital Video Player-Ad Interface). Output only and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     vpaid?: boolean | null;
   }
@@ -1495,7 +1495,7 @@ export namespace displayvideo_v1 {
     customListId?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
@@ -1744,7 +1744,7 @@ export namespace displayvideo_v1 {
     videoViewableRate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -1805,7 +1805,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ExitEvent {
     /**
-     * The name of the click tag of the exit event.  The name must be unique within one creative.  Leave it empty or unset for creatives containing image assets only.
+     * The name of the click tag of the exit event. The name must be unique within one creative. Leave it empty or unset for creatives containing image assets only.
      */
     name?: string | null;
     /**
@@ -1817,7 +1817,7 @@ export namespace displayvideo_v1 {
      */
     type?: string | null;
     /**
-     * Required. The click through URL of the exit event. This is required when type is:  * `EXIT_EVENT_TYPE_DEFAULT` * `EXIT_EVENT_TYPE_BACKUP`
+     * Required. The click through URL of the exit event. This is required when type is: * `EXIT_EVENT_TYPE_DEFAULT` * `EXIT_EVENT_TYPE_BACKUP`
      */
     url?: string | null;
   }
@@ -1826,7 +1826,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FirstAndThirdPartyAudience {
     /**
-     * Output only. The estimated audience size for the Display network in the past month.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only returned in GET request.
+     * Output only. The estimated audience size for the Display network in the past month. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only returned in GET request.
      */
     activeDisplayAudienceSize?: string | null;
     /**
@@ -1838,23 +1838,23 @@ export namespace displayvideo_v1 {
      */
     audienceType?: string | null;
     /**
-     * The user-provided description of the audience.  Only applicable to first party audiences.
+     * The user-provided description of the audience. Only applicable to first party audiences.
      */
     description?: string | null;
     /**
-     * Output only. The estimated audience size for the Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only returned in GET request.
+     * Output only. The estimated audience size for the Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only returned in GET request.
      */
     displayAudienceSize?: string | null;
     /**
-     * Output only. The estimated desktop audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     * Output only. The estimated desktop audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
      */
     displayDesktopAudienceSize?: string | null;
     /**
-     * Output only. The estimated mobile app audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     * Output only. The estimated mobile app audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
      */
     displayMobileAppAudienceSize?: string | null;
     /**
-     * Output only. The estimated mobile web audience size in Display network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     * Output only. The estimated mobile web audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
      */
     displayMobileWebAudienceSize?: string | null;
     /**
@@ -1870,11 +1870,11 @@ export namespace displayvideo_v1 {
      */
     firstAndThirdPartyAudienceType?: string | null;
     /**
-     * Output only. The estimated audience size for Gmail network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     * Output only. The estimated audience size for Gmail network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
      */
     gmailAudienceSize?: string | null;
     /**
-     * The duration in days that an entry remains in the audience after the qualifying event.  Only applicable to first party audiences.
+     * The duration in days that an entry remains in the audience after the qualifying event. Only applicable to first party audiences.
      */
     membershipDurationDays?: string | null;
     /**
@@ -1882,7 +1882,7 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The estimated audience size for YouTube network.  If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits.  Only applicable to first party audiences.  Only returned in GET request.
+     * Output only. The estimated audience size for YouTube network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
      */
     youtubeAudienceSize?: string | null;
   }
@@ -1913,7 +1913,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FixedBidStrategy {
     /**
-     * The fixed bid amount, in micros of the advertiser&#39;s currency. For insertion order entity, bid_amount_micros should be set as 0. For line item entity, bid_amount_micros must be greater than or equal to billable unit of the given currency and smaller than or equal to the upper limit 1000000000.  For example, 1500000 represents 1.5 standard units of the currency.
+     * The fixed bid amount, in micros of the advertiser&#39;s currency. For insertion order entity, bid_amount_micros should be set as 0. For line item entity, bid_amount_micros must be greater than or equal to billable unit of the given currency and smaller than or equal to the upper limit 1000000000. For example, 1500000 represents 1.5 standard units of the currency.
      */
     bidAmountMicros?: string | null;
   }
@@ -1926,7 +1926,7 @@ export namespace displayvideo_v1 {
      */
     activeViewConfig?: Schema$ActiveViewVideoViewabilityMetricConfig;
     /**
-     * User-defined custom variables owned by the Floodlight group. Use custom Floodlight variables to create reporting data that is tailored to your unique business needs. Custom Floodlight variables use the keys `U1=`, `U2=`, and so on, and can take any values that you choose to pass to them. You can use them to track virtually any type of data that you collect about your customers, such as the genre of movie that a customer purchases, the country to which the item is shipped, and so on.  Custom Floodlight variables may not be used to pass any data that could be used or recognized as personally identifiable information (PII).  Example: `custom_variables {   fields {     &quot;U1&quot;: value { number_value: 123.4 },     &quot;U2&quot;: value { string_value: &quot;MyVariable2&quot; },     &quot;U3&quot;: value { string_value: &quot;MyVariable3&quot; }   } }`  Acceptable values for keys are &quot;U1&quot; through &quot;U100&quot;, inclusive. String values must be less than 64 characters long, and cannot contain the following characters: `&quot;&lt;&gt;`.
+     * User-defined custom variables owned by the Floodlight group. Use custom Floodlight variables to create reporting data that is tailored to your unique business needs. Custom Floodlight variables use the keys `U1=`, `U2=`, and so on, and can take any values that you choose to pass to them. You can use them to track virtually any type of data that you collect about your customers, such as the genre of movie that a customer purchases, the country to which the item is shipped, and so on. Custom Floodlight variables may not be used to pass any data that could be used or recognized as personally identifiable information (PII). Example: `custom_variables { fields { &quot;U1&quot;: value { number_value: 123.4 }, &quot;U2&quot;: value { string_value: &quot;MyVariable2&quot; }, &quot;U3&quot;: value { string_value: &quot;MyVariable3&quot; } } }` Acceptable values for keys are &quot;U1&quot; through &quot;U100&quot;, inclusive. String values must be less than 64 characters long, and cannot contain the following characters: `&quot;&lt;&gt;`.
      */
     customVariables?: {[key: string]: any} | null;
     /**
@@ -1955,15 +1955,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0.  Applicable when unlimited is `false`.
+     * The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0. Applicable when unlimited is `false`.
      */
     maxImpressions?: number | null;
     /**
-     * The time unit in which the frequency cap will be applied.  Applicable when unlimited is `false`.
+     * The time unit in which the frequency cap will be applied. Applicable when unlimited is `false`.
      */
     timeUnit?: string | null;
     /**
-     * The number of time_unit the frequency cap will last.  Applicable when unlimited is `false`. The following restrictions apply based on the value of time_unit:  * `TIME_UNIT_LIFETIME` - this field is output only and will default to 1 * `TIME_UNIT_MONTHS` - must be between 1 and 2 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
+     * The number of time_unit the frequency cap will last. Applicable when unlimited is `false`. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_LIFETIME` - this field is output only and will default to 1 * `TIME_UNIT_MONTHS` - must be between 1 and 2 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
      */
     timeUnitCount?: number | null;
     /**
@@ -2102,11 +2102,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$IdFilter {
     /**
-     * TrueView Ads to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     * YouTube Ads to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     adGroupAdIds?: string[] | null;
     /**
-     * TrueView Ad Groups to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     * YouTube Ad Groups to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     adGroupIds?: string[] | null;
     /**
@@ -2147,11 +2147,11 @@ export namespace displayvideo_v1 {
      */
     campaignId?: string | null;
     /**
-     * Required. The display name of the insertion order.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the insertion order. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
-     * Required. Controls whether or not the insertion order can spend its budget and bid on inventory.  * For CreateInsertionOrder method, only `ENTITY_STATUS_DRAFT` is allowed. To activate an insertion order, use UpdateInsertionOrder method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * An insertion order cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * An insertion order cannot be set to `ENTITY_STATUS_ACTIVE` if its parent campaign is not active.
+     * Required. Controls whether or not the insertion order can spend its budget and bid on inventory. * For CreateInsertionOrder method, only `ENTITY_STATUS_DRAFT` is allowed. To activate an insertion order, use UpdateInsertionOrder method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * An insertion order cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * An insertion order cannot be set to `ENTITY_STATUS_ACTIVE` if its parent campaign is not active.
      */
     entityStatus?: string | null;
     /**
@@ -2175,7 +2175,7 @@ export namespace displayvideo_v1 {
      */
     pacing?: Schema$Pacing;
     /**
-     * The partner costs associated with the insertion order.  If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.
+     * The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.
      */
     partnerCosts?: Schema$PartnerCost[];
     /**
@@ -2192,7 +2192,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$InsertionOrderBudget {
     /**
-     * The type of automation used to manage bid and budget for the insertion order.  If this field is unspecified in creation, the value defaults to `INSERTION_ORDER_AUTOMATION_TYPE_NONE`.
+     * The type of automation used to manage bid and budget for the insertion order. If this field is unspecified in creation, the value defaults to `INSERTION_ORDER_AUTOMATION_TYPE_NONE`.
      */
     automationType?: string | null;
     /**
@@ -2217,11 +2217,11 @@ export namespace displayvideo_v1 {
      */
     campaignBudgetId?: string | null;
     /**
-     * Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser&#39;s time zone.  * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
+     * Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser&#39;s time zone. * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
      */
     dateRange?: Schema$DateRange;
     /**
-     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices.  Must be UTF-8 encoded with a length of no more than 80 characters.
+     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded with a length of no more than 80 characters.
      */
     description?: string | null;
   }
@@ -2287,11 +2287,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$IntegrationDetails {
     /**
-     * Additional details of the entry in string format.  Must be UTF-8 encoded with a length of no more than 1000 characters.
+     * Additional details of the entry in string format. Must be UTF-8 encoded with a length of no more than 1000 characters.
      */
     details?: string | null;
     /**
-     * An external identifier to be associated with the entry. The integration code will show up together with the entry in many places in the system, for example, reporting.  Must be UTF-8 encoded with a length of no more than 500 characters.
+     * An external identifier to be associated with the entry. The integration code will show up together with the entry in many places in the system, for example, reporting. Must be UTF-8 encoded with a length of no more than 500 characters.
      */
     integrationCode?: string | null;
   }
@@ -2304,19 +2304,19 @@ export namespace displayvideo_v1 {
      */
     commitment?: string | null;
     /**
-     * The creative requirements of the inventory source.  Not applicable for auction packages.
+     * The creative requirements of the inventory source. Not applicable for auction packages.
      */
     creativeConfigs?: Schema$CreativeConfig[];
     /**
-     * The ID in the exchange space that uniquely identifies the inventory source.  Must be unique across buyers within each exchange but not necessarily unique across exchanges.
+     * The ID in the exchange space that uniquely identifies the inventory source. Must be unique across buyers within each exchange but not necessarily unique across exchanges.
      */
     dealId?: string | null;
     /**
-     * The delivery method of the inventory source.  * For non-guaranteed inventory sources, the only acceptable value is `INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`. * For guaranteed inventory sources, acceptable values are `INVENTORY_SOURCE_DELIVERY_METHOD_TAG` and `INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`.
+     * The delivery method of the inventory source. * For non-guaranteed inventory sources, the only acceptable value is `INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`. * For guaranteed inventory sources, acceptable values are `INVENTORY_SOURCE_DELIVERY_METHOD_TAG` and `INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`.
      */
     deliveryMethod?: string | null;
     /**
-     * The display name of the inventory source.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * The display name of the inventory source. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
@@ -2388,7 +2388,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$InventorySourceGroup {
     /**
-     * Required. The display name of the inventory source group.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the inventory source group. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
@@ -2414,23 +2414,23 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$InventorySourceStatus {
     /**
-     * Output only. The configuration status of the inventory source.  Only applicable for guaranteed inventory sources. Acceptable values are `INVENTORY_SOURCE_CONFIG_STATUS_PENDING` and `INVENTORY_SOURCE_CONFIG_STATUS_COMPLETED`.  An inventory source must be configured (fill in the required fields, choose creatives, and select a default campaign) before it can serve.
+     * Output only. The configuration status of the inventory source. Only applicable for guaranteed inventory sources. Acceptable values are `INVENTORY_SOURCE_CONFIG_STATUS_PENDING` and `INVENTORY_SOURCE_CONFIG_STATUS_COMPLETED`. An inventory source must be configured (fill in the required fields, choose creatives, and select a default campaign) before it can serve.
      */
     configStatus?: string | null;
     /**
-     * The user-provided reason for pausing this inventory source.  Must not exceed 100 characters.  Only applicable when entity_status is set to `ENTITY_STATUS_PAUSED`.
+     * The user-provided reason for pausing this inventory source. Must not exceed 100 characters. Only applicable when entity_status is set to `ENTITY_STATUS_PAUSED`.
      */
     entityPauseReason?: string | null;
     /**
-     * Whether or not the inventory source is servable.  Acceptable values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. Default value is `ENTITY_STATUS_ACTIVE`.
+     * Whether or not the inventory source is servable. Acceptable values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. Default value is `ENTITY_STATUS_ACTIVE`.
      */
     entityStatus?: string | null;
     /**
-     * Output only. The seller-provided reason for pausing this inventory source.  Only applicable for inventory sources synced directly from the publishers and when seller_status is set to `ENTITY_STATUS_PAUSED`.
+     * Output only. The seller-provided reason for pausing this inventory source. Only applicable for inventory sources synced directly from the publishers and when seller_status is set to `ENTITY_STATUS_PAUSED`.
      */
     sellerPauseReason?: string | null;
     /**
-     * Output only. The status set by the seller for the inventory source.  Only applicable for inventory sources synced directly from the publishers. Acceptable values are `ENTITY_STATUS_ACTIVE` and `ENTITY_STATUS_PAUSED`.
+     * Output only. The status set by the seller for the inventory source. Only applicable for inventory sources synced directly from the publishers. Acceptable values are `ENTITY_STATUS_ACTIVE` and `ENTITY_STATUS_PAUSED`.
      */
     sellerStatus?: string | null;
   }
@@ -2448,7 +2448,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$KeywordAssignedTargetingOptionDetails {
     /**
-     * Required. The keyword, for example `car insurance`.  Positive keyword cannot be offensive word. Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10.
+     * Required. The keyword, for example `car insurance`. Positive keyword cannot be offensive word. Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10.
      */
     keyword?: string | null;
     /**
@@ -2511,11 +2511,11 @@ export namespace displayvideo_v1 {
      */
     creativeIds?: string[] | null;
     /**
-     * Required. The display name of the line item.  Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
     /**
-     * Required. Controls whether or not the line item can spend its budget and bid on inventory.  * For CreateLineItem method, only `ENTITY_STATUS_DRAFT` is allowed. To activate a line item, use UpdateLineItem method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * A line item cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * If the line item&#39;s parent insertion order is not active, the line item can&#39;t spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
+     * Required. Controls whether or not the line item can spend its budget and bid on inventory. * For CreateLineItem method, only `ENTITY_STATUS_DRAFT` is allowed. To activate a line item, use UpdateLineItem method and update the status to `ENTITY_STATUS_ACTIVE` after creation. * A line item cannot be changed back to `ENTITY_STATUS_DRAFT` status from any other status. * If the line item&#39;s parent insertion order is not active, the line item can&#39;t spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
      */
     entityStatus?: string | null;
     /**
@@ -2555,7 +2555,7 @@ export namespace displayvideo_v1 {
      */
     pacing?: Schema$Pacing;
     /**
-     * The partner costs associated with the line item.  If absent or empty in CreateLineItem method, the newly created line item will inherit partner costs from its parent insertion order.
+     * The partner costs associated with the line item. If absent or empty in CreateLineItem method, the newly created line item will inherit partner costs from its parent insertion order.
      */
     partnerCosts?: Schema$PartnerCost[];
     /**
@@ -2572,7 +2572,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$LineItemBudget {
     /**
-     * Required. The type of the budget allocation.  `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC` is only applicable when automatic budget allocation is enabled for the parent insertion order.
+     * Required. The type of the budget allocation. `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC` is only applicable when automatic budget allocation is enabled for the parent insertion order.
      */
     budgetAllocationType?: string | null;
     /**
@@ -2580,7 +2580,7 @@ export namespace displayvideo_v1 {
      */
     budgetUnit?: string | null;
     /**
-     * The maximum budget amount the line item will spend. Must be greater than 0.  When budget_allocation_type is:  * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC`, this field is immutable and is set by the system. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`, if budget_unit is:     - `BUDGET_UNIT_CURRENCY`, this field represents maximum budget amount     to spend, in micros of the advertiser&#39;s currency. For example, 1500000     represents 1.5 standard units of the currency.     - `BUDGET_UNIT_IMPRESSIONS`, this field represents the maximum number     of impressions to serve. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED`, this field is not applicable and will be ignored by the system.
+     * The maximum budget amount the line item will spend. Must be greater than 0. When budget_allocation_type is: * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC`, this field is immutable and is set by the system. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`, if budget_unit is: - `BUDGET_UNIT_CURRENCY`, this field represents maximum budget amount to spend, in micros of the advertiser&#39;s currency. For example, 1500000 represents 1.5 standard units of the currency. - `BUDGET_UNIT_IMPRESSIONS`, this field represents the maximum number of impressions to serve. * `LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED`, this field is not applicable and will be ignored by the system.
      */
     maxAmount?: string | null;
   }
@@ -2589,7 +2589,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$LineItemFlight {
     /**
-     * The flight start and end dates of the line item. They are resolved relative to the parent advertiser&#39;s time zone.  * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM`. Output only otherwise. * When creating a new flight, both `start_date` and `end_date` must be in the future. * An existing flight with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
+     * The flight start and end dates of the line item. They are resolved relative to the parent advertiser&#39;s time zone. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM`. Output only otherwise. * When creating a new flight, both `start_date` and `end_date` must be in the future. * An existing flight with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037.
      */
     dateRange?: Schema$DateRange;
     /**
@@ -2602,7 +2602,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListAdvertiserAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.  This list will be absent if empty.
+     * The list of assigned targeting options. This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -2612,7 +2612,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListAdvertisersResponse {
     /**
-     * The list of advertisers.  This list will be absent if empty.
+     * The list of advertisers. This list will be absent if empty.
      */
     advertisers?: Schema$Advertiser[];
     /**
@@ -2625,11 +2625,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListAssignedInventorySourcesResponse {
     /**
-     * The list of assigned inventory sources.  This list will be absent if empty.
+     * The list of assigned inventory sources. This list will be absent if empty.
      */
     assignedInventorySources?: Schema$AssignedInventorySource[];
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListAssignedInventorySources` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAssignedInventorySources` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -2638,17 +2638,17 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListAssignedLocationsResponse {
     /**
-     * The list of assigned locations.  This list will be absent if empty.
+     * The list of assigned locations. This list will be absent if empty.
      */
     assignedLocations?: Schema$AssignedLocation[];
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListAssignedLocations` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAssignedLocations` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
   export interface Schema$ListCampaignsResponse {
     /**
-     * The list of campaigns.  This list will be absent if empty.
+     * The list of campaigns. This list will be absent if empty.
      */
     campaigns?: Schema$Campaign[];
     /**
@@ -2658,7 +2658,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListChannelsResponse {
     /**
-     * The list of channels.  This list will be absent if empty.
+     * The list of channels. This list will be absent if empty.
      */
     channels?: Schema$Channel[];
     /**
@@ -2668,7 +2668,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCombinedAudiencesResponse {
     /**
-     * The list of combined audiences.  This list will be absent if empty.
+     * The list of combined audiences. This list will be absent if empty.
      */
     combinedAudiences?: Schema$CombinedAudience[];
     /**
@@ -2678,7 +2678,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCreativesResponse {
     /**
-     * The list of creatives.  This list will be absent if empty.
+     * The list of creatives. This list will be absent if empty.
      */
     creatives?: Schema$Creative[];
     /**
@@ -2688,7 +2688,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCustomListsResponse {
     /**
-     * The list of custom lists.  This list will be absent if empty.
+     * The list of custom lists. This list will be absent if empty.
      */
     customLists?: Schema$CustomList[];
     /**
@@ -2698,7 +2698,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListFirstAndThirdPartyAudiencesResponse {
     /**
-     * The list of first and third party audiences. Audience size properties will not be included.  This list will be absent if empty.
+     * The list of first and third party audiences. Audience size properties will not be included. This list will be absent if empty.
      */
     firstAndThirdPartyAudiences?: Schema$FirstAndThirdPartyAudience[];
     /**
@@ -2708,7 +2708,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListGoogleAudiencesResponse {
     /**
-     * The list of Google audiences.  This list will be absent if empty.
+     * The list of Google audiences. This list will be absent if empty.
      */
     googleAudiences?: Schema$GoogleAudience[];
     /**
@@ -2718,7 +2718,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListInsertionOrdersResponse {
     /**
-     * The list of insertion orders.  This list will be absent if empty.
+     * The list of insertion orders. This list will be absent if empty.
      */
     insertionOrders?: Schema$InsertionOrder[];
     /**
@@ -2731,7 +2731,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListInventorySourceGroupsResponse {
     /**
-     * The list of inventory source groups.  This list will be absent if empty.
+     * The list of inventory source groups. This list will be absent if empty.
      */
     inventorySourceGroups?: Schema$InventorySourceGroup[];
     /**
@@ -2741,7 +2741,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListInventorySourcesResponse {
     /**
-     * The list of inventory sources.  This list will be absent if empty.
+     * The list of inventory sources. This list will be absent if empty.
      */
     inventorySources?: Schema$InventorySource[];
     /**
@@ -2754,7 +2754,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.  This list will be absent if empty.
+     * The list of assigned targeting options. This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -2764,7 +2764,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListLineItemsResponse {
     /**
-     * The list of line items.  This list will be absent if empty.
+     * The list of line items. This list will be absent if empty.
      */
     lineItems?: Schema$LineItem[];
     /**
@@ -2774,11 +2774,11 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListLocationListsResponse {
     /**
-     * The list of location lists.  This list will be absent if empty.
+     * The list of location lists. This list will be absent if empty.
      */
     locationLists?: Schema$LocationList[];
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListLocationLists` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListLocationLists` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -2787,11 +2787,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListNegativeKeywordListsResponse {
     /**
-     * The list of negative keyword lists.  This list will be absent if empty.
+     * The list of negative keyword lists. This list will be absent if empty.
      */
     negativeKeywordLists?: Schema$NegativeKeywordList[];
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListNegativeKeywordLists` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListNegativeKeywordLists` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -2800,11 +2800,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListNegativeKeywordsResponse {
     /**
-     * The list of negative keywords.  This list will be absent if empty.
+     * The list of negative keywords. This list will be absent if empty.
      */
     negativeKeywords?: Schema$NegativeKeyword[];
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListNegativeKeywords` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListNegativeKeywords` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -2813,11 +2813,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListSitesResponse {
     /**
-     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListSites` method to retrieve the next page of results.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListSites` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
-     * The list of sites.  This list will be absent if empty.
+     * The list of sites. This list will be absent if empty.
      */
     sites?: Schema$Site[];
   }
@@ -2830,7 +2830,7 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of targeting options.  This list will be absent if empty.
+     * The list of targeting options. This list will be absent if empty.
      */
     targetingOptions?: Schema$TargetingOption[];
   }
@@ -2877,7 +2877,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$MaximizeSpendBidStrategy {
     /**
-     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency.  For example, 1500000 represents 1.5 standard units of the currency.
+     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. For example, 1500000 represents 1.5 standard units of the currency.
      */
     maxAverageCpmBidAmountMicros?: string | null;
     /**
@@ -2907,7 +2907,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$NegativeKeyword {
     /**
-     * Required. Immutable. The negatively targeted keyword, for example `car insurance`.  Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10.  Valid characters are restricted to ASCII characters only. The only URL-escaping permitted is for representing whitespace between words. Leading or trailing whitespace is ignored.
+     * Required. Immutable. The negatively targeted keyword, for example `car insurance`. Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10. Valid characters are restricted to ASCII characters only. The only URL-escaping permitted is for representing whitespace between words. Leading or trailing whitespace is ignored.
      */
     keywordValue?: string | null;
     /**
@@ -2950,7 +2950,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ObaIcon {
     /**
-     * Required. The click tracking URL of the OBA icon.  Only URLs of the following domains are allowed:  * https://info.evidon.com * https://l.betrad.com
+     * Required. The click tracking URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
      */
     clickTrackingUrl?: string | null;
     /**
@@ -2958,7 +2958,7 @@ export namespace displayvideo_v1 {
      */
     dimensions?: Schema$Dimensions;
     /**
-     * Required. The landing page URL of the OBA icon.  Only URLs of the following domains are allowed:  * https://info.evidon.com * https://l.betrad.com
+     * Required. The landing page URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
      */
     landingPageUrl?: string | null;
     /**
@@ -2978,7 +2978,7 @@ export namespace displayvideo_v1 {
      */
     resourceUrl?: string | null;
     /**
-     * Required. The view tracking URL of the OBA icon.  Only URLs of the following domains are allowed:  * https://info.evidon.com * https://l.betrad.com
+     * Required. The view tracking URL of the OBA icon. Only URLs of the following domains are allowed: * https://info.evidon.com * https://l.betrad.com
      */
     viewTrackingUrl?: string | null;
   }
@@ -3043,7 +3043,7 @@ export namespace displayvideo_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -3051,7 +3051,7 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -3060,15 +3060,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$Pacing {
     /**
-     * Maximum number of impressions to serve every day.  Applicable when the budget is impression based. Must be greater than 0.
+     * Maximum number of impressions to serve every day. Applicable when the budget is impression based. Must be greater than 0.
      */
     dailyMaxImpressions?: string | null;
     /**
-     * Maximum currency amount to spend every day in micros of advertiser&#39;s currency.  Applicable when the budget is currency based. Must be greater than 0. For example, for 1.5 standard unit of the currency, set this field to 1500000.  The value assigned will be rounded to whole billable units for the relevant currency by the following rules: any positive value less than a single billable unit will be rounded up to one billable unit and any value larger than a single billable unit will be rounded down to the nearest billable value. For example, if the currency&#39;s billable unit is 0.01, and this field is set to 10257770, it will round down to 10250000, a value of 10.25. If set to 505, it will round up to 10000, a value of 0.01.
+     * Maximum currency amount to spend every day in micros of advertiser&#39;s currency. Applicable when the budget is currency based. Must be greater than 0. For example, for 1.5 standard unit of the currency, set this field to 1500000. The value assigned will be rounded to whole billable units for the relevant currency by the following rules: any positive value less than a single billable unit will be rounded up to one billable unit and any value larger than a single billable unit will be rounded down to the nearest billable value. For example, if the currency&#39;s billable unit is 0.01, and this field is set to 10257770, it will round down to 10250000, a value of 10.25. If set to 505, it will round up to 10000, a value of 0.01.
      */
     dailyMaxMicros?: string | null;
     /**
-     * Required. The time period in which the pacing budget will be spent.  When automatic budget allocation is enabled at the insertion order via auto_budget_allocation, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.
+     * Required. The time period in which the pacing budget will be spent. When automatic budget allocation is enabled at the insertion order via auto_budget_allocation, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.
      */
     pacingPeriod?: string | null;
     /**
@@ -3116,7 +3116,7 @@ export namespace displayvideo_v1 {
     filterType?: string | null;
   }
   /**
-   * Settings that control a partner cost.  A partner cost is any type of expense involved in running a campaign, other than the costs of purchasing impressions (which is called the media cost) and using third-party audience segment data (data fee). Some examples of partner costs include the fees for using DV360, a third-party ad server, or a third-party ad serving verification service.
+   * Settings that control a partner cost. A partner cost is any type of expense involved in running a campaign, other than the costs of purchasing impressions (which is called the media cost) and using third-party audience segment data (data fee). Some examples of partner costs include the fees for using DV360, a third-party ad server, or a third-party ad serving verification service.
    */
   export interface Schema$PartnerCost {
     /**
@@ -3124,11 +3124,11 @@ export namespace displayvideo_v1 {
      */
     costType?: string | null;
     /**
-     * The CPM fee amount in micros of advertiser&#39;s currency.  Applicable when the fee_type is `PARTNER_FEE_TYPE_CPM_FEE`. Must be greater than or equal to 0.  For example, for 1.5 standard unit of the advertiser&#39;s currency, set this field to 1500000.
+     * The CPM fee amount in micros of advertiser&#39;s currency. Applicable when the fee_type is `PARTNER_FEE_TYPE_CPM_FEE`. Must be greater than or equal to 0. For example, for 1.5 standard unit of the advertiser&#39;s currency, set this field to 1500000.
      */
     feeAmount?: string | null;
     /**
-     * The media fee percentage in millis (1/1000 of a percent).  Applicable when the fee_type is `PARTNER_FEE_TYPE_MEDIA_FEE`. Must be greater than or equal to 0.  For example: 100 represents 0.1%.
+     * The media fee percentage in millis (1/1000 of a percent). Applicable when the fee_type is `PARTNER_FEE_TYPE_MEDIA_FEE`. Must be greater than or equal to 0. For example: 100 represents 0.1%.
      */
     feePercentageMillis?: string | null;
     /**
@@ -3136,7 +3136,7 @@ export namespace displayvideo_v1 {
      */
     feeType?: string | null;
     /**
-     * The invoice type for this partner cost.  * Required when cost_type is one of:     - `PARTNER_COST_TYPE_ADLOOX`     - `PARTNER_COST_TYPE_DOUBLE_VERIFY`     - `PARTNER_COST_TYPE_INTEGRAL_AD_SCIENCE`. * Output only for other types.
+     * The invoice type for this partner cost. * Required when cost_type is one of: - `PARTNER_COST_TYPE_ADLOOX` - `PARTNER_COST_TYPE_DOUBLE_VERIFY` - `PARTNER_COST_TYPE_INTEGRAL_AD_SCIENCE`. * Output only for other types.
      */
     invoiceType?: string | null;
   }
@@ -3145,7 +3145,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PartnerRevenueModel {
     /**
-     * Required. The markup amount of the partner revenue model. Must be greater than or equal to 0.  * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`, this field represents the CPM markup in micros of advertiser&#39;s currency. For example, 1500000 represents 1.5 standard units of the currency. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP`, this field represents the media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001). * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`, this field represents the total media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001).
+     * Required. The markup amount of the partner revenue model. Must be greater than or equal to 0. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`, this field represents the CPM markup in micros of advertiser&#39;s currency. For example, 1500000 represents 1.5 standard units of the currency. * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP`, this field represents the media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001). * When the markup_type is set to be `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`, this field represents the total media cost percent markup in millis. For example, 100 represents 0.1% (decimal 0.001).
      */
     markupAmount?: string | null;
     /**
@@ -3158,15 +3158,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PerformanceGoal {
     /**
-     * The goal amount, in micros of the advertiser&#39;s currency.  Applicable when performance_goal_type is one of:  * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC`  For example 1500000 represents 1.5 standard units of the currency.
+     * The goal amount, in micros of the advertiser&#39;s currency. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` For example 1500000 represents 1.5 standard units of the currency.
      */
     performanceGoalAmountMicros?: string | null;
     /**
-     * The decimal representation of the goal percentage in micros.  Applicable when performance_goal_type is one of:  * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY`  For example, 70000 represents 7% (decimal 0.07).
+     * The decimal representation of the goal percentage in micros. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY` For example, 70000 represents 7% (decimal 0.07).
      */
     performanceGoalPercentageMicros?: string | null;
     /**
-     * A key performance indicator (KPI) string, which can be empty. Must be UTF-8 encoded with a length of no more than 100 characters.  Applicable when performance_goal_type is set to `PERFORMANCE_GOAL_TYPE_OTHER`.
+     * A key performance indicator (KPI) string, which can be empty. Must be UTF-8 encoded with a length of no more than 100 characters. Applicable when performance_goal_type is set to `PERFORMANCE_GOAL_TYPE_OTHER`.
      */
     performanceGoalString?: string | null;
     /**
@@ -3179,15 +3179,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PerformanceGoalBidStrategy {
     /**
-     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`.  For example, 1500000 represents 1.5 standard units of the currency.
+     * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`. For example, 1500000 represents 1.5 standard units of the currency.
      */
     maxAverageCpmBidAmountMicros?: string | null;
     /**
-     * Required. The performance goal the bidding strategy will attempt to meet or beat, in micros of the advertiser&#39;s currency or in micro of the ROAS (Return On Advertising Spend) value which is also based on advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency and smaller or equal to upper bounds. Each performance_goal_type has its upper bound:  * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, upper bound is 10000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`, upper bound is 1000.00 and lower bound is 0.01.  Example: If set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will be based on the probability that each available impression will be viewable. For example, if viewable CPM target is $2 and an impression is 40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2).  For example, 1500000 represents 1.5 standard units of the currency or ROAS value.
+     * Required. The performance goal the bidding strategy will attempt to meet or beat, in micros of the advertiser&#39;s currency or in micro of the ROAS (Return On Advertising Spend) value which is also based on advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency and smaller or equal to upper bounds. Each performance_goal_type has its upper bound: * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, upper bound is 10000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, upper bound is 1000.00 USD. * when performance_goal_type is `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`, upper bound is 1000.00 and lower bound is 0.01. Example: If set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`, the bid price will be based on the probability that each available impression will be viewable. For example, if viewable CPM target is $2 and an impression is 40% likely to be viewable, the bid price will be $0.80 CPM (40% of $2). For example, 1500000 represents 1.5 standard units of the currency or ROAS value.
      */
     performanceGoalAmountMicros?: string | null;
     /**
-     * Required. The type of the performance goal that the bidding strategy will try to meet or beat.  For line item level usage, the value must be one of:  * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
+     * Required. The type of the performance goal that the bidding strategy will try to meet or beat. For line item level usage, the value must be one of: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
      */
     performanceGoalType?: string | null;
   }
@@ -3200,7 +3200,7 @@ export namespace displayvideo_v1 {
      */
     proximityLocationListId?: string | null;
     /**
-     * Required. Radius range for proximity location list. This represents the size of the area around a chosen location that will be targeted.  `All` proximity location targeting under a single line item must have the same radius range value. Set this value to match any existing targeting. If updated, this field will change the radius range for all proximity targeting under the line item.
+     * Required. Radius range for proximity location list. This represents the size of the area around a chosen location that will be targeted. `All` proximity location targeting under a single line item must have the same radius range value. Set this value to match any existing targeting. If updated, this field will change the radius range for all proximity targeting under the line item.
      */
     proximityRadiusRange?: string | null;
   }
@@ -3222,11 +3222,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$RateDetails {
     /**
-     * The rate type.  Acceptable values are `INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED`, `INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR`, and `INVENTORY_SOURCE_RATE_TYPE_CPD`.
+     * The rate type. Acceptable values are `INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED`, `INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR`, and `INVENTORY_SOURCE_RATE_TYPE_CPD`.
      */
     inventorySourceRateType?: string | null;
     /**
-     * Output only. The amount that the buyer has committed to spending on the inventory source up front.  Only applicable for guaranteed inventory sources.
+     * Output only. The amount that the buyer has committed to spending on the inventory source up front. Only applicable for guaranteed inventory sources.
      */
     minimumSpend?: Schema$Money;
     /**
@@ -3351,7 +3351,7 @@ export namespace displayvideo_v1 {
     urlOrAppId?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -3359,7 +3359,7 @@ export namespace displayvideo_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -3520,7 +3520,7 @@ export namespace displayvideo_v1 {
      */
     type?: string | null;
     /**
-     * Tracking URL used to track the interaction.  Provide a URL with optional path or query string, beginning with `https:`. For example, https://www.example.com/path
+     * Tracking URL used to track the interaction. Provide a URL with optional path or query string, beginning with `https:`. For example, https://www.example.com/path
      */
     url?: string | null;
   }
@@ -3647,7 +3647,7 @@ export namespace displayvideo_v1 {
      */
     negative?: boolean | null;
     /**
-     * Required. The URL, for example `example.com`.  DV360 supports two levels of subdirectory targeting, for example `www.example.com/one-subdirectory-level/second-level`, and five levels of subdomain targeting, for example `five.four.three.two.one.example.com`.
+     * Required. The URL, for example `example.com`. DV360 supports two levels of subdirectory targeting, for example `www.example.com/one-subdirectory-level/second-level`, and five levels of subdomain targeting, for example `five.four.three.two.one.example.com`.
      */
     url?: string | null;
   }
@@ -3943,43 +3943,13 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties.
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR`..
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `targetingType`
-     *       //
-     *       // Examples:
-     *       //
-     *       // * targetingType with value TARGETING_TYPE_CHANNEL
-     *       // `targetingType="TARGETING_TYPE_CHANNEL"`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `targetingType` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for
-     *       // a field, a suffix "desc" should be added to the field name. Example:
-     *       // `targetingType desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size.
-     *       // The size must be an integer between `1` and `5000`. If unspecified,
-     *       // the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid
-     *       // value is specified.
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results.
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to
-     *       // `BulkListAdvertiserAssignedTargetingOptions` method.
-     *       // If not specified, the first page of results will be returned.
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -4002,8 +3972,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`  Examples:  * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      * @param {integer=} params.pageSize Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4538,7 +4508,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.list
-     * @desc Lists advertisers that are accessible to the current user.  The order is defined by the order_by parameter.  A single partner_id is required. Cross-partner listing is not supported.
+     * @desc Lists advertisers that are accessible to the current user. The order is defined by the order_by parameter. A single partner_id is required. Cross-partner listing is not supported.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4563,46 +4533,15 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.list({
-     *     // Allows filtering by advertiser properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `entityStatus`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All active advertisers under a partner:
-     *     // `entityStatus="ENTITY_STATUS_ACTIVE"`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     // * `entityStatus`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. For example,
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListAdvertisers` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
-     *     // Required. The ID of the partner that the fetched advertisers should all belong to.
-     *     // The system only supports listing advertisers for one partner at a time.
+     *     // Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4623,8 +4562,8 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering by advertiser properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `entityStatus`  Examples:  * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `entityStatus`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * @param {string=} params.filter Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
@@ -4897,11 +4836,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`  Examples:  * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      */
     orderBy?: string;
     /**
@@ -4935,11 +4874,11 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
-     * Allows filtering by advertiser properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `entityStatus`  Examples:  * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `entityStatus`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -5184,7 +5123,10 @@ export namespace displayvideo_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5339,7 +5281,10 @@ export namespace displayvideo_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5471,7 +5416,10 @@ export namespace displayvideo_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5597,7 +5545,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.campaigns.list
-     * @desc Lists campaigns in an advertiser.  The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @desc Lists campaigns in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5613,7 +5561,10 @@ export namespace displayvideo_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5624,45 +5575,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.campaigns.list({
      *     // The ID of the advertiser to list campaigns for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by campaign properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `entityStatus`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an
-     *     // advertiser:
-     *     // `(entityStatus="ENTITY_STATUS_ACTIVE" OR
-     *     // entityStatus="ENTITY_STATUS_PAUSED")`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     // * `entityStatus`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token returned from the
-     *     // previous call to `ListCampaigns` method. If not specified, the first page
-     *     // of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5684,8 +5603,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId The ID of the advertiser to list campaigns for.
-     * @param {string=} params.filter Allows filtering by campaign properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `entityStatus`  Examples:  * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `entityStatus`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5793,7 +5712,10 @@ export namespace displayvideo_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5979,11 +5901,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by campaign properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `entityStatus`  Examples:  * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
+     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `entityStatus`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -6344,43 +6266,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.channels.list({
      *     // The ID of the advertiser that owns the channels.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by channel fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for channel currently can only contain at most one
-     *     // * restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All channels for which the display name contains "google":
-     *     // `displayName : "google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     // * `channelId`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for a
-     *     // field, a suffix " desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token returned from the
-     *     // previous call to `ListChannels` method. If not specified, the first page
-     *     // of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that owns the channels.
      *     partnerId: 'placeholder-value',
@@ -6404,8 +6296,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId The ID of the advertiser that owns the channels.
-     * @param {string=} params.filter Allows filtering by channel fields.  Supported syntax:  * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All channels for which the display name contains "google": `displayName : "google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `channelId`  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that owns the channels.
@@ -6692,11 +6584,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields.  Supported syntax:  * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All channels for which the display name contains "google": `displayName : "google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `channelId`  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -6745,7 +6637,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.channels.sites.bulkEdit
-     * @desc Bulk edits sites under a single channel.  The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @desc Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7213,41 +7105,13 @@ export namespace displayvideo_v1 {
      *     advertiserId: '[^/]+',
      *     // Required. The ID of the parent channel to which the requested sites belong.
      *     channelId: '[^/]+',
-     *     // Allows filtering by site fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for site currently can only contain at most one
-     *     // * restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `urlOrAppId`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All sites for which the URL or app ID contains "google":
-     *     // `urlOrAppId : "google"`
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `urlOrAppId` (default)
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for a
-     *     // field, a suffix " desc" should be added to the field name. Example:
-     *     // `urlOrAppId desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     //
-     *     // Typically, this is the value of
-     *     // next_page_token returned from the
-     *     // previous call to `ListSites` method. If not specified, the first page
-     *     // of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that owns the parent channel.
      *     partnerId: 'placeholder-value',
@@ -7272,10 +7136,10 @@ export namespace displayvideo_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
      * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
-     * @param {string=} params.filter Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * @param {string=} params.filter Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7430,11 +7294,11 @@ export namespace displayvideo_v1 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      */
     orderBy?: string;
     /**
@@ -7442,7 +7306,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
     /**
@@ -7996,7 +7860,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.creatives.list
-     * @desc Lists creatives in an advertiser.  The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @desc Lists creatives in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8023,79 +7887,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.creatives.list({
      *     // Required. The ID of the advertiser to list creatives for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by creative properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restriction for the same field must be combined by `OR`.
-     *     // * Restriction for different fields must be combined by `AND`.
-     *     // * Between `(` and `)` there can only be restrictions combined by `OR`
-     *     // for the same field.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)` for the following fields:
-     *     //     - `entityStatus`
-     *     //     - `creativeType`.
-     *     //     - `dimensions`
-     *     //     - `minDuration`
-     *     //     - `maxDuration`
-     *     //     - `approvalStatus`
-     *     //     - `exchangeReviewStatus`
-     *     //     - `dynamic`
-     *     //     - `creativeId`
-     *     // * The operator must be `HAS (:)` for the following fields:
-     *     //     - `lineItemIds`
-     *     // * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may
-     *     // be at most one restriction.
-     *     // * For `dimensions`, the value is in the form of `"{width}x{height}"`.
-     *     // * For `exchangeReviewStatus`, the value is in the form of
-     *     // `{exchange}-{reviewStatus}`.
-     *     // * For `minDuration` and `maxDuration`, the value is in the form of
-     *     // `"{duration}s"`. Only seconds are supported with millisecond granularity.
-     *     // * There may be multiple `lineItemIds` restrictions in order to search
-     *     // against multiple possible line item IDs.
-     *     // * There may be multiple `creativeId` restrictions in order to search
-     *     // against multiple possible creative IDs.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"`
-     *     // * All active creatives with 300x400 or 50x100 dimensions:
-     *     // `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400"
-     *     // OR dimensions="50x100")`
-     *     // * All dynamic creatives that are approved by AdX or
-     *     // AppNexus, with a minimum duration of 5 seconds and 200ms.
-     *     // `dynamic="true" AND minDuration="5.2s" AND
-     *     // (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED"
-     *     // OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")`
-     *     // * All video creatives that are associated with line item ID 1 or 2:
-     *     // `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)`
-     *     // * Find creatives by multiple creative IDs:
-     *     // `creativeId=1 OR creativeId=2`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `creativeId` (default)
-     *     // * `createTime`
-     *     // * `mediaDuration`
-     *     // * `dimensions` (sorts by width first, then by height)
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name.
-     *     // Example: `createTime desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListCreatives` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8117,8 +7915,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list creatives for.
-     * @param {string=} params.filter Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic`     - `creativeId` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
+     * @param {string=} params.filter Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8484,11 +8282,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by creative properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields:     - `entityStatus`     - `creativeType`.     - `dimensions`     - `minDuration`     - `maxDuration`     - `approvalStatus`     - `exchangeReviewStatus`     - `dynamic`     - `creativeId` * The operator must be `HAS (:)` for the following fields:     - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs.  Examples:  * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2`  The length of this field should be no more than 500 characters.
+     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, and `dynamic` there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width}x{height}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration}s"`. Only seconds are supported with millisecond granularity. * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
+     * Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      */
     orderBy?: string;
     /**
@@ -8973,7 +8771,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.insertionOrders.list
-     * @desc Lists insertion orders in an advertiser.  The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @desc Lists insertion orders in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -9000,48 +8798,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.insertionOrders.list({
      *     // Required. The ID of the advertiser to list insertion orders for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by insertion order properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `campaignId`
-     *     //     - `entityStatus`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All insertion orders under a campaign: `campaignId="1234"`
-     *     // * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders
-     *     // under an advertiser:
-     *     // `(entityStatus="ENTITY_STATUS_ACTIVE" OR
-     *     // entityStatus="ENTITY_STATUS_PAUSED")`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `entityStatus` Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * "displayName" (default)
-     *     // * "entityStatus"
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token returned
-     *     // from the previous call to `ListInsertionOrders` method. If not specified,
-     *     // the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9063,8 +8826,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list insertion orders for.
-     * @param {string=} params.filter Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `entityStatus` Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9370,11 +9133,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
+     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `entityStatus` Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -9615,52 +9378,15 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties.
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR` on the same
-     *       // field.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `targetingType`
-     *       //     - `inheritance`
-     *       //
-     *       // Examples:
-     *       //
-     *       // * AssignedTargetingOptions of targeting type
-     *       // TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL
-     *       // `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR
-     *       // targetingType="TARGETING_TYPE_CHANNEL"`
-     *       // * AssignedTargetingOptions with inheritance status of NOT_INHERITED or
-     *       //   INHERITED_FROM_PARTNER
-     *       // `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the line item to list assigned targeting options for.
      *       lineItemId: '[^/]+',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `targetingType` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for
-     *       // a field, a suffix "desc" should be added to the field name. Example:
-     *       // `targetingType desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size.
-     *       // The size must be an integer between `1` and `5000`. If unspecified,
-     *       // the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid
-     *       // value is specified.
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results.
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to
-     *       // `BulkListLineItemAssignedTargetingOptions` method.
-     *       // If not specified, the first page of results will be returned.
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9683,9 +9409,9 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`     - `inheritance`  Examples:  * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or   INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      * @param {string} params.lineItemId Required. The ID of the line item to list assigned targeting options for.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      * @param {integer=} params.pageSize Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10257,7 +9983,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.lineItems.list
-     * @desc Lists line items in an advertiser.  The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @desc Lists line items in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10284,52 +10010,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `campaignId`
-     *     //     - `insertionOrderId`
-     *     //     - `entityStatus`
-     *     //     - `lineItemType`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All line items under an insertion order: `insertionOrderId="1234"`
-     *     // * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`
-     *     // and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser:
-     *     // `(entityStatus="ENTITY_STATUS_ACTIVE" OR
-     *     // entityStatus="ENTITY_STATUS_PAUSED") AND
-     *     // lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * "displayName" (default)
-     *     // * "entityStatus"
-     *     // * “flight.dateRange.endDate”
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListLineItems` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10351,8 +10038,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list line items for.
-     * @param {string=} params.filter Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate”  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10650,7 +10337,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`     - `inheritance`  Examples:  * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or   INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -10658,7 +10345,7 @@ export namespace displayvideo_v1 {
      */
     lineItemId?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      */
     orderBy?: string;
     /**
@@ -10711,11 +10398,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate”  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -11180,8 +10867,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this line item that
-     *       // identifies the assigned targeting option being requested.
+     *       // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
      *       // Required. The ID of the line item the assigned targeting option belongs to.
      *       lineItemId: '[^/]+',
@@ -11378,48 +11064,15 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties.
-     *       //
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR`.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `assignedTargetingOptionId`
-     *       //     - `inheritance`
-     *       //
-     *       // Examples:
-     *       //
-     *       // * AssignedTargetingOptions with ID 1 or 2
-     *       // `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"`
-     *       // * AssignedTargetingOptions with inheritance status of NOT_INHERITED or
-     *       //   INHERITED_FROM_PARTNER
-     *       // `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the line item to list assigned targeting options for.
      *       lineItemId: '[^/]+',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `assignedTargetingOptionId` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for
-     *       // a field, a suffix "desc" should be added to the field name. Example:
-     *       // `assignedTargetingOptionId desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will
-     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *       // is specified.
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to `ListLineItemAssignedTargetingOptions`
-     *       // method. If not specified, the first page of results will be returned.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *       // Required. Identifies the type of assigned targeting options to list.
      *       targetingType: '[^/]+',
@@ -11444,9 +11097,9 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`     - `inheritance`  Examples:  * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or   INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      * @param {string} params.lineItemId Required. The ID of the line item to list assigned targeting options for.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list.
@@ -11622,7 +11275,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`     - `inheritance`  Examples:  * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or   INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -11630,7 +11283,7 @@ export namespace displayvideo_v1 {
      */
     lineItemId?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      */
     orderBy?: string;
     /**
@@ -11971,45 +11624,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.locationLists.list({
      *     // Required. The ID of the DV360 advertiser to which the fetched location lists belong.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by location list fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `locationType`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All regional location list:
-     *     // `locationType="TARGETING_LOCATION_TYPE_REGIONAL"`
-     *     // * All proximity location list:
-     *     // `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     *     // Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `locationListId` (default)
-     *     // * `displayName`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`.
-     *     // Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an
-     *     // invalid value is specified.
+     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     //
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListLocationLists` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12031,10 +11652,10 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched location lists belong.
-     * @param {string=} params.filter Allows filtering by location list fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `locationType`  Examples:  * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `locationListId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12309,11 +11930,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `locationType`  Examples:  * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     * Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `locationListId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -12321,7 +11942,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
   }
@@ -12354,7 +11975,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.locationLists.assignedLocations.bulkEdit
-     * @desc Bulk edits multiple assignments between locations and a single location list.  The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
+     * @desc Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12827,40 +12448,15 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by location list assignment fields.
-     *       //
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR`.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `assignedLocationId`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Required. The ID of the location list to which these assignments are assigned.
      *       locationListId: 'placeholder-value',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `assignedLocationId` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for a
-     *       // field, a suffix " desc" should be added to the field name. Example:
-     *       // `assignedLocationId desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will
-     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *       // is specified.
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       //
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to `ListAssignedLocations`
-     *       // method. If not specified, the first page of results will be returned.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -12883,11 +12479,11 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
-     * @param {string=} params.filter Allows filtering by location list assignment fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedLocationId`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
      * @param {string} params.locationListId Required. The ID of the location list to which these assignments are assigned.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedLocationId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13035,7 +12631,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list assignment fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedLocationId`  The length of this field should be no more than 500 characters.
+     * Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -13043,7 +12639,7 @@ export namespace displayvideo_v1 {
      */
     locationListId?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `assignedLocationId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
+     * Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
      */
     orderBy?: string;
     /**
@@ -13051,7 +12647,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
   }
@@ -13093,8 +12689,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.create({
-     *     // Required. The ID of the DV360 advertiser to which the negative keyword list will
-     *     // belong.
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
      *     advertiserId: '[^/]+',
      *
      *     // Request body metadata
@@ -13374,8 +12969,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.get({
-     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword list
-     *     // belongs.
+     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
      *     advertiserId: '[^/]+',
      *     // Required. The ID of the negative keyword list to fetch.
      *     negativeKeywordListId: '[^/]+',
@@ -13515,19 +13109,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.list({
-     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword lists
-     *     // belong.
+     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
      *     advertiserId: '[^/]+',
-     *     // Requested page size. Must be between `1` and `100`.
-     *     // Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an
-     *     // invalid value is specified.
+     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     //
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListNegativeKeywordLists` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13550,7 +13136,7 @@ export namespace displayvideo_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13843,7 +13429,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
   }
@@ -13876,7 +13462,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit
-     * @desc Bulk edits negative keywords in a single negative keyword list.  The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords.  This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
+     * @desc Bulk edits negative keywords in a single negative keyword list. The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords. This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13902,11 +13488,9 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
      *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
-     *       // belongs.
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list to which the negative keywords
-     *       // belong.
+     *       // Required. The ID of the parent negative keyword list to which the negative keywords belong.
      *       negativeKeywordListId: '[^/]+',
      *
      *       // Request body metadata
@@ -14059,11 +13643,9 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
      *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
-     *       // belongs.
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list in which the negative keyword
-     *       // will be created.
+     *       // Required. The ID of the parent negative keyword list in which the negative keyword will be created.
      *       negativeKeywordListId: '[^/]+',
      *
      *       // Request body metadata
@@ -14208,13 +13790,11 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
      *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
-     *       // belongs.
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: 'placeholder-value',
      *       // Required. The keyword value of the negative keyword to delete.
      *       keywordValue: '[^/]+',
-     *       // Required. The ID of the parent negative keyword list to which the negative keyword
-     *       // belongs.
+     *       // Required. The ID of the parent negative keyword list to which the negative keyword belongs.
      *       negativeKeywordListId: '[^/]+',
      *     }
      *   );
@@ -14351,48 +13931,17 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list(
      *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
-     *       // belongs.
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by negative keyword fields.
-     *       //
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions for negative keyword currently can only contain at
-     *       // most one
-     *       // * restriction.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `CONTAINS (:)`.
-     *       // * Supported fields:
-     *       //     - `keywordValue`
-     *       //
-     *       // Examples:
-     *       //
-     *       // * All negative keywords for which the keyword value contains "google":
-     *       // `keywordValue : "google"`
+     *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
      *       filter: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list to which the requested negative
-     *       // keywords belong.
+     *       // Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
      *       negativeKeywordListId: '[^/]+',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `keywordValue` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for a
-     *       // field, a suffix " desc" should be added to the field name. Example:
-     *       // `keywordValue desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will
-     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *       // is specified.
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       //
-     *       // Typically, this is the value of
-     *       // next_page_token returned
-     *       // from the previous call to `ListNegativeKeywords` method. If not specified,
-     *       // the first page of results will be returned.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -14415,11 +13964,11 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     * @param {string=} params.filter Allows filtering by negative keyword fields.  Supported syntax:  * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `keywordValue`  Examples:  * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     * @param {string=} params.filter Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
      * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `keywordValue` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14567,7 +14116,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by negative keyword fields.  Supported syntax:  * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `keywordValue`  Examples:  * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     * Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
      */
     filter?: string;
     /**
@@ -14575,7 +14124,7 @@ export namespace displayvideo_v1 {
      */
     negativeKeywordListId?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `keywordValue` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
+     * Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
      */
     orderBy?: string;
     /**
@@ -14583,7 +14132,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
   }
@@ -15012,8 +14561,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this advertiser that
-     *       // identifies the assigned targeting option being requested.
+     *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
      *       // Required. Identifies the type of this assigned targeting option.
      *       targetingType: '[^/]+',
@@ -15205,42 +14753,13 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties.
-     *       //
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR`.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `assignedTargetingOptionId`
-     *       //
-     *       // Examples:
-     *       //
-     *       // * AssignedTargetingOption with ID 123456
-     *       // `assignedTargetingOptionId="123456"`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `assignedTargetingOptionId` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for
-     *       // a field, a suffix "desc" should be added to the field name. Example:
-     *       // `assignedTargetingOptionId desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will
-     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *       // is specified.
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to `ListAdvertiserAssignedTargetingOptions`
-     *       // method. If not specified, the first page of results will be returned.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
      *       // Required. Identifies the type of assigned targeting options to list.
      *       targetingType: '[^/]+',
@@ -15265,8 +14784,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser.
-     * @param {string=} params.filter Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`  Examples:  * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list.
@@ -15430,11 +14949,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`  Examples:  * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      */
     orderBy?: string;
     /**
@@ -15484,8 +15003,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.combinedAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched combined
-     *     // audience.
+     *     // The ID of the advertiser that has access to the fetched combined audience.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the combined audience to fetch.
      *     combinedAudienceId: '[^/]+',
@@ -15598,7 +15116,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.combinedAudiences.list
-     * @desc Lists combined audiences.  The order is defined by the order_by parameter.
+     * @desc Lists combined audiences. The order is defined by the order_by parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15623,46 +15141,15 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.combinedAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched combined
-     *     // audiences.
+     *     // The ID of the advertiser that has access to the fetched combined audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by combined audience fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for combined audiences currently can only contain at
-     *     // most one restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All combined audiences for which the display name contains "Google":
-     *     // `displayName : "Google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `combinedAudienceId` (default)
-     *     // * `displayName`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListCombinedAudiences` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that has access to the fetched combined audiences.
      *     partnerId: 'placeholder-value',
@@ -15686,8 +15173,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched combined audiences.
-     * @param {string=} params.filter Allows filtering by combined audience fields.  Supported syntax:  * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All combined audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `combinedAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that has access to the fetched combined audiences.
@@ -15806,11 +15293,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by combined audience fields.  Supported syntax:  * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All combined audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `combinedAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -15860,8 +15347,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.customLists.get({
-     *     // The ID of the DV360 advertiser that has access to the fetched custom
-     *     // lists.
+     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the custom list to fetch.
      *     customListId: '[^/]+',
@@ -15971,7 +15457,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.customLists.list
-     * @desc Lists custom lists.  The order is defined by the order_by parameter.
+     * @desc Lists custom lists. The order is defined by the order_by parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15996,46 +15482,15 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.customLists.list({
-     *     // The ID of the DV360 advertiser that has access to the fetched custom
-     *     // lists.
+     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom list fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for custom lists currently can only contain at
-     *     // most one restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All custom lists for which the display name contains "Google":
-     *     // `displayName : "Google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `customListId` (default)
-     *     // * `displayName`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListCustomLists` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16057,8 +15512,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the DV360 advertiser that has access to the fetched custom lists.
-     * @param {string=} params.filter Allows filtering by custom list fields.  Supported syntax:  * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All custom lists for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `customListId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16162,11 +15617,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom list fields.  Supported syntax:  * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All custom lists for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `customListId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -16212,13 +15667,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.firstAndThirdPartyAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched first and
-     *     // third party audience.
+     *     // The ID of the advertiser that has access to the fetched first and third party audience.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the first and third party audience to fetch.
      *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // The ID of the partner that has access to the fetched first and
-     *     // third party audience.
+     *     // The ID of the partner that has access to the fetched first and third party audience.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16347,7 +15800,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.firstAndThirdPartyAudiences.list
-     * @desc Lists first and third party audiences.  The order is defined by the order_by parameter.
+     * @desc Lists first and third party audiences. The order is defined by the order_by parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -16372,49 +15825,17 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.firstAndThirdPartyAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched first and
-     *     // third party audiences.
+     *     // The ID of the advertiser that has access to the fetched first and third party audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by first and third party audience fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for first and third party audiences currently can
-     *     // only contain at most one restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All first and third party audiences for which the display name contains
-     *     // "Google": `displayName : "Google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `firstAndThirdPartyAudienceId` (default)
-     *     // * `displayName`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListFirstAndThirdPartyAudiences`
-     *     // method. If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the fetched first and
-     *     // third party audiences.
+     *     // The ID of the partner that has access to the fetched first and third party audiences.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16436,8 +15857,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched first and third party audiences.
-     * @param {string=} params.filter Allows filtering by first and third party audience fields.  Supported syntax:  * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `firstAndThirdPartyAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that has access to the fetched first and third party audiences.
@@ -16562,11 +15983,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by first and third party audience fields.  Supported syntax:  * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `firstAndThirdPartyAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -17067,7 +16488,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.googleAudiences.list
-     * @desc Lists Google audiences.  The order is defined by the order_by parameter.
+     * @desc Lists Google audiences. The order is defined by the order_by parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17094,43 +16515,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.googleAudiences.list({
      *     // The ID of the advertiser that has access to the fetched Google audiences.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by Google audience fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for Google audiences currently can only contain at
-     *     // most one restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All Google audiences for which the display name contains "Google":
-     *     // `displayName : "Google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `googleAudienceId` (default)
-     *     // * `displayName`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListGoogleAudiences` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that has access to the fetched Google audiences.
      *     partnerId: 'placeholder-value',
@@ -17154,8 +16545,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that has access to the fetched Google audiences.
-     * @param {string=} params.filter Allows filtering by Google audience fields.  Supported syntax:  * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All Google audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `googleAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that has access to the fetched Google audiences.
@@ -17272,11 +16663,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by Google audience fields.  Supported syntax:  * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All Google audiences for which the display name contains "Google": `displayName : "Google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `googleAudienceId` (default) * `displayName`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -17330,15 +16721,9 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.create({
-     *     // The ID of the advertiser that owns the inventory source group.
-     *     //
-     *     // The parent partner will not have access to this group.
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
      *     advertiserId: 'placeholder-value',
-     *     // The ID of the partner that owns the inventory source group.
-     *     //
-     *     // Only this partner will have write access to this group. Only advertisers
-     *     // to which this group is explicitly shared will have read access to this
-     *     // group.
+     *     // The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
      *     partnerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -17370,8 +16755,8 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner will not have access to this group.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
      * @param {().InventorySourceGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17488,15 +16873,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.delete({
-     *     // The ID of the advertiser that owns the inventory source group.
-     *     //
-     *     // The parent partner does not have access to this group.
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the inventory source group to delete.
      *     inventorySourceGroupId: '[^/]+',
-     *     // The ID of the partner that owns the inventory source group.
-     *     //
-     *     // Only this partner has write access to this group.
+     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -17514,9 +16895,9 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to delete.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17626,16 +17007,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.get({
-     *     // The ID of the advertiser that has access to the inventory source group.
-     *     //
-     *     // If an inventory source group is partner-owned, only advertisers to which
-     *     // the group is explicitly shared can access the group.
+     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the inventory source group to fetch.
      *     inventorySourceGroupId: '[^/]+',
-     *     // The ID of the partner that has access to the inventory source group.
-     *     //
-     *     // A partner cannot access an advertiser-owned inventory source group.
+     *     // The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -17657,9 +17033,9 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to fetch.
-     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group.  A partner cannot access an advertiser-owned inventory source group.
+     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17749,7 +17125,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.inventorySourceGroups.list
-     * @desc Lists inventory source groups that are accessible to the current user.  The order is defined by the order_by parameter.
+     * @desc Lists inventory source groups that are accessible to the current user. The order is defined by the order_by parameter.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17774,46 +17150,17 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.list({
-     *     // The ID of the advertiser that has access to the inventory source group.
-     *     //
-     *     // If an inventory source group is partner-owned, only advertisers to which
-     *     // the group is explicitly shared can access the group.
+     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source group properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by the logical operator `OR`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `inventorySourceGroupId`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     // * `inventorySourceGroupId`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. For example,
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListInventorySources` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the inventory source group.
-     *     //
-     *     // A partner cannot access advertiser-owned inventory source groups.
+     *     // The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -17834,12 +17181,12 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
-     * @param {string=} params.filter Allows filtering by inventory source group properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `inventorySourceGroupId`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `inventorySourceGroupId`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     * @param {string=} params.filter Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group.  A partner cannot access advertiser-owned inventory source groups.
+     * @param {string=} params.partnerId The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17959,15 +17306,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.patch({
-     *     // The ID of the advertiser that owns the inventory source group.
-     *     //
-     *     // The parent partner does not have access to this group.
+     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      *     advertiserId: 'placeholder-value',
      *     // Output only. The unique ID of the inventory source group. Assigned by the system.
      *     inventorySourceGroupId: 'placeholder-value',
-     *     // The ID of the partner that owns the inventory source group.
-     *     //
-     *     // Only this partner has write access to this group.
+     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      *     partnerId: 'placeholder-value',
      *     // Required. The mask to control which fields to update.
      *     updateMask: 'placeholder-value',
@@ -18001,9 +17344,9 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      * @param {string} params.inventorySourceGroupId Output only. The unique ID of the inventory source group. Assigned by the system.
-     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      * @param {string=} params.updateMask Required. The mask to control which fields to update.
      * @param {().InventorySourceGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18097,11 +17440,11 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysourcegroups$Create
     extends StandardParameters {
     /**
-     * The ID of the advertiser that owns the inventory source group.  The parent partner will not have access to this group.
+     * The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
      */
     advertiserId?: string;
     /**
-     * The ID of the partner that owns the inventory source group.  Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
+     * The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
      */
     partnerId?: string;
 
@@ -18113,7 +17456,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysourcegroups$Delete
     extends StandardParameters {
     /**
-     * The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      */
     advertiserId?: string;
     /**
@@ -18121,14 +17464,14 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      */
     partnerId?: string;
   }
   export interface Params$Resource$Inventorysourcegroups$Get
     extends StandardParameters {
     /**
-     * The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     * The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
     advertiserId?: string;
     /**
@@ -18136,22 +17479,22 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * The ID of the partner that has access to the inventory source group.  A partner cannot access an advertiser-owned inventory source group.
+     * The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
      */
     partnerId?: string;
   }
   export interface Params$Resource$Inventorysourcegroups$List
     extends StandardParameters {
     /**
-     * The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
+     * The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source group properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `inventorySourceGroupId`  The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `inventorySourceGroupId`  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -18163,14 +17506,14 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
     /**
-     * The ID of the partner that has access to the inventory source group.  A partner cannot access advertiser-owned inventory source groups.
+     * The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
      */
     partnerId?: string;
   }
   export interface Params$Resource$Inventorysourcegroups$Patch
     extends StandardParameters {
     /**
-     * The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
      */
     advertiserId?: string;
     /**
@@ -18178,7 +17521,7 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
      */
     partnerId?: string;
     /**
@@ -18200,7 +17543,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit
-     * @desc Bulk edits multiple assignments between inventory sources and a single inventory source group.  The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
+     * @desc Bulk edits multiple assignments between inventory sources and a single inventory source group. The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -18226,8 +17569,7 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit(
      *     {
-     *       // Required. The ID of the inventory source group to which the assignments are
-     *       // assigned.
+     *       // Required. The ID of the inventory source group to which the assignments are assigned.
      *       inventorySourceGroupId: '[^/]+',
      *
      *       // Request body metadata
@@ -18387,18 +17729,11 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.create(
      *     {
-     *       // The ID of the advertiser that owns the parent inventory source group.
-     *       //
-     *       // The parent partner will not have access to this assigned inventory
-     *       // source.
+     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
      *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the inventory source group to which the assignment will be
-     *       // assigned.
+     *       // Required. The ID of the inventory source group to which the assignment will be assigned.
      *       inventorySourceGroupId: '[^/]+',
-     *       // The ID of the partner that owns the parent inventory source group.
-     *       //
-     *       // Only this partner will have write access to this assigned inventory
-     *       // source.
+     *       // The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
      *       partnerId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -18431,9 +17766,9 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group.  The parent partner will not have access to this assigned inventory source.
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
      * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which the assignment will be assigned.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group.  Only this partner will have write access to this assigned inventory source.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
      * @param {().AssignedInventorySource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18553,18 +17888,13 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.delete(
      *     {
-     *       // The ID of the advertiser that owns the parent inventory source group.
-     *       //
-     *       // The parent partner does not have access to this assigned inventory
-     *       // source.
+     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the assigned inventory source to delete.
      *       assignedInventorySourceId: '[^/]+',
      *       // Required. The ID of the inventory source group to which this assignment is assigned.
      *       inventorySourceGroupId: '[^/]+',
-     *       // The ID of the partner that owns the parent inventory source group.
-     *       //
-     *       // Only this partner has write access to this assigned inventory source.
+     *       // The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
      *       partnerId: 'placeholder-value',
      *     }
      *   );
@@ -18583,10 +17913,10 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to this assigned inventory source.
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
      * @param {string} params.assignedInventorySourceId Required. The ID of the assigned inventory source to delete.
      * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which this assignment is assigned.
-     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group.  Only this partner has write access to this assigned inventory source.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18698,52 +18028,19 @@ export namespace displayvideo_v1 {
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.list(
      *     {
-     *       // The ID of the advertiser that has access to the assignment.
-     *       //
-     *       // If the parent inventory source group is partner-owned, only advertisers
-     *       // to which the parent group is explicitly shared can access the assigned
-     *       // inventory source.
+     *       // The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
      *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by assigned inventory source fields.
-     *       //
-     *       // Supported syntax:
-     *       //
-     *       // * Filter expressions are made up of one or more restrictions.
-     *       // * Restrictions can be combined by the logical operator `OR`.
-     *       // * A restriction has the form of `{field} {operator} {value}`.
-     *       // * The operator must be `EQUALS (=)`.
-     *       // * Supported fields:
-     *       //     - `assignedInventorySourceId`
-     *       //
-     *       // The length of this field should be no more than 500 characters.
+     *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
-     *       // Required. The ID of the inventory source group to which these assignments are
-     *       // assigned.
+     *       // Required. The ID of the inventory source group to which these assignments are assigned.
      *       inventorySourceGroupId: '[^/]+',
-     *       // Field by which to sort the list.
-     *       // Acceptable values are:
-     *       //
-     *       // * `assignedInventorySourceId` (default)
-     *       //
-     *       // The default sorting order is ascending. To specify descending order for a
-     *       // field, a suffix " desc" should be added to the field name. Example:
-     *       // `assignedInventorySourceId desc`.
+     *       // Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will
-     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *       // is specified.
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       //
-     *       // Typically, this is the value of
-     *       // next_page_token
-     *       // returned from the previous call to `ListAssignedInventorySources`
-     *       // method. If not specified, the first page of results will be returned.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
-     *       // The ID of the partner that has access to the assignment.
-     *       //
-     *       // If the parent inventory source group is advertiser-owned, the assignment
-     *       // cannot be accessed via a partner.
+     *       // The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
      *       partnerId: 'placeholder-value',
      *     }
      *   );
@@ -18765,13 +18062,13 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the advertiser that has access to the assignment.  If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
-     * @param {string=} params.filter Allows filtering by assigned inventory source fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedInventorySourceId`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.advertiserId The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
+     * @param {string=} params.filter Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
      * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which these assignments are assigned.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedInventorySourceId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the partner that has access to the assignment.  If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.partnerId The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18886,7 +18183,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create
     extends StandardParameters {
     /**
-     * The ID of the advertiser that owns the parent inventory source group.  The parent partner will not have access to this assigned inventory source.
+     * The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
      */
     advertiserId?: string;
     /**
@@ -18894,7 +18191,7 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * The ID of the partner that owns the parent inventory source group.  Only this partner will have write access to this assigned inventory source.
+     * The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
      */
     partnerId?: string;
 
@@ -18906,7 +18203,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete
     extends StandardParameters {
     /**
-     * The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to this assigned inventory source.
+     * The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
      */
     advertiserId?: string;
     /**
@@ -18918,18 +18215,18 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * The ID of the partner that owns the parent inventory source group.  Only this partner has write access to this assigned inventory source.
+     * The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
      */
     partnerId?: string;
   }
   export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$List
     extends StandardParameters {
     /**
-     * The ID of the advertiser that has access to the assignment.  If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
+     * The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned inventory source fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedInventorySourceId`  The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -18937,7 +18234,7 @@ export namespace displayvideo_v1 {
      */
     inventorySourceGroupId?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `assignedInventorySourceId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
+     * Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
      */
     orderBy?: string;
     /**
@@ -18945,11 +18242,11 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
     /**
-     * The ID of the partner that has access to the assignment.  If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
+     * The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
      */
     partnerId?: string;
   }
@@ -18989,8 +18286,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.inventorySources.get({
      *     // Required. The ID of the inventory source to fetch.
      *     inventorySourceId: '[^/]+',
-     *     // Required. The ID of the DV360 partner to which the fetched inventory source
-     *     // is permissioned.
+     *     // Required. The ID of the DV360 partner to which the fetched inventory source is permissioned.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -19109,7 +18405,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.inventorySources.list
-     * @desc Lists inventory sources that are accessible to the current user.  The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @desc Lists inventory sources that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -19136,48 +18432,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.inventorySources.list({
      *     // The ID of the advertiser that has access to the inventory source.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `EQUALS (=)`.
-     *     // * Supported fields:
-     *     //     - `status.entityStatus`
-     *     //     - `commitment`
-     *     //     - `deliveryMethod`
-     *     //     - `rateDetails.rateType`
-     *     //     - `exchange`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All active inventory sources:
-     *     // `status.entityStatus="ENTITY_STATUS_ACTIVE"`
-     *     // * Inventory sources belonging to Google Ad Manager or Rubicon exchanges:
-     *     // `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name. For example,
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListInventorySources` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that has access to the inventory source.
      *     partnerId: 'placeholder-value',
@@ -19201,8 +18462,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that has access to the inventory source.
-     * @param {string=} params.filter Allows filtering by inventory source properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `status.entityStatus`     - `commitment`     - `deliveryMethod`     - `rateDetails.rateType`     - `exchange`  Examples:  * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * @param {string=} params.filter Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
      * @param {string=} params.partnerId The ID of the partner that has access to the inventory source.
@@ -19317,11 +18578,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `status.entityStatus`     - `commitment`     - `deliveryMethod`     - `rateDetails.rateType`     - `exchange`  Examples:  * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -19346,7 +18607,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.media.download
-     * @desc Downloads media. Download is supported on the URI `/download/{resource_name=**}?alt=media.`  **Note**: Download requests will not be successful without including `alt=media` query string.
+     * @desc Downloads media. Download is supported on the URI `/download/{resource_name=**}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -19374,8 +18635,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.media.download({
-     *     // Name of the media that is being downloaded.  See
-     *     // ReadRequest.resource_name.
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
      *     resourceName: '.*',
      *   });
      *   console.log(res.data);
@@ -19395,7 +18655,7 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -19488,7 +18748,7 @@ export namespace displayvideo_v1 {
 
   export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * Name of the media that is being downloaded. See ReadRequest.resource_name.
      */
     resourceName?: string;
   }
@@ -19830,43 +19090,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.partners.channels.list({
      *     // The ID of the advertiser that owns the channels.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by channel fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for channel currently can only contain at most one
-     *     // * restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `displayName`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All channels for which the display name contains "google":
-     *     // `displayName : "google"`.
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `displayName` (default)
-     *     // * `channelId`
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for a
-     *     // field, a suffix " desc" should be added to the field name. Example:
-     *     // `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token returned from the
-     *     // previous call to `ListChannels` method. If not specified, the first page
-     *     // of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that owns the channels.
      *     partnerId: '[^/]+',
@@ -19890,8 +19120,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that owns the channels.
-     * @param {string=} params.filter Allows filtering by channel fields.  Supported syntax:  * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All channels for which the display name contains "google": `displayName : "google"`.  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `channelId`  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     * @param {string=} params.filter Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      * @param {string} params.partnerId The ID of the partner that owns the channels.
@@ -20178,11 +19408,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields.  Supported syntax:  * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `displayName`  Examples:  * All channels for which the display name contains "google": `displayName : "google"`.  The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `displayName` (default) * `channelId`  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -20231,7 +19461,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.partners.channels.sites.bulkEdit
-     * @desc Bulk edits sites under a single channel.  The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @desc Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -20698,41 +19928,13 @@ export namespace displayvideo_v1 {
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the parent channel to which the requested sites belong.
      *     channelId: '[^/]+',
-     *     // Allows filtering by site fields.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions for site currently can only contain at most one
-     *     // * restriction.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be `CONTAINS (:)`.
-     *     // * Supported fields:
-     *     //     - `urlOrAppId`
-     *     //
-     *     // Examples:
-     *     //
-     *     // * All sites for which the URL or app ID contains "google":
-     *     // `urlOrAppId : "google"`
+     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `urlOrAppId` (default)
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for a
-     *     // field, a suffix " desc" should be added to the field name. Example:
-     *     // `urlOrAppId desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     //
-     *     // Typically, this is the value of
-     *     // next_page_token returned from the
-     *     // previous call to `ListSites` method. If not specified, the first page
-     *     // of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // The ID of the partner that owns the parent channel.
      *     partnerId: '[^/]+',
@@ -20757,10 +19959,10 @@ export namespace displayvideo_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
      * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
-     * @param {string=} params.filter Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * @param {string=} params.filter Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      * @param {string} params.partnerId The ID of the partner that owns the parent channel.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20914,11 +20116,11 @@ export namespace displayvideo_v1 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      */
     orderBy?: string;
     /**
@@ -20926,7 +20128,7 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
     /**
@@ -20945,7 +20147,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.sdfdownloadtasks.create
-     * @desc Creates an SDF Download Task. Returns an Operation.  An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get.  Any errors can be found in the error.message. Note that error.details is expected to be empty.
+     * @desc Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -21457,37 +20659,13 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.targetingTypes.targetingOptions.list({
      *     // Required. The Advertiser this request is being made in the context of.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by targeting option properties.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `OR` logical operators.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * The operator must be "=" (equal sign).
-     *     // * Supported fields:
-     *     //     - `targetingOptionId`
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `targetingOptionId` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     // Acceptable values are:
-     *     //
-     *     // * `targetingOptionId` (default)
-     *     //
-     *     // The default sorting order is ascending. To specify descending order for
-     *     // a field, a suffix "desc" should be added to the field name.
-     *     // Example: `targetingOptionId desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will
-     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
-     *     // is specified.
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // next_page_token
-     *     // returned from the previous call to `ListTargetingOptions` method.
-     *     // If not specified, the first page of results will be returned.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The type of targeting option to be listed.
      *     targetingType: '[^/]+',
@@ -21511,8 +20689,8 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId Required. The Advertiser this request is being made in the context of.
-     * @param {string=} params.filter Allows filtering by targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields:     - `targetingOptionId`  The length of this field should be no more than 500 characters.
-     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `targetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
+     * @param {string=} params.filter Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `targetingOptionId` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
      * @param {string} params.targetingType Required. The type of targeting option to be listed.
@@ -21630,11 +20808,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields:     - `targetingOptionId`  The length of this field should be no more than 500 characters.
+     * Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field} {operator} {value}`. * The operator must be "=" (equal sign). * Supported fields: - `targetingOptionId` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are:  * `targetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
+     * Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
      */
     orderBy?: string;
     /**
