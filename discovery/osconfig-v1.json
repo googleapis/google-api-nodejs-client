@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200714",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -536,6 +536,27 @@
         "patchConfig": {
           "$ref": "PatchConfig",
           "description": "Patch configuration being applied. If omitted, instances are\npatched using the default configurations."
+        },
+        "rollout": {
+          "$ref": "PatchRollout",
+          "description": "Rollout strategy of the patch job."
+        }
+      },
+      "type": "object"
+    },
+    "FixedOrPercent": {
+      "description": "Message encapsulating a value that can be either absolute (\"fixed\") or\nrelative (\"percent\") to a value.",
+      "id": "FixedOrPercent",
+      "properties": {
+        "fixed": {
+          "description": "Specifies a fixed value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "percent": {
+          "description": "Specifies the relative value defined as a percentage, which will be\nmultiplied by a reference value.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -742,6 +763,10 @@
           "$ref": "RecurringSchedule",
           "description": "Required. Schedule recurring executions."
         },
+        "rollout": {
+          "$ref": "PatchRollout",
+          "description": "Optional. Rollout strategy of the patch job."
+        },
         "updateTime": {
           "description": "Output only. Time the patch deployment was last updated. Timestamp is in\n[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "format": "google-datetime",
@@ -857,6 +882,10 @@
           "description": "Reflects the overall progress of the patch job in the range of\n0.0 being no progress to 100.0 being complete.",
           "format": "double",
           "type": "number"
+        },
+        "rollout": {
+          "$ref": "PatchRollout",
+          "description": "Rollout strategy being applied."
         },
         "state": {
           "description": "The current state of the PatchJob.",
@@ -1031,6 +1060,31 @@
         "timedOutInstanceCount": {
           "description": "Number of instances that exceeded the time out while applying the patch.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PatchRollout": {
+      "description": "Patch rollout configuration specifications. Contains details on the\nconcurrency control when applying patch(es) to all targeted VMs.",
+      "id": "PatchRollout",
+      "properties": {
+        "disruptionBudget": {
+          "$ref": "FixedOrPercent",
+          "description": "The maximum number (or percentage) of VMs per zone to disrupt at any given\nmoment. The number of VMs calculated from multiplying the percentage by the\ntotal number of VMs in a zone is rounded up.\n\nDuring patching, a VM is considered disrupted from the time the agent is\nnotified to begin until patching has completed. This disruption time\nincludes the time to complete reboot and any post-patch steps.\n\nA VM contributes to the disruption budget if its patching operation fails\neither when applying the patches, running pre or post patch steps, or if it\nfails to respond with a success notification before timing out. VMs that\nare not running or do not have an active agent do not count toward this\ndisruption budget.\n\nFor zone-by-zone rollouts, if the disruption budget in a zone is exceeded,\nthe patch job stops, because continuing to the next zone requires\ncompletion of the patch process in the previous zone.\n\nFor example, if the disruption budget has a fixed value of `10`, and 8 VMs\nfail to patch in the current zone, the patch job continues to patch 2 VMs\nat a time until the zone is completed. When that zone is completed\nsuccessfully, patching begins with 10 VMs at a time in the next zone. If 10\nVMs in the next zone fail to patch, the patch job stops."
+        },
+        "mode": {
+          "description": "Mode of the patch rollout.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "ZONE_BY_ZONE",
+            "CONCURRENT_ZONES"
+          ],
+          "enumDescriptions": [
+            "Mode must be specified.",
+            "Patches are applied one zone at a time. The patch job begins in the\nregion with the lowest number of targeted VMs. Within the region,\npatching begins in the zone with the lowest number of targeted VMs. If\nmultiple regions (or zones within a region) have the same number of\ntargeted VMs, a tie-breaker is achieved by sorting the regions or zones\nin alphabetical order.",
+            "Patches are applied to VMs in all zones at the same time."
+          ],
           "type": "string"
         }
       },
