@@ -2,7 +2,7 @@
 
 # dns
 
-> 
+> Configures and serves authoritative DNS records.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
