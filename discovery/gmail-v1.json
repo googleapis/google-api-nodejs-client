@@ -899,7 +899,7 @@
                   "type": "string"
                 },
                 "metadataHeaders": {
-                  "description": "When given and format is METADATA, only include headers specified.",
+                  "description": "When given and format is `METADATA`, only include headers\nspecified.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2651,7 +2651,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200720",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3063,9 +3063,9 @@
             "labelHide"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Show the label in the label list.",
+            "Show the label if there are any unread messages with that label.",
+            "Do not show the label in the label list."
           ],
           "type": "string"
         },
@@ -3076,14 +3076,14 @@
               "gmail.users.labels.update"
             ]
           },
-          "description": "The visibility of the label in the message list in the\nGmail web interface.\n@mutable gmail.users.labels.create gmail.users.labels.update",
+          "description": "The visibility of messages with this label in the message list\nin the Gmail web interface.\n@mutable gmail.users.labels.create gmail.users.labels.update",
           "enum": [
             "show",
             "hide"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Show the label in the message list.",
+            "Do not show the label in the message list."
           ],
           "type": "string"
         },
@@ -3124,8 +3124,8 @@
             "user"
           ],
           "enumDescriptions": [
-            "",
-            ""
+            "Labels created by Gmail.",
+            "Custom labels created by the user or application."
           ],
           "type": "string"
         }

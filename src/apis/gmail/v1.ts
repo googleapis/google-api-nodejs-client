@@ -365,7 +365,7 @@ export namespace gmail_v1 {
      */
     labelListVisibility?: string | null;
     /**
-     * The visibility of the label in the message list in the Gmail web interface. @mutable gmail.users.labels.create gmail.users.labels.update
+     * The visibility of messages with this label in the message list in the Gmail web interface. @mutable gmail.users.labels.create gmail.users.labels.update
      */
     messageListVisibility?: string | null;
     /**
@@ -4022,7 +4022,8 @@ export namespace gmail_v1 {
      *     format: 'placeholder-value',
      *     // The ID of the message to retrieve.
      *     id: 'placeholder-value',
-     *     // When given and format is METADATA, only include headers specified.
+     *     // When given and format is `METADATA`, only include headers
+     *     // specified.
      *     metadataHeaders: 'placeholder-value',
      *     // The user's email address. The special value `me`
      *     // can be used to indicate the authenticated user.
@@ -4055,7 +4056,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.format The format to return the message in.
      * @param {string} params.id The ID of the message to retrieve.
-     * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
+     * @param {string=} params.metadataHeaders When given and format is `METADATA`, only include headers specified.
      * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5337,7 +5338,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * When given and format is METADATA, only include headers specified.
+     * When given and format is `METADATA`, only include headers specified.
      */
     metadataHeaders?: string[];
     /**
