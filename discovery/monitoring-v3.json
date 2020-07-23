@@ -1848,7 +1848,7 @@
       }
     }
   },
-  "revision": "20200708",
+  "revision": "20200715",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3260,7 +3260,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.The following are specific rules for service defined Monitoring metric descriptors:\ntype, metric_kind, value_type, description, display_name,  launch_stage fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION.\nMaximum of default 500 metric descriptors per service is allowed.\nMaximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.The following are specific rules for service defined Monitoring metric descriptors:\ntype, metric_kind, value_type, description, and display_name  fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION.\nMaximum of default 500 metric descriptors per service is allowed.\nMaximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -4074,7 +4074,7 @@
       "type": "object"
     },
     "TimeInterval": {
-      "description": "A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time.\nFor a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. If both  start and end times are specified, they must be identical. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements.\nFor DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time.\nIn all cases, the start time of the next interval must be  at least a millisecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.",
+      "description": "A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time.\nFor GAUGE metrics, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. If both  start and end times are specified, they must be identical. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. The end time of a new interval must be at least a  millisecond after the end time of the previous interval.\nFor DELTA metrics, the start time and end time must specify a  non-zero interval, with subsequent points specifying contiguous and  non-overlapping intervals. For DELTA metrics, the start time of  the next interval must be at least a millisecond after the end time  of the previous interval.\nFor CUMULATIVE metrics, the start time and end time must specify a  a non-zero interval, with subsequent points specifying the same  start time and increasing end times, until an event resets the  cumulative value to zero and sets a new start time for the following  points. The new start time must be at least a millisecond after the  end time of the previous interval.\nThe start time of a new interval must be at least a millisecond after the  end time of the previous interval because intervals are closed. If the  start time of a new interval is the same as the end time of the previous  interval, then data written at the new start time could overwrite data  written at the previous end time.",
       "id": "TimeInterval",
       "properties": {
         "endTime": {
