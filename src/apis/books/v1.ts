@@ -556,7 +556,7 @@ export namespace books_v1 {
      */
     nonce?: string | null;
     /**
-     * Error/warning reason code.  Additional codes may be added in the future. 0 OK 100   ACCESS_DENIED_PUBLISHER_LIMIT 101   ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
+     * Error/warning reason code. Additional codes may be added in the future. 0 OK 100 ACCESS_DENIED_PUBLISHER_LIMIT 101 ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
      */
     reasonCode?: string | null;
     /**
@@ -577,7 +577,7 @@ export namespace books_v1 {
     volumeId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   export interface Schema$FamilyInfo {
@@ -3165,13 +3165,11 @@ export namespace books_v1 {
      *     annotationDataId: 'placeholder-value',
      *     // The content version for the volume you are trying to retrieve.
      *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must
-     *     // also be provided.
+     *     // The requested pixel height for any images. If height is provided width must also be provided.
      *     h: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // The requested scale for the image.
      *     scale: 'placeholder-value',
@@ -3179,8 +3177,7 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // The volume to retrieve annotations for.
      *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must
-     *     // also be provided.
+     *     // The requested pixel width for any images. If width is provided height must also be provided.
      *     w: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3333,18 +3330,15 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.layers.annotationData.list({
-     *     // The list of Annotation Data Ids to retrieve. Pagination is ignored if this
-     *     // is set.
+     *     // The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      *     annotationDataId: 'placeholder-value',
      *     // The content version for the requested volume.
      *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must
-     *     // also be provided.
+     *     // The requested pixel height for any images. If height is provided width must also be provided.
      *     h: 'placeholder-value',
      *     // The ID for the layer to get the annotation data.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return
      *     maxResults: 'placeholder-value',
@@ -3354,16 +3348,13 @@ export namespace books_v1 {
      *     scale: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The volume to retrieve annotation data for.
      *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must
-     *     // also be provided.
+     *     // The requested pixel width for any images. If width is provided height must also be provided.
      *     w: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3618,8 +3609,7 @@ export namespace books_v1 {
      *     annotationId: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -3779,15 +3769,13 @@ export namespace books_v1 {
      *     endPosition: 'placeholder-value',
      *     // The ID for the layer to get the annotations.
      *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1
-     *     // country code. Ex: 'en_US'.
+     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous page.
      *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the
-     *     // request to use this. Defaults to false.
+     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      *     showDeleted: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -3795,11 +3783,9 @@ export namespace books_v1 {
      *     startOffset: 'placeholder-value',
      *     // The start position to start retrieving data from.
      *     startPosition: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The version of the volume annotations that you are requesting.
      *     volumeAnnotationsVersion: 'placeholder-value',
@@ -4326,8 +4312,7 @@ export namespace books_v1 {
      *   const res = await books.myconfig.requestAccess({
      *     // The device/version ID from which to request the restrictions.
      *     cpksver: 'placeholder-value',
-     *     // The type of access license to request. If not specified, the default is
-     *     // BOTH.
+     *     // The type of access license to request. If not specified, the default is BOTH.
      *     licenseTypes: 'placeholder-value',
      *     // ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      *     locale: 'placeholder-value',
@@ -5027,8 +5012,7 @@ export namespace books_v1 {
      *     annotationId: 'placeholder-value',
      *     // ISO-3166-1 code to override the IP-based location.
      *     country: 'placeholder-value',
-     *     // Requests that only the summary of the specified layer be provided in the
-     *     // response.
+     *     // Requests that only the summary of the specified layer be provided in the response.
      *     showOnlySummaryInResponse: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -5215,16 +5199,13 @@ export namespace books_v1 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous page.
      *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the
-     *     // request to use this. Defaults to false.
+     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
      *     showDeleted: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp
-     *     // (exclusive).
+     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
      *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp
-     *     // (inclusive).
+     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      *     updatedMin: 'placeholder-value',
      *     // The volume to restrict annotations to.
      *     volumeId: 'placeholder-value',
@@ -6345,8 +6326,7 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // ID of volume to move.
      *     volumeId: 'placeholder-value',
-     *     // Position on shelf to move the item (0 puts the item before the current
-     *     // first item, 1 puts it between the first and the second and so on.)
+     *     // Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
      *     volumePosition: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7247,8 +7227,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.notification.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating notification title and body.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      *     locale: 'placeholder-value',
      *     // String to identify the notification.
      *     notification_id: 'placeholder-value',
@@ -7557,8 +7536,7 @@ export namespace books_v1 {
      *     categoryId: 'placeholder-value',
      *     // ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned volumes. Books with a
-     *     // higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // Number of maximum results per page to be included in the response.
      *     pageSize: 'placeholder-value',
@@ -7737,11 +7715,9 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.personalizedstream.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -8772,7 +8748,7 @@ export namespace books_v1 {
      *     partner: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // string  to identify the originator of this request.
+     *     // string to identify the originator of this request.
      *     source: 'placeholder-value',
      *
      *     user_library_consistent_read: 'placeholder-value',
@@ -8810,7 +8786,7 @@ export namespace books_v1 {
      * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
      * @param {string=} params.partner Brand results for partner ID.
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.source string  to identify the originator of this request.
+     * @param {string=} params.source string to identify the originator of this request.
      * @param {boolean=} params.user_library_consistent_read
      * @param {string} params.volumeId ID of volume to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8930,8 +8906,7 @@ export namespace books_v1 {
      *     langRestrict: 'placeholder-value',
      *     // Restrict search to this user's library.
      *     libraryRestrict: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -9083,7 +9058,7 @@ export namespace books_v1 {
      */
     projection?: string;
     /**
-     * string  to identify the originator of this request.
+     * string to identify the originator of this request.
      */
     source?: string;
     /**
@@ -9189,11 +9164,9 @@ export namespace books_v1 {
      *   const res = await books.volumes.associated.list({
      *     // Association type.
      *     association: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9369,13 +9342,11 @@ export namespace books_v1 {
      *     acquireMethod: 'placeholder-value',
      *     // ISO-3166-1 code to override the IP-based location.
      *     country: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
-     *     // The processing state of the user uploaded volumes to be returned.
-     *     // Applicable only if the UPLOADED is specified in the acquireMethod.
+     *     // The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
      *     processingState: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9557,11 +9528,9 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with
-     *     // a higher maturity rating are filtered out.
+     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      *     maxAllowedMaturityRating: 'placeholder-value',
      *     // String to identify the originator of this request.
      *     source: 'placeholder-value',
@@ -9698,8 +9667,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.recommended.rate({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Rating to be given to the volume.
      *     rating: 'placeholder-value',
@@ -9890,8 +9858,7 @@ export namespace books_v1 {
      *
      *   // Do the magic
      *   const res = await books.volumes.useruploaded.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
-     *     // generating recommendations.
+     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      *     locale: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -9901,8 +9868,7 @@ export namespace books_v1 {
      *     source: 'placeholder-value',
      *     // Index of the first result to return (starts at 0)
      *     startIndex: 'placeholder-value',
-     *     // The ids of the volumes to be returned. If not specified all that match the
-     *     // processingState are returned.
+     *     // The ids of the volumes to be returned. If not specified all that match the processingState are returned.
      *     volumeId: 'placeholder-value',
      *   });
      *   console.log(res.data);
