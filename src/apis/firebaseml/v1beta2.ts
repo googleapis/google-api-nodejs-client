@@ -263,6 +263,10 @@ export namespace firebaseml_v1beta2 {
      */
     gcsTfliteUri?: string | null;
     /**
+     * Output only. A boolean indicating that this model was uploaded from the console. Read only
+     */
+    managedUpload?: boolean | null;
+    /**
      * Output only. The size of the TFLite model
      */
     sizeBytes?: string | null;
