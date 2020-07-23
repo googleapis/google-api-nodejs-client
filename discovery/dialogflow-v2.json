@@ -857,7 +857,7 @@
                           ],
                           "parameters": {
                             "session": {
-                              "description": "Required. The name of the session this query is sent to. Format:\n`projects/<Project ID>/agent/sessions/<Session ID>`, or\n`projects/<Project ID>/agent/environments/<Environment ID>/users/<User\nID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume\ndefault 'draft' environment. If `User ID` is not specified, we are using\n\"-\". It's up to the API caller to choose an appropriate `Session ID` and\n`User Id`. They can be a random number or some type of user and session\nidentifiers (preferably hashed). The length of the `Session ID` and\n`User ID` must not exceed 36 characters.",
+                              "description": "Required. The name of the session this query is sent to. Format:\n`projects/<Project ID>/agent/sessions/<Session ID>`, or\n`projects/<Project ID>/agent/environments/<Environment ID>/users/<User\nID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume\ndefault 'draft' environment. If `User ID` is not specified, we are using\n\"-\". It's up to the API caller to choose an appropriate `Session ID` and\n`User Id`. They can be a random number or some type of user and session\nidentifiers (preferably hashed). The length of the `Session ID` and\n`User ID` must not exceed 36 characters.\n\nFor more information, see the [API interactions\nguide](https://cloud.google.com/dialogflow/docs/api-overview).",
                               "location": "path",
                               "pattern": "^projects/[^/]+/agent/environments/[^/]+/users/[^/]+/sessions/[^/]+$",
                               "required": true,
@@ -1507,7 +1507,7 @@
                   ],
                   "parameters": {
                     "session": {
-                      "description": "Required. The name of the session this query is sent to. Format:\n`projects/<Project ID>/agent/sessions/<Session ID>`, or\n`projects/<Project ID>/agent/environments/<Environment ID>/users/<User\nID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume\ndefault 'draft' environment. If `User ID` is not specified, we are using\n\"-\". It's up to the API caller to choose an appropriate `Session ID` and\n`User Id`. They can be a random number or some type of user and session\nidentifiers (preferably hashed). The length of the `Session ID` and\n`User ID` must not exceed 36 characters.",
+                      "description": "Required. The name of the session this query is sent to. Format:\n`projects/<Project ID>/agent/sessions/<Session ID>`, or\n`projects/<Project ID>/agent/environments/<Environment ID>/users/<User\nID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume\ndefault 'draft' environment. If `User ID` is not specified, we are using\n\"-\". It's up to the API caller to choose an appropriate `Session ID` and\n`User Id`. They can be a random number or some type of user and session\nidentifiers (preferably hashed). The length of the `Session ID` and\n`User ID` must not exceed 36 characters.\n\nFor more information, see the [API interactions\nguide](https://cloud.google.com/dialogflow/docs/api-overview).",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent/sessions/[^/]+$",
                       "required": true,
@@ -2049,7 +2049,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200719",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3beta1ExportAgentResponse": {
@@ -2484,7 +2484,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Agent": {
-      "description": "A Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands the\nnuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.\n\nFor more information about agents, see the\n[Agents\ndocumentation](https://cloud.google.com/dialogflow/docs/agents-overview).",
+      "description": "A Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands the\nnuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.\n\nFor more information about agents, see the\n[Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview).",
       "id": "GoogleCloudDialogflowV2Agent",
       "properties": {
         "apiVersion": {
@@ -2770,7 +2770,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Context": {
-      "description": "Represents a context.",
+      "description": "Dialogflow contexts are similar to natural language context. If a person says\nto you \"they are orange\", you need context in order to understand what \"they\"\nis referring to. Similarly, for Dialogflow to handle an end-user expression\nlike that, it needs to be provided with context in order to correctly match\nan intent.\n\nUsing contexts, you can control the flow of a conversation. You can configure\ncontexts for an intent by setting input and output contexts, which are\nidentified by string names. When an intent is matched, any configured output\ncontexts for that intent become active. While any contexts are active,\nDialogflow is more likely to match intents that are configured with input\ncontexts that correspond to the currently active contexts.\n\nFor more information about context, see the\n[Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).",
       "id": "GoogleCloudDialogflowV2Context",
       "properties": {
         "lifespanCount": {
@@ -2794,7 +2794,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2ConversationEvent": {
-      "description": "Represents a notification sent to Cloud Pub/Sub subscribers for conversation\nlifecycle events.",
+      "description": "Represents a notification sent to Pub/Sub subscribers for conversation\nlifecycle events.",
       "id": "GoogleCloudDialogflowV2ConversationEvent",
       "properties": {
         "conversation": {
@@ -2825,7 +2825,7 @@
             "An existing conversation has closed. This is fired when a telephone call\nis terminated, or a conversation is closed via the API.",
             "An existing conversation has received notification from Dialogflow that\nhuman intervention is required.",
             "An existing conversation has received a new message, either from API or\ntelephony. It is configured in\nConversationProfile.new_message_event_notification_config",
-            "Unrecoverable error during a telephone call.\n\nIn general non-recoverable errors only occur if something was\nmisconfigured in the ConversationProfile corresponding to the call. After\na non-recoverable error, Dialogflow may stop responding.\n\nWe don't fire this event:\n* in an API call because we can directly return the error, or,\n* when we can recover from an error."
+            "Unrecoverable error during a telephone call.\n\nIn general non-recoverable errors only occur if something was\nmisconfigured in the ConversationProfile corresponding to the call. After\na non-recoverable error, Dialogflow may stop responding.\n\nWe don't fire this event:\n\n* in an API call because we can directly return the error, or,\n* when we can recover from an error."
           ],
           "type": "string"
         }
@@ -2890,7 +2890,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2EntityType": {
-      "description": "Represents an entity type.\nEntity types serve as a tool for extracting parameter values from natural\nlanguage queries.",
+      "description": "Each intent parameter has a type, called the entity type, which dictates\nexactly how data from an end-user expression is extracted.\n\nDialogflow provides predefined system entities that can match many common\ntypes of data. For example, there are system entities for matching dates,\ntimes, colors, email addresses, and so on. You can also create your own\ncustom entities for matching custom data. For example, you could define a\nvegetable entity that can match the types of vegetables available for\npurchase with a grocery store agent.\n\nFor more information, see the\n[Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2EntityType",
       "properties": {
         "autoExpansionMode": {
@@ -2976,7 +2976,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Environment": {
-      "description": "Represents an agent environment.",
+      "description": "You can create multiple versions of your agent and publish them to separate\nenvironments.\n\nWhen you edit an agent, you are editing the draft agent. At any point, you\ncan save the draft agent as an agent version, which is an immutable snapshot\nof your agent.\n\nWhen you save the draft agent, it is published to the default environment.\nWhen you create agent versions, you can publish them to custom environments.\nYou can create a variety of custom environments for:\n\n- testing\n- development\n- production\n- etc.\n\nFor more information, see the [versions and environments\nguide](https://cloud.google.com/dialogflow/docs/agents-versions).",
       "id": "GoogleCloudDialogflowV2Environment",
       "properties": {
         "agentVersion": {
@@ -3066,7 +3066,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Fulfillment": {
-      "description": "Represents a fulfillment.",
+      "description": "By default, your agent responds to a matched intent with a static response.\nAs an alternative, you can provide a more dynamic response by using\nfulfillment. When you enable fulfillment for an intent, Dialogflow responds\nto that intent by calling a service that you define. For example, if an\nend-user wants to schedule a haircut on Friday, your service can check your\ndatabase and respond to the end-user with availability information for\nFriday.\n\nFor more information, see the [fulfillment\nguide](https://cloud.google.com/dialogflow/docs/fulfillment-overview).",
       "id": "GoogleCloudDialogflowV2Fulfillment",
       "properties": {
         "displayName": {
@@ -3243,7 +3243,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Intent": {
-      "description": "Represents an intent.\nIntents convert a number of user expressions or patterns into an action. An\naction is an extraction of a user command or sentence semantics.",
+      "description": "An intent categorizes an end-user's intention for one conversation turn. For\neach agent, you define many intents, where your combined intents can handle a\ncomplete conversation. When an end-user writes or says something, referred to\nas an end-user expression or end-user input, Dialogflow matches the end-user\ninput to the best intent in your agent. Matching an intent is also known as\nintent classification.\n\nFor more information, see the [intent\nguide](https://cloud.google.com/dialogflow/docs/intents-overview).",
       "id": "GoogleCloudDialogflowV2Intent",
       "properties": {
         "action": {
@@ -4592,7 +4592,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SessionEntityType": {
-      "description": "Represents a session entity type.\n\nExtends or replaces a custom entity type at the user session level (we\nrefer to the entity types defined at the agent level as \"custom entity\ntypes\").\n\nNote: session entity types apply to all queries, regardless of the language.",
+      "description": "A session represents a conversation between a Dialogflow agent and an\nend-user. You can create special entities, called session entities, during a\nsession. Session entities can extend or replace custom entity types and only\nexist during the session that they were created for. All session data,\nincluding session entities, is stored by Dialogflow for 20 minutes.\n\nFor more information, see the [session entity\nguide](https://cloud.google.com/dialogflow/docs/entities-session).",
       "id": "GoogleCloudDialogflowV2SessionEntityType",
       "properties": {
         "entities": {
@@ -4633,7 +4633,7 @@
           "type": "number"
         },
         "phrases": {
-          "description": "Optional. A list of strings containing words and phrases that the speech\nrecognizer should recognize with higher likelihood.\n\nThis list can be used to:\n* improve accuracy for words and phrases you expect the user to say,\n  e.g. typical commands for your Dialogflow agent\n* add additional words to the speech recognizer vocabulary\n* ...\n\nSee the [Cloud Speech\ndocumentation](https://cloud.google.com/speech-to-text/quotas) for usage\nlimits.",
+          "description": "Optional. A list of strings containing words and phrases that the speech\nrecognizer should recognize with higher likelihood.\n\nThis list can be used to:\n\n* improve accuracy for words and phrases you expect the user to say,\n  e.g. typical commands for your Dialogflow agent\n* add additional words to the speech recognizer vocabulary\n* ...\n\nSee the [Cloud Speech\ndocumentation](https://cloud.google.com/speech-to-text/quotas) for usage\nlimits.",
           "items": {
             "type": "string"
           },
@@ -4882,6 +4882,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1AutoApproveSmartMessagingEntriesResponse": {
+      "description": "Response message for [Documents.AutoApproveSmartMessagingEntries].",
+      "id": "GoogleCloudDialogflowV2beta1AutoApproveSmartMessagingEntriesResponse",
+      "properties": {
+        "disabledCount": {
+          "description": "Number of smart messaging entries disabled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "enabledCount": {
+          "description": "Number of smart messaging entries enabled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unreviewedCount": {
+          "description": "Number of smart messaging entries unreviewed.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse": {
       "description": "The response message for EntityTypes.BatchUpdateEntityTypes.",
       "id": "GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse",
@@ -4911,7 +4933,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1Context": {
-      "description": "Represents a context.",
+      "description": "Dialogflow contexts are similar to natural language context. If a person says\nto you \"they are orange\", you need context in order to understand what \"they\"\nis referring to. Similarly, for Dialogflow to handle an end-user expression\nlike that, it needs to be provided with context in order to correctly match\nan intent.\n\nUsing contexts, you can control the flow of a conversation. You can configure\ncontexts for an intent by setting input and output contexts, which are\nidentified by string names. When an intent is matched, any configured output\ncontexts for that intent become active. While any contexts are active,\nDialogflow is more likely to match intents that are configured with input\ncontexts that correspond to the currently active contexts.\n\nFor more information about context, see the\n[Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).",
       "id": "GoogleCloudDialogflowV2beta1Context",
       "properties": {
         "lifespanCount": {
@@ -4935,7 +4957,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1EntityType": {
-      "description": "Represents an entity type.\nEntity types serve as a tool for extracting parameter values from natural\nlanguage queries.",
+      "description": "Each intent parameter has a type, called the entity type, which dictates\nexactly how data from an end-user expression is extracted.\n\nDialogflow provides predefined system entities that can match many common\ntypes of data. For example, there are system entities for matching dates,\ntimes, colors, email addresses, and so on. You can also create your own\ncustom entities for matching custom data. For example, you could define a\nvegetable entity that can match the types of vegetables available for\npurchase with a grocery store agent.\n\nFor more information, see the\n[Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2beta1EntityType",
       "properties": {
         "autoExpansionMode": {
@@ -5046,7 +5068,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1Intent": {
-      "description": "Represents an intent.\nIntents convert a number of user expressions or patterns into an action. An\naction is an extraction of a user command or sentence semantics.",
+      "description": "An intent categorizes an end-user's intention for one conversation turn. For\neach agent, you define many intents, where your combined intents can handle a\ncomplete conversation. When an end-user writes or says something, referred to\nas an end-user expression or end-user input, Dialogflow matches the end-user\ninput to the best intent in your agent. Matching an intent is also known as\nintent classification.\n\nFor more information, see the [intent\nguide](https://cloud.google.com/dialogflow/docs/intents-overview).",
       "id": "GoogleCloudDialogflowV2beta1Intent",
       "properties": {
         "action": {
@@ -6476,7 +6498,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1SessionEntityType": {
-      "description": "Represents a session entity type.\n\nExtends or replaces a custom entity type at the user session level (we\nrefer to the entity types defined at the agent level as \"custom entity\ntypes\").\n\nNote: session entity types apply to all queries, regardless of the language.",
+      "description": "A session represents a conversation between a Dialogflow agent and an\nend-user. You can create special entities, called session entities, during a\nsession. Session entities can extend or replace custom entity types and only\nexist during the session that they were created for. All session data,\nincluding session entities, is stored by Dialogflow for 20 minutes.\n\nFor more information, see the [session entity\nguide](https://cloud.google.com/dialogflow/docs/entities-session).",
       "id": "GoogleCloudDialogflowV2beta1SessionEntityType",
       "properties": {
         "entities": {
