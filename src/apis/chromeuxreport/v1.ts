@@ -149,6 +149,10 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$Key {
     /**
+     * The effective connection type is the general connection class that all users experienced for this record. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types  If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned.
+     */
+    effectiveConnectionType?: string | null;
+    /**
      * The form factor is the device class that all users used to access the site for this record.  If the form factor is unspecified, then aggregated data over all form factors will be returned.
      */
     formFactor?: string | null;
@@ -187,6 +191,10 @@ export namespace chromeuxreport_v1 {
    * Request payload sent by a physical web client.  This request includes all necessary context to load a particular user experience record.
    */
   export interface Schema$QueryRequest {
+    /**
+     * The effective connection type is a query dimension that specifies the effective network class that the record&#39;s data should belong to. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types  Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned.
+     */
+    effectiveConnectionType?: string | null;
     /**
      * The form factor is a query dimension that specifies the device class that the record&#39;s data should belong to.  Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
      */
@@ -281,6 +289,7 @@ export namespace chromeuxreport_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "effectiveConnectionType": "my_effectiveConnectionType",
      *       //   "formFactor": "my_formFactor",
      *       //   "metrics": [],
      *       //   "origin": "my_origin",

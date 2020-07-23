@@ -116,7 +116,7 @@
       }
     }
   },
-  "revision": "20200528",
+  "revision": "20200722",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -143,6 +143,10 @@
       "description": "Key defines all the dimensions that identify this record as unique.",
       "id": "Key",
       "properties": {
+        "effectiveConnectionType": {
+          "description": "The effective connection type is the general connection class that all\nusers experienced for this record. This field uses the values [\"offline\",\n\"slow-2G\", \"2G\", \"3G\", \"4G\"] as specified in:\nhttps://wicg.github.io/netinfo/#effective-connection-types\n\nIf the effective connection type is unspecified, then aggregated data\nover all effective connection types will be returned.",
+          "type": "string"
+        },
         "formFactor": {
           "description": "The form factor is the device class that all users used to access the\nsite for this record.\n\nIf the form factor is unspecified, then aggregated data over all form\nfactors will be returned.",
           "enum": [
@@ -203,6 +207,10 @@
       "description": "Request payload sent by a physical web client.\n\nThis request includes all necessary context to load a particular\nuser experience record.",
       "id": "QueryRequest",
       "properties": {
+        "effectiveConnectionType": {
+          "description": "The effective connection type is a query dimension that specifies the\neffective network class that the record's data should belong to. This field\nuses the values [\"offline\", \"slow-2G\", \"2G\", \"3G\", \"4G\"] as specified in:\nhttps://wicg.github.io/netinfo/#effective-connection-types\n\nNote: If no effective connection type is specified, then a special record\nwith aggregated data over all effective connection types will be returned.",
+          "type": "string"
+        },
         "formFactor": {
           "description": "The form factor is a query dimension that specifies the device class that\nthe record's data should belong to.\n\nNote: If no form factor is specified, then a special record with\naggregated data over all form factors will be returned.",
           "enum": [
