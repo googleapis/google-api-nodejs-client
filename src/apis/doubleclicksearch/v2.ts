@@ -189,7 +189,7 @@ export namespace doubleclicksearch_v2 {
      */
     campaignId?: string | null;
     /**
-     * Sales channel for the product. Acceptable values are: &lt;ul&gt; &lt;li&gt;&quot;`local`&quot;: a physical store&lt;/li&gt; &lt;li&gt;&quot;`online`&quot;: an online store&lt;/li&gt; &lt;/ul&gt;
+     * Sales channel for the product. Acceptable values are: - &quot;`local`&quot;: a physical store - &quot;`online`&quot;: an online store
      */
     channel?: string | null;
     /**
@@ -197,7 +197,7 @@ export namespace doubleclicksearch_v2 {
      */
     clickId?: string | null;
     /**
-     * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser.&lt;br&gt; For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser&#39;s Floodlight instructions.
+     * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser&#39;s Floodlight instructions.
      */
     conversionId?: string | null;
     /**
@@ -269,7 +269,7 @@ export namespace doubleclicksearch_v2 {
      */
     quantityMillis?: string | null;
     /**
-     * The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of &quot;10&quot;  enter &quot;10000000&quot; (10 million) in your request.
+     * The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of &quot;10&quot; enter &quot;10000000&quot; (10 million) in your request.
      */
     revenueMicros?: string | null;
     /**
@@ -306,7 +306,7 @@ export namespace doubleclicksearch_v2 {
      */
     conversion?: Schema$Conversion[];
     /**
-     * Identifies this as a ConversionList resource. Value: the fixed string &lt;code&gt;doubleclicksearch#conversionList&lt;/code&gt;.
+     * Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.
      */
     kind?: string | null;
   }
@@ -410,7 +410,7 @@ export namespace doubleclicksearch_v2 {
      */
     platformSource?: string | null;
     /**
-     * Returns metrics only for a specific type of product activity. Accepted values are: &lt;ul&gt; &lt;li&gt;&quot;`sold`&quot;: returns metrics only for products that were sold&lt;/li&gt; &lt;li&gt;&quot;`advertised`&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold&lt;/li&gt; &lt;/ul&gt;
+     * Returns metrics only for a specific type of product activity. Accepted values are: - &quot;`sold`&quot;: returns metrics only for products that were sold - &quot;`advertised`&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
      */
     productReportPerspective?: string | null;
     /**
@@ -512,7 +512,7 @@ export namespace doubleclicksearch_v2 {
    */
   export interface Schema$SavedColumn {
     /**
-     * Identifies this as a SavedColumn resource. Value: the fixed string &lt;code&gt;doubleclicksearch#savedColumn&lt;/code&gt;.
+     * Identifies this as a SavedColumn resource. Value: the fixed string doubleclicksearch#savedColumn.
      */
     kind?: string | null;
     /**
@@ -533,7 +533,7 @@ export namespace doubleclicksearch_v2 {
      */
     items?: Schema$SavedColumn[];
     /**
-     * Identifies this as a SavedColumnList resource. Value: the fixed string &lt;code&gt;doubleclicksearch#savedColumnList&lt;/code&gt;.
+     * Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList.
      */
     kind?: string | null;
   }
@@ -607,8 +607,7 @@ export namespace doubleclicksearch_v2 {
      *     engineAccountId: 'placeholder-value',
      *     // The number of conversions to return per call.
      *     rowCount: 'placeholder-value',
-     *     // First date (inclusive) on which to retrieve conversions. Format is
-     *     // yyyymmdd.
+     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      *     startDate: 'placeholder-value',
      *     // The 0-based starting index for retrieving conversions results.
      *     startRow: 'placeholder-value',
