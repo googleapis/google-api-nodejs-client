@@ -1895,7 +1895,7 @@
       }
     }
   },
-  "revision": "20200623",
+  "revision": "20200720",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -3570,7 +3570,8 @@
             "STRING",
             "BYTES",
             "ARRAY",
-            "STRUCT"
+            "STRUCT",
+            "NUMERIC"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3582,7 +3583,8 @@
             "Encoded as `string`.",
             "Encoded as a base64-encoded `string`, as described in RFC 4648,\nsection 4.",
             "Encoded as `list`, where the list elements are represented\naccording to\narray_element_type.",
-            "Encoded as `list`, where list element `i` is represented according\nto [struct_type.fields[i]][google.spanner.v1.StructType.fields]."
+            "Encoded as `list`, where list element `i` is represented according\nto [struct_type.fields[i]][google.spanner.v1.StructType.fields].",
+            "Encoded as `string`, in decimal format or scientific notation format.\n<br>Decimal format:\n<br>`[+-]Digits[.[Digits]]` or\n<br>`+-.Digits`\n\nScientific notation:\n<br>`[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or\n<br>`+-.Digits[ExponentIndicator[+-]Digits]`\n<br>(ExponentIndicator is `\"e\"` or `\"E\"`)"
           ],
           "type": "string"
         },
