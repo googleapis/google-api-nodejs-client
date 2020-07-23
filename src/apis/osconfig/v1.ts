@@ -214,6 +214,23 @@ export namespace osconfig_v1 {
      * Patch configuration being applied. If omitted, instances are patched using the default configurations.
      */
     patchConfig?: Schema$PatchConfig;
+    /**
+     * Rollout strategy of the patch job.
+     */
+    rollout?: Schema$PatchRollout;
+  }
+  /**
+   * Message encapsulating a value that can be either absolute (&quot;fixed&quot;) or relative (&quot;percent&quot;) to a value.
+   */
+  export interface Schema$FixedOrPercent {
+    /**
+     * Specifies a fixed value.
+     */
+    fixed?: number | null;
+    /**
+     * Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
+     */
+    percent?: number | null;
   }
   /**
    * Cloud Storage object representation.
@@ -375,6 +392,10 @@ export namespace osconfig_v1 {
      */
     recurringSchedule?: Schema$RecurringSchedule;
     /**
+     * Optional. Rollout strategy of the patch job.
+     */
+    rollout?: Schema$PatchRollout;
+    /**
      * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     updateTime?: string | null;
@@ -465,6 +486,10 @@ export namespace osconfig_v1 {
      * Reflects the overall progress of the patch job in the range of 0.0 being no progress to 100.0 being complete.
      */
     percentComplete?: number | null;
+    /**
+     * Rollout strategy being applied.
+     */
+    rollout?: Schema$PatchRollout;
     /**
      * The current state of the PatchJob.
      */
@@ -563,6 +588,19 @@ export namespace osconfig_v1 {
      * Number of instances that exceeded the time out while applying the patch.
      */
     timedOutInstanceCount?: string | null;
+  }
+  /**
+   * Patch rollout configuration specifications. Contains details on the concurrency control when applying patch(es) to all targeted VMs.
+   */
+  export interface Schema$PatchRollout {
+    /**
+     * The maximum number (or percentage) of VMs per zone to disrupt at any given moment. The number of VMs calculated from multiplying the percentage by the total number of VMs in a zone is rounded up.  During patching, a VM is considered disrupted from the time the agent is notified to begin until patching has completed. This disruption time includes the time to complete reboot and any post-patch steps.  A VM contributes to the disruption budget if its patching operation fails either when applying the patches, running pre or post patch steps, or if it fails to respond with a success notification before timing out. VMs that are not running or do not have an active agent do not count toward this disruption budget.  For zone-by-zone rollouts, if the disruption budget in a zone is exceeded, the patch job stops, because continuing to the next zone requires completion of the patch process in the previous zone.  For example, if the disruption budget has a fixed value of `10`, and 8 VMs fail to patch in the current zone, the patch job continues to patch 2 VMs at a time until the zone is completed. When that zone is completed successfully, patching begins with 10 VMs at a time in the next zone. If 10 VMs in the next zone fail to patch, the patch job stops.
+     */
+    disruptionBudget?: Schema$FixedOrPercent;
+    /**
+     * Mode of the patch rollout.
+     */
+    mode?: string | null;
   }
   /**
    * Sets the time for recurring patch deployments.
@@ -799,6 +837,7 @@ export namespace osconfig_v1 {
      *       //   "oneTimeSchedule": {},
      *       //   "patchConfig": {},
      *       //   "recurringSchedule": {},
+     *       //   "rollout": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -816,6 +855,7 @@ export namespace osconfig_v1 {
      *   //   "oneTimeSchedule": {},
      *   //   "patchConfig": {},
      *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1086,6 +1126,7 @@ export namespace osconfig_v1 {
      *   //   "oneTimeSchedule": {},
      *   //   "patchConfig": {},
      *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1437,6 +1478,7 @@ export namespace osconfig_v1 {
      *   //   "patchConfig": {},
      *   //   "patchDeployment": "my_patchDeployment",
      *   //   "percentComplete": {},
+     *   //   "rollout": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1572,7 +1614,8 @@ export namespace osconfig_v1 {
      *       //   "dryRun": false,
      *       //   "duration": "my_duration",
      *       //   "instanceFilter": {},
-     *       //   "patchConfig": {}
+     *       //   "patchConfig": {},
+     *       //   "rollout": {}
      *       // }
      *     },
      *   });
@@ -1592,6 +1635,7 @@ export namespace osconfig_v1 {
      *   //   "patchConfig": {},
      *   //   "patchDeployment": "my_patchDeployment",
      *   //   "percentComplete": {},
+     *   //   "rollout": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1737,6 +1781,7 @@ export namespace osconfig_v1 {
      *   //   "patchConfig": {},
      *   //   "patchDeployment": "my_patchDeployment",
      *   //   "percentComplete": {},
+     *   //   "rollout": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
