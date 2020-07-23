@@ -215,6 +215,187 @@ export namespace redis_v1 {
    * Defines specific information for a particular zone. Currently empty and reserved for future use only.
    */
   export interface Schema$GoogleCloudRedisV1ZoneMetadata {}
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
+    /**
+     * consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.
+     */
+    consumerDefinedName?: string | null;
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
+     */
+    maintenancePolicyNames?: {[key: string]: string} | null;
+    /**
+     * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
+     */
+    maintenanceSchedules?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule;
+    } | null;
+    /**
+     * Optional. The MaintenanceSettings associated with instance.
+     */
+    maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
+    /**
+     * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
+     */
+    producerMetadata?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.
+     */
+    provisionedResources?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
+    /**
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
+     */
+    slmInstanceTemplate?: string | null;
+    /**
+     * Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.
+     */
+    sloMetadata?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata;
+    /**
+     * Software versions that are used to deploy this instance. This can be mutated by rollout services.
+     */
+    softwareVersions?: {[key: string]: string} | null;
+    /**
+     * Output only. Current lifecycle state of the resource (e.g. if it&#39;s being created or ready to use).
+     */
+    state?: string | null;
+    /**
+     * Output only. ID of the associated GCP tenant project. See go/get-instance-metadata.
+     */
+    tenantProjectId?: string | null;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
+    /**
+     * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
+     */
+    canReschedule?: boolean | null;
+    /**
+     * The scheduled end time for the maintenance.
+     */
+    endTime?: string | null;
+    /**
+     * The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.
+     */
+    rolloutManagementPolicy?: string | null;
+    /**
+     * The scheduled start time for the maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings {
+    /**
+     * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
+     */
+    exclude?: boolean | null;
+  }
+  /**
+   * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata {
+    /**
+     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level&#39;s reason will be reported by Eligibility Exporter.
+     */
+    exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
+    /**
+     * The location of the node, if different from instance location.
+     */
+    location?: string | null;
+    /**
+     * The id of the node. This should be equal to SaasInstanceNode.node_id.
+     */
+    nodeId?: string | null;
+  }
+  /**
+   * Describes provisioned dataplane resources.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
+    /**
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider&#39;s VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with &#39;compute-&#39;, for example: &#39;compute-instance&#39;, &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
+     */
+    resourceType?: string | null;
+    /**
+     * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
+     */
+    resourceUrl?: string | null;
+  }
+  /**
+   * SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility {
+    /**
+     * Whether an instance is eligible or ineligible.
+     */
+    eligible?: boolean | null;
+    /**
+     * User-defined reason for the current value of instance eligibility. Usually, this can be directly mapped to the internal state. An empty reason is allowed.
+     */
+    reason?: string | null;
+  }
+  /**
+   * SloExclusion represents an exclusion in SLI calculation applies to all SLOs.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
+    /**
+     * Exclusion duration. No restrictions on the possible values.  When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     */
+    duration?: string | null;
+    /**
+     * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
+     */
+    reason?: string | null;
+    /**
+     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
+     */
+    sliName?: string | null;
+    /**
+     * Start time of the exclusion. No alignment (e.g. to a full minute) needed.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * SloMetadata contains resources required for proper SLO classification of the instance.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
+    /**
+     * Optional. User-defined instance eligibility.
+     */
+    eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
+    /**
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     */
+    exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
+    /**
+     * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
+     */
+    nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
+    /**
+     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration.  Field is mandatory and must not be empty.
+     */
+    tier?: string | null;
+  }
   /**
    * Request for Import.
    */
