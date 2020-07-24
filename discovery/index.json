@@ -967,21 +967,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "cloudfunctions:v1beta2",
-      "name": "cloudfunctions",
-      "version": "v1beta2",
-      "title": "Cloud Functions API",
-      "description": "Manages lightweight user-provided functions executed in response to events.",
-      "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v1beta2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/functions",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "cloudidentity:v1",
       "name": "cloudidentity",
       "version": "v1",
