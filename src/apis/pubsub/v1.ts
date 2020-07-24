@@ -378,6 +378,10 @@ export namespace pubsub_v1 {
      */
     messageId?: string | null;
     /**
+     * If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value.
+     */
+    orderingKey?: string | null;
+    /**
      * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string | null;
@@ -510,6 +514,10 @@ export namespace pubsub_v1 {
      * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled.  The Cloud Pub/Sub service account associated with this subscriptions&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
+    /**
+     * If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.
+     */
+    enableMessageOrdering?: boolean | null;
     /**
      * A policy that specifies the conditions for this subscription&#39;s expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day.
      */
@@ -2082,6 +2090,7 @@ export namespace pubsub_v1 {
      *       // {
      *       //   "ackDeadlineSeconds": 0,
      *       //   "deadLetterPolicy": {},
+     *       //   "enableMessageOrdering": false,
      *       //   "expirationPolicy": {},
      *       //   "filter": "my_filter",
      *       //   "labels": {},
@@ -2100,6 +2109,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",
      *   //   "labels": {},
@@ -2516,6 +2526,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",
      *   //   "labels": {},
@@ -3261,6 +3272,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",
      *   //   "labels": {},
