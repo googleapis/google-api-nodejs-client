@@ -115,6 +115,7 @@ export namespace chat_v1 {
    */
   export class Chat {
     context: APIRequestContext;
+    media: Resource$Media;
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -123,6 +124,7 @@ export namespace chat_v1 {
         google,
       };
 
+      this.media = new Resource$Media(this.context);
       this.spaces = new Resource$Spaces(this.context);
     }
   }
@@ -448,6 +450,15 @@ export namespace chat_v1 {
     spaces?: Schema$Space[];
   }
   /**
+   * Media resource.
+   */
+  export interface Schema$Media {
+    /**
+     * Name of the media resource.
+     */
+    resourceName?: string | null;
+  }
+  /**
    * Represents a membership relation in Hangouts Chat.
    */
   export interface Schema$Membership {
@@ -667,6 +678,151 @@ export namespace chat_v1 {
      * Display a text paragraph in this widget.
      */
     textParagraph?: Schema$TextParagraph;
+  }
+
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * chat.media.download
+     * @desc Downloads media. Download is supported on the URI `/v1/media/{+name}?alt=media`.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.media.download({
+     *     // Name of the media that is being downloaded.  See
+     *     // ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias chat.media.download
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
+      params?: Params$Resource$Media$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Media>;
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$Media>,
+      callback: BodyResponseCallback<Schema$Media>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$Media>
+    ): void;
+    download(callback: BodyResponseCallback<Schema$Media>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Media>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Media> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/media/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceName'],
+        pathParams: ['resourceName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Media>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Media>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Download extends StandardParameters {
+    /**
+     * Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     */
+    resourceName?: string;
   }
 
   export class Resource$Spaces {
