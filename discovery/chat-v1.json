@@ -96,6 +96,33 @@
   },
   "protocol": "rest",
   "resources": {
+    "media": {
+      "methods": {
+        "download": {
+          "description": "Downloads media. Download is supported\non the URI `/v1/media/{+name}?alt=media`.",
+          "flatPath": "v1/media/{mediaId}",
+          "httpMethod": "GET",
+          "id": "chat.media.download",
+          "parameterOrder": [
+            "resourceName"
+          ],
+          "parameters": {
+            "resourceName": {
+              "description": "Name of the media that is being downloaded.  See\nReadRequest.resource_name.",
+              "location": "path",
+              "pattern": "^.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/media/{+resourceName}",
+          "response": {
+            "$ref": "Media"
+          },
+          "supportsMediaDownload": true
+        }
+      }
+    },
     "spaces": {
       "methods": {
         "get": {
@@ -345,7 +372,7 @@
       }
     }
   },
-  "revision": "20200708",
+  "revision": "20200722",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -911,6 +938,17 @@
             "$ref": "Space"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Media": {
+      "description": "Media resource.",
+      "id": "Media",
+      "properties": {
+        "resourceName": {
+          "description": "Name of the media resource.",
+          "type": "string"
         }
       },
       "type": "object"
