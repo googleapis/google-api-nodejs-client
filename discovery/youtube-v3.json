@@ -3816,7 +3816,7 @@
       }
     }
   },
-  "revision": "20200721",
+  "revision": "20200722",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -10325,6 +10325,10 @@
     "TestItem": {
       "id": "TestItem",
       "properties": {
+        "gaia": {
+          "format": "int64",
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
