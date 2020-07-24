@@ -145,7 +145,7 @@ export namespace cloudresourcemanager_v1 {
     resourceId?: Schema$ResourceId;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -158,7 +158,7 @@ export namespace cloudresourcemanager_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -175,11 +175,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -188,7 +188,7 @@ export namespace cloudresourcemanager_v1 {
     role?: string | null;
   }
   /**
-   * A `Constraint` that is either enforced or not. For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
+   * A `Constraint` that is either enforced or not.  For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
    */
   export interface Schema$BooleanConstraint {}
   /**
@@ -196,7 +196,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$BooleanPolicy {
     /**
-     * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable. Suppose you have a `Constraint` `constraints/compute.disableSerialPortAccess` with `constraint_default` set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following behavior: - If the `Policy` at this resource has enforced set to `false`, serial port connection attempts will be allowed. - If the `Policy` at this resource has enforced set to `true`, serial port connection attempts will be refused. - If the `Policy` at this resource is `RestoreDefault`, serial port connection attempts will be allowed. - If no `Policy` is set at this resource or anywhere higher in the resource hierarchy, serial port connection attempts will be allowed. - If no `Policy` is set at this resource, but one exists higher in the resource hierarchy, the behavior is as if the`Policy` were set at this resource. The following examples demonstrate the different possible layerings: Example 1 (nearest `Constraint` wins): `organizations/foo` has a `Policy` with: {enforced: false} `projects/bar` has no `Policy` set. The constraint at `projects/bar` and `organizations/foo` will not be enforced. Example 2 (enforcement gets replaced): `organizations/foo` has a `Policy` with: {enforced: false} `projects/bar` has a `Policy` with: {enforced: true} The constraint at `organizations/foo` is not enforced. The constraint at `projects/bar` is enforced. Example 3 (RestoreDefault): `organizations/foo` has a `Policy` with: {enforced: true} `projects/bar` has a `Policy` with: {RestoreDefault: {}} The constraint at `organizations/foo` is enforced. The constraint at `projects/bar` is not enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
+     * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable.  Suppose you have a `Constraint` `constraints/compute.disableSerialPortAccess` with `constraint_default` set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following behavior:   - If the `Policy` at this resource has enforced set to `false`, serial     port connection attempts will be allowed.   - If the `Policy` at this resource has enforced set to `true`, serial     port connection attempts will be refused.   - If the `Policy` at this resource is `RestoreDefault`, serial port     connection attempts will be allowed.   - If no `Policy` is set at this resource or anywhere higher in the     resource hierarchy, serial port connection attempts will be allowed.   - If no `Policy` is set at this resource, but one exists higher in the     resource hierarchy, the behavior is as if the`Policy` were set at     this resource.  The following examples demonstrate the different possible layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has no `Policy` set. The constraint at `projects/bar` and `organizations/foo` will not be enforced.  Example 2 (enforcement gets replaced):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has a `Policy` with:     {enforced: true} The constraint at `organizations/foo` is not enforced. The constraint at `projects/bar` is enforced.  Example 3 (RestoreDefault):   `organizations/foo` has a `Policy` with:     {enforced: true}   `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The constraint at `organizations/foo` is enforced. The constraint at `projects/bar` is not enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
      */
     enforced?: boolean | null;
   }
@@ -214,7 +214,7 @@ export namespace cloudresourcemanager_v1 {
     etag?: string | null;
   }
   /**
-   * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy administrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about [Policies](/resource-manager/reference/rest/v1/Policy). `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
+   * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy administrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about [Policies](/resource-manager/reference/rest/v1/Policy).  `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
    */
   export interface Schema$Constraint {
     /**
@@ -226,11 +226,11 @@ export namespace cloudresourcemanager_v1 {
      */
     constraintDefault?: string | null;
     /**
-     * Detailed description of what this `Constraint` controls as well as how and where it is enforced. Mutable.
+     * Detailed description of what this `Constraint` controls as well as how and where it is enforced.  Mutable.
      */
     description?: string | null;
     /**
-     * The human readable name. Mutable.
+     * The human readable name.  Mutable.
      */
     displayName?: string | null;
     /**
@@ -247,11 +247,11 @@ export namespace cloudresourcemanager_v1 {
     version?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -346,7 +346,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -359,23 +359,23 @@ export namespace cloudresourcemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * A system-generated unique identifier for this Lien. Example: `liens/1234abcd`
+     * A system-generated unique identifier for this Lien.  Example: `liens/1234abcd`
      */
     name?: string | null;
     /**
-     * A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters. Example: &#39;compute.googleapis.com&#39;
+     * A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters.  Example: &#39;compute.googleapis.com&#39;
      */
     origin?: string | null;
     /**
-     * A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported. Example: `projects/1234`
+     * A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported.  Example: `projects/1234`
      */
     parent?: string | null;
     /**
-     * Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters. Example: &#39;Holds production API key&#39;
+     * Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters.  Example: &#39;Holds production API key&#39;
      */
     reason?: string | null;
     /**
-     * The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported. An empty list is meaningless and will be rejected. Example: [&#39;resourcemanager.projects.delete&#39;]
+     * The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported.  An empty list is meaningless and will be rejected.  Example: [&#39;resourcemanager.projects.delete&#39;]
      */
     restrictions?: string[] | null;
   }
@@ -458,11 +458,11 @@ export namespace cloudresourcemanager_v1 {
     policies?: Schema$OrgPolicy[];
   }
   /**
-   * Used in `policy_type` to specify how `list_policy` behaves at this resource. `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - &quot;projects/&quot;, e.g. &quot;projects/tokyo-rain-123&quot; - &quot;folders/&quot;, e.g. &quot;folders/1234&quot; - &quot;organizations/&quot;, e.g. &quot;organizations/1234&quot; The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
+   * Used in `policy_type` to specify how `list_policy` behaves at this resource.  `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats:     - &quot;projects/&lt;project-id&gt;&quot;, e.g. &quot;projects/tokyo-rain-123&quot;     - &quot;folders/&lt;folder-id&gt;&quot;, e.g. &quot;folders/1234&quot;     - &quot;organizations/&lt;organization-id&gt;&quot;, e.g. &quot;organizations/1234&quot; The `supports_under` field of the associated `Constraint`  defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
    */
   export interface Schema$ListPolicy {
     /**
-     * List of values allowed at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
+     * List of values allowed  at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
     allowedValues?: string[] | null;
     /**
@@ -474,7 +474,7 @@ export namespace cloudresourcemanager_v1 {
      */
     deniedValues?: string[] | null;
     /**
-     * Determines the inheritance behavior for this `Policy`. By default, a `ListPolicy` set at a resource supersedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy. Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`. For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied. The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`: Example 1 (no inherited values): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;} `projects/bar` has `inherit_from_parent` `false` and values: {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`. Example 2 (inherited values): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;} `projects/bar` has a `Policy` with values: {value: &quot;E3&quot; value: &quot;E4&quot; inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`. Example 3 (inheriting both allowed and denied values): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;} `projects/bar` has a `Policy` with: {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`. Example 4 (RestoreDefault): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;} `projects/bar` has a `Policy` with values: {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none). Example 5 (no policy inherits parent policy): `organizations/foo` has no `Policy` set. `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none). Example 6 (ListConstraint allowing all): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;} `projects/bar` has a `Policy` with: {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`. Example 7 (ListConstraint allowing none): `organizations/foo` has a `Policy` with values: {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;} `projects/bar` has a `Policy` with: {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`. Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3}, `organizations/foo` has a `Policy` with values: {allowed_values: &quot;under:organizations/O1&quot;} `projects/bar` has a `Policy` with: {allowed_values: &quot;under:projects/P3&quot;} {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`, `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`, `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`, `folders/F1`, `projects/P1`.
+     * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supersedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {value: &quot;E3&quot; value: &quot;E4&quot; inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values:&quot;E2&quot;}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
     inheritFromParent?: boolean | null;
     /**
@@ -483,11 +483,11 @@ export namespace cloudresourcemanager_v1 {
     suggestedValue?: string | null;
   }
   /**
-   * A page of the response received from the ListProjects method. A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next request page.
+   * A page of the response received from the ListProjects method.  A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next request page.
    */
   export interface Schema$ListProjectsResponse {
     /**
-     * Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set. Pagination tokens have a limited lifetime.
+     * Pagination token.  If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results.  When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.  Pagination tokens have a limited lifetime.
      */
     nextPageToken?: string | null;
     /**
@@ -508,7 +508,7 @@ export namespace cloudresourcemanager_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -516,7 +516,7 @@ export namespace cloudresourcemanager_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -563,11 +563,11 @@ export namespace cloudresourcemanager_v1 {
      */
     booleanPolicy?: Schema$BooleanPolicy;
     /**
-     * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`. A [list of available constraints](/resource-manager/docs/organization-policy/org-policy-constraints) is available. Immutable after creation.
+     * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  A [list of available constraints](/resource-manager/docs/organization-policy/org-policy-constraints) is available.  Immutable after creation.
      */
     constraint?: string | null;
     /**
-     * An opaque tag indicating the current version of the `Policy`, used for concurrency control. When the `Policy` is returned from either a `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the version of the current `Policy` to use when executing a read-modify-write loop. When the `Policy` is returned from a `GetEffectivePolicy` request, the `etag` will be unset. When the `Policy` is used in a `SetOrgPolicy` method, use the `etag` value that was returned from a `GetOrgPolicy` request as part of a read-modify-write loop for concurrency control. Not setting the `etag`in a `SetOrgPolicy` request will result in an unconditional write of the `Policy`.
+     * An opaque tag indicating the current version of the `Policy`, used for concurrency control.  When the `Policy` is returned from either a `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the version of the current `Policy` to use when executing a read-modify-write loop.  When the `Policy` is returned from a `GetEffectivePolicy` request, the `etag` will be unset.  When the `Policy` is used in a `SetOrgPolicy` method, use the `etag` value that was returned from a `GetOrgPolicy` request as part of a read-modify-write loop for concurrency control. Not setting the `etag`in a `SetOrgPolicy` request will result in an unconditional write of the `Policy`.
      */
     etag?: string | null;
     /**
@@ -588,7 +588,7 @@ export namespace cloudresourcemanager_v1 {
     version?: number | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -600,44 +600,44 @@ export namespace cloudresourcemanager_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
   /**
-   * A Project is a high-level Google Cloud Platform entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
+   * A Project is a high-level Google Cloud Platform entity.  It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
    */
   export interface Schema$Project {
     /**
-     * Creation time. Read-only.
+     * Creation time.  Read-only.
      */
     createTime?: string | null;
     /**
-     * The labels associated with this Project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}. Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty. No more than 256 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: &quot;environment&quot; : &quot;dev&quot; Read-write.
+     * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: a-z{0,62}.  Label values must be between 0 and 63 characters long and must conform to the regular expression [a-z0-9_-]{0,63}. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The Project lifecycle state. Read-only.
+     * The Project lifecycle state.  Read-only.
      */
     lifecycleState?: string | null;
     /**
-     * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: My Project Read-write.
+     * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
      */
     name?: string | null;
     /**
-     * An optional reference to a parent Resource. Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent. Read-write.
+     * An optional reference to a parent Resource.  Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
      */
     parent?: Schema$ResourceId;
     /**
-     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: tokyo-rain-123 Read-only after creation.
+     * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt; Read-only after creation.
      */
     projectId?: string | null;
     /**
-     * The number uniquely identifying the project. Example: 415104041262 Read-only.
+     * The number uniquely identifying the project.  Example: &lt;code&gt;415104041262&lt;/code&gt; Read-only.
      */
     projectNumber?: string | null;
   }
@@ -672,7 +672,7 @@ export namespace cloudresourcemanager_v1 {
     type?: string | null;
   }
   /**
-   * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource. Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
+   * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource.  Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
    */
   export interface Schema$RestoreDefault {}
   /**
@@ -680,7 +680,7 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$SearchOrganizationsRequest {
     /**
-     * An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive. Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a G Suite domain, for example: * Filter `owner.directorycustomerid:123456789` returns Organization resources with `owner.directory_customer_id` equal to `123456789`. * Filter `domain:google.com` returns Organization resources corresponding to the domain `google.com`. This field is optional.
+     * An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive.   Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a G Suite domain, for example:  * Filter `owner.directorycustomerid:123456789` returns Organization resources with `owner.directory_customer_id` equal to `123456789`. * Filter `domain:google.com` returns Organization resources corresponding to the domain `google.com`.  This field is optional.
      */
     filter?: string | null;
     /**
@@ -714,7 +714,7 @@ export namespace cloudresourcemanager_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -728,7 +728,7 @@ export namespace cloudresourcemanager_v1 {
     policy?: Schema$OrgPolicy;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -736,7 +736,7 @@ export namespace cloudresourcemanager_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1067,7 +1067,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.folders.getOrgPolicy
-     * @desc Gets a `Policy` on a resource. If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1534,7 +1534,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.folders.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist. Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1761,7 +1761,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.liens.create
-     * @desc Create a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.
+     * @desc Create a Lien which applies to the resource denoted by the `parent` field.  Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`.  NOTE: Some resources may limit the number of Liens which may be applied.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1907,7 +1907,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.liens.delete
-     * @desc Delete a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
+     * @desc Delete a Lien by `name`.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2036,7 +2036,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.liens.get
-     * @desc Retrieve a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission requires permission `resourcemanager.projects.get` or `resourcemanager.projects.updateLiens`.
+     * @desc Retrieve a Lien by `name`.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission requires permission `resourcemanager.projects.get` or `resourcemanager.projects.updateLiens`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2172,7 +2172,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.liens.list
-     * @desc List all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
+     * @desc List all Liens applied to the `parent` resource.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2204,7 +2204,12 @@ export namespace cloudresourcemanager_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the resource to list all attached Liens. For example, `projects/1234`. (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
+     *     // Required. The name of the resource to list all attached Liens.
+     *     // For example, `projects/1234`.
+     *     //
+     *     // (google.api.field_policy).resource_type annotation is not set since the
+     *     // parent depends on the meta api implementation. This field could be a
+     *     // project or other sub project resources.
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2227,7 +2232,7 @@ export namespace cloudresourcemanager_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. This is a suggestion for the server.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
-     * @param {string=} params.parent Required. The name of the resource to list all attached Liens. For example, `projects/1234`. (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
+     * @param {string=} params.parent Required. The name of the resource to list all attached Liens. For example, `projects/1234`.  (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2340,7 +2345,7 @@ export namespace cloudresourcemanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the resource to list all attached Liens. For example, `projects/1234`. (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
+     * Required. The name of the resource to list all attached Liens. For example, `projects/1234`.  (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
      */
     parent?: string;
   }
@@ -2353,7 +2358,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2670,7 +2675,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.get({
-     *     // The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
+     *     // The resource name of the Organization to fetch. This is the organization's
+     *     // relative path in the API, formatted as "organizations/[organizationId]".
+     *     // For example, "organizations/1234".
      *     name: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -2930,7 +2937,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.getIamPolicy
-     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123". Authorization requires the Google IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization
+     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123".  Authorization requires the Google IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2958,7 +2965,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3077,7 +3085,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.getOrgPolicy
-     * @desc Gets a `Policy` on a resource. If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3544,7 +3552,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.search
-     * @desc Searches Organization resources that are visible to the user and satisfy the specified filter. This method returns Organizations in an unspecified order. New Organizations do not necessarily appear at the end of the results. Search will only return organizations on which the user has the permission `resourcemanager.organizations.get`
+     * @desc Searches Organization resources that are visible to the user and satisfy the specified filter. This method returns Organizations in an unspecified order. New Organizations do not necessarily appear at the end of the results.  Search will only return organizations on which the user has the permission `resourcemanager.organizations.get`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3694,7 +3702,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.setIamPolicy
-     * @desc Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123". Authorization requires the Google IAM permission `resourcemanager.organizations.setIamPolicy` on the specified organization
+     * @desc Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123".  Authorization requires the Google IAM permission `resourcemanager.organizations.setIamPolicy` on the specified organization
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3719,7 +3727,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3839,7 +3848,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist. Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3986,7 +3995,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.organizations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123". There are no permissions required for making this API call.
+     * @desc Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123".  There are no permissions required for making this API call.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4014,7 +4023,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -4407,7 +4417,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.create
-     * @desc Request that a new Project be created. The result is an Operation which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking Operation is automatically deleted after a few hours, so there is no need to call DeleteOperation. Authorization requires the Google IAM permission `resourcemanager.projects.create` on the specified parent for the new project. The parent is identified by a specified ResourceId, which must include both an ID and a type, such as organization. This method does not associate the new project with a billing account. You can set or update the billing account associated with a project using the [`projects.updateBillingInfo`] (/billing/reference/rest/v1/projects/updateBillingInfo) method.
+     * @desc Request that a new Project be created. The result is an Operation which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking Operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.  Authorization requires the Google IAM permission `resourcemanager.projects.create` on the specified parent for the new project. The parent is identified by a specified ResourceId, which must include both an ID and a type, such as organization.  This method does not associate the new project with a billing account. You can set or update the billing account associated with a project using the [`projects.updateBillingInfo`] (/billing/reference/rest/v1/projects/updateBillingInfo) method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4550,7 +4560,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.delete
-     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject and ListProjects methods. The caller must have modify permissions for this Project.
+     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE.  This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible.  Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project.  After the deletion completes, the Project is not retrievable by the  GetProject and ListProjects methods.  The caller must have modify permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4575,7 +4585,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.delete({
-     *     // The Project ID (for example, `foo-bar-123`). Required.
+     *     // The Project ID (for example, `foo-bar-123`).
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4593,7 +4605,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`). Required.
+     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`).  Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4679,7 +4691,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.get
-     * @desc Retrieves the Project identified by the specified `project_id` (for example, `my-project-123`). The caller must have read permissions for this Project.
+     * @desc Retrieves the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4707,7 +4719,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.get({
-     *     // The Project ID (for example, `my-project-123`). Required.
+     *     // The Project ID (for example, `my-project-123`).
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4733,7 +4747,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4819,7 +4833,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.getAncestry
-     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`). The caller must have read permissions for this Project.
+     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4847,7 +4861,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getAncestry({
-     *     // The Project ID (for example, `my-project-123`). Required.
+     *     // The Project ID (for example, `my-project-123`).
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4873,7 +4889,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`). Required.
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
      * @param {().GetAncestryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5118,7 +5134,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.getIamPolicy
-     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist. Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).
+     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.  Authorization requires the Google IAM permission `resourcemanager.projects.getIamPolicy` on the project.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5146,7 +5162,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5265,7 +5282,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.getOrgPolicy
-     * @desc Gets a `Policy` on a resource. If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
+     * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5415,7 +5432,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.list
-     * @desc Lists Projects that the caller has the `resourcemanager.projects.get` permission on and satisfy the specified filter. This method returns Projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method. NOTE: If the request filter contains a `parent.type` and `parent.id` and the caller has the `resourcemanager.projects.list` permission on the parent, the results will be drawn from an alternate index which provides more consistent results. In future versions of this API, this List method will be split into List and Search to properly capture the behavorial difference.
+     * @desc Lists Projects that the caller has the `resourcemanager.projects.get` permission on and satisfy the specified filter.  This method returns Projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.  NOTE: If the request filter contains a `parent.type` and `parent.id` and the caller has the `resourcemanager.projects.list` permission on the parent, the results will be drawn from an alternate index which provides more consistent results. In future versions of this API, this List method will be split into List and Search to properly capture the behavorial difference.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5443,11 +5460,55 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
-     *     // An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
+     *     // An expression for filtering the results of the request.  Filter rules are
+     *     // case insensitive. Some eligible fields for filtering are:
+     *     //
+     *     // + `name`
+     *     // + `id`
+     *     // + `labels.<key>` (where *key* is the name of a label)
+     *     // + `parent.type`
+     *     // + `parent.id`
+     *     // + `lifecycleState`
+     *     //
+     *     // Some examples of filter strings:
+     *     //
+     *     // | Filter           | Description                                         |
+     *     // |------------------|-----------------------------------------------------|
+     *     // | name:how*        | The project's name starts with "how".               |
+     *     // | name:Howl        | The project's name is `Howl` or `howl`.             |
+     *     // | name:HOWL        | Equivalent to above.                                |
+     *     // | NAME:howl        | Equivalent to above.                                |
+     *     // | labels.color:*   | The project has the label `color`.                  |
+     *     // | labels.color:red | The project's label `color` has the value `red`.    |
+     *     // | labels.color:red&nbsp;labels.size:big | The project's label `color`    |
+     *     // :                                       : has the value `red` and its    :
+     *     // :                                       : label`size` has the value      :
+     *     // :                                       : `big`.                         :
+     *     // | lifecycleState:DELETE_REQUESTED       | Only show projects that are    |
+     *     // :                                       : pending deletion.              :
+     *     //
+     *     // If no filter is specified, the call will return projects for which the user
+     *     // has the `resourcemanager.projects.get` permission.
+     *     //
+     *     // NOTE: To perform a by-parent query (eg., what projects are directly in a
+     *     // Folder), the caller must have the `resourcemanager.projects.list`
+     *     // permission on the parent and the filter must contain both a `parent.type`
+     *     // and a `parent.id` restriction
+     *     // (example: "parent.type:folder parent.id:123"). In this case an alternate
+     *     // search index is used which provides more consistent results.
+     *     //
+     *     // Optional.
      *     filter: 'placeholder-value',
-     *     // The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
+     *     // The maximum number of Projects to return in the response.
+     *     // The server can return fewer Projects than requested.
+     *     // If unspecified, server picks an appropriate default.
+     *     //
+     *     // Optional.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     *     // A pagination token returned from a previous call to ListProjects
+     *     // that indicates from where listing should continue.
+     *     //
+     *     // Optional.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5468,9 +5529,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
-     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. Some eligible fields for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState`  Some examples of filter strings:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big | The project's label `color`    | :                                       : has the value `red` and its    : :                                       : label`size` has the value      : :                                       : `big`.                         : | lifecycleState:DELETE_REQUESTED       | Only show projects that are    | :                                       : pending deletion.              :  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5875,7 +5936,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
-     * @desc Sets the IAM access control policy for the specified Project. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names). The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
+     * @desc Sets the IAM access control policy for the specified Project.  CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings.  NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + You can only grant ownership of a project to a member by using the GCP Console. Inviting a member will deliver an invitation email that they must accept. An invitation email is not generated if you are granting a role other than owner, or if both the member you are inviting and the project are part of your organization.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  Authorization requires the Google IAM permission `resourcemanager.projects.setIamPolicy` on the project
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5900,7 +5961,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6020,7 +6082,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.setOrgPolicy
-     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist. Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6167,7 +6229,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project. For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names). There are no permissions required for making this API call.
+     * @desc Returns permissions that a caller has on the specified Project.  For additional information about `resource` (e.g. my-project-id) structure and identification, see [Resource Names](/apis/design/resource_names).  There are no permissions required for making this API call.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6195,7 +6257,8 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6317,7 +6380,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.undelete
-     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have modify permissions for this Project.
+     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored.  The caller must have modify permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6342,7 +6405,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.undelete({
-     *     // The project ID (for example, `foo-bar-123`). Required.
+     *     // The project ID (for example, `foo-bar-123`).
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6366,7 +6431,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example, `foo-bar-123`). Required.
+     * @param {string} params.projectId The project ID (for example, `foo-bar-123`).  Required.
      * @param {().UndeleteProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6454,7 +6519,7 @@ export namespace cloudresourcemanager_v1 {
 
     /**
      * cloudresourcemanager.projects.update
-     * @desc Updates the attributes of the Project identified by the specified `project_id` (for example, `my-project-123`). The caller must have modify permissions for this Project.
+     * @desc Updates the attributes of the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have modify permissions for this Project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6479,7 +6544,9 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.update({
-     *     // The project ID (for example, `my-project-123`). Required.
+     *     // The project ID (for example, `my-project-123`).
+     *     //
+     *     // Required.
      *     projectId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6519,7 +6586,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example, `my-project-123`). Required.
+     * @param {string} params.projectId The project ID (for example, `my-project-123`).  Required.
      * @param {().Project} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6625,20 +6692,20 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Delete extends StandardParameters {
     /**
-     * The Project ID (for example, `foo-bar-123`). Required.
+     * The Project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * The Project ID (for example, `my-project-123`). Required.
+     * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry
     extends StandardParameters {
     /**
-     * The Project ID (for example, `my-project-123`). Required.
+     * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
 
@@ -6685,15 +6752,15 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. Some eligible fields for filtering are: + `name` + `id` + `labels.` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState` Some examples of filter strings: | Filter | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` | : : has the value `red` and its : : : label`size` has the value : : : `big`. : | lifecycleState:DELETE_REQUESTED | Only show projects that are | : : pending deletion. : If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission. NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results. Optional.
+     * An expression for filtering the results of the request.  Filter rules are case insensitive. Some eligible fields for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id` + `lifecycleState`  Some examples of filter strings:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big | The project's label `color`    | :                                       : has the value `red` and its    : :                                       : label`size` has the value      : :                                       : `big`.                         : | lifecycleState:DELETE_REQUESTED       | Only show projects that are    | :                                       : pending deletion.              :  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      */
     filter?: string;
     /**
-     * The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default. Optional.
+     * The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to ListProjects that indicates from where listing should continue. Optional.
+     * A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
      */
     pageToken?: string;
   }
@@ -6760,7 +6827,7 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Undelete
     extends StandardParameters {
     /**
-     * The project ID (for example, `foo-bar-123`). Required.
+     * The project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
 
@@ -6771,7 +6838,7 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Update extends StandardParameters {
     /**
-     * The project ID (for example, `my-project-123`). Required.
+     * The project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
 
