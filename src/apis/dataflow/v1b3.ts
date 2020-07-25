@@ -1139,7 +1139,7 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string | null;
     /**
-     * Exactly one of step or steps_location should be specified.  The top-level steps that constitute the entire job.
+     * Exactly one of step or steps_location should be specified.  The top-level steps that constitute the entire job. Only retrieved with JOB_VIEW_ALL.
      */
     steps?: Schema$Step[];
     /**
