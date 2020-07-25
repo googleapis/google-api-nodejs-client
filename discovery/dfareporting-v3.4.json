@@ -20,7 +20,7 @@
   "description": "Manages your DoubleClick Campaign Manager ad campaigns and reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/JPGRJEtt4qfB_MWZ27vHQxfqqCY\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/qc9rDDh3ersvNrKbY8B0EqQ-tKo\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
     "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
@@ -9395,7 +9395,7 @@
       }
     }
   },
-  "revision": "20200514",
+  "revision": "20200722",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10793,6 +10793,56 @@
       },
       "type": "object"
     },
+    "ChannelGrouping": {
+      "description": "Represents a DfaReporting channel grouping.",
+      "id": "ChannelGrouping",
+      "properties": {
+        "fallbackName": {
+          "description": "ChannelGrouping fallback name.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "dfareporting#channelGrouping",
+          "description": "The kind of resource this is, in this case dfareporting#channelGrouping.",
+          "type": "string"
+        },
+        "name": {
+          "description": "ChannelGrouping name.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules contained within this channel grouping.",
+          "items": {
+            "$ref": "ChannelGroupingRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelGroupingRule": {
+      "description": "Represents a DfaReporting channel grouping rule.",
+      "id": "ChannelGroupingRule",
+      "properties": {
+        "disjunctiveMatchStatements": {
+          "description": "The disjunctive match statements contained within this rule.",
+          "items": {
+            "$ref": "DisjunctiveMatchStatement"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dfareporting#channelGroupingRule",
+          "description": "The kind of resource this is, in this case dfareporting#channelGroupingRule.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Rule name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CitiesListResponse": {
       "description": "City List Response",
       "id": "CitiesListResponse",
@@ -10977,6 +11027,14 @@
           "default": "dfareporting#compatibleFields",
           "description": "The kind of resource this is, in this case dfareporting#compatibleFields.",
           "type": "string"
+        },
+        "pathAttributionReportCompatibleFields": {
+          "$ref": "PathReportCompatibleFields",
+          "description": "Contains items that are compatible to be selected for a report of type \"PATH_ATTRIBUTION\"."
+        },
+        "pathReportCompatibleFields": {
+          "$ref": "PathReportCompatibleFields",
+          "description": "Contains items that are compatible to be selected for a report of type \"PATH\"."
         },
         "pathToConversionReportCompatibleFields": {
           "$ref": "PathToConversionReportCompatibleFields",
@@ -14374,6 +14432,25 @@
       },
       "type": "object"
     },
+    "DisjunctiveMatchStatement": {
+      "description": "Represents a Disjunctive Match Statement resource, which is a conjunction (and) of disjunctive (or) boolean statements.",
+      "id": "DisjunctiveMatchStatement",
+      "properties": {
+        "eventFilters": {
+          "description": "The event filters contained within this disjunctive match statement.",
+          "items": {
+            "$ref": "EventFilter"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dfareporting#disjunctiveMatchStatement",
+          "description": "The kind of resource this is, in this case dfareporting#disjunctiveMatchStatement.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DynamicTargetingKey": {
       "description": "Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.",
       "id": "DynamicTargetingKey",
@@ -14478,6 +14555,22 @@
         "kind": {
           "default": "dfareporting#encryptionInfo",
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#encryptionInfo\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventFilter": {
+      "description": "Represents a DfaReporting event filter.",
+      "id": "EventFilter",
+      "properties": {
+        "dimensionFilter": {
+          "$ref": "PathReportDimensionValue",
+          "description": "The dimension filter contained within this EventFilter."
+        },
+        "kind": {
+          "default": "dfareporting#eventFilter",
+          "description": "The kind of resource this is, in this case dfareporting#eventFilter.",
           "type": "string"
         }
       },
@@ -14829,6 +14922,10 @@
         "advertiserIdDimensionValue": {
           "$ref": "DimensionValue",
           "description": "Dimension value for the ID of the advertiser. This is a read-only, auto-generated field."
+        },
+        "attributionEnabled": {
+          "description": "Whether the activity is enabled for attribution.",
+          "type": "boolean"
         },
         "cacheBustingType": {
           "description": "Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.",
@@ -16716,6 +16813,127 @@
       },
       "type": "object"
     },
+    "PathFilter": {
+      "description": "Represents a DfaReporting path filter.",
+      "id": "PathFilter",
+      "properties": {
+        "eventFilters": {
+          "description": "Event filters in path report.",
+          "items": {
+            "$ref": "EventFilter"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dfaReporting#pathFilter",
+          "description": "The kind of resource this is, in this case dfareporting#pathFilter.",
+          "type": "string"
+        },
+        "pathMatchPosition": {
+          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
+          "enum": [
+            "ANY",
+            "FIRST",
+            "LAST",
+            "PATH_MATCH_POSITION_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PathReportCompatibleFields": {
+      "description": "Represents fields that are compatible to be selected for a report of type \"PATH\".",
+      "id": "PathReportCompatibleFields",
+      "properties": {
+        "channelGroupings": {
+          "description": "Dimensions which are compatible to be selected in the \"channelGroupings\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "dimensions": {
+          "description": "Dimensions which are compatible to be selected in the \"dimensions\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dfareporting#pathReportCompatibleFields",
+          "description": "The kind of resource this is, in this case dfareporting#pathReportCompatibleFields.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics which are compatible to be selected in the \"metricNames\" section of the report.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        },
+        "pathFilters": {
+          "description": "Dimensions which are compatible to be selected in the \"pathFilters\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PathReportDimensionValue": {
+      "description": "Represents a PathReportDimensionValue resource.",
+      "id": "PathReportDimensionValue",
+      "properties": {
+        "dimensionName": {
+          "description": "The name of the dimension.",
+          "type": "string"
+        },
+        "ids": {
+          "description": "The possible ID's associated with the value if available.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dfareporting#pathReportDimensionValue",
+          "description": "The kind of resource this is, in this case dfareporting#pathReportDimensionValue.",
+          "type": "string"
+        },
+        "matchType": {
+          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
+          "enum": [
+            "BEGINS_WITH",
+            "CONTAINS",
+            "EXACT",
+            "WILDCARD_EXPRESSION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "The possible values of the dimension.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PathToConversionReportCompatibleFields": {
       "description": "Represents fields that are compatible to be selected for a report of type \"PATH_TO_CONVERSION\".",
       "id": "PathToConversionReportCompatibleFields",
@@ -18361,6 +18579,98 @@
           "format": "int64",
           "type": "string"
         },
+        "pathAttributionCriteria": {
+          "description": "The report criteria for a report of type \"PATH_ATTRIBUTION\".",
+          "properties": {
+            "activityFilters": {
+              "description": "The list of 'dfa:activity' values to filter on.",
+              "items": {
+                "$ref": "DimensionValue"
+              },
+              "type": "array"
+            },
+            "customChannelGrouping": {
+              "$ref": "ChannelGrouping",
+              "description": "Channel Grouping."
+            },
+            "dateRange": {
+              "$ref": "DateRange",
+              "description": "The date range this report should be run for."
+            },
+            "dimensions": {
+              "description": "The list of dimensions the report should include.",
+              "items": {
+                "$ref": "SortedDimension"
+              },
+              "type": "array"
+            },
+            "floodlightConfigId": {
+              "$ref": "DimensionValue",
+              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
+            },
+            "metricNames": {
+              "description": "The list of names of metrics the report should include.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pathFilters": {
+              "description": "Path Filters.",
+              "items": {
+                "$ref": "PathFilter"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "pathCriteria": {
+          "description": "The report criteria for a report of type \"PATH\".",
+          "properties": {
+            "activityFilters": {
+              "description": "The list of 'dfa:activity' values to filter on.",
+              "items": {
+                "$ref": "DimensionValue"
+              },
+              "type": "array"
+            },
+            "customChannelGrouping": {
+              "$ref": "ChannelGrouping",
+              "description": "Channel Grouping."
+            },
+            "dateRange": {
+              "$ref": "DateRange",
+              "description": "The date range this report should be run for."
+            },
+            "dimensions": {
+              "description": "The list of dimensions the report should include.",
+              "items": {
+                "$ref": "SortedDimension"
+              },
+              "type": "array"
+            },
+            "floodlightConfigId": {
+              "$ref": "DimensionValue",
+              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
+            },
+            "metricNames": {
+              "description": "The list of names of metrics the report should include.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pathFilters": {
+              "description": "Path Filters.",
+              "items": {
+                "$ref": "PathFilter"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
         "pathToConversionCriteria": {
           "description": "The report criteria for a report of type \"PATH_TO_CONVERSION\".",
           "properties": {
@@ -18620,11 +18930,15 @@
           "enum": [
             "CROSS_DIMENSION_REACH",
             "FLOODLIGHT",
+            "PATH",
+            "PATH_ATTRIBUTION",
             "PATH_TO_CONVERSION",
             "REACH",
             "STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -19005,6 +19319,14 @@
           "default": "dfareporting#siteVideoSettings",
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#siteVideoSettings\".",
           "type": "string"
+        },
+        "obaEnabled": {
+          "description": "Whether OBA icons are enabled for this placement.",
+          "type": "boolean"
+        },
+        "obaSettings": {
+          "$ref": "ObaIcon",
+          "description": "Settings for the OBA icon of video creatives served to this site. This will act as default for new placements created under this site."
         },
         "orientation": {
           "description": "Orientation of a site template used for video. This will act as default for new placements created under this site.",
@@ -20285,6 +20607,14 @@
           "default": "dfareporting#videoSettings",
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#videoSettings\".",
           "type": "string"
+        },
+        "obaEnabled": {
+          "description": "Whether OBA icons are enabled for this placement.",
+          "type": "boolean"
+        },
+        "obaSettings": {
+          "$ref": "ObaIcon",
+          "description": "Settings for the OBA icon of video creatives served to this placement. If this object is provided, the creative-level OBA settings will be overridden."
         },
         "orientation": {
           "description": "Orientation of a video placement. If this value is set, placement will return assets matching the specified orientation.",
