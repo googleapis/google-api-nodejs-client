@@ -97,7 +97,7 @@
     "cse": {
       "methods": {
         "list": {
-          "description": "Returns metadata about the search performed, metadata about the custom\nsearch engine used for the search, and the search results.",
+          "description": "Returns metadata about the search performed, metadata about the\nengine used for the search, and the search results.",
           "flatPath": "customsearch/v1",
           "httpMethod": "GET",
           "id": "search.cse.list",
@@ -114,7 +114,7 @@
               "type": "string"
             },
             "cx": {
-              "description": "The custom search engine ID to use for this request.",
+              "description": "The Programmable Search Engine ID to use for this request.",
               "location": "query",
               "type": "string"
             },
@@ -328,7 +328,7 @@
         "siterestrict": {
           "methods": {
             "list": {
-              "description": "Returns metadata about the search performed, metadata about the custom\nsearch engine used for the search, and the search results. Uses a small set\nof url patterns.",
+              "description": "Returns metadata about the search performed, metadata about the\nengine used for the search, and the search results. Uses a small set\nof url patterns.",
               "flatPath": "customsearch/v1/siterestrict",
               "httpMethod": "GET",
               "id": "search.cse.siterestrict.list",
@@ -345,7 +345,7 @@
                   "type": "string"
                 },
                 "cx": {
-                  "description": "The custom search engine ID to use for this request.",
+                  "description": "The Programmable Search Engine ID to use for this request.",
                   "location": "query",
                   "type": "string"
                 },
@@ -559,7 +559,7 @@
       }
     }
   },
-  "revision": "20200715",
+  "revision": "20200723",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {
@@ -803,7 +803,7 @@
                     "type": "string"
                   },
                   "cx": {
-                    "description": "The identifier of a custom search engine created using the Custom Search\n[Control Panel](https://cse.google.com/). This is a custom property not\ndefined in the OpenSearch spec. This parameter is **required**.",
+                    "description": "The identifier of an engine created using the Programmable Search Engine\n[Control Panel](https://programmablesearchengine.google.com/). This is a\ncustom property not defined in the OpenSearch spec. This parameter is\n**required**.",
                     "type": "string"
                   },
                   "dateRestrict": {
@@ -961,7 +961,7 @@
                     "type": "string"
                   },
                   "cx": {
-                    "description": "The identifier of a custom search engine created using the Custom Search\n[Control Panel](https://cse.google.com/). This is a custom property not\ndefined in the OpenSearch spec. This parameter is **required**.",
+                    "description": "The identifier of an engine created using the Programmable Search Engine\n[Control Panel](https://programmablesearchengine.google.com/). This is a\ncustom property not defined in the OpenSearch spec. This parameter is\n**required**.",
                     "type": "string"
                   },
                   "dateRestrict": {
@@ -1119,7 +1119,7 @@
                     "type": "string"
                   },
                   "cx": {
-                    "description": "The identifier of a custom search engine created using the Custom Search\n[Control Panel](https://cse.google.com/). This is a custom property not\ndefined in the OpenSearch spec. This parameter is **required**.",
+                    "description": "The identifier of an engine created using the Programmable Search Engine\n[Control Panel](https://programmablesearchengine.google.com/). This is a\ncustom property not defined in the OpenSearch spec. This parameter is\n**required**.",
                     "type": "string"
                   },
                   "dateRestrict": {
@@ -1310,7 +1310,7 @@
               "type": "string"
             },
             "type": {
-              "description": "The MIME type of the OpenSearch URL template for the Custom Search API.",
+              "description": "The MIME type of the OpenSearch URL template for the Custom Search JSON\nAPI.",
               "type": "string"
             }
           },
