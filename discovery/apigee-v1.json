@@ -199,7 +199,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Name of the deployed configuration for the organization in the following\nformat: 'organizations/{org}/deployedIngressConfig'.",
+              "description": "Required. Name of the deployed configuration for the organization in the following\nformat: 'organizations/{org}/deployedIngressConfig'.",
               "location": "path",
               "pattern": "^organizations/[^/]+/deployedIngressConfig$",
               "required": true,
@@ -2994,6 +2994,11 @@
                           "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "sequencedRollout": {
+                          "description": "If true, a best-effort attempt will be made to remove the environment group\nrouting rules corresponding to this deployment before removing the\ndeployment from the runtime. This is likely to be a rare use case; it is\nonly needed when the intended effect of undeploying this proxy is to cause\nthe traffic it currently handles to be rerouted to some other existing\nproxy in the environment group. The GenerateUndeployChangeReport API may be\nused to examine routing changes before issuing the undeployment request,\nand its response will indicate if a sequenced rollout is recommended for\nthe undeployment.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}/deployments",
@@ -4663,7 +4668,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instance/{instance}`.",
+                  "description": "Required. Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instance/{instance}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/instances/[^/]+$",
                   "required": true,
@@ -4688,7 +4693,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}`.",
+                  "description": "Required. Name of the instance. Use the following structure in your request:\n  `organizations/{org}/instances/{instance}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/instances/[^/]+$",
                   "required": true,
@@ -4724,7 +4729,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Name of the organization. Use the following structure in your request:\n  `organizations/{org}`.",
+                  "description": "Required. Name of the organization. Use the following structure in your request:\n  `organizations/{org}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -5440,7 +5445,7 @@
       }
     }
   },
-  "revision": "20200710",
+  "revision": "20200720",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -7284,11 +7289,6 @@
     "GoogleCloudApigeeV1IngressConfig": {
       "id": "GoogleCloudApigeeV1IngressConfig",
       "properties": {
-        "createTime": {
-          "description": "Time at which the IngressConfig was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
         "environmentGroups": {
           "description": "List of environment groups in the organization.",
           "items": {
@@ -7300,13 +7300,13 @@
           "description": "Name of the resource in the following format:\n`organizations/{org}/deployedIngressConfig`.",
           "type": "string"
         },
-        "revisionId": {
-          "description": "Revision id that defines the ordering on IngressConfig resources.\nThe higher the revision, the more recently the configuration\nwas deployed.",
-          "format": "int64",
+        "revisionCreateTime": {
+          "description": "Time at which the IngressConfig revision was created.",
+          "format": "google-datetime",
           "type": "string"
         },
-        "sequenceNumber": {
-          "description": "DEPRECATED: Use revision_id",
+        "revisionId": {
+          "description": "Revision id that defines the ordering on IngressConfig resources.\nThe higher the revision, the more recently the configuration\nwas deployed.",
           "format": "int64",
           "type": "string"
         },
