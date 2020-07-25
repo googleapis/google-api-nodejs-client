@@ -127,6 +127,7 @@ export namespace displayvideo_v1 {
     partners: Resource$Partners;
     sdfdownloadtasks: Resource$Sdfdownloadtasks;
     targetingTypes: Resource$Targetingtypes;
+    users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -150,6 +151,7 @@ export namespace displayvideo_v1 {
       this.partners = new Resource$Partners(this.context);
       this.sdfdownloadtasks = new Resource$Sdfdownloadtasks(this.context);
       this.targetingTypes = new Resource$Targetingtypes(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -617,6 +619,27 @@ export namespace displayvideo_v1 {
     viewabilityDetails?: Schema$ViewabilityAssignedTargetingOptionDetails;
   }
   /**
+   * A single assigned user role, which defines a user&#39;s authorized interaction with a specified partner or advertiser.
+   */
+  export interface Schema$AssignedUserRole {
+    /**
+     * The ID of the advertiser that the assigend user role applies to.
+     */
+    advertiserId?: string | null;
+    /**
+     * Output only. The ID of the assigned user role.
+     */
+    assignedUserRoleId?: string | null;
+    /**
+     * The ID of the partner that the assigned user role applies to.
+     */
+    partnerId?: string | null;
+    /**
+     * Required. The user role to assign to a user for the entity.
+     */
+    userRole?: string | null;
+  }
+  /**
    * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is UNION&#39;ed with other groups.
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
@@ -657,6 +680,23 @@ export namespace displayvideo_v1 {
      * The offset in seconds from the start of the audio or video.
      */
     seconds?: string | null;
+  }
+  /**
+   * Response message for AdvertiserService.AuditAdvertiser.
+   */
+  export interface Schema$AuditAdvertiserResponse {
+    /**
+     * The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9,999 campaigns per advertiser.
+     */
+    usedCampaignsCount?: string | null;
+    /**
+     * The number of ACTIVE, PAUSED and DRAFT insertion orders under this advertiser. These insertion orders count towards the limit of 9,999 insertion orders per advertiser.
+     */
+    usedInsertionOrdersCount?: string | null;
+    /**
+     * The number of ACTIVE, PAUSED, and DRAFT line items under this advertiser. These line items count towards the limit of 9,999 line items per advertiser.
+     */
+    usedLineItemsCount?: string | null;
   }
   /**
    * Represents an assigned authorized seller status. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`.
@@ -795,6 +835,28 @@ export namespace displayvideo_v1 {
     assignedLocations?: Schema$AssignedLocation[];
   }
   /**
+   * Request message for BulkEditAssignedUserRoles.
+   */
+  export interface Schema$BulkEditAssignedUserRolesRequest {
+    /**
+     * The assigned user roles to create in batch, specified as a list of AssignedUserRoles.
+     */
+    createdAssignedUserRoles?: Schema$AssignedUserRole[];
+    /**
+     * The assigned user roles to delete in batch, specified as a list of assigned_user_role_ids. The format of assigned_user_role_id is `entityType-entityid`, for example `partner-123`.
+     */
+    deletedAssignedUserRoles?: string[] | null;
+  }
+  /**
+   * Response message for BulkEditAssignedUserRoles.
+   */
+  export interface Schema$BulkEditAssignedUserRolesResponse {
+    /**
+     * The list of assigned user roles that have been successfully created. This list will be absent if empty.
+     */
+    createdAssignedUserRoles?: Schema$AssignedUserRole[];
+  }
+  /**
    * Request message for BulkEditLineItemAssignedTargetingOptions.
    */
   export interface Schema$BulkEditLineItemAssignedTargetingOptionsRequest {
@@ -834,6 +896,25 @@ export namespace displayvideo_v1 {
      * The list of negative keywords that have been successfully created. This list will be absent if empty.
      */
     negativeKeywords?: Schema$NegativeKeyword[];
+  }
+  /**
+   * Request message for BulkEditPartnerAssignedTargetingOptions.
+   */
+  export interface Schema$BulkEditPartnerAssignedTargetingOptionsRequest {
+    /**
+     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
+    /**
+     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
+  }
+  export interface Schema$BulkEditPartnerAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options that have been successfully created. This list will be absent if empty.
+     */
+    createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
   /**
    * Request message for SiteService.BulkEditSites.
@@ -1777,6 +1858,36 @@ export namespace displayvideo_v1 {
      * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_EXCHANGE`.
      */
     targetingOptionId?: string | null;
+  }
+  /**
+   * Settings that control which exchanges are enabled for a partner.
+   */
+  export interface Schema$ExchangeConfig {
+    /**
+     * All enabled exchanges in the partner. Duplicate enabled exchanges will be ignored.
+     */
+    enabledExchanges?: Schema$ExchangeConfigEnabledExchange[];
+  }
+  /**
+   * An enabled exchange in the partner.
+   */
+  export interface Schema$ExchangeConfigEnabledExchange {
+    /**
+     * The enabled exchange.
+     */
+    exchange?: string | null;
+    /**
+     * Output only. Agency ID of Google Ad Manager. The field is only relevant when Google Ad Manager is the enabled exchange.
+     */
+    googleAdManagerAgencyId?: string | null;
+    /**
+     * Output only. Network ID of Google Ad Manager. The field is only relevant when Google Ad Manager is the enabled exchange.
+     */
+    googleAdManagerBuyerNetworkId?: string | null;
+    /**
+     * Output only. Seat ID of the enabled exchange.
+     */
+    seatId?: string | null;
   }
   /**
    * Exchange review status for the creative.
@@ -2809,6 +2920,32 @@ export namespace displayvideo_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListPartnerAssignedTargetingOptions.
+   */
+  export interface Schema$ListPartnerAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListPartnerAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListPartners.
+   */
+  export interface Schema$ListPartnersResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListPartners` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of partners. This list will be absent if empty.
+     */
+    partners?: Schema$Partner[];
+  }
+  /**
    * Response message for SiteService.ListSites.
    */
   export interface Schema$ListSitesResponse {
@@ -2833,6 +2970,19 @@ export namespace displayvideo_v1 {
      * The list of targeting options. This list will be absent if empty.
      */
     targetingOptions?: Schema$TargetingOption[];
+  }
+  /**
+   * Response message for ListUsers.
+   */
+  export interface Schema$ListUsersResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListUsers` method to retrieve the next page of results. This token will be absent if there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of users. This list will be absent if empty.
+     */
+    users?: Schema$User[];
   }
   /**
    * A list of locations used for targeting.
@@ -2884,6 +3034,19 @@ export namespace displayvideo_v1 {
      * Required. The type of the performance goal that the bidding strategy tries to minimize while spending the full budget. `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` is not supported for this strategy.
      */
     performanceGoalType?: string | null;
+  }
+  /**
+   * Measurement settings of a partner.
+   */
+  export interface Schema$MeasurementConfig {
+    /**
+     * Whether or not to report DV360 cost to CM.
+     */
+    dv360ToCmCostReportingEnabled?: boolean | null;
+    /**
+     * Whether or not to include DV360 data in CM data transfer reports.
+     */
+    dv360ToCmDataSharingEnabled?: boolean | null;
   }
   /**
    * Represents an amount of money with its currency type.
@@ -3116,6 +3279,56 @@ export namespace displayvideo_v1 {
     filterType?: string | null;
   }
   /**
+   * A single partner in Display &amp; Video 360 (DV360).
+   */
+  export interface Schema$Partner {
+    /**
+     * Ad server related settings of the partner.
+     */
+    adServerConfig?: Schema$PartnerAdServerConfig;
+    /**
+     * Settings that control how partner data may be accessed.
+     */
+    dataAccessConfig?: Schema$PartnerDataAccessConfig;
+    /**
+     * The display name of the partner. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The status of the partner.
+     */
+    entityStatus?: string | null;
+    /**
+     * Settings that control which exchanges are enabled for the partner.
+     */
+    exchangeConfig?: Schema$ExchangeConfig;
+    /**
+     * General settings of the partner.
+     */
+    generalConfig?: Schema$PartnerGeneralConfig;
+    /**
+     * Output only. The resource name of the partner.
+     */
+    name?: string | null;
+    /**
+     * Output only. The unique ID of the partner. Assigned by the system.
+     */
+    partnerId?: string | null;
+    /**
+     * Output only. The timestamp when the partner was last updated. Assigned by the system.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Ad server related settings of a partner.
+   */
+  export interface Schema$PartnerAdServerConfig {
+    /**
+     * Measurement settings of a partner.
+     */
+    measurementConfig?: Schema$MeasurementConfig;
+  }
+  /**
    * Settings that control a partner cost. A partner cost is any type of expense involved in running a campaign, other than the costs of purchasing impressions (which is called the media cost) and using third-party audience segment data (data fee). Some examples of partner costs include the fees for using DV360, a third-party ad server, or a third-party ad serving verification service.
    */
   export interface Schema$PartnerCost {
@@ -3139,6 +3352,28 @@ export namespace displayvideo_v1 {
      * The invoice type for this partner cost. * Required when cost_type is one of: - `PARTNER_COST_TYPE_ADLOOX` - `PARTNER_COST_TYPE_DOUBLE_VERIFY` - `PARTNER_COST_TYPE_INTEGRAL_AD_SCIENCE`. * Output only for other types.
      */
     invoiceType?: string | null;
+  }
+  /**
+   * Settings that control how partner related data may be accessed.
+   */
+  export interface Schema$PartnerDataAccessConfig {
+    /**
+     * Structured Data Files (SDF) settings for the partner. The SDF configuration for the partner.
+     */
+    sdfConfig?: Schema$SdfConfig;
+  }
+  /**
+   * General settings of a partner.
+   */
+  export interface Schema$PartnerGeneralConfig {
+    /**
+     * Immutable. Partner&#39;s currency in ISO 4217 format.
+     */
+    currencyCode?: string | null;
+    /**
+     * Immutable. The standard TZ database name of the partner&#39;s time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+     */
+    timeZone?: string | null;
   }
   /**
    * Settings that control how partner revenue is calculated.
@@ -3652,6 +3887,31 @@ export namespace displayvideo_v1 {
     url?: string | null;
   }
   /**
+   * A single user in Display &amp; Video 360.
+   */
+  export interface Schema$User {
+    /**
+     * The assigned user roles. Required in CreateUser. Output only in UpdateUser. Can only be updated through BulkEditAssignedUserRoles.
+     */
+    assignedUserRoles?: Schema$AssignedUserRole[];
+    /**
+     * Required. The display name of the user. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Immutable. The email address used to identify the user.
+     */
+    email?: string | null;
+    /**
+     * Output only. The resource name of the user.
+     */
+    name?: string | null;
+    /**
+     * Output only. The unique ID of the user. Assigned by the system.
+     */
+    userId?: string | null;
+  }
+  /**
    * User rewarded content targeting option details. This will be populated in the user_rewarded_content_details field when targeting_type is `TARGETING_TYPE_USER_REWARDED_CONTENT`.
    */
   export interface Schema$UserRewardedContentAssignedTargetingOptionDetails {
@@ -3746,6 +4006,147 @@ export namespace displayvideo_v1 {
       this.targetingTypes = new Resource$Advertisers$Targetingtypes(
         this.context
       );
+    }
+
+    /**
+     * displayvideo.advertisers.audit
+     * @desc Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their [respective resource limit]: (https://support.google.com/displayvideo/answer/6071450?hl=en)
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.audit({
+     *     // Required. The ID of the advertiser to audit.
+     *     advertiserId: '[^/]+',
+     *     // Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "usedCampaignsCount": "my_usedCampaignsCount",
+     *   //   "usedInsertionOrdersCount": "my_usedInsertionOrdersCount",
+     *   //   "usedLineItemsCount": "my_usedLineItemsCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.audit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser to audit.
+     * @param {string=} params.readMask Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    audit(
+      params: Params$Resource$Advertisers$Audit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    audit(
+      params?: Params$Resource$Advertisers$Audit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuditAdvertiserResponse>;
+    audit(
+      params: Params$Resource$Advertisers$Audit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    audit(
+      params: Params$Resource$Advertisers$Audit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuditAdvertiserResponse>,
+      callback: BodyResponseCallback<Schema$AuditAdvertiserResponse>
+    ): void;
+    audit(
+      params: Params$Resource$Advertisers$Audit,
+      callback: BodyResponseCallback<Schema$AuditAdvertiserResponse>
+    ): void;
+    audit(callback: BodyResponseCallback<Schema$AuditAdvertiserResponse>): void;
+    audit(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Audit
+        | BodyResponseCallback<Schema$AuditAdvertiserResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuditAdvertiserResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuditAdvertiserResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuditAdvertiserResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Audit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Audit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/advertisers/{+advertiserId}:audit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuditAdvertiserResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AuditAdvertiserResponse>(parameters);
+      }
     }
 
     /**
@@ -4817,6 +5218,17 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Audit
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser to audit.
+     */
+    advertiserId?: string;
+    /**
+     * Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount
+     */
+    readMask?: string;
+  }
   export interface Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
     extends StandardParameters {
     /**
@@ -10010,7 +10422,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -10038,7 +10450,7 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list line items for.
-     * @param {string=} params.filter Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
@@ -10398,7 +10810,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `insertionOrderId` - `entityStatus` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -18756,10 +19168,494 @@ export namespace displayvideo_v1 {
   export class Resource$Partners {
     context: APIRequestContext;
     channels: Resource$Partners$Channels;
+    targetingTypes: Resource$Partners$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.channels = new Resource$Partners$Channels(this.context);
+      this.targetingTypes = new Resource$Partners$Targetingtypes(this.context);
     }
+
+    /**
+     * displayvideo.partners.bulkEditPartnerAssignedTargetingOptions
+     * @desc Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.create_requests .
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.bulkEditPartnerAssignedTargetingOptions(
+     *     {
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createRequests": [],
+     *         //   "deleteRequests": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.bulkEditPartnerAssignedTargetingOptions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.partnerId Required. The ID of the partner.
+     * @param {().BulkEditPartnerAssignedTargetingOptionsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEditPartnerAssignedTargetingOptions(
+      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEditPartnerAssignedTargetingOptions(
+      params?: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>;
+    bulkEditPartnerAssignedTargetingOptions(
+      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEditPartnerAssignedTargetingOptions(
+      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditPartnerAssignedTargetingOptions(
+      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditPartnerAssignedTargetingOptions(
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditPartnerAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{+partnerId}:bulkEditPartnerAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId'],
+        pathParams: ['partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<{} | void>);
+      } else {
+        return createAPIRequest<
+          Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.get
+     * @desc Gets a partner.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.get({
+     *     // Required. The ID of the partner to fetch.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adServerConfig": {},
+     *   //   "dataAccessConfig": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "exchangeConfig": {},
+     *   //   "generalConfig": {},
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.partnerId Required. The ID of the partner to fetch.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Partners$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Partners$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Partner>;
+    get(
+      params: Params$Resource$Partners$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Partners$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Partner>,
+      callback: BodyResponseCallback<Schema$Partner>
+    ): void;
+    get(
+      params: Params$Resource$Partners$Get,
+      callback: BodyResponseCallback<Schema$Partner>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Partner>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Get
+        | BodyResponseCallback<Schema$Partner>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Partner>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Partner>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Partner> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Partners$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners/{+partnerId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId'],
+        pathParams: ['partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Partner>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Partner>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.list
+     * @desc Lists partners that are accessible to the current user. The order is defined by the order_by parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.list({
+     *     // Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partners": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Partners$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Partners$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPartnersResponse>;
+    list(
+      params: Params$Resource$Partners$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Partners$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPartnersResponse>,
+      callback: BodyResponseCallback<Schema$ListPartnersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Partners$List,
+      callback: BodyResponseCallback<Schema$ListPartnersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPartnersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Partners$List
+        | BodyResponseCallback<Schema$ListPartnersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPartnersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPartnersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPartnersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Partners$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/partners').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPartnersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPartnersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditPartnerAssignedTargetingOptionsRequest;
+  }
+  export interface Params$Resource$Partners$Get extends StandardParameters {
+    /**
+     * Required. The ID of the partner to fetch.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Partners$List extends StandardParameters {
+    /**
+     * Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Partners$Channels {
@@ -20137,6 +21033,831 @@ export namespace displayvideo_v1 {
     partnerId?: string;
   }
 
+  export class Resource$Partners$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Partners$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions = new Resource$Partners$Targetingtypes$Assignedtargetingoptions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Partners$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.partners.targetingTypes.assignedTargetingOptions.create
+     * @desc Assigns a targeting option to a partner. Returns the assigned targeting option if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.create(
+     *     {
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ageRangeDetails": {},
+     *         //   "appCategoryDetails": {},
+     *         //   "appDetails": {},
+     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *         //   "audienceGroupDetails": {},
+     *         //   "authorizedSellerStatusDetails": {},
+     *         //   "browserDetails": {},
+     *         //   "carrierAndIspDetails": {},
+     *         //   "categoryDetails": {},
+     *         //   "channelDetails": {},
+     *         //   "contentInstreamPositionDetails": {},
+     *         //   "contentOutstreamPositionDetails": {},
+     *         //   "dayAndTimeDetails": {},
+     *         //   "deviceMakeModelDetails": {},
+     *         //   "deviceTypeDetails": {},
+     *         //   "digitalContentLabelExclusionDetails": {},
+     *         //   "environmentDetails": {},
+     *         //   "exchangeDetails": {},
+     *         //   "genderDetails": {},
+     *         //   "geoRegionDetails": {},
+     *         //   "householdIncomeDetails": {},
+     *         //   "inheritance": "my_inheritance",
+     *         //   "inventorySourceDetails": {},
+     *         //   "inventorySourceGroupDetails": {},
+     *         //   "keywordDetails": {},
+     *         //   "languageDetails": {},
+     *         //   "name": "my_name",
+     *         //   "negativeKeywordListDetails": {},
+     *         //   "onScreenPositionDetails": {},
+     *         //   "operatingSystemDetails": {},
+     *         //   "parentalStatusDetails": {},
+     *         //   "proximityLocationListDetails": {},
+     *         //   "regionalLocationListDetails": {},
+     *         //   "sensitiveCategoryExclusionDetails": {},
+     *         //   "subExchangeDetails": {},
+     *         //   "targetingType": "my_targetingType",
+     *         //   "thirdPartyVerifierDetails": {},
+     *         //   "urlDetails": {},
+     *         //   "userRewardedContentDetails": {},
+     *         //   "videoPlayerSizeDetails": {},
+     *         //   "viewabilityDetails": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.partnerId Required. The ID of the partner.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     * @param {().AssignedTargetingOption} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    create(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'targetingType'],
+        pathParams: ['partnerId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.targetingTypes.assignedTargetingOptions.delete
+     * @desc Deletes an assigned targeting option from a partner.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.delete(
+     *     {
+     *       // Required. The ID of the assigned targeting option to delete.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.assignedTargetingOptionId Required. The ID of the assigned targeting option to delete.
+     * @param {string} params.partnerId Required. The ID of the partner.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'partnerId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: ['assignedTargetingOptionId', 'partnerId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.targetingTypes.assignedTargetingOptions.get
+     * @desc Gets a single targeting option assigned to a partner.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.get(
+     *     {
+     *       // Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.assignedTargetingOptionId Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
+     * @param {string} params.partnerId Required. The ID of the partner.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'partnerId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: ['assignedTargetingOptionId', 'partnerId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.targetingTypes.assignedTargetingOptions.list
+     * @desc Lists the targeting options assigned to a partner.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.list(
+     *     {
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The ID of the partner.
+     *       partnerId: '[^/]+',
+     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.targetingTypes.assignedTargetingOptions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     * @param {string} params.partnerId Required. The ID of the partner.
+     * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPartnerAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPartnerAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'targetingType'],
+        pathParams: ['partnerId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPartnerAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$ListPartnerAssignedTargetingOptionsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    targetingType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssignedTargetingOption;
+  }
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the assigned targeting option to delete.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
+     */
+    targetingType?: string;
+  }
+
   export class Resource$Sdfdownloadtasks {
     context: APIRequestContext;
     operations: Resource$Sdfdownloadtasks$Operations;
@@ -20827,5 +22548,917 @@ export namespace displayvideo_v1 {
      * Required. The type of targeting option to be listed.
      */
     targetingType?: string;
+  }
+
+  export class Resource$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.users.bulkEditAssignedUserRoles
+     * @desc Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deleted_assigned_user_roles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.created_assigned_user_roles.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.bulkEditAssignedUserRoles({
+     *     // Required. The ID of the user to which the assigned user roles belong.
+     *     userId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createdAssignedUserRoles": [],
+     *       //   "deletedAssignedUserRoles": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedUserRoles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.bulkEditAssignedUserRoles
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId Required. The ID of the user to which the assigned user roles belong.
+     * @param {().BulkEditAssignedUserRolesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEditAssignedUserRoles(
+      params: Params$Resource$Users$Bulkeditassigneduserroles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEditAssignedUserRoles(
+      params?: Params$Resource$Users$Bulkeditassigneduserroles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditAssignedUserRolesResponse>;
+    bulkEditAssignedUserRoles(
+      params: Params$Resource$Users$Bulkeditassigneduserroles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEditAssignedUserRoles(
+      params: Params$Resource$Users$Bulkeditassigneduserroles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+    ): void;
+    bulkEditAssignedUserRoles(
+      params: Params$Resource$Users$Bulkeditassigneduserroles,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+    ): void;
+    bulkEditAssignedUserRoles(
+      callback: BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+    ): void;
+    bulkEditAssignedUserRoles(
+      paramsOrCallback?:
+        | Params$Resource$Users$Bulkeditassigneduserroles
+        | BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditAssignedUserRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditAssignedUserRolesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Bulkeditassigneduserroles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Bulkeditassigneduserroles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/users/{+userId}:bulkEditAssignedUserRoles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditAssignedUserRolesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * displayvideo.users.create
+     * @desc Creates a new user. Returns the newly created user if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedUserRoles": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "name": "my_name",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().User} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Users$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Users$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    create(
+      params: Params$Resource$Users$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(
+      params: Params$Resource$Users$Create,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$User>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Create
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.users.delete
+     * @desc Deletes a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.delete({
+     *     // Required. The ID of the user to delete.
+     *     userId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId Required. The ID of the user to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Users$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Users$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users/{+userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.users.get
+     * @desc Gets a user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.get({
+     *     // Required. The ID of the user to fetch.
+     *     userId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId Required. The ID of the user to fetch.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Users$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$User>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Get
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users/{+userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.users.list
+     * @desc Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.list({
+     *     // Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Users$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUsersResponse>;
+    list(
+      params: Params$Resource$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListUsersResponse>,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUsersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$List
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUsersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUsersResponse>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.users.patch
+     * @desc Updates an existing user. Returns the updated user if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.users.patch({
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Output only. The unique ID of the user. Assigned by the system.
+     *     userId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedUserRoles": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "email": "my_email",
+     *       //   "name": "my_name",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedUserRoles": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "email": "my_email",
+     *   //   "name": "my_name",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.users.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {string} params.userId Output only. The unique ID of the user. Assigned by the system.
+     * @param {().User} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Users$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Patch,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$User>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Users$Patch
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/users/{+userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Bulkeditassigneduserroles
+    extends StandardParameters {
+    /**
+     * Required. The ID of the user to which the assigned user roles belong.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditAssignedUserRolesRequest;
+  }
+  export interface Params$Resource$Users$Create extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
+  }
+  export interface Params$Resource$Users$Delete extends StandardParameters {
+    /**
+     * Required. The ID of the user to delete.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Get extends StandardParameters {
+    /**
+     * Required. The ID of the user to fetch.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$List extends StandardParameters {
+    /**
+     * Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Users$Patch extends StandardParameters {
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Output only. The unique ID of the user. Assigned by the system.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
   }
 }
