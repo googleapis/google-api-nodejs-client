@@ -406,7 +406,7 @@ export namespace customsearch_v1 {
 
     /**
      * search.cse.list
-     * @desc Returns metadata about the search performed, metadata about the custom search engine used for the search, and the search results.
+     * @desc Returns metadata about the search performed, metadata about the engine used for the search, and the search results.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -456,7 +456,7 @@ export namespace customsearch_v1 {
      *     // Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections)
      *     // page for a list of valid values for this parameter.
      *     cr: 'placeholder-value',
-     *     // The custom search engine ID to use for this request.
+     *     // The Programmable Search Engine ID to use for this request.
      *     cx: 'placeholder-value',
      *     // Restricts results to URLs based on date. Supported values include:
      *     //
@@ -764,7 +764,7 @@ export namespace customsearch_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.c2coff Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      * @param {string=} params.cr Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
-     * @param {string=} params.cx The custom search engine ID to use for this request.
+     * @param {string=} params.cx The Programmable Search Engine ID to use for this request.
      * @param {string=} params.dateRestrict Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
      * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain.
      * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results.
@@ -883,7 +883,7 @@ export namespace customsearch_v1 {
      */
     cr?: string;
     /**
-     * The custom search engine ID to use for this request.
+     * The Programmable Search Engine ID to use for this request.
      */
     cx?: string;
     /**
@@ -1008,7 +1008,7 @@ export namespace customsearch_v1 {
 
     /**
      * search.cse.siterestrict.list
-     * @desc Returns metadata about the search performed, metadata about the custom search engine used for the search, and the search results. Uses a small set of url patterns.
+     * @desc Returns metadata about the search performed, metadata about the engine used for the search, and the search results. Uses a small set of url patterns.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1058,7 +1058,7 @@ export namespace customsearch_v1 {
      *     // Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections)
      *     // page for a list of valid values for this parameter.
      *     cr: 'placeholder-value',
-     *     // The custom search engine ID to use for this request.
+     *     // The Programmable Search Engine ID to use for this request.
      *     cx: 'placeholder-value',
      *     // Restricts results to URLs based on date. Supported values include:
      *     //
@@ -1366,7 +1366,7 @@ export namespace customsearch_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.c2coff Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      * @param {string=} params.cr Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
-     * @param {string=} params.cx The custom search engine ID to use for this request.
+     * @param {string=} params.cx The Programmable Search Engine ID to use for this request.
      * @param {string=} params.dateRestrict Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
      * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain.
      * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results.
@@ -1490,7 +1490,7 @@ export namespace customsearch_v1 {
      */
     cr?: string;
     /**
-     * The custom search engine ID to use for this request.
+     * The Programmable Search Engine ID to use for this request.
      */
     cx?: string;
     /**
