@@ -2233,7 +2233,7 @@
       }
     }
   },
-  "revision": "20200703",
+  "revision": "20200713",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3678,7 +3678,7 @@
           "type": "string"
         },
         "steps": {
-          "description": "Exactly one of step or steps_location should be specified.\n\nThe top-level steps that constitute the entire job.",
+          "description": "Exactly one of step or steps_location should be specified.\n\nThe top-level steps that constitute the entire job. Only retrieved with\nJOB_VIEW_ALL.",
           "items": {
             "$ref": "Step"
           },
