@@ -1274,6 +1274,44 @@ export namespace dfareporting_v3_4 {
     nextPageToken?: string | null;
   }
   /**
+   * Represents a DfaReporting channel grouping.
+   */
+  export interface Schema$ChannelGrouping {
+    /**
+     * ChannelGrouping fallback name.
+     */
+    fallbackName?: string | null;
+    /**
+     * The kind of resource this is, in this case dfareporting#channelGrouping.
+     */
+    kind?: string | null;
+    /**
+     * ChannelGrouping name.
+     */
+    name?: string | null;
+    /**
+     * The rules contained within this channel grouping.
+     */
+    rules?: Schema$ChannelGroupingRule[];
+  }
+  /**
+   * Represents a DfaReporting channel grouping rule.
+   */
+  export interface Schema$ChannelGroupingRule {
+    /**
+     * The disjunctive match statements contained within this rule.
+     */
+    disjunctiveMatchStatements?: Schema$DisjunctiveMatchStatement[];
+    /**
+     * The kind of resource this is, in this case dfareporting#channelGroupingRule.
+     */
+    kind?: string | null;
+    /**
+     * Rule name.
+     */
+    name?: string | null;
+  }
+  /**
    * City List Response
    */
   export interface Schema$CitiesListResponse {
@@ -1428,6 +1466,14 @@ export namespace dfareporting_v3_4 {
      * The kind of resource this is, in this case dfareporting#compatibleFields.
      */
     kind?: string | null;
+    /**
+     * Contains items that are compatible to be selected for a report of type &quot;PATH_ATTRIBUTION&quot;.
+     */
+    pathAttributionReportCompatibleFields?: Schema$PathReportCompatibleFields;
+    /**
+     * Contains items that are compatible to be selected for a report of type &quot;PATH&quot;.
+     */
+    pathReportCompatibleFields?: Schema$PathReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
@@ -3182,6 +3228,19 @@ export namespace dfareporting_v3_4 {
     nextPageToken?: string | null;
   }
   /**
+   * Represents a Disjunctive Match Statement resource, which is a conjunction (and) of disjunctive (or) boolean statements.
+   */
+  export interface Schema$DisjunctiveMatchStatement {
+    /**
+     * The event filters contained within this disjunctive match statement.
+     */
+    eventFilters?: Schema$EventFilter[];
+    /**
+     * The kind of resource this is, in this case dfareporting#disjunctiveMatchStatement.
+     */
+    kind?: string | null;
+  }
+  /**
    * DV360 IDs related to the custom event.
    */
   export interface Schema$DV3Ids {
@@ -3262,6 +3321,19 @@ export namespace dfareporting_v3_4 {
     encryptionSource?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
+   * Represents a DfaReporting event filter.
+   */
+  export interface Schema$EventFilter {
+    /**
+     * The dimension filter contained within this EventFilter.
+     */
+    dimensionFilter?: Schema$PathReportDimensionValue;
+    /**
+     * The kind of resource this is, in this case dfareporting#eventFilter.
      */
     kind?: string | null;
   }
@@ -3505,6 +3577,10 @@ export namespace dfareporting_v3_4 {
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
+    /**
+     * Whether the activity is enabled for attribution.
+     */
+    attributionEnabled?: boolean | null;
     /**
      * Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.
      */
@@ -4715,6 +4791,73 @@ export namespace dfareporting_v3_4 {
     orders?: Schema$Order[];
   }
   /**
+   * Represents a DfaReporting path filter.
+   */
+  export interface Schema$PathFilter {
+    /**
+     * Event filters in path report.
+     */
+    eventFilters?: Schema$EventFilter[];
+    /**
+     * The kind of resource this is, in this case dfareporting#pathFilter.
+     */
+    kind?: string | null;
+    /**
+     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
+     */
+    pathMatchPosition?: string | null;
+  }
+  /**
+   * Represents fields that are compatible to be selected for a report of type &quot;PATH&quot;.
+   */
+  export interface Schema$PathReportCompatibleFields {
+    /**
+     * Dimensions which are compatible to be selected in the &quot;channelGroupings&quot; section of the report.
+     */
+    channelGroupings?: Schema$Dimension[];
+    /**
+     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+     */
+    dimensions?: Schema$Dimension[];
+    /**
+     * The kind of resource this is, in this case dfareporting#pathReportCompatibleFields.
+     */
+    kind?: string | null;
+    /**
+     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * Dimensions which are compatible to be selected in the &quot;pathFilters&quot; section of the report.
+     */
+    pathFilters?: Schema$Dimension[];
+  }
+  /**
+   * Represents a PathReportDimensionValue resource.
+   */
+  export interface Schema$PathReportDimensionValue {
+    /**
+     * The name of the dimension.
+     */
+    dimensionName?: string | null;
+    /**
+     * The possible ID&#39;s associated with the value if available.
+     */
+    ids?: string[] | null;
+    /**
+     * The kind of resource this is, in this case dfareporting#pathReportDimensionValue.
+     */
+    kind?: string | null;
+    /**
+     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
+     */
+    matchType?: string | null;
+    /**
+     * The possible values of the dimension.
+     */
+    values?: string[] | null;
+  }
+  /**
    * Represents fields that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
    */
   export interface Schema$PathToConversionReportCompatibleFields {
@@ -5718,6 +5861,30 @@ export namespace dfareporting_v3_4 {
      */
     ownerProfileId?: string | null;
     /**
+     * The report criteria for a report of type &quot;PATH_ATTRIBUTION&quot;.
+     */
+    pathAttributionCriteria?: {
+      activityFilters?: Schema$DimensionValue[];
+      customChannelGrouping?: Schema$ChannelGrouping;
+      dateRange?: Schema$DateRange;
+      dimensions?: Schema$SortedDimension[];
+      floodlightConfigId?: Schema$DimensionValue;
+      metricNames?: string[];
+      pathFilters?: Schema$PathFilter[];
+    } | null;
+    /**
+     * The report criteria for a report of type &quot;PATH&quot;.
+     */
+    pathCriteria?: {
+      activityFilters?: Schema$DimensionValue[];
+      customChannelGrouping?: Schema$ChannelGrouping;
+      dateRange?: Schema$DateRange;
+      dimensions?: Schema$SortedDimension[];
+      floodlightConfigId?: Schema$DimensionValue;
+      metricNames?: string[];
+      pathFilters?: Schema$PathFilter[];
+    } | null;
+    /**
      * The report criteria for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
     pathToConversionCriteria?: {
@@ -6079,6 +6246,14 @@ export namespace dfareporting_v3_4 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#siteVideoSettings&quot;.
      */
     kind?: string | null;
+    /**
+     * Whether OBA icons are enabled for this placement.
+     */
+    obaEnabled?: boolean | null;
+    /**
+     * Settings for the OBA icon of video creatives served to this site. This will act as default for new placements created under this site.
+     */
+    obaSettings?: Schema$ObaIcon;
     /**
      * Orientation of a site template used for video. This will act as default for new placements created under this site.
      */
@@ -6763,6 +6938,14 @@ export namespace dfareporting_v3_4 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoSettings&quot;.
      */
     kind?: string | null;
+    /**
+     * Whether OBA icons are enabled for this placement.
+     */
+    obaEnabled?: boolean | null;
+    /**
+     * Settings for the OBA icon of video creatives served to this placement. If this object is provided, the creative-level OBA settings will be overridden.
+     */
+    obaSettings?: Schema$ObaIcon;
     /**
      * Orientation of a video placement. If this value is set, placement will return assets matching the specified orientation.
      */
@@ -24702,6 +24885,7 @@ export namespace dfareporting_v3_4 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
@@ -24864,6 +25048,7 @@ export namespace dfareporting_v3_4 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
@@ -24899,6 +25084,7 @@ export namespace dfareporting_v3_4 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
@@ -25244,6 +25430,7 @@ export namespace dfareporting_v3_4 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
@@ -25279,6 +25466,7 @@ export namespace dfareporting_v3_4 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
@@ -25442,6 +25630,7 @@ export namespace dfareporting_v3_4 {
      *       //   "accountId": "my_accountId",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
+     *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
@@ -25477,6 +25666,7 @@ export namespace dfareporting_v3_4 {
      *   //   "accountId": "my_accountId",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
+     *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
@@ -36207,6 +36397,8 @@ export namespace dfareporting_v3_4 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "name": "my_name",
      *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathAttributionCriteria": {},
+     *   //   "pathCriteria": {},
      *   //   "pathToConversionCriteria": {},
      *   //   "reachCriteria": {},
      *   //   "schedule": {},
@@ -36355,6 +36547,8 @@ export namespace dfareporting_v3_4 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "name": "my_name",
      *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathAttributionCriteria": {},
+     *       //   "pathCriteria": {},
      *       //   "pathToConversionCriteria": {},
      *       //   "reachCriteria": {},
      *       //   "schedule": {},
@@ -36380,6 +36574,8 @@ export namespace dfareporting_v3_4 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "name": "my_name",
      *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathAttributionCriteria": {},
+     *   //   "pathCriteria": {},
      *   //   "pathToConversionCriteria": {},
      *   //   "reachCriteria": {},
      *   //   "schedule": {},
@@ -36821,6 +37017,8 @@ export namespace dfareporting_v3_4 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "name": "my_name",
      *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathAttributionCriteria": {},
+     *       //   "pathCriteria": {},
      *       //   "pathToConversionCriteria": {},
      *       //   "reachCriteria": {},
      *       //   "schedule": {},
@@ -36846,6 +37044,8 @@ export namespace dfareporting_v3_4 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "name": "my_name",
      *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathAttributionCriteria": {},
+     *   //   "pathCriteria": {},
      *   //   "pathToConversionCriteria": {},
      *   //   "reachCriteria": {},
      *   //   "schedule": {},
@@ -37089,6 +37289,8 @@ export namespace dfareporting_v3_4 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "name": "my_name",
      *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathAttributionCriteria": {},
+     *       //   "pathCriteria": {},
      *       //   "pathToConversionCriteria": {},
      *       //   "reachCriteria": {},
      *       //   "schedule": {},
@@ -37104,6 +37306,8 @@ export namespace dfareporting_v3_4 {
      *   //   "crossDimensionReachReportCompatibleFields": {},
      *   //   "floodlightReportCompatibleFields": {},
      *   //   "kind": "my_kind",
+     *   //   "pathAttributionReportCompatibleFields": {},
+     *   //   "pathReportCompatibleFields": {},
      *   //   "pathToConversionReportCompatibleFields": {},
      *   //   "reachReportCompatibleFields": {},
      *   //   "reportCompatibleFields": {}
