@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20200629",
+  "revision": "20200717",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1043,51 +1043,6 @@
           "description": "The Cloud Build ID of the function created or updated by an API call.\nThis field is only populated for Create and Update operations.",
           "type": "string"
         },
-        "request": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "The original request that started the operation.",
-          "type": "object"
-        },
-        "target": {
-          "description": "Target of the operation - for example\nprojects/project-1/locations/region-1/functions/function-1",
-          "type": "string"
-        },
-        "type": {
-          "description": "Type of operation.",
-          "enum": [
-            "OPERATION_UNSPECIFIED",
-            "CREATE_FUNCTION",
-            "UPDATE_FUNCTION",
-            "DELETE_FUNCTION"
-          ],
-          "enumDescriptions": [
-            "Unknown operation type.",
-            "Triggered by CreateFunction call",
-            "Triggered by UpdateFunction call",
-            "Triggered by DeleteFunction call."
-          ],
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The last update timestamp of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "versionId": {
-          "description": "Version id of the function created or updated by an API call.\nThis field is only populated for Create and Update operations.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadataV1Beta2": {
-      "description": "Metadata describing an Operation",
-      "id": "OperationMetadataV1Beta2",
-      "properties": {
         "request": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",
