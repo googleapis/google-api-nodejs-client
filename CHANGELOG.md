@@ -4,6 +4,34 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [57.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v56.0.0...v57.0.0) (2020-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sasportal:** This release has breaking changes.
+* **pubsub:** This release has breaking changes.
+* **cloudfunctions:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([40573c6](https://www.github.com/googleapis/google-api-nodejs-client/commit/40573c6c23bb0eda30d4b9cf42794fd9f366f707))
+* **cloudfunctions:** update the API ([6445eb8](https://www.github.com/googleapis/google-api-nodejs-client/commit/6445eb808647674d3ee3f215e1429af6b9dfde05))
+* **dfareporting:** update the API ([58fb0df](https://www.github.com/googleapis/google-api-nodejs-client/commit/58fb0dfa978ddf4ec4967429e1b3da894ce527b9))
+* **displayvideo:** update the API ([244afe6](https://www.github.com/googleapis/google-api-nodejs-client/commit/244afe658953095690bd3c7811af387afeab366f))
+* **pubsub:** update the API ([f9a69a8](https://www.github.com/googleapis/google-api-nodejs-client/commit/f9a69a89a13aaeffa2739500f464e5dbba1d95ae))
+* **redis:** update the API ([39ca367](https://www.github.com/googleapis/google-api-nodejs-client/commit/39ca3676a0172eac1a8edb833e952d6295085cbc))
+* **sasportal:** update the API ([09688c5](https://www.github.com/googleapis/google-api-nodejs-client/commit/09688c5ba8d4a90f4a97ff0e66896f649ad736ad))
+* regenerate index files ([cfbbf9c](https://www.github.com/googleapis/google-api-nodejs-client/commit/cfbbf9cb97a7cd64d08128bf3efbb0472e77e61a))
+* regenerate index files ([a619a9c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a619a9cc846ac0e8a61a80cb4f4245b0f8484ec5))
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([932a461](https://www.github.com/googleapis/google-api-nodejs-client/commit/932a4611dd8559764682c30a290e0c09ec3b16e6))
+* **customsearch:** update the API ([6e25475](https://www.github.com/googleapis/google-api-nodejs-client/commit/6e25475dd5a013bfc08c14bb9e8e40546fddab26))
+* **dataflow:** update the API ([13c8527](https://www.github.com/googleapis/google-api-nodejs-client/commit/13c8527e0d81f862d9b81acf3dde9ce7a669f3aa))
+
 ## [56.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v55.0.0...v56.0.0) (2020-07-24)
 
 
