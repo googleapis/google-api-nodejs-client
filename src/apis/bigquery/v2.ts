@@ -212,6 +212,35 @@ export namespace bigquery_v2 {
     variance?: number | null;
   }
   /**
+   * Model evaluation metrics for ARIMA forecasting models.
+   */
+  export interface Schema$ArimaForecastingMetrics {
+    /**
+     * Arima model fitting metrics.
+     */
+    arimaFittingMetrics?: Schema$ArimaFittingMetrics[];
+    /**
+     * Repeated as there can be many metric sets (one for each model) in auto-arima and the large-scale case.
+     */
+    arimaSingleModelForecastingMetrics?: Schema$ArimaSingleModelForecastingMetrics[];
+    /**
+     * Whether Arima model fitted with drift or not. It is always false when d is not 1.
+     */
+    hasDrift?: boolean[] | null;
+    /**
+     * Non-seasonal order.
+     */
+    nonSeasonalOrder?: Schema$ArimaOrder[];
+    /**
+     * Seasonal periods. Repeated because multiple periods are supported for one time series.
+     */
+    seasonalPeriods?: string[] | null;
+    /**
+     * Id to differentiate different time series for the large-scale case.
+     */
+    timeSeriesId?: string[] | null;
+  }
+  /**
    * Arima model information.
    */
   export interface Schema$ArimaModelInfo {
@@ -269,6 +298,31 @@ export namespace bigquery_v2 {
      * Seasonal periods. Repeated because multiple periods are supported for one time series.
      */
     seasonalPeriods?: string[] | null;
+  }
+  /**
+   * Model evaluation metrics for a single ARIMA forecasting model.
+   */
+  export interface Schema$ArimaSingleModelForecastingMetrics {
+    /**
+     * Arima fitting metrics.
+     */
+    arimaFittingMetrics?: Schema$ArimaFittingMetrics;
+    /**
+     * Is arima model fitted with drift or not. It is always false when d is not 1.
+     */
+    hasDrift?: boolean | null;
+    /**
+     * Non-seasonal order.
+     */
+    nonSeasonalOrder?: Schema$ArimaOrder;
+    /**
+     * Seasonal periods. Repeated because multiple periods are supported for one time series.
+     */
+    seasonalPeriods?: string[] | null;
+    /**
+     * The id to indicate different time series.
+     */
+    timeSeriesId?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -793,6 +847,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$EvaluationMetrics {
     /**
+     * Populated for ARIMA models.
+     */
+    arimaForecastingMetrics?: Schema$ArimaForecastingMetrics;
+    /**
      * Populated for binary classification/classifier models.
      */
     binaryClassificationMetrics?: Schema$BinaryClassificationMetrics;
@@ -805,7 +863,7 @@ export namespace bigquery_v2 {
      */
     multiClassClassificationMetrics?: Schema$MultiClassClassificationMetrics;
     /**
-     * [Alpha] Populated for implicit feedback type matrix factorization models.
+     * Populated for implicit feedback type matrix factorization models.
      */
     rankingMetrics?: Schema$RankingMetrics;
     /**
@@ -2370,6 +2428,16 @@ export namespace bigquery_v2 {
      */
     updateMask?: string | null;
   }
+  export interface Schema$SnapshotDefinition {
+    /**
+     * [Required] Reference describing the ID of the table that is snapshotted.
+     */
+    baseTableReference?: Schema$TableReference;
+    /**
+     * [Required] The time at which the base table was snapshot.
+     */
+    snapshotTime?: string | null;
+  }
   /**
    * The type of a variable, e.g., a function argument. Examples: INT64: {type_kind=&quot;INT64&quot;} ARRAY&lt;STRING&gt;: {type_kind=&quot;ARRAY&quot;, array_element_type=&quot;STRING&quot;} STRUCT&lt;x STRING, y ARRAY&lt;DATE&gt;&gt;:   {type_kind=&quot;STRUCT&quot;,    struct_type={fields=[      {name=&quot;x&quot;, type={type_kind=&quot;STRING&quot;}},      {name=&quot;y&quot;, type={type_kind=&quot;ARRAY&quot;, array_element_type=&quot;DATE&quot;}}    ]}}
    */
@@ -2511,6 +2579,10 @@ export namespace bigquery_v2 {
      */
     selfLink?: string | null;
     /**
+     * [Output-only] Snapshot definition.
+     */
+    snapshotDefinition?: Schema$SnapshotDefinition;
+    /**
      * [Output-only] Contains information regarding this table&#39;s streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer.
      */
     streamingBuffer?: Schema$Streamingbuffer;
@@ -2523,7 +2595,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
+     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
      */
     type?: string | null;
     /**
@@ -2711,9 +2783,17 @@ export namespace bigquery_v2 {
   }
   export interface Schema$TrainingOptions {
     /**
+     * Whether to enable auto ARIMA or not.
+     */
+    autoArima?: boolean | null;
+    /**
      * Batch size for dnn models.
      */
     batchSize?: string | null;
+    /**
+     * The data frequency of a time series.
+     */
+    dataFrequency?: string | null;
     /**
      * The column to split data with. This column won&#39;t be used as a feature. 1. When data_split_method is CUSTOM, the corresponding column should be boolean. The rows with true value tag are eval data, and the false are training data. 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the corresponding column are used as training data, and the rest are eval data. It respects the order in Orderable data types: https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties
      */
@@ -2746,6 +2826,18 @@ export namespace bigquery_v2 {
      * Hidden units for dnn models.
      */
     hiddenUnits?: string[] | null;
+    /**
+     * The geographical region based on which the holidays are considered in time series modeling. If a valid value is specified, then holiday effects modeling is enabled.
+     */
+    holidayRegion?: string | null;
+    /**
+     * The number of periods ahead that need to be forecasted.
+     */
+    horizon?: string | null;
+    /**
+     * Include drift when fitting an ARIMA model.
+     */
+    includeDrift?: boolean | null;
     /**
      * Specifies the initial learning rate for the line search learn rate strategy.
      */
@@ -2811,6 +2903,10 @@ export namespace bigquery_v2 {
      */
     modelUri?: string | null;
     /**
+     * A specification of the non-seasonal part of the ARIMA model: the three components (p, d, q) are the AR order, the degree of differencing, and the MA order.
+     */
+    nonSeasonalOrder?: Schema$ArimaOrder;
+    /**
      * Number of clusters for clustering models.
      */
     numClusters?: string | null;
@@ -2830,6 +2926,18 @@ export namespace bigquery_v2 {
      * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
      */
     subsample?: number | null;
+    /**
+     * Column to be designated as time series data for ARIMA model.
+     */
+    timeSeriesDataColumn?: string | null;
+    /**
+     * The id column that will be used to indicate different time series to forecast in parallel.
+     */
+    timeSeriesIdColumn?: string | null;
+    /**
+     * Column to be designated as time series timestamp for ARIMA model.
+     */
+    timeSeriesTimestampColumn?: string | null;
     /**
      * User column specified for matrix factorization models.
      */
@@ -7505,6 +7613,7 @@ export namespace bigquery_v2 {
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
      *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
      *   //   "streamingBuffer": {},
      *   //   "tableReference": {},
      *   //   "timePartitioning": {},
@@ -7819,6 +7928,7 @@ export namespace bigquery_v2 {
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
      *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
      *       //   "streamingBuffer": {},
      *       //   "tableReference": {},
      *       //   "timePartitioning": {},
@@ -7854,6 +7964,7 @@ export namespace bigquery_v2 {
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
      *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
      *   //   "streamingBuffer": {},
      *   //   "tableReference": {},
      *   //   "timePartitioning": {},
@@ -8168,6 +8279,7 @@ export namespace bigquery_v2 {
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
      *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
      *       //   "streamingBuffer": {},
      *       //   "tableReference": {},
      *       //   "timePartitioning": {},
@@ -8203,6 +8315,7 @@ export namespace bigquery_v2 {
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
      *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
      *   //   "streamingBuffer": {},
      *   //   "tableReference": {},
      *   //   "timePartitioning": {},
@@ -8670,6 +8783,7 @@ export namespace bigquery_v2 {
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
      *       //   "selfLink": "my_selfLink",
+     *       //   "snapshotDefinition": {},
      *       //   "streamingBuffer": {},
      *       //   "tableReference": {},
      *       //   "timePartitioning": {},
@@ -8705,6 +8819,7 @@ export namespace bigquery_v2 {
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
      *   //   "selfLink": "my_selfLink",
+     *   //   "snapshotDefinition": {},
      *   //   "streamingBuffer": {},
      *   //   "tableReference": {},
      *   //   "timePartitioning": {},
