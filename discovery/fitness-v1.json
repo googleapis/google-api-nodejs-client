@@ -813,7 +813,7 @@
       }
     }
   },
-  "revision": "20200601",
+  "revision": "20200724",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
@@ -1414,7 +1414,8 @@
             "watch",
             "chestStrap",
             "scale",
-            "headMounted"
+            "headMounted",
+            "smartDisplay"
           ],
           "enumDescriptions": [
             "Device type is not known.",
@@ -1423,7 +1424,8 @@
             "A watch or other wrist-mounted band.",
             "A chest strap.",
             "A scale.",
-            "Glass or other head-mounted device."
+            "Glass or other head-mounted device.",
+            "A smart display e.g. Nest device."
           ],
           "type": "string"
         },
