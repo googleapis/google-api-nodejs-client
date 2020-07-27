@@ -1519,7 +1519,7 @@
       }
     }
   },
-  "revision": "20200625",
+  "revision": "20200719",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1659,6 +1659,73 @@
       },
       "type": "object"
     },
+    "ArimaForecastingMetrics": {
+      "description": "Model evaluation metrics for ARIMA forecasting models.",
+      "id": "ArimaForecastingMetrics",
+      "properties": {
+        "arimaFittingMetrics": {
+          "description": "Arima model fitting metrics.",
+          "items": {
+            "$ref": "ArimaFittingMetrics"
+          },
+          "type": "array"
+        },
+        "arimaSingleModelForecastingMetrics": {
+          "description": "Repeated as there can be many metric sets (one for each model) in\nauto-arima and the large-scale case.",
+          "items": {
+            "$ref": "ArimaSingleModelForecastingMetrics"
+          },
+          "type": "array"
+        },
+        "hasDrift": {
+          "description": "Whether Arima model fitted with drift or not. It is always false when d\nis not 1.",
+          "items": {
+            "type": "boolean"
+          },
+          "type": "array"
+        },
+        "nonSeasonalOrder": {
+          "description": "Non-seasonal order.",
+          "items": {
+            "$ref": "ArimaOrder"
+          },
+          "type": "array"
+        },
+        "seasonalPeriods": {
+          "description": "Seasonal periods. Repeated because multiple periods are supported for one\ntime series.",
+          "enumDescriptions": [
+            "",
+            "No seasonality",
+            "Daily period, 24 hours.",
+            "Weekly period, 7 days.",
+            "Monthly period, 30 days or irregular.",
+            "Quarterly period, 90 days or irregular.",
+            "Yearly period, 365 days or irregular."
+          ],
+          "items": {
+            "enum": [
+              "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+              "NO_SEASONALITY",
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "QUARTERLY",
+              "YEARLY"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeSeriesId": {
+          "description": "Id to differentiate different time series for the large-scale case.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ArimaModelInfo": {
       "description": "Arima model information.",
       "id": "ArimaModelInfo",
@@ -1768,6 +1835,54 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ArimaSingleModelForecastingMetrics": {
+      "description": "Model evaluation metrics for a single ARIMA forecasting model.",
+      "id": "ArimaSingleModelForecastingMetrics",
+      "properties": {
+        "arimaFittingMetrics": {
+          "$ref": "ArimaFittingMetrics",
+          "description": "Arima fitting metrics."
+        },
+        "hasDrift": {
+          "description": "Is arima model fitted with drift or not. It is always false when d\nis not 1.",
+          "type": "boolean"
+        },
+        "nonSeasonalOrder": {
+          "$ref": "ArimaOrder",
+          "description": "Non-seasonal order."
+        },
+        "seasonalPeriods": {
+          "description": "Seasonal periods. Repeated because multiple periods are supported\nfor one time series.",
+          "enumDescriptions": [
+            "",
+            "No seasonality",
+            "Daily period, 24 hours.",
+            "Weekly period, 7 days.",
+            "Monthly period, 30 days or irregular.",
+            "Quarterly period, 90 days or irregular.",
+            "Yearly period, 365 days or irregular."
+          ],
+          "items": {
+            "enum": [
+              "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+              "NO_SEASONALITY",
+              "DAILY",
+              "WEEKLY",
+              "MONTHLY",
+              "QUARTERLY",
+              "YEARLY"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeSeriesId": {
+          "description": "The id to indicate different time series.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2561,6 +2676,10 @@
       "description": "Evaluation metrics of a model. These are either computed on all training\ndata or just the eval data based on whether eval data was used during\ntraining. These are not present for imported models.",
       "id": "EvaluationMetrics",
       "properties": {
+        "arimaForecastingMetrics": {
+          "$ref": "ArimaForecastingMetrics",
+          "description": "Populated for ARIMA models."
+        },
         "binaryClassificationMetrics": {
           "$ref": "BinaryClassificationMetrics",
           "description": "Populated for binary classification/classifier models."
@@ -2575,7 +2694,7 @@
         },
         "rankingMetrics": {
           "$ref": "RankingMetrics",
-          "description": "[Alpha] Populated for implicit feedback type matrix factorization\nmodels."
+          "description": "Populated for implicit feedback type matrix factorization models."
         },
         "regressionMetrics": {
           "$ref": "RegressionMetrics",
@@ -4028,6 +4147,7 @@
             "DNN_REGRESSOR",
             "BOOSTED_TREE_REGRESSOR",
             "BOOSTED_TREE_CLASSIFIER",
+            "ARIMA",
             "AUTOML_REGRESSOR",
             "AUTOML_CLASSIFIER"
           ],
@@ -4036,14 +4156,15 @@
             "Linear regression model.",
             "Logistic regression based classification model.",
             "K-means clustering model.",
-            "Matrix factorization model.",
-            "DNN classifier model.",
+            "[Beta] Matrix factorization model.",
+            "[Beta] DNN classifier model.",
             "[Beta] An imported TensorFlow model.",
-            "DNN regressor model.",
-            "Boosted tree regressor model.",
-            "Boosted tree classifier model.",
-            "AutoML Tables regression model.",
-            "AutoML Tables classification model."
+            "[Beta] DNN regressor model.",
+            "[Beta] Boosted tree regressor model.",
+            "[Beta] Boosted tree classifier model.",
+            "[Beta] ARIMA model.",
+            "[Beta] AutoML Tables regression model.",
+            "[Beta] AutoML Tables classification model."
           ],
           "type": "string"
         },
@@ -4796,6 +4917,21 @@
       },
       "type": "object"
     },
+    "SnapshotDefinition": {
+      "id": "SnapshotDefinition",
+      "properties": {
+        "baseTableReference": {
+          "$ref": "TableReference",
+          "description": "[Required] Reference describing the ID of the table that is snapshotted."
+        },
+        "snapshotTime": {
+          "description": "[Required] The time at which the base table was snapshot.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StandardSqlDataType": {
       "description": "The type of a variable, e.g., a function argument.\nExamples:\nINT64: {type_kind=\"INT64\"}\nARRAY<STRING>: {type_kind=\"ARRAY\", array_element_type=\"STRING\"}\nSTRUCT<x STRING, y ARRAY<DATE>>:\n  {type_kind=\"STRUCT\",\n   struct_type={fields=[\n     {name=\"x\", type={type_kind=\"STRING\"}},\n     {name=\"y\", type={type_kind=\"ARRAY\", array_element_type=\"DATE\"}}\n   ]}}",
       "id": "StandardSqlDataType",
@@ -5004,6 +5140,10 @@
           "description": "[Output-only] A URL that can be used to access this resource again.",
           "type": "string"
         },
+        "snapshotDefinition": {
+          "$ref": "SnapshotDefinition",
+          "description": "[Output-only] Snapshot definition."
+        },
         "streamingBuffer": {
           "$ref": "Streamingbuffer",
           "description": "[Output-only] Contains information regarding this table's streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer."
@@ -5017,7 +5157,7 @@
           "description": "Time-based partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified."
         },
         "type": {
-          "description": "[Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.",
+          "description": "[Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.",
           "type": "string"
         },
         "view": {
@@ -5398,9 +5538,37 @@
     "TrainingOptions": {
       "id": "TrainingOptions",
       "properties": {
+        "autoArima": {
+          "description": "Whether to enable auto ARIMA or not.",
+          "type": "boolean"
+        },
         "batchSize": {
           "description": "Batch size for dnn models.",
           "format": "int64",
+          "type": "string"
+        },
+        "dataFrequency": {
+          "description": "The data frequency of a time series.",
+          "enum": [
+            "DATA_FREQUENCY_UNSPECIFIED",
+            "AUTO_FREQUENCY",
+            "YEARLY",
+            "QUARTERLY",
+            "MONTHLY",
+            "WEEKLY",
+            "DAILY",
+            "HOURLY"
+          ],
+          "enumDescriptions": [
+            "",
+            "Automatically inferred from timestamps.",
+            "Yearly data.",
+            "Quarterly data.",
+            "Monthly data.",
+            "Weekly data.",
+            "Daily data.",
+            "Hourly data."
+          ],
           "type": "string"
         },
         "dataSplitColumn": {
@@ -5476,6 +5644,161 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "holidayRegion": {
+          "description": "The geographical region based on which the holidays are considered in\ntime series modeling. If a valid value is specified, then holiday\neffects modeling is enabled.",
+          "enum": [
+            "HOLIDAY_REGION_UNSPECIFIED",
+            "GLOBAL",
+            "NA",
+            "JAPAC",
+            "EMEA",
+            "LAC",
+            "AE",
+            "AR",
+            "AT",
+            "AU",
+            "BE",
+            "BR",
+            "CA",
+            "CH",
+            "CL",
+            "CN",
+            "CO",
+            "CS",
+            "CZ",
+            "DE",
+            "DK",
+            "DZ",
+            "EC",
+            "EE",
+            "EG",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "GR",
+            "HK",
+            "HU",
+            "ID",
+            "IE",
+            "IL",
+            "IN",
+            "IR",
+            "IT",
+            "JP",
+            "KR",
+            "LV",
+            "MA",
+            "MX",
+            "MY",
+            "NG",
+            "NL",
+            "NO",
+            "NZ",
+            "PE",
+            "PH",
+            "PK",
+            "PL",
+            "PT",
+            "RO",
+            "RS",
+            "RU",
+            "SA",
+            "SE",
+            "SG",
+            "SI",
+            "SK",
+            "TH",
+            "TR",
+            "TW",
+            "UA",
+            "US",
+            "VE",
+            "VN",
+            "ZA"
+          ],
+          "enumDescriptions": [
+            "Holiday region unspecified.",
+            "Global.",
+            "North America.",
+            "Japan and Asia Pacific: Korea, Greater China, India, Australia, and New\nZealand.",
+            "Europe, the Middle East and Africa.",
+            "Latin America and the Caribbean.",
+            "United Arab Emirates",
+            "Argentina",
+            "Austria",
+            "Australia",
+            "Belgium",
+            "Brazil",
+            "Canada",
+            "Switzerland",
+            "Chile",
+            "China",
+            "Colombia",
+            "Czechoslovakia",
+            "Czech Republic",
+            "Germany",
+            "Denmark",
+            "Algeria",
+            "Ecuador",
+            "Estonia",
+            "Egypt",
+            "Spain",
+            "Finland",
+            "France",
+            "Great Britain (United Kingdom)",
+            "Greece",
+            "Hong Kong",
+            "Hungary",
+            "Indonesia",
+            "Ireland",
+            "Israel",
+            "India",
+            "Iran",
+            "Italy",
+            "Japan",
+            "Korea (South)",
+            "Latvia",
+            "Morocco",
+            "Mexico",
+            "Malaysia",
+            "Nigeria",
+            "Netherlands",
+            "Norway",
+            "New Zealand",
+            "Peru",
+            "Philippines",
+            "Pakistan",
+            "Poland",
+            "Portugal",
+            "Romania",
+            "Serbia",
+            "Russian Federation",
+            "Saudi Arabia",
+            "Sweden",
+            "Singapore",
+            "Slovenia",
+            "Slovakia",
+            "Thailand",
+            "Turkey",
+            "Taiwan",
+            "Ukraine",
+            "United States",
+            "Venezuela",
+            "Viet Nam",
+            "South Africa"
+          ],
+          "type": "string"
+        },
+        "horizon": {
+          "description": "The number of periods ahead that need to be forecasted.",
+          "format": "int64",
+          "type": "string"
+        },
+        "includeDrift": {
+          "description": "Include drift when fitting an ARIMA model.",
+          "type": "boolean"
         },
         "initialLearnRate": {
           "description": "Specifies the initial learning rate for the line search learn rate\nstrategy.",
@@ -5588,6 +5911,10 @@
           "description": "[Beta] Google Cloud Storage URI from which the model was imported. Only\napplicable for imported models.",
           "type": "string"
         },
+        "nonSeasonalOrder": {
+          "$ref": "ArimaOrder",
+          "description": "A specification of the non-seasonal part of the ARIMA model: the three\ncomponents (p, d, q) are the AR order, the degree of differencing, and\nthe MA order."
+        },
         "numClusters": {
           "description": "Number of clusters for clustering models.",
           "format": "int64",
@@ -5620,6 +5947,18 @@
           "description": "Subsample fraction of the training data to grow tree to prevent\noverfitting for boosted tree models.",
           "format": "double",
           "type": "number"
+        },
+        "timeSeriesDataColumn": {
+          "description": "Column to be designated as time series data for ARIMA model.",
+          "type": "string"
+        },
+        "timeSeriesIdColumn": {
+          "description": "The id column that will be used to indicate different time series to\nforecast in parallel.",
+          "type": "string"
+        },
+        "timeSeriesTimestampColumn": {
+          "description": "Column to be designated as time series timestamp for ARIMA model.",
+          "type": "string"
         },
         "userColumn": {
           "description": "User column specified for matrix factorization models.",
