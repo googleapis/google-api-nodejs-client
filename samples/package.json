@@ -16,7 +16,7 @@
   "dependencies": {
     "@google-cloud/local-auth": "^1.0.0",
     "express": "^4.17.1",
-    "googleapis": "^56.0.0",
+    "googleapis": "^57.0.0",
     "nconf": "^0.10.0",
     "open": "^7.0.3",
     "server-destroy": "^1.0.1",
