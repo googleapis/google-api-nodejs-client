@@ -427,7 +427,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$ExecuteSqlRequest {
     /**
-     * Parameter names and values that bind to placeholders in the SQL string.  A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:  `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute a SQL statement with unbound parameters.
+     * Parameter names and values that bind to placeholders in the SQL string.  A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names must conform to the naming requirements of identifiers as specified at https://cloud.google.com/spanner/docs/lexical#identifiers.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:  `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute a SQL statement with unbound parameters.
      */
     params?: {[key: string]: any} | null;
     /**
