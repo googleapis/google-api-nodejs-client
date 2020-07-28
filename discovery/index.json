@@ -3478,6 +3478,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "securitycenter:v1beta2",
+      "name": "securitycenter",
+      "version": "v1beta2",
+      "title": "Security Command Center API",
+      "description": "Security Command Center API provides access to temporal views of assets and findings within an organization.",
+      "discoveryRestUrl": "https://securitycenter.googleapis.com/$discovery/rest?version=v1beta2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://console.cloud.google.com/apis/api/securitycenter.googleapis.com/overview",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "serviceconsumermanagement:v1",
       "name": "serviceconsumermanagement",
       "version": "v1",
