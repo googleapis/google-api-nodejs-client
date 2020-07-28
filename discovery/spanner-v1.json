@@ -1895,7 +1895,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200722",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2306,7 +2306,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Parameter names and values that bind to placeholders in the SQL string.\n\nA parameter placeholder consists of the `@` character followed by the\nparameter name (for example, `@firstName`). Parameter names can contain\nletters, numbers, and underscores.\n\nParameters can appear anywhere that a literal value is expected.  The same\nparameter name can be used more than once, for example:\n\n`\"WHERE id > @msg_id AND id < @msg_id + 100\"`\n\nIt is an error to execute a SQL statement with unbound parameters.",
+          "description": "Parameter names and values that bind to placeholders in the SQL string.\n\nA parameter placeholder consists of the `@` character followed by the\nparameter name (for example, `@firstName`). Parameter names must conform\nto the naming requirements of identifiers as specified at\nhttps://cloud.google.com/spanner/docs/lexical#identifiers.\n\nParameters can appear anywhere that a literal value is expected.  The same\nparameter name can be used more than once, for example:\n\n`\"WHERE id > @msg_id AND id < @msg_id + 100\"`\n\nIt is an error to execute a SQL statement with unbound parameters.",
           "type": "object"
         },
         "partitionToken": {
