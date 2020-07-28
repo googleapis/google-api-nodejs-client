@@ -4,6 +4,19 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [57.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v57.0.0...v57.1.0) (2020-07-28)
+
+
+### Features
+
+* regenerate index files ([3ac0511](https://www.github.com/googleapis/google-api-nodejs-client/commit/3ac05119b92f2ffd3fab743f53387df68e0d922c))
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([9ad83a3](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ad83a37211e6b0634ac97f7b2841c5f0085a90e))
+* **spanner:** update the API ([1ad236e](https://www.github.com/googleapis/google-api-nodejs-client/commit/1ad236e96ff31d53bbffbd906887deb835127fc4))
+
 ## [57.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v56.0.0...v57.0.0) (2020-07-27)
 
 
