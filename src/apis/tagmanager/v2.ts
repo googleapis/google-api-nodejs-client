@@ -220,6 +220,10 @@ export namespace tagmanager_v2 {
      */
     parameter?: Schema$Parameter[];
     /**
+     * Parent folder id.
+     */
+    parentFolderId?: string | null;
+    /**
      * GTM client&#39;s API relative path.
      */
     path?: string | null;
