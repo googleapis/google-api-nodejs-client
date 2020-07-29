@@ -313,6 +313,10 @@ export namespace firebase_v1beta1 {
      * The default Firebase resources associated with the Project.
      */
     resources?: Schema$DefaultResources;
+    /**
+     * Output only. The lifecycle state of the Project. Updates to the state must be performed via com.google.cloudresourcemanager.v1.Projects.DeleteProject and com.google.cloudresourcemanager.v1.Projects.UndeleteProject
+     */
+    state?: string | null;
   }
   /**
    * Details of a Firebase App for iOS.
@@ -1367,7 +1371,8 @@ export namespace firebase_v1beta1 {
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "projectNumber": "my_projectNumber",
-     *   //   "resources": {}
+     *   //   "resources": {},
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -1951,7 +1956,8 @@ export namespace firebase_v1beta1 {
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "projectNumber": "my_projectNumber",
-     *       //   "resources": {}
+     *       //   "resources": {},
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -1963,7 +1969,8 @@ export namespace firebase_v1beta1 {
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "projectNumber": "my_projectNumber",
-     *   //   "resources": {}
+     *   //   "resources": {},
+     *   //   "state": "my_state"
      *   // }
      * }
      *
