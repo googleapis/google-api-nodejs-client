@@ -1734,7 +1734,7 @@ export namespace cloudsearch_v1 {
      */
     pageSize?: number | null;
     /**
-     * The raw query string. See supported search operators in the [Cloud search Cheat Sheet](https://gsuite.google.com/learning-center/products/cloudsearch/cheat-sheet/)
+     * The raw query string. See supported search operators in the [Cloud search Cheat Sheet](https://support.google.com/a/users/answer/9299929)
      */
     query?: string | null;
     /**
