@@ -149,6 +149,10 @@ export namespace container_v1 {
      */
     cloudRunConfig?: Schema$CloudRunConfig;
     /**
+     * Configuration for the ConfigConnector add-on, a Kubernetes extension to manage hosted GCP services through the Kubernetes API
+     */
+    configConnectorConfig?: Schema$ConfigConnectorConfig;
+    /**
      * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
@@ -617,6 +621,15 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * Configuration options for the Config Connector add-on.
+   */
+  export interface Schema$ConfigConnectorConfig {
+    /**
+     * Whether Cloud Connector is enabled for this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Parameters for controlling consumption metering.
