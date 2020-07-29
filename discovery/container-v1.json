@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200713",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2485,6 +2485,10 @@
         "cloudRunConfig": {
           "$ref": "CloudRunConfig",
           "description": "Configuration for the Cloud Run addon, which allows the user to use a\nmanaged Knative service."
+        },
+        "configConnectorConfig": {
+          "$ref": "ConfigConnectorConfig",
+          "description": "Configuration for the ConfigConnector add-on, a Kubernetes\nextension to manage hosted GCP services through the Kubernetes API"
         },
         "dnsCacheConfig": {
           "$ref": "DnsCacheConfig",
@@ -3028,6 +3032,17 @@
         "zone": {
           "description": "Deprecated. The name of the Google Compute Engine\n[zone](https://cloud.google.com/compute/docs/zones#available) in which the\ncluster resides. This field has been deprecated and replaced by the name\nfield.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigConnectorConfig": {
+      "description": "Configuration options for the Config Connector add-on.",
+      "id": "ConfigConnectorConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether Cloud Connector is enabled for this cluster.",
+          "type": "boolean"
         }
       },
       "type": "object"
