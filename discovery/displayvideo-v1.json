@@ -3505,6 +3505,97 @@
         }
       }
     },
+    "customBiddingAlgorithms": {
+      "methods": {
+        "get": {
+          "description": "Gets a custom bidding algorithm.",
+          "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
+          "httpMethod": "GET",
+          "id": "displayvideo.customBiddingAlgorithms.get",
+          "parameterOrder": [
+            "customBiddingAlgorithmId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "customBiddingAlgorithmId": {
+              "description": "Required. The ID of the custom bidding algorithm to fetch.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}",
+          "response": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "list": {
+          "description": "Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.",
+          "flatPath": "v1/customBiddingAlgorithms",
+          "httpMethod": "GET",
+          "id": "displayvideo.customBiddingAlgorithms.list",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the DV3 advertiser that has access to the custom bidding algorithm.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "filter": {
+              "description": "Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains \"politics\": `displayName:politics`. * All custom bidding algorithms for which the type is \"SCRIPT_BASED\": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.",
+              "location": "query",
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/customBiddingAlgorithms",
+          "response": {
+            "$ref": "ListCustomBiddingAlgorithmsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        }
+      }
+    },
     "customLists": {
       "methods": {
         "get": {
@@ -5815,7 +5906,7 @@
       }
     }
   },
-  "revision": "20200724",
+  "revision": "20200728",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -8280,6 +8371,72 @@
         "videoCreativeConfig": {
           "$ref": "InventorySourceVideoCreativeConfig",
           "description": "The configuration for video creatives. Applicable when creative_type is `CREATIVE_TYPE_VIDEO`."
+        }
+      },
+      "type": "object"
+    },
+    "CustomBiddingAlgorithm": {
+      "description": "A single custom bidding algorithm.",
+      "id": "CustomBiddingAlgorithm",
+      "properties": {
+        "advertiserId": {
+          "description": "Immutable. The unique ID of the advertiser that owns the custom bidding algorithm.",
+          "format": "int64",
+          "type": "string"
+        },
+        "customBiddingAlgorithmId": {
+          "description": "Output only. The unique ID of the custom bidding algorithm. Assigned by the system.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customBiddingAlgorithmType": {
+          "description": "Required. Immutable. The type of custom bidding algorithm.",
+          "enum": [
+            "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED",
+            "SCRIPT_BASED",
+            "ADS_DATA_HUB_BASED"
+          ],
+          "enumDescriptions": [
+            "Algorithm type is not specified or is unknown in this version.",
+            "Algorithm generated through customer-uploaded custom bidding script files.",
+            "Algorithm created through Ads Data Hub product."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the custom bidding algorithm. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        },
+        "entityStatus": {
+          "description": "Controls whether or not the custom bidding algorithm can be used as a bidding strategy. Accepted values are: * `ENTITY_STATUS_ACTIVE` * `ENTITY_STATUS_ARCHIVED`",
+          "enum": [
+            "ENTITY_STATUS_UNSPECIFIED",
+            "ENTITY_STATUS_ACTIVE",
+            "ENTITY_STATUS_ARCHIVED",
+            "ENTITY_STATUS_DRAFT",
+            "ENTITY_STATUS_PAUSED",
+            "ENTITY_STATUS_SCHEDULED_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Default value when status is not specified or is unknown in this version.",
+            "The entity is enabled to bid and spend budget.",
+            "The entity is archived. Bidding and budget spending are disabled. An entity can be deleted after archived. Deleted entities cannot be retrieved.",
+            "The entity is under draft. Bidding and budget spending are disabled.",
+            "Bidding and budget spending are paused for the entity.",
+            "The entity is scheduled for deletion."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the custom bidding algorithm.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partnerId": {
+          "description": "Immutable. The unique ID of the partner that owns the custom bidding algorithm.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11531,6 +11688,24 @@
       },
       "type": "object"
     },
+    "ListCustomBiddingAlgorithmsResponse": {
+      "description": "Response message for CustomBiddingAlgorithmService.ListCustomBiddingAlgorithms.",
+      "id": "ListCustomBiddingAlgorithmsResponse",
+      "properties": {
+        "customBiddingAlgorithms": {
+          "description": "The list of custom bidding algorithms. This list will be absent if empty.",
+          "items": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCustomBiddingAlgorithmsRequest` method to retrieve the next page of results. If this field is null, it means this is the last page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCustomListsResponse": {
       "id": "ListCustomListsResponse",
       "properties": {
@@ -11874,6 +12049,11 @@
       "description": "A strategy that automatically adjusts the bid to optimize a specified performance goal while spending the full budget.",
       "id": "MaximizeSpendBidStrategy",
       "properties": {
+        "customBiddingAlgorithmId": {
+          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.",
+          "format": "int64",
+          "type": "string"
+        },
         "maxAverageCpmBidAmountMicros": {
           "description": "The maximum average CPM that may be bid, in micros of the advertiser's currency. Must be greater than or equal to a billable unit of the given currency. For example, 1500000 represents 1.5 standard units of the currency.",
           "format": "int64",
@@ -11886,6 +12066,7 @@
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM",
+            "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED"
@@ -11895,6 +12076,7 @@
             "Cost per action.",
             "Cost per click.",
             "Viewable CPM.",
+            "Custom bidding algorithm.",
             "Completed inview and audible views.",
             "Inview time over 10 secs views.",
             "Viewable impressions."
@@ -12630,6 +12812,11 @@
       "description": "A strategy that automatically adjusts the bid to meet or beat a specified performance goal.",
       "id": "PerformanceGoalBidStrategy",
       "properties": {
+        "customBiddingAlgorithmId": {
+          "description": "The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.",
+          "format": "int64",
+          "type": "string"
+        },
         "maxAverageCpmBidAmountMicros": {
           "description": "The maximum average CPM that may be bid, in micros of the advertiser's currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`. For example, 1500000 represents 1.5 standard units of the currency.",
           "format": "int64",
@@ -12647,6 +12834,7 @@
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM",
+            "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN",
             "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED"
@@ -12656,6 +12844,7 @@
             "Cost per action.",
             "Cost per click.",
             "Viewable CPM.",
+            "Custom bidding algorithm.",
             "Completed inview and audible views.",
             "Inview time over 10 secs views.",
             "Viewable impressions."

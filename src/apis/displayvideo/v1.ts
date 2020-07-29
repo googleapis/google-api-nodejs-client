@@ -117,6 +117,7 @@ export namespace displayvideo_v1 {
     context: APIRequestContext;
     advertisers: Resource$Advertisers;
     combinedAudiences: Resource$Combinedaudiences;
+    customBiddingAlgorithms: Resource$Custombiddingalgorithms;
     customLists: Resource$Customlists;
     firstAndThirdPartyAudiences: Resource$Firstandthirdpartyaudiences;
     floodlightGroups: Resource$Floodlightgroups;
@@ -137,6 +138,9 @@ export namespace displayvideo_v1 {
 
       this.advertisers = new Resource$Advertisers(this.context);
       this.combinedAudiences = new Resource$Combinedaudiences(this.context);
+      this.customBiddingAlgorithms = new Resource$Custombiddingalgorithms(
+        this.context
+      );
       this.customLists = new Resource$Customlists(this.context);
       this.firstAndThirdPartyAudiences = new Resource$Firstandthirdpartyaudiences(
         this.context
@@ -1541,6 +1545,39 @@ export namespace displayvideo_v1 {
     videoCreativeConfig?: Schema$InventorySourceVideoCreativeConfig;
   }
   /**
+   * A single custom bidding algorithm.
+   */
+  export interface Schema$CustomBiddingAlgorithm {
+    /**
+     * Immutable. The unique ID of the advertiser that owns the custom bidding algorithm.
+     */
+    advertiserId?: string | null;
+    /**
+     * Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
+     */
+    customBiddingAlgorithmId?: string | null;
+    /**
+     * Required. Immutable. The type of custom bidding algorithm.
+     */
+    customBiddingAlgorithmType?: string | null;
+    /**
+     * Required. The display name of the custom bidding algorithm. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Controls whether or not the custom bidding algorithm can be used as a bidding strategy. Accepted values are: * `ENTITY_STATUS_ACTIVE` * `ENTITY_STATUS_ARCHIVED`
+     */
+    entityStatus?: string | null;
+    /**
+     * Output only. The resource name of the custom bidding algorithm.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The unique ID of the partner that owns the custom bidding algorithm.
+     */
+    partnerId?: string | null;
+  }
+  /**
    * Describes a custom list entity, such as a custom affinity or custom intent audience list.
    */
   export interface Schema$CustomList {
@@ -2797,6 +2834,19 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Response message for CustomBiddingAlgorithmService.ListCustomBiddingAlgorithms.
+   */
+  export interface Schema$ListCustomBiddingAlgorithmsResponse {
+    /**
+     * The list of custom bidding algorithms. This list will be absent if empty.
+     */
+    customBiddingAlgorithms?: Schema$CustomBiddingAlgorithm[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCustomBiddingAlgorithmsRequest` method to retrieve the next page of results. If this field is null, it means this is the last page.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$ListCustomListsResponse {
     /**
      * The list of custom lists. This list will be absent if empty.
@@ -3026,6 +3076,10 @@ export namespace displayvideo_v1 {
    * A strategy that automatically adjusts the bid to optimize a specified performance goal while spending the full budget.
    */
   export interface Schema$MaximizeSpendBidStrategy {
+    /**
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
+     */
+    customBiddingAlgorithmId?: string | null;
     /**
      * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. For example, 1500000 represents 1.5 standard units of the currency.
      */
@@ -3413,6 +3467,10 @@ export namespace displayvideo_v1 {
    * A strategy that automatically adjusts the bid to meet or beat a specified performance goal.
    */
   export interface Schema$PerformanceGoalBidStrategy {
+    /**
+     * The ID of the Custom Bidding Algorithm used by this strategy. Only applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CUSTOM_ALGO`.
+     */
+    customBiddingAlgorithmId?: string | null;
     /**
      * The maximum average CPM that may be bid, in micros of the advertiser&#39;s currency. Must be greater than or equal to a billable unit of the given currency. Not applicable when performance_goal_type is set to `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`. For example, 1500000 represents 1.5 standard units of the currency.
      */
@@ -15722,6 +15780,360 @@ export namespace displayvideo_v1 {
     pageToken?: string;
     /**
      * The ID of the partner that has access to the fetched combined audiences.
+     */
+    partnerId?: string;
+  }
+
+  export class Resource$Custombiddingalgorithms {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.customBiddingAlgorithms.get
+     * @desc Gets a custom bidding algorithm.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.get({
+     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the custom bidding algorithm to fetch.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.customBiddingAlgorithms.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {string} params.customBiddingAlgorithmId Required. The ID of the custom bidding algorithm to fetch.
+     * @param {string=} params.partnerId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Custombiddingalgorithms$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    get(
+      params: Params$Resource$Custombiddingalgorithms$Get,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Get
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customBiddingAlgorithmId'],
+        pathParams: ['customBiddingAlgorithmId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithm>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.customBiddingAlgorithms.list
+     * @desc Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.list({
+     *     // The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customBiddingAlgorithms": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.customBiddingAlgorithms.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     * @param {string=} params.filter Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.partnerId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Custombiddingalgorithms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Custombiddingalgorithms$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCustomBiddingAlgorithmsResponse>;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>,
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Custombiddingalgorithms$List,
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$List
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomBiddingAlgorithmsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomBiddingAlgorithmsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/customBiddingAlgorithms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCustomBiddingAlgorithmsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Custombiddingalgorithms$Get
+    extends StandardParameters {
+    /**
+     * The ID of the DV3 partner that has access to the custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the custom bidding algorithm to fetch.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * The ID of the DV3 partner that has access to the custom bidding algorithm.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Custombiddingalgorithms$List
+    extends StandardParameters {
+    /**
+     * The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the DV3 partner that has access to the custom bidding algorithm.
      */
     partnerId?: string;
   }
