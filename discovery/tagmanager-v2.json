@@ -2789,7 +2789,7 @@
       }
     }
   },
-  "revision": "20200506",
+  "revision": "20200728",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3130,6 +3130,10 @@
             "$ref": "Parameter"
           },
           "type": "array"
+        },
+        "parentFolderId": {
+          "description": "Parent folder id.",
+          "type": "string"
         },
         "path": {
           "description": "GTM client's API relative path.",
