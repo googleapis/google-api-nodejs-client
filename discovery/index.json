@@ -3124,7 +3124,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/recommendations/docs/",
+      "documentationLink": "https://cloud.google.com/recommendations-ai/docs",
       "preferred": true
     },
     {
@@ -3769,7 +3769,7 @@
       "version": "v1beta4",
       "title": "Cloud SQL Admin API",
       "description": "API for Cloud SQL database instance management",
-      "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
+      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v1beta4",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
