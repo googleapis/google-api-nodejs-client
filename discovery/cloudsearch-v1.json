@@ -1805,7 +1805,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200721",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
@@ -4377,7 +4377,7 @@
           "type": "integer"
         },
         "query": {
-          "description": "The raw query string.\nSee supported search operators in the [Cloud search\nCheat\nSheet](https://gsuite.google.com/learning-center/products/cloudsearch/cheat-sheet/)",
+          "description": "The raw query string.\nSee supported search operators in the [Cloud search\nCheat\nSheet](https://support.google.com/a/users/answer/9299929)",
           "type": "string"
         },
         "queryInterpretationOptions": {
