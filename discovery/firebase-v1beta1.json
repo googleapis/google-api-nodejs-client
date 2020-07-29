@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20200724",
+  "revision": "20200727",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1347,6 +1347,20 @@
         "resources": {
           "$ref": "DefaultResources",
           "description": "The default Firebase resources associated with the Project."
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the Project.\nUpdates to the state must be performed via\ncom.google.cloudresourcemanager.v1.Projects.DeleteProject and\ncom.google.cloudresourcemanager.v1.Projects.UndeleteProject",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The normal and active state.",
+            "The Project has been marked for deletion by the user."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
