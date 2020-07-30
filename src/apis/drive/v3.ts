@@ -389,7 +389,7 @@ export namespace drive_v3 {
    */
   export interface Schema$ContentRestriction {
     /**
-     * Whether the content of the file is read-only.
+     * Whether the content of the file is read-only. If a file is read-only, a new revision of the file may not be added, comments may not be added or modified, and the title of the file may not be modified.
      */
     readOnly?: boolean | null;
     /**
@@ -1029,6 +1029,10 @@ export namespace drive_v3 {
      * Whether this revision is published. This is only applicable to Google Docs.
      */
     published?: boolean | null;
+    /**
+     * A link to the published revision.
+     */
+    publishedLink?: string | null;
     /**
      * Whether this revision is published outside the domain. This is only applicable to Google Docs.
      */
@@ -8305,6 +8309,7 @@ export namespace drive_v3 {
      *   //   "originalFilename": "my_originalFilename",
      *   //   "publishAuto": false,
      *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
      *   //   "publishedOutsideDomain": false,
      *   //   "size": "my_size"
      *   // }
@@ -8600,6 +8605,7 @@ export namespace drive_v3 {
      *       //   "originalFilename": "my_originalFilename",
      *       //   "publishAuto": false,
      *       //   "published": false,
+     *       //   "publishedLink": "my_publishedLink",
      *       //   "publishedOutsideDomain": false,
      *       //   "size": "my_size"
      *       // }
@@ -8620,6 +8626,7 @@ export namespace drive_v3 {
      *   //   "originalFilename": "my_originalFilename",
      *   //   "publishAuto": false,
      *   //   "published": false,
+     *   //   "publishedLink": "my_publishedLink",
      *   //   "publishedOutsideDomain": false,
      *   //   "size": "my_size"
      *   // }
