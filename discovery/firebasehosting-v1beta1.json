@@ -1381,7 +1381,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200729",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1885,7 +1885,7 @@
             "NONE"
           ],
           "enumDescriptions": [
-            "The app association files will be automattically created from the apps\nthat exist in the Firebase project.",
+            "The app association files will be automatically created from the apps\nthat exist in the Firebase project.",
             "No special handling of the app association files will occur, these paths\nwill result in a 404 unless caught with a Rewrite."
           ],
           "type": "string"
