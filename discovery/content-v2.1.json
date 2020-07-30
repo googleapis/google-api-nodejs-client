@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/IGTUDo4ULe4AodmYbqGF1IQ9XMY\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/ZvXa4NJwoUnBl8j9DlQu6gD9zQQ\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3678,7 +3678,7 @@
       }
     }
   },
-  "revision": "20200716",
+  "revision": "20200721",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7065,7 +7065,7 @@
       "id": "OrderShipment",
       "properties": {
         "carrier": {
-          "description": "The carrier handling the shipment.\n\nFor supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. \nSupported carriers for US are:  \n- \"`ups`\" (United Parcel Service) automatic status updates \n- \"`usps`\" (United States Postal Service) automatic status updates \n- \"`fedex`\" (FedEx) automatic status updates  \n- \"`dhl`\" (DHL eCommerce) automatic status updates (US only) \n- \"`ontrac`\" (OnTrac) automatic status updates  \n- \"`dhl express`\" (DHL Express)\n- \"`deliv`\" (Deliv) \n- \"`dynamex`\" (TForce) \n- \"`lasership`\" (LaserShip) \n- \"`mpx`\" (Military Parcel Xpress) \n- \"`uds`\" (United Delivery Service) \n- \"`efw`\" (Estes Forwarding Worldwide) \n- \"`jd logistics`\" (JD Logistics) \n- \"`yunexpress`\" (YunExpress) \n- \"`china post`\" (China Post) \n- \"`china ems`\" (China Post Express Mail Service) \n- \"`singapore post`\" (Singapore Post) \n- \"`pos malaysia`\" (Pos Malaysia) \n- \"`postnl`\" (PostNL) \n- \"`ptt`\" (PTT Turkish Post) \n- \"`eub`\" (ePacket) \n- \"`chukou1`\" (Chukou1 Logistics)  \nSupported carriers for FR are:  \n- \"`la poste`\" (La Poste) automatic status updates  \n- \"`colissimo`\" (Colissimo by La Poste) automatic status updates \n- \"`ups`\" (United Parcel Service) automatic status updates  \n- \"`chronopost`\" (Chronopost by La Poste) \n- \"`gls`\" (General Logistics Systems France) \n- \"`dpd`\" (DPD Group by GeoPost) \n- \"`bpost`\" (Belgian Post Group) \n- \"`colis prive`\" (Colis Privé) \n- \"`boxtal`\" (Boxtal) \n- \"`geodis`\" (GEODIS) \n- \"`tnt`\" (TNT) \n- \"`db schenker`\" (DB Schenker) \n- \"`aramex`\" (Aramex)",
+          "description": "The carrier handling the shipment.\n\nFor supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. \nSupported carriers for US are:  \n- \"`ups`\" (United Parcel Service) automatic status updates \n- \"`usps`\" (United States Postal Service) automatic status updates \n- \"`fedex`\" (FedEx) automatic status updates  \n- \"`dhl`\" (DHL eCommerce) automatic status updates (US only) \n- \"`ontrac`\" (OnTrac) automatic status updates  \n- \"`dhl express`\" (DHL Express)\n- \"`deliv`\" (Deliv) \n- \"`dynamex`\" (TForce) \n- \"`lasership`\" (LaserShip) \n- \"`mpx`\" (Military Parcel Xpress) \n- \"`uds`\" (United Delivery Service) \n- \"`efw`\" (Estes Forwarding Worldwide) \n- \"`jd logistics`\" (JD Logistics) \n- \"`yunexpress`\" (YunExpress) \n- \"`china post`\" (China Post) \n- \"`china ems`\" (China Post Express Mail Service) \n- \"`singapore post`\" (Singapore Post) \n- \"`pos malaysia`\" (Pos Malaysia) \n- \"`postnl`\" (PostNL) \n- \"`ptt`\" (PTT Turkish Post) \n- \"`eub`\" (ePacket) \n- \"`chukou1`\" (Chukou1 Logistics) \n- \"`bestex`\" (Best Express) \n- \"`canada post`\" (Canada Post) \n- \"`purolator`\" (Purolator) \n- \"`canpar`\" (Canpar) \n- \"`india post`\" (India Post) \n- \"`blue dart`\" (Blue Dart) \n- \"`delhivery`\" (Delhivery) \n- \"`dtdc`\" (DTDC) \n- \"`tpc india`\" (TPC India)  \nSupported carriers for FR are:  \n- \"`la poste`\" (La Poste) automatic status updates  \n- \"`colissimo`\" (Colissimo by La Poste) automatic status updates \n- \"`ups`\" (United Parcel Service) automatic status updates  \n- \"`chronopost`\" (Chronopost by La Poste) \n- \"`gls`\" (General Logistics Systems France) \n- \"`dpd`\" (DPD Group by GeoPost) \n- \"`bpost`\" (Belgian Post Group) \n- \"`colis prive`\" (Colis Privé) \n- \"`boxtal`\" (Boxtal) \n- \"`geodis`\" (GEODIS) \n- \"`tnt`\" (TNT) \n- \"`db schenker`\" (DB Schenker) \n- \"`aramex`\" (Aramex)",
           "type": "string"
         },
         "creationDate": {
