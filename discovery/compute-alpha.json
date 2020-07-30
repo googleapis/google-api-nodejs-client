@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/liQbcVTpB1Gc6xUtyZYdRVYCMco\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/dKD5-Sc3FM1yFZKgWlaMIP26mjA\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -8625,7 +8625,7 @@
           ],
           "parameters": {
             "forceAttach": {
-              "description": "Whether to force attach the disk even if it's currently attached to another instance.",
+              "description": "Whether to force attach the regional disk even if it's currently attached to another instance.",
               "location": "query",
               "type": "boolean"
             },
@@ -9112,7 +9112,7 @@
           ],
           "parameters": {
             "instance": {
-              "description": "Name of the instance scoping this request.",
+              "description": "Name of the instance for this request.",
               "location": "path",
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
               "required": true,
@@ -9135,7 +9135,7 @@
               "type": "string"
             },
             "start": {
-              "description": "Returns output starting from a specific byte position. Use this to page through output when the output is too large to return in a single request. For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value returned in the previous call.",
+              "description": "Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.\n\nIf the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.\n\nYou can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -32361,7 +32361,7 @@
       }
     }
   },
-  "revision": "20200612",
+  "revision": "20200704",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -32931,10 +32931,12 @@
             "GCE_ENDPOINT",
             "NAT_AUTO",
             "PRIVATE_SERVICE_CONNECT",
+            "PSC_PRODUCER_NAT_RANGE",
             "SHARED_LOADBALANCER_VIP",
             "VPC_PEERING"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -33315,6 +33317,17 @@
       },
       "type": "object"
     },
+    "AdvancedMachineFeatures": {
+      "description": "Specifies options for controlling advanced machine features. Options that would traditionally be configured in a BIOS belong here. Features that require operating system support may have corresponding entries in the GuestOsFeatures of an Image (e.g., whether or not the OS in the Image supports nested virtualization being enabled or disabled).",
+      "id": "AdvancedMachineFeatures",
+      "properties": {
+        "enableNestedVirtualization": {
+          "description": "Whether to enable nested virtualization or not (default is false).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "AliasIpRange": {
       "description": "An alias IP range attached to an instance's network interface.",
       "id": "AliasIpRange",
@@ -33597,6 +33610,11 @@
           ],
           "type": "string"
         },
+        "provisionedIops": {
+          "description": "Indicates how many IOPS must be provisioned for the disk.",
+          "format": "int64",
+          "type": "string"
+        },
         "replicaZones": {
           "description": "URLs of the zones where the disk should be replicated to. Only applicable for regional resources.",
           "items": {
@@ -33811,6 +33829,13 @@
         "region": {
           "description": "[Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).",
           "type": "string"
+        },
+        "scalingScheduleStatus": {
+          "additionalProperties": {
+            "$ref": "ScalingScheduleStatus"
+          },
+          "description": "[Output Only] Status information of existing scaling schedules.",
+          "type": "object"
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
@@ -34294,6 +34319,13 @@
         },
         "scaleInControl": {
           "$ref": "AutoscalingPolicyScaleInControl"
+        },
+        "scalingSchedules": {
+          "additionalProperties": {
+            "$ref": "AutoscalingPolicyScalingSchedule"
+          },
+          "description": "Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules will be applied. Up to 128 scaling schedules are allowed.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -34306,10 +34338,12 @@
           "description": "Indicates which method of prediction is used for CPU utilization metric, if any. Current set of possible values: * NONE: No predictions are made based on the scaling metric when calculating the number of VM instances. * STANDARD: Standard predictive autoscaling predicts the future values of the scaling metric and then scales a MIG to ensure that new VM instances are ready in time to cover the predicted peak. New values might be added in the future. Some of the values might not be available in all API versions.",
           "enum": [
             "NONE",
+            "OPTIMIZE_AVAILABILITY",
             "PREDICTIVE_METHOD_UNSPECIFIED",
             "STANDARD"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -34403,6 +34437,39 @@
           "description": "How long back autoscaling should look when computing recommendations to include directives regarding slower scale in, as described above.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingPolicyScalingSchedule": {
+      "description": "Scaling based on user-defined schedule. The message describes a single scaling schedule. A scaling schedule changes the minimum number of VM instances an autoscaler can recommend, which can trigger scaling out.",
+      "id": "AutoscalingPolicyScalingSchedule",
+      "properties": {
+        "description": {
+          "description": "A description of a scaling schedule.",
+          "type": "string"
+        },
+        "disabled": {
+          "description": "A boolean value that specifies if a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect. This field is optional and its value is false by default.",
+          "type": "boolean"
+        },
+        "durationSec": {
+          "description": "The duration of time intervals (in seconds) for which this scaling schedule will be running. The minimum allowed value is 300. This field is required.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minRequiredReplicas": {
+          "description": "Minimum number of VM instances that autoscaler will recommend in time intervals starting according to schedule. This field is required.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "schedule": {
+          "description": "The start timestamps of time intervals when this scaling schedule should provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression may describe a single timestamp if the optional year is set, in which case a scaling schedule will run once. schedule is interpreted with respect to time_zone. This field is required. NOTE: these timestamps only describe when autoscaler will start providing the scaling signal. The VMs will need additional time to become serving.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field will be assigned a default value of ?UTC? if left empty.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -34534,6 +34601,10 @@
       "description": "Message containing Cloud CDN configuration for a backend bucket.",
       "id": "BackendBucketCdnPolicy",
       "properties": {
+        "requestCoalescing": {
+          "description": "If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.",
+          "type": "boolean"
+        },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
           "format": "int64",
@@ -35012,6 +35083,10 @@
         "cacheKeyPolicy": {
           "$ref": "CacheKeyPolicy",
           "description": "The CacheKeyPolicy for this CdnPolicy."
+        },
+        "requestCoalescing": {
+          "description": "If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.",
+          "type": "boolean"
         },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
@@ -35650,6 +35725,10 @@
         "instance": {
           "$ref": "Instance"
         },
+        "instanceProperties": {
+          "$ref": "InstanceProperties",
+          "description": "The instance properties for the request. Required if sourceInstanceTemplate is not provided."
+        },
         "minCount": {
           "description": "The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created.",
           "format": "int64",
@@ -35663,7 +35742,7 @@
           "type": "array"
         },
         "sourceInstanceTemplate": {
-          "description": "Specifies the instance template from which to create the instance. This field is optional. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:  \n- https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate \n- projects/project/global/instanceTemplates/instanceTemplate \n- global/instanceTemplates/instanceTemplate",
+          "description": "Specifies the instance template from which to create instances. You may combine sourceInstanceTemplate with instanceProperties to override specific values from an existing instance template. Bulk API follows the semantics of JSON Merge Patch described by RFC 7396.\n\nIt can be a full or partial URL. For example, the following are all valid URLs to an instance template:  \n- https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate \n- projects/project/global/instanceTemplates/instanceTemplate \n- global/instanceTemplates/instanceTemplate  \n\nThis field is optional.",
           "type": "string"
         }
       },
@@ -35953,8 +36032,9 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines.",
+          "description": "The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.",
           "enum": [
+            "ACCELERATOR_OPTIMIZED",
             "COMPUTE_OPTIMIZED",
             "GENERAL_PURPOSE",
             "GENERAL_PURPOSE_E2",
@@ -35964,6 +36044,7 @@
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -36319,11 +36400,13 @@
             "ATTRIBUTION",
             "AUTHORITY",
             "CREDENTIALS_TYPE",
+            "CREDS_ASSERTION",
             "JUSTIFICATION_TYPE",
             "NO_ATTR",
             "SECURITY_REALM"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -36689,6 +36772,11 @@
         },
         "physicalBlockSizeBytes": {
           "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedIops": {
+          "description": "Indicates how many IOPS must be provisioned for the disk.",
           "format": "int64",
           "type": "string"
         },
@@ -37646,9 +37734,11 @@
           "description": "The shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType). The possible values are EVEN and ANY. For EVEN the group attempts to preserve a balanced number of instances across zones. For ANY the group creates new instances where resources are available to fulfill the request; as a result, instances may be distributed unevenly across zones in this mode. The default value is EVEN.",
           "enum": [
             "ANY",
+            "BALANCED",
             "EVEN"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -38672,7 +38762,7 @@
       "id": "FirewallPolicyRuleMatcher",
       "properties": {
         "destIpRanges": {
-          "description": "CIDR IP address range.",
+          "description": "CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.",
           "items": {
             "type": "string"
           },
@@ -38686,7 +38776,7 @@
           "type": "array"
         },
         "srcIpRanges": {
-          "description": "CIDR IP address range.",
+          "description": "CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.",
           "items": {
             "type": "string"
           },
@@ -39643,7 +39733,7 @@
       "type": "object"
     },
     "HealthCheck": {
-      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers use regional health checks. All other types of GCP load balancers and managed instance group auto-healing use global health checks. For more information, read Health Check Concepts.\n\nTo perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.",
+      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers must use regional health checks. Internal TCP/UDP load balancers can use either regional or global health checks. All other types of GCP load balancers and managed instance group auto-healing must use global health checks. For more information, read Health Check Concepts.\n\nTo perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.",
       "id": "HealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -41730,6 +41820,10 @@
       "description": "Represents an Instance resource.\n\nAn instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for {$api_version}.instances ==)",
       "id": "Instance",
       "properties": {
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures",
+          "description": "Controls for advanced machine-related behavior features."
+        },
         "canIpForward": {
           "description": "Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.",
           "type": "boolean"
@@ -44096,6 +44190,10 @@
       "description": "",
       "id": "InstanceProperties",
       "properties": {
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures",
+          "description": "Controls for advanced machine-related behavior features."
+        },
         "canIpForward": {
           "description": "Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.",
           "type": "boolean"
@@ -47789,7 +47887,7 @@
           "type": "string"
         },
         "autoCreateSubnetworks": {
-          "description": "When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.\n\nAn auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.\n\nFor custom mode VPC networks, you can add subnets using the subnetworks insert method.",
+          "description": "Must be set to create a VPC network. If not set, a legacy network is created.\n\nWhen set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.\n\nAn auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.\n\nFor custom mode VPC networks, you can add subnets using the subnetworks insert method.",
           "type": "boolean"
         },
         "creationTimestamp": {
@@ -47895,7 +47993,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs or  Setting up zonal NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==)",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs or  Setting up zonal NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -51596,6 +51694,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "direction": {
+          "description": "Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.",
+          "enum": [
+            "BOTH",
+            "EGRESS",
+            "INGRESS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -53164,6 +53276,7 @@
             "CPUS",
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
+            "EXTERNAL_NETWORK_LB_FORWARDING_RULES",
             "EXTERNAL_VPN_GATEWAYS",
             "FIREWALLS",
             "FORWARDING_RULES",
@@ -53185,6 +53298,7 @@
             "INTERNAL_FORWARDING_RULES_WITH_GLOBAL_ACCESS_PER_NETWORK",
             "INTERNAL_FORWARDING_RULES_WITH_TARGET_INSTANCE_PER_NETWORK",
             "INTERNAL_TARGET_INSTANCE_WITH_GLOBAL_ACCESS_PER_NETWORK",
+            "INTERNAL_TRAFFIC_DIRECTOR_FORWARDING_RULES",
             "IN_PLACE_SNAPSHOTS",
             "IN_USE_ADDRESSES",
             "IN_USE_BACKUP_SCHEDULES",
@@ -53255,6 +53369,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -55511,10 +55627,12 @@
         "collocation": {
           "description": "Specifies network collocation",
           "enum": [
+            "CLUSTERED",
             "COLLOCATED",
             "UNSPECIFIED_COLLOCATION"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -55529,6 +55647,18 @@
           ],
           "enumDescriptions": [
             "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "Scope specifies the availability domain to which the VMs should be spread.",
+          "enum": [
+            "HOST",
+            "UNSPECIFIED_SCOPE"
+          ],
+          "enumDescriptions": [
             "",
             ""
           ],
@@ -57169,6 +57299,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "ruleStatus": {
+          "description": "Status of rules in this NAT.",
+          "items": {
+            "$ref": "RouterStatusNatStatusNatRuleStatus"
+          },
+          "type": "array"
+        },
         "userAllocatedNatIpResources": {
           "description": "A list of fully qualified URLs of reserved IP address resources.",
           "items": {
@@ -57182,6 +57319,42 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RouterStatusNatStatusNatRuleStatus": {
+      "description": "Status of a NAT Rule contained in this NAT.",
+      "id": "RouterStatusNatStatusNatRuleStatus",
+      "properties": {
+        "activeNatIps": {
+          "description": "A list of active IPs for NAT. Example: [\"1.1.1.1\", \"179.12.26.133\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "drainNatIps": {
+          "description": "A list of IPs for NAT that are in drain mode. Example: [\"1.1.1.1\", \"179.12.26.133\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minExtraIpsNeeded": {
+          "description": "The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numVmEndpointsWithNatMappings": {
+          "description": "Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priority": {
+          "description": "Priority of the rule.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -57528,6 +57701,36 @@
             "SCRATCH"
           ],
           "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScalingScheduleStatus": {
+      "id": "ScalingScheduleStatus",
+      "properties": {
+        "lastStartTime": {
+          "description": "[Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is an RFC3339 string in RFC3339 text format.",
+          "type": "string"
+        },
+        "nextStartTime": {
+          "description": "[Output Only] The next time the scaling schedule will become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is an RFC3339 string in RFC3339 text format.",
+          "type": "string"
+        },
+        "state": {
+          "description": "[Output Only] The current state of a scaling schedule.",
+          "enum": [
+            "ACTIVE",
+            "DISABLED",
+            "OBSOLETE",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
             "",
             ""
           ],
@@ -58169,7 +58372,7 @@
           "type": "string"
         },
         "next": {
-          "description": "[Output Only] The position of the next byte of content from the serial console output. Use this value in the next request as the start parameter.",
+          "description": "[Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.",
           "format": "int64",
           "type": "string"
         },
@@ -58178,7 +58381,7 @@
           "type": "string"
         },
         "start": {
-          "description": "The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.",
+          "description": "The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.",
           "format": "int64",
           "type": "string"
         }
@@ -59881,7 +60084,7 @@
           "type": "string"
         },
         "ipCidrRange": {
-          "description": "The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be expanded after creation using expandIpCidrRange.",
+          "description": "The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.",
           "type": "string"
         },
         "ipv6CidrRange": {
@@ -59898,7 +60101,7 @@
           "description": "This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Cloud Logging."
         },
         "metadata": {
-          "description": "Can only be specified if VPC flow logging for this subnetwork is enabled. Configures whether metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.",
+          "description": "Can only be specified if VPC flow logging for this subnetwork is enabled. Configures whether metadata fields should be added to the reported VPC flow logs. Options are INCLUDE_ALL_METADATA, EXCLUDE_ALL_METADATA, and CUSTOM_METADATA. Default is INCLUDE_ALL_METADATA.",
           "enum": [
             "EXCLUDE_ALL_METADATA",
             "INCLUDE_ALL_METADATA"
@@ -60308,7 +60511,7 @@
       "id": "SubnetworkSecondaryRange",
       "properties": {
         "ipCidrRange": {
-          "description": "The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported.",
+          "description": "The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.",
           "type": "string"
         },
         "rangeName": {
@@ -64174,6 +64377,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "ruleMappings": {
+          "description": "Information about mappings provided by rules in this NAT.",
+          "items": {
+            "$ref": "VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings"
+          },
+          "type": "array"
+        },
         "sourceAliasIpRange": {
           "description": "Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: \"10.33.4.55/32\", or \"192.168.5.0/24\".",
           "type": "string"
@@ -64181,6 +64391,42 @@
         "sourceVirtualIp": {
           "description": "Primary IP of the VM for this NIC.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings": {
+      "description": "Contains information of NAT Mappings provided by a NAT Rule.",
+      "id": "VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings",
+      "properties": {
+        "drainNatIpPortRanges": {
+          "description": "List of all drain IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [\"2.2.2.2:12345-12355\", \"1.1.1.1:2234-2234\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "natIpPortRanges": {
+          "description": "A list of all IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [\"2.2.2.2:12345-12355\", \"1.1.1.1:2234-2234\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "numTotalDrainNatPorts": {
+          "description": "Total number of drain ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field drain_nat_ip_port_ranges.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numTotalNatPorts": {
+          "description": "Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priority": {
+          "description": "Priority of the NAT Rule.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
