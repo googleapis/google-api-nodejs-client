@@ -877,7 +877,7 @@
       }
     }
   },
-  "revision": "20200710",
+  "revision": "20200727",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2197,7 +2197,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type`, `description`, and `display_name`\n  fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type's\nexisting data unusable.\n\nThe following are specific rules for service defined Monitoring metric\ndescriptors:\n\n* `type`, `metric_kind`, `value_type` and `description`\n  fields are all required. The `unit` field must be specified\n  if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION.\n* Maximum of default 500 metric descriptors per service is allowed.\n* Maximum of default 10 labels per metric descriptor is allowed.\n\nThe default maximum limit can be overridden. Please follow\nhttps://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -2691,6 +2691,21 @@
           },
           "description": "Tiered limit values. You must specify this as a key:value pair, with an\ninteger value that is the maximum number of requests allowed for the\nspecified unit. Currently only STANDARD is supported.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceReference": {
+      "description": "Defines a proto annotation that describes a string field that refers to\nan API resource.",
+      "id": "ResourceReference",
+      "properties": {
+        "childType": {
+          "description": "The resource type of a child collection that the annotated field\nreferences. This is useful for annotating the `parent` field that\ndoesn't have a fixed resource type.\n\nExample:\n\n    message ListLogEntriesRequest {\n      string parent = 1 [(google.api.resource_reference) = {\n        child_type: \"logging.googleapis.com/LogEntry\"\n      };\n    }",
+          "type": "string"
+        },
+        "type": {
+          "description": "The resource type that the annotated field references.\n\nExample:\n\n    message Subscription {\n      string topic = 2 [(google.api.resource_reference) = {\n        type: \"pubsub.googleapis.com/Topic\"\n      }];\n    }\n\nOccasionally, a field may reference an arbitrary resource. In this case,\nAPIs use the special value * in their resource reference.\n\nExample:\n\n    message GetIamPolicyRequest {\n      string resource = 2 [(google.api.resource_reference) = {\n        type: \"*\"\n      }];\n    }",
+          "type": "string"
         }
       },
       "type": "object"
