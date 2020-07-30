@@ -4,6 +4,45 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [58.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v57.0.0...v58.0.0) (2020-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataproc:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **genomics:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([2b252f5](https://www.github.com/googleapis/google-api-nodejs-client/commit/2b252f5dc2de16800774449af946057674354dd3))
+* regenerate index files ([8e81bc3](https://www.github.com/googleapis/google-api-nodejs-client/commit/8e81bc3601c218afe91b05d4b6e277ccac533792))
+* **tagmanager:** update the API ([54f05d4](https://www.github.com/googleapis/google-api-nodejs-client/commit/54f05d4d318404eae9402d083a080003a9e1ac5c))
+* regenerate index files ([3ac0511](https://www.github.com/googleapis/google-api-nodejs-client/commit/3ac05119b92f2ffd3fab743f53387df68e0d922c))
+* **clouderrorreporting:** update the API ([3e5e22a](https://www.github.com/googleapis/google-api-nodejs-client/commit/3e5e22a2c08933c0943b8e646aab2f27c5200c35))
+* **compute:** update the API ([6cda6b2](https://www.github.com/googleapis/google-api-nodejs-client/commit/6cda6b2029b133c737062fdea599cd2d18818201))
+* **container:** update the API ([3bb7746](https://www.github.com/googleapis/google-api-nodejs-client/commit/3bb77462340c9de39da205930ec1d87e1a2a77c3))
+* **dataproc:** update the API ([cd98eb3](https://www.github.com/googleapis/google-api-nodejs-client/commit/cd98eb3bb50d6c1461bec0e303c031c0407f1e59))
+* **dataproc:** update the API ([1f2e0b5](https://www.github.com/googleapis/google-api-nodejs-client/commit/1f2e0b5a97d4d44a6e75b829baa483b0fe0d7db3))
+* **displayvideo:** update the API ([6a6a912](https://www.github.com/googleapis/google-api-nodejs-client/commit/6a6a912618c0e1b07abfc2b8d43c5dbcaed7dfa4))
+* **doubleclickbidmanager:** update the API ([f8977f3](https://www.github.com/googleapis/google-api-nodejs-client/commit/f8977f300ab6a41a5b1c5506fe567d776a7717bb))
+* **drive:** update the API ([b6a446a](https://www.github.com/googleapis/google-api-nodejs-client/commit/b6a446aa39f7c13cfb2700239f7133e4f39d568f))
+* **firebase:** update the API ([c33cfcd](https://www.github.com/googleapis/google-api-nodejs-client/commit/c33cfcdfd34b3f9fe1ea9af7620368d1adac62e3))
+* **genomics:** update the API ([f52dd58](https://www.github.com/googleapis/google-api-nodejs-client/commit/f52dd585e495e613e4a4820526327aef2ecc98f5))
+* **people:** update the API ([aff8960](https://www.github.com/googleapis/google-api-nodejs-client/commit/aff8960e6c20d7eb1c571439f734ec8fcbf94fbf))
+* **pubsub:** update the API ([eda6668](https://www.github.com/googleapis/google-api-nodejs-client/commit/eda6668b0180214b2d6462ce6de96594ba90ea2a))
+* **servicemanagement:** update the API ([b1060ae](https://www.github.com/googleapis/google-api-nodejs-client/commit/b1060ae1e8c5ee15ddb5e13f8afc8ca11c991d9b))
+
+
+### Bug Fixes
+
+* **bigquerydatatransfer:** update the API ([3b61f8b](https://www.github.com/googleapis/google-api-nodejs-client/commit/3b61f8baf21f13e662e999c2a8d771ad28cdfa68))
+* **cloudsearch:** update the API ([1e7867a](https://www.github.com/googleapis/google-api-nodejs-client/commit/1e7867a0f7c5fef6e095905e0727d1419becbc22))
+* **content:** update the API ([05d5d97](https://www.github.com/googleapis/google-api-nodejs-client/commit/05d5d9798a82dc8b2e2eaceeef39f8b90dcf3d90))
+* **dlp:** update the API ([45c0a74](https://www.github.com/googleapis/google-api-nodejs-client/commit/45c0a744ff602d63839c071610fcec2c460af521))
+* **firebase:** update the API ([9ad83a3](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ad83a37211e6b0634ac97f7b2841c5f0085a90e))
+* **spanner:** update the API ([1ad236e](https://www.github.com/googleapis/google-api-nodejs-client/commit/1ad236e96ff31d53bbffbd906887deb835127fc4))
+
 ## [57.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v56.0.0...v57.0.0) (2020-07-27)
 
 
