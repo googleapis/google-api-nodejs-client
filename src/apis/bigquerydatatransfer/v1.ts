@@ -472,11 +472,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$TimeRange {
     /**
-     * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`. The end_time must not be in the future. Creates transfer runs where run_time is in the range betwen start_time (inclusive) and end_time (exlusive).
+     * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`. The end_time must not be in the future. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
      */
     endTime?: string | null;
     /**
-     * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range betwen start_time (inclusive) and end_time (exlusive).
+     * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
      */
     startTime?: string | null;
   }
