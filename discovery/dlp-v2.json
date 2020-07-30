@@ -3126,7 +3126,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200726",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6415,7 +6415,7 @@
           "description": "Configuration for the re-identification of the content item.\nThis field shares the same proto message type that is used for\nde-identification, however its usage here is for the reversal of the\nprevious de-identification. Re-identification is performed by examining\nthe transformations used to de-identify the items and executing the\nreverse. This requires that only reversible transformations\nbe provided here. The reversible transformations are:\n\n - `CryptoDeterministicConfig`\n - `CryptoReplaceFfxFpeConfig`"
         },
         "reidentifyTemplateName": {
-          "description": "Template to use. References an instance of `DeidentifyTemplate`.\nAny configuration directly specified in `reidentify_config` or\n`inspect_config` will override those set in the template. Singular fields\nthat are set in this request will replace their corresponding fields in the\ntemplate. Repeated fields are appended. Singular sub-messages and groups\nare recursively merged.",
+          "description": "Template to use. References an instance of `DeidentifyTemplate`.\nAny configuration directly specified in `reidentify_config` or\n`inspect_config` will override those set in the template. The\n`DeidentifyTemplate` used must include only reversible transformations.\nSingular fields that are set in this request will replace their\ncorresponding fields in the template. Repeated fields are appended.\nSingular sub-messages and groups are recursively merged.",
           "type": "string"
         }
       },
