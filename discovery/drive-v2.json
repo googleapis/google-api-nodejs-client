@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/k81JIsvIDw2LTJ3j42QtbITrIiM\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/Y8vbFl0i1r1N0KsawuiIYIt6icM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3442,7 +3442,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200719",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4311,7 +4311,7 @@
       "id": "ContentRestriction",
       "properties": {
         "readOnly": {
-          "description": "Whether the content of the file is read-only.",
+          "description": "Whether the content of the file is read-only. If a file is read-only, a new revision of the file may not be added, comments may not be added or modified, and the title of the file may not be modified.",
           "type": "boolean"
         },
         "reason": {

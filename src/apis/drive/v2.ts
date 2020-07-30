@@ -744,7 +744,7 @@ export namespace drive_v2 {
    */
   export interface Schema$ContentRestriction {
     /**
-     * Whether the content of the file is read-only.
+     * Whether the content of the file is read-only. If a file is read-only, a new revision of the file may not be added, comments may not be added or modified, and the title of the file may not be modified.
      */
     readOnly?: boolean | null;
     /**
