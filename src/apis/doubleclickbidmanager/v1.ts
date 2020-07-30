@@ -148,7 +148,7 @@ export namespace doubleclickbidmanager_v1 {
     lineItems?: string | null;
   }
   /**
-   * Request to fetch stored inventory sources, campaigns, insertion orders, line items, TrueView ad groups and ads.
+   * Request to fetch stored inventory sources, campaigns, insertion orders, line items, YouTube ad groups and ads.
    */
   export interface Schema$DownloadRequest {
     /**
@@ -544,7 +544,7 @@ export namespace doubleclickbidmanager_v1 {
 
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
-     * @desc Retrieves line items in CSV format. TrueView line items are not supported.
+     * @desc Retrieves line items in CSV format. YouTube & partners line items are not supported.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -689,7 +689,7 @@ export namespace doubleclickbidmanager_v1 {
 
     /**
      * doubleclickbidmanager.lineitems.uploadlineitems
-     * @desc Uploads line items in CSV format. TrueView line items are not supported.
+     * @desc Uploads line items in CSV format. YouTube & partners line items are not supported.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

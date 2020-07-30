@@ -15,7 +15,7 @@
   "description": "API for viewing and managing your reports in DoubleClick Bid Manager.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/bid-manager/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/HgR482mnyPA6xsLHjUjlQzYwL1g\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/165lTXtW-FpZSH7zsUKApJrU7EM\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -78,7 +78,7 @@
     "lineitems": {
       "methods": {
         "downloadlineitems": {
-          "description": "Retrieves line items in CSV format. TrueView line items are not supported.",
+          "description": "Retrieves line items in CSV format. YouTube & partners line items are not supported.",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.lineitems.downloadlineitems",
           "path": "lineitems/downloadlineitems",
@@ -93,7 +93,7 @@
           ]
         },
         "uploadlineitems": {
-          "description": "Uploads line items in CSV format. TrueView line items are not supported.",
+          "description": "Uploads line items in CSV format. YouTube & partners line items are not supported.",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.lineitems.uploadlineitems",
           "path": "lineitems/uploadlineitems",
@@ -257,7 +257,7 @@
       }
     }
   },
-  "revision": "20200316",
+  "revision": "20200723",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "DownloadLineItemsRequest": {
@@ -321,7 +321,7 @@
       "type": "object"
     },
     "DownloadRequest": {
-      "description": "Request to fetch stored inventory sources, campaigns, insertion orders, line items, TrueView ad groups and ads.",
+      "description": "Request to fetch stored inventory sources, campaigns, insertion orders, line items, YouTube ad groups and ads.",
       "id": "DownloadRequest",
       "properties": {
         "fileTypes": {
