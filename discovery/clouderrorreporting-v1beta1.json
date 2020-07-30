@@ -402,7 +402,7 @@
       }
     }
   },
-  "revision": "20200610",
+  "revision": "20200723",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {
@@ -471,6 +471,24 @@
         },
         "name": {
           "description": "The group resource name.\nExample: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>",
+          "type": "string"
+        },
+        "resolutionStatus": {
+          "description": "Error group's resolution status.\n\nAn unspecified resolution status will be interpreted as OPEN",
+          "enum": [
+            "RESOLUTION_STATUS_UNSPECIFIED",
+            "OPEN",
+            "ACKNOWLEDGED",
+            "RESOLVED",
+            "MUTED"
+          ],
+          "enumDescriptions": [
+            "Status is unknown.",
+            "The error group is not being addressed. This is the default for\nnew groups. It is also used for errors re-occuring after marked RESOLVED.",
+            "Error Group manually acknowledged, it can have an issue link attached.",
+            "Error Group manually resolved, more events for this group are not expected\nto occur.",
+            "The error group is muted and excluded by default on group stats requests."
+          ],
           "type": "string"
         },
         "trackingIssues": {

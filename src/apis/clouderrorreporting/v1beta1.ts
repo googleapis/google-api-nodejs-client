@@ -186,6 +186,10 @@ export namespace clouderrorreporting_v1beta1 {
      */
     name?: string | null;
     /**
+     * Error group&#39;s resolution status.  An unspecified resolution status will be interpreted as OPEN
+     */
+    resolutionStatus?: string | null;
+    /**
      * Associated tracking issues.
      */
     trackingIssues?: Schema$TrackingIssue[];
@@ -978,6 +982,7 @@ export namespace clouderrorreporting_v1beta1 {
      *   // {
      *   //   "groupId": "my_groupId",
      *   //   "name": "my_name",
+     *   //   "resolutionStatus": "my_resolutionStatus",
      *   //   "trackingIssues": []
      *   // }
      * }
@@ -1113,6 +1118,7 @@ export namespace clouderrorreporting_v1beta1 {
      *       // {
      *       //   "groupId": "my_groupId",
      *       //   "name": "my_name",
+     *       //   "resolutionStatus": "my_resolutionStatus",
      *       //   "trackingIssues": []
      *       // }
      *     },
@@ -1123,6 +1129,7 @@ export namespace clouderrorreporting_v1beta1 {
      *   // {
      *   //   "groupId": "my_groupId",
      *   //   "name": "my_name",
+     *   //   "resolutionStatus": "my_resolutionStatus",
      *   //   "trackingIssues": []
      *   // }
      * }
