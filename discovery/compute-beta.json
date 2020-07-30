@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/Rev5sfO3I6567cTlRl97vU0xrZ4\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/ev5eg4GLa_qBZhiLJ3TlGbg5d5M\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -8083,7 +8083,7 @@
           ],
           "parameters": {
             "forceAttach": {
-              "description": "Whether to force attach the disk even if it's currently attached to another instance.",
+              "description": "Whether to force attach the regional disk even if it's currently attached to another instance.",
               "location": "query",
               "type": "boolean"
             },
@@ -8529,7 +8529,7 @@
           ],
           "parameters": {
             "instance": {
-              "description": "Name of the instance scoping this request.",
+              "description": "Name of the instance for this request.",
               "location": "path",
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
               "required": true,
@@ -8552,7 +8552,7 @@
               "type": "string"
             },
             "start": {
-              "description": "Returns output starting from a specific byte position. Use this to page through output when the output is too large to return in a single request. For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value returned in the previous call.",
+              "description": "Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.\n\nIf the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.\n\nYou can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -27885,7 +27885,7 @@
       }
     }
   },
-  "revision": "20200629",
+  "revision": "20200704",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -31100,8 +31100,9 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines.",
+          "description": "The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.",
           "enum": [
+            "ACCELERATOR_OPTIMIZED",
             "COMPUTE_OPTIMIZED",
             "GENERAL_PURPOSE",
             "GENERAL_PURPOSE_E2",
@@ -31111,6 +31112,7 @@
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -31453,11 +31455,13 @@
             "ATTRIBUTION",
             "AUTHORITY",
             "CREDENTIALS_TYPE",
+            "CREDS_ASSERTION",
             "JUSTIFICATION_TYPE",
             "NO_ATTR",
             "SECURITY_REALM"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -34343,7 +34347,7 @@
       "type": "object"
     },
     "HealthCheck": {
-      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers use regional health checks. All other types of GCP load balancers and managed instance group auto-healing use global health checks. For more information, read Health Check Concepts.\n\nTo perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.",
+      "description": "Represents a Health Check resource.\n\nGoogle Compute Engine has two Health Check resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/healthChecks) * [Regional](/compute/docs/reference/rest/{$api_version}/regionHealthChecks)\n\nInternal HTTP(S) load balancers must use regional health checks. Internal TCP/UDP load balancers can use either regional or global health checks. All other types of GCP load balancers and managed instance group auto-healing must use global health checks. For more information, read Health Check Concepts.\n\nTo perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.",
       "id": "HealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -37404,6 +37408,10 @@
       "description": "InstanceGroupManagers.applyUpdatesToInstances",
       "id": "InstanceGroupManagersApplyUpdatesRequest",
       "properties": {
+        "allInstances": {
+          "description": "Flag to update all instances instead of specified list of ?instances?. If the flag is set to true then the instances may not be specified in the request.",
+          "type": "boolean"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -41541,7 +41549,7 @@
           "type": "string"
         },
         "autoCreateSubnetworks": {
-          "description": "When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.\n\nAn auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.\n\nFor custom mode VPC networks, you can add subnets using the subnetworks insert method.",
+          "description": "Must be set to create a VPC network. If not set, a legacy network is created.\n\nWhen set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.\n\nAn auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.\n\nFor custom mode VPC networks, you can add subnets using the subnetworks insert method.",
           "type": "boolean"
         },
         "creationTimestamp": {
@@ -41634,7 +41642,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs or  Setting up zonal NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==)",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs or  Setting up zonal NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -45838,6 +45846,7 @@
             "CPUS",
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
+            "EXTERNAL_NETWORK_LB_FORWARDING_RULES",
             "EXTERNAL_VPN_GATEWAYS",
             "FIREWALLS",
             "FORWARDING_RULES",
@@ -45854,6 +45863,7 @@
             "INTERCONNECT_ATTACHMENTS_TOTAL_MBPS",
             "INTERCONNECT_TOTAL_GBPS",
             "INTERNAL_ADDRESSES",
+            "INTERNAL_TRAFFIC_DIRECTOR_FORWARDING_RULES",
             "IN_PLACE_SNAPSHOTS",
             "IN_USE_ADDRESSES",
             "IN_USE_BACKUP_SCHEDULES",
@@ -45920,6 +45930,8 @@
             "VPN_TUNNELS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -46682,6 +46694,10 @@
       "description": "InstanceGroupManagers.applyUpdatesToInstances",
       "id": "RegionInstanceGroupManagersApplyUpdatesRequest",
       "properties": {
+        "allInstances": {
+          "description": "Flag to update all instances instead of specified list of ?instances?. If the flag is set to true then the instances may not be specified in the request.",
+          "type": "boolean"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -50369,7 +50385,7 @@
           "type": "string"
         },
         "next": {
-          "description": "[Output Only] The position of the next byte of content from the serial console output. Use this value in the next request as the start parameter.",
+          "description": "[Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.",
           "format": "int64",
           "type": "string"
         },
@@ -50378,7 +50394,7 @@
           "type": "string"
         },
         "start": {
-          "description": "The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.",
+          "description": "The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.",
           "format": "int64",
           "type": "string"
         }
@@ -51766,7 +51782,7 @@
           "type": "string"
         },
         "ipCidrRange": {
-          "description": "The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be expanded after creation using expandIpCidrRange.",
+          "description": "The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.",
           "type": "string"
         },
         "ipv6CidrRange": {
@@ -52164,7 +52180,7 @@
       "id": "SubnetworkSecondaryRange",
       "properties": {
         "ipCidrRange": {
-          "description": "The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported.",
+          "description": "The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.",
           "type": "string"
         },
         "rangeName": {
