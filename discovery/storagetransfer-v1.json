@@ -247,7 +247,7 @@
     "transferOperations": {
       "methods": {
         "cancel": {
-          "description": "Cancels a transfer. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.",
+          "description": "Cancels a transfer. Use the\ntransferOperations.get method to\ncheck if the cancellation succeeded or if the operation completed despite\nthe `cancel` request.\n\nWhen you cancel an operation, the currently running transfer is\ninterrupted.  For recurring transfer jobs, the next instance of the transfer job\nwill still run.  For example, if your job is configured to run every day\nat 1pm and you cancel Monday's operation at 1:05pm, Monday's transfer\nwill stop. However, a transfer job will still be attempted on Tuesday.\n\nThis applies only to currently running operations. If an operation is\nnot currently running, `cancel` does nothing.\n\n<aside class=\"caution\">\n<b>Caution:</b> Canceling a transfer job can leave your data in an unknown\nstate. We recommend that you restore the state at both the destination and the\nsource after the `cancel` request completes so that your data is in a consistent\nstate.\n</aside>\n\nWhen you cancel a job, the next job computes a delta of files and may repair any\ninconsistent state. For instance, if you run a job every day, and today's job\nfound 10 new files and transferred five files before you canceled the job,\ntomorrow's transfer operation will compute a new delta with the five files that\nwere not copied today plus any new files discovered tomorrow.",
           "flatPath": "v1/transferOperations/{transferOperationsId}:cancel",
           "httpMethod": "POST",
           "id": "storagetransfer.transferOperations.cancel",
@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20200606",
+  "revision": "20200724",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
