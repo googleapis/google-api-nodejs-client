@@ -751,6 +751,15 @@ export namespace healthcare_v1beta1 {
     start?: string | null;
   }
   /**
+   * Specifies the configuration for importing data from Cloud Storage.
+   */
+  export interface Schema$GcsSource {
+    /**
+     * Points to a Cloud Storage URI containing file(s) to import.  The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards:  *  `*` to match 0 or more non-separator characters *  `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. *  `?` to match 1 character  Files matching the wildcard are expected to contain content only, no metadata.
+     */
+    uri?: string | null;
+  }
+  /**
    * The BigQuery table for export.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination {
@@ -808,11 +817,11 @@ export namespace healthcare_v1beta1 {
     successResourceCount?: string | null;
   }
   /**
-   * The BigQuery table where the server writes the output.
+   * The BigQuery table where the server writes output.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination {
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table is overwritten by the contents of the DICOM store. If the flag is not set and the destination table already exists, the export call returns an error.
+     * This flag is being replaced by write_disposition which provides additional options. force=false is equivalent to WRITE_EMPTY and force=true is equivalent to WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
@@ -851,7 +860,7 @@ export namespace healthcare_v1beta1 {
      */
     datasetUri?: string | null;
     /**
-     * If this flag is `TRUE`, all tables will be deleted from the dataset before the new exported tables are written. If the flag is not set and the destination dataset contains tables, the export call returns an error.
+     * This flag is being replaced by write_disposition which provides additional options. force=false is equivalent to WRITE_EMPTY and force=true is equivalent to WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
@@ -1087,7 +1096,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImportAnnotationsResponse {
     /**
-     * The annotation_store that the annotations were imported to. The name is in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
+     * The annotation_store that the annotations were imported to, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      */
     annotationStore?: string | null;
     /**
@@ -1117,6 +1126,19 @@ export namespace healthcare_v1beta1 {
    * Returns additional information in regards to a completed DICOM store import.
    */
   export interface Schema$ImportDicomDataResponse {}
+  /**
+   * Request to import messages.
+   */
+  export interface Schema$ImportMessagesRequest {
+    /**
+     * Cloud Storage source data location and import configuration.  The Cloud Storage location requires the `roles/storage.objectViewer` Cloud IAM role.
+     */
+    gcsSource?: Schema$GcsSource;
+  }
+  /**
+   * Final response of importing messages. This structure is included in the response to describe the detailed outcome. It is only included when the operation finishes successfully.
+   */
+  export interface Schema$ImportMessagesResponse {}
   /**
    * Request to import resources.
    */
@@ -1590,7 +1612,7 @@ export namespace healthcare_v1beta1 {
      */
     schemas?: Schema$Hl7SchemaConfig[];
     /**
-     * Determines how messages that don&#39;t parse successfully are handled.
+     * Determines how messages that fail to parse are handled.
      */
     schematizedParsingType?: string | null;
     /**
@@ -3843,7 +3865,8 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.evaluate(
      *     {
-     *       // The Annotation store to compare against `golden_store`, in the format of
+     *       // The Annotation store to compare against `golden_store`, in the
+     *       // format of
      *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       evalStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
@@ -4429,8 +4452,8 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.import(
      *     {
-     *       // The name of the Annotation store to which the server imports annotations,
-     *       // in the format
+     *       // The name of the Annotation store to which the server imports
+     *       // annotations, in the format
      *       // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
      *       annotationStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
@@ -14532,15 +14555,15 @@ export namespace healthcare_v1beta1 {
      *       // Maximum number of resources in a page. Defaults to 100.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the next or previous page of results
-     *       // when using pagination. Value should be set to the value of `page_token` set
-     *       // in next or previous page links' URLs. Next and previous page are returned
+     *       // when using pagination. Set `_page_token` to the value of _page_token set
+     *       // in next or previous page links' url. Next and previous page are returned
      *       // in the response bundle's links field, where `link.relation` is "previous"
      *       // or "next".
      *       //
-     *       // Omit `page_token` if no previous request has been made.
+     *       // Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
      *       // If provided, only resources updated after this time are
-     *       // exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.
+     *       // returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.
      *       // For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.
      *       // The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
@@ -14571,8 +14594,8 @@ export namespace healthcare_v1beta1 {
      * @param {string} params.name Name of the `Patient` resource for which the information is required.
      * @param {string=} params.start The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      * @param {integer=} params._count Maximum number of resources in a page. Defaults to 100.
-     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Value should be set to the value of `page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `page_token` if no previous request has been made.
-     * @param {string=} params._since If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * @param {string=} params._since If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      * @param {string=} params._type String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15541,11 +15564,11 @@ export namespace healthcare_v1beta1 {
      */
     _count?: number;
     /**
-     * Used to retrieve the next or previous page of results when using pagination. Value should be set to the value of `page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `page_token` if no previous request has been made.
+     * Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
      */
     _page_token?: string;
     /**
-     * If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     * If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      */
     _since?: string;
     /**
@@ -16173,6 +16196,152 @@ export namespace healthcare_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.hl7V2Stores.import
+     * @desc Import messages to the HL7v2 store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some HL7v2 store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty HL7v2 store that is not being used by other clients.  An existing message will be overwritten if a duplicate message is imported. A duplicate message is a message with the same raw bytes as a message that already exists in this HL7v2 store. When a message is overwritten, its labels will also be overwritten.  The import operation is idempotent unless the input data contains multiple valid messages with the same raw bytes but different labels. In that case, after the import completes, the store contains exactly one message with those raw bytes but there is no ordering guarantee on which version of the labels it has. The operation result counters do not count duplicated raw bytes as an error and count one success for each message in the input, which might result in a success count larger than the number of messages in the HL7v2 store.  If some messages fail to import, for example due to parsing errors, successfully imported messages are not rolled back.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a response of type ImportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.import({
+     *     // The name of the target HL7v2 store, in the format
+     *     // `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     *     name:
+     *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias healthcare.projects.locations.datasets.hl7V2Stores.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     * @param {().ImportMessagesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -16820,6 +16989,18 @@ export namespace healthcare_v1beta1 {
      */
     resource?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Import
+    extends StandardParameters {
+    /**
+     * The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportMessagesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List
     extends StandardParameters {
     /**
@@ -16888,7 +17069,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.create
-     * @desc Creates a message and sends a notification to the Cloud Pub/Sub topic. If configured, the MLLP adapter listens to messages created by this method and sends those back to the hospital. A successful response indicates the message has been persisted to storage and a Cloud Pub/Sub notification has been sent. Sending to the hospital by the MLLP adapter happens asynchronously.
+     * @desc Parses and stores an HL7v2 message. This method triggers an asynchronous notification to any Cloud Pub/Sub topic configured in projects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the filtering matches the message. If an MLLP adapter is configured to listen to a Cloud Pub/Sub topic, the adapter transmits the message when a notification is received.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -17313,7 +17494,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest
-     * @desc Ingests a new HL7v2 message from the hospital and sends a notification to the Cloud Pub/Sub topic. Return is an HL7v2 ACK message if the message was successfully stored. Otherwise an error is returned.
+     * @desc Parses and stores an HL7v2 message. This method triggers an asynchronous notification to any Cloud Pub/Sub topic configured in projects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the filtering matches the message. If an MLLP adapter is configured to listen to a Cloud Pub/Sub topic, the adapter transmits the message when a notification is received. This method also generates a response containing an HL7v2 acknowledgement (`ACK`) message when successful or a negative acknowledgement (`NACK`) message in case of error, suitable for replying to HL7v2 interface systems that expect these acknowledgements.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

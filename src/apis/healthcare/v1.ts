@@ -4887,7 +4887,7 @@ export namespace healthcare_v1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.delete
-     * @desc DeleteStudy deletes all instances within the given study. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete.
+     * @desc DeleteStudy deletes all instances within the given study. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete.  Warning: Inserting instances into a study while a delete operation is running for that study could result in the new instances not appearing in search results until the deletion operation finishes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5828,7 +5828,7 @@ export namespace healthcare_v1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.studies.series.delete
-     * @desc DeleteSeries deletes all instances within the given study and series. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete.
+     * @desc DeleteSeries deletes all instances within the given study and series. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete.  Warning: Inserting instances into a series while a delete operation is running for that series could result in the new instances not appearing in search results until the deletion operation finishes.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10062,20 +10062,20 @@ export namespace healthcare_v1 {
      *       // Maximum number of resources in a page. Defaults to 100.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the next or previous page of results
-     *       // when using pagination. Value should be set to the value of page_token set
-     *       // in next or previous page links' urls. Next and previous page are returned
+     *       // when using pagination. Set `_page_token` to the value of _page_token set
+     *       // in next or previous page links' url. Next and previous page are returned
      *       // in the response bundle's links field, where `link.relation` is "previous"
      *       // or "next".
      *       //
-     *       // Omit `page_token` if no previous request has been made.
+     *       // Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
      *       // If provided, only resources updated after this time are
-     *       // exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.
+     *       // returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.
      *       // For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.
      *       // The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
      *       // String of comma-delimited FHIR resource types. If provided, only resources
-     *       // of the specified resource type(s) will be returned.
+     *       // of the specified resource type(s) are returned.
      *       _type: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -10101,9 +10101,9 @@ export namespace healthcare_v1 {
      * @param {string} params.name Name of the `Patient` resource for which the information is required.
      * @param {string=} params.start The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      * @param {integer=} params._count Maximum number of resources in a page. Defaults to 100.
-     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Value should be set to the value of page_token set in next or previous page links' urls. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `page_token` if no previous request has been made.
-     * @param {string=} params._since If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
-     * @param {string=} params._type String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) will be returned.
+     * @param {string=} params._page_token Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
+     * @param {string=} params._since If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     * @param {string=} params._type String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10968,15 +10968,15 @@ export namespace healthcare_v1 {
      */
     _count?: number;
     /**
-     * Used to retrieve the next or previous page of results when using pagination. Value should be set to the value of page_token set in next or previous page links' urls. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `page_token` if no previous request has been made.
+     * Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next".  Omit `_page_token` if no previous request has been made.
      */
     _page_token?: string;
     /**
-     * If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     * If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      */
     _since?: string;
     /**
-     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) will be returned.
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
      */
     _type?: string;
   }
@@ -12310,7 +12310,7 @@ export namespace healthcare_v1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.create
-     * @desc Creates a message and sends a notification to the Cloud Pub/Sub topic. If configured, the MLLP adapter listens to messages created by this method and sends those back to the hospital. A successful response indicates the message has been persisted to storage and a Cloud Pub/Sub notification has been sent. Sending to the hospital by the MLLP adapter happens asynchronously.
+     * @desc Parses and stores an HL7v2 message. This method triggers an asynchronous notification to any Cloud Pub/Sub topic configured in projects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the filtering matches the message. If an MLLP adapter is configured to listen to a Cloud Pub/Sub topic, the adapter transmits the message when a notification is received.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -12733,7 +12733,7 @@ export namespace healthcare_v1 {
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest
-     * @desc Ingests a new HL7v2 message from the hospital and sends a notification to the Cloud Pub/Sub topic. Return is an HL7v2 ACK message if the message was successfully stored. Otherwise an error is returned.
+     * @desc Parses and stores an HL7v2 message. This method triggers an asynchronous notification to any Cloud Pub/Sub topic configured in projects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the filtering matches the message. If an MLLP adapter is configured to listen to a Cloud Pub/Sub topic, the adapter transmits the message when a notification is received. This method also generates a response containing an HL7v2 acknowledgement (`ACK`) message when successful or a negative acknowledgement (`NACK`) message in case of error, suitable for replying to HL7v2 interface systems that expect these acknowledgements.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
