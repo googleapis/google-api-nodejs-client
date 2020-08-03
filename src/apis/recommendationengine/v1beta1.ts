@@ -183,7 +183,7 @@ export namespace recommendationengine_v1beta1 {
      */
     datasetId?: string | null;
     /**
-     * Required. Intermediate gcs dir used for the import. .
+     * Optional. Intermediate Cloud Storage directory used for the import. Can be specified if one wants to have the BigQuery export to a specific Cloud Storage directory.
      */
     gcsStagingDir?: string | null;
     /**
@@ -605,7 +605,7 @@ export namespace recommendationengine_v1beta1 {
      */
     dryRun?: boolean | null;
     /**
-     * Optional. Filter for restricting prediction results. Accepts values for tags and the `filterOutOfStockItems` flag.   * Tag expressions. Restricts predictions to items that match all of the    specified tags. Boolean operators `OR` and `NOT` are supported if the    expression is enclosed in parentheses, and must be separated from the    tag values by a space. `-&quot;tagA&quot;` is also supported and is equivalent to    `NOT &quot;tagA&quot;`. Tag values must be double quoted UTF-8 encoded strings    with a size limit of 1 KiB.   * filterOutOfStockItems. Restricts predictions to items that do not have a    stockState value of OUT_OF_STOCK.  Examples:   * tag=(&quot;Red&quot; OR &quot;Blue&quot;) tag=&quot;New-Arrival&quot; tag=(NOT &quot;promotional&quot;)  * filterOutOfStockItems  tag=(-&quot;promotional&quot;)  * filterOutOfStockItems  If your filter blocks all prediction results, generic (unfiltered) popular items are returned. This behavior can be overridden by setting `strictFiltering` to true in `PredictRequest.params`.
+     * Optional. Filter for restricting prediction results. Accepts values for tags and the `filterOutOfStockItems` flag.   * Tag expressions. Restricts predictions to items that match all of the    specified tags. Boolean operators `OR` and `NOT` are supported if the    expression is enclosed in parentheses, and must be separated from the    tag values by a space. `-&quot;tagA&quot;` is also supported and is equivalent to    `NOT &quot;tagA&quot;`. Tag values must be double quoted UTF-8 encoded strings    with a size limit of 1 KiB.   * filterOutOfStockItems. Restricts predictions to items that do not have a    stockState value of OUT_OF_STOCK.  Examples:   * tag=(&quot;Red&quot; OR &quot;Blue&quot;) tag=&quot;New-Arrival&quot; tag=(NOT &quot;promotional&quot;)  * filterOutOfStockItems  tag=(-&quot;promotional&quot;)  * filterOutOfStockItems  If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular items to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
      */
     filter?: string | null;
     /**
@@ -621,7 +621,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string | null;
     /**
-     * Optional. Additional domain specific parameters for the predictions.  Allowed values:  * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem    object will be returned in the   `PredictResponse.PredictionResult.itemMetadata` object in the method    response. * `returnItemScore`: Boolean. If set to true, the prediction &#39;score&#39;    corresponding to each returned item will be set in the `metadata`    field in the prediction response. The given &#39;score&#39; indicates the    probability of an item being clicked/purchased given the user&#39;s context    and history. * `strictFiltering`: Boolean. If set to true, the service will return empty    instead of generic (unfiltered) popular items if your filter blocks all    prediction results.
+     * Optional. Additional domain specific parameters for the predictions.  Allowed values:  * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem    object will be returned in the   `PredictResponse.PredictionResult.itemMetadata` object in the method    response. * `returnItemScore`: Boolean. If set to true, the prediction &#39;score&#39;    corresponding to each returned item will be set in the `metadata`    field in the prediction response. The given &#39;score&#39; indicates the    probability of an item being clicked/purchased given the user&#39;s context    and history. * `strictFiltering`: Boolean. True by default. If set to false, the service    will return generic (unfiltered) popular items instead of empty if your    filter blocks all prediction results.
      */
     params?: {[key: string]: any} | null;
     /**
