@@ -15,7 +15,7 @@
   "baseUrl": "https://blogger.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Blogger",
-  "description": "The Blogger API provides access to posts, comments and pages of a\n    Blogger blog.",
+  "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/blogger/docs/3.0/getting_started",
   "fullyEncodeReservedExpansion": true,
@@ -175,6 +175,12 @@
                 "AUTHOR",
                 "ADMIN"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             }
@@ -209,6 +215,12 @@
                 "AUTHOR",
                 "ADMIN"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             }
@@ -242,6 +254,12 @@
                 "AUTHOR",
                 "ADMIN"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -251,6 +269,10 @@
               "enum": [
                 "LIVE",
                 "DELETED"
+              ],
+              "enumDescriptions": [
+                "",
+                ""
               ],
               "location": "query",
               "repeated": true,
@@ -267,6 +289,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -385,6 +413,12 @@
                 "AUTHOR",
                 "ADMIN"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             }
@@ -446,6 +480,12 @@
                 "PENDING",
                 "SPAM"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             },
@@ -455,6 +495,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -510,6 +556,12 @@
                 "EMPTIED",
                 "PENDING",
                 "SPAM"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "repeated": true,
@@ -619,6 +671,11 @@
                 "30DAYS",
                 "7DAYS"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -688,6 +745,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -764,6 +827,10 @@
                 "LIVE",
                 "DRAFT"
               ],
+              "enumDescriptions": [
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -774,6 +841,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -1011,6 +1084,11 @@
                 "PUBLISHED",
                 "UPDATED"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             },
@@ -1028,6 +1106,11 @@
                 "DRAFT",
                 "SCHEDULED"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1043,6 +1126,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -1128,6 +1217,12 @@
                 "AUTHOR",
                 "ADMIN"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             }
@@ -1172,6 +1267,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -1268,6 +1369,11 @@
                 "PUBLISHED",
                 "UPDATED"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             },
@@ -1285,6 +1391,11 @@
                 "DRAFT",
                 "SCHEDULED"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1295,6 +1406,12 @@
                 "READER",
                 "AUTHOR",
                 "ADMIN"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "type": "string"
@@ -1452,6 +1569,11 @@
                 "PUBLISHED",
                 "UPDATED"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "type": "string"
             },
@@ -1555,7 +1677,7 @@
       }
     }
   },
-  "revision": "20200711",
+  "revision": "20200801",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {
@@ -1711,7 +1833,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Access permissions that the user has for the blog (ADMIN, AUTHOR, or\nREADER).",
+          "description": "Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).",
           "enum": [
             "VIEW_TYPE_UNSPECIFIED",
             "READER",
@@ -1962,7 +2084,7 @@
           "type": "string"
         },
         "title": {
-          "description": "The title of this entity. This is the name displayed in the Admin user\ninterface.",
+          "description": "The title of this entity. This is the name displayed in the Admin user interface.",
           "type": "string"
         },
         "updated": {
