@@ -250,6 +250,10 @@ export namespace accessapproval_v1 {
      * The time at which the approval request was dismissed.
      */
     dismissTime?: string | null;
+    /**
+     * This field will be true if the ApprovalRequest was implcitly dismissed due to inaction by the access approval approvers (the request is not acted on by the approvers before the exiration time).
+     */
+    implicit?: boolean | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
