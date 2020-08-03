@@ -816,10 +816,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1002,10 +999,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1198,10 +1192,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1363,10 +1354,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1549,10 +1537,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1709,10 +1694,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1895,10 +1877,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2148,10 +2127,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2293,10 +2269,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2451,10 +2424,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2589,10 +2559,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2739,10 +2706,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2890,10 +2854,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3035,10 +2996,7 @@ export namespace realtimebidding_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/adexchange.buyer',
-     *       'https://www.googleapis.com/auth/realtime-bidding',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

@@ -2,9 +2,6 @@
   "auth": {
     "oauth2": {
       "scopes": {
-        "https://www.googleapis.com/auth/adexchange.buyer": {
-          "description": "Manage your Ad Exchange buyer account configuration"
-        },
         "https://www.googleapis.com/auth/realtime-bidding": {
           "description": "See, create, edit, and delete your Authorized Buyers and Open Bidding account entities"
         }
@@ -160,7 +157,6 @@
                 "$ref": "ListCreativesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -189,7 +185,6 @@
                 "$ref": "WatchCreativesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             }
@@ -221,7 +216,6 @@
             "$ref": "GetRemarketingTagResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/adexchange.buyer",
             "https://www.googleapis.com/auth/realtime-bidding"
           ]
         }
@@ -254,7 +248,6 @@
                 "$ref": "Creative"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -290,7 +283,6 @@
                 "$ref": "Creative"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -342,7 +334,6 @@
                 "$ref": "ListCreativesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -377,7 +368,6 @@
                 "$ref": "Creative"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             }
@@ -410,7 +400,6 @@
                 "$ref": "UserList"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -439,7 +428,6 @@
                 "$ref": "UserList"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -465,7 +453,6 @@
                 "$ref": "UserList"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -491,7 +478,6 @@
                 "$ref": "GetRemarketingTagResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -528,7 +514,6 @@
                 "$ref": "ListUserListsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -557,7 +542,6 @@
                 "$ref": "UserList"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             },
@@ -586,7 +570,6 @@
                 "$ref": "UserList"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/adexchange.buyer",
                 "https://www.googleapis.com/auth/realtime-bidding"
               ]
             }
@@ -595,7 +578,7 @@
       }
     }
   },
-  "revision": "20200723",
+  "revision": "20200730",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "AdTechnologyProviders": {
