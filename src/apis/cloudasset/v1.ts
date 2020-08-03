@@ -783,11 +783,11 @@ export namespace cloudasset_v1 {
     version?: string | null;
   }
   /**
-   * A result of Resource Search, containing information of a cloud resoure.
+   * A result of Resource Search, containing information of a cloud resource.
    */
   export interface Schema$ResourceSearchResult {
     /**
-     * The additional attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding GCP service (e.g., Compute Engine). see [API references](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_resource_types) of CAIS supported resource types. You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the GCP service (e.g., Compute Engine) updates to a new incompatible API version.  To search against the `additional_attributes`:  * use a free text query to match the attributes values. Example: to search   `additional_attributes = { dnsName: &quot;foobar&quot; }`, you can issue a query   `&quot;foobar&quot;`.
+     * The additional searchable attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding GCP service (e.g., Compute Engine). see [API references and supported searchable attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types) for more information.  You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the GCP service updates to a new incompatible API version.  To search against the `additional_attributes`:  * use a free text query to match the attributes values. Example: to search   `additional_attributes = { dnsName: &quot;foobar&quot; }`, you can issue a query   `&quot;foobar&quot;`.
      */
     additionalAttributes?: {[key: string]: any} | null;
     /**
@@ -2125,7 +2125,7 @@ export namespace cloudasset_v1 {
 
     /**
      * cloudasset.searchAllIamPolicies
-     * @desc Searches all the IAM policies within the given accessible scope (e.g., a project, a folder or an organization). Callers should have `cloud.assets.SearchAllIamPolicies` permission upon the requested scope, otherwise the request will be rejected.
+     * @desc Searches all IAM policies within the specified scope, such as a project, folder, or organization. The caller must be granted the `cloudasset.assets.searchAllIamPolicies` permission on the desired scope, otherwise the request will be rejected.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2160,37 +2160,45 @@ export namespace cloudasset_v1 {
      *     // previous response. The values of all other method parameters must be
      *     // identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Optional. The query statement. An empty query can be specified to search all the IAM
-     *     // policies within the given `scope`.
+     *     // Optional. The query statement. See [how to construct a
+     *     // query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
+     *     // for more information. If not specified or empty, it will search all the
+     *     // IAM policies within the specified `scope`.
      *     //
      *     // Examples:
      *     //
-     *     // * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that
-     *     //   specify user "amy@gmail.com".
-     *     // * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that
-     *     //   specify the Compute Admin role.
-     *     // * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM
-     *     //   policy bindings that specify a role containing "storage.buckets.update"
-     *     //   permission.
-     *     // * `resource : "organizations/123"` to find Cloud IAM policy bindings that
-     *     //   are set on "organizations/123".
-     *     // * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`
-     *     //   to find Cloud IAM policy bindings that are set on "organizations/123" or
-     *     //   "folders/1234", and also specify user "amy".
-     *     //
-     *     // See [how to construct a
-     *     // query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
-     *     // for more details.
+     *     // * `policy : "amy@gmail.com"` to find IAM policy bindings that specify user
+     *     //   "amy@gmail.com".
+     *     // * `policy : "roles/compute.admin"` to find IAM policy bindings that specify
+     *     //   the Compute Admin role.
+     *     // * `policy.role.permissions : "storage.buckets.update"` to find IAM policy
+     *     //   bindings that specify a role containing "storage.buckets.update"
+     *     //   permission. Note that if callers don't have `iam.roles.get` access to a
+     *     //   role's included permissions, policy bindings that specify this role will
+     *     //   be dropped from the search results.
+     *     // * `resource : "organizations/123456"` to find IAM policy bindings
+     *     //   that are set on "organizations/123456".
+     *     // * `"Important"` to find IAM policy bindings that contain "Important" as a
+     *     //   word in any of the searchable fields (except for the included
+     *     //   permissions).
+     *     // * `"*por*"` to find IAM policy bindings which contain "por" as a substring
+     *     //   in any of the searchable fields (except for the included permissions).
+     *     // * `(resource : ("instance1" OR "instance2") AND policy : "amy")` to find
+     *     //   IAM policy bindings that are set on resources "instance1" or
+     *     //   "instance2" and also specify user "amy".
      *     query: 'placeholder-value',
-     *     // Required. A scope can be a project, a folder or an organization. The search is
-     *     // limited to the IAM policies within the `scope`.
+     *     // Required. A scope can be a project, a folder, or an organization. The search is
+     *     // limited to the IAM policies within the `scope`. The caller must be granted
+     *     // the
+     *     // [`cloudasset.assets.searchAllIamPolicies`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *     // permission on the desired scope.
      *     //
      *     // The allowed values are:
      *     //
-     *     // * projects/{PROJECT_ID}
-     *     // * projects/{PROJECT_NUMBER}
-     *     // * folders/{FOLDER_NUMBER}
-     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     // * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *     // * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *     // * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *     // * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      *     scope: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -2213,8 +2221,8 @@ export namespace cloudasset_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
      * @param {string=} params.pageToken Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.
-     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
-     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {string=} params.query Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more information. If not specified or empty, it will search all the IAM policies within the specified `scope`.  Examples:  * `policy : "amy@gmail.com"` to find IAM policy bindings that specify user   "amy@gmail.com". * `policy : "roles/compute.admin"` to find IAM policy bindings that specify   the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find IAM policy   bindings that specify a role containing "storage.buckets.update"   permission. Note that if callers don't have `iam.roles.get` access to a   role's included permissions, policy bindings that specify this role will   be dropped from the search results. * `resource : "organizations/123456"` to find IAM policy bindings   that are set on "organizations/123456". * `"Important"` to find IAM policy bindings that contain "Important" as a   word in any of the searchable fields (except for the included   permissions). * `"*por*"` to find IAM policy bindings which contain "por" as a substring   in any of the searchable fields (except for the included permissions). * `(resource : ("instance1" OR "instance2") AND policy : "amy")` to find   IAM policy bindings that are set on resources "instance1" or   "instance2" and also specify user "amy".
+     * @param {string} params.scope Required. A scope can be a project, a folder, or an organization. The search is limited to the IAM policies within the `scope`. The caller must be granted the [`cloudasset.assets.searchAllIamPolicies`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions) permission on the desired scope.  The allowed values are:  * projects/{PROJECT_ID} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER} (e.g., "projects/12345678") * folders/{FOLDER_NUMBER} (e.g., "folders/1234567") * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2309,7 +2317,7 @@ export namespace cloudasset_v1 {
 
     /**
      * cloudasset.searchAllResources
-     * @desc Searches all the resources within the given accessible scope (e.g., a project, a folder or an organization). Callers should have `cloud.assets.SearchAllResources` permission upon the requested scope, otherwise the request will be rejected.
+     * @desc Searches all Cloud resources within the specified scope, such as a project, folder, or organization. The caller must be granted the `cloudasset.assets.searchAllResources` permission on the desired scope, otherwise the request will be rejected.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2357,15 +2365,22 @@ export namespace cloudasset_v1 {
      *     // the previous response. The values of all other method parameters, must be
      *     // identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Optional. The query statement. An empty query can be specified to search all the
-     *     // resources of certain `asset_types` within the given `scope`.
+     *     // Optional. The query statement. See [how to construct a
+     *     // query](http://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *     // for more information. If not specified or empty, it will search all the
+     *     // resources within the specified `scope`. Note that the query string is
+     *     // compared against each Cloud IAM policy binding, including its members,
+     *     // roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
+     *     // contain the bindings that match your query. To learn more about the IAM
+     *     // policy structure, see [IAM policy
+     *     // doc](https://cloud.google.com/iam/docs/policies#structure).
      *     //
      *     // Examples:
      *     //
      *     // * `name : "Important"` to find Cloud resources whose name contains
      *     //   "Important" as a word.
      *     // * `displayName : "Impor*"` to find Cloud resources whose display name
-     *     //   contains "Impor" as a word prefix.
+     *     //   contains "Impor" as a prefix.
      *     // * `description : "*por*"` to find Cloud resources whose description
      *     //   contains "por" as a substring.
      *     // * `location : "us-west*"` to find Cloud resources whose location is
@@ -2377,7 +2392,7 @@ export namespace cloudasset_v1 {
      *     // * `labels.env : *` to find Cloud resources which have a label "env".
      *     // * `"Important"` to find Cloud resources which contain "Important" as a word
      *     //   in any of the searchable fields.
-     *     // * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix
+     *     // * `"Impor*"` to find Cloud resources which contain "Impor" as a prefix
      *     //   in any of the searchable fields.
      *     // * `"*por*"` to find Cloud resources which contain "por" as a substring in
      *     //   any of the searchable fields.
@@ -2385,20 +2400,18 @@ export namespace cloudasset_v1 {
      *     //   resources which contain "Important" as a word in any of the searchable
      *     //   fields and are also located in the "us-west1" region or the "global"
      *     //   location.
-     *     //
-     *     // See [how to construct a
-     *     // query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
-     *     // for more details.
      *     query: 'placeholder-value',
-     *     // Required. A scope can be a project, a folder or an organization. The search is
-     *     // limited to the resources within the `scope`.
+     *     // Required. A scope can be a project, a folder, or an organization. The search is
+     *     // limited to the resources within the `scope`. The caller must be granted the
+     *     // [`cloudasset.assets.searchAllResources`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *     // permission on the desired scope.
      *     //
      *     // The allowed values are:
      *     //
-     *     // * projects/{PROJECT_ID}
-     *     // * projects/{PROJECT_NUMBER}
-     *     // * folders/{FOLDER_NUMBER}
-     *     // * organizations/{ORGANIZATION_NUMBER}
+     *     // * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *     // * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *     // * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *     // * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      *     scope: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -2423,8 +2436,8 @@ export namespace cloudasset_v1 {
      * @param {string=} params.orderBy Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
      * @param {integer=} params.pageSize Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.
-     * @param {string=} params.query Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
-     * @param {string} params.scope Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * @param {string=} params.query Optional. The query statement. See [how to construct a query](http://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Note that the query string is compared against each Cloud IAM policy binding, including its members, roles, and Cloud IAM conditions. The returned Cloud IAM policies will only contain the bindings that match your query. To learn more about the IAM policy structure, see [IAM policy doc](https://cloud.google.com/iam/docs/policies#structure).  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.
+     * @param {string} params.scope Required. A scope can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The caller must be granted the [`cloudasset.assets.searchAllResources`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions) permission on the desired scope.  The allowed values are:  * projects/{PROJECT_ID} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER} (e.g., "projects/12345678") * folders/{FOLDER_NUMBER} (e.g., "folders/1234567") * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2561,11 +2574,11 @@ export namespace cloudasset_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The query statement. An empty query can be specified to search all the IAM policies within the given `scope`.  Examples:  * `policy : "amy@gmail.com"` to find Cloud IAM policy bindings that   specify user "amy@gmail.com". * `policy : "roles/compute.admin"` to find Cloud IAM policy bindings that   specify the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find Cloud IAM   policy bindings that specify a role containing "storage.buckets.update"   permission. * `resource : "organizations/123"` to find Cloud IAM policy bindings that   are set on "organizations/123". * `(resource : ("organizations/123" OR "folders/1234") AND policy : "amy")`   to find Cloud IAM policy bindings that are set on "organizations/123" or   "folders/1234", and also specify user "amy".  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more details.
+     * Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more information. If not specified or empty, it will search all the IAM policies within the specified `scope`.  Examples:  * `policy : "amy@gmail.com"` to find IAM policy bindings that specify user   "amy@gmail.com". * `policy : "roles/compute.admin"` to find IAM policy bindings that specify   the Compute Admin role. * `policy.role.permissions : "storage.buckets.update"` to find IAM policy   bindings that specify a role containing "storage.buckets.update"   permission. Note that if callers don't have `iam.roles.get` access to a   role's included permissions, policy bindings that specify this role will   be dropped from the search results. * `resource : "organizations/123456"` to find IAM policy bindings   that are set on "organizations/123456". * `"Important"` to find IAM policy bindings that contain "Important" as a   word in any of the searchable fields (except for the included   permissions). * `"*por*"` to find IAM policy bindings which contain "por" as a substring   in any of the searchable fields (except for the included permissions). * `(resource : ("instance1" OR "instance2") AND policy : "amy")` to find   IAM policy bindings that are set on resources "instance1" or   "instance2" and also specify user "amy".
      */
     query?: string;
     /**
-     * Required. A scope can be a project, a folder or an organization. The search is limited to the IAM policies within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * Required. A scope can be a project, a folder, or an organization. The search is limited to the IAM policies within the `scope`. The caller must be granted the [`cloudasset.assets.searchAllIamPolicies`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions) permission on the desired scope.  The allowed values are:  * projects/{PROJECT_ID} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER} (e.g., "projects/12345678") * folders/{FOLDER_NUMBER} (e.g., "folders/1234567") * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      */
     scope?: string;
   }
@@ -2588,11 +2601,11 @@ export namespace cloudasset_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. The query statement. An empty query can be specified to search all the resources of certain `asset_types` within the given `scope`.  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a word prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a word prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.  See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more details.
+     * Optional. The query statement. See [how to construct a query](http://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Note that the query string is compared against each Cloud IAM policy binding, including its members, roles, and Cloud IAM conditions. The returned Cloud IAM policies will only contain the bindings that match your query. To learn more about the IAM policy structure, see [IAM policy doc](https://cloud.google.com/iam/docs/policies#structure).  Examples:  * `name : "Important"` to find Cloud resources whose name contains   "Important" as a word. * `displayName : "Impor*"` to find Cloud resources whose display name   contains "Impor" as a prefix. * `description : "*por*"` to find Cloud resources whose description   contains "por" as a substring. * `location : "us-west*"` to find Cloud resources whose location is   prefixed with "us-west". * `labels : "prod"` to find Cloud resources whose labels contain "prod" as   a key or value. * `labels.env : "prod"` to find Cloud resources which have a label "env"   and its value is "prod". * `labels.env : *` to find Cloud resources which have a label "env". * `"Important"` to find Cloud resources which contain "Important" as a word   in any of the searchable fields. * `"Impor*"` to find Cloud resources which contain "Impor" as a prefix   in any of the searchable fields. * `"*por*"` to find Cloud resources which contain "por" as a substring in   any of the searchable fields. * `("Important" AND location : ("us-west1" OR "global"))` to find Cloud   resources which contain "Important" as a word in any of the searchable   fields and are also located in the "us-west1" region or the "global"   location.
      */
     query?: string;
     /**
-     * Required. A scope can be a project, a folder or an organization. The search is limited to the resources within the `scope`.  The allowed values are:  * projects/{PROJECT_ID} * projects/{PROJECT_NUMBER} * folders/{FOLDER_NUMBER} * organizations/{ORGANIZATION_NUMBER}
+     * Required. A scope can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The caller must be granted the [`cloudasset.assets.searchAllResources`](http://cloud.google.com/asset-inventory/docs/access-control#required_permissions) permission on the desired scope.  The allowed values are:  * projects/{PROJECT_ID} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER} (e.g., "projects/12345678") * folders/{FOLDER_NUMBER} (e.g., "folders/1234567") * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      */
     scope?: string;
   }

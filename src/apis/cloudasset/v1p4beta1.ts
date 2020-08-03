@@ -356,7 +356,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     accessSelector?: Schema$AccessSelector;
     /**
-     * Optional. Specifies an identity for analysis. Either ResourceSelector or IdentitySelector must be specified.
+     * Optional. Specifies an identity for analysis.
      */
     identitySelector?: Schema$IdentitySelector;
     /**
@@ -364,7 +364,7 @@ export namespace cloudasset_v1p4beta1 {
      */
     parent?: string | null;
     /**
-     * Optional. Specifies a resource for analysis. Either ResourceSelector or IdentitySelector must be specified.
+     * Optional. Specifies a resource for analysis.
      */
     resourceSelector?: Schema$ResourceSelector;
   }

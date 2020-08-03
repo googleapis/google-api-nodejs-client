@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20200613",
+  "revision": "20200724",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -557,7 +557,7 @@
         },
         "identitySelector": {
           "$ref": "IdentitySelector",
-          "description": "Optional. Specifies an identity for analysis. Either ResourceSelector or\nIdentitySelector must be specified."
+          "description": "Optional. Specifies an identity for analysis."
         },
         "parent": {
           "description": "Required. The relative name of the root asset. Only resources and IAM policies within\nthe parent will be analyzed. This can only be an organization number (such\nas \"organizations/123\") or a folder number (such as \"folders/123\").\n\nTo know how to get organization id, visit [here\n](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).\n\nTo know how to get folder id, visit [here\n](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).",
@@ -565,7 +565,7 @@
         },
         "resourceSelector": {
           "$ref": "ResourceSelector",
-          "description": "Optional. Specifies a resource for analysis. Either ResourceSelector or\nIdentitySelector must be specified."
+          "description": "Optional. Specifies a resource for analysis."
         }
       },
       "type": "object"
