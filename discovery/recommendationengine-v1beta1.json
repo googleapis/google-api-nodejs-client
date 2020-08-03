@@ -14,7 +14,7 @@
   "canonicalName": "Recommendations AI",
   "description": "Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/recommendations/docs/",
+  "documentationLink": "https://cloud.google.com/recommendations-ai/docs",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -872,7 +872,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200728",
   "rootUrl": "https://recommendationengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -950,7 +950,7 @@
           "type": "string"
         },
         "gcsStagingDir": {
-          "description": "Required. Intermediate gcs dir used for the import.\n.",
+          "description": "Optional. Intermediate Cloud Storage directory used for the import. Can be specified\nif one wants to have the BigQuery export to a specific Cloud Storage\ndirectory.",
           "type": "string"
         },
         "projectId": {
@@ -1484,7 +1484,7 @@
           "type": "boolean"
         },
         "filter": {
-          "description": "Optional. Filter for restricting prediction results. Accepts values for\ntags and the `filterOutOfStockItems` flag.\n\n * Tag expressions. Restricts predictions to items that match all of the\n   specified tags. Boolean operators `OR` and `NOT` are supported if the\n   expression is enclosed in parentheses, and must be separated from the\n   tag values by a space. `-\"tagA\"` is also supported and is equivalent to\n   `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings\n   with a size limit of 1 KiB.\n\n * filterOutOfStockItems. Restricts predictions to items that do not have a\n   stockState value of OUT_OF_STOCK.\n\nExamples:\n\n * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\")\n * filterOutOfStockItems  tag=(-\"promotional\")\n * filterOutOfStockItems\n\nIf your filter blocks all prediction results, generic (unfiltered) popular\nitems are returned. This behavior can be overridden by setting\n`strictFiltering` to true in `PredictRequest.params`.",
+          "description": "Optional. Filter for restricting prediction results. Accepts values for\ntags and the `filterOutOfStockItems` flag.\n\n * Tag expressions. Restricts predictions to items that match all of the\n   specified tags. Boolean operators `OR` and `NOT` are supported if the\n   expression is enclosed in parentheses, and must be separated from the\n   tag values by a space. `-\"tagA\"` is also supported and is equivalent to\n   `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings\n   with a size limit of 1 KiB.\n\n * filterOutOfStockItems. Restricts predictions to items that do not have a\n   stockState value of OUT_OF_STOCK.\n\nExamples:\n\n * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\")\n * filterOutOfStockItems  tag=(-\"promotional\")\n * filterOutOfStockItems\n\nIf your filter blocks all prediction results, nothing will be returned. If\nyou want generic (unfiltered) popular items to be returned instead, set\n`strictFiltering` to false in `PredictRequest.params`.",
           "type": "string"
         },
         "labels": {
@@ -1507,7 +1507,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Optional. Additional domain specific parameters for the predictions.\n\nAllowed values:\n\n* `returnCatalogItem`: Boolean. If set to true, the associated catalogItem\n   object will be returned in the\n  `PredictResponse.PredictionResult.itemMetadata` object in the method\n   response.\n* `returnItemScore`: Boolean. If set to true, the prediction 'score'\n   corresponding to each returned item will be set in the `metadata`\n   field in the prediction response. The given 'score' indicates the\n   probability of an item being clicked/purchased given the user's context\n   and history.\n* `strictFiltering`: Boolean. If set to true, the service will return empty\n   instead of generic (unfiltered) popular items if your filter blocks all\n   prediction results.",
+          "description": "Optional. Additional domain specific parameters for the predictions.\n\nAllowed values:\n\n* `returnCatalogItem`: Boolean. If set to true, the associated catalogItem\n   object will be returned in the\n  `PredictResponse.PredictionResult.itemMetadata` object in the method\n   response.\n* `returnItemScore`: Boolean. If set to true, the prediction 'score'\n   corresponding to each returned item will be set in the `metadata`\n   field in the prediction response. The given 'score' indicates the\n   probability of an item being clicked/purchased given the user's context\n   and history.\n* `strictFiltering`: Boolean. True by default. If set to false, the service\n   will return generic (unfiltered) popular items instead of empty if your\n   filter blocks all prediction results.",
           "type": "object"
         },
         "userEvent": {
