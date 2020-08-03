@@ -141,11 +141,11 @@ export namespace managedidentities_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -220,11 +220,11 @@ export namespace managedidentities_v1 {
     updateTime?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -361,7 +361,7 @@ export namespace managedidentities_v1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
     name?: string | null;
     /**
@@ -475,7 +475,7 @@ export namespace managedidentities_v1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
-     * Exclusion duration. No restrictions on the possible values.  When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
      */
     duration?: string | null;
     /**
@@ -500,7 +500,7 @@ export namespace managedidentities_v1 {
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -508,7 +508,7 @@ export namespace managedidentities_v1 {
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
     /**
-     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration.  Field is mandatory and must not be empty.
+     * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
     tier?: string | null;
   }
@@ -564,7 +564,7 @@ export namespace managedidentities_v1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -593,7 +593,7 @@ export namespace managedidentities_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -601,7 +601,7 @@ export namespace managedidentities_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -639,7 +639,7 @@ export namespace managedidentities_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -647,11 +647,11 @@ export namespace managedidentities_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -691,7 +691,7 @@ export namespace managedidentities_v1 {
     policy?: Schema$Policy;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -699,7 +699,7 @@ export namespace managedidentities_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -963,8 +963,7 @@ export namespace managedidentities_v1 {
      *   const res = await managedidentities.projects.locations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
-     *     // If true, the returned list will include locations which are not yet
-     *     // revealed.
+     *     // If true, the returned list will include locations which are not yet revealed.
      *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1166,8 +1165,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.attachTrust(
      *     {
-     *       // Required. The resource domain name, project name and location using the form:
-     *       // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // Required. The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -1313,21 +1311,9 @@ export namespace managedidentities_v1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.create({
-     *     // Required. The fully qualified domain name.
-     *     // e.g. mydomain.myorganization.com, with the following restrictions:
-     *     //
-     *     //  * Must contain only lowercase letters, numbers, periods and hyphens.
-     *     //  * Must start with a letter.
-     *     //  * Must contain between 2-64 characters.
-     *     //  * Must end with a number or a letter.
-     *     //  * Must not start with period.
-     *     //  * First segement length (mydomain form example above) shouldn't exceed
-     *     //    15 chars.
-     *     //  * The last segment cannot be fully numeric.
-     *     //  * Must be unique within the customer project.
+     *     // Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * First segement length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric. * Must be unique within the customer project.
      *     domainName: 'placeholder-value',
-     *     // Required. The resource project name and location using the form:
-     *     // `projects/{project_id}/locations/global`
+     *     // Required. The resource project name and location using the form: `projects/{project_id}/locations/global`
      *     parent: 'projects/my-project/locations/global',
      *
      *     // Request body metadata
@@ -1370,7 +1356,7 @@ export namespace managedidentities_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.domainName Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions:   * Must contain only lowercase letters, numbers, periods and hyphens.  * Must start with a letter.  * Must contain between 2-64 characters.  * Must end with a number or a letter.  * Must not start with period.  * First segement length (mydomain form example above) shouldn't exceed    15 chars.  * The last segment cannot be fully numeric.  * Must be unique within the customer project.
+     * @param {string=} params.domainName Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * First segement length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric. * Must be unique within the customer project.
      * @param {string} params.parent Required. The resource project name and location using the form: `projects/{project_id}/locations/global`
      * @param {().Domain} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1484,8 +1470,7 @@ export namespace managedidentities_v1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.delete({
-     *     // Required. The domain resource name using the form:
-     *     // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     // Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *     name: 'projects/my-project/locations/global/domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -1619,8 +1604,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.detachTrust(
      *     {
-     *       // Required. The resource domain name, project name, and location using the form:
-     *       // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // Required. The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -1766,8 +1750,7 @@ export namespace managedidentities_v1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.get({
-     *     // Required. The domain resource name using the form:
-     *     // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     // Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *     name: 'projects/my-project/locations/global/domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -1908,21 +1891,9 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/domains/my-domain',
      *     }
      *   );
@@ -1945,7 +1916,7 @@ export namespace managedidentities_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2058,26 +2029,15 @@ export namespace managedidentities_v1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.list({
-     *     // Optional. A filter specifying constraints of a list operation.
-     *     // For example, `Domain.fqdn="mydomain.myorginization"`.
+     *     // Optional. A filter specifying constraints of a list operation. For example, `Domain.fqdn="mydomain.myorginization"`.
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results. See
-     *     // [Sorting
-     *     // order](https://cloud.google.com/apis/design/design_patterns#sorting_order)
-     *     // for more information.
+     *     // Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return.
-     *     // If not specified, a default value of 1000 will be used.
-     *     // Regardless of the page_size value, the response may include a partial list.
-     *     // Callers should rely on a response's
-     *     // next_page_token
-     *     // to determine if there are additional results to list.
+     *     // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used. Regardless of the page_size value, the response may include a partial list. Callers should rely on a response's next_page_token to determine if there are additional results to list.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The `next_page_token` value returned from a previous ListDomainsRequest
-     *     // request, if any.
+     *     // Optional. The `next_page_token` value returned from a previous ListDomainsRequest request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the domain location using the form:
-     *     // `projects/{project_id}/locations/global`
+     *     // Required. The resource name of the domain location using the form: `projects/{project_id}/locations/global`
      *     parent: 'projects/my-project/locations/global',
      *   });
      *   console.log(res.data);
@@ -2218,15 +2178,9 @@ export namespace managedidentities_v1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.patch({
-     *     // Required. The unique name of the domain using the form:
-     *     // `projects/{project_id}/locations/global/domains/{domain_name}`.
+     *     // Required. The unique name of the domain using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
      *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *     // Required. Mask of fields to update. At least one path must be supplied in this
-     *     // field. The elements of the repeated paths field may only include
-     *     // fields from Domain:
-     *     //  * `labels`
-     *     //  * `locations`
-     *     //  * `authorized_networks`
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2270,7 +2224,7 @@ export namespace managedidentities_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The unique name of the domain using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain:  * `labels`  * `locations`  * `authorized_networks`
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
      * @param {().Domain} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2381,8 +2335,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.reconfigureTrust(
      *     {
-     *       // Required. The resource domain name, project name and location using the form:
-     *       // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // Required. The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2530,8 +2483,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.resetAdminPassword(
      *     {
-     *       // Required. The domain resource name using the form:
-     *       // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2653,7 +2605,7 @@ export namespace managedidentities_v1 {
 
     /**
      * managedidentities.projects.locations.global.domains.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2679,8 +2631,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2799,7 +2750,7 @@ export namespace managedidentities_v1 {
 
     /**
      * managedidentities.projects.locations.global.domains.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2825,8 +2776,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2976,8 +2926,7 @@ export namespace managedidentities_v1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.validateTrust(
      *     {
-     *       // Required. The resource domain name, project name, and location using the form:
-     *       // `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // Required. The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -3112,7 +3061,7 @@ export namespace managedidentities_v1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Create
     extends StandardParameters {
     /**
-     * Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions:   * Must contain only lowercase letters, numbers, periods and hyphens.  * Must start with a letter.  * Must contain between 2-64 characters.  * Must end with a number or a letter.  * Must not start with period.  * First segement length (mydomain form example above) shouldn't exceed    15 chars.  * The last segment cannot be fully numeric.  * Must be unique within the customer project.
+     * Required. The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * First segement length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric. * Must be unique within the customer project.
      */
     domainName?: string;
     /**
@@ -3154,7 +3103,7 @@ export namespace managedidentities_v1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3192,7 +3141,7 @@ export namespace managedidentities_v1 {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain:  * `labels`  * `locations`  * `authorized_networks`
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
      */
     updateMask?: string;
 
@@ -3270,7 +3219,7 @@ export namespace managedidentities_v1 {
 
     /**
      * managedidentities.projects.locations.global.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3535,7 +3484,7 @@ export namespace managedidentities_v1 {
 
     /**
      * managedidentities.projects.locations.global.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3668,7 +3617,7 @@ export namespace managedidentities_v1 {
 
     /**
      * managedidentities.projects.locations.global.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
