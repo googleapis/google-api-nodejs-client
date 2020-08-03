@@ -288,7 +288,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Name of the parent Application resource. Example: `apps/myapp`.",
+                  "description": "Name of the parent Project resource. Example: `projects/myproject`.",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+$",
                   "required": true,
@@ -963,6 +963,46 @@
     },
     "projects": {
       "resources": {
+        "authorizeddomains": {
+          "methods": {
+            "list": {
+              "description": "List authorized domains.",
+              "flatPath": "v1/projects/{projectsId}/authorizeddomains",
+              "httpMethod": "GET",
+              "id": "run.projects.authorizeddomains.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Maximum results to return per page.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Continuation token for fetching the next page of results.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Name of the parent Project resource. Example: `projects/myproject`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/authorizeddomains",
+              "response": {
+                "$ref": "ListAuthorizedDomainsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "locations": {
           "methods": {
             "list": {
@@ -1031,7 +1071,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Name of the parent Application resource. Example: `apps/myapp`.",
+                      "description": "Name of the parent Project resource. Example: `projects/myproject`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1942,7 +1982,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200727",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2012,7 +2052,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Read only. Full path to the `AuthorizedDomain` resource in the API. Example: `apps/myapp/authorizedDomains/example.com`.",
+          "description": "Deprecated Read only. Full path to the `AuthorizedDomain` resource in the API. Example: `projects/myproject/authorizedDomains/example.com`.",
           "type": "string"
         }
       },
