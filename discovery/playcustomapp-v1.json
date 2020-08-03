@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20200707",
+  "revision": "20200801",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "CustomApp": {
@@ -166,7 +166,8 @@
           "type": "string"
         },
         "packageName": {
-          "description": "Output only. Package name of the created Android app.\nOnly present in the API response.",
+          "description": "Output only. Package name of the created Android app. Only present in the API response.",
+          "readOnly": true,
           "type": "string"
         },
         "title": {

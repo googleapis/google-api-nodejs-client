@@ -239,14 +239,13 @@
       "name": "adsense",
       "version": "v1.4",
       "title": "AdSense Management API",
-      "description": "Accesses AdSense publishers' inventory and generates performance reports.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adsense/v1.4/rest",
-      "discoveryLink": "./apis/adsense/v1.4/rest",
+      "description": "The AdSense Management API allows publishers to access their inventory and run earnings and performance reports.",
+      "discoveryRestUrl": "https://adsense.googleapis.com/$discovery/rest?version=v1.4",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/adsense-16.png",
-        "x32": "https://www.google.com/images/icons/product/adsense-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/adsense/management/",
+      "documentationLink": "http://code.google.com/apis/adsense/management/",
       "preferred": true
     },
     {
@@ -2162,22 +2161,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "fitness:v1",
-      "name": "fitness",
-      "version": "v1",
-      "title": "Fitness",
-      "description": "Stores and accesses user data in the fitness store from apps on any platform.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/fitness/v1/rest",
-      "discoveryLink": "./apis/fitness/v1/rest",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/fit/rest/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "games:v1",
       "name": "games",
       "version": "v1",
@@ -2706,6 +2689,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "memcache:v1",
+      "name": "memcache",
+      "version": "v1",
+      "title": "Cloud Memorystore for Memcached API",
+      "description": "Google Cloud Memorystore for Memcached API is used for creating and managing Memcached instances in GCP.",
+      "discoveryRestUrl": "https://memcache.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/memorystore/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "memcache:v1beta2",
       "name": "memcache",
       "version": "v1beta2",
@@ -2717,7 +2715,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/memorystore/",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
