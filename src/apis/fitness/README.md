@@ -2,7 +2,7 @@
 
 # fitness
 
-> Stores and accesses user data in the fitness store from apps on any platform.
+> 
 
 ## Installation
 
