@@ -128,7 +128,7 @@ export namespace gameservices_v1 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -142,7 +142,7 @@ export namespace gameservices_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -169,11 +169,11 @@ export namespace gameservices_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -224,7 +224,7 @@ export namespace gameservices_v1 {
     values?: string[] | null;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names:    - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present,      otherwise the value of IAMContext.authority_selector if present, and      otherwise a representation of IAMContext.principal; or    - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a      token or authority selector is present; or    - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples:   counter { metric: &quot;/debug_access_count&quot;  field: &quot;iam_principal&quot; }   ==&gt; increment counter /iam/policy/debug_access_count                         {iam_principal=[value of IAMContext.principal]}
+   * Increment a streamz counter with the specified metric and field names. Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended. Field names correspond to IAM request parameters and field values are their respective values. Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields. Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}
    */
   export interface Schema$CounterOptions {
     /**
@@ -345,11 +345,11 @@ export namespace gameservices_v1 {
     reservedReplicas?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -424,7 +424,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string | null;
     /**
@@ -466,7 +466,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server config. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example,  `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+     * The resource name of the game server config. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     name?: string | null;
     /**
@@ -512,7 +512,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server deployment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string | null;
     /**
@@ -529,7 +529,7 @@ export namespace gameservices_v1 {
      */
     createTime?: string | null;
     /**
-     * The default game server config is applied to all realms unless overridden in the rollout. For example,  `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+     * The default game server config is applied to all realms unless overridden in the rollout. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     defaultGameServerConfig?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace gameservices_v1 {
      */
     gameServerConfigOverrides?: Schema$GameServerConfigOverride[];
     /**
-     * The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string | null;
     /**
@@ -554,7 +554,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$GkeClusterReference {
     /**
-     * The full or partial name of a GKE cluster, using one of the following forms:  * `projects/{project}/locations/{location}/clusters/{cluster}`  * `locations/{location}/clusters/{cluster}`  * `{cluster}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
+     * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project}/locations/{location}/clusters/{cluster}` * `locations/{location}/clusters/{cluster}` * `{cluster}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
      */
     cluster?: string | null;
   }
@@ -670,7 +670,7 @@ export namespace gameservices_v1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -716,7 +716,7 @@ export namespace gameservices_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -724,7 +724,7 @@ export namespace gameservices_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -784,7 +784,7 @@ export namespace gameservices_v1 {
     errorMessage?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -796,16 +796,16 @@ export namespace gameservices_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     iamOwned?: boolean | null;
     /**
-     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is   granted.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
+     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      */
     rules?: Schema$Rule[];
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -949,7 +949,7 @@ export namespace gameservices_v1 {
      */
     notIn?: string[] | null;
     /**
-     * A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+     * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
      */
     permissions?: string[] | null;
   }
@@ -975,7 +975,7 @@ export namespace gameservices_v1 {
     selectors?: Schema$LabelSelector[];
   }
   /**
-   * The schedule of a recurring or one time event. The event&#39;s time span is specified by start_time and end_time. If the scheduled event&#39;s timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring.    start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time   cron job: cron spec start time + duration
+   * The schedule of a recurring or one time event. The event&#39;s time span is specified by start_time and end_time. If the scheduled event&#39;s timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration
    */
   export interface Schema$Schedule {
     /**
@@ -1004,7 +1004,7 @@ export namespace gameservices_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -1013,7 +1013,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$SpecSource {
     /**
-     * The game server config resource. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}`.
+     * The game server config resource. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}`.
      */
     gameServerConfigName?: string | null;
     /**
@@ -1022,7 +1022,7 @@ export namespace gameservices_v1 {
     name?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1030,7 +1030,7 @@ export namespace gameservices_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1047,11 +1047,11 @@ export namespace gameservices_v1 {
      */
     fleetDetails?: Schema$TargetFleetDetails[];
     /**
-     * The game server cluster name. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.
+     * The game server cluster name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.
      */
     gameServerClusterName?: string | null;
     /**
-     * The game server deployment name. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.
+     * The game server deployment name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.
      */
     gameServerDeploymentName?: string | null;
   }
@@ -1308,8 +1308,7 @@ export namespace gameservices_v1 {
      *   const res = await gameservices.projects.locations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
-     *     // If true, the returned list will include locations which are not yet
-     *     // revealed.
+     *     // If true, the returned list will include locations which are not yet revealed.
      *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1501,8 +1500,7 @@ export namespace gameservices_v1 {
      *     {
      *       // Required. The ID of the game server delpoyment resource to be created.
      *       deploymentId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       // `projects/{project}/locations/{location}`.
+     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1654,9 +1652,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
      *     {
-     *       // Required. The name of the game server delpoyment to delete. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -1682,7 +1678,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1791,9 +1787,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
      *     {
-     *       // Required. The name of the game server delpoyment. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -1822,7 +1816,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {().FetchDeploymentStateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1943,9 +1937,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
-     *     // Required. The name of the game server delpoyment to retrieve. Uses the form:
-     *     //
-     *     // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *     // Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *     name:
      *       'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *   });
@@ -1971,7 +1963,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2085,21 +2077,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -2126,7 +2106,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2239,9 +2219,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
      *     {
-     *       // Required. The name of the game server delpoyment to retrieve. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     *       // Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -2268,7 +2246,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     * @param {string} params.name Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2388,20 +2366,13 @@ export namespace gameservices_v1 {
      *   const res = await gameservices.projects.locations.gameServerDeployments.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at
-     *     // https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return.  If unspecified, the server
-     *     // will pick an appropriate default. The server may return fewer items than
-     *     // requested. A caller should only rely on response's
-     *     // next_page_token to
-     *     // determine if there are more GameServerDeployments left to be queried.
+     *     // Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous List request,
-     *     // if any.
+     *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Uses the form:
-     *     // `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2425,7 +2396,7 @@ export namespace gameservices_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. The filter to apply to list results.
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.  If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2548,20 +2519,10 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
      *     {
-     *       // The resource name of the game server deployment. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
-     *       // For example,
-     *       //
-     *       // `projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.
+     *       // The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in
-     *       // this field. For the `FieldMask` definition, see
-     *       //
-     *       // https:
-     *       // //developers.google.com/protocol-buffers
-     *       // // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2599,8 +2560,8 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string} params.name The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2710,23 +2671,12 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
      *     {
-     *       // The resource name of the game server deployment rollout. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
-     *       // For example,
-     *       //
-     *       // `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Optional. The target timestamp to compute the preview. Defaults to the immediately
-     *       // after the proposed rollout completes.
+     *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
      *       previewTime: 'placeholder-value',
-     *       // Optional. Mask of fields to update. At least one path must be supplied in
-     *       // this field. For the `FieldMask` definition, see
-     *       //
-     *       // https:
-     *       // //developers.google.com/protocol-buffers
-     *       // // /docs/reference/google.protobuf#fieldmask
+     *       // Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2762,9 +2712,9 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
-     * @param {string=} params.updateMask Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string=} params.updateMask Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeploymentRollout} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2874,7 +2824,7 @@ export namespace gameservices_v1 {
 
     /**
      * gameservices.projects.locations.gameServerDeployments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2900,8 +2850,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3024,7 +2973,7 @@ export namespace gameservices_v1 {
 
     /**
      * gameservices.projects.locations.gameServerDeployments.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3050,8 +2999,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3201,20 +3149,10 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
      *     {
-     *       // The resource name of the game server deployment rollout. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
-     *       // For example,
-     *       //
-     *       // `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in
-     *       // this field. For the `FieldMask` definition, see
-     *       //
-     *       // https:
-     *       // //developers.google.com/protocol-buffers
-     *       // // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3252,8 +3190,8 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string} params.name The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerDeploymentRollout} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3358,14 +3296,14 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
 
@@ -3377,14 +3315,14 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3395,7 +3333,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     * Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      */
     name?: string;
   }
@@ -3410,7 +3348,7 @@ export namespace gameservices_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.  If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      */
     pageSize?: number;
     /**
@@ -3425,11 +3363,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Patch
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3441,7 +3379,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3449,7 +3387,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3485,11 +3423,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example,  `projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3535,9 +3473,7 @@ export namespace gameservices_v1 {
      *     {
      *       // Required. The ID of the game server config resource to be created.
      *       configId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3578,7 +3514,7 @@ export namespace gameservices_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.configId Required. The ID of the game server config resource to be created.
-     * @param {string} params.parent Required. The parent resource name. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      * @param {().GameServerConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3691,9 +3627,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
      *     {
-     *       // Required. The name of the game server config to delete. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3719,7 +3653,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * @param {string} params.name Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3828,9 +3762,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
      *     {
-     *       // Required. The name of the game server config to retrieve. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3858,7 +3790,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * @param {string} params.name Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3969,20 +3901,13 @@ export namespace gameservices_v1 {
      *     {
      *       // Optional. The filter to apply to list results.
      *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at
-     *       // https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return.  If unspecified, server
-     *       // will pick an appropriate default. Server may return fewer items than
-     *       // requested. A caller should only rely on response's
-     *       // next_page_token to
-     *       // determine if there are more GameServerConfigs left to be queried.
+     *       // Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -4008,9 +3933,9 @@ export namespace gameservices_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. The filter to apply to list results.
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.  If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent Required. The parent resource name. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4111,7 +4036,7 @@ export namespace gameservices_v1 {
      */
     configId?: string;
     /**
-     * Required. The parent resource name. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      */
     parent?: string;
 
@@ -4123,14 +4048,14 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to delete. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to retrieve. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      */
     name?: string;
   }
@@ -4145,7 +4070,7 @@ export namespace gameservices_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.  If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      */
     pageSize?: number;
     /**
@@ -4153,7 +4078,7 @@ export namespace gameservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Uses the form:  `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     * Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
      */
     parent?: string;
   }
@@ -4166,7 +4091,7 @@ export namespace gameservices_v1 {
 
     /**
      * gameservices.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4425,7 +4350,7 @@ export namespace gameservices_v1 {
 
     /**
      * gameservices.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4557,7 +4482,7 @@ export namespace gameservices_v1 {
 
     /**
      * gameservices.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4785,8 +4710,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
-     *     // Required. The parent resource name. Uses the form:
-     *     // `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID of the realm resource to be created.
      *     realmId: 'placeholder-value',
@@ -4939,8 +4863,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
-     *     // Required. The name of the realm to delete. Uses the form:
-     *     // `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -5072,8 +4995,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
-     *     // Required. The name of the realm to retrieve. Uses the form:
-     *     // `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -5209,20 +5131,13 @@ export namespace gameservices_v1 {
      *   const res = await gameservices.projects.locations.realms.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at
-     *     // https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return.  If unspecified, server
-     *     // will pick an appropriate default. Server may return fewer items than
-     *     // requested. A caller should only rely on response's
-     *     // next_page_token to
-     *     // determine if there are more realms left to be queried.
+     *     // Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous List request,
-     *     // if any.
+     *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Uses the form:
-     *     // `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5246,7 +5161,7 @@ export namespace gameservices_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. The filter to apply to list results.
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.  If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5362,16 +5277,9 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
-     *     // The resource name of the realm. Uses the form:
-     *     // `projects/{project}/locations/{location}/realms/{realm}`. For
-     *     // example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
-     *     // Required. The update mask applies to the resource. For the `FieldMask`
-     *     // definition, see
-     *     //
-     *     // https:
-     *     // //developers.google.com/protocol-buffers
-     *     // // /docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5410,7 +5318,7 @@ export namespace gameservices_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
-     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().Realm} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5519,18 +5427,11 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
-     *     // The resource name of the realm. Uses the form:
-     *     // `projects/{project}/locations/{location}/realms/{realm}`. For
-     *     // example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. The target timestamp to compute the preview.
      *     previewTime: 'placeholder-value',
-     *     // Required. The update mask applies to the resource. For the `FieldMask`
-     *     // definition, see
-     *     //
-     *     // https:
-     *     // //developers.google.com/protocol-buffers
-     *     // // /docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5567,7 +5468,7 @@ export namespace gameservices_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().Realm} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5701,7 +5602,7 @@ export namespace gameservices_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.  If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
      */
     pageSize?: number;
     /**
@@ -5720,7 +5621,7 @@ export namespace gameservices_v1 {
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -5740,7 +5641,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -5786,8 +5687,7 @@ export namespace gameservices_v1 {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       // `projects/{project}/locations/{location}/realms/{realm-id}`.
+     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *
      *       // Request body metadata
@@ -5940,8 +5840,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
      *     {
-     *       // Required. The name of the game server cluster to delete. Uses the form:
-     *       // `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -6076,9 +5975,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
      *     {
-     *       // Required. The name of the game server cluster to retrieve. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -6106,7 +6003,7 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to retrieve. Uses the form:  `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     * @param {string} params.name Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6220,19 +6117,13 @@ export namespace gameservices_v1 {
      *     {
      *       // Optional. The filter to apply to list results.
      *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at
-     *       // https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return.  If unspecified, the server
-     *       // will pick an appropriate default. The server may return fewer items than
-     *       // requested. A caller should only rely on response's
-     *       // next_page_token to
-     *       // determine if there are more GameServerClusters left to be queried.
+     *       // Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       // "projects/{project}/locations/{location}/realms/{realm}".
+     *       // Required. The parent resource name. Uses the form: "projects/{project}/locations/{location}/realms/{realm}".
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *     }
      *   );
@@ -6257,7 +6148,7 @@ export namespace gameservices_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. The filter to apply to list results.
      * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.  If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent Required. The parent resource name. Uses the form: "projects/{project}/locations/{location}/realms/{realm}".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6380,20 +6271,10 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
      *     {
-     *       // Required. The resource name of the game server cluster. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.
-     *       // For example,
-     *       //
-     *       // `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Required. Mask of fields to update. At least one path must be supplied in
-     *       // this field. For the `FieldMask` definition, see
-     *       //
-     *       // https:
-     *       // //developers.google.com/protocol-buffers
-     *       // // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6432,8 +6313,8 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerCluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6545,8 +6426,7 @@ export namespace gameservices_v1 {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name. Uses the form:
-     *       // `projects/{project}/locations/{location}/realms/{realm}`.
+     *       // Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *       // Optional. The target timestamp to compute the preview.
      *       previewTime: 'placeholder-value',
@@ -6713,8 +6593,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
      *     {
-     *       // Required. The name of the game server cluster to delete. Uses the form:
-     *       // `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
@@ -6867,22 +6746,12 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
      *     {
-     *       // Required. The resource name of the game server cluster. Uses the form:
-     *       //
-     *       // `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.
-     *       // For example,
-     *       //
-     *       // `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
      *       previewTime: 'placeholder-value',
-     *       // Required. Mask of fields to update. At least one path must be supplied in
-     *       // this field. For the `FieldMask` definition, see
-     *       //
-     *       // https:
-     *       // //developers.google.com/protocol-buffers
-     *       // // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6918,9 +6787,9 @@ export namespace gameservices_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * @param {string} params.name Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      * @param {().GameServerCluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7047,7 +6916,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to retrieve. Uses the form:  `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
      */
     name?: string;
   }
@@ -7062,7 +6931,7 @@ export namespace gameservices_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.  If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      */
     pageSize?: number;
     /**
@@ -7077,11 +6946,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -7124,7 +6993,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster. Uses the form:  `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example,  `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**
@@ -7132,7 +7001,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see  https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 

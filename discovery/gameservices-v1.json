@@ -149,7 +149,7 @@
                   "type": "string"
                 },
                 "includeUnrevealedLocations": {
-                  "description": "If true, the returned list will include locations which are not yet\nrevealed.",
+                  "description": "If true, the returned list will include locations which are not yet revealed.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -199,7 +199,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -227,7 +227,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to delete. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -243,7 +243,7 @@
                   ]
                 },
                 "fetchDeploymentState": {
-                  "description": "Retrieves information about the current state of the game server\ndeployment. Gathers all the Agones fleets and Agones autoscalers,\nincluding fleets running an older version of the game server deployment.",
+                  "description": "Retrieves information about the current state of the game server deployment. Gathers all the Agones fleets and Agones autoscalers, including fleets running an older version of the game server deployment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:fetchDeploymentState",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.fetchDeploymentState",
@@ -252,7 +252,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -280,7 +280,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
+                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -296,7 +296,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.gameServerDeployments.getIamPolicy",
@@ -305,13 +305,13 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -336,7 +336,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.",
+                      "description": "Required. The name of the game server delpoyment to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -366,23 +366,23 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Specifies the ordering of results following syntax at\nhttps://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                      "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return.  If unspecified, the server\nwill pick an appropriate default. The server may return fewer items than\nrequested. A caller should only rely on response's\nnext_page_token to\ndetermine if there are more GameServerDeployments left to be queried.",
+                      "description": "Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The next_page_token value returned from a previous List request,\nif any.",
+                      "description": "Optional. The next_page_token value returned from a previous List request, if any.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -407,14 +407,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.\nFor example,\n\n`projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.",
+                      "description": "The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field. For the `FieldMask` definition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -432,7 +432,7 @@
                   ]
                 },
                 "previewRollout": {
-                  "description": "Previews the game server deployment rollout. This API does not mutate the\nrollout resource.",
+                  "description": "Previews the game server deployment rollout. This API does not mutate the rollout resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout:preview",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.gameServerDeployments.previewRollout",
@@ -441,20 +441,20 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment rollout. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.\nFor example,\n\n`projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.",
+                      "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "previewTime": {
-                      "description": "Optional. The target timestamp to compute the preview. Defaults to the immediately\nafter the proposed rollout completes.",
+                      "description": "Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Mask of fields to update. At least one path must be supplied in\nthis field. For the `FieldMask` definition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                      "description": "Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -472,7 +472,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.setIamPolicy",
@@ -481,7 +481,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -500,7 +500,7 @@
                   ]
                 },
                 "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.gameServerDeployments.testIamPermissions",
@@ -509,7 +509,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
@@ -528,7 +528,7 @@
                   ]
                 },
                 "updateRollout": {
-                  "description": "Patches a single game server deployment rollout.\nThe method will not return an error if the update does not affect any\nexisting realms. For example - if the default_game_server_config is changed\nbut all existing realms use the override, that is valid. Similarly, if a\nnon existing realm is explicitly called out in game_server_config_overrides\nfield, that will also not result in an error.",
+                  "description": "Patches a single game server deployment rollout. The method will not return an error if the update does not affect any existing realms. For example - if the default_game_server_config is changed but all existing realms use the override, that is valid. Similarly, if a non existing realm is explicitly called out in game_server_config_overrides field, that will also not result in an error.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/rollout",
                   "httpMethod": "PATCH",
                   "id": "gameservices.projects.locations.gameServerDeployments.updateRollout",
@@ -537,14 +537,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the game server deployment rollout. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.\nFor example,\n\n`projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.",
+                      "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field. For the `FieldMask` definition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -566,7 +566,7 @@
                 "configs": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new game server config in a given project, location, and game\nserver deployment. Game server configs are immutable, and are not applied\nuntil referenced in the game server deployment rollout resource.",
+                      "description": "Creates a new game server config in a given project, location, and game server deployment. Game server configs are immutable, and are not applied until referenced in the game server deployment rollout resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
                       "httpMethod": "POST",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.create",
@@ -580,7 +580,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.",
+                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                           "required": true,
@@ -599,7 +599,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a single game server config. The deletion will fail if the game\nserver config is referenced in a game server deployment rollout.",
+                      "description": "Deletes a single game server config. The deletion will fail if the game server config is referenced in a game server deployment rollout.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs/{configsId}",
                       "httpMethod": "DELETE",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.delete",
@@ -608,7 +608,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server config to delete. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
+                          "description": "Required. The name of the game server config to delete. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+/configs/[^/]+$",
                           "required": true,
@@ -633,7 +633,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server config to retrieve. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
+                          "description": "Required. The name of the game server config to retrieve. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+/configs/[^/]+$",
                           "required": true,
@@ -649,7 +649,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists game server configs in a given project, location, and game server\ndeployment.",
+                      "description": "Lists game server configs in a given project, location, and game server deployment.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gameServerDeployments/{gameServerDeploymentsId}/configs",
                       "httpMethod": "GET",
                       "id": "gameservices.projects.locations.gameServerDeployments.configs.list",
@@ -663,12 +663,12 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Specifies the ordering of results following syntax at\nhttps://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                          "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of items to return.  If unspecified, server\nwill pick an appropriate default. Server may return fewer items than\nrequested. A caller should only rely on response's\nnext_page_token to\ndetermine if there are more GameServerConfigs left to be queried.",
+                          "description": "Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -679,7 +679,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/*`.",
+                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gameServerDeployments/[^/]+$",
                           "required": true,
@@ -701,7 +701,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gameservices.projects.locations.operations.cancel",
@@ -729,7 +729,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "gameservices.projects.locations.operations.delete",
@@ -754,7 +754,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.operations.get",
@@ -779,7 +779,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "gameservices.projects.locations.operations.list",
@@ -833,7 +833,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -866,7 +866,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the realm to delete. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`.",
+                      "description": "Required. The name of the realm to delete. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -891,7 +891,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the realm to retrieve. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`.",
+                      "description": "Required. The name of the realm to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -921,23 +921,23 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Specifies the ordering of results following syntax at\nhttps://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                      "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return.  If unspecified, server\nwill pick an appropriate default. Server may return fewer items than\nrequested. A caller should only rely on response's\nnext_page_token to\ndetermine if there are more realms left to be queried.",
+                      "description": "Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The next_page_token value returned from a previous List request,\nif any.",
+                      "description": "Optional. The next_page_token value returned from a previous List request, if any.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}`.",
+                      "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -962,14 +962,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the realm. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`. For\nexample, `projects/my-project/locations/{location}/realms/my-realm`.",
+                      "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask`\ndefinition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -996,7 +996,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the realm. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`. For\nexample, `projects/my-project/locations/{location}/realms/my-realm`.",
+                      "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                       "required": true,
@@ -1009,7 +1009,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask`\ndefinition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1045,7 +1045,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm-id}`.",
+                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1073,7 +1073,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to delete. Uses the form:\n`projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1098,7 +1098,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to retrieve. Uses the form:\n\n`projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to retrieve. Uses the form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1128,12 +1128,12 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Specifies the ordering of results following syntax at\nhttps://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                          "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of items to return.  If unspecified, the server\nwill pick an appropriate default. The server may return fewer items than\nrequested. A caller should only rely on response's\nnext_page_token to\ndetermine if there are more GameServerClusters left to be queried.",
+                          "description": "Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1144,7 +1144,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form:\n\"projects/{project}/locations/{location}/realms/{realm}\".",
+                          "description": "Required. The parent resource name. Uses the form: \"projects/{project}/locations/{location}/realms/{realm}\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1169,14 +1169,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the game server cluster. Uses the form:\n\n`projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.\nFor example,\n\n`projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+                          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field. For the `FieldMask` definition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1194,7 +1194,7 @@
                       ]
                     },
                     "previewCreate": {
-                      "description": "Previews creation of a new game server cluster in a given project and\nlocation.",
+                      "description": "Previews creation of a new game server cluster in a given project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}/gameServerClusters:previewCreate",
                       "httpMethod": "POST",
                       "id": "gameservices.projects.locations.realms.gameServerClusters.previewCreate",
@@ -1208,7 +1208,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource name. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`.",
+                          "description": "Required. The parent resource name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
                           "required": true,
@@ -1242,7 +1242,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the game server cluster to delete. Uses the form:\n`projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
+                          "description": "Required. The name of the game server cluster to delete. Uses the form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1273,7 +1273,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the game server cluster. Uses the form:\n\n`projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.\nFor example,\n\n`projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+                          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+/gameServerClusters/[^/]+$",
                           "required": true,
@@ -1286,7 +1286,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field. For the `FieldMask` definition, see\n\nhttps:\n//developers.google.com/protocol-buffers\n// /docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1312,11 +1312,11 @@
       }
     }
   },
-  "revision": "20200630",
+  "revision": "20200721",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1333,18 +1333,18 @@
           "type": "array"
         },
         "service": {
-          "description": "Specifies a service that will be enabled for audit logging.\nFor example, `storage.googleapis.com`, `cloudsql.googleapis.com`.\n`allServices` is a special value that covers all services.",
+          "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
-          "description": "Specifies the identities that do not cause logging for this type of\npermission.\nFollows the same format of Binding.members.",
+          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.",
           "items": {
             "type": "string"
           },
@@ -1403,17 +1403,17 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
+          "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to `members`.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
         }
       },
@@ -1469,12 +1469,12 @@
           "enumDescriptions": [
             "Default non-attribute.",
             "Either principal or (if present) authority selector.",
-            "The principal (even if an authority selector is present), which\nmust only be used for attribution, not authorization.",
-            "Any of the security realms in the IAMContext (go/security-realms).\nWhen used with IN, the condition indicates \"any of the request's realms\nmatch one of the given values; with NOT_IN, \"none of the realms match\nany of the given values\". Note that a value can be:\n - 'self' (i.e., allow connections from clients that are in the same\n security realm)\n - 'self:cloud-region' (i.e., allow connections from clients that are in\n the same cloud region)\n - 'guardians' (i.e., allow connections from its guardian realms. See\n go/security-realms-glossary#guardian for more information.)\n - a realm (e.g., 'campus-abc')\n - a realm group (e.g., 'realms-for-borg-cell-xx', see: go/realm-groups)\nA match is determined by a realm group\nmembership check performed by a RealmAclRep object (go/realm-acl-howto).\nIt is not permitted to grant access based on the *absence* of a realm, so\nrealm conditions can only be used in a \"positive\" context (e.g., ALLOW/IN\nor DENY/NOT_IN).",
-            "An approver (distinct from the requester) that has authorized this\nrequest.\nWhen used with IN, the condition indicates that one of the approvers\nassociated with the request matches the specified principal, or is a\nmember of the specified group. Approvers can only grant additional\naccess, and are thus only used in a strictly positive context\n(e.g. ALLOW/IN or DENY/NOT_IN).",
-            "What types of justifications have been supplied with this request.\nString values should match enum names from\nsecurity.credentials.JustificationType, e.g. \"MANUAL_STRING\". It is not\npermitted to grant access based on the *absence* of a justification, so\njustification conditions can only be used in a \"positive\" context\n(e.g., ALLOW/IN or DENY/NOT_IN).\n\nMultiple justifications, e.g., a Buganizer ID and a manually-entered\nreason, are normal and supported.",
-            "What type of credentials have been supplied with this request.\nString values should match enum names from\nsecurity_loas_l2.CredentialsType - currently, only CREDS_TYPE_EMERGENCY\nis supported.\nIt is not permitted to grant access based on the *absence* of a\ncredentials type, so the conditions can only be used in a \"positive\"\ncontext (e.g., ALLOW/IN or DENY/NOT_IN).",
-            "EXPERIMENTAL -- DO NOT USE.\n"
+            "The principal (even if an authority selector is present), which must only be used for attribution, not authorization.",
+            "Any of the security realms in the IAMContext (go/security-realms). When used with IN, the condition indicates \"any of the request's realms match one of the given values; with NOT_IN, \"none of the realms match any of the given values\". Note that a value can be: - 'self' (i.e., allow connections from clients that are in the same security realm) - 'self:metro' (i.e., clients that are in the same metro) - 'self:cloud-region' (i.e., allow connections from clients that are in the same cloud region) - 'guardians' (i.e., allow connections from its guardian realms. See go/security-realms-glossary#guardian for more information.) - a realm (e.g., 'campus-abc') - a realm group (e.g., 'realms-for-borg-cell-xx', see: go/realm-groups) A match is determined by a realm group membership check performed by a RealmAclRep object (go/realm-acl-howto). It is not permitted to grant access based on the *absence* of a realm, so realm conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN).",
+            "An approver (distinct from the requester) that has authorized this request. When used with IN, the condition indicates that one of the approvers associated with the request matches the specified principal, or is a member of the specified group. Approvers can only grant additional access, and are thus only used in a strictly positive context (e.g. ALLOW/IN or DENY/NOT_IN).",
+            "What types of justifications have been supplied with this request. String values should match enum names from security.credentials.JustificationType, e.g. \"MANUAL_STRING\". It is not permitted to grant access based on the *absence* of a justification, so justification conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN). Multiple justifications, e.g., a Buganizer ID and a manually-entered reason, are normal and supported.",
+            "What type of credentials have been supplied with this request. String values should match enum names from security_loas_l2.CredentialsType - currently, only CREDS_TYPE_EMERGENCY is supported. It is not permitted to grant access based on the *absence* of a credentials type, so the conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN).",
+            "EXPERIMENTAL -- DO NOT USE. "
           ],
           "type": "string"
         },
@@ -1492,8 +1492,8 @@
             "Default no-op.",
             "DEPRECATED. Use IN instead.",
             "DEPRECATED. Use NOT_IN instead.",
-            "The condition is true if the subject (or any element of it if it is\na set) matches any of the supplied values.",
-            "The condition is true if the subject (or every element of it if it is\na set) matches none of the supplied values.",
+            "The condition is true if the subject (or any element of it if it is a set) matches any of the supplied values.",
+            "The condition is true if the subject (or every element of it if it is a set) matches none of the supplied values.",
             "Subject is discharged"
           ],
           "type": "string"
@@ -1503,7 +1503,7 @@
           "type": "string"
         },
         "sys": {
-          "description": "Trusted attributes supplied by any service that owns resources and uses\nthe IAM system for access control.",
+          "description": "Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.",
           "enum": [
             "NO_ATTR",
             "REGION",
@@ -1531,7 +1531,7 @@
       "type": "object"
     },
     "CounterOptions": {
-      "description": "Increment a streamz counter with the specified metric and field names.\n\nMetric names should start with a '/', generally be lowercase-only,\nand end in \"_count\". Field names should not contain an initial slash.\nThe actual exported metric names will have \"/iam/policy\" prepended.\n\nField names correspond to IAM request parameters and field values are\ntheir respective values.\n\nSupported field names:\n   - \"authority\", which is \"[token]\" if IAMContext.token is present,\n     otherwise the value of IAMContext.authority_selector if present, and\n     otherwise a representation of IAMContext.principal; or\n   - \"iam_principal\", a representation of IAMContext.principal even if a\n     token or authority selector is present; or\n   - \"\" (empty string), resulting in a counter with no fields.\n\nExamples:\n  counter { metric: \"/debug_access_count\"  field: \"iam_principal\" }\n  ==> increment counter /iam/policy/debug_access_count\n                        {iam_principal=[value of IAMContext.principal]}",
+      "description": "Increment a streamz counter with the specified metric and field names. Metric names should start with a '/', generally be lowercase-only, and end in \"_count\". Field names should not contain an initial slash. The actual exported metric names will have \"/iam/policy\" prepended. Field names correspond to IAM request parameters and field values are their respective values. Supported field names: - \"authority\", which is \"[token]\" if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - \"iam_principal\", a representation of IAMContext.principal even if a token or authority selector is present; or - \"\" (empty string), resulting in a counter with no fields. Examples: counter { metric: \"/debug_access_count\" field: \"iam_principal\" } ==> increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}",
       "id": "CounterOptions",
       "properties": {
         "customFields": {
@@ -1553,7 +1553,7 @@
       "type": "object"
     },
     "CustomField": {
-      "description": "Custom fields.\nThese can be used to create a counter with arbitrary field/value\npairs.\nSee: go/rpcsp-custom-fields.",
+      "description": "Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.",
       "id": "CustomField",
       "properties": {
         "name": {
@@ -1561,7 +1561,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Value is the field value. It is important that in contrast to the\nCounterOptions.field, the value here is a constant that is not\nderived from the IAMContext.",
+          "description": "Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.",
           "type": "string"
         }
       },
@@ -1577,8 +1577,8 @@
             "LOG_FAIL_CLOSED"
           ],
           "enumDescriptions": [
-            "Client is not required to write a partial Gin log immediately after\nthe authorization check. If client chooses to write one and it fails,\nclient may either fail open (allow the operation to continue) or\nfail closed (handle as a DENY outcome).",
-            "The application's operation in the context of which this authorization\ncheck is being made may only be performed if it is successfully logged\nto Gin. For instance, the authorization library may satisfy this\nobligation by emitting a partial log entry at authorization check time\nand only returning ALLOW to the application if it succeeds.\n\nIf a matching Rule has this directive, but the client has not indicated\nthat it will honor such requirements, then the IAM check will result in\nauthorization failure by setting CheckPolicyResponse.success=false."
+            "Client is not required to write a partial Gin log immediately after the authorization check. If client chooses to write one and it fails, client may either fail open (allow the operation to continue) or fail closed (handle as a DENY outcome).",
+            "The application's operation in the context of which this authorization check is being made may only be performed if it is successfully logged to Gin. For instance, the authorization library may satisfy this obligation by emitting a partial log entry at authorization check time and only returning ALLOW to the application if it succeeds. If a matching Rule has this directive, but the client has not indicated that it will honor such requirements, then the IAM check will result in authorization failure by setting CheckPolicyResponse.success=false."
           ],
           "type": "string"
         }
@@ -1594,7 +1594,7 @@
           "type": "string"
         },
         "fleetDetails": {
-          "description": "The details about the Agones fleets and autoscalers created in the\ngame server cluster.",
+          "description": "The details about the Agones fleets and autoscalers created in the game server cluster.",
           "items": {
             "$ref": "DeployedFleetDetails"
           },
@@ -1617,11 +1617,11 @@
         },
         "specSource": {
           "$ref": "SpecSource",
-          "description": "The source spec that is used to create the Agones fleet.\nThe GameServerConfig resource may no longer exist in the system."
+          "description": "The source spec that is used to create the Agones fleet. The GameServerConfig resource may no longer exist in the system."
         },
         "status": {
           "$ref": "DeployedFleetStatus",
-          "description": "The current status of the Agones fleet.\nIncludes count of game servers in various states."
+          "description": "The current status of the Agones fleet. Includes count of game servers in various states."
         }
       },
       "type": "object"
@@ -1640,7 +1640,7 @@
         },
         "specSource": {
           "$ref": "SpecSource",
-          "description": "The source spec that is used to create the autoscaler.\nThe GameServerConfig resource may no longer exist in the system."
+          "description": "The source spec that is used to create the autoscaler. The GameServerConfig resource may no longer exist in the system."
         }
       },
       "type": "object"
@@ -1661,7 +1661,7 @@
       "type": "object"
     },
     "DeployedFleetStatus": {
-      "description": "DeployedFleetStatus has details about the Agones fleets such as how many\nare running, how many allocated, and so on.",
+      "description": "DeployedFleetStatus has details about the Agones fleets such as how many are running, how many allocated, and so on.",
       "id": "DeployedFleetStatus",
       "properties": {
         "allocatedReplicas": {
@@ -1680,7 +1680,7 @@
           "type": "string"
         },
         "reservedReplicas": {
-          "description": "The number of GameServer replicas in the RESERVED state in this fleet.\nReserved instances won't be deleted on scale down, but won't cause\nan autoscaler to scale up.",
+          "description": "The number of GameServer replicas in the RESERVED state in this fleet. Reserved instances won't be deleted on scale down, but won't cause an autoscaler to scale up.",
           "format": "int64",
           "type": "string"
         }
@@ -1688,29 +1688,29 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
     },
     "Expr": {
-      "description": "Represents a textual expression in the Common Expression Language (CEL)\nsyntax. CEL is a C-like expression language. The syntax and semantics of CEL\nare documented at https://github.com/google/cel-spec.\n\nExample (Comparison):\n\n    title: \"Summary size limit\"\n    description: \"Determines if a summary is less than 100 chars\"\n    expression: \"document.summary.size() < 100\"\n\nExample (Equality):\n\n    title: \"Requestor is owner\"\n    description: \"Determines if requestor is the document owner\"\n    expression: \"document.owner == request.auth.claims.email\"\n\nExample (Logic):\n\n    title: \"Public documents\"\n    description: \"Determine whether the document should be publicly visible\"\n    expression: \"document.type != 'private' && document.type != 'internal'\"\n\nExample (Data Manipulation):\n\n    title: \"Notification string\"\n    description: \"Create a notification string with a timestamp.\"\n    expression: \"'New message received at ' + string(document.create_time)\"\n\nThe exact variables and functions that may be referenced within an expression\nare determined by the service that evaluates it. See the service\ndocumentation for additional information.",
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
       "properties": {
         "description": {
-          "description": "Optional. Description of the expression. This is a longer text which\ndescribes the expression, e.g. when hovered over it in a UI.",
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
           "type": "string"
         },
         "expression": {
-          "description": "Textual representation of an expression in Common Expression Language\nsyntax.",
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
           "type": "string"
         },
         "location": {
-          "description": "Optional. String indicating the location of the expression for error\nreporting, e.g. a file name and a position in the file.",
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
           "type": "string"
         },
         "title": {
-          "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
         }
       },
@@ -1748,7 +1748,7 @@
       "id": "FleetConfig",
       "properties": {
         "fleetSpec": {
-          "description": "Agones fleet spec. Example spec:\n`https://agones.dev/site/docs/reference/fleet/`.",
+          "description": "Agones fleet spec. Example spec: `https://agones.dev/site/docs/reference/fleet/`.",
           "type": "string"
         },
         "name": {
@@ -1764,7 +1764,7 @@
       "properties": {
         "connectionInfo": {
           "$ref": "GameServerClusterConnectionInfo",
-          "description": "The game server cluster connection information. This information is used to\nmanage game server clusters."
+          "description": "The game server cluster connection information. This information is used to manage game server clusters."
         },
         "createTime": {
           "description": "Output only. The creation time.",
@@ -1783,11 +1783,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this game server cluster. Each label is a\nkey-value pair.",
+          "description": "The labels associated with this game server cluster. Each label is a key-value pair.",
           "type": "object"
         },
         "name": {
-          "description": "Required. The resource name of the game server cluster. Uses the form:\n\n`projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.\nFor example,\n\n`projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
+          "description": "Required. The resource name of the game server cluster. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.",
           "type": "string"
         },
         "updateTime": {
@@ -1807,7 +1807,7 @@
           "description": "Reference to the GKE cluster where the game servers are installed."
         },
         "namespace": {
-          "description": "Namespace designated on the game server cluster where the Agones game\nserver instances will be created. Existence of the namespace will be\nvalidated during creation.",
+          "description": "Namespace designated on the game server cluster where the Agones game server instances will be created. Existence of the namespace will be validated during creation.",
           "type": "string"
         }
       },
@@ -1827,7 +1827,7 @@
           "type": "string"
         },
         "fleetConfigs": {
-          "description": "FleetConfig contains a list of Agones fleet specs. Only one FleetConfig\nis allowed.",
+          "description": "FleetConfig contains a list of Agones fleet specs. Only one FleetConfig is allowed.",
           "items": {
             "$ref": "FleetConfig"
           },
@@ -1837,11 +1837,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this game server config. Each label is a\nkey-value pair.",
+          "description": "The labels associated with this game server config. Each label is a key-value pair.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the game server config. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.\nFor example,\n\n`projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
+          "description": "The resource name of the game server config. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
           "type": "string"
         },
         "scalingConfigs": {
@@ -1895,11 +1895,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this game server deployment. Each label is a\nkey-value pair.",
+          "description": "The labels associated with this game server deployment. Each label is a key-value pair.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the game server deployment. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.\nFor example,\n\n`projects/my-project/locations/{location}/gameServerDeployments/my-deployment`.",
+          "description": "The resource name of the game server deployment. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.",
           "type": "string"
         },
         "updateTime": {
@@ -1911,7 +1911,7 @@
       "type": "object"
     },
     "GameServerDeploymentRollout": {
-      "description": "The game server deployment rollout which represents the desired rollout\nstate.",
+      "description": "The game server deployment rollout which represents the desired rollout state.",
       "id": "GameServerDeploymentRollout",
       "properties": {
         "createTime": {
@@ -1920,7 +1920,7 @@
           "type": "string"
         },
         "defaultGameServerConfig": {
-          "description": "The default game server config is applied to all realms unless overridden\nin the rollout. For example,\n\n`projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
+          "description": "The default game server config is applied to all realms unless overridden in the rollout. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.",
           "type": "string"
         },
         "etag": {
@@ -1928,14 +1928,14 @@
           "type": "string"
         },
         "gameServerConfigOverrides": {
-          "description": "Contains the game server config rollout overrides. Overrides are processed\nin the order they are listed. Once a match is found for a realm, the rest\nof the list is not processed.",
+          "description": "Contains the game server config rollout overrides. Overrides are processed in the order they are listed. Once a match is found for a realm, the rest of the list is not processed.",
           "items": {
             "$ref": "GameServerConfigOverride"
           },
           "type": "array"
         },
         "name": {
-          "description": "The resource name of the game server deployment rollout. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.\nFor example,\n\n`projects/my-project/locations/{location}/gameServerDeployments/my-deployment/rollout`.",
+          "description": "The resource name of the game server deployment rollout. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.",
           "type": "string"
         },
         "updateTime": {
@@ -1951,7 +1951,7 @@
       "id": "GkeClusterReference",
       "properties": {
         "cluster": {
-          "description": "The full or partial name of a GKE cluster, using one of the following\nforms:\n * `projects/{project}/locations/{location}/clusters/{cluster}`\n * `locations/{location}/clusters/{cluster}`\n * `{cluster}`\nIf project and location are not specified, the project and location of the\nGameServerCluster resource are used to generate the full name of the\nGKE cluster.",
+          "description": "The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project}/locations/{location}/clusters/{cluster}` * `locations/{location}/clusters/{cluster}` * `{cluster}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.",
           "type": "string"
         }
       },
@@ -1983,7 +1983,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "unreachable": {
@@ -2008,7 +2008,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "unreachable": {
@@ -2033,7 +2033,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "unreachable": {
@@ -2087,7 +2087,7 @@
       "id": "ListRealmsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "realms": {
@@ -2112,14 +2112,14 @@
       "id": "Location",
       "properties": {
         "displayName": {
-          "description": "The friendly name for this location, typically a nearby city name.\nFor example, \"Tokyo\".",
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Cross-service attributes for the location. For example\n\n    {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
           "type": "object"
         },
         "locationId": {
@@ -2131,11 +2131,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata. For example the available capacity at the given\nlocation.",
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
           "type": "object"
         },
         "name": {
-          "description": "Resource name for the location, which may vary between implementations.\nFor example: `\"projects/example-project/locations/us-east1\"`",
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
         }
       },
@@ -2161,11 +2161,11 @@
       "type": "object"
     },
     "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -2177,11 +2177,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -2189,7 +2189,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2217,11 +2217,11 @@
           "additionalProperties": {
             "$ref": "OperationStatus"
           },
-          "description": "Output only. Operation status for Game Services API operations. Operation status is in\nthe form of key-value pairs where keys are resource IDs and the values show\nthe status of the operation. In case of failures, the value includes an\nerror code and error message.",
+          "description": "Output only. Operation status for Game Services API operations. Operation status is in the form of key-value pairs where keys are resource IDs and the values show the status of the operation. In case of failures, the value includes an error code and error message.",
           "type": "object"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation\nof the operation. Operations that have successfully been cancelled\nhave Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "statusMessage": {
@@ -2277,7 +2277,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2288,14 +2288,14 @@
           "type": "array"
         },
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a\n`condition` that determines how and when the `bindings` are applied. Each\nof the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
           "items": {
             "$ref": "Binding"
           },
           "type": "array"
         },
         "etag": {
-          "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a policy from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform policy updates in order to avoid race\nconditions: An `etag` is returned in the response to `getIamPolicy`, and\nsystems are expected to put that etag in the request to `setIamPolicy` to\nensure that their change will be applied to the same version of the policy.\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
           "format": "byte",
           "type": "string"
         },
@@ -2303,14 +2303,14 @@
           "type": "boolean"
         },
         "rules": {
-          "description": "If more than one rule is specified, the rules are applied in the following\nmanner:\n- All matching LOG rules are always applied.\n- If any DENY/DENY_WITH_LOG rule matches, permission is denied.\n  Logging will be applied if one or more matching rule requires logging.\n- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is\n  granted.\n  Logging will be applied if one or more matching rule requires logging.\n- Otherwise, if no rule applies, permission is denied.",
+          "description": "If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.",
           "items": {
             "$ref": "Rule"
           },
           "type": "array"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -2318,7 +2318,7 @@
       "type": "object"
     },
     "PreviewCreateGameServerClusterResponse": {
-      "description": "Response message for\nGameServerClustersService.PreviewCreateGameServerCluster.",
+      "description": "Response message for GameServerClustersService.PreviewCreateGameServerCluster.",
       "id": "PreviewCreateGameServerClusterResponse",
       "properties": {
         "etag": {
@@ -2333,7 +2333,7 @@
       "type": "object"
     },
     "PreviewDeleteGameServerClusterResponse": {
-      "description": "Response message for\nGameServerClustersService.PreviewDeleteGameServerCluster.",
+      "description": "Response message for GameServerClustersService.PreviewDeleteGameServerCluster.",
       "id": "PreviewDeleteGameServerClusterResponse",
       "properties": {
         "etag": {
@@ -2348,7 +2348,7 @@
       "type": "object"
     },
     "PreviewGameServerDeploymentRolloutResponse": {
-      "description": "Response message for PreviewGameServerDeploymentRollout.\nThis has details about the Agones fleet and autoscaler to be actuated.",
+      "description": "Response message for PreviewGameServerDeploymentRollout. This has details about the Agones fleet and autoscaler to be actuated.",
       "id": "PreviewGameServerDeploymentRolloutResponse",
       "properties": {
         "etag": {
@@ -2424,11 +2424,11 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the realm. Uses the form:\n`projects/{project}/locations/{location}/realms/{realm}`. For\nexample, `projects/my-project/locations/{location}/realms/my-realm`.",
+          "description": "The resource name of the realm. Uses the form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.",
           "type": "string"
         },
         "timeZone": {
-          "description": "Required. Time zone where all policies targeting this realm are evaluated. The value\nof this field must be from the IANA time zone database:\nhttps://www.iana.org/time-zones.",
+          "description": "Required. Time zone where all policies targeting this realm are evaluated. The value of this field must be from the IANA time zone database: https://www.iana.org/time-zones.",
           "type": "string"
         },
         "updateTime": {
@@ -2470,15 +2470,15 @@
           "enumDescriptions": [
             "Default no action.",
             "Matching 'Entries' grant access.",
-            "Matching 'Entries' grant access and the caller promises to log\nthe request per the returned log_configs.",
+            "Matching 'Entries' grant access and the caller promises to log the request per the returned log_configs.",
             "Matching 'Entries' deny access.",
-            "Matching 'Entries' deny access and the caller promises to log\nthe request per the returned log_configs.",
+            "Matching 'Entries' deny access and the caller promises to log the request per the returned log_configs.",
             "Matching 'Entries' tell IAM.Check callers to generate logs."
           ],
           "type": "string"
         },
         "conditions": {
-          "description": "Additional restrictions that must be met. All conditions must pass for the\nrule to match.",
+          "description": "Additional restrictions that must be met. All conditions must pass for the rule to match.",
           "items": {
             "$ref": "Condition"
           },
@@ -2489,28 +2489,28 @@
           "type": "string"
         },
         "in": {
-          "description": "If one or more 'in' clauses are specified, the rule matches if\nthe PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.",
+          "description": "If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "logConfig": {
-          "description": "The config returned to callers of tech.iam.IAM.CheckPolicy for any entries\nthat match the LOG action.",
+          "description": "The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.",
           "items": {
             "$ref": "LogConfig"
           },
           "type": "array"
         },
         "notIn": {
-          "description": "If one or more 'not_in' clauses are specified, the rule matches\nif the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.\nThe format for in and not_in entries can be found at in the Local IAM\ndocumentation (see go/local-iam#features).",
+          "description": "If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries. The format for in and not_in entries can be found at in the Local IAM documentation (see go/local-iam#features).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "permissions": {
-          "description": "A permission is a string of form '<service>.<resource type>.<verb>'\n(e.g., 'storage.buckets.list'). A value of '*' matches all permissions,\nand a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.",
+          "description": "A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.",
           "items": {
             "type": "string"
           },
@@ -2524,7 +2524,7 @@
       "id": "ScalingConfig",
       "properties": {
         "fleetAutoscalerSpec": {
-          "description": "Required. Agones fleet autoscaler spec. Example spec:\nhttps://agones.dev/site/docs/reference/fleetautoscaler/",
+          "description": "Required. Agones fleet autoscaler spec. Example spec: https://agones.dev/site/docs/reference/fleetautoscaler/",
           "type": "string"
         },
         "name": {
@@ -2539,7 +2539,7 @@
           "type": "array"
         },
         "selectors": {
-          "description": "Labels used to identify the game server clusters to which this Agones\nscaling config applies. A game server cluster is subject to this Agones\nscaling config if its labels match any of the selector entries.",
+          "description": "Labels used to identify the game server clusters to which this Agones scaling config applies. A game server cluster is subject to this Agones scaling config if its labels match any of the selector entries.",
           "items": {
             "$ref": "LabelSelector"
           },
@@ -2549,16 +2549,16 @@
       "type": "object"
     },
     "Schedule": {
-      "description": "The schedule of a recurring or one time event. The event's time span is\nspecified by start_time and end_time. If the scheduled event's timespan is\nlarger than the cron_spec + cron_job_duration, the event will be recurring.\nIf only cron_spec + cron_job_duration are specified, the event is effective\nstarting at the local time specified by cron_spec, and is recurring.\n\n  start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time\n  cron job: cron spec start time + duration",
+      "description": "The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration",
       "id": "Schedule",
       "properties": {
         "cronJobDuration": {
-          "description": "The duration for the cron job event. The duration of the event is effective\nafter the cron job's start time.",
+          "description": "The duration for the cron job event. The duration of the event is effective after the cron job's start time.",
           "format": "google-duration",
           "type": "string"
         },
         "cronSpec": {
-          "description": "The cron definition of the scheduled event. See\nhttps://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as\ndefined by the realm.",
+          "description": "The cron definition of the scheduled event. See https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as defined by the realm.",
           "type": "string"
         },
         "endTime": {
@@ -2580,10 +2580,10 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of\nthe policy is limited to a few 10s of KB. An empty policy is a\nvalid policy but certain Cloud Platform services (such as Projects)\nmight reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
         },
         "updateMask": {
-          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only\nthe fields in the mask will be modified. If no mask is provided, the\nfollowing default mask is used:\n\n`paths: \"bindings, etag\"`",
+          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -2595,18 +2595,18 @@
       "id": "SpecSource",
       "properties": {
         "gameServerConfigName": {
-          "description": "The game server config resource. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}`.",
+          "description": "The game server config resource. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}`.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the Agones leet config or Agones scaling config used to derive\nthe Agones fleet or Agones autoscaler spec.",
+          "description": "The name of the Agones leet config or Agones scaling config used to derive the Agones fleet or Agones autoscaler spec.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -2615,7 +2615,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -2626,7 +2626,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
@@ -2644,11 +2644,11 @@
           "type": "array"
         },
         "gameServerClusterName": {
-          "description": "The game server cluster name. Uses the form:\n\n`projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.",
+          "description": "The game server cluster name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.",
           "type": "string"
         },
         "gameServerDeploymentName": {
-          "description": "The game server deployment name. Uses the form:\n\n`projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.",
+          "description": "The game server deployment name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.",
           "type": "string"
         }
       },
@@ -2664,7 +2664,7 @@
         },
         "specSource": {
           "$ref": "SpecSource",
-          "description": "Encapsulates the source of the Agones fleet spec.\nThe Agones fleet spec source."
+          "description": "Encapsulates the source of the Agones fleet spec. The Agones fleet spec source."
         }
       },
       "type": "object"
@@ -2679,7 +2679,7 @@
         },
         "specSource": {
           "$ref": "SpecSource",
-          "description": "Encapsulates the source of the Agones fleet spec.\nDetails about the Agones autoscaler spec."
+          "description": "Encapsulates the source of the Agones fleet spec. Details about the Agones autoscaler spec."
         }
       },
       "type": "object"
@@ -2718,7 +2718,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with\nwildcards (such as '*' or 'storage.*') are not allowed. For more\ninformation see\n[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -2732,7 +2732,7 @@
       "id": "TestIamPermissionsResponse",
       "properties": {
         "permissions": {
-          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is\nallowed.",
+          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
           },
