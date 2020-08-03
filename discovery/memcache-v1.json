@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "memcache:v1beta2",
+  "id": "memcache:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://memcache.mtls.googleapis.com/",
   "name": "memcache",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "memcache.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta2/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta2/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "memcache.projects.locations.list",
               "parameterOrder": [
@@ -167,7 +167,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta2/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -181,7 +181,7 @@
               "methods": {
                 "applyParameters": {
                   "description": "ApplyParameters will update current set of Parameters to the set of\nspecified nodes of the Memcached Instance.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:applyParameters",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:applyParameters",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.instances.applyParameters",
                   "parameterOrder": [
@@ -196,7 +196,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}:applyParameters",
+                  "path": "v1/{+name}:applyParameters",
                   "request": {
                     "$ref": "ApplyParametersRequest"
                   },
@@ -209,7 +209,7 @@
                 },
                 "create": {
                   "description": "Creates a new Instance in a given project and location.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.instances.create",
                   "parameterOrder": [
@@ -229,7 +229,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+parent}/instances",
+                  "path": "v1/{+parent}/instances",
                   "request": {
                     "$ref": "Instance"
                   },
@@ -242,7 +242,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single Instance.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "memcache.projects.locations.instances.delete",
                   "parameterOrder": [
@@ -257,7 +257,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -267,7 +267,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Instance.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "GET",
                   "id": "memcache.projects.locations.instances.get",
                   "parameterOrder": [
@@ -282,7 +282,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Instance"
                   },
@@ -292,7 +292,7 @@
                 },
                 "list": {
                   "description": "Lists Instances in a given project and location.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "GET",
                   "id": "memcache.projects.locations.instances.list",
                   "parameterOrder": [
@@ -328,7 +328,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+parent}/instances",
+                  "path": "v1/{+parent}/instances",
                   "response": {
                     "$ref": "ListInstancesResponse"
                   },
@@ -338,7 +338,7 @@
                 },
                 "patch": {
                   "description": "Updates an existing Instance in a given project and location.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "PATCH",
                   "id": "memcache.projects.locations.instances.patch",
                   "parameterOrder": [
@@ -359,7 +359,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Instance"
                   },
@@ -372,7 +372,7 @@
                 },
                 "updateParameters": {
                   "description": "Updates the defined Memcached Parameters for an existing Instance.\nThis method only stages the parameters, it must be followed by\nApplyParameters to apply the parameters to nodes of the Memcached Instance.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateParameters",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateParameters",
                   "httpMethod": "PATCH",
                   "id": "memcache.projects.locations.instances.updateParameters",
                   "parameterOrder": [
@@ -387,7 +387,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}:updateParameters",
+                  "path": "v1/{+name}:updateParameters",
                   "request": {
                     "$ref": "UpdateParametersRequest"
                   },
@@ -404,7 +404,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -419,7 +419,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -432,7 +432,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "memcache.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -447,7 +447,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -457,7 +457,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "memcache.projects.locations.operations.get",
                   "parameterOrder": [
@@ -472,7 +472,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -482,7 +482,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "memcache.projects.locations.operations.list",
                   "parameterOrder": [
@@ -513,7 +513,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta2/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -561,23 +561,9 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudMemcacheV1beta2LocationMetadata": {
-      "description": "Metadata for the given google.cloud.location.Location.",
-      "id": "GoogleCloudMemcacheV1beta2LocationMetadata",
-      "properties": {
-        "availableZones": {
-          "additionalProperties": {
-            "$ref": "ZoneMetadata"
-          },
-          "description": "Output only. The set of available zones in the location. The map is keyed\nby the lowercase ID of each zone, as defined by GCE. These keys can be\nspecified in the `zones` field when creating a Memcached instance.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudMemcacheV1beta2OperationMetadata": {
+    "GoogleCloudMemcacheV1OperationMetadata": {
       "description": "Represents the metadata of a long-running operation.",
-      "id": "GoogleCloudMemcacheV1beta2OperationMetadata",
+      "id": "GoogleCloudMemcacheV1OperationMetadata",
       "properties": {
         "apiVersion": {
           "description": "Output only. API version used to start the operation.",
@@ -862,7 +848,7 @@
       "id": "Instance",
       "properties": {
         "authorizedNetwork": {
-          "description": "The full name of the Google Compute Engine\n[network](https://cloud.google.com/vpc/docs/vpc) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
+          "description": "The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
           "type": "string"
         },
         "createTime": {
@@ -1082,6 +1068,20 @@
       },
       "type": "object"
     },
+    "LocationMetadata": {
+      "description": "Metadata for the given google.cloud.location.Location.",
+      "id": "LocationMetadata",
+      "properties": {
+        "availableZones": {
+          "additionalProperties": {
+            "$ref": "ZoneMetadata"
+          },
+          "description": "Output only. The set of available zones in the location. The map is keyed\nby the lowercase ID of each zone, as defined by GCE. These keys can be\nspecified in the `zones` field when creating a Memcached instance.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "MemcacheParameters": {
       "id": "MemcacheParameters",
       "properties": {
@@ -1284,6 +1284,6 @@
   },
   "servicePath": "",
   "title": "Cloud Memorystore for Memcached API",
-  "version": "v1beta2",
+  "version": "v1",
   "version_module": true
 }
