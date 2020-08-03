@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace memcache_v1beta2 {
+export namespace memcache_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta2';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -105,12 +105,12 @@ export namespace memcache_v1beta2 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const memcache = google.memcache('v1beta2');
+   * const memcache = google.memcache('v1');
    *
    * @namespace memcache
    * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Memcache
    */
   export class Memcache {
@@ -149,18 +149,9 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$Empty {}
   /**
-   * Metadata for the given google.cloud.location.Location.
-   */
-  export interface Schema$GoogleCloudMemcacheV1beta2LocationMetadata {
-    /**
-     * Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in the `zones` field when creating a Memcached instance.
-     */
-    availableZones?: {[key: string]: Schema$ZoneMetadata} | null;
-  }
-  /**
    * Represents the metadata of a long-running operation.
    */
-  export interface Schema$GoogleCloudMemcacheV1beta2OperationMetadata {
+  export interface Schema$GoogleCloudMemcacheV1OperationMetadata {
     /**
      * Output only. API version used to start the operation.
      */
@@ -373,7 +364,7 @@ export namespace memcache_v1beta2 {
   }
   export interface Schema$Instance {
     /**
-     * The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.
+     * The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
     authorizedNetwork?: string | null;
     /**
@@ -514,6 +505,15 @@ export namespace memcache_v1beta2 {
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
     name?: string | null;
+  }
+  /**
+   * Metadata for the given google.cloud.location.Location.
+   */
+  export interface Schema$LocationMetadata {
+    /**
+     * Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in the `zones` field when creating a Memcached instance.
+     */
+    availableZones?: {[key: string]: Schema$ZoneMetadata} | null;
   }
   export interface Schema$MemcacheParameters {
     /**
@@ -688,7 +688,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -787,7 +787,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -820,7 +820,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -930,7 +930,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1000,7 +1000,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1110,7 +1110,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}:applyParameters').replace(
+            url: (rootUrl + '/v1/{+name}:applyParameters').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1146,7 +1146,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1281,7 +1281,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+parent}/instances').replace(
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1317,7 +1317,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1418,7 +1418,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1451,7 +1451,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1563,7 +1563,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1596,7 +1596,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1720,7 +1720,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+parent}/instances').replace(
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1756,7 +1756,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1890,7 +1890,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1923,7 +1923,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2033,7 +2033,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}:updateParameters').replace(
+            url: (rootUrl + '/v1/{+name}:updateParameters').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2170,7 +2170,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2270,10 +2270,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -2306,7 +2303,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2399,7 +2396,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2432,7 +2429,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2531,7 +2528,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2564,7 +2561,7 @@ export namespace memcache_v1beta2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const memcache = google.memcache('v1beta2');
+     * const memcache = google.memcache('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2674,7 +2671,7 @@ export namespace memcache_v1beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta2/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

@@ -14,19 +14,27 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {memcache_v1} from './v1';
 import {memcache_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
+  v1: memcache_v1.Memcache,
   v1beta2: memcache_v1beta2.Memcache,
 };
 
+export function memcache(version: 'v1'): memcache_v1.Memcache;
+export function memcache(options: memcache_v1.Options): memcache_v1.Memcache;
 export function memcache(version: 'v1beta2'): memcache_v1beta2.Memcache;
 export function memcache(
   options: memcache_v1beta2.Options
 ): memcache_v1beta2.Memcache;
-export function memcache<T = memcache_v1beta2.Memcache>(
+export function memcache<T = memcache_v1.Memcache | memcache_v1beta2.Memcache>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta2' | memcache_v1beta2.Options
+  versionOrOptions:
+    | 'v1'
+    | memcache_v1.Options
+    | 'v1beta2'
+    | memcache_v1beta2.Options
 ) {
   return getAPI<T>('memcache', versionOrOptions, VERSIONS, this);
 }
