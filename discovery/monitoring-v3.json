@@ -1848,7 +1848,7 @@
       }
     }
   },
-  "revision": "20200720",
+  "revision": "20200728",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2476,7 +2476,7 @@
       "type": "object"
     },
     "DroppedLabels": {
-      "description": "A set of (label, value) pairs which were dropped during aggregation, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.These values are used in combination with the label values that remain on the aggregated Distribution timeseries to construct the full label set for the exemplar values. The resulting full label set may be used to identify the specific task/job/instance (for example) which may be contributing to a long-tail, while allowing the storage savings of only storing aggregated distribution values for a large group.Note that there are no guarantees on ordering of the labels from exemplar-to-exemplar and from distribution-to-distribution in the same stream, and there may be duplicates. It is up to clients to resolve any ambiguities.",
+      "description": "A set of (label, value) pairs that were removed from a Distribution time series during aggregation and then added as an attachment to a Distribution.Exemplar.The full label set for the exemplars is constructed by using the dropped pairs in combination with the label values that remain on the aggregated Distribution time series. The constructed full label set can be used to identify the specific entity, such as the instance or job, which might be contributing to a long-tail. However, with dropped labels, the storage requirements are reduced because only the aggregated distribution values for a large group of time series are stored.Note that there are no guarantees on ordering of the labels from exemplar-to-exemplar and from distribution-to-distribution in the same stream, and there may be duplicates. It is up to clients to resolve any ambiguities.",
       "id": "DroppedLabels",
       "properties": {
         "label": {
@@ -3260,7 +3260,7 @@
       "type": "object"
     },
     "MetricDescriptor": {
-      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.The following are specific rules for service defined Monitoring metric descriptors:\ntype, metric_kind, value_type, description, and display_name  fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION.\nMaximum of default 500 metric descriptors per service is allowed.\nMaximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
+      "description": "Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.The following are specific rules for service defined Monitoring metric descriptors:\ntype, metric_kind, value_type and description  fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION.\nMaximum of default 500 metric descriptors per service is allowed.\nMaximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas",
       "id": "MetricDescriptor",
       "properties": {
         "description": {
@@ -4129,6 +4129,10 @@
           "$ref": "MonitoredResource",
           "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data."
         },
+        "unit": {
+          "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.",
+          "type": "string"
+        },
         "valueType": {
           "description": "The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.",
           "enum": [
@@ -4444,6 +4448,10 @@
             "The change in a value during a time interval.",
             "A value accumulated over a time interval. Cumulative measurements in a time series should have the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points."
           ],
+          "type": "string"
+        },
+        "unit": {
+          "description": "The unit in which time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. unit is only valid if value_type is INTEGER, DOUBLE, DISTRIBUTION.",
           "type": "string"
         },
         "valueType": {
