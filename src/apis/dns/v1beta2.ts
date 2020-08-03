@@ -167,7 +167,7 @@ export namespace dns_v1beta2 {
      */
     startTime?: string | null;
     /**
-     * Status of the operation (output only). A status of &quot;done&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
+     * Status of the operation (output only). A status of &quot;done&quot; means that the request to update the authoritative servers has been sent but the servers might not be updated yet.
      */
     status?: string | null;
   }
@@ -371,7 +371,7 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$ManagedZoneForwardingConfigNameServerTarget {
     /**
-     * Forwarding path for this NameServerTarget, if unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target
+     * Forwarding path for this NameServerTarget. If unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target.
      */
     forwardingPath?: string | null;
     /**
@@ -583,7 +583,7 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$PolicyAlternativeNameServerConfigTargetNameServer {
     /**
-     * Forwarding path for this TargetNameServer, if unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target
+     * Forwarding path for this TargetNameServer. If unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target.
      */
     forwardingPath?: string | null;
     /**

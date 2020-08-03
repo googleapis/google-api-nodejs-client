@@ -1030,7 +1030,7 @@
       }
     }
   },
-  "revision": "20200701",
+  "revision": "20200731",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1068,7 +1068,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Status of the operation (output only). A status of \"done\" means that the\nrequest to update the authoritative servers has been sent, but the\nservers might not be updated yet.",
+          "description": "Status of the operation (output only). A status of \"done\" means that the\nrequest to update the authoritative servers has been sent but the\nservers might not be updated yet.",
           "enum": [
             "pending",
             "done"
@@ -1428,13 +1428,13 @@
       "id": "ManagedZoneForwardingConfigNameServerTarget",
       "properties": {
         "forwardingPath": {
-          "description": "Forwarding path for this NameServerTarget, if unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target",
+          "description": "Forwarding path for this NameServerTarget. If unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target.",
           "enum": [
             "default",
             "private"
           ],
           "enumDescriptions": [
-            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nNon-RFC1918 addresses will forward to the target through the\nInternet",
+            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nnon-RFC1918 addresses will forward to the target through the\nInternet",
             "Cloud DNS will always forward to this target through the VPC."
           ],
           "type": "string"
@@ -1760,13 +1760,13 @@
       "id": "PolicyAlternativeNameServerConfigTargetNameServer",
       "properties": {
         "forwardingPath": {
-          "description": "Forwarding path for this TargetNameServer, if unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target",
+          "description": "Forwarding path for this TargetNameServer. If unset or set to DEFAULT,\nCloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses go to the VPC, non-RFC1918 addresses go to the\nInternet. When set to PRIVATE, Cloud DNS will always send queries\nthrough VPC for this target.",
           "enum": [
             "default",
             "private"
           ],
           "enumDescriptions": [
-            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nNon-RFC1918 addresses will forward to the target through the\nInternet",
+            "Cloud DNS will make forwarding decision based on address ranges,\ni.e. RFC1918 addresses forward to the target through the VPC and\nnon-RFC1918 addresses will forward to the target through the\nInternet",
             "Cloud DNS will always forward to this target through the VPC."
           ],
           "type": "string"
