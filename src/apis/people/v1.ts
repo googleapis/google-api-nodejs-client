@@ -363,7 +363,7 @@ export namespace people_v1 {
      */
     copyMask?: string | null;
     /**
-     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     readMask?: string | null;
     /**
@@ -716,6 +716,27 @@ export namespace people_v1 {
     metadata?: Schema$FieldMetadata;
   }
   /**
+   * A person&#39;s miscellaneous keyword.
+   */
+  export interface Schema$MiscKeyword {
+    /**
+     * Output only. The type of the miscellaneous keyword translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+     */
+    formattedType?: string | null;
+    /**
+     * Metadata about the miscellaneous keyword.
+     */
+    metadata?: Schema$FieldMetadata;
+    /**
+     * The miscellaneous keyword type.
+     */
+    type?: string | null;
+    /**
+     * The value of the miscellaneous keyword.
+     */
+    value?: string | null;
+  }
+  /**
    * A request to modify an existing contact group&#39;s members. Contacts can be removed from any group but they can only be added to a user group or &quot;myContacts&quot; or &quot;starred&quot; system groups.
    */
   export interface Schema$ModifyContactGroupMembersRequest {
@@ -977,6 +998,10 @@ export namespace people_v1 {
      * Output only. Metadata about the person.
      */
     metadata?: Schema$PersonMetadata;
+    /**
+     * The person&#39;s miscellaneous keywords.
+     */
+    miscKeywords?: Schema$MiscKeyword[];
     /**
      * The person&#39;s names. This field is a singleton for contact sources.
      */
@@ -1335,7 +1360,7 @@ export namespace people_v1 {
    */
   export interface Schema$UpdateContactPhotoRequest {
     /**
-     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string | null;
     /**
@@ -2571,6 +2596,7 @@ export namespace people_v1 {
      *   //   "locales": [],
      *   //   "memberships": [],
      *   //   "metadata": {},
+     *   //   "miscKeywords": [],
      *   //   "names": [],
      *   //   "nicknames": [],
      *   //   "occupations": [],
@@ -2906,7 +2932,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.createContact({
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      *     sources: 'placeholder-value',
@@ -2934,6 +2960,7 @@ export namespace people_v1 {
      *       //   "locales": [],
      *       //   "memberships": [],
      *       //   "metadata": {},
+     *       //   "miscKeywords": [],
      *       //   "names": [],
      *       //   "nicknames": [],
      *       //   "occupations": [],
@@ -2976,6 +3003,7 @@ export namespace people_v1 {
      *   //   "locales": [],
      *   //   "memberships": [],
      *   //   "metadata": {},
+     *   //   "miscKeywords": [],
      *   //   "names": [],
      *   //   "nicknames": [],
      *   //   "occupations": [],
@@ -3004,7 +3032,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3246,7 +3274,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.deleteContactPhoto({
-     *     // Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // Required. The resource name of the contact whose photo will be deleted.
      *     resourceName: 'people/[^/]+',
@@ -3270,7 +3298,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string} params.resourceName Required. The resource name of the contact whose photo will be deleted.
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3402,7 +3430,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.get({
-     *     // Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
@@ -3434,6 +3462,7 @@ export namespace people_v1 {
      *   //   "locales": [],
      *   //   "memberships": [],
      *   //   "metadata": {},
+     *   //   "miscKeywords": [],
      *   //   "names": [],
      *   //   "nicknames": [],
      *   //   "occupations": [],
@@ -3462,7 +3491,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string} params.resourceName Required. The resource name of the person to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.PROFILE and ReadSourceType.CONTACT if not set.
@@ -3587,7 +3616,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.getBatchGet({
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
@@ -3613,7 +3642,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string=} params.resourceNames Required. The resource names of the people to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 50 resource names in one request.
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
@@ -3736,7 +3765,7 @@ export namespace people_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDirectoryPeople` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     readMask: 'placeholder-value',
      *     // Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead.
      *     requestSyncToken: 'placeholder-value',
@@ -3767,7 +3796,7 @@ export namespace people_v1 {
      * @param {string=} params.mergeSources Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
      * @param {integer=} params.pageSize Optional. The number of people to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      * @param {string=} params.pageToken Optional. A page token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDirectoryPeople` must match the call that provided the page token.
-     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead.
      * @param {string=} params.sources Required. Directory sources to return.
      * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListDirectoryPeople` must match the call that provided the sync token.
@@ -3896,7 +3925,7 @@ export namespace people_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.
      *     query: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     readMask: 'placeholder-value',
      *     // Required. Directory sources to return.
      *     sources: 'placeholder-value',
@@ -3924,7 +3953,7 @@ export namespace people_v1 {
      * @param {integer=} params.pageSize Optional. The number of people to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.
      * @param {string=} params.pageToken Optional. A page token, received from a previous `SearchDirectoryPeople` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchDirectoryPeople` must match the call that provided the page token.
      * @param {string=} params.query Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.
-     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.sources Required. Directory sources to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4045,13 +4074,13 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.updateContact({
-     *     // Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      *     resourceName: 'people/[^/]+',
      *     // Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      *     sources: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
+     *     // Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      *     updatePersonFields: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4077,6 +4106,7 @@ export namespace people_v1 {
      *       //   "locales": [],
      *       //   "memberships": [],
      *       //   "metadata": {},
+     *       //   "miscKeywords": [],
      *       //   "names": [],
      *       //   "nicknames": [],
      *       //   "occupations": [],
@@ -4119,6 +4149,7 @@ export namespace people_v1 {
      *   //   "locales": [],
      *   //   "memberships": [],
      *   //   "metadata": {},
+     *   //   "miscKeywords": [],
      *   //   "names": [],
      *   //   "nicknames": [],
      *   //   "occupations": [],
@@ -4147,10 +4178,10 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.personFields Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
-     * @param {string=} params.updatePersonFields Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
+     * @param {string=} params.updatePersonFields Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4388,7 +4419,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Createcontact
     extends StandardParameters {
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
@@ -4411,7 +4442,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Deletecontactphoto
     extends StandardParameters {
     /**
-     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
@@ -4425,7 +4456,7 @@ export namespace people_v1 {
   }
   export interface Params$Resource$People$Get extends StandardParameters {
     /**
-     * Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
@@ -4444,7 +4475,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Getbatchget
     extends StandardParameters {
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
@@ -4475,7 +4506,7 @@ export namespace people_v1 {
      */
     pageToken?: string;
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     readMask?: string;
     /**
@@ -4510,7 +4541,7 @@ export namespace people_v1 {
      */
     query?: string;
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     readMask?: string;
     /**
@@ -4521,7 +4552,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Updatecontact
     extends StandardParameters {
     /**
-     * Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
@@ -4533,7 +4564,7 @@ export namespace people_v1 {
      */
     sources?: string[];
     /**
-     * Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
+     * Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      */
     updatePersonFields?: string;
 
@@ -4595,7 +4626,7 @@ export namespace people_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnections` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
@@ -4633,7 +4664,7 @@ export namespace people_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
      * @param {string=} params.pageToken Optional. A page token, received from a previous `ListConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnections` must match the call that provided the page token.
-     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      * @param {string} params.resourceName Required. The resource name to return connections for. Only `people/me` is valid.
@@ -4740,7 +4771,7 @@ export namespace people_v1 {
      */
     pageToken?: string;
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     personFields?: string;
     /**
