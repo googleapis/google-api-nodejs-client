@@ -132,7 +132,7 @@ export namespace youtubereporting_v1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -627,8 +627,7 @@ export namespace youtubereporting_v1 {
      *
      *   // Do the magic
      *   const res = await youtubereporting.jobs.create({
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
      *
      *     // Request body metadata
@@ -780,8 +779,7 @@ export namespace youtubereporting_v1 {
      *   const res = await youtubereporting.jobs.delete({
      *     // The ID of the job to delete.
      *     jobId: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -913,8 +911,7 @@ export namespace youtubereporting_v1 {
      *   const res = await youtubereporting.jobs.get({
      *     // The ID of the job to retrieve.
      *     jobId: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1051,20 +1048,13 @@ export namespace youtubereporting_v1 {
      *
      *   // Do the magic
      *   const res = await youtubereporting.jobs.list({
-     *     // If set to true, also system-managed jobs will be returned; otherwise only
-     *     // user-created jobs will be returned. System-managed jobs can neither be
-     *     // modified nor deleted.
+     *     // If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
      *     includeSystemManaged: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Requested page size. Server may return fewer jobs than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically,
-     *     // this is the value of
-     *     // ListReportTypesResponse.next_page_token
-     *     // returned in response to the previous call to the `ListJobs` method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1258,8 +1248,7 @@ export namespace youtubereporting_v1 {
      *   const res = await youtubereporting.jobs.reports.get({
      *     // The ID of the job.
      *     jobId: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
      *     // The ID of the report to retrieve.
      *     reportId: 'placeholder-value',
@@ -1407,22 +1396,15 @@ export namespace youtubereporting_v1 {
      *     createdAfter: 'placeholder-value',
      *     // The ID of the job.
      *     jobId: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Requested page size. Server may return fewer report types than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically,
-     *     // this is the value of
-     *     // ListReportsResponse.next_page_token
-     *     // returned in response to the previous call to the `ListReports` method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
      *     pageToken: 'placeholder-value',
-     *     // If set, only reports whose start time is greater than or equal the
-     *     // specified date/time are returned.
+     *     // If set, only reports whose start time is greater than or equal the specified date/time are returned.
      *     startTimeAtOrAfter: 'placeholder-value',
-     *     // If set, only reports whose start time is smaller than the specified
-     *     // date/time are returned.
+     *     // If set, only reports whose start time is smaller than the specified date/time are returned.
      *     startTimeBefore: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1797,20 +1779,13 @@ export namespace youtubereporting_v1 {
      *
      *   // Do the magic
      *   const res = await youtubereporting.reportTypes.list({
-     *     // If set to true, also system-managed report types will be returned;
-     *     // otherwise only the report types that can be used to create new reporting
-     *     // jobs will be returned.
+     *     // If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
      *     includeSystemManaged: 'placeholder-value',
-     *     // The content owner's external ID on which behalf the user is acting on. If
-     *     // not set, the user is acting for himself (his own channel).
+     *     // The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Requested page size. Server may return fewer report types than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically,
-     *     // this is the value of
-     *     // ListReportTypesResponse.next_page_token
-     *     // returned in response to the previous call to the `ListReportTypes` method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
