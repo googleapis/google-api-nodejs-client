@@ -136,11 +136,11 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -149,11 +149,11 @@ export namespace datacatalog_v1beta1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -187,7 +187,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -251,7 +251,7 @@ export namespace datacatalog_v1beta1 {
     type?: string | null;
   }
   /**
-   * Entry Metadata. A Data Catalog Entry resource represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic), or outside of Google Cloud Platform. Clients can use the `linked_resource` field in the Entry resource to refer to the original resource ID of the source system. An Entry resource contains resource details, such as its schema. An Entry can also be used to attach flexible metadata, such as a Tag.
+   * Entry Metadata.  A Data Catalog Entry resource represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic), or outside of Google Cloud Platform. Clients can use the `linked_resource` field in the Entry resource to refer to the original resource ID of the source system.  An Entry resource contains resource details, such as its schema. An Entry can also be used to attach flexible metadata, such as a Tag.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1Entry {
     /**
@@ -279,11 +279,11 @@ export namespace datacatalog_v1beta1 {
      */
     integratedSystem?: string | null;
     /**
-     * The resource this metadata entry refers to. For Google Cloud Platform resources, `linked_resource` is the [full name of the resource](https://cloud.google.com/apis/design/resource_names#full_resource_name). For example, the `linked_resource` for a table resource from BigQuery is: * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId Output only when Entry is of type in the EntryType enum. For entries with user_specified_type, this field is optional and defaults to an empty string.
+     * The resource this metadata entry refers to.  For Google Cloud Platform resources, `linked_resource` is the [full name of the resource](https://cloud.google.com/apis/design/resource_names#full_resource_name). For example, the `linked_resource` for a table resource from BigQuery is:  * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId  Output only when Entry is of type in the EntryType enum. For entries with user_specified_type, this field is optional and defaults to an empty string.
      */
     linkedResource?: string | null;
     /**
-     * The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * The Data Catalog resource name of the entry in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
@@ -303,12 +303,12 @@ export namespace datacatalog_v1beta1 {
      */
     userSpecifiedSystem?: string | null;
     /**
-     * Entry type if it does not fit any of the input-allowed values listed in `EntryType` enum above. When creating an entry, users should check the enum values first, if nothing matches the entry to be created, then provide a custom value, for example &quot;my_special_type&quot;. `user_specified_type` strings must begin with a letter or underscore and can only contain letters, numbers, and underscores; are case insensitive; must be at least 1 character and at most 64 characters long. Currently, only FILESET enum value is allowed. All other entries created through Data Catalog must use `user_specified_type`.
+     * Entry type if it does not fit any of the input-allowed values listed in `EntryType` enum above. When creating an entry, users should check the enum values first, if nothing matches the entry to be created, then provide a custom value, for example &quot;my_special_type&quot;. `user_specified_type` strings must begin with a letter or underscore and can only contain letters, numbers, and underscores; are case insensitive; must be at least 1 character and at most 64 characters long.  Currently, only FILESET enum value is allowed. All other entries created through Data Catalog must use `user_specified_type`.
      */
     userSpecifiedType?: string | null;
   }
   /**
-   * EntryGroup Metadata. An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
+   * EntryGroup Metadata.  An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1EntryGroup {
     /**
@@ -324,7 +324,7 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The resource name of the entry group in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * The resource name of the entry group in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
   }
@@ -364,7 +364,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1GcsFilesetSpec {
     /**
-     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for more information. Note that bucket wildcards are currently not supported. Examples of valid file_patterns: * `gs://bucket_name/dir/x: matches all files within `bucket_name/dir` directory. * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir` spanning all subdirectories. * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt` You can combine wildcards to provide more powerful matches, for example: * `gs://bucket_name/[a-m]??.j*g`
+     * Required. Patterns to identify a set of files in Google Cloud Storage. See [Cloud Storage documentation](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames) for more information. Note that bucket wildcards are currently not supported.  Examples of valid file_patterns:   * `gs://bucket_name/dir/x: matches all files within `bucket_name/dir`                              directory.  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`                               spanning all subdirectories.  * `gs://bucket_name/file*`: matches files prefixed by `file` in                              `bucket_name`  * `gs://bucket_name/??.txt`: matches files with two characters followed by                               `.txt` in `bucket_name`  * `gs://bucket_name/[aeiou].txt`: matches files that contain a single                                    vowel character followed by `.txt` in                                    `bucket_name`  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...                                  or `m` followed by `.txt` in `bucket_name`  * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match                              `a/x/b` pattern, such as `a/c/b`, `a/d/b`  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`  You can combine wildcards to provide more powerful matches, for example:   * `gs://bucket_name/[a-m]??.j*g`
      */
     filePatterns?: string[] | null;
     /**
@@ -482,7 +482,7 @@ export namespace datacatalog_v1beta1 {
     taxonomies?: Schema$GoogleCloudDatacatalogV1beta1Taxonomy[];
   }
   /**
-   * Denotes one policy tag in a taxonomy (e.g. ssn). Policy Tags can be defined in a hierarchy. For example, consider the following hierarchy: Geolocation -&gt; (LatLong, City, ZipCode). PolicyTag &quot;Geolocation&quot; contains three child policy tags: &quot;LatLong&quot;, &quot;City&quot;, and &quot;ZipCode&quot;.
+   * Denotes one policy tag in a taxonomy (e.g. ssn). Policy Tags can be defined in a hierarchy. For example, consider the following hierarchy: Geolocation -&amp;gt; (LatLong, City, ZipCode). PolicyTag &quot;Geolocation&quot; contains three child policy tags: &quot;LatLong&quot;, &quot;City&quot;, and &quot;ZipCode&quot;.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1PolicyTag {
     /**
@@ -538,7 +538,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequest {
     /**
-     * Specifies the ordering of results, currently supported case-sensitive choices are: * `relevance`, only supports descending * `last_modified_timestamp [asc|desc]`, defaults to descending if not specified If not specified, defaults to `relevance` descending.
+     * Specifies the ordering of results, currently supported case-sensitive choices are:    * `relevance`, only supports descending   * `last_modified_timestamp [asc|desc]`, defaults to descending if not     specified  If not specified, defaults to `relevance` descending.
      */
     orderBy?: string | null;
     /**
@@ -550,7 +550,7 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string | null;
     /**
-     * Required. The query string in search query syntax. The query must be non-empty. Query strings can be simple as &quot;x&quot; or more qualified as: * name:x * column:x * description:y Note: Query tokens need to have a minimum of 3 characters for substring matching to work correctly. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
+     * Required. The query string in search query syntax. The query must be non-empty.  Query strings can be simple as &quot;x&quot; or more qualified as:  * name:x * column:x * description:y  Note: Query tokens need to have a minimum of 3 characters for substring matching to work correctly. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
      */
     query?: string | null;
     /**
@@ -575,7 +575,7 @@ export namespace datacatalog_v1beta1 {
      */
     includeProjectIds?: string[] | null;
     /**
-     * Optional. The list of locations to search within. 1. If empty, search will be performed in all locations; 2. If any of the locations are NOT in the valid locations list, error will be returned; 3. Otherwise, search only the given locations for matching results. Typical usage is to leave this field empty. When a location is unreachable as returned in the `SearchCatalogResponse.unreachable` field, users can repeat the search request with this parameter set to get additional information on the error. Valid locations: * asia-east1 * asia-east2 * asia-northeast1 * asia-northeast2 * asia-northeast3 * asia-south1 * asia-southeast1 * australia-southeast1 * eu * europe-north1 * europe-west1 * europe-west2 * europe-west3 * europe-west4 * europe-west6 * global * northamerica-northeast1 * southamerica-east1 * us * us-central1 * us-east1 * us-east4 * us-west1 * us-west2
+     * Optional. The list of locations to search within. 1. If empty, search will be performed in all locations; 2. If any of the locations are NOT in the valid locations list, error will be returned; 3. Otherwise, search only the given locations for matching results. Typical usage is to leave this field empty. When a location is unreachable as returned in the `SearchCatalogResponse.unreachable` field, users can repeat the search request with this parameter set to get additional information on the error.  Valid locations:  * asia-east1  * asia-east2  * asia-northeast1  * asia-northeast2  * asia-northeast3  * asia-south1  * asia-southeast1  * australia-southeast1  * eu  * europe-north1  * europe-west1  * europe-west2  * europe-west3  * europe-west4  * europe-west6  * global  * northamerica-northeast1  * southamerica-east1  * us  * us-central1  * us-east1  * us-east4  * us-west1  * us-west2
      */
     restrictedLocations?: string[] | null;
   }
@@ -601,15 +601,15 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResult {
     /**
-     * The full name of the cloud resource the entry belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`
+     * The full name of the cloud resource the entry belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Example:   * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`
      */
     linkedResource?: string | null;
     /**
-     * The relative resource name of the resource in URL format. Examples: * `projects/{project_id}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}` * `projects/{project_id}/tagTemplates/{tag_template_id}`
+     * The relative resource name of the resource in URL format. Examples:   * `projects/{project_id}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`  * `projects/{project_id}/tagTemplates/{tag_template_id}`
      */
     relativeResourceName?: string | null;
     /**
-     * Sub-type of the search result. This is a dot-delimited description of the resource&#39;s full type, and is the same as the value callers would provide in the &quot;type&quot; search facet. Examples: `entry.table`, `entry.dataStream`, `tagTemplate`.
+     * Sub-type of the search result. This is a dot-delimited description of the resource&#39;s full type, and is the same as the value callers would provide in the &quot;type&quot; search facet.  Examples: `entry.table`, `entry.dataStream`, `tagTemplate`.
      */
     searchResultSubtype?: string | null;
     /**
@@ -634,7 +634,7 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the policy tag. This field will be ignored when calling ImportTaxonomies.
+     * Resource name of the policy tag.  This field will be ignored when calling ImportTaxonomies.
      */
     policyTag?: string | null;
   }
@@ -682,11 +682,11 @@ export namespace datacatalog_v1beta1 {
     groupedEntry?: string | null;
   }
   /**
-   * Tags are used to attach custom metadata to Data Catalog resources. Tags conform to the specifications within their tag template. See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
+   * Tags are used to attach custom metadata to Data Catalog resources. Tags conform to the specifications within their tag template.  See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1Tag {
     /**
-     * Resources like Entry can have schemas associated with them. This scope allows users to attach tags to an individual column based on that schema. For attaching a tag to a nested column, use `.` to separate the column names. Example: * `outer_column.inner_column`
+     * Resources like Entry can have schemas associated with them. This scope allows users to attach tags to an individual column based on that schema.  For attaching a tag to a nested column, use `.` to separate the column names. Example:  * `outer_column.inner_column`
      */
     column?: string | null;
     /**
@@ -696,11 +696,11 @@ export namespace datacatalog_v1beta1 {
       [key: string]: Schema$GoogleCloudDatacatalogV1beta1TagField;
     } | null;
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
-     * Required. The resource name of the tag template that this tag uses. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id} This field cannot be modified after creation.
+     * Required. The resource name of the tag template that this tag uses. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}  This field cannot be modified after creation.
      */
     template?: string | null;
     /**
@@ -759,13 +759,13 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Required. Map of tag template field IDs to the settings for the field. This map is an exhaustive list of the allowed fields. This map must contain at least one field and at most 500 fields. The keys to this map are tag template field IDs. Field IDs can contain letters (both uppercase and lowercase), numbers (0-9) and underscores (_). Field IDs must be at least 1 character long and at most 64 characters long. Field IDs must start with a letter or underscore.
+     * Required. Map of tag template field IDs to the settings for the field. This map is an exhaustive list of the allowed fields. This map must contain at least one field and at most 500 fields.  The keys to this map are tag template field IDs. Field IDs can contain letters (both uppercase and lowercase), numbers (0-9) and underscores (_). Field IDs must be at least 1 character long and at most 64 characters long. Field IDs must start with a letter or underscore.
      */
     fields?: {
       [key: string]: Schema$GoogleCloudDatacatalogV1beta1TagTemplateField;
     } | null;
     /**
-     * The resource name of the tag template in URL format. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     * The resource name of the tag template in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}  Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
   }
@@ -782,11 +782,11 @@ export namespace datacatalog_v1beta1 {
      */
     isRequired?: boolean | null;
     /**
-     * Output only. The resource name of the tag template field in URL format. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template}/fields/{field} Note that this TagTemplateField may not actually be stored in the location in this name.
+     * Output only. The resource name of the tag template field in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template}/fields/{field}  Note that this TagTemplateField may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
-     * The order of this field with respect to other fields in this tag template. A higher value indicates a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
+     * The order of this field with respect to other fields in this tag template.  A higher value indicates a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
      */
     order?: number | null;
     /**
@@ -825,7 +825,7 @@ export namespace datacatalog_v1beta1 {
     viewQuery?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -833,11 +833,11 @@ export namespace datacatalog_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -877,7 +877,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.catalog.search
-     * @desc Searches Data Catalog for multiple resources like entries, tags that match a query. This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequentally call `Get` methods. Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
+     * @desc Searches Data Catalog for multiple resources like entries, tags that match a query.  This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequentally call `Get` methods.  Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries.  See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1079,9 +1079,28 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.entries.lookup({
-     *     // The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive. Examples: * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     *     // The full name of the Google Cloud Platform resource the Data Catalog
+     *     // entry represents. See:
+     *     // https://cloud.google.com/apis/design/resource_names#full_resource_name.
+     *     // Full names are case-sensitive.
+     *     //
+     *     // Examples:
+     *     //
+     *     //  * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
+     *     //  * //pubsub.googleapis.com/projects/projectId/topics/topicId
      *     linkedResource: 'placeholder-value',
-     *     // The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.project_id.topic_id` * ``pubsub.project_id.`topic.id.with.dots` `` * `bigquery.table.project_id.dataset_id.table_id` * `bigquery.dataset.project_id.dataset_id` * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id` `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     *     // The SQL name of the entry. SQL names are case-sensitive.
+     *     //
+     *     // Examples:
+     *     //
+     *     //   * `pubsub.project_id.topic_id`
+     *     //   * ``pubsub.project_id.`topic.id.with.dots` ``
+     *     //   * `bigquery.table.project_id.dataset_id.table_id`
+     *     //   * `bigquery.dataset.project_id.dataset_id`
+     *     //   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
+     *     //
+     *     // `*_id`s shoud satisfy the standard SQL rules for identifiers.
+     *     // https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      *     sqlResource: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1113,8 +1132,8 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.linkedResource The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive. Examples: * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId * //pubsub.googleapis.com/projects/projectId/topics/topicId
-     * @param {string=} params.sqlResource The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.project_id.topic_id` * ``pubsub.project_id.`topic.id.with.dots` `` * `bigquery.table.project_id.dataset_id.table_id` * `bigquery.dataset.project_id.dataset_id` * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id` `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * @param {string=} params.linkedResource The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive.  Examples:   * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId  * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     * @param {string=} params.sqlResource The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1209,11 +1228,11 @@ export namespace datacatalog_v1beta1 {
 
   export interface Params$Resource$Entries$Lookup extends StandardParameters {
     /**
-     * The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive. Examples: * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId * //pubsub.googleapis.com/projects/projectId/topics/topicId
+     * The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive.  Examples:   * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId  * //pubsub.googleapis.com/projects/projectId/topics/topicId
      */
     linkedResource?: string;
     /**
-     * The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.project_id.topic_id` * ``pubsub.project_id.`topic.id.with.dots` `` * `bigquery.table.project_id.dataset_id.table_id` * `bigquery.dataset.project_id.dataset_id` * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id` `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      */
     sqlResource?: string;
   }
@@ -1262,7 +1281,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.create
-     * @desc A maximum of 10,000 entry groups may be created per organization across all locations. Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc A maximum of 10,000 entry groups may be created per organization across all locations.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1287,9 +1306,16 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.create({
-     *     // Required. The id of the entry group to create. The id must begin with a letter or underscore, contain only English letters, numbers and underscores, and be at most 64 characters.
+     *     // Required. The id of the entry group to create.
+     *     // The id must begin with a letter or underscore, contain only English
+     *     // letters, numbers and underscores, and be at most 64 characters.
      *     entryGroupId: 'placeholder-value',
-     *     // Required. The name of the project this entry group is in. Example: * projects/{project_id}/locations/{location} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     *     // Required. The name of the project this entry group is in. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}
+     *     //
+     *     // Note that this EntryGroup and its child resources may not actually be
+     *     // stored in the location in this name.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1324,7 +1350,7 @@ export namespace datacatalog_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.entryGroupId Required. The id of the entry group to create. The id must begin with a letter or underscore, contain only English letters, numbers and underscores, and be at most 64 characters.
-     * @param {string} params.parent Required. The name of the project this entry group is in. Example: * projects/{project_id}/locations/{location} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * @param {string} params.parent Required. The name of the project this entry group is in. Example:  * projects/{project_id}/locations/{location}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      * @param {().GoogleCloudDatacatalogV1beta1EntryGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1453,7 +1479,8 @@ export namespace datacatalog_v1beta1 {
      *   const res = await datacatalog.projects.locations.entryGroups.delete({
      *     // Optional. If true, deletes all entries in the entry group.
      *     force: 'placeholder-value',
-     *     // Required. The name of the entry group. For example, `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`.
+     *     // Required. The name of the entry group. For example,
+     *     // `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`.
      *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *   });
      *   console.log(res.data);
@@ -1580,7 +1607,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.get({
-     *     // Required. The name of the entry group. For example, `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`.
+     *     // Required. The name of the entry group. For example,
+     *     // `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`.
      *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *     // The fields to return. If not set or empty, all fields are returned.
      *     readMask: 'placeholder-value',
@@ -1704,7 +1732,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1729,7 +1757,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -1872,11 +1901,16 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.list({
-     *     // Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
+     *     // Optional. The maximum number of items to return. Default is 10. Max limit is 1000.
+     *     // Throws an invalid argument for `page_size > 1000`.
      *     pageSize: 'placeholder-value',
-     *     // Optional. Token that specifies which page is requested. If empty, the first page is returned.
+     *     // Optional. Token that specifies which page is requested. If empty, the first page is
+     *     // returned.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the location that contains the entry groups, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}
+     *     // Required. The name of the location that contains the entry groups, which can be
+     *     // provided in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1899,7 +1933,7 @@ export namespace datacatalog_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
      * @param {string=} params.pageToken Optional. Token that specifies which page is requested. If empty, the first page is returned.
-     * @param {string} params.parent Required. The name of the location that contains the entry groups, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}
+     * @param {string} params.parent Required. The name of the location that contains the entry groups, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2036,9 +2070,15 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.patch({
-     *     // The resource name of the entry group in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     *     // The resource name of the entry group in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     *     //
+     *     // Note that this EntryGroup and its child resources may not actually be
+     *     // stored in the location in this name.
      *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *     // The fields to update on the entry group. If absent or empty, all modifiable fields are updated.
+     *     // The fields to update on the entry group. If absent or empty, all modifiable
+     *     // fields are updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2072,7 +2112,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the entry group in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * @param {string} params.name The resource name of the entry group in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      * @param {string=} params.updateMask The fields to update on the entry group. If absent or empty, all modifiable fields are updated.
      * @param {().GoogleCloudDatacatalogV1beta1EntryGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2172,7 +2212,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.setIamPolicy
-     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entries.setIamPolicy` to set policies on entries. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2197,7 +2237,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2315,7 +2356,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2341,7 +2382,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2471,7 +2513,7 @@ export namespace datacatalog_v1beta1 {
      */
     entryGroupId?: string;
     /**
-     * Required. The name of the project this entry group is in. Example: * projects/{project_id}/locations/{location} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * Required. The name of the project this entry group is in. Example:  * projects/{project_id}/locations/{location}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
 
@@ -2525,14 +2567,14 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the location that contains the entry groups, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}
+     * Required. The name of the location that contains the entry groups, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {
     /**
-     * The resource name of the entry group in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * The resource name of the entry group in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -2582,7 +2624,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.create
-     * @desc Creates an entry. Only entries of 'FILESET' type or user-specified type can be created. Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information). A maximum of 100,000 entries may be created per entry group.
+     * @desc Creates an entry. Only entries of 'FILESET' type or user-specified type can be created.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).  A maximum of 100,000 entries may be created per entry group.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2609,7 +2651,12 @@ export namespace datacatalog_v1beta1 {
      *   const res = await datacatalog.projects.locations.entryGroups.entries.create({
      *     // Required. The id of the entry to create.
      *     entryId: 'placeholder-value',
-     *     // Required. The name of the entry group this entry is in. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     *     // Required. The name of the entry group this entry is in. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     *     //
+     *     // Note that this Entry and its child resources may not actually be stored in
+     *     // the location in this name.
      *     parent:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2663,7 +2710,7 @@ export namespace datacatalog_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.entryId Required. The id of the entry to create.
-     * @param {string} params.parent Required. The name of the entry group this entry is in. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * @param {string} params.parent Required. The name of the entry group this entry is in. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
      * @param {().GoogleCloudDatacatalogV1beta1Entry} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2784,7 +2831,9 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.delete({
-     *     // Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *     // Required. The name of the entry. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *   });
@@ -2803,7 +2852,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * @param {string} params.name Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2911,7 +2960,9 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.get({
-     *     // Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *     // Required. The name of the entry. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *   });
@@ -2944,7 +2995,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * @param {string} params.name Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3036,7 +3087,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3062,7 +3113,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.getIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
@@ -3206,14 +3258,22 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.list({
-     *     // The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
+     *     // The maximum number of items to return. Default is 10. Max limit is 1000.
+     *     // Throws an invalid argument for `page_size > 1000`.
      *     pageSize: 'placeholder-value',
-     *     // Token that specifies which page is requested. If empty, the first page is returned.
+     *     // Token that specifies which page is requested. If empty, the first page is
+     *     // returned.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the entry group that contains the entries, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     *     // Required. The name of the entry group that contains the entries, which can
+     *     // be provided in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
      *     parent:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *     // The fields to return for each Entry. If not set or empty, all fields are returned. For example, setting read_mask to contain only one path "name" will cause ListEntries to return a list of Entries with only "name" field.
+     *     // The fields to return for each Entry. If not set or empty, all
+     *     // fields are returned.
+     *     // For example, setting read_mask to contain only one path "name" will cause
+     *     // ListEntries to return a list of Entries with only "name" field.
      *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3236,7 +3296,7 @@ export namespace datacatalog_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
      * @param {string=} params.pageToken Token that specifies which page is requested. If empty, the first page is returned.
-     * @param {string} params.parent Required. The name of the entry group that contains the entries, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     * @param {string} params.parent Required. The name of the entry group that contains the entries, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
      * @param {string=} params.readMask The fields to return for each Entry. If not set or empty, all fields are returned. For example, setting read_mask to contain only one path "name" will cause ListEntries to return a list of Entries with only "name" field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3370,10 +3430,34 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.patch({
-     *     // The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     *     // The Data Catalog resource name of the entry in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *     //
+     *     // Note that this Entry and its child resources may not actually be stored in
+     *     // the location in this name.
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *     // The fields to update on the entry. If absent or empty, all modifiable fields are updated. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET` * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type` * `schema` * `display_name` * `description` * user_specified_type * user_specified_system * linked_resource * source_system_timestamps
+     *     // The fields to update on the entry. If absent or empty, all modifiable
+     *     // fields are updated.
+     *     //
+     *     // The following fields are modifiable:
+     *     // * For entries with type `DATA_STREAM`:
+     *     //    * `schema`
+     *     // * For entries with type `FILESET`
+     *     //    * `schema`
+     *     //    * `display_name`
+     *     //    * `description`
+     *     //    * `gcs_fileset_spec`
+     *     //    * `gcs_fileset_spec.file_patterns`
+     *     // * For entries with `user_specified_type`
+     *     //    * `schema`
+     *     //    * `display_name`
+     *     //    * `description`
+     *     //    * user_specified_type
+     *     //    * user_specified_system
+     *     //    * linked_resource
+     *     //    * source_system_timestamps
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3425,8 +3509,8 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
-     * @param {string=} params.updateMask The fields to update on the entry. If absent or empty, all modifiable fields are updated. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET` * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type` * `schema` * `display_name` * `description` * user_specified_type * user_specified_system * linked_resource * source_system_timestamps
+     * @param {string} params.name The Data Catalog resource name of the entry in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * @param {string=} params.updateMask The fields to update on the entry. If absent or empty, all modifiable fields are updated.  The following fields are modifiable: * For entries with type `DATA_STREAM`:    * `schema` * For entries with type `FILESET`    * `schema`    * `display_name`    * `description`    * `gcs_fileset_spec`    * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type`    * `schema`    * `display_name`    * `description`    * user_specified_type    * user_specified_system    * linked_resource    * source_system_timestamps
      * @param {().GoogleCloudDatacatalogV1beta1Entry} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3519,7 +3603,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3545,7 +3629,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
@@ -3675,7 +3760,7 @@ export namespace datacatalog_v1beta1 {
      */
     entryId?: string;
     /**
-     * Required. The name of the entry group this entry is in. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * Required. The name of the entry group this entry is in. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
 
@@ -3687,14 +3772,14 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
     extends StandardParameters {
     /**
-     * Required. The name of the entry. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     name?: string;
   }
@@ -3721,7 +3806,7 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the entry group that contains the entries, which can be provided in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     * Required. The name of the entry group that contains the entries, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
      */
     parent?: string;
     /**
@@ -3732,11 +3817,11 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * The Data Catalog resource name of the entry in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**
-     * The fields to update on the entry. If absent or empty, all modifiable fields are updated. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET` * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type` * `schema` * `display_name` * `description` * user_specified_type * user_specified_system * linked_resource * source_system_timestamps
+     * The fields to update on the entry. If absent or empty, all modifiable fields are updated.  The following fields are modifiable: * For entries with type `DATA_STREAM`:    * `schema` * For entries with type `FILESET`    * `schema`    * `display_name`    * `description`    * `gcs_fileset_spec`    * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type`    * `schema`    * `display_name`    * `description`    * user_specified_type    * user_specified_system    * linked_resource    * source_system_timestamps
      */
     updateMask?: string;
 
@@ -3792,7 +3877,13 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.create(
      *     {
-     *       // Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     *       // Required. The name of the resource to attach this tag to. Tags can be attached to
+     *       // Entries. Example:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *       //
+     *       // Note that this Tag and its child resources may not actually be stored in
+     *       // the location in this name.
      *       parent:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
@@ -3830,7 +3921,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     * @param {string} params.parent Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      * @param {().GoogleCloudDatacatalogV1beta1Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3952,7 +4043,9 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.delete(
      *     {
-     *       // Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     *       // Required. The name of the tag to delete. Example:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      *       name:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
      *     }
@@ -3972,7 +4065,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     * @param {string} params.name Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4083,9 +4176,17 @@ export namespace datacatalog_v1beta1 {
      *     {
      *       // The maximum number of tags to return. Default is 10. Max limit is 1000.
      *       pageSize: 'placeholder-value',
-     *       // Token that specifies which page is requested. If empty, the first page is returned.
+     *       // Token that specifies which page is requested. If empty, the first page is
+     *       // returned.
      *       pageToken: 'placeholder-value',
-     *       // Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *       // Required. The name of the Data Catalog resource to list the tags of. The resource
+     *       // could be an Entry or an
+     *       // EntryGroup.
+     *       //
+     *       // Examples:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     *       // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      *       parent:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *     }
@@ -4110,7 +4211,7 @@ export namespace datacatalog_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of tags to return. Default is 10. Max limit is 1000.
      * @param {string=} params.pageToken Token that specifies which page is requested. If empty, the first page is returned.
-     * @param {string} params.parent Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * @param {string} params.parent Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup.  Examples:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4245,10 +4346,16 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.patch(
      *     {
-     *       // The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     *       // The resource name of the tag in URL format. Example:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     *       //
+     *       // where `tag_id` is a system-generated identifier.
+     *       // Note that this Tag may not actually be stored in the location in this name.
      *       name:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
-     *       // The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.
+     *       // The fields to update on the Tag. If absent or empty, all modifiable fields
+     *       // are updated. Currently the only modifiable field is the field `fields`.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -4285,7 +4392,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * @param {string} params.name The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      * @param {string=} params.updateMask The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.
      * @param {().GoogleCloudDatacatalogV1beta1Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4381,7 +4488,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create
     extends StandardParameters {
     /**
-     * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
 
@@ -4393,7 +4500,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     * Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      */
     name?: string;
   }
@@ -4408,14 +4515,14 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup.  Examples:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -4462,7 +4569,13 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.create({
-     *     // Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     *     // Required. The name of the resource to attach this tag to. Tags can be attached to
+     *     // Entries. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *     //
+     *     // Note that this Tag and its child resources may not actually be stored in
+     *     // the location in this name.
      *     parent:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -4499,7 +4612,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     * @param {string} params.parent Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      * @param {().GoogleCloudDatacatalogV1beta1Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4620,7 +4733,9 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.delete({
-     *     // Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     *     // Required. The name of the tag to delete. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
      *   });
@@ -4639,7 +4754,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     * @param {string} params.name Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4749,9 +4864,17 @@ export namespace datacatalog_v1beta1 {
      *   const res = await datacatalog.projects.locations.entryGroups.tags.list({
      *     // The maximum number of tags to return. Default is 10. Max limit is 1000.
      *     pageSize: 'placeholder-value',
-     *     // Token that specifies which page is requested. If empty, the first page is returned.
+     *     // Token that specifies which page is requested. If empty, the first page is
+     *     // returned.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     *     // Required. The name of the Data Catalog resource to list the tags of. The resource
+     *     // could be an Entry or an
+     *     // EntryGroup.
+     *     //
+     *     // Examples:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     *     // * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      *     parent:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *   });
@@ -4775,7 +4898,7 @@ export namespace datacatalog_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of tags to return. Default is 10. Max limit is 1000.
      * @param {string=} params.pageToken Token that specifies which page is requested. If empty, the first page is returned.
-     * @param {string} params.parent Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * @param {string} params.parent Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup.  Examples:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4909,10 +5032,16 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.patch({
-     *     // The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     *     // The resource name of the tag in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     *     //
+     *     // where `tag_id` is a system-generated identifier.
+     *     // Note that this Tag may not actually be stored in the location in this name.
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
-     *     // The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.
+     *     // The fields to update on the Tag. If absent or empty, all modifiable fields
+     *     // are updated. Currently the only modifiable field is the field `fields`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4948,7 +5077,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * @param {string} params.name The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      * @param {string=} params.updateMask The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.
      * @param {().GoogleCloudDatacatalogV1beta1Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5044,7 +5173,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Create
     extends StandardParameters {
     /**
-     * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Tag and its child resources may not actually be stored in the location in this name.
+     * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
 
@@ -5056,7 +5185,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the tag to delete. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
+     * Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      */
     name?: string;
   }
@@ -5071,14 +5200,14 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup.  Examples:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id} * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -5129,7 +5258,12 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.create({
-     *     // Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions. Example: * projects/{project_id}/locations/us-central1
+     *     // Required. The name of the project and the template location
+     *     // [region](https://cloud.google.com/data-catalog/docs/concepts/regions.
+     *     //
+     *     // Example:
+     *     //
+     *     // * projects/{project_id}/locations/us-central1
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The id of the tag template to create.
      *     tagTemplateId: 'placeholder-value',
@@ -5163,7 +5297,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions. Example: * projects/{project_id}/locations/us-central1
+     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions.  Example:  * projects/{project_id}/locations/us-central1
      * @param {string=} params.tagTemplateId Required. The id of the tag template to create.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5291,9 +5425,13 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.delete({
-     *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of any possible tags using this template. `force = false` will be supported in the future.
+     *     // Required. Currently, this field must always be set to `true`.
+     *     // This confirms the deletion of any possible tags using this template.
+     *     // `force = false` will be supported in the future.
      *     force: 'placeholder-value',
-     *     // Required. The name of the tag template to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     *     // Required. The name of the tag template to delete. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *   });
@@ -5313,7 +5451,7 @@ export namespace datacatalog_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.force Required. Currently, this field must always be set to `true`. This confirms the deletion of any possible tags using this template. `force = false` will be supported in the future.
-     * @param {string} params.name Required. The name of the tag template to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * @param {string} params.name Required. The name of the tag template to delete. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5421,7 +5559,9 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.get({
-     *     // Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     *     // Required. The name of the tag template. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *   });
@@ -5444,7 +5584,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * @param {string} params.name Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5542,7 +5682,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5567,7 +5707,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -5710,10 +5851,21 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.patch({
-     *     // The resource name of the tag template in URL format. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     *     // The resource name of the tag template in URL format. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     *     //
+     *     // Note that this TagTemplate and its child resources may not actually be
+     *     // stored in the location in this name.
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // The field mask specifies the parts of the template to overwrite. Allowed fields: * `display_name` If absent or empty, all of the allowed fields above will be updated.
+     *     // The field mask specifies the parts of the template to overwrite.
+     *     //
+     *     // Allowed fields:
+     *     //
+     *     //   * `display_name`
+     *     //
+     *     // If absent or empty, all of the allowed fields above will be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5745,8 +5897,8 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the tag template in URL format. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
-     * @param {string=} params.updateMask The field mask specifies the parts of the template to overwrite. Allowed fields: * `display_name` If absent or empty, all of the allowed fields above will be updated.
+     * @param {string} params.name The resource name of the tag template in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}  Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     * @param {string=} params.updateMask The field mask specifies the parts of the template to overwrite.  Allowed fields:    * `display_name`  If absent or empty, all of the allowed fields above will be updated.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5845,7 +5997,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.setIamPolicy
-     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entries.setIamPolicy` to set policies on entries. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5870,7 +6022,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -5988,7 +6141,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6014,7 +6167,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -6140,7 +6294,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions. Example: * projects/{project_id}/locations/us-central1
+     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions.  Example:  * projects/{project_id}/locations/us-central1
      */
     parent?: string;
     /**
@@ -6160,14 +6314,14 @@ export namespace datacatalog_v1beta1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the tag template to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * Required. The name of the tag template to delete. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Get
     extends StandardParameters {
     /**
-     * Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      */
     name?: string;
   }
@@ -6186,11 +6340,11 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag template in URL format. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     * The resource name of the tag template in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}  Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**
-     * The field mask specifies the parts of the template to overwrite. Allowed fields: * `display_name` If absent or empty, all of the allowed fields above will be updated.
+     * The field mask specifies the parts of the template to overwrite.  Allowed fields:    * `display_name`  If absent or empty, all of the allowed fields above will be updated.
      */
     updateMask?: string;
 
@@ -6261,10 +6415,19 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.create({
-     *     // Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Example: * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
+     *     // Required. The name of the project and the template location
+     *     // [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
+     *     //
+     *     // Example:
+     *     //
+     *     // * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      *     parent:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // Required. The ID of the tag template field to create. Field ids can contain letters (both uppercase and lowercase), numbers (0-9), underscores (_) and dashes (-). Field IDs must be at least 1 character long and at most 128 characters long. Field IDs must also be unique within their template.
+     *     // Required. The ID of the tag template field to create.
+     *     // Field ids can contain letters (both uppercase and lowercase), numbers
+     *     // (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
+     *     // character long and at most 128 characters long. Field IDs must also be
+     *     // unique within their template.
      *     tagTemplateFieldId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6300,7 +6463,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Example: * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
+     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      * @param {string=} params.tagTemplateFieldId Required. The ID of the tag template field to create. Field ids can contain letters (both uppercase and lowercase), numbers (0-9), underscores (_) and dashes (-). Field IDs must be at least 1 character long and at most 128 characters long. Field IDs must also be unique within their template.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplateField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6436,9 +6599,13 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.delete({
-     *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of this field from any tags using this field. `force = false` will be supported in the future.
+     *     // Required. Currently, this field must always be set to `true`.
+     *     // This confirms the deletion of this field from any tags using this field.
+     *     // `force = false` will be supported in the future.
      *     force: 'placeholder-value',
-     *     // Required. The name of the tag template field to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     *     // Required. The name of the tag template field to delete. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *   });
@@ -6458,7 +6625,7 @@ export namespace datacatalog_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.force Required. Currently, this field must always be set to `true`. This confirms the deletion of this field from any tags using this field. `force = false` will be supported in the future.
-     * @param {string} params.name Required. The name of the tag template field to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * @param {string} params.name Required. The name of the tag template field to delete. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6566,10 +6733,25 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.patch({
-     *     // Required. The name of the tag template field. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     *     // Required. The name of the tag template field. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
-     *     // Optional. The field mask specifies the parts of the template to be updated. Allowed fields: * `display_name` * `type.enum_type` * `is_required` If `update_mask` is not set or empty, all of the allowed fields above will be updated. When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.
+     *     // Optional. The field mask specifies the parts of the template to be updated.
+     *     // Allowed fields:
+     *     //
+     *     //   * `display_name`
+     *     //   * `type.enum_type`
+     *     //   * `is_required`
+     *     //
+     *     // If `update_mask` is not set or empty, all of the allowed fields above will
+     *     // be updated.
+     *     //
+     *     // When updating an enum type, the provided values will be merged with the
+     *     // existing values. Therefore, enum values can only be added, existing enum
+     *     // values cannot be deleted nor renamed. Updating a template field from
+     *     // optional to required is NOT allowed.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6605,8 +6787,8 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the tag template field. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
-     * @param {string=} params.updateMask Optional. The field mask specifies the parts of the template to be updated. Allowed fields: * `display_name` * `type.enum_type` * `is_required` If `update_mask` is not set or empty, all of the allowed fields above will be updated. When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.
+     * @param {string} params.name Required. The name of the tag template field. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * @param {string=} params.updateMask Optional. The field mask specifies the parts of the template to be updated. Allowed fields:    * `display_name`   * `type.enum_type`   * `is_required`  If `update_mask` is not set or empty, all of the allowed fields above will be updated.  When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplateField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6738,7 +6920,9 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.rename({
-     *     // Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     *     // Required. The name of the tag template. Example:
+     *     //
+     *     // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      *     name:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *
@@ -6771,7 +6955,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * @param {string} params.name Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      * @param {().GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6883,7 +7067,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Example: * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
+     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      */
     parent?: string;
     /**
@@ -6903,18 +7087,18 @@ export namespace datacatalog_v1beta1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the tag template field to delete. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template field to delete. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch
     extends StandardParameters {
     /**
-     * Required. The name of the tag template field. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template field. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      */
     name?: string;
     /**
-     * Optional. The field mask specifies the parts of the template to be updated. Allowed fields: * `display_name` * `type.enum_type` * `is_required` If `update_mask` is not set or empty, all of the allowed fields above will be updated. When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.
+     * Optional. The field mask specifies the parts of the template to be updated. Allowed fields:    * `display_name`   * `type.enum_type`   * `is_required`  If `update_mask` is not set or empty, all of the allowed fields above will be updated.  When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.
      */
     updateMask?: string;
 
@@ -6926,7 +7110,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename
     extends StandardParameters {
     /**
-     * Required. The name of the tag template. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      */
     name?: string;
 
@@ -6970,7 +7154,9 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.enumValues.rename(
      *     {
-     *       // Required. The name of the enum field value. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     *       // Required. The name of the enum field value. Example:
+     *       //
+     *       // * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
      *       name:
      *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field/enumValues/my-enumValue',
      *
@@ -7004,7 +7190,7 @@ export namespace datacatalog_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the enum field value. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     * @param {string} params.name Required. The name of the enum field value. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
      * @param {().GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7116,7 +7302,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename
     extends StandardParameters {
     /**
-     * Required. The name of the enum field value. Example: * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     * Required. The name of the enum field value. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
      */
     name?: string;
 
@@ -7324,7 +7510,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.delete({
-     *     // Required. Resource name of the taxonomy to be deleted. All policy tags in this taxonomy will also be deleted.
+     *     // Required. Resource name of the taxonomy to be deleted. All policy tags in
+     *     // this taxonomy will also be deleted.
      *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *   });
      *   console.log(res.data);
@@ -7425,7 +7612,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.taxonomies.export
-     * @desc Exports all taxonomies and their policy tags in a project. This method generates SerializedTaxonomy protos with nested policy tags that can be used as an input for future ImportTaxonomies calls.
+     * @desc Exports all taxonomies and their policy tags in a project.  This method generates SerializedTaxonomy protos with nested policy tags that can be used as an input for future ImportTaxonomies calls.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7450,7 +7637,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.export({
-     *     // Required. Resource name of the project that taxonomies to be exported will share.
+     *     // Required. Resource name of the project that taxonomies to be exported
+     *     // will share.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Export taxonomies as serialized taxonomies.
      *     serializedTaxonomies: 'placeholder-value',
@@ -7759,7 +7947,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -7877,7 +8066,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.taxonomies.import
-     * @desc Imports all taxonomies and their policy tags to a project as new taxonomies. This method provides a bulk taxonomy / policy tag creation using nested proto structure.
+     * @desc Imports all taxonomies and their policy tags to a project as new taxonomies.  This method provides a bulk taxonomy / policy tag creation using nested proto structure.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8068,9 +8257,11 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.list({
-     *     // The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
+     *     // The maximum number of items to return. Must be a value between 1 and 1000.
+     *     // If not set, defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous list request, if any. If not set, defaults to an empty string.
+     *     // The next_page_token value returned from a previous list request, if any. If
+     *     // not set, defaults to an empty string.
      *     pageToken: 'placeholder-value',
      *     // Required. Resource name of the project to list the taxonomies of.
      *     parent: 'projects/my-project/locations/my-location',
@@ -8232,9 +8423,13 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.patch({
-     *     // Output only. Resource name of this taxonomy, whose format is: "projects/{project_number}/locations/{location_id}/taxonomies/{id}".
+     *     // Output only. Resource name of this taxonomy, whose format is:
+     *     // "projects/{project_number}/locations/{location_id}/taxonomies/{id}".
      *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
+     *     // The update mask applies to the resource. For the `FieldMask` definition,
+     *     // see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If not set, defaults to all of the fields that are allowed to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8393,7 +8588,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // See the operation documentation for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -8537,7 +8733,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -8981,7 +9178,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.delete(
      *     {
-     *       // Required. Resource name of the policy tag to be deleted. All of its descendant policy tags will also be deleted.
+     *       // Required. Resource name of the policy tag to be deleted. All of its descendant
+     *       // policy tags will also be deleted.
      *       name:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *     }
@@ -9258,7 +9456,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
@@ -9402,9 +9601,11 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.list({
-     *     // The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
+     *     // The maximum number of items to return. Must be a value between 1 and 1000.
+     *     // If not set, defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any. If not set, defaults to an empty string.
+     *     // The next_page_token value returned from a previous List request, if any. If
+     *     // not set, defaults to an empty string.
      *     pageToken: 'placeholder-value',
      *     // Required. Resource name of the taxonomy to list the policy tags of.
      *     parent: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
@@ -9566,10 +9767,17 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.patch({
-     *     // Output only. Resource name of this policy tag, whose format is: "projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}".
+     *     // Output only. Resource name of this policy tag, whose format is:
+     *     // "projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}".
      *     name:
      *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *     // The update mask applies to the resource. Only display_name, description and parent_policy_tag can be updated and thus can be listed in the mask. If update_mask is not provided, all allowed fields (i.e. display_name, description and parent) will be updated. For more information including the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
+     *     // The update mask applies to the resource. Only display_name, description and
+     *     // parent_policy_tag can be updated and thus can be listed in the mask. If
+     *     // update_mask is not provided, all allowed fields (i.e. display_name,
+     *     // description and parent) will be updated. For more information including the
+     *     // `FieldMask` definition, see
+     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // If not set, defaults to all of the fields that are allowed to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9731,7 +9939,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
@@ -9876,7 +10085,8 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested.
+     *       // See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
