@@ -12,7 +12,7 @@
   "baseUrl": "https://blogger.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Blogger",
-  "description": "The Blogger API provides access to posts, comments and pages of a\n    Blogger blog.",
+  "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/blogger/docs/3.0/getting_started",
   "fullyEncodeReservedExpansion": true,
@@ -401,7 +401,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200801",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {
@@ -557,7 +557,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Access permissions that the user has for the blog (ADMIN, AUTHOR, or\nREADER).",
+          "description": "Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).",
           "enum": [
             "VIEW_TYPE_UNSPECIFIED",
             "READER",
@@ -808,7 +808,7 @@
           "type": "string"
         },
         "title": {
-          "description": "The title of this entity. This is the name displayed in the Admin user\ninterface.",
+          "description": "The title of this entity. This is the name displayed in the Admin user interface.",
           "type": "string"
         },
         "updated": {

@@ -101,7 +101,7 @@ export namespace blogger_v3 {
   /**
    * Blogger API v3
    *
-   * The Blogger API provides access to posts, comments and pages of a     Blogger blog.
+   * The Blogger API provides access to posts, comments and pages of a Blogger blog.
    *
    * @example
    * const {google} = require('googleapis');
