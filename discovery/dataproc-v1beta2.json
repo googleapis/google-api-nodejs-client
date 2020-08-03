@@ -121,7 +121,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name has the following format: projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -149,7 +149,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -174,7 +174,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -241,7 +241,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -322,7 +322,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -354,7 +354,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -382,7 +382,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -413,7 +413,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -475,7 +475,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -508,7 +508,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -552,7 +552,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -633,7 +633,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -669,7 +669,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.autoscalingPolicies.create, the resource name  has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name has the following format: projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+$",
                       "required": true,
@@ -697,7 +697,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -722,7 +722,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Required. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -789,7 +789,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The \"resource name\" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+$",
                       "required": true,
@@ -870,7 +870,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+                      "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -1177,7 +1177,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows:\n{\n  \"config\":{\n    \"workerConfig\":{\n      \"numInstances\":\"5\"\n    }\n  }\n}\nSimilarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows:\n{\n  \"config\":{\n    \"secondaryWorkerConfig\":{\n      \"numInstances\":\"5\"\n    }\n  }\n}\n<strong>Note:</strong> currently only the following fields can be updated:\n<table>\n<tr>\n<td><strong>Mask</strong></td><td><strong>Purpose</strong></td>\n</tr>\n<tr>\n<td>labels</td><td>Updates labels</td>\n</tr>\n<tr>\n<td>config.worker_config.num_instances</td><td>Resize primary worker\ngroup</td>\n</tr>\n<tr>\n<td>config.secondary_worker_config.num_instances</td><td>Resize secondary\nworker group</td>\n</tr>\n<tr>\n<td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL\nduration</td>\n</tr>\n<tr>\n<td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL\ndeletion timestamp</td>\n</tr>\n<tr>\n<td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL\nduration</td>\n</tr>\n<tr>\n<td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change\nautoscaling policies</td>\n</tr>\n</table>",
+                      "description": "Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: { \"config\":{ \"workerConfig\":{ \"numInstances\":\"5\" } } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: { \"config\":{ \"secondaryWorkerConfig\":{ \"numInstances\":\"5\" } } } *Note:* currently only the following fields can be updated: *Mask* *Purpose* labels Updates labels config.worker_config.num_instances Resize primary worker group config.secondary_worker_config.num_instances Resize secondary worker group config.lifecycle_config.auto_delete_ttl Reset MAX TTL duration config.lifecycle_config.auto_delete_time Update MAX TTL deletion timestamp config.lifecycle_config.idle_delete_ttl Update Idle TTL duration config.autoscaling_config.policy_uri Use, stop using, or change autoscaling policies ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1511,6 +1511,11 @@
                         "ACTIVE",
                         "NON_ACTIVE"
                       ],
+                      "enumDescriptions": [
+                        "Match all jobs, regardless of state.",
+                        "Only match jobs in non-terminal states: PENDING, RUNNING, or CANCEL_PENDING.",
+                        "Only match jobs in terminal states: CANCELLED, DONE, or ERROR."
+                      ],
                       "location": "query",
                       "type": "string"
                     },
@@ -1576,7 +1581,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.",
+                      "description": "Required. Specifies the path, relative to Job, of the field to update. For example, to update the labels of a Job the update_mask parameter would be specified as labels, and the PATCH request body would specify the new value. *Note:* Currently, labels is the only field that can be updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1938,7 +1943,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+$",
                       "required": true,
@@ -1966,7 +1971,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.delete, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -1997,7 +2002,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.get, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2059,7 +2064,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2092,7 +2097,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+$",
                       "required": true,
@@ -2136,7 +2141,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates,list, the resource  name of the region has the following format:  projects/{project_id}/regions/{region}\nFor projects.locations.workflowTemplates.list, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}",
+                      "description": "Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,list, the resource name of the region has the following format: projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.list, the resource name of the location has the following format: projects/{project_id}/locations/{location}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+$",
                       "required": true,
@@ -2217,7 +2222,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+                      "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2242,7 +2247,7 @@
       }
     }
   },
-  "revision": "20200716",
+  "revision": "20200725",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2266,7 +2271,7 @@
       "id": "AutoscalingConfig",
       "properties": {
         "policyUri": {
-          "description": "Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples:\nhttps://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]\nprojects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Dataproc region.",
+          "description": "Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Dataproc region.",
           "type": "string"
         }
       },
@@ -2284,7 +2289,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}\nFor projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+          "description": "Output only. The \"resource name\" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}",
+          "readOnly": true,
           "type": "string"
         },
         "secondaryWorkerConfig": {
@@ -2355,7 +2361,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the identities requesting access for a Cloud Platform resource. members can have the following values:\nallUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account.\nallAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account.\nuser:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com .\nserviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com.\ngroup:{emailid}: An email address that represents a Google group.  For example, admins@example.com.\ndeleted:user:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a user that has been recently deleted. For  example, alice@example.com?uid=123456789012345678901. If the user is  recovered, this value reverts to user:{emailid} and the recovered user  retains the role in the binding.\ndeleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus  unique identifier) representing a service account that has been recently  deleted. For example,  my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901.  If the service account is undeleted, this value reverts to  serviceAccount:{emailid} and the undeleted service account retains the  role in the binding.\ndeleted:group:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a Google group that has been recently  deleted. For example, admins@example.com?uid=123456789012345678901. If  the group is recovered, this value reverts to group:{emailid} and the  recovered group retains the role in the binding.\ndomain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },
@@ -2384,6 +2390,7 @@
         },
         "clusterUuid": {
           "description": "Output only. A cluster UUID (Unique Universal Identifier). Dataproc generates this value when it creates the cluster.",
+          "readOnly": true,
           "type": "string"
         },
         "config": {
@@ -2399,7 +2406,8 @@
         },
         "metrics": {
           "$ref": "ClusterMetrics",
-          "description": "Output only. Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release."
+          "description": "Output only. Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.",
+          "readOnly": true
         },
         "projectId": {
           "description": "Required. The Google Cloud Platform project ID that the cluster belongs to.",
@@ -2407,13 +2415,15 @@
         },
         "status": {
           "$ref": "ClusterStatus",
-          "description": "Output only. Cluster status."
+          "description": "Output only. Cluster status.",
+          "readOnly": true
         },
         "statusHistory": {
           "description": "Output only. The previous cluster status.",
           "items": {
             "$ref": "ClusterStatus"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -2448,7 +2458,7 @@
           "description": "Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
         },
         "initializationActions": {
-          "description": "Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's <code>role</code> metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget):\nROLE=$(curl -H Metadata-Flavor:Google\nhttp://metadata/computeMetadata/v1beta2/instance/attributes/dataproc-role)\nif [[ \"${ROLE}\" == 'Master' ]]; then\n  ... master specific actions ...\nelse\n  ... worker specific actions ...\nfi\n",
+          "description": "Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1beta2/instance/attributes/dataproc-role) if [[ \"${ROLE}\" == 'Master' ]]; then ... master specific actions ... else ... worker specific actions ... fi ",
           "items": {
             "$ref": "NodeInitializationAction"
           },
@@ -2514,14 +2524,17 @@
       "properties": {
         "done": {
           "description": "Output only. Indicates the operation is done.",
+          "readOnly": true,
           "type": "boolean"
         },
         "error": {
           "description": "Output only. Error, if operation failed.",
+          "readOnly": true,
           "type": "string"
         },
         "operationId": {
           "description": "Output only. The id of the cluster operation.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2635,6 +2648,7 @@
       "properties": {
         "detail": {
           "description": "Output only. Optional details of cluster's state.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -2661,11 +2675,13 @@
             "The cluster is currently stopped. It is not ready for use.",
             "The cluster is being started. It is not ready for use."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "stateStartTime": {
           "description": "Output only. Time when this state was entered (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "substate": {
@@ -2680,6 +2696,7 @@
             "The cluster is known to be in an unhealthy state (for example, critical daemons are not running or HDFS capacity is exhausted).Applies to RUNNING state.",
             "The agent-reported status is out of date (may occur if Dataproc loses communication with Agent).Applies to RUNNING state."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2697,6 +2714,7 @@
       "properties": {
         "outputUri": {
           "description": "Output only. The Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2724,7 +2742,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:\nservice Foo {\n  rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n}\nThe JSON representation for Empty is empty JSON object {}.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -2753,13 +2771,14 @@
             "type": "string"
           },
           "description": "Output only. The map of port descriptions to URLs. Will only be populated if enable_http_port_access is true.",
+          "readOnly": true,
           "type": "object"
         }
       },
       "type": "object"
     },
     "Expr": {
-      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison):\ntitle: \"Summary size limit\"\ndescription: \"Determines if a summary is less than 100 chars\"\nexpression: \"document.summary.size() < 100\"\nExample (Equality):\ntitle: \"Requestor is owner\"\ndescription: \"Determines if requestor is the document owner\"\nexpression: \"document.owner == request.auth.claims.email\"\nExample (Logic):\ntitle: \"Public documents\"\ndescription: \"Determine whether the document should be publicly visible\"\nexpression: \"document.type != 'private' && document.type != 'internal'\"\nExample (Data Manipulation):\ntitle: \"Notification string\"\ndescription: \"Create a notification string with a timestamp.\"\nexpression: \"'New message received at ' + string(document.create_time)\"\nThe exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
       "properties": {
         "description": {
@@ -2797,7 +2816,7 @@
           "type": "object"
         },
         "networkUri": {
-          "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples:\nhttps://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default\nprojects/[project_id]/regions/global/default\ndefault",
+          "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default",
           "type": "string"
         },
         "reservationAffinity": {
@@ -2809,14 +2828,14 @@
           "type": "string"
         },
         "serviceAccountScopes": {
-          "description": "Optional. The URIs of service account scopes to be included in Compute Engine instances. The following base set of scopes is always included:\nhttps://www.googleapis.com/auth/cloud.useraccounts.readonly\nhttps://www.googleapis.com/auth/devstorage.read_write\nhttps://www.googleapis.com/auth/logging.writeIf no scopes are specified, the following defaults are also provided:\nhttps://www.googleapis.com/auth/bigquery\nhttps://www.googleapis.com/auth/bigtable.admin.table\nhttps://www.googleapis.com/auth/bigtable.data\nhttps://www.googleapis.com/auth/devstorage.full_control",
+          "description": "Optional. The URIs of service account scopes to be included in Compute Engine instances. The following base set of scopes is always included: https://www.googleapis.com/auth/cloud.useraccounts.readonly https://www.googleapis.com/auth/devstorage.read_write https://www.googleapis.com/auth/logging.writeIf no scopes are specified, the following defaults are also provided: https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigtable.admin.table https://www.googleapis.com/auth/bigtable.data https://www.googleapis.com/auth/devstorage.full_control",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "subnetworkUri": {
-          "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples:\nhttps://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0\nprojects/[project_id]/regions/us-east1/subnetworks/sub0\nsub0",
+          "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0",
           "type": "string"
         },
         "tags": {
@@ -2827,7 +2846,7 @@
           "type": "array"
         },
         "zoneUri": {
-          "description": "Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the \"global\" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples:\nhttps://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]\nprojects/[project_id]/zones/[zone]\nus-central1-f",
+          "description": "Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the \"global\" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f",
           "type": "string"
         }
       },
@@ -2908,7 +2927,7 @@
           "type": "string"
         },
         "mainJarFileUri": {
-          "description": "The HCFS URI of the jar file containing the main class. Examples:  'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'  'hdfs:/tmp/test-samples/custom-wordcount.jar'  'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'",
+          "description": "The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'",
           "type": "string"
         },
         "properties": {
@@ -2999,7 +3018,7 @@
           "description": "Optional. Disk option config settings."
         },
         "imageUri": {
-          "description": "Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples:\nhttps://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id]\nprojects/[project_id]/global/images/[image-id]\nimage-idImage family examples. Dataproc will use the most recent image from the family:\nhttps://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name]\nprojects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.",
+          "description": "Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.",
           "type": "string"
         },
         "instanceNames": {
@@ -3007,22 +3026,25 @@
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "isPreemptible": {
           "description": "Output only. Specifies that this instance group contains preemptible instances.",
+          "readOnly": true,
           "type": "boolean"
         },
         "machineTypeUri": {
-          "description": "Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples:\nhttps://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2\nprojects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2\nn1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the machine type resource, for example, n1-standard-2.",
+          "description": "Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the machine type resource, for example, n1-standard-2.",
           "type": "string"
         },
         "managedGroupConfig": {
           "$ref": "ManagedGroupConfig",
-          "description": "Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups."
+          "description": "Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.",
+          "readOnly": true
         },
         "minCpuPlatform": {
-          "description": "Specifies the minimum cpu platform for the Instance Group. See Dataproc -&gt; Minimum CPU Platform (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).",
+          "description": "Specifies the minimum cpu platform for the Instance Group. See Dataproc -> Minimum CPU Platform (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).",
           "type": "string"
         },
         "numInstances": {
@@ -3080,14 +3102,17 @@
       "properties": {
         "done": {
           "description": "Output only. Indicates whether the job is completed. If the value is false, the job is still in progress. If true, the job is completed, and status.state field will indicate if it was successful, failed, or cancelled.",
+          "readOnly": true,
           "type": "boolean"
         },
         "driverControlFilesUri": {
           "description": "Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.",
+          "readOnly": true,
           "type": "string"
         },
         "driverOutputResourceUri": {
           "description": "Output only. A URI pointing to the location of the stdout of the job's driver program.",
+          "readOnly": true,
           "type": "string"
         },
         "hadoopJob": {
@@ -3100,6 +3125,7 @@
         },
         "jobUuid": {
           "description": "Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -3127,7 +3153,7 @@
         },
         "reference": {
           "$ref": "JobReference",
-          "description": "Optional. The fully qualified reference to the job, which can be used to obtain the equivalent REST path of the job resource. If this property is not specified when a job is created, the server generates a <code>job_id</code>."
+          "description": "Optional. The fully qualified reference to the job, which can be used to obtain the equivalent REST path of the job resource. If this property is not specified when a job is created, the server generates a job_id."
         },
         "scheduling": {
           "$ref": "JobScheduling",
@@ -3147,17 +3173,20 @@
         },
         "status": {
           "$ref": "JobStatus",
-          "description": "Output only. The job status. Additional application-specific status information may be contained in the <code>type_job</code> and <code>yarn_applications</code> fields."
+          "description": "Output only. The job status. Additional application-specific status information may be contained in the type_job and yarn_applications fields.",
+          "readOnly": true
         },
         "statusHistory": {
           "description": "Output only. The previous job status.",
           "items": {
             "$ref": "JobStatus"
           },
+          "readOnly": true,
           "type": "array"
         },
         "submittedBy": {
-          "description": "Output only. The email address of the user submitting the job. For jobs submitted on the cluster, the address is <code>username@hostname</code>.",
+          "description": "Output only. The email address of the user submitting the job. For jobs submitted on the cluster, the address is username@hostname.",
+          "readOnly": true,
           "type": "string"
         },
         "yarnApplications": {
@@ -3165,6 +3194,7 @@
           "items": {
             "$ref": "YarnApplication"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -3176,20 +3206,24 @@
       "properties": {
         "jobId": {
           "description": "Output only. The job id.",
+          "readOnly": true,
           "type": "string"
         },
         "operationType": {
           "description": "Output only. Operation type.",
+          "readOnly": true,
           "type": "string"
         },
         "startTime": {
           "description": "Output only. Job submission time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
           "$ref": "JobStatus",
-          "description": "Output only. Most recent job status."
+          "description": "Output only. Most recent job status.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3204,6 +3238,7 @@
         },
         "clusterUuid": {
           "description": "Output only. A cluster UUID generated by the Dataproc service when the job is submitted.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3241,7 +3276,8 @@
       "id": "JobStatus",
       "properties": {
         "details": {
-          "description": "Output only. Optional Job state details, such as an error description if the state is <code>ERROR</code>.",
+          "description": "Output only. Optional Job state details, such as an error description if the state is ERROR.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -3270,11 +3306,13 @@
             "The job has completed, but encountered an error.",
             "Job attempt has failed. The detail field contains failure details for this attempt.Applies to restartable jobs only."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "stateStartTime": {
           "description": "Output only. The time when this state was entered.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "substate": {
@@ -3291,6 +3329,7 @@
             "The Job has been received and is awaiting execution (it may be waiting for a condition to be met). See the \"details\" field for the reason for the delay.Applies to RUNNING state.",
             "The agent-reported status is out of date, which may be caused by a loss of communication between the agent and Dataproc. If the agent does not send a timely update, the job will fail.Applies to RUNNING state."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3386,6 +3425,7 @@
         "idleStartTime": {
           "description": "Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3397,6 +3437,7 @@
       "properties": {
         "nextPageToken": {
           "description": "Output only. This token is included in the response if there are more results to fetch.",
+          "readOnly": true,
           "type": "string"
         },
         "policies": {
@@ -3404,6 +3445,7 @@
           "items": {
             "$ref": "AutoscalingPolicy"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -3418,10 +3460,12 @@
           "items": {
             "$ref": "Cluster"
           },
+          "readOnly": true,
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent <code>ListClustersRequest</code>.",
+          "description": "Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListClustersRequest.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3436,10 +3480,11 @@
           "items": {
             "$ref": "Job"
           },
+          "readOnly": true,
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent <code>ListJobsRequest</code>.",
+          "description": "Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListJobsRequest.",
           "type": "string"
         }
       },
@@ -3468,7 +3513,8 @@
       "id": "ListWorkflowTemplatesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.",
+          "description": "Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListWorkflowTemplatesRequest.",
+          "readOnly": true,
           "type": "string"
         },
         "templates": {
@@ -3476,6 +3522,7 @@
           "items": {
             "$ref": "WorkflowTemplate"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -3498,9 +3545,20 @@
               "FATAL",
               "OFF"
             ],
+            "enumDescriptions": [
+              "Level is unspecified. Use default level for log4j.",
+              "Use ALL level for log4j.",
+              "Use TRACE level for log4j.",
+              "Use DEBUG level for log4j.",
+              "Use INFO level for log4j.",
+              "Use WARN level for log4j.",
+              "Use ERROR level for log4j.",
+              "Use FATAL level for log4j.",
+              "Turn off log4j."
+            ],
             "type": "string"
           },
-          "description": "The per-package log levels for the driver. This may include \"root\" package name to configure rootLogger. Examples:  'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'",
+          "description": "The per-package log levels for the driver. This may include \"root\" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'",
           "type": "object"
         }
       },
@@ -3534,10 +3592,12 @@
       "properties": {
         "instanceGroupManagerName": {
           "description": "Output only. The name of the Instance Group Manager for this group.",
+          "readOnly": true,
           "type": "string"
         },
         "instanceTemplateName": {
           "description": "Output only. The name of the Instance Template used for the Managed Instance Group.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3730,7 +3790,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example:\n{\n  \"bindings\": [\n    {\n      \"role\": \"roles/resourcemanager.organizationAdmin\",\n      \"members\": [\n        \"user:mike@example.com\",\n        \"group:admins@example.com\",\n        \"domain:google.com\",\n        \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n      ]\n    },\n    {\n      \"role\": \"roles/resourcemanager.organizationViewer\",\n      \"members\": [\n        \"user:eve@example.com\"\n      ],\n      \"condition\": {\n        \"title\": \"expirable access\",\n        \"description\": \"Does not grant access after Sep 2020\",\n        \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n      }\n    }\n  ],\n  \"etag\": \"BwWWja0YfJA=\",\n  \"version\": 3\n}\nYAML example:\nbindings:\n- members:\n  - user:mike@example.com\n  - group:admins@example.com\n  - domain:google.com\n  - serviceAccount:my-project-id@appspot.gserviceaccount.com\n  role: roles/resourcemanager.organizationAdmin\n- members:\n  - user:eve@example.com\n  role: roles/resourcemanager.organizationViewer\n  condition:\n    title: expirable access\n    description: Does not grant access after Sep 2020\n    expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n- etag: BwWWja0YfJA=\n- version: 3\nFor a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
@@ -3746,7 +3806,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations:\nGetting a policy that includes a conditional role binding\nAdding a conditional role binding to a policy\nChanging a conditional role binding in a policy\nRemoving any role binding, with or without a condition, from a policy  that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -3856,7 +3916,7 @@
       "id": "QueryList",
       "properties": {
         "queries": {
-          "description": "Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob:\n\"hiveJob\": {\n  \"queryList\": {\n    \"queries\": [\n      \"query1\",\n      \"query2\",\n      \"query3;query4\",\n    ]\n  }\n}\n",
+          "description": "Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: \"hiveJob\": { \"queryList\": { \"queries\": [ \"query1\", \"query2\", \"query3;query4\", ] } } ",
           "items": {
             "type": "string"
           },
@@ -3974,6 +4034,20 @@
               "ZEPPELIN",
               "ZOOKEEPER"
             ],
+            "enumDescriptions": [
+              "Unspecified component. Specifying this will cause Cluster creation to fail.",
+              "The Anaconda python distribution.",
+              "The Druid query engine.",
+              "HBase.",
+              "The Hive Web HCatalog (the REST service for accessing HCatalog).",
+              "The Jupyter Notebook.",
+              "The Kerberos security feature.",
+              "The Presto query engine.",
+              "The Ranger service.",
+              "The Solr service.",
+              "The Zeppelin notebook.",
+              "The Zookeeper service."
+            ],
             "type": "string"
           },
           "type": "array"
@@ -3982,7 +4056,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The properties to set on daemon config files.Property keys are specified in prefix:property format, for example core:hadoop.tmp.dir. The following are supported prefixes and their mappings:\ncapacity-scheduler: capacity-scheduler.xml\ncore: core-site.xml\ndistcp: distcp-default.xml\nhdfs: hdfs-site.xml\nhive: hive-site.xml\nmapred: mapred-site.xml\npig: pig.properties\nspark: spark-defaults.conf\nyarn: yarn-site.xmlFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).",
+          "description": "Optional. The properties to set on daemon config files.Property keys are specified in prefix:property format, for example core:hadoop.tmp.dir. The following are supported prefixes and their mappings: capacity-scheduler: capacity-scheduler.xml core: core-site.xml distcp: distcp-default.xml hdfs: hdfs-site.xml hive: hive-site.xml mapred: mapred-site.xml pig: pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).",
           "type": "object"
         }
       },
@@ -4206,7 +4280,7 @@
           "type": "string"
         },
         "fields": {
-          "description": "Required. Paths to all fields that the parameter replaces. A field is allowed to appear in at most one parameter's list of field paths.A field path is similar in syntax to a google.protobuf.FieldMask. For example, a field path that references the zone field of a workflow template's cluster selector would be specified as placement.clusterSelector.zone.Also, field paths can reference fields using the following syntax:\nValues in maps can be referenced by key:\nlabels'key'\nplacement.clusterSelector.clusterLabels'key'\nplacement.managedCluster.labels'key'\nplacement.clusterSelector.clusterLabels'key'\njobs'step-id'.labels'key'\nJobs in the jobs list can be referenced by step-id:\njobs'step-id'.hadoopJob.mainJarFileUri\njobs'step-id'.hiveJob.queryFileUri\njobs'step-id'.pySparkJob.mainPythonFileUri\njobs'step-id'.hadoopJob.jarFileUris0\njobs'step-id'.hadoopJob.archiveUris0\njobs'step-id'.hadoopJob.fileUris0\njobs'step-id'.pySparkJob.pythonFileUris0\nItems in repeated fields can be referenced by a zero-based index:\njobs'step-id'.sparkJob.args0\nOther examples:\njobs'step-id'.hadoopJob.properties'key'\njobs'step-id'.hadoopJob.args0\njobs'step-id'.hiveJob.scriptVariables'key'\njobs'step-id'.hadoopJob.mainJarFileUri\nplacement.clusterSelector.zoneIt may not be possible to parameterize maps and repeated fields in their entirety since only individual map values and individual items in repeated fields can be referenced. For example, the following field paths are invalid:\nplacement.clusterSelector.clusterLabels\njobs'step-id'.sparkJob.args",
+          "description": "Required. Paths to all fields that the parameter replaces. A field is allowed to appear in at most one parameter's list of field paths.A field path is similar in syntax to a google.protobuf.FieldMask. For example, a field path that references the zone field of a workflow template's cluster selector would be specified as placement.clusterSelector.zone.Also, field paths can reference fields using the following syntax: Values in maps can be referenced by key: labels'key' placement.clusterSelector.clusterLabels'key' placement.managedCluster.labels'key' placement.clusterSelector.clusterLabels'key' jobs'step-id'.labels'key' Jobs in the jobs list can be referenced by step-id: jobs'step-id'.hadoopJob.mainJarFileUri jobs'step-id'.hiveJob.queryFileUri jobs'step-id'.pySparkJob.mainPythonFileUri jobs'step-id'.hadoopJob.jarFileUris0 jobs'step-id'.hadoopJob.archiveUris0 jobs'step-id'.hadoopJob.fileUris0 jobs'step-id'.pySparkJob.pythonFileUris0 Items in repeated fields can be referenced by a zero-based index: jobs'step-id'.sparkJob.args0 Other examples: jobs'step-id'.hadoopJob.properties'key' jobs'step-id'.hadoopJob.args0 jobs'step-id'.hiveJob.scriptVariables'key' jobs'step-id'.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may not be possible to parameterize maps and repeated fields in their entirety since only individual map values and individual items in repeated fields can be referenced. For example, the following field paths are invalid: placement.clusterSelector.clusterLabels jobs'step-id'.sparkJob.args",
           "items": {
             "type": "string"
           },
@@ -4274,6 +4348,7 @@
           "items": {
             "$ref": "WorkflowNode"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -4285,43 +4360,52 @@
       "properties": {
         "clusterName": {
           "description": "Output only. The name of the target cluster.",
+          "readOnly": true,
           "type": "string"
         },
         "clusterUuid": {
           "description": "Output only. The UUID of target cluster.",
+          "readOnly": true,
           "type": "string"
         },
         "createCluster": {
           "$ref": "ClusterOperation",
-          "description": "Output only. The create cluster operation metadata."
+          "description": "Output only. The create cluster operation metadata.",
+          "readOnly": true
         },
         "dagEndTime": {
-          "description": "Output only. DAG end time, only set for workflows with dag_timeout when DAG ends.",
+          "description": "Output only. DAG end time, which is only set for workflows with dag_timeout when the DAG ends.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "dagStartTime": {
-          "description": "Output only. DAG start time, only set for workflows with dag_timeout when DAG begins.",
+          "description": "Output only. DAG start time, which is only set for workflows with dag_timeout when the DAG begins.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "dagTimeout": {
           "description": "Output only. The timeout duration for the DAG of jobs. Minimum timeout duration is 10 minutes and maximum is 24 hours, expressed as a google.protobuf.Duration. For example, \"1800\" = 1800 seconds/30 minutes duration.",
           "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "deleteCluster": {
           "$ref": "ClusterOperation",
-          "description": "Output only. The delete cluster operation metadata."
+          "description": "Output only. The delete cluster operation metadata.",
+          "readOnly": true
         },
         "endTime": {
           "description": "Output only. Workflow end time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "graph": {
           "$ref": "WorkflowGraph",
-          "description": "Output only. The workflow graph."
+          "description": "Output only. The workflow graph.",
+          "readOnly": true
         },
         "parameters": {
           "additionalProperties": {
@@ -4333,6 +4417,7 @@
         "startTime": {
           "description": "Output only. Workflow start time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -4349,15 +4434,18 @@
             "The operation is running.",
             "The operation is done; either cancelled or completed."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "template": {
-          "description": "Output only. The resource name of the workflow template as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+          "description": "Output only. The resource name of the workflow template as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+          "readOnly": true,
           "type": "string"
         },
         "version": {
           "description": "Output only. The version of template at the time of workflow instantiation.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -4369,10 +4457,12 @@
       "properties": {
         "error": {
           "description": "Output only. The error detail.",
+          "readOnly": true,
           "type": "string"
         },
         "jobId": {
           "description": "Output only. The job id; populated after the node enters RUNNING state.",
+          "readOnly": true,
           "type": "string"
         },
         "prerequisiteStepIds": {
@@ -4380,6 +4470,7 @@
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "state": {
@@ -4400,10 +4491,12 @@
             "The node completed successfully.",
             "The node failed. A node can be marked FAILED because its ancestor or peer failed."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "stepId": {
           "description": "Output only. The name of the node.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4416,10 +4509,11 @@
         "createTime": {
           "description": "Output only. The time template was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "dagTimeout": {
-          "description": "Optional. Timeout for DAG of jobs. The timer begins when the first job is submitted. Minimum duration of 10 minutes, max of 24 hours.",
+          "description": "Optional. Timeout duration for the DAG of jobs. You can use \"s\", \"m\", \"h\", and \"d\" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (\"10m\") to 24 hours (\"24h\" or \"1d\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is terminated, and if the workflow was running on a managed cluster, the cluster is deleted.",
           "format": "google-duration",
           "type": "string"
         },
@@ -4442,7 +4536,8 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.\nFor projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id}\nFor projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+          "description": "Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id}/locations/{location}/workflowTemplates/{template_id}",
+          "readOnly": true,
           "type": "string"
         },
         "parameters": {
@@ -4459,6 +4554,7 @@
         "updateTime": {
           "description": "Output only. The time template was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "version": {
@@ -4485,16 +4581,18 @@
       "type": "object"
     },
     "YarnApplication": {
-      "description": "A YARN application created by a job. Application information is a subset of <code>org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto</code>.Beta Feature: This report is available for testing purposes only. It may be changed before final release.",
+      "description": "A YARN application created by a job. Application information is a subset of org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto.Beta Feature: This report is available for testing purposes only. It may be changed before final release.",
       "id": "YarnApplication",
       "properties": {
         "name": {
           "description": "Output only. The application name.",
+          "readOnly": true,
           "type": "string"
         },
         "progress": {
           "description": "Output only. The numerical progress of the application, from 1 to 100.",
           "format": "float",
+          "readOnly": true,
           "type": "number"
         },
         "state": {
@@ -4521,10 +4619,12 @@
             "Status is FAILED.",
             "Status is KILLED."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "trackingUrl": {
           "description": "Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.",
+          "readOnly": true,
           "type": "string"
         }
       },
