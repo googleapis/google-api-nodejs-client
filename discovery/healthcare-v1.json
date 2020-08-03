@@ -852,7 +852,7 @@
                     "studies": {
                       "methods": {
                         "delete": {
-                          "description": "DeleteStudy deletes all instances within the given study. Delete requests\nare equivalent to the GET requests specified in the Retrieve transaction.\nThe method returns an Operation which\nwill be marked successful when the deletion is complete.",
+                          "description": "DeleteStudy deletes all instances within the given study. Delete requests\nare equivalent to the GET requests specified in the Retrieve transaction.\nThe method returns an Operation which\nwill be marked successful when the deletion is complete.\n\nWarning: Inserting instances into a study while a delete operation is\nrunning for that study could result in the new instances not appearing in\nsearch results until the deletion operation finishes.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}",
                           "httpMethod": "DELETE",
                           "id": "healthcare.projects.locations.datasets.dicomStores.studies.delete",
@@ -1056,7 +1056,7 @@
                         "series": {
                           "methods": {
                             "delete": {
-                              "description": "DeleteSeries deletes all instances within the given study and series.\nDelete requests are equivalent to the GET requests specified in the\nRetrieve transaction.\nThe method returns an Operation which\nwill be marked successful when the deletion is complete.",
+                              "description": "DeleteSeries deletes all instances within the given study and series.\nDelete requests are equivalent to the GET requests specified in the\nRetrieve transaction.\nThe method returns an Operation which\nwill be marked successful when the deletion is complete.\n\nWarning: Inserting instances into a series while a delete operation is\nrunning for that series could result in the new instances not appearing in\nsearch results until the deletion operation finishes.",
                               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}",
                               "httpMethod": "DELETE",
                               "id": "healthcare.projects.locations.datasets.dicomStores.studies.series.delete",
@@ -1754,17 +1754,17 @@
                               "type": "integer"
                             },
                             "_page_token": {
-                              "description": "Used to retrieve the next or previous page of results\nwhen using pagination. Value should be set to the value of page_token set\nin next or previous page links' urls. Next and previous page are returned\nin the response bundle's links field, where `link.relation` is \"previous\"\nor \"next\".\n\nOmit `page_token` if no previous request has been made.",
+                              "description": "Used to retrieve the next or previous page of results\nwhen using pagination. Set `_page_token` to the value of _page_token set\nin next or previous page links' url. Next and previous page are returned\nin the response bundle's links field, where `link.relation` is \"previous\"\nor \"next\".\n\nOmit `_page_token` if no previous request has been made.",
                               "location": "query",
                               "type": "string"
                             },
                             "_since": {
-                              "description": "If provided, only resources updated after this time are\nexported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.\nFor example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.\nThe time must be specified to the second and include a time zone.",
+                              "description": "If provided, only resources updated after this time are\nreturned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.\nFor example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.\nThe time must be specified to the second and include a time zone.",
                               "location": "query",
                               "type": "string"
                             },
                             "_type": {
-                              "description": "String of comma-delimited FHIR resource types. If provided, only resources\nof the specified resource type(s) will be returned.",
+                              "description": "String of comma-delimited FHIR resource types. If provided, only resources\nof the specified resource type(s) are returned.",
                               "location": "query",
                               "type": "string"
                             },
@@ -2369,7 +2369,7 @@
                     "messages": {
                       "methods": {
                         "create": {
-                          "description": "Creates a message and sends a notification to the Cloud Pub/Sub topic. If\nconfigured, the MLLP adapter listens to messages created by this method and\nsends those back to the hospital. A successful response indicates the\nmessage has been persisted to storage and a Cloud Pub/Sub notification has\nbeen sent. Sending to the hospital by the MLLP adapter happens\nasynchronously.",
+                          "description": "Parses and stores an HL7v2 message. This method triggers an asynchronous\nnotification to any Cloud Pub/Sub topic configured in\nprojects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the\nfiltering matches the message. If an MLLP adapter is configured to listen\nto a Cloud Pub/Sub topic, the adapter transmits the message when a\nnotification is received.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}/messages",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.hl7V2Stores.messages.create",
@@ -2459,7 +2459,7 @@
                           ]
                         },
                         "ingest": {
-                          "description": "Ingests a new HL7v2 message from the hospital and sends a notification to\nthe Cloud Pub/Sub topic. Return is an HL7v2 ACK message if the message was\nsuccessfully stored. Otherwise an error is returned.",
+                          "description": "Parses and stores an HL7v2 message. This method triggers an asynchronous\nnotification to any Cloud Pub/Sub topic configured in\nprojects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the\nfiltering matches the message. If an MLLP adapter is configured to listen\nto a Cloud Pub/Sub topic, the adapter transmits the message when a\nnotification is received. This method also generates a response\ncontaining an HL7v2 acknowledgement (`ACK`) message when successful or a\nnegative acknowledgement (`NACK`) message in case of error, suitable for\nreplying to HL7v2 interface systems that expect these acknowledgements.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}/messages:ingest",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest",
@@ -2687,7 +2687,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200723",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AuditConfig": {

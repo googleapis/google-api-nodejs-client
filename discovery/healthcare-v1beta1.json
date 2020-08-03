@@ -519,7 +519,7 @@
                       ],
                       "parameters": {
                         "evalStore": {
-                          "description": "The Annotation store to compare against `golden_store`, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "The Annotation store to compare against `golden_store`, in the\nformat of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -631,7 +631,7 @@
                       ],
                       "parameters": {
                         "annotationStore": {
-                          "description": "The name of the Annotation store to which the server imports annotations,\nin the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+                          "description": "The name of the Annotation store to which the server imports\nannotations, in the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/annotationStores/[^/]+$",
                           "required": true,
@@ -2444,12 +2444,12 @@
                               "type": "integer"
                             },
                             "_page_token": {
-                              "description": "Used to retrieve the next or previous page of results\nwhen using pagination. Value should be set to the value of `page_token` set\nin next or previous page links' URLs. Next and previous page are returned\nin the response bundle's links field, where `link.relation` is \"previous\"\nor \"next\".\n\nOmit `page_token` if no previous request has been made.",
+                              "description": "Used to retrieve the next or previous page of results\nwhen using pagination. Set `_page_token` to the value of _page_token set\nin next or previous page links' url. Next and previous page are returned\nin the response bundle's links field, where `link.relation` is \"previous\"\nor \"next\".\n\nOmit `_page_token` if no previous request has been made.",
                               "location": "query",
                               "type": "string"
                             },
                             "_since": {
-                              "description": "If provided, only resources updated after this time are\nexported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.\nFor example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.\nThe time must be specified to the second and include a time zone.",
+                              "description": "If provided, only resources updated after this time are\nreturned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz.\nFor example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`.\nThe time must be specified to the second and include a time zone.",
                               "location": "query",
                               "type": "string"
                             },
@@ -3028,6 +3028,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "import": {
+                      "description": "Import messages to the HL7v2 store by loading data from the specified\nsources. This method is optimized to load large quantities of data using\nimport semantics that ignore some HL7v2 store configuration options and are\nnot suitable for all use cases. It is primarily intended to load data into\nan empty HL7v2 store that is not being used by other clients.\n\nAn existing message will be overwritten if a duplicate message is imported.\nA duplicate message is a message with the same raw bytes as a message that\nalready exists in this HL7v2 store. When a message is overwritten, its\nlabels will also be overwritten.\n\nThe import operation is idempotent unless the input data contains multiple\nvalid messages with the same raw bytes but different labels. In that case,\nafter the import completes, the store contains exactly one message\nwith those raw bytes but there is no ordering guarantee on which version\nof the labels it has. The operation result counters do not count\nduplicated raw bytes as an error and count one success for each message in\nthe input, which might result in a success count larger than the number\nof messages in the HL7v2 store.\n\nIf some messages fail to import, for example due to parsing errors,\nsuccessfully imported messages are not rolled back.\n\nThis method returns an Operation that can\nbe used to track the status of the import by calling\nGetOperation.\n\nImmediate fatal errors appear in the\nerror field, errors are also logged\nto Cloud Logging (see [Viewing\nlogs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation\nfinishes, a response of type ImportMessagesResponse is returned in the\nresponse field.\nThe metadata field type for this\noperation is OperationMetadata.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:import",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.hl7V2Stores.import",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the target HL7v2 store, in the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:import",
+                      "request": {
+                        "$ref": "ImportMessagesRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists the HL7v2 stores in the given dataset.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores",
@@ -3164,7 +3192,7 @@
                     "messages": {
                       "methods": {
                         "create": {
-                          "description": "Creates a message and sends a notification to the Cloud Pub/Sub topic. If\nconfigured, the MLLP adapter listens to messages created by this method and\nsends those back to the hospital. A successful response indicates the\nmessage has been persisted to storage and a Cloud Pub/Sub notification has\nbeen sent. Sending to the hospital by the MLLP adapter happens\nasynchronously.",
+                          "description": "Parses and stores an HL7v2 message. This method triggers an asynchronous\nnotification to any Cloud Pub/Sub topic configured in\nprojects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the\nfiltering matches the message. If an MLLP adapter is configured to listen\nto a Cloud Pub/Sub topic, the adapter transmits the message when a\nnotification is received.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}/messages",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.hl7V2Stores.messages.create",
@@ -3255,7 +3283,7 @@
                           ]
                         },
                         "ingest": {
-                          "description": "Ingests a new HL7v2 message from the hospital and sends a notification to\nthe Cloud Pub/Sub topic. Return is an HL7v2 ACK message if the message was\nsuccessfully stored. Otherwise an error is returned.",
+                          "description": "Parses and stores an HL7v2 message. This method triggers an asynchronous\nnotification to any Cloud Pub/Sub topic configured in\nprojects.locations.datasets.hl7V2Stores.Hl7V2NotificationConfig, if the\nfiltering matches the message. If an MLLP adapter is configured to listen\nto a Cloud Pub/Sub topic, the adapter transmits the message when a\nnotification is received. This method also generates a response\ncontaining an HL7v2 acknowledgement (`ACK`) message when successful or a\nnegative acknowledgement (`NACK`) message in case of error, suitable for\nreplying to HL7v2 interface systems that expect these acknowledgements.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}/messages:ingest",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest",
@@ -3484,7 +3512,7 @@
       }
     }
   },
-  "revision": "20200713",
+  "revision": "20200723",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "Annotation": {
@@ -4022,7 +4050,7 @@
       "type": "object"
     },
     "ExportAnnotationsErrorDetails": {
-      "description": "Response for failed annotation export operations. This structure is\nincluded in error\ndetails upon operation completion.",
+      "description": "Response for failed annotation export operations. This structure\nis included in error\ndetails upon operation completion.",
       "id": "ExportAnnotationsErrorDetails",
       "properties": {
         "annotationStore": {
@@ -4062,7 +4090,7 @@
       "id": "ExportAnnotationsResponse",
       "properties": {
         "annotationStore": {
-          "description": "The annotation_store used for the export operation, in the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "description": "The annotation_store used for the export operation,\nin the format of\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
           "type": "string"
         },
         "successCount": {
@@ -4315,6 +4343,17 @@
       },
       "type": "object"
     },
+    "GcsSource": {
+      "description": "Specifies the configuration for importing data from Cloud Storage.",
+      "id": "GcsSource",
+      "properties": {
+        "uri": {
+          "description": "Points to a Cloud Storage URI containing file(s) to import.\n\nThe URI must be in the following format: `gs://{bucket_id}/{object_id}`.\nThe URI can include wildcards in `object_id` and thus identify multiple\nfiles. Supported wildcards:\n\n*  `*` to match 0 or more non-separator characters\n*  `**` to match 0 or more characters (including separators). Must be used\nat the end of a path and with no other wildcards in the\npath. Can also be used with a file extension (such as .ndjson), which\nimports all files with the extension in the specified directory and\nits sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson`\nimports all files with `.ndjson` extensions in `my-directory/` and its\nsub-directories.\n*  `?` to match 1 character\n\nFiles matching the wildcard are expected to contain content only, no\nmetadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination": {
       "description": "The BigQuery table for export.",
       "id": "GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination",
@@ -4394,11 +4433,11 @@
       "type": "object"
     },
     "GoogleCloudHealthcareV1beta1DicomBigQueryDestination": {
-      "description": "The BigQuery table where the server writes the output.",
+      "description": "The BigQuery table where the server writes output.",
       "id": "GoogleCloudHealthcareV1beta1DicomBigQueryDestination",
       "properties": {
         "force": {
-          "description": "If the destination table already exists and this flag is `TRUE`, the table\nis overwritten by the contents of the DICOM store. If the flag is not\nset and the destination table already exists, the export call returns an\nerror.",
+          "description": "This flag is being replaced by write_disposition which provides additional\noptions. force=false is equivalent to WRITE_EMPTY and force=true is\nequivalent to WRITE_TRUNCATE.",
           "type": "boolean"
         },
         "tableUri": {
@@ -4443,7 +4482,7 @@
           "type": "string"
         },
         "force": {
-          "description": "If this flag is `TRUE`, all tables will be deleted from the dataset before\nthe new exported tables are written. If the flag is not set and the\ndestination dataset contains tables, the export call returns an error.",
+          "description": "This flag is being replaced by write_disposition which provides additional\noptions. force=false is equivalent to WRITE_EMPTY and force=true is\nequivalent to WRITE_TRUNCATE.",
           "type": "boolean"
         },
         "schemaConfig": {
@@ -4771,11 +4810,11 @@
       "id": "ImportAnnotationsResponse",
       "properties": {
         "annotationStore": {
-          "description": "The annotation_store that the annotations were imported to. The name\nis in the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "description": "The annotation_store that the annotations were imported to,\nin the format\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
           "type": "string"
         },
         "successCount": {
-          "description": "The number of the input annotations. All input have been imported\nsuccessfully.",
+          "description": "The number of the input annotations. All input have been\nimported successfully.",
           "format": "int64",
           "type": "string"
         }
@@ -4810,6 +4849,23 @@
     "ImportDicomDataResponse": {
       "description": "Returns additional information in regards to a completed DICOM store import.",
       "id": "ImportDicomDataResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "ImportMessagesRequest": {
+      "description": "Request to import messages.",
+      "id": "ImportMessagesRequest",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GcsSource",
+          "description": "Cloud Storage source data location and import configuration.\n\nThe Cloud Storage location requires the `roles/storage.objectViewer`\nCloud IAM role."
+        }
+      },
+      "type": "object"
+    },
+    "ImportMessagesResponse": {
+      "description": "Final response of importing messages.\nThis structure is included in the\nresponse to describe the detailed\noutcome. It is only included when the operation finishes successfully.",
+      "id": "ImportMessagesResponse",
       "properties": {},
       "type": "object"
     },
@@ -5462,7 +5518,7 @@
           "type": "array"
         },
         "schematizedParsingType": {
-          "description": "Determines how messages that don't parse successfully are handled.",
+          "description": "Determines how messages that fail to parse are handled.",
           "enum": [
             "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
             "SOFT_FAIL",
