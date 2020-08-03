@@ -754,7 +754,7 @@
       }
     }
   },
-  "revision": "20200708",
+  "revision": "20200726",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalSettings": {
@@ -915,6 +915,10 @@
           "description": "The time at which the approval request was dismissed.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "implicit": {
+          "description": "This field will be true if the ApprovalRequest was implcitly dismissed due\nto inaction by the access approval approvers (the request is not acted\non by the approvers before the exiration time).",
+          "type": "boolean"
         }
       },
       "type": "object"
