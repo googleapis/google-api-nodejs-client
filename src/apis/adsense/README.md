@@ -2,7 +2,7 @@
 
 # adsense
 
-> Accesses AdSense publishers&#39; inventory and generates performance reports.
+> The AdSense Management API allows publishers to access their inventory and run earnings and performance reports.
 
 ## Installation
 
