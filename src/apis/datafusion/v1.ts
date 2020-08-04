@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace datafusion_v1beta1 {
+export namespace datafusion_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -105,12 +105,12 @@ export namespace datafusion_v1beta1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const datafusion = google.datafusion('v1beta1');
+   * const datafusion = google.datafusion('v1');
    *
    * @namespace datafusion
    * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Datafusion
    */
   export class Datafusion {
@@ -249,7 +249,7 @@ export namespace datafusion_v1beta1 {
      */
     gcsBucket?: string | null;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character &#39;=&#39; is not allowed to be used within the labels.
+     * The resource labels for instance to use to annotate any related underlying resources such as GCE VMs. The character &#39;=&#39; is not allowed to be used within the labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -301,11 +301,11 @@ export namespace datafusion_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Current version of Data Fusion.
+     * Current version of the Data Fusion. Only specifiable in Update.
      */
     version?: string | null;
     /**
-     * Name of the zone in which the Data Fusion instance will be created.
+     * Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.
      */
     zone?: string | null;
   }
@@ -395,7 +395,7 @@ export namespace datafusion_v1beta1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
+     * The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the customer network.
      */
     ipAllocation?: string | null;
     /**
@@ -535,11 +535,7 @@ export namespace datafusion_v1beta1 {
     permissions?: string[] | null;
   }
   /**
-   * Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used.
-   */
-  export interface Schema$UpgradeInstanceRequest {}
-  /**
-   * The Data Fusion version.
+   * The Data Fusion version. This proto message stores information about certain Data Fusion version, which is used for Data Fusion version upgrade.
    */
   export interface Schema$Version {
     /**
@@ -592,7 +588,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -691,7 +687,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -724,7 +720,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -837,7 +833,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -911,7 +907,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1045,7 +1041,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/instances').replace(
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1081,7 +1077,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1180,7 +1176,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1213,7 +1209,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1331,7 +1327,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1364,7 +1360,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1465,7 +1461,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1501,7 +1497,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1615,7 +1611,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/instances').replace(
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1651,7 +1647,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1667,7 +1663,7 @@ export namespace datafusion_v1beta1 {
      *   const res = await datafusion.projects.locations.instances.patch({
      *     // Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *     // Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.
+     *     // Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels, options, and version currently) will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1723,7 +1719,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.
-     * @param {string=} params.updateMask Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.
+     * @param {string=} params.updateMask Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels, options, and version currently) will be overwritten.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1785,7 +1781,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1818,7 +1814,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1924,7 +1920,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:restart').replace(
+            url: (rootUrl + '/v1/{+name}:restart').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1960,7 +1956,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2068,7 +2064,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2104,7 +2100,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2215,7 +2211,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2235,148 +2231,6 @@ export namespace datafusion_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-
-    /**
-     * datafusion.projects.locations.instances.upgrade
-     * @desc Upgrade a single Data Fusion instance. At the end of an operation instance is fully upgraded.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datafusion.projects.locations.instances.upgrade({
-     *     // Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.
-     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias datafusion.projects.locations.instances.upgrade
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.
-     * @param {().UpgradeInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    upgrade(
-      params: Params$Resource$Projects$Locations$Instances$Upgrade,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    upgrade(
-      params?: Params$Resource$Projects$Locations$Instances$Upgrade,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    upgrade(
-      params: Params$Resource$Projects$Locations$Instances$Upgrade,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    upgrade(
-      params: Params$Resource$Projects$Locations$Instances$Upgrade,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    upgrade(
-      params: Params$Resource$Projects$Locations$Instances$Upgrade,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    upgrade(callback: BodyResponseCallback<Schema$Operation>): void;
-    upgrade(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Instances$Upgrade
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Instances$Upgrade;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Upgrade;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:upgrade').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
@@ -2452,7 +2306,7 @@ export namespace datafusion_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.
+     * Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels, options, and version currently) will be overwritten.
      */
     updateMask?: string;
 
@@ -2497,18 +2351,6 @@ export namespace datafusion_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgrade
-    extends StandardParameters {
-    /**
-     * Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UpgradeInstanceRequest;
-  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -2529,7 +2371,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2629,10 +2471,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -2665,7 +2504,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2758,7 +2597,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2791,7 +2630,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2890,7 +2729,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2923,7 +2762,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3033,7 +2872,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3122,7 +2961,7 @@ export namespace datafusion_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
+     * const datafusion = google.datafusion('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3234,7 +3073,7 @@ export namespace datafusion_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/versions').replace(
+            url: (rootUrl + '/v1/{+parent}/versions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
