@@ -53,9 +53,21 @@ export namespace doubleclickbidmanager_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace doubleclickbidmanager_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * DoubleClick Bid Manager API
    *
-   * API for viewing and managing your reports in DoubleClick Bid Manager.
+   * DoubleClick Bid Manager API allows users to manage and create campaigns and reports.
    *
    * @example
    * const {google} = require('googleapis');
@@ -122,7 +138,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadLineItemsRequest {
     /**
-     * File specification (column names, types, order) in which the line items will be returned. Default to EWF.
+     * File specification (column names, types, order) in which the line items will be returned. Default to &lt;code&gt;EWF&lt;/code&gt;.
      */
     fileSpec?: string | null;
     /**
@@ -134,7 +150,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     filterType?: string | null;
     /**
-     * Format in which the line items will be returned. Default to CSV.
+     * Format in which the line items will be returned. Default to &lt;code&gt;CSV&lt;/code&gt;.
      */
     format?: string | null;
   }
@@ -143,7 +159,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadLineItemsResponse {
     /**
-     * Retrieved line items in CSV format. For more information about file formats, see  Entity Write File Format.
+     * Retrieved line items in CSV format. For more information about file formats, see &lt;a href=&quot;https://developers.google.com/bid-manager/guides/entity-write/format&quot;&gt; Entity Write File Format&lt;/a&gt;.
      */
     lineItems?: string | null;
   }
@@ -152,7 +168,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadRequest {
     /**
-     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested.  Acceptable values are:   - &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  - &quot;INSERTION_ORDER&quot;  - &quot;INVENTORY_SOURCE&quot;  - &quot;LINE_ITEM&quot;
+     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. &lt;br&gt;&lt;br&gt;Acceptable values are: &lt;ul&gt; &lt;li&gt;&quot;&lt;code&gt;AD&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;AD_GROUP&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;CAMPAIGN&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;INSERTION_ORDER&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;INVENTORY_SOURCE&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;LINE_ITEM&lt;/code&gt;&quot;&lt;/li&gt; &lt;/ul&gt;
      */
     fileTypes?: string[] | null;
     /**
@@ -164,7 +180,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to &lt;code&gt;5&lt;/code&gt;.
      */
     version?: string | null;
   }
@@ -212,7 +228,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListQueriesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#listQueriesResponse&quot;&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -225,7 +241,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListReportsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#listReportsResponse&quot;&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -263,7 +279,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$Query {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#query&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#query&quot;&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -279,11 +295,11 @@ export namespace doubleclickbidmanager_v1 {
      */
     queryId?: string | null;
     /**
-     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
+     * The ending time for the data that is shown in the report. Note, &lt;code&gt;reportDataEndTimeMs&lt;/code&gt; is required if &lt;code&gt;metadata.dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
      */
     reportDataEndTimeMs?: string | null;
     /**
-     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, &lt;code&gt;reportDataStartTimeMs&lt;/code&gt; is required if &lt;code&gt;metadata.dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
      */
     reportDataStartTimeMs?: string | null;
     /**
@@ -291,7 +307,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     schedule?: Schema$QuerySchedule;
     /**
-     * Canonical timezone code for report data time. Defaults to America/New_York.
+     * Canonical timezone code for report data time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
      */
     timezoneCode?: string | null;
   }
@@ -320,7 +336,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     latestReportRunTimeMs?: string | null;
     /**
-     * Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list above will generate reports in English.
+     * Locale of the generated reports. Valid values are cs      CZECH de GERMAN en      ENGLISH es      SPANISH fr      FRENCH it      ITALIAN ja JAPANESE ko      KOREAN pl      POLISH pt-BR   BRAZILIAN_PORTUGUESE ru RUSSIAN tr      TURKISH uk      UKRAINIAN zh-CN   CHINA_CHINESE zh-TW TAIWAN_CHINESE &lt;br&gt;&lt;br&gt; An locale string not in the list above will generate reports in English.
      */
     locale?: string | null;
     /**
@@ -336,7 +352,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     sendNotification?: boolean | null;
     /**
-     * List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.
+     * List of email addresses which are sent email notifications when the report is finished. Separate from &lt;code&gt;sendNotification&lt;/code&gt;.
      */
     shareEmailAddress?: string[] | null;
     /**
@@ -361,7 +377,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     nextRunMinuteOfDay?: number | null;
     /**
-     * Canonical timezone code for report generation time. Defaults to America/New_York.
+     * Canonical timezone code for report generation time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
      */
     nextRunTimezoneCode?: string | null;
   }
@@ -484,15 +500,15 @@ export namespace doubleclickbidmanager_v1 {
      */
     dataRange?: string | null;
     /**
-     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
+     * The ending time for the data that is shown in the report. Note, &lt;code&gt;reportDataEndTimeMs&lt;/code&gt; is required if &lt;code&gt;dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
      */
     reportDataEndTimeMs?: string | null;
     /**
-     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, &lt;code&gt;reportDataStartTimeMs&lt;/code&gt; is required if &lt;code&gt;dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
      */
     reportDataStartTimeMs?: string | null;
     /**
-     * Canonical timezone code for report data time. Defaults to America/New_York.
+     * Canonical timezone code for report data time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
      */
     timezoneCode?: string | null;
   }
@@ -501,15 +517,15 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$UploadLineItemsRequest {
     /**
-     * Set to true to get upload status without actually persisting the line items.
+     * Set to &lt;code&gt;true&lt;/code&gt; to get upload status without actually persisting the line items.
      */
     dryRun?: boolean | null;
     /**
-     * Format the line items are in. Default to CSV.
+     * Format the line items are in. Default to &lt;code&gt;CSV&lt;/code&gt;.
      */
     format?: string | null;
     /**
-     * Line items in CSV to upload. Refer to  Entity Write File Format for more information on file format.
+     * Line items in CSV to upload. Refer to &lt;a href=&quot;https://developers.google.com/bid-manager/guides/entity-write/format&quot;&gt; Entity Write File Format&lt;/a&gt; for more information on file format.
      */
     lineItems?: string | null;
   }
@@ -1306,7 +1322,7 @@ export namespace doubleclickbidmanager_v1 {
      * @alias doubleclickbidmanager.queries.listqueries
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
