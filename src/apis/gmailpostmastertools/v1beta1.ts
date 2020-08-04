@@ -153,7 +153,7 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e.,  mymail.mydomain.com).
+     * The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).
      */
     name?: string | null;
     /**
@@ -246,7 +246,7 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     ipReputations?: Schema$IpReputation[];
     /**
-     * The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e.,  mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807
+     * The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807
      */
     name?: string | null;
     /**
@@ -302,9 +302,7 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.get({
-     *     // The resource name of the domain. It should have the form
-     *     // `domains/{domain_name}`, where domain_name is the fully qualified
-     *     // domain name.
+     *     // The resource name of the domain. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
      *     name: 'domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -434,13 +432,9 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.list({
-     *     // Requested page size. Server may return fewer domains than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer domains than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     // This is the value of
-     *     // ListDomainsResponse.next_page_token
-     *     // returned from the previous call to `ListDomains` method.
+     *     // The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -597,8 +591,7 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.trafficStats.get({
-     *     // The resource name of the traffic statistics to get.
-     *     // E.g., domains/mymail.mydomain.com/trafficStats/20160807.
+     *     // The resource name of the traffic statistics to get. E.g., domains/mymail.mydomain.com/trafficStats/20160807.
      *     name: 'domains/my-domain/trafficStats/my-trafficStat',
      *   });
      *   console.log(res.data);
@@ -737,37 +730,23 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.trafficStats.list({
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     *     // if specifying a year by itself or a year and month where the day is not
-     *     // significant.
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      *     'endDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a
-     *     // month and day.
+     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      *     'endDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without
-     *     // a year.
+     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      *     'endDate.year': 'placeholder-value',
-     *     // Requested page size. Server may return fewer TrafficStats than
-     *     // requested. If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     // This is the value of
-     *     // ListTrafficStatsResponse.next_page_token
-     *     // returned from the previous call to `ListTrafficStats` method.
+     *     // The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.
      *     pageToken: 'placeholder-value',
-     *     // The resource name of the domain whose traffic statistics we'd like to list.
-     *     // It should have the form `domains/{domain_name}`, where domain_name is
-     *     // the fully qualified domain name.
+     *     // The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
      *     parent: 'domains/my-domain',
-     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     *     // if specifying a year by itself or a year and month where the day is not
-     *     // significant.
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      *     'startDate.day': 'placeholder-value',
-     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a
-     *     // month and day.
+     *     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      *     'startDate.month': 'placeholder-value',
-     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without
-     *     // a year.
+     *     // Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      *     'startDate.year': 'placeholder-value',
      *   });
      *   console.log(res.data);
