@@ -163,7 +163,7 @@ export namespace factchecktools_v1alpha1 {
      */
     jobTitle?: string | null;
     /**
-     * A person or organization stating the claim. For instance, &quot;John Doe&quot;.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.author.name`.
+     * A person or organization stating the claim. For instance, &quot;John Doe&quot;. Corresponds to `ClaimReview.itemReviewed.author.name`.
      */
     name?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace factchecktools_v1alpha1 {
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating {
     /**
-     * For numeric ratings, the best value possible in the scale from worst to best.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.bestRating`.
+     * For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`.
      */
     bestRating?: number | null;
     /**
@@ -188,15 +188,15 @@ export namespace factchecktools_v1alpha1 {
      */
     ratingExplanation?: string | null;
     /**
-     * A numeric rating of this claim, in the range worstRating — bestRating inclusive.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.ratingValue`.
+     * A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`.
      */
     ratingValue?: number | null;
     /**
-     * The truthfulness rating as a human-readible short word or phrase.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.alternateName`.
+     * The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`.
      */
     textualRating?: string | null;
     /**
-     * For numeric ratings, the worst value possible in the scale from worst to best.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.worstRating`.
+     * For numeric ratings, the worst value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.worstRating`.
      */
     worstRating?: number | null;
   }
@@ -238,7 +238,7 @@ export namespace factchecktools_v1alpha1 {
      */
     imageUrl?: string | null;
     /**
-     * Name of the organization that is publishing the fact check.&lt;br&gt; Corresponds to `ClaimReview.author.name`.
+     * Name of the organization that is publishing the fact check. Corresponds to `ClaimReview.author.name`.
      */
     name?: string | null;
   }
@@ -247,7 +247,7 @@ export namespace factchecktools_v1alpha1 {
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup {
     /**
-     * A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`.
+     * A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`.
      */
     claimAppearances?: string[] | null;
     /**
@@ -255,19 +255,19 @@ export namespace factchecktools_v1alpha1 {
      */
     claimAuthor?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor;
     /**
-     * The date when the claim was made or entered public discourse.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.datePublished`.
+     * The date when the claim was made or entered public discourse. Corresponds to `ClaimReview.itemReviewed.datePublished`.
      */
     claimDate?: string | null;
     /**
-     * A link to a work in which this claim first appears.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`.
+     * A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`.
      */
     claimFirstAppearance?: string | null;
     /**
-     * The location where this claim was made.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.name`.
+     * The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`.
      */
     claimLocation?: string | null;
     /**
-     * A short summary of the claim being evaluated.&lt;br&gt; Corresponds to `ClaimReview.claimReviewed`.
+     * A short summary of the claim being evaluated. Corresponds to `ClaimReview.claimReviewed`.
      */
     claimReviewed?: string | null;
     /**
@@ -275,7 +275,7 @@ export namespace factchecktools_v1alpha1 {
      */
     rating?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating;
     /**
-     * This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (&quot;page jump&quot;).&lt;br&gt; Corresponds to `ClaimReview.url`
+     * This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (&quot;page jump&quot;). Corresponds to `ClaimReview.url`
      */
     url?: string | null;
   }
@@ -296,11 +296,11 @@ export namespace factchecktools_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden.&lt;br&gt; Corresponds to `ClaimReview.url`
+     * The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url`
      */
     pageUrl?: string | null;
     /**
-     * The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value.&lt;br&gt; Corresponds to `ClaimReview.datePublished`
+     * The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished`
      */
     publishDate?: string | null;
     /**
@@ -348,7 +348,7 @@ export namespace factchecktools_v1alpha1 {
     site?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -385,27 +385,17 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.claims.search({
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to
-     *     // restrict results by language, though we do not currently consider the
-     *     // region.
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region.
      *     languageCode: 'placeholder-value',
-     *     // The maximum age of the returned search results, in days.
-     *     // Age is determined by either claim date or review date, whichever is newer.
+     *     // The maximum age of the returned search results, in days. Age is determined by either claim date or review date, whichever is newer.
      *     maxAgeDays: 'placeholder-value',
-     *     // An integer that specifies the current offset (that is, starting result
-     *     // location) in search results. This field is only considered if `page_token`
-     *     // is unset. For example, 0 means to return results starting from the first
-     *     // matching result, and 10 means to return from the 11th result.
+     *     // An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
      *     offset: 'placeholder-value',
-     *     // The pagination size. We will return up to that many results. Defaults to
-     *     // 10 if not set.
+     *     // The pagination size. We will return up to that many results. Defaults to 10 if not set.
      *     pageSize: 'placeholder-value',
-     *     // The pagination token. You may provide the `next_page_token` returned from a
-     *     // previous List request, if any, in order to get the next page. All other
-     *     // fields must have the same values as in the previous request.
+     *     // The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.
      *     pageToken: 'placeholder-value',
-     *     // Textual query string. Required unless `review_publisher_site_filter` is
-     *     // specified.
+     *     // Textual query string. Required unless `review_publisher_site_filter` is specified.
      *     query: 'placeholder-value',
      *     // The review publisher site to filter results by, e.g. nytimes.com.
      *     reviewPublisherSiteFilter: 'placeholder-value',
@@ -1066,26 +1056,15 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.pages.list({
-     *     // An integer that specifies the current offset (that is, starting result
-     *     // location) in search results. This field is only considered if `page_token`
-     *     // is unset, and if the request is not for a specific URL. For example, 0
-     *     // means to return results starting from the first matching result, and 10
-     *     // means to return from the 11th result.
+     *     // An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset, and if the request is not for a specific URL. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
      *     offset: 'placeholder-value',
-     *     // The organization for which we want to fetch markups for. For instance,
-     *     // "site.com". Cannot be specified along with an URL.
+     *     // The organization for which we want to fetch markups for. For instance, "site.com". Cannot be specified along with an URL.
      *     organization: 'placeholder-value',
-     *     // The pagination size. We will return up to that many results. Defaults to
-     *     // 10 if not set. Has no effect if a URL is requested.
+     *     // The pagination size. We will return up to that many results. Defaults to 10 if not set. Has no effect if a URL is requested.
      *     pageSize: 'placeholder-value',
-     *     // The pagination token. You may provide the `next_page_token` returned from a
-     *     // previous List request, if any, in order to get the next page. All other
-     *     // fields must have the same values as in the previous request.
+     *     // The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.
      *     pageToken: 'placeholder-value',
-     *     // The URL from which to get `ClaimReview` markup. There will be at most one
-     *     // result. If markup is associated with a more canonical version of the URL
-     *     // provided, we will return that URL instead. Cannot be specified along with
-     *     // an organization.
+     *     // The URL from which to get `ClaimReview` markup. There will be at most one result. If markup is associated with a more canonical version of the URL provided, we will return that URL instead. Cannot be specified along with an organization.
      *     url: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1219,7 +1198,7 @@ export namespace factchecktools_v1alpha1 {
 
     /**
      * factchecktools.pages.update
-     * @desc Update for all `ClaimReview` markup on a page  Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.
+     * @desc Update for all `ClaimReview` markup on a page Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1244,9 +1223,7 @@ export namespace factchecktools_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await factchecktools.pages.update({
-     *     // The name of this `ClaimReview` markup page resource, in the form of
-     *     // `pages/{page_id}`. Except for update requests, this field is output-only
-     *     // and should not be set by the user.
+     *     // The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
      *     name: 'pages/my-page',
      *
      *     // Request body metadata

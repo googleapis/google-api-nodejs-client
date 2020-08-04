@@ -115,35 +115,35 @@
           "parameterOrder": [],
           "parameters": {
             "languageCode": {
-              "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". Can be used to\nrestrict results by language, though we do not currently consider the\nregion.",
+              "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". Can be used to restrict results by language, though we do not currently consider the region.",
               "location": "query",
               "type": "string"
             },
             "maxAgeDays": {
-              "description": "The maximum age of the returned search results, in days.\nAge is determined by either claim date or review date, whichever is newer.",
+              "description": "The maximum age of the returned search results, in days. Age is determined by either claim date or review date, whichever is newer.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "offset": {
-              "description": "An integer that specifies the current offset (that is, starting result\nlocation) in search results. This field is only considered if `page_token`\nis unset. For example, 0 means to return results starting from the first\nmatching result, and 10 means to return from the 11th result.",
+              "description": "An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageSize": {
-              "description": "The pagination size. We will return up to that many results. Defaults to\n10 if not set.",
+              "description": "The pagination size. We will return up to that many results. Defaults to 10 if not set.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "The pagination token. You may provide the `next_page_token` returned from a\nprevious List request, if any, in order to get the next page. All other\nfields must have the same values as in the previous request.",
+              "description": "The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
               "location": "query",
               "type": "string"
             },
             "query": {
-              "description": "Textual query string. Required unless `review_publisher_site_filter` is\nspecified.",
+              "description": "Textual query string. Required unless `review_publisher_site_filter` is specified.",
               "location": "query",
               "type": "string"
             },
@@ -231,36 +231,36 @@
           ]
         },
         "list": {
-          "description": "List the `ClaimReview` markup pages for a specific URL or for an\norganization.",
+          "description": "List the `ClaimReview` markup pages for a specific URL or for an organization.",
           "flatPath": "v1alpha1/pages",
           "httpMethod": "GET",
           "id": "factchecktools.pages.list",
           "parameterOrder": [],
           "parameters": {
             "offset": {
-              "description": "An integer that specifies the current offset (that is, starting result\nlocation) in search results. This field is only considered if `page_token`\nis unset, and if the request is not for a specific URL. For example, 0\nmeans to return results starting from the first matching result, and 10\nmeans to return from the 11th result.",
+              "description": "An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset, and if the request is not for a specific URL. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "organization": {
-              "description": "The organization for which we want to fetch markups for. For instance,\n\"site.com\". Cannot be specified along with an URL.",
+              "description": "The organization for which we want to fetch markups for. For instance, \"site.com\". Cannot be specified along with an URL.",
               "location": "query",
               "type": "string"
             },
             "pageSize": {
-              "description": "The pagination size. We will return up to that many results. Defaults to\n10 if not set. Has no effect if a URL is requested.",
+              "description": "The pagination size. We will return up to that many results. Defaults to 10 if not set. Has no effect if a URL is requested.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "The pagination token. You may provide the `next_page_token` returned from a\nprevious List request, if any, in order to get the next page. All other\nfields must have the same values as in the previous request.",
+              "description": "The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
               "location": "query",
               "type": "string"
             },
             "url": {
-              "description": "The URL from which to get `ClaimReview` markup. There will be at most one\nresult. If markup is associated with a more canonical version of the URL\nprovided, we will return that URL instead. Cannot be specified along with\nan organization.",
+              "description": "The URL from which to get `ClaimReview` markup. There will be at most one result. If markup is associated with a more canonical version of the URL provided, we will return that URL instead. Cannot be specified along with an organization.",
               "location": "query",
               "type": "string"
             }
@@ -274,7 +274,7 @@
           ]
         },
         "update": {
-          "description": "Update for all `ClaimReview` markup on a page\n\nNote that this is a full update. To retain the existing `ClaimReview`\nmarkup on a page, first perform a Get operation, then modify the returned\nmarkup, and finally call Update with the entire `ClaimReview` markup as the\nbody.",
+          "description": "Update for all `ClaimReview` markup on a page Note that this is a full update. To retain the existing `ClaimReview` markup on a page, first perform a Get operation, then modify the returned markup, and finally call Update with the entire `ClaimReview` markup as the body.",
           "flatPath": "v1alpha1/pages/{pagesId}",
           "httpMethod": "PUT",
           "id": "factchecktools.pages.update",
@@ -283,7 +283,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The name of this `ClaimReview` markup page resource, in the form of\n`pages/{page_id}`. Except for update requests, this field is output-only\nand should not be set by the user.",
+              "description": "The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.",
               "location": "path",
               "pattern": "^pages/[^/]+$",
               "required": true,
@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200801",
   "rootUrl": "https://factchecktools.googleapis.com/",
   "schemas": {
     "GoogleFactcheckingFactchecktoolsV1alpha1Claim": {
@@ -347,7 +347,7 @@
           "type": "string"
         },
         "name": {
-          "description": "A person or organization stating the claim. For instance, \"John Doe\".<br>\nCorresponds to `ClaimReview.itemReviewed.author.name`.",
+          "description": "A person or organization stating the claim. For instance, \"John Doe\". Corresponds to `ClaimReview.itemReviewed.author.name`.",
           "type": "string"
         },
         "sameAs": {
@@ -362,7 +362,7 @@
       "id": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating",
       "properties": {
         "bestRating": {
-          "description": "For numeric ratings, the best value possible in the scale from worst to\nbest.<br>\nCorresponds to `ClaimReview.reviewRating.bestRating`.",
+          "description": "For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`.",
           "format": "int32",
           "type": "integer"
         },
@@ -375,16 +375,16 @@
           "type": "string"
         },
         "ratingValue": {
-          "description": "A numeric rating of this claim, in the range worstRating — bestRating\ninclusive.<br>\nCorresponds to `ClaimReview.reviewRating.ratingValue`.",
+          "description": "A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`.",
           "format": "int32",
           "type": "integer"
         },
         "textualRating": {
-          "description": "The truthfulness rating as a human-readible short word or phrase.<br>\nCorresponds to `ClaimReview.reviewRating.alternateName`.",
+          "description": "The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`.",
           "type": "string"
         },
         "worstRating": {
-          "description": "For numeric ratings, the worst value possible in the scale from worst to\nbest.<br>\nCorresponds to `ClaimReview.reviewRating.worstRating`.",
+          "description": "For numeric ratings, the worst value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.worstRating`.",
           "format": "int32",
           "type": "integer"
         }
@@ -432,18 +432,18 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of the organization that is publishing the fact check.<br>\nCorresponds to `ClaimReview.author.name`.",
+          "description": "Name of the organization that is publishing the fact check. Corresponds to `ClaimReview.author.name`.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup": {
-      "description": "Fields for an individual `ClaimReview` element.\nExcept for sub-messages that group fields together, each of these fields\ncorrespond those in https://schema.org/ClaimReview. We list the precise\nmapping for each field.",
+      "description": "Fields for an individual `ClaimReview` element. Except for sub-messages that group fields together, each of these fields correspond those in https://schema.org/ClaimReview. We list the precise mapping for each field.",
       "id": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup",
       "properties": {
         "claimAppearances": {
-          "description": "A list of links to works in which this claim appears, aside from the one\nspecified in `claim_first_appearance`.<br>\nCorresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`.",
+          "description": "A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`.",
           "items": {
             "type": "string"
           },
@@ -454,19 +454,19 @@
           "description": "Info about the author of this claim."
         },
         "claimDate": {
-          "description": "The date when the claim was made or entered public discourse.<br>\nCorresponds to `ClaimReview.itemReviewed.datePublished`.",
+          "description": "The date when the claim was made or entered public discourse. Corresponds to `ClaimReview.itemReviewed.datePublished`.",
           "type": "string"
         },
         "claimFirstAppearance": {
-          "description": "A link to a work in which this claim first appears.<br>\nCorresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`.",
+          "description": "A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`.",
           "type": "string"
         },
         "claimLocation": {
-          "description": "The location where this claim was made.<br>\nCorresponds to `ClaimReview.itemReviewed.name`.",
+          "description": "The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`.",
           "type": "string"
         },
         "claimReviewed": {
-          "description": "A short summary of the claim being evaluated.<br>\nCorresponds to `ClaimReview.claimReviewed`.",
+          "description": "A short summary of the claim being evaluated. Corresponds to `ClaimReview.claimReviewed`.",
           "type": "string"
         },
         "rating": {
@@ -474,7 +474,7 @@
           "description": "Info about the rating of this claim review."
         },
         "url": {
-          "description": "This field is optional, and will default to the page URL. We provide this\nfield to allow you the override the default value, but the only permitted\noverride is the page URL plus an optional anchor link (\"page jump\").<br>\nCorresponds to `ClaimReview.url`",
+          "description": "This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (\"page jump\"). Corresponds to `ClaimReview.url`",
           "type": "string"
         }
       },
@@ -486,29 +486,29 @@
       "properties": {
         "claimReviewAuthor": {
           "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor",
-          "description": "Info about the author of this claim review.\nSimilar to the above, semantically these are page-level fields, and each\n`ClaimReview` on this page will contain the same values."
+          "description": "Info about the author of this claim review. Similar to the above, semantically these are page-level fields, and each `ClaimReview` on this page will contain the same values."
         },
         "claimReviewMarkups": {
-          "description": "A list of individual claim reviews for this page.\nEach item in the list corresponds to one `ClaimReview` element.",
+          "description": "A list of individual claim reviews for this page. Each item in the list corresponds to one `ClaimReview` element.",
           "items": {
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup"
           },
           "type": "array"
         },
         "name": {
-          "description": "The name of this `ClaimReview` markup page resource, in the form of\n`pages/{page_id}`. Except for update requests, this field is output-only\nand should not be set by the user.",
+          "description": "The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.",
           "type": "string"
         },
         "pageUrl": {
-          "description": "The URL of the page associated with this `ClaimReview` markup.\nWhile every individual `ClaimReview` has its own URL field, semantically\nthis is a page-level field, and each `ClaimReview` on this page will use\nthis value unless individually overridden.<br>\nCorresponds to `ClaimReview.url`",
+          "description": "The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url`",
           "type": "string"
         },
         "publishDate": {
-          "description": "The date when the fact check was published.\nSimilar to the URL, semantically this is a page-level field, and each\n`ClaimReview` on this page will contain the same value.<br>\nCorresponds to `ClaimReview.datePublished`",
+          "description": "The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished`",
           "type": "string"
         },
         "versionId": {
-          "description": "The version ID for this markup. Except for update requests, this field is\noutput-only and should not be set by the user.",
+          "description": "The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user.",
           "type": "string"
         }
       },
@@ -526,7 +526,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The next pagination token in the Search response. It should be used as the\n`page_token` for the following request. An empty value means no more\nresults.",
+          "description": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.",
           "type": "string"
         }
       },
@@ -544,7 +544,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The next pagination token in the Search response. It should be used as the\n`page_token` for the following request. An empty value means no more\nresults.",
+          "description": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.",
           "type": "string"
         }
       },
@@ -559,14 +559,14 @@
           "type": "string"
         },
         "site": {
-          "description": "Host-level site name, without the protocol or \"www\" prefix. For instance,\n\"awesomefactchecks.com\". This value of this field is based purely on the\nclaim review URL.",
+          "description": "Host-level site name, without the protocol or \"www\" prefix. For instance, \"awesomefactchecks.com\". This value of this field is based purely on the claim review URL.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
