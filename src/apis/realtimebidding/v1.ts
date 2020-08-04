@@ -134,11 +134,11 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$AdTechnologyProviders {
     /**
-     * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider.  If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the [Google bid protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto), and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
+     * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider. If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the [Google bid protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto), and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
      */
     detectedProviderIds?: string[] | null;
     /**
-     * Whether the creative contains an unidentified ad technology provider.  If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
+     * Whether the creative contains an unidentified ad technology provider. If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
      */
     hasUnidentifiedProvider?: boolean | null;
   }
@@ -208,7 +208,7 @@ export namespace realtimebidding_v1 {
      */
     dealIds?: string[] | null;
     /**
-     * All declared attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method.  If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto&quot;) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
+     * All declared attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto&quot;) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
      */
     declaredAttributes?: string[] | null;
     /**
@@ -273,7 +273,7 @@ export namespace realtimebidding_v1 {
      */
     detectedAdvertisers?: Schema$AdvertiserAndBrand[];
     /**
-     * Publisher-excludable attributes that were detected for this creative. Can be used to filter the response of the creatives.list method.  If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
+     * Publisher-excludable attributes that were detected for this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
      */
     detectedAttributes?: string[] | null;
     /**
@@ -293,11 +293,11 @@ export namespace realtimebidding_v1 {
      */
     detectedProductCategories?: number[] | null;
     /**
-     * Detected sensitive categories, if any. Can be used to filter the response of the creatives.list method.  See the ad-sensitive-categories.txt file in the technical documentation for a list of IDs. You should use these IDs along with the excluded-sensitive-category field in the bid request to filter your bids.
+     * Detected sensitive categories, if any. Can be used to filter the response of the creatives.list method. See the ad-sensitive-categories.txt file in the technical documentation for a list of IDs. You should use these IDs along with the excluded-sensitive-category field in the bid request to filter your bids.
      */
     detectedSensitiveCategories?: number[] | null;
     /**
-     * IDs of the ad technology vendors that were detected to be used by this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/vendors.txt for possible values. Can be used to filter the response of the creatives.list method.  If the `allowed_vendor_type` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) does not contain one of the vendor type IDs that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
+     * IDs of the ad technology vendors that were detected to be used by this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/vendors.txt for possible values. Can be used to filter the response of the creatives.list method. If the `allowed_vendor_type` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) does not contain one of the vendor type IDs that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
      */
     detectedVendorIds?: number[] | null;
     /**
@@ -314,7 +314,7 @@ export namespace realtimebidding_v1 {
     russiaServingStatus?: Schema$ServingStatus;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
@@ -825,48 +825,15 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.bidders.creatives.list({
-     *     // Query string to filter creatives. If no filter is specified,
-     *     // all active creatives will be returned.
-     *     //
-     *     // Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND
-     *     // disapprovalReason:UNACCEPTABLE_CONTENT) OR
-     *     // declaredAttributes:IS_COOKIE_TARGETED'
+     *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      *     filter: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested
-     *     // (due to timeout constraint) even if more are available via another call.
-     *     // If unspecified, server will pick an appropriate default.
-     *     // Acceptable values are 1 to 1000, inclusive.
+     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListCreativesResponse.nextPageToken
-     *     // returned from the previous call to the 'ListCreatives' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives.
-     *     //
-     *     // The pattern for this resource is either `buyers/{buyerAccountId}` or
-     *     // `bidders/{bidderAccountId}`.
-     *     //
-     *     // For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the
-     *     // following:
-     *     // 1. The ID of the buyer that is accessing their own creatives.
-     *     // 2. The ID of the child seat buyer under a bidder account.
-     *     //    So for listing creatives pertaining to the child seat buyer (`456`)
-     *     //    under bidder account (`123`), you would use the pattern: `buyers/456`.
-     *     // 3. The ID of the bidder itself.
-     *     //    So for listing creatives pertaining to bidder (`123`),
-     *     //    you would use `buyers/123`.
-     *     //
-     *     // If you want to access all creatives pertaining to both the bidder and all
-     *     // of its child seat accounts, you would use `bidders/{bidderAccountId}`,
-     *     // e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'bidders/my-bidder',
-     *     // Controls the amount of information included in the response.
-     *     // By default only
-     *     // creativeServingDecision
-     *     // is included. To retrieve the entire creative
-     *     // resource (including the declared
-     *     // fields and the creative content) specify the view as "FULL".
+     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -887,10 +854,10 @@ export namespace realtimebidding_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned.  Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
+     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
-     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives.  The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`.  For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account.    So for listing creatives pertaining to the child seat buyer (`456`)    under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself.    So for listing creatives pertaining to bidder (`123`),    you would use `buyers/123`.  If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      * @param {string=} params.view Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1008,8 +975,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.bidders.creatives.watch({
-     *     // Required. To watch all creatives pertaining to the bidder and all its child seat
-     *     // accounts, the bidder must follow the pattern `bidders/{bidderAccountId}`.
+     *     // Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId}`.
      *     parent: 'bidders/my-bidder',
      *
      *     // Request body metadata
@@ -1131,7 +1097,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Bidders$Creatives$List
     extends StandardParameters {
     /**
-     * Query string to filter creatives. If no filter is specified, all active creatives will be returned.  Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
+     * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
     filter?: string;
     /**
@@ -1143,7 +1109,7 @@ export namespace realtimebidding_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that owns the creatives.  The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`.  For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account.    So for listing creatives pertaining to the child seat buyer (`456`)    under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself.    So for listing creatives pertaining to bidder (`123`),    you would use `buyers/123`.  If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      */
     parent?: string;
     /**
@@ -1201,15 +1167,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern
-     *     // `buyers/{accountId}` where `{accountId}`
-     *     // represents ID of a buyer that owns the remarketing tag. For a
-     *     // bidder accessing remarketing tag on behalf of a child seat buyer,
-     *     // `{accountId}` should represent the ID of the child seat buyer.
-     *     // To fetch remarketing tag for a specific user list, name
-     *     // must follow the pattern
-     *     // `buyers/{accountId}/userLists/{userListId}`. See
-     *     // UserList.name.
+     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
      *     name: 'buyers/my-buyer',
      *   });
      *   console.log(res.data);
@@ -1363,11 +1321,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.create({
-     *     // Required. The name of the parent buyer that the new creative belongs to that must
-     *     // follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}`
-     *     // represents the account ID of the buyer who owns a creative. For a bidder
-     *     // accessing creatives on behalf of a child seat buyer, `{buyerAccountId}`
-     *     // should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *
      *     // Request body metadata
@@ -1546,15 +1500,9 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.get({
-     *     // Required. Name of the creative to retrieve. See
-     *     // creative.name.
+     *     // Required. Name of the creative to retrieve. See creative.name.
      *     name: 'buyers/my-buyer/creatives/my-creative',
-     *     // Controls the amount of information included in the response.
-     *     // By default only
-     *     // creativeServingDecision
-     *     // is included. To retrieve the entire creative
-     *     // resource (including the declared
-     *     // fields and the creative content) specify the view as "FULL".
+     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1703,48 +1651,15 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.list({
-     *     // Query string to filter creatives. If no filter is specified,
-     *     // all active creatives will be returned.
-     *     //
-     *     // Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND
-     *     // disapprovalReason:UNACCEPTABLE_CONTENT) OR
-     *     // declaredAttributes:IS_COOKIE_TARGETED'
+     *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      *     filter: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested
-     *     // (due to timeout constraint) even if more are available via another call.
-     *     // If unspecified, server will pick an appropriate default.
-     *     // Acceptable values are 1 to 1000, inclusive.
+     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListCreativesResponse.nextPageToken
-     *     // returned from the previous call to the 'ListCreatives' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives.
-     *     //
-     *     // The pattern for this resource is either `buyers/{buyerAccountId}` or
-     *     // `bidders/{bidderAccountId}`.
-     *     //
-     *     // For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the
-     *     // following:
-     *     // 1. The ID of the buyer that is accessing their own creatives.
-     *     // 2. The ID of the child seat buyer under a bidder account.
-     *     //    So for listing creatives pertaining to the child seat buyer (`456`)
-     *     //    under bidder account (`123`), you would use the pattern: `buyers/456`.
-     *     // 3. The ID of the bidder itself.
-     *     //    So for listing creatives pertaining to bidder (`123`),
-     *     //    you would use `buyers/123`.
-     *     //
-     *     // If you want to access all creatives pertaining to both the bidder and all
-     *     // of its child seat accounts, you would use `bidders/{bidderAccountId}`,
-     *     // e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'buyers/my-buyer',
-     *     // Controls the amount of information included in the response.
-     *     // By default only
-     *     // creativeServingDecision
-     *     // is included. To retrieve the entire creative
-     *     // resource (including the declared
-     *     // fields and the creative content) specify the view as "FULL".
+     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1765,10 +1680,10 @@ export namespace realtimebidding_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned.  Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
+     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
-     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives.  The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`.  For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account.    So for listing creatives pertaining to the child seat buyer (`456`)    under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself.    So for listing creatives pertaining to bidder (`123`),    you would use `buyers/123`.  If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      * @param {string=} params.view Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1886,8 +1801,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Name of the creative to update. See
-     *     // creative.name.
+     *     // Name of the creative to update. See creative.name.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Field mask to use for partial in-place updates.
      *     updateMask: 'placeholder-value',
@@ -2066,7 +1980,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$List
     extends StandardParameters {
     /**
-     * Query string to filter creatives. If no filter is specified, all active creatives will be returned.  Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
+     * Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
      */
     filter?: string;
     /**
@@ -2078,7 +1992,7 @@ export namespace realtimebidding_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that owns the creatives.  The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`.  For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account.    So for listing creatives pertaining to the child seat buyer (`456`)    under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself.    So for listing creatives pertaining to bidder (`123`),    you would use `buyers/123`.  If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      */
     parent?: string;
     /**
@@ -2136,8 +2050,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.close({
-     *     // Required. The name of the user list to close.
-     *     // See UserList.name
+     *     // Required. The name of the user list to close. See UserList.name
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *
      *     // Request body metadata
@@ -2278,11 +2191,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.create({
-     *     // Required. The name of the parent buyer of the user list to be retrieved that
-     *     // must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}`
-     *     // represents the account ID of the buyer who owns user lists. For a bidder
-     *     // accessing user lists on behalf of a child seat buyer , `{buyerAccountId}`
-     *     // should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *
      *     // Request body metadata
@@ -2433,8 +2342,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.get({
-     *     // Required. The name of the user list to be retrieved. See
-     *     // UserList.name.
+     *     // Required. The name of the user list to be retrieved. See UserList.name.
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *   });
      *   console.log(res.data);
@@ -2568,15 +2476,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern
-     *     // `buyers/{accountId}` where `{accountId}`
-     *     // represents ID of a buyer that owns the remarketing tag. For a
-     *     // bidder accessing remarketing tag on behalf of a child seat buyer,
-     *     // `{accountId}` should represent the ID of the child seat buyer.
-     *     // To fetch remarketing tag for a specific user list, name
-     *     // must follow the pattern
-     *     // `buyers/{accountId}/userLists/{userListId}`. See
-     *     // UserList.name.
+     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *   });
      *   console.log(res.data);
@@ -2719,11 +2619,7 @@ export namespace realtimebidding_v1 {
      *     pageSize: 'placeholder-value',
      *     // Continuation page token (as received from a previous response).
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent buyer for the user lists to be returned that must
-     *     // follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}`
-     *     // represents the account ID of the buyer who owns user lists. For a bidder
-     *     // accessing user lists on behalf of a child seat buyer , `{buyerAccountId}`
-     *     // should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *   });
      *   console.log(res.data);
@@ -2863,8 +2759,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.open({
-     *     // Required. The name of the user list to open.
-     *     // See UserList.name
+     *     // Required. The name of the user list to open. See UserList.name
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *
      *     // Request body metadata
@@ -3005,12 +2900,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.update({
-     *     // Output only. Name of the user list that must follow the pattern
-     *     // `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents
-     *     // the account ID of the buyer who owns the user list. For a bidder accessing
-     *     // user lists on behalf of a child seat buyer, `{buyer}` represents
-     *     // the account ID of the child seat buyer. `{user_list}` is an int64
-     *     // identifier assigned by Google to uniquely identify a user list.
+     *     // Output only. Name of the user list that must follow the pattern `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer}` represents the account ID of the child seat buyer. `{user_list}` is an int64 identifier assigned by Google to uniquely identify a user list.
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *
      *     // Request body metadata
