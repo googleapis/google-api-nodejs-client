@@ -191,11 +191,11 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$AdTechnologyProviders {
     /**
-     * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider.  If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the (Google bid protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto] and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the (OpenRTB protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto], and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
+     * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider. If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the (Google bid protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto] and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the (OpenRTB protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto], and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
      */
     detectedProviderIds?: string[] | null;
     /**
-     * Whether the creative contains an unidentified ad technology provider.  If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
+     * Whether the creative contains an unidentified ad technology provider. If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
      */
     hasUnidentifiedProvider?: boolean | null;
   }
@@ -302,7 +302,7 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$CancelNegotiationRequest {}
   /**
-   * A client resource represents a client buyer&amp;mdash;an agency, a brand, or an advertiser customer of the sponsor buyer. Users associated with the client buyer have restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the client buyer. All fields are required unless otherwise specified.
+   * A client resource represents a client buyer—an agency, a brand, or an advertiser customer of the sponsor buyer. Users associated with the client buyer have restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the client buyer. All fields are required unless otherwise specified.
    */
   export interface Schema$Client {
     /**
@@ -314,7 +314,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientName?: string | null;
     /**
-     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type. The value of this field is ignored if the entity type is not provided.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
+     * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type. The value of this field is ignored if the entity type is not provided. A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file. A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file. A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
      */
     entityId?: string | null;
     /**
@@ -326,7 +326,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     entityType?: string | null;
     /**
-     * Optional arbitrary unique identifier of this client buyer from the standpoint of its Ad Exchange sponsor buyer.  This field can be used to associate a client buyer with the identifier in the namespace of its sponsor buyer, lookup client buyers by that identifier and verify whether an Ad Exchange counterpart of a given client buyer already exists.  If present, must be unique among all the client buyers for its Ad Exchange sponsor buyer.
+     * Optional arbitrary unique identifier of this client buyer from the standpoint of its Ad Exchange sponsor buyer. This field can be used to associate a client buyer with the identifier in the namespace of its sponsor buyer, lookup client buyers by that identifier and verify whether an Ad Exchange counterpart of a given client buyer already exists. If present, must be unique among all the client buyers for its Ad Exchange sponsor buyer.
      */
     partnerClientId?: string | null;
     /**
@@ -343,7 +343,7 @@ export namespace adexchangebuyer2_v2beta1 {
     visibleToSeller?: boolean | null;
   }
   /**
-   * A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer.  The only way a new client user can be created is via accepting an email invitation (see the accounts.clients.invitations.create method).  All fields are required unless otherwise specified.
+   * A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer. The only way a new client user can be created is via accepting an email invitation (see the accounts.clients.invitations.create method). All fields are required unless otherwise specified.
    */
   export interface Schema$ClientUser {
     /**
@@ -627,7 +627,7 @@ export namespace adexchangebuyer2_v2beta1 {
     targetedCriteriaIds?: string[] | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
@@ -690,11 +690,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     buyerPrivateData?: Schema$PrivateData;
     /**
-     * The product ID from which this deal was created.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * The product ID from which this deal was created. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     createProductId?: string | null;
     /**
-     * Optional revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced sinced the passed-in `create_product_revision`, an `ABORTED` error will be returned.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * Optional revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced sinced the passed-in `create_product_revision`, an `ABORTED` error will be returned. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     createProductRevision?: string | null;
     /**
@@ -758,7 +758,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     sellerContacts?: Schema$ContactInformation[];
     /**
-     * The syndication product associated with the deal.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * The syndication product associated with the deal. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     syndicationProduct?: string | null;
     /**
@@ -880,7 +880,7 @@ export namespace adexchangebuyer2_v2beta1 {
     reason?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -950,7 +950,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     formats?: string[] | null;
     /**
-     * A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x (for accessing account-level troubleshooting data)  This field is required in create operations.
+     * A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns: - `bidders/x/filterSets/x (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x (for accessing account-level troubleshooting data) This field is required in create operations.
      */
     name?: string | null;
     /**
@@ -1390,7 +1390,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     value?: string | null;
     /**
-     * The variance (i.e. square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the desired size of the confidence interval (e.g. for 90% confidence interval, use Z = 1.645):    marginOfError = 100 * Z * sqrt(variance) / value
+     * The variance (i.e. square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the desired size of the confidence interval (e.g. for 90% confidence interval, use Z = 1.645): marginOfError = 100 * Z * sqrt(variance) / value
      */
     variance?: string | null;
   }
@@ -1529,7 +1529,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creatorRole?: string | null;
     /**
-     * The actual note to attach. (max-length: 1024 unicode code units)  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * The actual note to attach. (max-length: 1024 unicode code units) Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     note?: string | null;
     /**
@@ -1625,7 +1625,7 @@ export namespace adexchangebuyer2_v2beta1 {
     referenceId?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
    */
   export interface Schema$Product {
     /**
@@ -1690,7 +1690,7 @@ export namespace adexchangebuyer2_v2beta1 {
     webPropertyCode?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served.  Note: you can not update, create, or otherwise modify Private Auction or Preferred Deals deals through the API.  Fields are updatable unless noted otherwise.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Note: you can not update, create, or otherwise modify Private Auction or Preferred Deals deals through the API. Fields are updatable unless noted otherwise.
    */
   export interface Schema$Proposal {
     /**
@@ -1698,7 +1698,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     billedBuyer?: Schema$Buyer;
     /**
-     * Reference to the buyer on the proposal.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * Reference to the buyer on the proposal. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     buyer?: Schema$Buyer;
     /**
@@ -1754,7 +1754,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     proposalState?: string | null;
     /**
-     * Reference to the seller on the proposal.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * Reference to the seller on the proposal. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     seller?: Schema$Seller;
     /**
@@ -1767,7 +1767,7 @@ export namespace adexchangebuyer2_v2beta1 {
     updateTime?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
    */
   export interface Schema$PublisherProfile {
     /**
@@ -2172,8 +2172,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.create({
-     *     // Unique numerical account ID for the buyer of which the client buyer
-     *     // is a customer; the sponsor buyer to create a client for. (required)
+     *     // Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
      *     accountId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2475,19 +2474,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.list({
      *     // Unique numerical account ID of the sponsor buyer to list the clients for.
      *     accountId: 'placeholder-value',
-     *     // Requested page size. The server may return fewer clients than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListClientsResponse.nextPageToken
-     *     // returned from the previous call to the
-     *     // accounts.clients.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
      *     pageToken: 'placeholder-value',
-     *     // Optional unique identifier (from the standpoint of an Ad Exchange sponsor
-     *     // buyer partner) of the client to return.
-     *     // If specified, at most one client will be returned in the response.
+     *     // Optional unique identifier (from the standpoint of an Ad Exchange sponsor buyer partner) of the client to return. If specified, at most one client will be returned in the response.
      *     partnerClientId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2626,8 +2617,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.update({
-     *     // Unique numerical account ID for the buyer of which the client buyer
-     *     // is a customer; the sponsor buyer to update a client for. (required)
+     *     // Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      *     accountId: 'placeholder-value',
      *     // Unique numerical account ID of the client to update. (required)
      *     clientAccountId: 'placeholder-value',
@@ -2855,8 +2845,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.invitations.create({
      *     // Numerical account ID of the client's sponsor buyer. (required)
      *     accountId: 'placeholder-value',
-     *     // Numerical account ID of the client buyer that the user
-     *     // should be associated with. (required)
+     *     // Numerical account ID of the client buyer that the user should be associated with. (required)
      *     clientAccountId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3009,8 +2998,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.invitations.get({
      *     // Numerical account ID of the client's sponsor buyer. (required)
      *     accountId: 'placeholder-value',
-     *     // Numerical account ID of the client buyer that the user invitation
-     *     // to be retrieved is associated with. (required)
+     *     // Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
      *     clientAccountId: 'placeholder-value',
      *     // Numerical identifier of the user invitation to retrieve. (required)
      *     invitationId: 'placeholder-value',
@@ -3155,22 +3143,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.invitations.list({
      *     // Numerical account ID of the client's sponsor buyer. (required)
      *     accountId: 'placeholder-value',
-     *     // Numerical account ID of the client buyer to list invitations for.
-     *     // (required)
-     *     // You must either specify a string representation of a
-     *     // numerical account identifier or the `-` character
-     *     // to list all the invitations for all the clients
-     *     // of a given sponsor buyer.
+     *     // Numerical account ID of the client buyer to list invitations for. (required) You must either specify a string representation of a numerical account identifier or the `-` character to list all the invitations for all the clients of a given sponsor buyer.
      *     clientAccountId: 'placeholder-value',
-     *     // Requested page size. Server may return fewer clients than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListClientUserInvitationsResponse.nextPageToken
-     *     // returned from the previous call to the
-     *     // clients.invitations.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3375,8 +3352,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.users.get({
      *     // Numerical account ID of the client's sponsor buyer. (required)
      *     accountId: 'placeholder-value',
-     *     // Numerical account ID of the client buyer
-     *     // that the user to be retrieved is associated with. (required)
+     *     // Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
      *     clientAccountId: 'placeholder-value',
      *     // Numerical identifier of the user to retrieve. (required)
      *     userId: 'placeholder-value',
@@ -3515,24 +3491,13 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.clients.users.list({
-     *     // Numerical account ID of the sponsor buyer of the client to list users for.
-     *     // (required)
+     *     // Numerical account ID of the sponsor buyer of the client to list users for. (required)
      *     accountId: 'placeholder-value',
-     *     // The account ID of the client buyer to list users for. (required)
-     *     // You must specify either a string representation of a
-     *     // numerical account identifier or the `-` character
-     *     // to list all the client users for all the clients
-     *     // of a given sponsor buyer.
+     *     // The account ID of the client buyer to list users for. (required) You must specify either a string representation of a numerical account identifier or the `-` character to list all the client users for all the clients of a given sponsor buyer.
      *     clientAccountId: 'placeholder-value',
-     *     // Requested page size. The server may return fewer clients than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListClientUsersResponse.nextPageToken
-     *     // returned from the previous call to the
-     *     // accounts.clients.users.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3675,8 +3640,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.clients.users.update({
      *     // Numerical account ID of the client's sponsor buyer. (required)
      *     accountId: 'placeholder-value',
-     *     // Numerical account ID of the client buyer that the user to be retrieved
-     *     // is associated with. (required)
+     *     // Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
      *     clientAccountId: 'placeholder-value',
      *     // Numerical identifier of the user to retrieve. (required)
      *     userId: 'placeholder-value',
@@ -3893,13 +3857,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.create({
-     *     // The account that this creative belongs to.
-     *     // Can be used to filter the response of the
-     *     // creatives.list
-     *     // method.
+     *     // The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      *     accountId: 'placeholder-value',
-     *     // Indicates if multiple creatives can share an ID or not. Default is
-     *     // NO_DUPLICATES (one ID per creative).
+     *     // Indicates if multiple creatives can share an ID or not. Default is NO_DUPLICATES (one ID per creative).
      *     duplicateIdMode: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4250,35 +4210,13 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.list({
-     *     // The account to list the creatives from.
-     *     // Specify "-" to list all creatives the current user has access to.
+     *     // The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      *     accountId: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested
-     *     // (due to timeout constraint) even if more are available via another call.
-     *     // If unspecified, server will pick an appropriate default.
-     *     // Acceptable values are 1 to 1000, inclusive.
+     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListCreativesResponse.next_page_token
-     *     // returned from the previous call to 'ListCreatives' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
-     *     // An optional query string to filter creatives. If no filter is specified,
-     *     // all active creatives will be returned.
-     *     // <p>Supported queries are:
-     *     // <ul>
-     *     // <li>accountId=<i>account_id_string</i>
-     *     // <li>creativeId=<i>creative_id_string</i>
-     *     // <li>dealsStatus: {approved, conditionally_approved, disapproved,
-     *     //                    not_checked}
-     *     // <li>openAuctionStatus: {approved, conditionally_approved, disapproved,
-     *     //                           not_checked}
-     *     // <li>attribute: {a numeric attribute from the list of attributes}
-     *     // <li>disapprovalReason: {a reason from
-     *     // DisapprovalReason}
-     *     // </ul>
-     *     // Example: 'accountId=12345 AND (dealsStatus:disapproved AND
-     *     // disapprovalReason:unacceptable_content) OR attribute:47'
+     *     // An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsStatus: {approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus: {approved, conditionally_approved, disapproved, not_checked} - attribute: {a numeric attribute from the list of attributes} - disapprovalReason: {a reason from DisapprovalReason} Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4302,7 +4240,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {string} params.accountId The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
-     * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. <p>Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason} </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
+     * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsStatus: {approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus: {approved, conditionally_approved, disapproved, not_checked} - attribute: {a numeric attribute from the list of attributes} - disapprovalReason: {a reason from DisapprovalReason} Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4421,8 +4359,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.creatives.stopWatching({
      *     // The account of the creative to stop notifications for.
      *     accountId: 'placeholder-value',
-     *     // The creative ID of the creative to stop notifications for.
-     *     // Specify "-" to specify stopping account level notifications.
+     *     // The creative ID of the creative to stop notifications for. Specify "-" to specify stopping account level notifications.
      *     creativeId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4560,15 +4497,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.update({
-     *     // The account that this creative belongs to.
-     *     // Can be used to filter the response of the
-     *     // creatives.list
-     *     // method.
+     *     // The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      *     accountId: 'placeholder-value',
-     *     // The buyer-defined creative ID of this creative.
-     *     // Can be used to filter the response of the
-     *     // creatives.list
-     *     // method.
+     *     // The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
      *     creativeId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4761,11 +4692,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.creatives.watch({
      *     // The account of the creative to watch.
      *     accountId: 'placeholder-value',
-     *     // The creative ID to watch for status changes.
-     *     // Specify "-" to watch all creatives under the above account.
-     *     // If both creative-level and account-level notifications are
-     *     // sent, only a single notification will be sent to the
-     *     // creative-level notification topic.
+     *     // The creative ID to watch for status changes. Specify "-" to watch all creatives under the above account. If both creative-level and account-level notifications are sent, only a single notification will be sent to the creative-level notification topic.
      *     creativeId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4921,7 +4848,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
     /**
-     * An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. <p>Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason} </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
+     * An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsStatus: {approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus: {approved, conditionally_approved, disapproved, not_checked} - attribute: {a numeric attribute from the list of attributes} - disapprovalReason: {a reason from DisapprovalReason} Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
      */
     query?: string;
   }
@@ -5149,33 +5076,15 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.accounts.creatives.dealAssociations.list({
-     *     // The account to list the associations from.
-     *     // Specify "-" to list all creatives the current user has access to.
+     *     // The account to list the associations from. Specify "-" to list all creatives the current user has access to.
      *     accountId: 'placeholder-value',
-     *     // The creative ID to list the associations from.
-     *     // Specify "-" to list all creatives under the above account.
+     *     // The creative ID to list the associations from. Specify "-" to list all creatives under the above account.
      *     creativeId: 'placeholder-value',
-     *     // Requested page size. Server may return fewer associations than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer associations than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListDealAssociationsResponse.next_page_token
-     *     // returned from the previous call to 'ListDealAssociations' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListDealAssociationsResponse.next_page_token returned from the previous call to 'ListDealAssociations' method.
      *     pageToken: 'placeholder-value',
-     *     // An optional query string to filter deal associations. If no filter is
-     *     // specified, all associations will be returned.
-     *     // Supported queries are:
-     *     // <ul>
-     *     // <li>accountId=<i>account_id_string</i>
-     *     // <li>creativeId=<i>creative_id_string</i>
-     *     // <li>dealsId=<i>deals_id_string</i>
-     *     // <li>dealsStatus:{approved, conditionally_approved, disapproved,
-     *     //                   not_checked}
-     *     // <li>openAuctionStatus:{approved, conditionally_approved, disapproved,
-     *     //                          not_checked}
-     *     // </ul>
-     *     // Example: 'dealsId=12345 AND dealsStatus:disapproved'
+     *     // An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsId=*deals_id_string* - dealsStatus:{approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus:{approved, conditionally_approved, disapproved, not_checked} Example: 'dealsId=12345 AND dealsStatus:disapproved'
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5200,7 +5109,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {string} params.creativeId The creative ID to list the associations from. Specify "-" to list all creatives under the above account.
      * @param {integer=} params.pageSize Requested page size. Server may return fewer associations than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListDealAssociationsResponse.next_page_token returned from the previous call to 'ListDealAssociations' method.
-     * @param {string=} params.query An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsId=<i>deals_id_string</i> <li>dealsStatus:{approved, conditionally_approved, disapproved,                   not_checked} <li>openAuctionStatus:{approved, conditionally_approved, disapproved,                          not_checked} </ul> Example: 'dealsId=12345 AND dealsStatus:disapproved'
+     * @param {string=} params.query An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsId=*deals_id_string* - dealsStatus:{approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus:{approved, conditionally_approved, disapproved, not_checked} Example: 'dealsId=12345 AND dealsStatus:disapproved'
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5474,7 +5383,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
     /**
-     * An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsId=<i>deals_id_string</i> <li>dealsStatus:{approved, conditionally_approved, disapproved,                   not_checked} <li>openAuctionStatus:{approved, conditionally_approved, disapproved,                          not_checked} </ul> Example: 'dealsId=12345 AND dealsStatus:disapproved'
+     * An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: - accountId=*account_id_string* - creativeId=*creative_id_string* - dealsId=*deals_id_string* - dealsStatus:{approved, conditionally_approved, disapproved, not_checked} - openAuctionStatus:{approved, conditionally_approved, disapproved, not_checked} Example: 'dealsId=12345 AND dealsStatus:disapproved'
      */
     query?: string;
   }
@@ -5530,16 +5439,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.finalizedProposals.list({
      *     // Account ID of the buyer.
      *     accountId: 'placeholder-value',
-     *     // An optional PQL filter query used to query for proposals.
-     *     //
-     *     // Nested repeated fields, such as proposal.deals.targetingCriterion,
-     *     // cannot be filtered.
+     *     // An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      *     filter: 'placeholder-value',
-     *     // Syntax the filter is written in. Current implementation defaults to PQL
-     *     // but in the future it will be LIST_FILTER.
+     *     // Syntax the filter is written in. Current implementation defaults to PQL but in the future it will be LIST_FILTER.
      *     filterSyntax: 'placeholder-value',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // The page token as returned from ListProposalsResponse.
      *     pageToken: 'placeholder-value',
@@ -5563,7 +5467,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {string=} params.filter An optional PQL filter query used to query for proposals.  Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
+     * @param {string=} params.filter An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      * @param {string=} params.filterSyntax Syntax the filter is written in. Current implementation defaults to PQL but in the future it will be LIST_FILTER.
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken The page token as returned from ListProposalsResponse.
@@ -5663,7 +5567,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     accountId?: string;
     /**
-     * An optional PQL filter query used to query for proposals.  Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
+     * An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      */
     filter?: string;
     /**
@@ -5863,15 +5767,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.products.list({
      *     // Account ID of the buyer.
      *     accountId: 'placeholder-value',
-     *     // An optional PQL query used to query for products. See
-     *     // https://developers.google.com/ad-manager/docs/pqlreference
-     *     // for documentation about PQL and examples.
-     *     //
-     *     // Nested repeated fields, such as product.targetingCriterion.inclusions,
-     *     // cannot be filtered.
+     *     // An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples. Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
      *     filter: 'placeholder-value',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // The page token as returned from ListProductsResponse.
      *     pageToken: 'placeholder-value',
@@ -5895,7 +5793,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {string=} params.filter An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples.  Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
+     * @param {string=} params.filter An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples. Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken The page token as returned from ListProductsResponse.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6006,7 +5904,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     accountId?: string;
     /**
-     * An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples.  Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
+     * An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples. Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
      */
     filter?: string;
     /**
@@ -7007,16 +6905,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.proposals.list({
      *     // Account ID of the buyer.
      *     accountId: 'placeholder-value',
-     *     // An optional PQL filter query used to query for proposals.
-     *     //
-     *     // Nested repeated fields, such as proposal.deals.targetingCriterion,
-     *     // cannot be filtered.
+     *     // An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      *     filter: 'placeholder-value',
-     *     // Syntax the filter is written in. Current implementation defaults to PQL
-     *     // but in the future it will be LIST_FILTER.
+     *     // Syntax the filter is written in. Current implementation defaults to PQL but in the future it will be LIST_FILTER.
      *     filterSyntax: 'placeholder-value',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // The page token as returned from ListProposalsResponse.
      *     pageToken: 'placeholder-value',
@@ -7040,7 +6933,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {string=} params.filter An optional PQL filter query used to query for proposals.  Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
+     * @param {string=} params.filter An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      * @param {string=} params.filterSyntax Syntax the filter is written in. Current implementation defaults to PQL but in the future it will be LIST_FILTER.
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken The page token as returned from ListProposalsResponse.
@@ -7135,7 +7028,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
     /**
      * adexchangebuyer2.accounts.proposals.pause
-     * @desc Update the given proposal to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all deals in the proposal.  It is a no-op to pause an already-paused proposal. It is an error to call PauseProposal for a proposal that is not finalized or renegotiating.
+     * @desc Update the given proposal to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all deals in the proposal. It is a no-op to pause an already-paused proposal. It is an error to call PauseProposal for a proposal that is not finalized or renegotiating.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7296,7 +7189,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
     /**
      * adexchangebuyer2.accounts.proposals.resume
-     * @desc Update the given proposal to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all deals in the proposal.  Note that if the `has_seller_paused` bit is also set, serving will not resume until the seller also resumes.  It is a no-op to resume an already-running proposal. It is an error to call ResumeProposal for a proposal that is not finalized or renegotiating.
+     * @desc Update the given proposal to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all deals in the proposal. Note that if the `has_seller_paused` bit is also set, serving will not resume until the seller also resumes. It is a no-op to resume an already-running proposal. It is an error to call ResumeProposal for a proposal that is not finalized or renegotiating.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7455,7 +7348,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
     /**
      * adexchangebuyer2.accounts.proposals.update
-     * @desc Update the given proposal at the client known revision number. If the server revision has advanced since the passed-in `proposal.proposal_revision`, an `ABORTED` error message will be returned. Only the buyer-modifiable fields of the proposal will be updated.  Note that the deals in the proposal will be updated to match the passed-in copy. If a passed-in deal does not have a `deal_id`, the server will assign a new unique ID and create the deal. If passed-in deal has a `deal_id`, it will be updated to match the passed-in copy. Any existing deals not present in the passed-in proposal will be deleted. It is an error to pass in a deal with a `deal_id` not present at head.
+     * @desc Update the given proposal at the client known revision number. If the server revision has advanced since the passed-in `proposal.proposal_revision`, an `ABORTED` error message will be returned. Only the buyer-modifiable fields of the proposal will be updated. Note that the deals in the proposal will be updated to match the passed-in copy. If a passed-in deal does not have a `deal_id`, the server will assign a new unique ID and create the deal. If passed-in deal has a `deal_id`, it will be updated to match the passed-in copy. Any existing deals not present in the passed-in proposal will be deleted. It is an error to pass in a deal with a `deal_id` not present at head.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -7725,7 +7618,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     accountId?: string;
     /**
-     * An optional PQL filter query used to query for proposals.  Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
+     * An optional PQL filter query used to query for proposals. Nested repeated fields, such as proposal.deals.targetingCriterion, cannot be filtered.
      */
     filter?: string;
     /**
@@ -8206,20 +8099,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.create({
-     *     // Whether the filter set is transient, or should be persisted indefinitely.
-     *     // By default, filter sets are not transient.
-     *     // If transient, it will be available for at least 1 hour after creation.
+     *     // Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      *     isTransient: 'placeholder-value',
-     *     // Name of the owner (bidder or account) of the filter set to be created.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     // Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      *     ownerName: 'bidders/my-bidder/accounts/my-account',
      *
      *     // Request body metadata
@@ -8274,7 +8156,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
-     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8387,17 +8269,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.delete({
-     *     // Full name of the resource to delete.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     name: 'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
      *   });
      *   console.log(res.data);
@@ -8415,7 +8287,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.name Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8524,17 +8396,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.get({
-     *     // Full name of the resource being requested.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     name: 'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
      *   });
      *   console.log(res.data);
@@ -8567,7 +8429,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.name Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8676,26 +8538,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.list({
-     *     // Name of the owner (bidder or account) of the filter sets to be listed.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     // Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      *     ownerName: 'bidders/my-bidder/accounts/my-account',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListFilterSetsResponse.nextPageToken
-     *     // returned from the previous call to the
-     *     // accounts.filterSets.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8716,7 +8563,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8816,7 +8663,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     isTransient?: boolean;
     /**
-     * Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
 
@@ -8828,21 +8675,21 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$Get
     extends StandardParameters {
     /**
-     * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$List
     extends StandardParameters {
     /**
-     * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
     /**
@@ -8889,27 +8736,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListBidMetricsResponse.nextPageToken
-     *       // returned from the previous call to the bidMetrics.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -8931,7 +8763,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9027,7 +8859,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -9074,27 +8906,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListBidResponseErrorsResponse.nextPageToken
-     *       // returned from the previous call to the bidResponseErrors.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9116,7 +8933,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9215,7 +9032,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -9262,27 +9079,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListBidResponsesWithoutBidsResponse.nextPageToken
-     *       // returned from the previous call to the bidResponsesWithoutBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9304,7 +9106,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9403,7 +9205,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -9450,27 +9252,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListFilteredBidRequestsResponse.nextPageToken
-     *       // returned from the previous call to the filteredBidRequests.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9492,7 +9279,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9591,7 +9378,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -9646,27 +9433,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListFilteredBidsResponse.nextPageToken
-     *       // returned from the previous call to the filteredBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9688,7 +9460,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9784,7 +9556,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -9831,32 +9603,14 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list(
      *     {
-     *       // The ID of the creative status for which to retrieve a breakdown by
-     *       // creative.
-     *       // See
-     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       // The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      *       creativeStatusId: 'placeholder-value',
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListCreativeStatusBreakdownByCreativeResponse.nextPageToken
-     *       // returned from the previous call to the filteredBids.creatives.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -9879,7 +9633,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9997,7 +9751,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeStatusId?: number;
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -10044,32 +9798,14 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list(
      *     {
-     *       // The ID of the creative status for which to retrieve a breakdown by detail.
-     *       // See
-     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
-     *       // Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     *       // The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      *       creativeStatusId: 'placeholder-value',
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListCreativeStatusBreakdownByDetailResponse.nextPageToken
-     *       // returned from the previous call to the filteredBids.details.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -10093,7 +9829,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10211,7 +9947,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeStatusId?: number;
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -10258,27 +9994,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListImpressionMetricsResponse.nextPageToken
-     *       // returned from the previous call to the impressionMetrics.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -10300,7 +10021,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10399,7 +10120,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -10446,27 +10167,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.losingBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListLosingBidsResponse.nextPageToken
-     *       // returned from the previous call to the losingBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -10488,7 +10194,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10584,7 +10290,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -10631,27 +10337,12 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName:
      *         'bidders/my-bidder/accounts/my-account/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListNonBillableWinningBidsResponse.nextPageToken
-     *       // returned from the previous call to the nonBillableWinningBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -10673,7 +10364,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10772,7 +10463,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -10850,20 +10541,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.create({
-     *     // Whether the filter set is transient, or should be persisted indefinitely.
-     *     // By default, filter sets are not transient.
-     *     // If transient, it will be available for at least 1 hour after creation.
+     *     // Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      *     isTransient: 'placeholder-value',
-     *     // Name of the owner (bidder or account) of the filter set to be created.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     // Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      *     ownerName: 'bidders/my-bidder',
      *
      *     // Request body metadata
@@ -10918,7 +10598,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
-     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11031,17 +10711,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.delete({
-     *     // Full name of the resource to delete.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     name: 'bidders/my-bidder/filterSets/my-filterSet',
      *   });
      *   console.log(res.data);
@@ -11059,7 +10729,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.name Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11168,17 +10838,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.get({
-     *     // Full name of the resource being requested.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     name: 'bidders/my-bidder/filterSets/my-filterSet',
      *   });
      *   console.log(res.data);
@@ -11211,7 +10871,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.name Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11320,26 +10980,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.list({
-     *     // Name of the owner (bidder or account) of the filter sets to be listed.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123: `bidders/123`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456`
+     *     // Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      *     ownerName: 'bidders/my-bidder',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListFilterSetsResponse.nextPageToken
-     *     // returned from the previous call to the
-     *     // accounts.filterSets.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11360,7 +11005,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11460,7 +11105,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     isTransient?: boolean;
     /**
-     * Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
 
@@ -11472,21 +11117,21 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Delete
     extends StandardParameters {
     /**
-     * Full name of the resource to delete. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$Get
     extends StandardParameters {
     /**
-     * Full name of the resource being requested. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$List
     extends StandardParameters {
     /**
-     * Name of the owner (bidder or account) of the filter sets to be listed. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
+     * Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: `bidders/123` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
     /**
@@ -11532,26 +11177,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidMetrics.list({
-     *     // Name of the filter set that should be applied to the requested metrics.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListBidMetricsResponse.nextPageToken
-     *     // returned from the previous call to the bidMetrics.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11572,7 +11202,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11668,7 +11298,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -11714,26 +11344,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidResponseErrors.list({
-     *     // Name of the filter set that should be applied to the requested metrics.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListBidResponseErrorsResponse.nextPageToken
-     *     // returned from the previous call to the bidResponseErrors.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11754,7 +11369,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11853,7 +11468,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -11900,26 +11515,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListBidResponsesWithoutBidsResponse.nextPageToken
-     *       // returned from the previous call to the bidResponsesWithoutBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -11941,7 +11541,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12040,7 +11640,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -12087,26 +11687,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBidRequests.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListFilteredBidRequestsResponse.nextPageToken
-     *       // returned from the previous call to the filteredBidRequests.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -12128,7 +11713,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12227,7 +11812,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -12281,26 +11866,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.list({
-     *     // Name of the filter set that should be applied to the requested metrics.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListFilteredBidsResponse.nextPageToken
-     *     // returned from the previous call to the filteredBids.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12321,7 +11891,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12417,7 +11987,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Filteredbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -12464,31 +12034,13 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list(
      *     {
-     *       // The ID of the creative status for which to retrieve a breakdown by
-     *       // creative.
-     *       // See
-     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
+     *       // The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      *       creativeStatusId: 'placeholder-value',
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListCreativeStatusBreakdownByCreativeResponse.nextPageToken
-     *       // returned from the previous call to the filteredBids.creatives.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -12511,7 +12063,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12629,7 +12181,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeStatusId?: number;
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -12676,31 +12228,13 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.filteredBids.details.list(
      *     {
-     *       // The ID of the creative status for which to retrieve a breakdown by detail.
-     *       // See
-     *       // [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
-     *       // Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     *       // The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      *       creativeStatusId: 'placeholder-value',
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListCreativeStatusBreakdownByDetailResponse.nextPageToken
-     *       // returned from the previous call to the filteredBids.details.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -12724,7 +12258,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12842,7 +12376,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeStatusId?: number;
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -12888,26 +12422,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.impressionMetrics.list({
-     *     // Name of the filter set that should be applied to the requested metrics.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListImpressionMetricsResponse.nextPageToken
-     *     // returned from the previous call to the impressionMetrics.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12928,7 +12447,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13027,7 +12546,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -13073,26 +12592,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.losingBids.list({
-     *     // Name of the filter set that should be applied to the requested metrics.
-     *     // For example:
-     *     //
-     *     // - For a bidder-level filter set for bidder 123:
-     *     //   `bidders/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the buyer account representing bidder
-     *     //   123: `bidders/123/accounts/123/filterSets/abc`
-     *     //
-     *     // - For an account-level filter set for the child seat buyer account 456
-     *     //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *     // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *     filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *     // Requested page size. The server may return fewer results than requested.
-     *     // If unspecified, the server will pick an appropriate default.
+     *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListLosingBidsResponse.nextPageToken
-     *     // returned from the previous call to the losingBids.list
-     *     // method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13113,7 +12617,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13209,7 +12713,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Losingbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
@@ -13256,26 +12760,11 @@ export namespace adexchangebuyer2_v2beta1 {
      *   // Do the magic
      *   const res = await adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list(
      *     {
-     *       // Name of the filter set that should be applied to the requested metrics.
-     *       // For example:
-     *       //
-     *       // - For a bidder-level filter set for bidder 123:
-     *       //   `bidders/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the buyer account representing bidder
-     *       //   123: `bidders/123/accounts/123/filterSets/abc`
-     *       //
-     *       // - For an account-level filter set for the child seat buyer account 456
-     *       //   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     *       // Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      *       filterSetName: 'bidders/my-bidder/filterSets/my-filterSet',
-     *       // Requested page size. The server may return fewer results than requested.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       // Typically, this is the value of
-     *       // ListNonBillableWinningBidsResponse.nextPageToken
-     *       // returned from the previous call to the nonBillableWinningBids.list
-     *       // method.
+     *       // A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -13297,7 +12786,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13396,7 +12885,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
     extends StandardParameters {
     /**
-     * Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
+     * Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123: `bidders/123/filterSets/abc` - For an account-level filter set for the buyer account representing bidder 123: `bidders/123/accounts/123/filterSets/abc` - For an account-level filter set for the child seat buyer account 456 whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      */
     filterSetName?: string;
     /**
