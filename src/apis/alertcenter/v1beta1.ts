@@ -138,7 +138,7 @@ export namespace alertcenter_v1beta1 {
      */
     email?: string | null;
     /**
-     * Optional. Details of the login action associated with the warning event. This is only available for:  * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)
+     * Optional. Details of the login action associated with the warning event. This is only available for: * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)
      */
     loginDetails?: Schema$LoginDetails;
   }
@@ -183,7 +183,7 @@ export namespace alertcenter_v1beta1 {
      */
     threshold?: string | null;
     /**
-     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS
+     * The trigger sources for this rule. * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS
      */
     triggerSource?: string | null;
     /**
@@ -224,7 +224,7 @@ export namespace alertcenter_v1beta1 {
      */
     endTime?: string | null;
     /**
-     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform alert updates in order to avoid race conditions: An `etag` is returned in the response which contains alerts, and systems are expected to put that etag in the request to update alert to ensure that their change will be applied to the same version of the alert.  If no `etag` is provided in the call to update alert, then the existing alert is overwritten blindly.
+     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform alert updates in order to avoid race conditions: An `etag` is returned in the response which contains alerts, and systems are expected to put that etag in the request to update alert to ensure that their change will be applied to the same version of the alert. If no `etag` is provided in the call to update alert, then the existing alert is overwritten blindly.
      */
     etag?: string | null;
     /**
@@ -236,7 +236,7 @@ export namespace alertcenter_v1beta1 {
      */
     securityInvestigationToolLink?: string | null;
     /**
-     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * State sponsored attack * Google identity
+     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * State sponsored attack * Google identity
      */
     source?: string | null;
     /**
@@ -298,15 +298,15 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string | null;
     /**
-     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert metadata from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform metatdata updates in order to avoid race conditions: An `etag` is returned in the response which contains alert metadata, and systems are expected to put that etag in the request to update alert metadata to ensure that their change will be applied to the same version of the alert metadata.  If no `etag` is provided in the call to update alert metadata, then the existing alert metadata is overwritten blindly.
+     * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert metadata from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform metatdata updates in order to avoid race conditions: An `etag` is returned in the response which contains alert metadata, and systems are expected to put that etag in the request to update alert metadata to ensure that their change will be applied to the same version of the alert metadata. If no `etag` is provided in the call to update alert metadata, then the existing alert metadata is overwritten blindly.
      */
     etag?: string | null;
     /**
-     * The severity value of the alert. Alert Center will set this field at alert creation time, default&#39;s to an empty string when it could not be determined. The supported values for update actions on this field are the following:  * HIGH * MEDIUM * LOW
+     * The severity value of the alert. Alert Center will set this field at alert creation time, default&#39;s to an empty string when it could not be determined. The supported values for update actions on this field are the following: * HIGH * MEDIUM * LOW
      */
     severity?: string | null;
     /**
-     * The current status of the alert. The supported values are the following:  * NOT_STARTED * IN_PROGRESS * CLOSED
+     * The current status of the alert. The supported values are the following: * NOT_STARTED * IN_PROGRESS * CLOSED
      */
     status?: string | null;
     /**
@@ -406,7 +406,7 @@ export namespace alertcenter_v1beta1 {
     successAlertIds?: string[] | null;
   }
   /**
-   * A reference to a Cloud Pubsub topic.  To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
+   * A reference to a Cloud Pubsub topic. To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the `projects.topics.publish` permission.
    */
   export interface Schema$CloudPubsubTopic {
     /**
@@ -491,7 +491,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$DlpRuleViolation {
     /**
-     * Details about the violated DLP rule.  Admins can use the predefined detectors provided by Google Cloud DLP https://cloud.google.com/dlp/ when setting up a DLP rule. Matched Cloud DLP detectors in this violation if any will be captured in the MatchInfo.predefined_detector.
+     * Details about the violated DLP rule. Admins can use the predefined detectors provided by Google Cloud DLP https://cloud.google.com/dlp/ when setting up a DLP rule. Matched Cloud DLP detectors in this violation if any will be captured in the MatchInfo.predefined_detector.
      */
     ruleViolationInfo?: Schema$RuleViolationInfo;
   }
@@ -518,7 +518,7 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -615,7 +615,7 @@ export namespace alertcenter_v1beta1 {
     loginTime?: string | null;
   }
   /**
-   * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification * Gmail potential employee spoofing
+   * Proto for all phishing alerts with common payload. Supported types are any of the following: * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification * Gmail potential employee spoofing
    */
   export interface Schema$MailPhishing {
     /**
@@ -679,7 +679,7 @@ export namespace alertcenter_v1beta1 {
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
   }
   /**
-   * Alert for a spike in user reported phishing. &lt;aside class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.&lt;/aside&gt;
+   * Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.
    */
   export interface Schema$PhishingSpike {
     /**
@@ -764,7 +764,7 @@ export namespace alertcenter_v1beta1 {
      */
     matchInfo?: Schema$MatchInfo[];
     /**
-     * Resource recipients.  For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or &#39;anyone&#39; if the file was publicly accessible. If the file was private the recipients list will be empty.  For Gmail, they are emails of the users or groups that the Gmail message was sent to.
+     * Resource recipients. For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or &#39;anyone&#39; if the file was publicly accessible. If the file was private the recipients list will be empty. For Gmail, they are emails of the users or groups that the Gmail message was sent to.
      */
     recipients?: string[] | null;
     /**
@@ -811,7 +811,7 @@ export namespace alertcenter_v1beta1 {
     email?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -819,7 +819,7 @@ export namespace alertcenter_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1244,9 +1244,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.delete({
      *     // Required. The identifier of the alert to delete.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert is associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1377,9 +1375,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.get({
      *     // Required. The identifier of the alert to retrieve.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert is associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1524,9 +1520,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.getMetadata({
      *     // Required. The identifier of the alert this metadata belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert metadata is associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1664,30 +1658,15 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.list({
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alerts are associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert results.
-     *     // For more details, see [Query
-     *     // filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported
-     *     // query filter
-     *     // fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     *     // Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      *     filter: 'placeholder-value',
-     *     // Optional. The sort order of the list results.
-     *     // If not specified results may be returned in arbitrary order.
-     *     // You can sort the results in descending order based on the creation
-     *     // timestamp using `order_by="create_time desc"`.
-     *     // Currently, supported sorting are `create_time asc`, `create_time desc`,
-     *     // `update_time desc`
+     *     // Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
      *     orderBy: 'placeholder-value',
-     *     // Optional. The requested page size. Server may return fewer items than
-     *     // requested. If unspecified, server picks an appropriate default.
+     *     // Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return.
-     *     // If empty, a new iteration is started. To continue an iteration, pass in
-     *     // the value from the previous ListAlertsResponse's
-     *     // next_page_token field.
+     *     // Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2061,9 +2040,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.feedback.create({
      *     // Required. The identifier of the alert this feedback belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert is associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2214,18 +2191,11 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.feedback.list({
-     *     // Required. The alert identifier.
-     *     // The "-" wildcard could be used to represent all alerts.
+     *     // Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert feedback are associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert feedback results.
-     *     // For more details, see [Query
-     *     // filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported
-     *     // query filter
-     *     // fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      *     filter: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2404,9 +2374,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.getSettings({
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert settings are associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2534,9 +2502,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.updateSettings({
-     *     // Optional. The unique identifier of the G Suite organization account of the
-     *     // customer the alert settings are associated with.
-     *     // Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
