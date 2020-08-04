@@ -259,7 +259,7 @@
         "apks": {
           "methods": {
             "addexternallyhosted": {
-              "description": "Creates a new APK without uploading the APK itself to Google Play, instead\nhosting the APK at a specified URL. This function is only available to\norganizations using Managed Play whose application is configured to\nrestrict distribution to the organizations.",
+              "description": "Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted",
               "httpMethod": "POST",
               "id": "androidpublisher.edits.apks.addexternallyhosted",
@@ -404,7 +404,7 @@
               ]
             },
             "upload": {
-              "description": "Uploads a new Android App Bundle to this edit.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+              "description": "Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles",
               "httpMethod": "POST",
               "id": "androidpublisher.edits.bundles.upload",
@@ -426,7 +426,7 @@
               ],
               "parameters": {
                 "ackBundleInstallationWarning": {
-                  "description": "Must be set to true if the bundle installation may trigger a warning on\nuser devices (for example, if installation size may be over a threshold,\ntypically 100 MB).",
+                  "description": "Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -481,7 +481,7 @@
               ],
               "parameters": {
                 "apkVersionCode": {
-                  "description": "The version code of the APK whose Deobfuscation File is being\nuploaded.",
+                  "description": "The version code of the APK whose Deobfuscation File is being uploaded.",
                   "format": "int32",
                   "location": "path",
                   "required": true,
@@ -493,6 +493,11 @@
                     "deobfuscationFileTypeUnspecified",
                     "proguard",
                     "nativeCode"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified deobfuscation file type.",
+                    "Proguard deobfuscation file type.",
+                    "Native debugging symbols file type."
                   ],
                   "location": "path",
                   "required": true,
@@ -640,7 +645,7 @@
               ],
               "parameters": {
                 "apkVersionCode": {
-                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "description": "The version code of the APK whose expansion file configuration is being read or modified.",
                   "format": "int32",
                   "location": "path",
                   "required": true,
@@ -658,6 +663,11 @@
                     "expansionFileTypeUnspecified",
                     "main",
                     "patch"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified expansion file type.",
+                    "Main expansion file.",
+                    "Patch expansion file."
                   ],
                   "location": "path",
                   "required": true,
@@ -679,7 +689,7 @@
               ]
             },
             "patch": {
-              "description": "Patches the APK's expansion file configuration to reference another APK's\nexpansion file.\nTo add a new expansion file use the Upload method.",
+              "description": "Patches the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
               "httpMethod": "PATCH",
               "id": "androidpublisher.edits.expansionfiles.patch",
@@ -691,7 +701,7 @@
               ],
               "parameters": {
                 "apkVersionCode": {
-                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "description": "The version code of the APK whose expansion file configuration is being read or modified.",
                   "format": "int32",
                   "location": "path",
                   "required": true,
@@ -709,6 +719,11 @@
                     "expansionFileTypeUnspecified",
                     "main",
                     "patch"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified expansion file type.",
+                    "Main expansion file.",
+                    "Patch expansion file."
                   ],
                   "location": "path",
                   "required": true,
@@ -733,7 +748,7 @@
               ]
             },
             "update": {
-              "description": "Updates the APK's expansion file configuration to reference another APK's\nexpansion file.\nTo add a new expansion file use the Upload method.",
+              "description": "Updates the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}",
               "httpMethod": "PUT",
               "id": "androidpublisher.edits.expansionfiles.update",
@@ -745,7 +760,7 @@
               ],
               "parameters": {
                 "apkVersionCode": {
-                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "description": "The version code of the APK whose expansion file configuration is being read or modified.",
                   "format": "int32",
                   "location": "path",
                   "required": true,
@@ -763,6 +778,11 @@
                     "expansionFileTypeUnspecified",
                     "main",
                     "patch"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified expansion file type.",
+                    "Main expansion file.",
+                    "Patch expansion file."
                   ],
                   "location": "path",
                   "required": true,
@@ -811,7 +831,7 @@
               ],
               "parameters": {
                 "apkVersionCode": {
-                  "description": "The version code of the APK whose expansion file configuration is being\nread or modified.",
+                  "description": "The version code of the APK whose expansion file configuration is being read or modified.",
                   "format": "int32",
                   "location": "path",
                   "required": true,
@@ -829,6 +849,11 @@
                     "expansionFileTypeUnspecified",
                     "main",
                     "patch"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified expansion file type.",
+                    "Main expansion file.",
+                    "Patch expansion file."
                   ],
                   "location": "path",
                   "required": true,
@@ -893,12 +918,24 @@
                     "promoGraphic",
                     "tvBanner"
                   ],
+                  "enumDescriptions": [
+                    "Unspecified type. Do not use.",
+                    "Phone screenshot.",
+                    "Seven inch screenshot.",
+                    "Ten inch screenshot.",
+                    "TV screenshot.",
+                    "Wear screenshot.",
+                    "Icon.",
+                    "Feature graphic.",
+                    "Promo graphic.",
+                    "TV banner."
+                  ],
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -916,7 +953,7 @@
               ]
             },
             "deleteall": {
-              "description": "Deletes all images for the specified language and image type.\nReturns an empty response if no images are found.",
+              "description": "Deletes all images for the specified language and image type. Returns an empty response if no images are found.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
               "httpMethod": "DELETE",
               "id": "androidpublisher.edits.images.deleteall",
@@ -934,7 +971,7 @@
                   "type": "string"
                 },
                 "imageType": {
-                  "description": "Type of the Image.\nProviding an image type that refers to no images is a no-op.",
+                  "description": "Type of the Image. Providing an image type that refers to no images is a no-op.",
                   "enum": [
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
@@ -947,12 +984,24 @@
                     "promoGraphic",
                     "tvBanner"
                   ],
+                  "enumDescriptions": [
+                    "Unspecified type. Do not use.",
+                    "Phone screenshot.",
+                    "Seven inch screenshot.",
+                    "Ten inch screenshot.",
+                    "TV screenshot.",
+                    "Wear screenshot.",
+                    "Icon.",
+                    "Feature graphic.",
+                    "Promo graphic.",
+                    "TV banner."
+                  ],
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nProviding a language that is not supported by the App is a no-op.",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German). Providing a language that is not supported by the App is a no-op.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -991,7 +1040,7 @@
                   "type": "string"
                 },
                 "imageType": {
-                  "description": "Type of the Image. Providing an image type that refers to no images will\nreturn an empty response.",
+                  "description": "Type of the Image. Providing an image type that refers to no images will return an empty response.",
                   "enum": [
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
@@ -1004,12 +1053,24 @@
                     "promoGraphic",
                     "tvBanner"
                   ],
+                  "enumDescriptions": [
+                    "Unspecified type. Do not use.",
+                    "Phone screenshot.",
+                    "Seven inch screenshot.",
+                    "Ten inch screenshot.",
+                    "TV screenshot.",
+                    "Wear screenshot.",
+                    "Icon.",
+                    "Feature graphic.",
+                    "Promo graphic.",
+                    "TV banner."
+                  ],
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nThere must be a store listing for the specified language.",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German). There must be a store listing for the specified language.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1030,7 +1091,7 @@
               ]
             },
             "upload": {
-              "description": "Uploads an image of the specified language and image type, and adds to the\nedit.",
+              "description": "Uploads an image of the specified language and image type, and adds to the edit.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}",
               "httpMethod": "POST",
               "id": "androidpublisher.edits.images.upload",
@@ -1073,12 +1134,24 @@
                     "promoGraphic",
                     "tvBanner"
                   ],
+                  "enumDescriptions": [
+                    "Unspecified type. Do not use.",
+                    "Phone screenshot.",
+                    "Seven inch screenshot.",
+                    "Ten inch screenshot.",
+                    "TV screenshot.",
+                    "Wear screenshot.",
+                    "Icon.",
+                    "Feature graphic.",
+                    "Promo graphic.",
+                    "TV banner."
+                  ],
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).\nProviding a language that is not supported by the App is a no-op.",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German). Providing a language that is not supported by the App is a no-op.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1121,7 +1194,7 @@
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1184,7 +1257,7 @@
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1253,7 +1326,7 @@
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1294,7 +1367,7 @@
                   "type": "string"
                 },
                 "language": {
-                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+                  "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1671,7 +1744,7 @@
           ],
           "parameters": {
             "autoConvertMissingPrices": {
-              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "description": "If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.",
               "location": "query",
               "type": "boolean"
             },
@@ -1745,7 +1818,7 @@
           ],
           "parameters": {
             "autoConvertMissingPrices": {
-              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "description": "If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.",
               "location": "query",
               "type": "boolean"
             },
@@ -1784,7 +1857,7 @@
           ],
           "parameters": {
             "autoConvertMissingPrices": {
-              "description": "If true the prices for all regions targeted by the parent app that don't\nhave a price specified for this in-app product will be auto converted to\nthe target currency based on the default price. Defaults to false.",
+              "description": "If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.",
               "location": "query",
               "type": "boolean"
             },
@@ -1817,7 +1890,7 @@
     "internalappsharingartifacts": {
       "methods": {
         "uploadapk": {
-          "description": "Uploads an APK to internal app sharing.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\n\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+          "description": "Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.",
           "flatPath": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk",
           "httpMethod": "POST",
           "id": "androidpublisher.internalappsharingartifacts.uploadapk",
@@ -1855,7 +1928,7 @@
           "supportsMediaUpload": true
         },
         "uploadbundle": {
-          "description": "Uploads an app bundle to internal app sharing.\nIf you are using the Google API client libraries, please increase the\ntimeout of the http request before calling this endpoint\n(a timeout of 2 minutes is recommended).\n\nSee [Timeouts and\nErrors](https://developers.google.com/api-client-library/java/google-api-java-client/errors)\nfor an example in java.",
+          "description": "Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.",
           "flatPath": "androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle",
           "httpMethod": "POST",
           "id": "androidpublisher.internalappsharingartifacts.uploadbundle",
@@ -1906,19 +1979,19 @@
           ],
           "parameters": {
             "orderId": {
-              "description": "The order ID provided to the user when the subscription or in-app order was\npurchased.",
+              "description": "The order ID provided to the user when the subscription or in-app order was purchased.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "packageName": {
-              "description": "The package name of the application for which this subscription or in-app\nitem was purchased (for example, 'com.some.thing').",
+              "description": "The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "revoke": {
-              "description": "Whether to revoke the purchased item. If set to true, access to the\nsubscription or in-app item will be terminated immediately. If the item is\na recurring subscription, all future payments will also be terminated.\nConsumed in-app items need to be handled by developer's app. (optional).",
+              "description": "Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).",
               "location": "query",
               "type": "boolean"
             }
@@ -1946,7 +2019,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application the inapp product was sold in (for\nexample, 'com.some.thing').",
+                  "description": "The package name of the application the inapp product was sold in (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1958,7 +2031,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the inapp product was\npurchased.",
+                  "description": "The token provided to the user's device when the inapp product was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1984,7 +2057,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application the inapp product was sold in (for\nexample, 'com.some.thing').",
+                  "description": "The package name of the application the inapp product was sold in (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1996,7 +2069,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the inapp product was\npurchased.",
+                  "description": "The token provided to the user's device when the inapp product was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2026,7 +2099,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2038,7 +2111,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2053,7 +2126,7 @@
               ]
             },
             "cancel": {
-              "description": "Cancels a user's subscription purchase. The subscription remains valid\nuntil its expiration time.",
+              "description": "Cancels a user's subscription purchase. The subscription remains valid until its expiration time.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.cancel",
@@ -2064,7 +2137,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2076,7 +2149,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2088,7 +2161,7 @@
               ]
             },
             "defer": {
-              "description": "Defers a user's subscription purchase until a specified future expiration\ntime.",
+              "description": "Defers a user's subscription purchase until a specified future expiration time.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.defer",
@@ -2099,7 +2172,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2111,7 +2184,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2129,7 +2202,7 @@
               ]
             },
             "get": {
-              "description": "Checks whether a user's subscription purchase is valid and returns its\nexpiry time.",
+              "description": "Checks whether a user's subscription purchase is valid and returns its expiry time.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}",
               "httpMethod": "GET",
               "id": "androidpublisher.purchases.subscriptions.get",
@@ -2140,7 +2213,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2152,7 +2225,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2167,7 +2240,7 @@
               ]
             },
             "refund": {
-              "description": "Refunds a user's subscription purchase, but the subscription remains valid\nuntil its expiration time and it will continue to recur.",
+              "description": "Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.refund",
@@ -2178,7 +2251,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2190,7 +2263,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2202,7 +2275,7 @@
               ]
             },
             "revoke": {
-              "description": "Refunds and immediately revokes a user's subscription purchase. Access to\nthe subscription will be terminated immediately and it will stop recurring.",
+              "description": "Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.revoke",
@@ -2213,7 +2286,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "The package name of the application for which this subscription was\npurchased (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which this subscription was purchased (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2225,7 +2298,7 @@
                   "type": "string"
                 },
                 "token": {
-                  "description": "The token provided to the user's device when the subscription was\npurchased.",
+                  "description": "The token provided to the user's device when the subscription was purchased.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2250,42 +2323,42 @@
               ],
               "parameters": {
                 "endTime": {
-                  "description": "The time, in milliseconds since the Epoch, of the newest voided purchase\nthat you want to see in the response. The value of this parameter cannot\nbe greater than the current time and is ignored if a pagination token is\nset. Default value is current time.\nNote: This filter is applied on the time at which the record is seen as\nvoided by our systems and not the actual voided time returned in the\nresponse.",
+                  "description": "The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.",
                   "format": "int64",
                   "location": "query",
                   "type": "string"
                 },
                 "maxResults": {
-                  "description": "Defines how many results the list operation should return.\nThe default number depends on the resource collection.",
+                  "description": "Defines how many results the list operation should return. The default number depends on the resource collection.",
                   "format": "uint32",
                   "location": "query",
                   "type": "integer"
                 },
                 "packageName": {
-                  "description": "The package name of the application for which voided purchases need to be\nreturned (for example, 'com.some.thing').",
+                  "description": "The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "startIndex": {
-                  "description": "Defines the index of the first element to return.\nThis can only be used if indexed paging is enabled.",
+                  "description": "Defines the index of the first element to return. This can only be used if indexed paging is enabled.",
                   "format": "uint32",
                   "location": "query",
                   "type": "integer"
                 },
                 "startTime": {
-                  "description": "The time, in milliseconds since the Epoch, of the oldest voided purchase\nthat you want to see in the response. The value of this parameter cannot\nbe older than 30 days and is ignored if a pagination token is set.\nDefault value is current time minus 30 days.\nNote: This filter is applied on the time at which the record is seen as\nvoided by our systems and not the actual voided time returned in the\nresponse.",
+                  "description": "The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.",
                   "format": "int64",
                   "location": "query",
                   "type": "string"
                 },
                 "token": {
-                  "description": "Defines the token of the page to return, usually taken from\nTokenPagination.\nThis can only be used if token paging is enabled.",
+                  "description": "Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.",
                   "location": "query",
                   "type": "string"
                 },
                 "type": {
-                  "description": "The type of voided purchases that you want to see in the response.\nPossible values are:\n0. Only voided in-app product purchases will be returned in the\n   response. This is the default value.\n1. Both voided in-app purchases and voided subscription purchases\n   will be returned in the response.\n\nNote: Before requesting to receive voided subscription purchases, you\nmust switch to use orderId in the response which uniquely identifies\none-time purchases and subscriptions. Otherwise, you will receive multiple\nsubscription orders with the same PurchaseToken, because subscription\nrenewal orders share the same PurchaseToken.",
+                  "description": "The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2428,7 +2501,7 @@
         "variants": {
           "methods": {
             "create": {
-              "description": "Creates an APK which is suitable for inclusion in a system image from an\nalready uploaded Android App Bundle.",
+              "description": "Creates an APK which is suitable for inclusion in a system image from an already uploaded Android App Bundle.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants",
               "httpMethod": "POST",
               "id": "androidpublisher.systemapks.variants.create",
@@ -2463,7 +2536,7 @@
               ]
             },
             "download": {
-              "description": "Downloads a previously created system APK which is suitable for inclusion\nin a system image.",
+              "description": "Downloads a previously created system APK which is suitable for inclusion in a system image.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download",
               "httpMethod": "GET",
               "id": "androidpublisher.systemapks.variants.download",
@@ -2578,7 +2651,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200801",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -2602,11 +2675,11 @@
       "id": "ApkBinary",
       "properties": {
         "sha1": {
-          "description": "A sha1 hash of the APK payload, encoded as a hex string and matching the\noutput of the sha1sum command.",
+          "description": "A sha1 hash of the APK payload, encoded as a hex string and matching the output of the sha1sum command.",
           "type": "string"
         },
         "sha256": {
-          "description": "A sha256 hash of the APK payload, encoded as a hex string and matching\nthe output of the sha256sum command.",
+          "description": "A sha256 hash of the APK payload, encoded as a hex string and matching the output of the sha256sum command.",
           "type": "string"
         }
       },
@@ -2680,11 +2753,13 @@
       "id": "AppEdit",
       "properties": {
         "expiryTimeSeconds": {
-          "description": "Output only. The time (as seconds since Epoch) at which the edit will expire and\nwill be no longer valid for use.",
+          "description": "Output only. The time (as seconds since Epoch) at which the edit will expire and will be no longer valid for use.",
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "description": "Output only. Identifier of the edit. Can be used in subsequent API calls.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2695,15 +2770,15 @@
       "id": "Bundle",
       "properties": {
         "sha1": {
-          "description": "A sha1 hash of the upload payload, encoded as a hex string and matching\nthe output of the sha1sum command.",
+          "description": "A sha1 hash of the upload payload, encoded as a hex string and matching the output of the sha1sum command.",
           "type": "string"
         },
         "sha256": {
-          "description": "A sha256 hash of the upload payload, encoded as a hex string and matching\nthe output of the sha256sum command.",
+          "description": "A sha256 hash of the upload payload, encoded as a hex string and matching the output of the sha256sum command.",
           "type": "string"
         },
         "versionCode": {
-          "description": "The version code of the Android App Bundle, as specified in the Android App\nBundle's base module APK manifest file.",
+          "description": "The version code of the Android App Bundle, as specified in the Android App Bundle's base module APK manifest file.",
           "format": "int32",
           "type": "integer"
         }
@@ -2748,7 +2823,7 @@
       "id": "CountryTargeting",
       "properties": {
         "countries": {
-          "description": "Countries to target, specified as two letter [CLDR\ncodes](https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html).",
+          "description": "Countries to target, specified as two letter [CLDR codes](https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html).",
           "items": {
             "type": "string"
           },
@@ -2874,7 +2949,7 @@
           "type": "integer"
         },
         "supportedAbis": {
-          "description": "Supported ABI architectures in the order of preference.\nThe values should be the string as reported by the platform, e.g.\n\"armeabi-v7a\", \"x86_64\".",
+          "description": "Supported ABI architectures in the order of preference. The values should be the string as reported by the platform, e.g. \"armeabi-v7a\", \"x86_64\".",
           "items": {
             "type": "string"
           },
@@ -2895,12 +2970,12 @@
       "id": "ExpansionFile",
       "properties": {
         "fileSize": {
-          "description": "If set, this field indicates that this APK has an expansion file uploaded\nto it: this APK does not reference another APK's expansion file.\nThe field's value is the size of the uploaded expansion file in bytes.",
+          "description": "If set, this field indicates that this APK has an expansion file uploaded to it: this APK does not reference another APK's expansion file. The field's value is the size of the uploaded expansion file in bytes.",
           "format": "int64",
           "type": "string"
         },
         "referencesVersion": {
-          "description": "If set, this APK's expansion file references another APK's expansion file.\nThe file_size field will not be set.",
+          "description": "If set, this APK's expansion file references another APK's expansion file. The file_size field will not be set.",
           "format": "int32",
           "type": "integer"
         }
@@ -2919,7 +2994,7 @@
       "type": "object"
     },
     "ExternallyHostedApk": {
-      "description": "Defines an APK available for this application that is hosted externally\nand not uploaded to Google Play.\nThis function is only available to organizations using Managed Play whose\napplication is configured to restrict distribution to the organizations.",
+      "description": "Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.",
       "id": "ExternallyHostedApk",
       "properties": {
         "applicationLabel": {
@@ -2927,7 +3002,7 @@
           "type": "string"
         },
         "certificateBase64s": {
-          "description": "A certificate (or array of certificates if a certificate-chain is used)\nused to sign this APK, represented as a base64 encoded byte array.",
+          "description": "A certificate (or array of certificates if a certificate-chain is used) used to sign this APK, represented as a base64 encoded byte array.",
           "items": {
             "type": "string"
           },
@@ -2938,11 +3013,11 @@
           "type": "string"
         },
         "fileSha1Base64": {
-          "description": "The sha1 checksum of this APK, represented as a base64 encoded byte\narray.",
+          "description": "The sha1 checksum of this APK, represented as a base64 encoded byte array.",
           "type": "string"
         },
         "fileSha256Base64": {
-          "description": "The sha256 checksum of this APK, represented as a base64 encoded byte\narray.",
+          "description": "The sha256 checksum of this APK, represented as a base64 encoded byte array.",
           "type": "string"
         },
         "fileSize": {
@@ -3073,17 +3148,17 @@
         },
         "defaultPrice": {
           "$ref": "Price",
-          "description": "Default price. Cannot be zero, as in-app products are never free.\nAlways in the developer's Checkout merchant currency."
+          "description": "Default price. Cannot be zero, as in-app products are never free. Always in the developer's Checkout merchant currency."
         },
         "gracePeriod": {
-          "description": "Grace period of the subscription, specified in ISO 8601 format. Allows\ndevelopers to give their subscribers a grace period when the payment\nfor the new recurrence period is declined.\nAcceptable values are P0D (zero days), P3D (three days), P7D (seven days),\nP14D (14 days), and P30D (30 days).",
+          "description": "Grace period of the subscription, specified in ISO 8601 format. Allows developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values are P0D (zero days), P3D (three days), P7D (seven days), P14D (14 days), and P30D (30 days).",
           "type": "string"
         },
         "listings": {
           "additionalProperties": {
             "$ref": "InAppProductListing"
           },
-          "description": "List of localized title and description data. Map key is the language of\nthe localized data, as defined by BCP-47, e.g. \"en-US\".",
+          "description": "List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. \"en-US\".",
           "type": "object"
         },
         "packageName": {
@@ -3094,7 +3169,7 @@
           "additionalProperties": {
             "$ref": "Price"
           },
-          "description": "Prices per buyer region. None of these can be zero, as in-app products are\nnever free. Map key is region code, as defined by ISO 3166-2.",
+          "description": "Prices per buyer region. None of these can be zero, as in-app products are never free. Map key is region code, as defined by ISO 3166-2.",
           "type": "object"
         },
         "purchaseType": {
@@ -3130,11 +3205,11 @@
           "type": "string"
         },
         "subscriptionPeriod": {
-          "description": "Subscription period, specified in ISO 8601 format. Acceptable values are\nP1W (one week), P1M (one month), P3M (three months), P6M (six months),\nand P1Y (one year).",
+          "description": "Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year).",
           "type": "string"
         },
         "trialPeriod": {
-          "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything\nbetween P7D (seven days) and P999D (999 days).",
+          "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days).",
           "type": "string"
         }
       },
@@ -3189,19 +3264,19 @@
       "type": "object"
     },
     "InternalAppSharingArtifact": {
-      "description": "An artifact resource which gets created when uploading an APK or Android\nApp Bundle through internal app sharing.",
+      "description": "An artifact resource which gets created when uploading an APK or Android App Bundle through internal app sharing.",
       "id": "InternalAppSharingArtifact",
       "properties": {
         "certificateFingerprint": {
-          "description": "The sha256 fingerprint of the certificate used to sign the generated\nartifact.",
+          "description": "The sha256 fingerprint of the certificate used to sign the generated artifact.",
           "type": "string"
         },
         "downloadUrl": {
-          "description": "The download URL generated for the uploaded artifact.\nUsers that are authorized to download can follow the link to the Play\nStore app to install it.",
+          "description": "The download URL generated for the uploaded artifact. Users that are authorized to download can follow the link to the Play Store app to install it.",
           "type": "string"
         },
         "sha256": {
-          "description": "The sha256 hash of the artifact represented as a lowercase hexadecimal\nnumber, matching the output of the sha256sum command.",
+          "description": "The sha256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command.",
           "type": "string"
         }
       },
@@ -3212,12 +3287,12 @@
       "id": "IntroductoryPriceInfo",
       "properties": {
         "introductoryPriceAmountMicros": {
-          "description": "Introductory price of the subscription, not including tax.\nThe currency is the same as price_currency_code. Price is\nexpressed in micro-units, where 1,000,000 micro-units represents one unit\nof the currency. For example, if the subscription price is €1.99,\nprice_amount_micros is 1990000.",
+          "description": "Introductory price of the subscription, not including tax. The currency is the same as price_currency_code. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.",
           "format": "int64",
           "type": "string"
         },
         "introductoryPriceCurrencyCode": {
-          "description": "ISO 4217 currency code for the introductory subscription price.\nFor example, if the price is specified in British pounds sterling,\nprice_currency_code is \"GBP\".",
+          "description": "ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is \"GBP\".",
           "type": "string"
         },
         "introductoryPriceCycles": {
@@ -3226,7 +3301,7 @@
           "type": "integer"
         },
         "introductoryPricePeriod": {
-          "description": "Introductory price period, specified in ISO 8601 format.\nCommon values are (but not limited to) \"P1W\" (one\nweek), \"P1M\" (one month), \"P3M\" (three months), \"P6M\" (six months),\nand \"P1Y\" (one year).",
+          "description": "Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) \"P1W\" (one week), \"P1M\" (one month), \"P3M\" (three months), \"P6M\" (six months), and \"P1Y\" (one year).",
           "type": "string"
         }
       },
@@ -3241,7 +3316,7 @@
           "type": "string"
         },
         "language": {
-          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
           "type": "string"
         },
         "shortDescription": {
@@ -3282,7 +3357,7 @@
       "id": "LocalizedText",
       "properties": {
         "language": {
-          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\"\nfor Austrian German).",
+          "description": "Language localization code (a BCP-47 language tag; for example, \"de-AT\" for Austrian German).",
           "type": "string"
         },
         "text": {
@@ -3293,11 +3368,11 @@
       "type": "object"
     },
     "PageInfo": {
-      "description": "Information about the current page.\n\nList operations that supports paging return only one \"page\" of results. This\nprotocol buffer message describes the page that has been returned.",
+      "description": "Information about the current page. List operations that supports paging return only one \"page\" of results. This protocol buffer message describes the page that has been returned.",
       "id": "PageInfo",
       "properties": {
         "resultPerPage": {
-          "description": "Maximum number of results returned in one page.\n! The number of results included in the API response.",
+          "description": "Maximum number of results returned in one page. ! The number of results included in the API response.",
           "format": "int32",
           "type": "integer"
         },
@@ -3307,7 +3382,7 @@
           "type": "integer"
         },
         "totalResults": {
-          "description": "Total number of results available on the backend\n! The total number of results in the result set.",
+          "description": "Total number of results available on the backend ! The total number of results in the result set.",
           "format": "int32",
           "type": "integer"
         }
@@ -3319,7 +3394,7 @@
       "id": "Price",
       "properties": {
         "currency": {
-          "description": "3 letter Currency code, as defined by ISO 4217.\nSee java/com/google/common/money/CurrencyCode.java",
+          "description": "3 letter Currency code, as defined by ISO 4217. See java/com/google/common/money/CurrencyCode.java",
           "type": "string"
         },
         "priceMicros": {
@@ -3330,33 +3405,33 @@
       "type": "object"
     },
     "ProductPurchase": {
-      "description": "A ProductPurchase resource indicates the status of a user's inapp\nproduct purchase.",
+      "description": "A ProductPurchase resource indicates the status of a user's inapp product purchase.",
       "id": "ProductPurchase",
       "properties": {
         "acknowledgementState": {
-          "description": "The acknowledgement state of the inapp product. Possible values are:\n0. Yet to be acknowledged\n1. Acknowledged",
+          "description": "The acknowledgement state of the inapp product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged",
           "format": "int32",
           "type": "integer"
         },
         "consumptionState": {
-          "description": "The consumption state of the inapp product. Possible values are:\n0. Yet to be consumed\n1. Consumed",
+          "description": "The consumption state of the inapp product. Possible values are: 0. Yet to be consumed 1. Consumed",
           "format": "int32",
           "type": "integer"
         },
         "developerPayload": {
-          "description": "A developer-specified string that contains supplemental\ninformation about an order.",
+          "description": "A developer-specified string that contains supplemental information about an order.",
           "type": "string"
         },
         "kind": {
-          "description": "This kind represents an inappPurchase object in the androidpublisher\nservice.",
+          "description": "This kind represents an inappPurchase object in the androidpublisher service.",
           "type": "string"
         },
         "obfuscatedExternalAccountId": {
-          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's account in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid\nwhen the purchase was made.",
+          "description": "An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.",
           "type": "string"
         },
         "obfuscatedExternalProfileId": {
-          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's profile in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid\nwhen the purchase was made.",
+          "description": "An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.",
           "type": "string"
         },
         "orderId": {
@@ -3368,12 +3443,12 @@
           "type": "string"
         },
         "purchaseState": {
-          "description": "The purchase state of the order. Possible values are:\n0. Purchased\n1. Canceled\n2. Pending",
+          "description": "The purchase state of the order. Possible values are: 0. Purchased 1. Canceled 2. Pending",
           "format": "int32",
           "type": "integer"
         },
         "purchaseTimeMillis": {
-          "description": "The time the product was purchased, in milliseconds since the\nepoch (Jan 1, 1970).",
+          "description": "The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).",
           "format": "int64",
           "type": "string"
         },
@@ -3382,7 +3457,7 @@
           "type": "string"
         },
         "purchaseType": {
-          "description": "The type of purchase of the inapp product. This field is only set if\nthis purchase was not made using the standard in-app billing flow.\nPossible values are:\n0. Test (i.e. purchased from a license testing account)\n1. Promo (i.e. purchased using a promo code)\n2. Rewarded (i.e. from watching a video ad instead of paying)",
+          "description": "The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code) 2. Rewarded (i.e. from watching a video ad instead of paying)",
           "format": "int32",
           "type": "integer"
         },
@@ -3469,7 +3544,7 @@
       "id": "ReviewsReplyRequest",
       "properties": {
         "replyText": {
-          "description": "The text to set as the reply. Replies of more than approximately 350\ncharacters will be rejected. HTML tags will be stripped.",
+          "description": "The text to set as the reply. Replies of more than approximately 350 characters will be rejected. HTML tags will be stripped.",
           "type": "string"
         }
       },
@@ -3487,32 +3562,32 @@
       "type": "object"
     },
     "SubscriptionCancelSurveyResult": {
-      "description": "Information provided by the user when they complete the subscription\ncancellation flow (cancellation reason survey).",
+      "description": "Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).",
       "id": "SubscriptionCancelSurveyResult",
       "properties": {
         "cancelSurveyReason": {
-          "description": "The cancellation reason the user chose in the survey.\nPossible values are:\n0. Other\n1. I don't use this service enough\n2. Technical issues\n3. Cost-related reasons\n4. I found a better app",
+          "description": "The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don't use this service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app",
           "format": "int32",
           "type": "integer"
         },
         "userInputCancelReason": {
-          "description": "The customized input cancel reason from the user. Only present when\ncancelReason is 0.",
+          "description": "The customized input cancel reason from the user. Only present when cancelReason is 0.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SubscriptionDeferralInfo": {
-      "description": "A SubscriptionDeferralInfo contains the data needed to defer a\nsubscription purchase to a future expiry time.",
+      "description": "A SubscriptionDeferralInfo contains the data needed to defer a subscription purchase to a future expiry time.",
       "id": "SubscriptionDeferralInfo",
       "properties": {
         "desiredExpiryTimeMillis": {
-          "description": "The desired next expiry time to assign to the subscription, in\nmilliseconds since the Epoch. The given time must be later/greater\nthan the current expiry time for the subscription.",
+          "description": "The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription.",
           "format": "int64",
           "type": "string"
         },
         "expectedExpiryTimeMillis": {
-          "description": "The expected expiry time for the subscription.  If the current\nexpiry time for the subscription is not the value specified\nhere, the deferral will not occur.",
+          "description": "The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.",
           "format": "int64",
           "type": "string"
         }
@@ -3520,15 +3595,15 @@
       "type": "object"
     },
     "SubscriptionPriceChange": {
-      "description": "Contains the price change information for a subscription that can be used to\ncontrol the user journey for the price change in the app. This can be in the\nform of seeking confirmation from the user or tailoring the experience for a\nsuccessful conversion.",
+      "description": "Contains the price change information for a subscription that can be used to control the user journey for the price change in the app. This can be in the form of seeking confirmation from the user or tailoring the experience for a successful conversion.",
       "id": "SubscriptionPriceChange",
       "properties": {
         "newPrice": {
           "$ref": "Price",
-          "description": "The new price the subscription will renew with if the price change is\naccepted by the user."
+          "description": "The new price the subscription will renew with if the price change is accepted by the user."
         },
         "state": {
-          "description": "The current state of the price change. Possible values are:\n0. Outstanding: State for a pending price change waiting for the user to\n    agree. In this state, you can optionally seek confirmation from the\n    user using the In-App API.\n1. Accepted: State for an accepted price change that the subscription\n    will renew with unless it's canceled. The price change takes effect on\n    a future date when the subscription renews. Note that the change might\n    not occur when the subscription is renewed next.",
+          "description": "The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless it's canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.",
           "format": "int32",
           "type": "integer"
         }
@@ -3536,132 +3611,132 @@
       "type": "object"
     },
     "SubscriptionPurchase": {
-      "description": "A SubscriptionPurchase resource indicates the status of a user's\nsubscription purchase.",
+      "description": "A SubscriptionPurchase resource indicates the status of a user's subscription purchase.",
       "id": "SubscriptionPurchase",
       "properties": {
         "acknowledgementState": {
-          "description": "The acknowledgement state of the subscription product. Possible values\nare:\n0. Yet to be acknowledged\n1. Acknowledged",
+          "description": "The acknowledgement state of the subscription product. Possible values are: 0. Yet to be acknowledged 1. Acknowledged",
           "format": "int32",
           "type": "integer"
         },
         "autoRenewing": {
-          "description": "Whether the subscription will automatically be renewed when it\nreaches its current expiry time.",
+          "description": "Whether the subscription will automatically be renewed when it reaches its current expiry time.",
           "type": "boolean"
         },
         "autoResumeTimeMillis": {
-          "description": "Time at which the subscription will be automatically resumed, in\nmilliseconds since the Epoch. Only present if the user has requested to\npause the subscription.",
+          "description": "Time at which the subscription will be automatically resumed, in milliseconds since the Epoch. Only present if the user has requested to pause the subscription.",
           "format": "int64",
           "type": "string"
         },
         "cancelReason": {
-          "description": "The reason why a subscription was canceled or is not auto-renewing.\nPossible values are:\n0. User canceled the subscription\n1. Subscription was canceled by the system,\n      for example because of a billing problem\n2. Subscription was replaced with a new subscription\n3. Subscription was canceled by the developer",
+          "description": "The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled the subscription 1. Subscription was canceled by the system, for example because of a billing problem 2. Subscription was replaced with a new subscription 3. Subscription was canceled by the developer",
           "format": "int32",
           "type": "integer"
         },
         "cancelSurveyResult": {
           "$ref": "SubscriptionCancelSurveyResult",
-          "description": "Information provided by the user when they complete the subscription\ncancellation flow (cancellation reason survey)."
+          "description": "Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey)."
         },
         "countryCode": {
-          "description": "ISO 3166-1 alpha-2 billing country/region code of the user at the time\nthe subscription was granted.",
+          "description": "ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.",
           "type": "string"
         },
         "developerPayload": {
-          "description": "A developer-specified string that contains supplemental\ninformation about an order.",
+          "description": "A developer-specified string that contains supplemental information about an order.",
           "type": "string"
         },
         "emailAddress": {
-          "description": "The email address of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "description": "The email address of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.",
           "type": "string"
         },
         "expiryTimeMillis": {
-          "description": "Time at which the subscription will expire, in milliseconds\nsince the Epoch.",
+          "description": "Time at which the subscription will expire, in milliseconds since the Epoch.",
           "format": "int64",
           "type": "string"
         },
         "externalAccountId": {
-          "description": "User account identifier in the third-party service.\nOnly present if account linking happened as part of the subscription\npurchase flow.",
+          "description": "User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow.",
           "type": "string"
         },
         "familyName": {
-          "description": "The family name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "description": "The family name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.",
           "type": "string"
         },
         "givenName": {
-          "description": "The given name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "description": "The given name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.",
           "type": "string"
         },
         "introductoryPriceInfo": {
           "$ref": "IntroductoryPriceInfo",
-          "description": "Introductory price information of the subscription. This is only present\nwhen the subscription was purchased with an introductory price.\n\nThis field does not indicate the subscription is currently in introductory\nprice period."
+          "description": "Introductory price information of the subscription. This is only present when the subscription was purchased with an introductory price. This field does not indicate the subscription is currently in introductory price period."
         },
         "kind": {
-          "description": "This kind represents a subscriptionPurchase object in the androidpublisher\nservice.",
+          "description": "This kind represents a subscriptionPurchase object in the androidpublisher service.",
           "type": "string"
         },
         "linkedPurchaseToken": {
-          "description": "The purchase token of the originating purchase if this subscription\nis one of the following:\n0. Re-signup of a canceled but non-lapsed subscription\n1. Upgrade/downgrade from a previous subscription\n\nFor example, suppose a user originally signs up and you receive\npurchase token X, then the user cancels and goes through the\nresignup flow (before their subscription lapses) and you receive\npurchase token Y, and finally the user upgrades their subscription\nand you receive purchase token Z. If you call this API with purchase\ntoken Z, this field will be set to Y. If you call this API with\npurchase token Y, this field will be set to X. If you call this API\nwith purchase token X, this field will not be set.",
+          "description": "The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.",
           "type": "string"
         },
         "obfuscatedExternalAccountId": {
-          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's account in your app. Present for the following purchases:\n  * If account linking happened as part of the subscription purchase flow.\n  * It was specified using\n    https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid\n    when the purchase was made.",
+          "description": "An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.",
           "type": "string"
         },
         "obfuscatedExternalProfileId": {
-          "description": "An obfuscated version of the id that is uniquely associated with the\nuser's profile in your app. Only present if specified using\nhttps://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid\nwhen the purchase was made.",
+          "description": "An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.",
           "type": "string"
         },
         "orderId": {
-          "description": "The order id of the latest recurring order associated with\nthe purchase of the subscription.",
+          "description": "The order id of the latest recurring order associated with the purchase of the subscription.",
           "type": "string"
         },
         "paymentState": {
-          "description": "The payment state of the subscription. Possible values are:\n0. Payment pending\n1. Payment received\n2. Free trial\n3. Pending deferred upgrade/downgrade",
+          "description": "The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade",
           "format": "int32",
           "type": "integer"
         },
         "priceAmountMicros": {
-          "description": "Price of the subscription, not including tax. Price is expressed\nin micro-units, where 1,000,000 micro-units represents one unit of\nthe currency. For example, if the subscription price is &euro;1.99,\nprice_amount_micros is 1990000.",
+          "description": "Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.",
           "format": "int64",
           "type": "string"
         },
         "priceChange": {
           "$ref": "SubscriptionPriceChange",
-          "description": "The latest price change information available. This is present only when\nthere is an upcoming price change for the subscription yet to be applied.\n\nOnce the subscription renews with the new price or the subscription is\ncanceled, no price change information will be returned."
+          "description": "The latest price change information available. This is present only when there is an upcoming price change for the subscription yet to be applied. Once the subscription renews with the new price or the subscription is canceled, no price change information will be returned."
         },
         "priceCurrencyCode": {
-          "description": "ISO 4217 currency code for the subscription price. For example,\nif the price is specified in British pounds sterling,\nprice_currency_code is \"GBP\".",
+          "description": "ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is \"GBP\".",
           "type": "string"
         },
         "profileId": {
-          "description": "The Google profile id of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "description": "The Google profile id of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.",
           "type": "string"
         },
         "profileName": {
-          "description": "The profile name of the user when the subscription was purchased.\nOnly present for purchases made with 'Subscribe with Google'.",
+          "description": "The profile name of the user when the subscription was purchased. Only present for purchases made with 'Subscribe with Google'.",
           "type": "string"
         },
         "promotionCode": {
-          "description": "The promotion code applied on this purchase. This field is only set if\na vanity code promotion is applied when the subscription was purchased.",
+          "description": "The promotion code applied on this purchase. This field is only set if a vanity code promotion is applied when the subscription was purchased.",
           "type": "string"
         },
         "promotionType": {
-          "description": "The type of promotion applied on this purchase. This field is only set if\na promotion is applied when the subscription was purchased. Possible\nvalues are:\n0. One time code\n1. Vanity code",
+          "description": "The type of promotion applied on this purchase. This field is only set if a promotion is applied when the subscription was purchased. Possible values are: 0. One time code 1. Vanity code",
           "format": "int32",
           "type": "integer"
         },
         "purchaseType": {
-          "description": "The type of purchase of the subscription. This field is only set if\nthis purchase was not made using the standard in-app billing flow.\nPossible values are:\n0. Test (i.e. purchased from a license testing account)\n1. Promo (i.e. purchased using a promo code)",
+          "description": "The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code)",
           "format": "int32",
           "type": "integer"
         },
         "startTimeMillis": {
-          "description": "Time at which the subscription was granted, in milliseconds\nsince the Epoch.",
+          "description": "Time at which the subscription was granted, in milliseconds since the Epoch.",
           "format": "int64",
           "type": "string"
         },
         "userCancellationTimeMillis": {
-          "description": "The time at which the subscription was canceled by the user, in\nmilliseconds since the epoch. Only present if cancelReason is 0.",
+          "description": "The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.",
           "format": "int64",
           "type": "string"
         }
@@ -3731,11 +3806,11 @@
       "type": "object"
     },
     "Timestamp": {
-      "description": "A Timestamp represents a point in time independent of any time zone or local\ncalendar, encoded as a count of seconds and fractions of seconds at\nnanosecond resolution. The count is relative to an epoch at UTC midnight on\nJanuary 1, 1970.",
+      "description": "A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970.",
       "id": "Timestamp",
       "properties": {
         "nanos": {
-          "description": "Non-negative fractions of a second at nanosecond resolution.\nMust be from 0 to 999,999,999 inclusive.",
+          "description": "Non-negative fractions of a second at nanosecond resolution. Must be from 0 to 999,999,999 inclusive.",
           "format": "int32",
           "type": "integer"
         },
@@ -3748,11 +3823,11 @@
       "type": "object"
     },
     "TokenPagination": {
-      "description": "Pagination information returned by a List operation when token pagination\nis enabled.\n\nList operations that supports paging return only one \"page\" of results. This\nprotocol buffer message describes the page that has been returned.\n\nWhen using token pagination, clients should use the next/previous token\nto get another page of the result. The presence or absence of next/previous\ntoken indicates whether a next/previous page is available and provides a\nmean of accessing this page. ListRequest.page_token should be set to either\nnext_page_token or previous_page_token to access another page.",
+      "description": "Pagination information returned by a List operation when token pagination is enabled. List operations that supports paging return only one \"page\" of results. This protocol buffer message describes the page that has been returned. When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.",
       "id": "TokenPagination",
       "properties": {
         "nextPageToken": {
-          "description": "Tokens to pass to the standard list field 'page_token'. Whenever available,\ntokens are preferred over manipulating start_index.",
+          "description": "Tokens to pass to the standard list field 'page_token'. Whenever available, tokens are preferred over manipulating start_index.",
           "type": "string"
         },
         "previousPageToken": {
@@ -3766,7 +3841,7 @@
       "id": "Track",
       "properties": {
         "releases": {
-          "description": "In a read request, represents all active releases in the track.\nIn an update request, represents desired changes.",
+          "description": "In a read request, represents all active releases in the track. In an update request, represents desired changes.",
           "items": {
             "$ref": "TrackRelease"
           },
@@ -3788,12 +3863,12 @@
           "description": "Restricts a release to a specific set of countries."
         },
         "inAppUpdatePriority": {
-          "description": "In-app update priority of the release. All newly added APKs in the\nrelease will be considered at this priority. Can take values in the range\n[0, 5], with 5 the highest priority. Defaults to 0.\nin_app_update_priority can not be updated once the release is rolled out.\nSee https://developer.android.com/guide/playcore/in-app-updates.",
+          "description": "In-app update priority of the release. All newly added APKs in the release will be considered at this priority. Can take values in the range [0, 5], with 5 the highest priority. Defaults to 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates.",
           "format": "int32",
           "type": "integer"
         },
         "name": {
-          "description": "The release name. Not required to be unique. If not set, the name is\ngenerated from the APK's version_name. If the release contains multiple\nAPKs, the name is generated from the date.",
+          "description": "The release name. Not required to be unique. If not set, the name is generated from the APK's version_name. If the release contains multiple APKs, the name is generated from the date.",
           "type": "string"
         },
         "releaseNotes": {
@@ -3815,19 +3890,19 @@
           "enumDescriptions": [
             "Unspecified status.",
             "The release's APKs are not being served to users.",
-            "The release's APKs are being served to a fraction of users, determined by\n'user_fraction'.",
-            "The release's APKs will no longer be served to users. Users who already\nhave these APKs are unaffected.",
-            "The release will have no further changes. Its APKs are being served to\nall users, unless they are eligible to APKs of a more recent release."
+            "The release's APKs are being served to a fraction of users, determined by 'user_fraction'.",
+            "The release's APKs will no longer be served to users. Users who already have these APKs are unaffected.",
+            "The release will have no further changes. Its APKs are being served to all users, unless they are eligible to APKs of a more recent release."
           ],
           "type": "string"
         },
         "userFraction": {
-          "description": "Fraction of users who are eligible for a staged release. 0 < fraction < 1.\nCan only be set when status is \"inProgress\" or \"halted\".",
+          "description": "Fraction of users who are eligible for a staged release. 0 < fraction < 1. Can only be set when status is \"inProgress\" or \"halted\".",
           "format": "double",
           "type": "number"
         },
         "versionCodes": {
-          "description": "Version codes of all APKs in the release. Must include version codes to\nretain from previous releases.",
+          "description": "Version codes of all APKs in the release. Must include version codes to retain from previous releases.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -3860,17 +3935,17 @@
       "id": "UserComment",
       "properties": {
         "androidOsVersion": {
-          "description": "Integer Android SDK version of the user's device at the time the\nreview was written, e.g. 23 is Marshmallow. May be absent.",
+          "description": "Integer Android SDK version of the user's device at the time the review was written, e.g. 23 is Marshmallow. May be absent.",
           "format": "int32",
           "type": "integer"
         },
         "appVersionCode": {
-          "description": "Integer version code of the app as installed at the time the\nreview was written. May be absent.",
+          "description": "Integer version code of the app as installed at the time the review was written. May be absent.",
           "format": "int32",
           "type": "integer"
         },
         "appVersionName": {
-          "description": "String version name of the app as installed at the time the\nreview was written. May be absent.",
+          "description": "String version name of the app as installed at the time the review was written. May be absent.",
           "type": "string"
         },
         "device": {
@@ -3886,11 +3961,11 @@
           "description": "The last time at which this comment was updated."
         },
         "originalText": {
-          "description": "Untranslated text of the review, where the review was translated.\nIf the review was not translated this is left blank.",
+          "description": "Untranslated text of the review, where the review was translated. If the review was not translated this is left blank.",
           "type": "string"
         },
         "reviewerLanguage": {
-          "description": "Language code for the reviewer. This is taken from the device\nsettings so is not guaranteed to match the language the review\nis written in. May be absent.",
+          "description": "Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent.",
           "type": "string"
         },
         "starRating": {
@@ -3899,7 +3974,7 @@
           "type": "integer"
         },
         "text": {
-          "description": "The content of the comment, i.e. review body. In some cases\nusers have been able to write a review with separate title and\nbody; in those cases the title and body are concatenated and\nseparated by a tab character.",
+          "description": "The content of the comment, i.e. review body. In some cases users have been able to write a review with separate title and body; in those cases the title and body are concatenated and separated by a tab character.",
           "type": "string"
         },
         "thumbsDownCount": {
@@ -3920,7 +3995,7 @@
       "id": "UsesPermission",
       "properties": {
         "maxSdkVersion": {
-          "description": "Optionally, the maximum SDK version for which the permission is\nrequired.",
+          "description": "Optionally, the maximum SDK version for which the permission is required.",
           "format": "int32",
           "type": "integer"
         },
@@ -3932,7 +4007,7 @@
       "type": "object"
     },
     "Variant": {
-      "description": "APK that is suitable for inclusion in a system image. The resource of\nSystemApksService.",
+      "description": "APK that is suitable for inclusion in a system image. The resource of SystemApksService.",
       "id": "Variant",
       "properties": {
         "deviceSpec": {
@@ -3942,44 +4017,45 @@
         "variantId": {
           "description": "Output only. The ID of a previously created system APK variant.",
           "format": "uint32",
+          "readOnly": true,
           "type": "integer"
         }
       },
       "type": "object"
     },
     "VoidedPurchase": {
-      "description": "A VoidedPurchase resource indicates a purchase that was either\ncanceled/refunded/charged-back.",
+      "description": "A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.",
       "id": "VoidedPurchase",
       "properties": {
         "kind": {
-          "description": "This kind represents a voided purchase object in the androidpublisher\nservice.",
+          "description": "This kind represents a voided purchase object in the androidpublisher service.",
           "type": "string"
         },
         "orderId": {
-          "description": "The order id which uniquely identifies a one-time purchase, subscription\npurchase, or subscription renewal.",
+          "description": "The order id which uniquely identifies a one-time purchase, subscription purchase, or subscription renewal.",
           "type": "string"
         },
         "purchaseTimeMillis": {
-          "description": "The time at which the purchase was made, in milliseconds since the\nepoch (Jan 1, 1970).",
+          "description": "The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970).",
           "format": "int64",
           "type": "string"
         },
         "purchaseToken": {
-          "description": "The token which uniquely identifies a one-time purchase or subscription.\nTo uniquely identify subscription renewals use order_id (available\nstarting from version 3 of the API).",
+          "description": "The token which uniquely identifies a one-time purchase or subscription. To uniquely identify subscription renewals use order_id (available starting from version 3 of the API).",
           "type": "string"
         },
         "voidedReason": {
-          "description": "The reason why the purchase was voided, possible values are:\n0. Other\n1. Remorse\n2. Not_received\n3. Defective\n4. Accidental_purchase\n5. Fraud\n6. Friendly_fraud\n7. Chargeback",
+          "description": "The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback",
           "format": "int32",
           "type": "integer"
         },
         "voidedSource": {
-          "description": "The initiator of voided purchase, possible values are:\n0. User\n1. Developer\n2. Google",
+          "description": "The initiator of voided purchase, possible values are: 0. User 1. Developer 2. Google",
           "format": "int32",
           "type": "integer"
         },
         "voidedTimeMillis": {
-          "description": "The time at which the purchase was canceled/refunded/charged-back,\nin milliseconds since the epoch (Jan 1, 1970).",
+          "description": "The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).",
           "format": "int64",
           "type": "string"
         }
