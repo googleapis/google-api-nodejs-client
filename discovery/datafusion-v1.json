@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "datafusion:v1beta1",
+  "id": "datafusion:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://datafusion.mtls.googleapis.com/",
   "name": "datafusion",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "datafusion.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "datafusion.projects.locations.list",
               "parameterOrder": [
@@ -172,7 +172,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -186,7 +186,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new Data Fusion instance in the specified project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.instances.create",
                   "parameterOrder": [
@@ -206,7 +206,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/instances",
+                  "path": "v1/{+parent}/instances",
                   "request": {
                     "$ref": "Instance"
                   },
@@ -219,7 +219,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single Date Fusion instance.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "datafusion.projects.locations.instances.delete",
                   "parameterOrder": [
@@ -234,7 +234,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -244,7 +244,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Data Fusion instance.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.instances.get",
                   "parameterOrder": [
@@ -259,7 +259,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Instance"
                   },
@@ -269,7 +269,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.instances.getIamPolicy",
                   "parameterOrder": [
@@ -290,7 +290,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
                   },
@@ -300,7 +300,7 @@
                 },
                 "list": {
                   "description": "Lists Data Fusion instances in the specified project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.instances.list",
                   "parameterOrder": [
@@ -336,7 +336,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/instances",
+                  "path": "v1/{+parent}/instances",
                   "response": {
                     "$ref": "ListInstancesResponse"
                   },
@@ -346,7 +346,7 @@
                 },
                 "patch": {
                   "description": "Updates a single Data Fusion instance.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "PATCH",
                   "id": "datafusion.projects.locations.instances.patch",
                   "parameterOrder": [
@@ -361,13 +361,13 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.",
+                      "description": "Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels, options, and version currently) will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Instance"
                   },
@@ -380,7 +380,7 @@
                 },
                 "restart": {
                   "description": "Restart a single Data Fusion instance. At the end of an operation instance is fully restarted.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restart",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restart",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.instances.restart",
                   "parameterOrder": [
@@ -395,7 +395,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:restart",
+                  "path": "v1/{+name}:restart",
                   "request": {
                     "$ref": "RestartInstanceRequest"
                   },
@@ -408,7 +408,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.instances.setIamPolicy",
                   "parameterOrder": [
@@ -423,7 +423,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -436,7 +436,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.instances.testIamPermissions",
                   "parameterOrder": [
@@ -451,40 +451,12 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
                   "response": {
                     "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "upgrade": {
-                  "description": "Upgrade a single Data Fusion instance. At the end of an operation instance is fully upgraded.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:upgrade",
-                  "httpMethod": "POST",
-                  "id": "datafusion.projects.locations.instances.upgrade",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+name}:upgrade",
-                  "request": {
-                    "$ref": "UpgradeInstanceRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -496,7 +468,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "datafusion.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -511,7 +483,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -524,7 +496,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "datafusion.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -539,7 +511,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -549,7 +521,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.operations.get",
                   "parameterOrder": [
@@ -564,7 +536,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -574,7 +546,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.operations.list",
                   "parameterOrder": [
@@ -605,7 +577,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -619,7 +591,7 @@
               "methods": {
                 "list": {
                   "description": "Lists possible versions for Data Fusion instances in the specified project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/versions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/versions",
                   "httpMethod": "GET",
                   "id": "datafusion.projects.locations.versions.list",
                   "parameterOrder": [
@@ -650,7 +622,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/versions",
+                  "path": "v1/{+parent}/versions",
                   "response": {
                     "$ref": "ListAvailableVersionsResponse"
                   },
@@ -848,7 +820,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.",
+          "description": "The resource labels for instance to use to annotate any related underlying resources such as GCE VMs. The character '=' is not allowed to be used within the labels.",
           "type": "object"
         },
         "name": {
@@ -891,6 +863,7 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
+            "ACTIVE",
             "RUNNING",
             "FAILED",
             "DELETING",
@@ -903,7 +876,8 @@
           "enumDescriptions": [
             "Instance does not have a state yet",
             "Instance is being created",
-            "Instance is running and ready for requests",
+            "Instance is active and ready for requests",
+            "RUNNING is an alias of ACTIVE for backward compatibility",
             "Instance creation failed",
             "Instance is being deleted",
             "Instance is being upgraded",
@@ -948,11 +922,11 @@
           "type": "string"
         },
         "version": {
-          "description": "Current version of Data Fusion.",
+          "description": "Current version of the Data Fusion. Only specifiable in Update.",
           "type": "string"
         },
         "zone": {
-          "description": "Name of the zone in which the Data Fusion instance will be created.",
+          "description": "Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.",
           "type": "string"
         }
       },
@@ -1076,7 +1050,7 @@
       "id": "NetworkConfig",
       "properties": {
         "ipAllocation": {
-          "description": "The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.",
+          "description": "The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the customer network.",
           "type": "string"
         },
         "network": {
@@ -1266,14 +1240,8 @@
       },
       "type": "object"
     },
-    "UpgradeInstanceRequest": {
-      "description": "Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used.",
-      "id": "UpgradeInstanceRequest",
-      "properties": {},
-      "type": "object"
-    },
     "Version": {
-      "description": "The Data Fusion version.",
+      "description": "The Data Fusion version. This proto message stores information about certain Data Fusion version, which is used for Data Fusion version upgrade.",
       "id": "Version",
       "properties": {
         "availableFeatures": {
@@ -1297,6 +1265,6 @@
   },
   "servicePath": "",
   "title": "Cloud Data Fusion API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }
