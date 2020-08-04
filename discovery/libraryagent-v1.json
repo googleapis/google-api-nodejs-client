@@ -133,20 +133,20 @@
           ]
         },
         "list": {
-          "description": "Lists shelves. The order is unspecified but deterministic. Newly created\nshelves will not necessarily be added to the end of this list.",
+          "description": "Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.",
           "flatPath": "v1/shelves",
           "httpMethod": "GET",
           "id": "libraryagent.shelves.list",
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Requested page size. Server may return fewer shelves than requested.\nIf unspecified, server will pick an appropriate default.",
+              "description": "Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "A token identifying a page of results the server should return.\nTypically, this is the value of\nListShelvesResponse.next_page_token\nreturned from the previous call to `ListShelves` method.",
+              "description": "A token identifying a page of results the server should return. Typically, this is the value of ListShelvesResponse.next_page_token returned from the previous call to `ListShelves` method.",
               "location": "query",
               "type": "string"
             }
@@ -164,7 +164,7 @@
         "books": {
           "methods": {
             "borrow": {
-              "description": "Borrow a book from the library. Returns the book if it is borrowed\nsuccessfully. Returns NOT_FOUND if the book does not exist in the library.\nReturns quota exceeded error if the amount of books borrowed exceeds\nallocation quota in any dimensions.",
+              "description": "Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.",
               "flatPath": "v1/shelves/{shelvesId}/books/{booksId}:borrow",
               "httpMethod": "POST",
               "id": "libraryagent.shelves.books.borrow",
@@ -214,7 +214,7 @@
               ]
             },
             "list": {
-              "description": "Lists books in a shelf. The order is unspecified but deterministic. Newly\ncreated books will not necessarily be added to the end of this list.\nReturns NOT_FOUND if the shelf does not exist.",
+              "description": "Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.",
               "flatPath": "v1/shelves/{shelvesId}/books",
               "httpMethod": "GET",
               "id": "libraryagent.shelves.books.list",
@@ -223,13 +223,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Requested page size. Server may return fewer books than requested.\nIf unspecified, server will pick an appropriate default.",
+                  "description": "Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A token identifying a page of results the server should return.\nTypically, this is the value of\nListBooksResponse.next_page_token.\nreturned from the previous call to `ListBooks` method.",
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.",
                   "location": "query",
                   "type": "string"
                 },
@@ -250,7 +250,7 @@
               ]
             },
             "return": {
-              "description": "Return a book to the library. Returns the book if it is returned to the\nlibrary successfully.\nReturns error if the book does not belong to the library\nor the users didn't borrow before.",
+              "description": "Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.",
               "flatPath": "v1/shelves/{shelvesId}/books/{booksId}:return",
               "httpMethod": "POST",
               "id": "libraryagent.shelves.books.return",
@@ -279,7 +279,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200801",
   "rootUrl": "https://libraryagent.googleapis.com/",
   "schemas": {
     "GoogleExampleLibraryagentV1Book": {
@@ -291,7 +291,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the book.\nBook names have the form `shelves/{shelf_id}/books/{book_id}`.\nThe name is ignored when creating a book.",
+          "description": "The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book.",
           "type": "string"
         },
         "read": {
@@ -317,7 +317,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results.\nPass this value in the\nListBooksRequest.page_token\nfield in the subsequent call to `ListBooks` method to retrieve the next\npage of results.",
+          "description": "A token to retrieve next page of results. Pass this value in the ListBooksRequest.page_token field in the subsequent call to `ListBooks` method to retrieve the next page of results.",
           "type": "string"
         }
       },
@@ -328,7 +328,7 @@
       "id": "GoogleExampleLibraryagentV1ListShelvesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token to retrieve next page of results.\nPass this value in the\nListShelvesRequest.page_token\nfield in the subsequent call to `ListShelves` method to retrieve the next\npage of results.",
+          "description": "A token to retrieve next page of results. Pass this value in the ListShelvesRequest.page_token field in the subsequent call to `ListShelves` method to retrieve the next page of results.",
           "type": "string"
         },
         "shelves": {
@@ -346,7 +346,7 @@
       "id": "GoogleExampleLibraryagentV1Shelf",
       "properties": {
         "name": {
-          "description": "Output only. The resource name of the shelf.\nShelf names have the form `shelves/{shelf_id}`.\nThe name is ignored when creating a shelf.",
+          "description": "Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf.",
           "type": "string"
         },
         "theme": {
