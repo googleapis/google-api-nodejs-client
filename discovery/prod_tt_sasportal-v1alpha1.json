@@ -140,13 +140,13 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "The maximum number of customers\nto return in the response.",
+              "description": "The maximum number of customers to return in the response.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "A pagination token returned from a previous call to ListCustomers method that indicates where\nthis listing should continue from.",
+              "description": "A pagination token returned from a previous call to ListCustomers method that indicates where this listing should continue from.",
               "location": "query",
               "type": "string"
             }
@@ -254,7 +254,7 @@
               ]
             },
             "createSigned": {
-              "description": "Creates a signed device under a\nnode or customer.",
+              "description": "Creates a signed device under a node or customer.",
               "flatPath": "v1alpha1/customers/{customersId}/devices:createSigned",
               "httpMethod": "POST",
               "id": "prod_tt_sasportal.customers.devices.createSigned",
@@ -341,18 +341,18 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The filter expression. The filter should have one of the following\nformats: \"sn=123454\" or \"display_name=MyDevice\". sn\ncorresponds to serial_number of the device. The filter is case insensitive.",
+                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of devices to return in the response.\nIf empty or zero, all devices will be listed.\nMust be in the range [0, 1000].",
+                  "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListDevices\nthat indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -588,7 +588,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListNodes method\nthat indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -618,7 +618,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the node to\nmove.",
+                  "description": "Required. The name of the node to move.",
                   "location": "path",
                   "pattern": "^customers/[^/]+/nodes/[^/]+$",
                   "required": true,
@@ -718,7 +718,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A pagination token returned from a previous call to ListNodes method\nthat indicates where this listing should continue from.",
+                      "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
                       "location": "query",
                       "type": "string"
                     },
@@ -872,7 +872,7 @@
               ]
             },
             "createSigned": {
-              "description": "Creates a signed device under a\nnode or customer.",
+              "description": "Creates a signed device under a node or customer.",
               "flatPath": "v1alpha1/nodes/{nodesId}/devices:createSigned",
               "httpMethod": "POST",
               "id": "prod_tt_sasportal.nodes.devices.createSigned",
@@ -959,18 +959,18 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The filter expression. The filter should have one of the following\nformats: \"sn=123454\" or \"display_name=MyDevice\". sn\ncorresponds to serial_number of the device. The filter is case insensitive.",
+                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of devices to return in the response.\nIf empty or zero, all devices will be listed.\nMust be in the range [0, 1000].",
+                  "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListDevices\nthat indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1206,7 +1206,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListNodes method\nthat indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1236,7 +1236,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the node to\nmove.",
+                  "description": "Required. The name of the node to move.",
                   "location": "path",
                   "pattern": "^nodes/[^/]+/nodes/[^/]+$",
                   "required": true,
@@ -1349,7 +1349,7 @@
                   ]
                 },
                 "createSigned": {
-                  "description": "Creates a signed device under a\nnode or customer.",
+                  "description": "Creates a signed device under a node or customer.",
                   "flatPath": "v1alpha1/nodes/{nodesId}/nodes/{nodesId1}/devices:createSigned",
                   "httpMethod": "POST",
                   "id": "prod_tt_sasportal.nodes.nodes.devices.createSigned",
@@ -1386,18 +1386,18 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression. The filter should have one of the following\nformats: \"sn=123454\" or \"display_name=MyDevice\". sn\ncorresponds to serial_number of the device. The filter is case insensitive.",
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of devices to return in the response.\nIf empty or zero, all devices will be listed.\nMust be in the range [0, 1000].",
+                      "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A pagination token returned from a previous call to ListDevices\nthat indicates where this listing should continue from.",
+                      "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1465,7 +1465,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A pagination token returned from a previous call to ListNodes method\nthat indicates where this listing should continue from.",
+                      "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1494,7 +1494,7 @@
     "policies": {
       "methods": {
         "get": {
-          "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
           "flatPath": "v1alpha1/policies:get",
           "httpMethod": "POST",
           "id": "prod_tt_sasportal.policies.get",
@@ -1512,7 +1512,7 @@
           ]
         },
         "set": {
-          "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.",
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
           "flatPath": "v1alpha1/policies:set",
           "httpMethod": "POST",
           "id": "prod_tt_sasportal.policies.set",
@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20200722",
+  "revision": "20200801",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -1558,7 +1558,7 @@
       "id": "SasPortalAssignment",
       "properties": {
         "members": {
-          "description": "The identities the role is assigned to. It can have the following\nvalues:\n\n* `{user_email}`: An email address that represents a specific\n   Google account. For example: `alice@gmail.com`.\n\n* `{group_email}`: An email address that represents a Google\n   group.  For example, `viewers@gmail.com`.",
+          "description": "The identities the role is assigned to. It can have the following values: * `{user_email}`: An email address that represents a specific Google account. For example: `alice@gmail.com`. * `{group_email}`: An email address that represents a Google group. For example, `viewers@gmail.com`.",
           "items": {
             "type": "string"
           },
@@ -1576,7 +1576,7 @@
       "id": "SasPortalBulkCreateDeviceRequest",
       "properties": {
         "csv": {
-          "description": "Required. A csv with each row representing a [device]. Each row must\nconform to the regulations described on CreateDeviceRequest's device field.",
+          "description": "Required. A csv with each row representing a [device]. Each row must conform to the regulations described on CreateDeviceRequest's device field.",
           "type": "string"
         }
       },
@@ -1601,12 +1601,12 @@
       "id": "SasPortalCreateSignedDeviceRequest",
       "properties": {
         "encodedDevice": {
-          "description": "Required. JSON Web Token signed using a CPI private key. Payload\nmust be the JSON encoding of the [Device]. The user_id field must be set.",
+          "description": "Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the [Device]. The user_id field must be set.",
           "format": "byte",
           "type": "string"
         },
         "installerId": {
-          "description": "Required. Unique installer id (cpiId) from the Certified Professional\nInstallers database.",
+          "description": "Required. Unique installer id (cpiId) from the Certified Professional Installers database.",
           "type": "string"
         }
       },
@@ -1643,7 +1643,7 @@
         },
         "deviceMetadata": {
           "$ref": "SasPortalDeviceMetadata",
-          "description": "Device parameters that can be overridden by both SAS Portal and SAS\nregistration requests."
+          "description": "Device parameters that can be overridden by both SAS Portal and SAS registration requests."
         },
         "displayName": {
           "description": "Device display name.",
@@ -1669,7 +1669,7 @@
           "description": "Configuration of the device, as specified via SAS Portal API."
         },
         "serialNumber": {
-          "description": "A serial number assigned to the device by the device\nmanufacturer.",
+          "description": "A serial number assigned to the device by the device manufacturer.",
           "type": "string"
         },
         "state": {
@@ -1682,7 +1682,7 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "Device created in the SAS Portal, however, not yet registered\nwith SAS.",
+            "Device created in the SAS Portal, however, not yet registered with SAS.",
             "Device registered with SAS.",
             "Device de-registered with SAS."
           ],
@@ -1696,7 +1696,7 @@
       "id": "SasPortalDeviceAirInterface",
       "properties": {
         "radioTechnology": {
-          "description": "This field specifies the radio access technology that is used for the CBSD.\n\nConditional",
+          "description": "This field specifies the radio access technology that is used for the CBSD. Conditional",
           "enum": [
             "RADIO_TECHNOLOGY_UNSPECIFIED",
             "E_UTRA",
@@ -1722,7 +1722,7 @@
           "type": "string"
         },
         "supportedSpec": {
-          "description": "This field is related to the radioTechnology field and provides the air\ninterface specification that the CBSD is compliant with at the time of\nregistration.\n\nOptional",
+          "description": "This field is related to the radioTechnology field and provides the air interface specification that the CBSD is compliant with at the time of registration. Optional",
           "type": "string"
         }
       },
@@ -1775,6 +1775,11 @@
               "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITH_GRANT",
               "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITHOUT_GRANT"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
@@ -1810,7 +1815,7 @@
       "type": "object"
     },
     "SasPortalDeviceGrant": {
-      "description": "Device grant. It is an authorization provided by the Spectrum\nAccess System to a device to transmit using specified operating\nparameters after a successful heartbeat by the device.",
+      "description": "Device grant. It is an authorization provided by the Spectrum Access System to a device to transmit using specified operating parameters after a successful heartbeat by the device.",
       "id": "SasPortalDeviceGrant",
       "properties": {
         "channelType": {
@@ -1837,7 +1842,7 @@
           "description": "The transmission frequency range."
         },
         "maxEirp": {
-          "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted\nby the grant. The maximum EIRP is in units of dBm/MHz. The\nvalue of maxEirp represents the average (RMS) EIRP that would be\nmeasured by the procedure defined in FCC part 96.41(e)(3).",
+          "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of maxEirp represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).",
           "format": "double",
           "type": "number"
         },
@@ -1927,7 +1932,7 @@
       "type": "object"
     },
     "SasPortalEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "SasPortalEmpty",
       "properties": {},
       "type": "object"
@@ -1950,7 +1955,7 @@
       "type": "object"
     },
     "SasPortalGenerateSecretRequest": {
-      "description": "Request for GenerateSecret method]\n[spectrum.sas.portal.v1alpha1.DeviceManager.GenerateSecret].",
+      "description": "Request for GenerateSecret method] [spectrum.sas.portal.v1alpha1.DeviceManager.GenerateSecret].",
       "id": "SasPortalGenerateSecretRequest",
       "properties": {},
       "type": "object"
@@ -1960,7 +1965,7 @@
       "id": "SasPortalGenerateSecretResponse",
       "properties": {
         "secret": {
-          "description": "The secret generated by the string and used by\n[ValidateInstaller] method.",
+          "description": "The secret generated by the string and used by [ValidateInstaller] method.",
           "type": "string"
         }
       },
@@ -1982,27 +1987,27 @@
       "id": "SasPortalInstallationParams",
       "properties": {
         "antennaAzimuth": {
-          "description": "Boresight direction of the horizontal plane of the antenna in\ndegrees with respect to true north. The value of this parameter\nis an integer with a value between 0 and 359 inclusive. A value\nof 0 degrees means true north; a value of 90 degrees means\neast. This parameter is optional for Category A devices and\nconditional for Category B devices.",
+          "description": "Boresight direction of the horizontal plane of the antenna in degrees with respect to true north. The value of this parameter is an integer with a value between 0 and 359 inclusive. A value of 0 degrees means true north; a value of 90 degrees means east. This parameter is optional for Category A devices and conditional for Category B devices.",
           "format": "int32",
           "type": "integer"
         },
         "antennaBeamwidth": {
-          "description": "3-dB antenna beamwidth of the antenna in the horizontal-plane in\ndegrees.  This parameter is an unsigned integer having a value\nbetween 0 and 360 (degrees) inclusive; it is optional for\nCategory A devices and conditional for Category B devices.",
+          "description": "3-dB antenna beamwidth of the antenna in the horizontal-plane in degrees. This parameter is an unsigned integer having a value between 0 and 360 (degrees) inclusive; it is optional for Category A devices and conditional for Category B devices.",
           "format": "int32",
           "type": "integer"
         },
         "antennaDowntilt": {
-          "description": "Antenna downtilt in degrees and is an integer with a value\nbetween -90 and +90 inclusive; a negative value means the antenna\nis tilted up (above horizontal). This parameter is optional for\nCategory A devices and conditional for Category B devices.",
+          "description": "Antenna downtilt in degrees and is an integer with a value between -90 and +90 inclusive; a negative value means the antenna is tilted up (above horizontal). This parameter is optional for Category A devices and conditional for Category B devices.",
           "format": "int32",
           "type": "integer"
         },
         "antennaGain": {
-          "description": "Peak antenna gain in dBi. This parameter is an integer with a\nvalue between -127 and +128 (dBi) inclusive.",
+          "description": "Peak antenna gain in dBi. This parameter is an integer with a value between -127 and +128 (dBi) inclusive.",
           "format": "int32",
           "type": "integer"
         },
         "antennaModel": {
-          "description": "If an external antenna is used, the antenna model is optionally\nprovided in this field. The string has a maximum length of 128\noctets.",
+          "description": "If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets.",
           "type": "string"
         },
         "cpeCbsdIndication": {
@@ -2010,12 +2015,12 @@
           "type": "boolean"
         },
         "eirpCapability": {
-          "description": "This parameter is the maximum device EIRP in units of dBm/10MHz\nand is an integer with a value between -127 and +47 (dBm/10 MHz)\ninclusive. If not included, SAS interprets it as maximum\nallowable EIRP in units of dBm/10MHz for device category.",
+          "description": "This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category.",
           "format": "int32",
           "type": "integer"
         },
         "height": {
-          "description": "Device antenna height in meters. When the heightType parameter\nvalue is \"AGL\", the antenna height should be given relative to\nground level. When the heightType parameter value is \"AMSL\", it\nis given with respect to WGS84 datum.",
+          "description": "Device antenna height in meters. When the heightType parameter value is \"AGL\", the antenna height should be given relative to ground level. When the heightType parameter value is \"AMSL\", it is given with respect to WGS84 datum.",
           "format": "double",
           "type": "number"
         },
@@ -2034,26 +2039,26 @@
           "type": "string"
         },
         "horizontalAccuracy": {
-          "description": "A positive number in meters to indicate accuracy of the device\nantenna horizontal location. This optional parameter should only\nbe present if its value is less than the FCC requirement of 50\nmeters.",
+          "description": "A positive number in meters to indicate accuracy of the device antenna horizontal location. This optional parameter should only be present if its value is less than the FCC requirement of 50 meters.",
           "format": "double",
           "type": "number"
         },
         "indoorDeployment": {
-          "description": "Whether the device antenna is indoor or not. True: indoor. False:\noutdoor.",
+          "description": "Whether the device antenna is indoor or not. True: indoor. False: outdoor.",
           "type": "boolean"
         },
         "latitude": {
-          "description": "Latitude of the device antenna location in degrees relative to\nthe WGS 84 datum. The allowed range is from -90.000000 to\n+90.000000. Positive values represent latitudes north of the\nequator; negative values south of the equator.",
+          "description": "Latitude of the device antenna location in degrees relative to the WGS 84 datum. The allowed range is from -90.000000 to +90.000000. Positive values represent latitudes north of the equator; negative values south of the equator.",
           "format": "double",
           "type": "number"
         },
         "longitude": {
-          "description": "Longitude of the device antenna location. in degrees relative to\nthe WGS 84 datum. The allowed range is from -180.000000 to\n+180.000000. Positive values represent longitudes east of the\nprime meridian; negative values west of the prime\nmeridian.",
+          "description": "Longitude of the device antenna location. in degrees relative to the WGS 84 datum. The allowed range is from -180.000000 to +180.000000. Positive values represent longitudes east of the prime meridian; negative values west of the prime meridian.",
           "format": "double",
           "type": "number"
         },
         "verticalAccuracy": {
-          "description": "A positive number in meters to indicate accuracy of the device\nantenna vertical location. This optional parameter should only be\npresent if its value is less than the FCC requirement of 3\nmeters.",
+          "description": "A positive number in meters to indicate accuracy of the device antenna vertical location. This optional parameter should only be present if its value is less than the FCC requirement of 3 meters.",
           "format": "double",
           "type": "number"
         }
@@ -2065,14 +2070,14 @@
       "id": "SasPortalListCustomersResponse",
       "properties": {
         "customers": {
-          "description": "The list of customers that\nmatch the request.",
+          "description": "The list of customers that match the request.",
           "items": {
             "$ref": "SasPortalCustomer"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to ListCustomers method that indicates from\nwhere listing should continue. If the field is missing or empty, it means\nthere are no more customers.",
+          "description": "A pagination token returned from a previous call to ListCustomers method that indicates from where listing should continue. If the field is missing or empty, it means there are no more customers.",
           "type": "string"
         }
       },
@@ -2090,7 +2095,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to ListDevices method\nthat indicates from where listing should continue. If the field\nis missing or empty, it means there is no more devices.",
+          "description": "A pagination token returned from a previous call to ListDevices method that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.",
           "type": "string"
         }
       },
@@ -2101,7 +2106,7 @@
       "id": "SasPortalListNodesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to\nListNodes method\nthat indicates from where listing should continue. If the field is missing\nor empty, it means there is no more nodes.",
+          "description": "A pagination token returned from a previous call to ListNodes method that indicates from where listing should continue. If the field is missing or empty, it means there is no more nodes.",
           "type": "string"
         },
         "nodes": {
@@ -2119,7 +2124,7 @@
       "id": "SasPortalMoveDeviceRequest",
       "properties": {
         "destination": {
-          "description": "Required. The name of the new parent resource (Node or Customer) to\nreparent the device under.",
+          "description": "Required. The name of the new parent resource (Node or Customer) to reparent the device under.",
           "type": "string"
         }
       },
@@ -2159,11 +2164,11 @@
       "type": "object"
     },
     "SasPortalOperation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "SasPortalOperation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -2175,11 +2180,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -2187,7 +2192,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2204,7 +2209,7 @@
           "type": "array"
         },
         "etag": {
-          "description": "The [etag] is used for optimistic concurrency control as a way to\nhelp prevent simultaneous updates of a policy from overwriting\neach other.  It is strongly suggested that systems make use of\nthe [etag] in the read-modify-write cycle to perform policy\nupdates in order to avoid race conditions: An [etag] is returned\nin the response to [GetPolicy], and systems are expected to put\nthat etag in the request to [SetPolicy] to ensure that their\nchange will be applied to the same version of the policy.\n\nIf no [etag] is provided in the call to [SetPolicy], then the\nexisting policy is overwritten blindly.",
+          "description": "The [etag] is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the [etag] in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An [etag] is returned in the response to [GetPolicy], and systems are expected to put that etag in the request to [SetPolicy] to ensure that their change will be applied to the same version of the policy. If no [etag] is provided in the call to [SetPolicy], then the existing policy is overwritten blindly.",
           "format": "byte",
           "type": "string"
         }
@@ -2220,7 +2225,7 @@
           "description": "Required. The policy to be applied to the `resource`."
         },
         "resource": {
-          "description": "Required. The resource for which the policy is being specified. This policy\nreplaces any existing policy.",
+          "description": "Required. The resource for which the policy is being specified. This policy replaces any existing policy.",
           "type": "string"
         }
       },
@@ -2232,13 +2237,13 @@
       "properties": {
         "device": {
           "$ref": "SasPortalDevice",
-          "description": "Required. The device to sign.\nThe device fields name, fcc_id and serial_number must be set.\nThe user_id field must be set."
+          "description": "Required. The device to sign. The device fields name, fcc_id and serial_number must be set. The user_id field must be set."
         }
       },
       "type": "object"
     },
     "SasPortalStatus": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "SasPortalStatus",
       "properties": {
         "code": {
@@ -2247,7 +2252,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -2258,7 +2263,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
@@ -2301,12 +2306,12 @@
       "id": "SasPortalUpdateSignedDeviceRequest",
       "properties": {
         "encodedDevice": {
-          "description": "Required. The JSON Web Token signed using a CPI private key. Payload\nmust be the JSON encoding\nof the device. The user_id field must be set.",
+          "description": "Required. The JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device. The user_id field must be set.",
           "format": "byte",
           "type": "string"
         },
         "installerId": {
-          "description": "Required. Unique installer ID (CPI ID) from the Certified Professional\nInstallers database.",
+          "description": "Required. Unique installer ID (CPI ID) from the Certified Professional Installers database.",
           "type": "string"
         }
       },
@@ -2317,11 +2322,11 @@
       "id": "SasPortalValidateInstallerRequest",
       "properties": {
         "encodedSecret": {
-          "description": "Required. JSON Web Token signed using a CPI private key. Payload\nmust include a \"secret\" claim whose value is the secret.",
+          "description": "Required. JSON Web Token signed using a CPI private key. Payload must include a \"secret\" claim whose value is the secret.",
           "type": "string"
         },
         "installerId": {
-          "description": "Required. Unique installer id (cpiId) from the Certified\nProfessional Installers database.",
+          "description": "Required. Unique installer id (cpiId) from the Certified Professional Installers database.",
           "type": "string"
         },
         "secret": {
@@ -2332,7 +2337,7 @@
       "type": "object"
     },
     "SasPortalValidateInstallerResponse": {
-      "description": "Response for ValidateInstaller method]\n[spectrum.sas.portal.v1alpha1.DeviceManager.ValidateInstaller].",
+      "description": "Response for ValidateInstaller method] [spectrum.sas.portal.v1alpha1.DeviceManager.ValidateInstaller].",
       "id": "SasPortalValidateInstallerResponse",
       "properties": {},
       "type": "object"
