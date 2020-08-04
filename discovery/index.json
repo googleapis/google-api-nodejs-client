@@ -1496,6 +1496,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "datafusion:v1",
+      "name": "datafusion",
+      "version": "v1",
+      "title": "Cloud Data Fusion API",
+      "description": "Cloud Data Fusion is a fully-managed, cloud native, enterprise data integration service for quickly building and managing data pipelines. It provides a graphical interface to increase time efficiency and reduce complexity, and allows business users, developers, and data scientists to easily and reliably build scalable data integration solutions to cleanse, prepare, blend, transfer and transform data without having to wrestle with infrastructure.",
+      "discoveryRestUrl": "https://datafusion.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/data-fusion/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "datafusion:v1beta1",
       "name": "datafusion",
       "version": "v1beta1",
@@ -1507,7 +1522,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/data-fusion/docs",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",

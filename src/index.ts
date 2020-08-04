@@ -116,6 +116,7 @@ export {content_v2} from './apis/content/v2';
 export {customsearch_v1} from './apis/customsearch/v1';
 export {datacatalog_v1beta1} from './apis/datacatalog/v1beta1';
 export {dataflow_v1b3} from './apis/dataflow/v1b3';
+export {datafusion_v1} from './apis/datafusion/v1';
 export {datafusion_v1beta1} from './apis/datafusion/v1beta1';
 export {dataproc_v1} from './apis/dataproc/v1';
 export {dataproc_v1beta2} from './apis/dataproc/v1beta2';

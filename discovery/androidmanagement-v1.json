@@ -924,7 +924,7 @@
       }
     }
   },
-  "revision": "20200612",
+  "revision": "20200803",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -2526,7 +2526,7 @@
             "The app has new permissions that have not been accepted by the admin.",
             "The app is not available in the user's country.",
             "There are no licenses available to assign to the user.",
-            "The enterprise is no longer enrolled with managed Play or the admin has not accepted the latest managed Play terms of service.",
+            "The enterprise is no longer enrolled with Managed Google Play or the admin has not accepted the latest Managed Google Play Terms of Service.",
             "The user is no longer valid. The user may have been deleted or disabled."
           ],
           "type": "string"
