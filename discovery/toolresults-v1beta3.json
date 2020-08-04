@@ -107,7 +107,7 @@
     "projects": {
       "methods": {
         "getSettings": {
-          "description": "Gets the Tool Results settings for a project.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read from project",
+          "description": "Gets the Tool Results settings for a project. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from project",
           "flatPath": "toolresults/v1beta3/projects/{projectId}/settings",
           "httpMethod": "GET",
           "id": "toolresults.projects.getSettings",
@@ -116,7 +116,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "A Project id.\n\nRequired.",
+              "description": "A Project id. Required.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -131,7 +131,7 @@
           ]
         },
         "initializeSettings": {
-          "description": "Creates resources for settings which have not yet been set.\n\nCurrently, this creates a single resource: a Google Cloud Storage bucket,\nto be used as the default bucket for this project. The bucket is created\nin an FTL-own storage project. Except for in rare cases, calling this\nmethod in parallel from multiple clients will only create a single bucket.\nIn order to avoid unnecessary storage charges, the bucket is configured to\nautomatically delete objects older than 90 days.\n\nThe bucket is created with the following permissions:\n- Owner access for owners of central storage project (FTL-owned)\n- Writer access for owners/editors of customer project\n- Reader access for viewers of customer project\nThe default ACL on objects created in the bucket is:\n- Owner access for owners of central storage project\n- Reader access for owners/editors/viewers of customer project\nSee Google Cloud Storage documentation for more details.\n\nIf there is already a default bucket set and the project can access the\nbucket, this call does nothing. However, if the project doesn't have the\npermission to access the bucket or the bucket is deleted, a new bucket\nwill be created.\n\nMay return any canonical error codes, including the following:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- Any error code raised by Google Cloud Storage",
+          "description": "Creates resources for settings which have not yet been set. Currently, this creates a single resource: a Google Cloud Storage bucket, to be used as the default bucket for this project. The bucket is created in an FTL-own storage project. Except for in rare cases, calling this method in parallel from multiple clients will only create a single bucket. In order to avoid unnecessary storage charges, the bucket is configured to automatically delete objects older than 90 days. The bucket is created with the following permissions: - Owner access for owners of central storage project (FTL-owned) - Writer access for owners/editors of customer project - Reader access for viewers of customer project The default ACL on objects created in the bucket is: - Owner access for owners of central storage project - Reader access for owners/editors/viewers of customer project See Google Cloud Storage documentation for more details. If there is already a default bucket set and the project can access the bucket, this call does nothing. However, if the project doesn't have the permission to access the bucket or the bucket is deleted, a new bucket will be created. May return any canonical error codes, including the following: - PERMISSION_DENIED - if the user is not authorized to write to project - Any error code raised by Google Cloud Storage",
           "flatPath": "toolresults/v1beta3/projects/{projectId}:initializeSettings",
           "httpMethod": "POST",
           "id": "toolresults.projects.initializeSettings",
@@ -140,7 +140,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "A Project id.\n\nRequired.",
+              "description": "A Project id. Required.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -159,7 +159,7 @@
         "histories": {
           "methods": {
             "create": {
-              "description": "Creates a History.\n\nThe returned History will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing project does not exist",
+              "description": "Creates a History. The returned History will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist",
               "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
               "httpMethod": "POST",
               "id": "toolresults.projects.histories.create",
@@ -168,13 +168,13 @@
               ],
               "parameters": {
                 "projectId": {
-                  "description": "A Project id.\n\nRequired.",
+                  "description": "A Project id. Required.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "requestId": {
-                  "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                  "description": "A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.",
                   "location": "query",
                   "type": "string"
                 }
@@ -191,7 +191,7 @@
               ]
             },
             "get": {
-              "description": "Gets a History.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
+              "description": "Gets a History. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist",
               "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}",
               "httpMethod": "GET",
               "id": "toolresults.projects.histories.get",
@@ -201,13 +201,13 @@
               ],
               "parameters": {
                 "historyId": {
-                  "description": "A History id.\n\nRequired.",
+                  "description": "A History id. Required.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "projectId": {
-                  "description": "A Project id.\n\nRequired.",
+                  "description": "A Project id. Required.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -222,7 +222,7 @@
               ]
             },
             "list": {
-              "description": "Lists Histories for a given Project.\n\nThe histories are sorted by modification time in descending order. The\nhistory_id key will be used to order the history with the same\nmodification time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the History does not exist",
+              "description": "Lists Histories for a given Project. The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist",
               "flatPath": "toolresults/v1beta3/projects/{projectId}/histories",
               "httpMethod": "GET",
               "id": "toolresults.projects.histories.list",
@@ -231,23 +231,23 @@
               ],
               "parameters": {
                 "filterByName": {
-                  "description": "If set, only return histories with the given name.\n\nOptional.",
+                  "description": "If set, only return histories with the given name. Optional.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of Histories to fetch.\n\nDefault value: 20. The server will use this default if the field is not set\nor has a value of 0. Any value greater than 100 will be treated as 100.\n\nOptional.",
+                  "description": "The maximum number of Histories to fetch. Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100. Optional.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                  "description": "A continuation token to resume the query at the next item. Optional.",
                   "location": "query",
                   "type": "string"
                 },
                 "projectId": {
-                  "description": "A Project id.\n\nRequired.",
+                  "description": "A Project id. Required.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -266,7 +266,7 @@
             "executions": {
               "methods": {
                 "create": {
-                  "description": "Creates an Execution.\n\nThe returned Execution will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
+                  "description": "Creates an Execution. The returned Execution will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist",
                   "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
                   "httpMethod": "POST",
                   "id": "toolresults.projects.histories.executions.create",
@@ -276,19 +276,19 @@
                   ],
                   "parameters": {
                     "historyId": {
-                      "description": "A History id.\n\nRequired.",
+                      "description": "A History id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "projectId": {
-                      "description": "A Project id.\n\nRequired.",
+                      "description": "A Project id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                      "description": "A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.",
                       "location": "query",
                       "type": "string"
                     }
@@ -305,7 +305,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets an Execution.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Execution does not exist",
+                  "description": "Gets an Execution. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist",
                   "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
                   "httpMethod": "GET",
                   "id": "toolresults.projects.histories.executions.get",
@@ -316,19 +316,19 @@
                   ],
                   "parameters": {
                     "executionId": {
-                      "description": "An Execution id.\n\nRequired.",
+                      "description": "An Execution id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "historyId": {
-                      "description": "A History id.\n\nRequired.",
+                      "description": "A History id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "projectId": {
-                      "description": "A Project id.\n\nRequired.",
+                      "description": "A Project id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -343,7 +343,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Executions for a given History.\n\nThe executions are sorted by creation_time in descending order. The\nexecution_id key will be used to order the executions with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing History does not exist",
+                  "description": "Lists Executions for a given History. The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist",
                   "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions",
                   "httpMethod": "GET",
                   "id": "toolresults.projects.histories.executions.list",
@@ -353,24 +353,24 @@
                   ],
                   "parameters": {
                     "historyId": {
-                      "description": "A History id.\n\nRequired.",
+                      "description": "A History id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of Executions to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                      "description": "The maximum number of Executions to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                      "description": "A continuation token to resume the query at the next item. Optional.",
                       "location": "query",
                       "type": "string"
                     },
                     "projectId": {
-                      "description": "A Project id.\n\nRequired.",
+                      "description": "A Project id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -385,7 +385,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing Execution with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n- NOT_FOUND - if the containing History does not exist",
+                  "description": "Updates an existing Execution with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist",
                   "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}",
                   "httpMethod": "PATCH",
                   "id": "toolresults.projects.histories.executions.patch",
@@ -408,13 +408,13 @@
                       "type": "string"
                     },
                     "projectId": {
-                      "description": "A Project id.\nRequired.",
+                      "description": "A Project id. Required.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                      "description": "A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.",
                       "location": "query",
                       "type": "string"
                     }
@@ -447,25 +447,25 @@
                       ],
                       "parameters": {
                         "clusterId": {
-                          "description": "A Cluster id\n\nRequired.",
+                          "description": "A Cluster id Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "executionId": {
-                          "description": "An Execution id.\n\nRequired.",
+                          "description": "An Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -480,7 +480,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Screenshot Clusters\n\nReturns the list of screenshot clusters corresponding to an execution.\nScreenshot clusters are created after the execution is finished.\nClusters are created from a set of screenshots. Between any two\nscreenshots, a matching score is calculated based off their metadata\nthat determines how similar they are. Screenshots are placed\nin the cluster that has screens which have the highest matching\nscores.",
+                      "description": "Lists Screenshot Clusters Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.clusters.list",
@@ -491,19 +491,19 @@
                       ],
                       "parameters": {
                         "executionId": {
-                          "description": "An Execution id.\n\nRequired.",
+                          "description": "An Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -522,7 +522,7 @@
                 "environments": {
                   "methods": {
                     "get": {
-                      "description": "Gets an Environment.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Environment does not exist",
+                      "description": "Gets an Environment. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.environments.get",
@@ -567,7 +567,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Environments for a given Execution.\n\nThe Environments are sorted by display name.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Execution does not exist",
+                      "description": "Lists Environments for a given Execution. The Environments are sorted by display name. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.environments.list",
@@ -590,7 +590,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of Environments to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.",
+                          "description": "The maximum number of Environments to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -620,7 +620,7 @@
                 "steps": {
                   "methods": {
                     "accessibilityClusters": {
-                      "description": "Lists accessibility clusters for a given Step\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if the locale format is incorrect\n- NOT_FOUND - if the containing Step does not exist",
+                      "description": "Lists accessibility clusters for a given Step May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectsId}/histories/{historiesId}/executions/{executionsId}/steps/{stepsId}:accessibilityClusters",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.steps.accessibilityClusters",
@@ -629,12 +629,12 @@
                       ],
                       "parameters": {
                         "locale": {
-                          "description": "The accepted format is the canonical Unicode format with hyphen as a\ndelimiter. Language must be lowercase, Language Script - Capitalized,\nRegion - UPPERCASE.\nSee http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for\ndetails.\n\nRequired.",
+                          "description": "The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.",
                           "location": "query",
                           "type": "string"
                         },
                         "name": {
-                          "description": "A full resource name of the step.\nFor example, projects/my-project/histories/bh.1234567890abcdef/executions/\n1234567890123456789/steps/bs.1234567890abcdef\n\nRequired.",
+                          "description": "A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/histories/[^/]+/executions/[^/]+/steps/[^/]+$",
                           "required": true,
@@ -650,7 +650,7 @@
                       ]
                     },
                     "create": {
-                      "description": "Creates a Step.\n\nThe returned Step will have the id set.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
+                      "description": "Creates a Step. The returned Step will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
                       "httpMethod": "POST",
                       "id": "toolresults.projects.histories.executions.steps.create",
@@ -679,7 +679,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                          "description": "A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.",
                           "location": "query",
                           "type": "string"
                         }
@@ -696,7 +696,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the Step does not exist",
+                      "description": "Gets a Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.steps.get",
@@ -708,25 +708,25 @@
                       ],
                       "parameters": {
                         "executionId": {
-                          "description": "A Execution id.\n\nRequired.",
+                          "description": "A Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "stepId": {
-                          "description": "A Step id.\n\nRequired.",
+                          "description": "A Step id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -741,7 +741,7 @@
                       ]
                     },
                     "getPerfMetricsSummary": {
-                      "description": "Retrieves a PerfMetricsSummary.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfMetricsSummary does not exist",
+                      "description": "Retrieves a PerfMetricsSummary. May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.steps.getPerfMetricsSummary",
@@ -786,7 +786,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Steps for a given Execution.\n\nThe steps are sorted by creation_time in descending order. The\nstep_id key will be used to order the steps with the same\ncreation_time.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to read project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if an argument in the request happens to be\n                        invalid; e.g. if an attempt is made to list the\n                        children of a nonexistent Step\n- NOT_FOUND - if the containing Execution does not exist",
+                      "description": "Lists Steps for a given Execution. The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if an attempt is made to list the children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps",
                       "httpMethod": "GET",
                       "id": "toolresults.projects.histories.executions.steps.list",
@@ -797,30 +797,30 @@
                       ],
                       "parameters": {
                         "executionId": {
-                          "description": "A Execution id.\n\nRequired.",
+                          "description": "A Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of Steps to fetch.\n\nDefault value: 25. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                          "description": "The maximum number of Steps to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                          "description": "A continuation token to resume the query at the next item. Optional.",
                           "location": "query",
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -835,7 +835,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates an existing Step with the supplied partial entity.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal\n                        (e.g try to upload a duplicate xml file), if the\n                        updated step is too large (more than 10Mib)\n- NOT_FOUND - if the containing Execution does not exist",
+                      "description": "Updates an existing Step with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal (e.g try to upload a duplicate xml file), if the updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}",
                       "httpMethod": "PATCH",
                       "id": "toolresults.projects.histories.executions.steps.patch",
@@ -847,30 +847,30 @@
                       ],
                       "parameters": {
                         "executionId": {
-                          "description": "A Execution id.\n\nRequired.",
+                          "description": "A Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A unique request ID for server to detect duplicated requests.\nFor example, a UUID.\n\nOptional, but strongly recommended.",
+                          "description": "A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.",
                           "location": "query",
                           "type": "string"
                         },
                         "stepId": {
-                          "description": "A Step id.\n\nRequired.",
+                          "description": "A Step id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -888,7 +888,7 @@
                       ]
                     },
                     "publishXunitXmlFiles": {
-                      "description": "Publish xml files to an existing Step.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write project\n- INVALID_ARGUMENT - if the request is malformed\n- FAILED_PRECONDITION - if the requested state transition is illegal,\ne.g try to upload a duplicate xml file or a file too large.\n- NOT_FOUND - if the containing Execution does not exist",
+                      "description": "Publish xml files to an existing Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist",
                       "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles",
                       "httpMethod": "POST",
                       "id": "toolresults.projects.histories.executions.steps.publishXunitXmlFiles",
@@ -900,25 +900,25 @@
                       ],
                       "parameters": {
                         "executionId": {
-                          "description": "A Execution id.\n\nRequired.",
+                          "description": "A Execution id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "historyId": {
-                          "description": "A History id.\n\nRequired.",
+                          "description": "A History id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "projectId": {
-                          "description": "A Project id.\n\nRequired.",
+                          "description": "A Project id. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "stepId": {
-                          "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                          "description": "A Step id. Note: This step must include a TestExecutionStep. Required.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -940,7 +940,7 @@
                     "perfMetricsSummary": {
                       "methods": {
                         "create": {
-                          "description": "Creates a PerfMetricsSummary resource. Returns the existing one if it has\nalready been created.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The containing Step does not exist",
+                          "description": "Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created. May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary",
                           "httpMethod": "POST",
                           "id": "toolresults.projects.histories.executions.steps.perfMetricsSummary.create",
@@ -992,7 +992,7 @@
                     "perfSampleSeries": {
                       "methods": {
                         "create": {
-                          "description": "Creates a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- ALREADY_EXISTS - PerfMetricSummary already exists for the given Step\n- NOT_FOUND - The containing Step does not exist",
+                          "description": "Creates a PerfSampleSeries. May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
                           "httpMethod": "POST",
                           "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.create",
@@ -1040,7 +1040,7 @@
                           ]
                         },
                         "get": {
-                          "description": "Gets a PerfSampleSeries.\n\nMay return any of the following error code(s):\n- NOT_FOUND - The specified PerfSampleSeries does not exist",
+                          "description": "Gets a PerfSampleSeries. May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}",
                           "httpMethod": "GET",
                           "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.get",
@@ -1092,7 +1092,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Lists PerfSampleSeries for a given Step.\n\nThe request provides an optional filter which specifies one or more\nPerfMetricsType to include in the result; if none returns all.\nThe resulting PerfSampleSeries are sorted by ids.\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing Step does not exist",
+                          "description": "Lists PerfSampleSeries for a given Step. The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids. May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries",
                           "httpMethod": "GET",
                           "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.list",
@@ -1117,6 +1117,13 @@
                                 "cpu",
                                 "network",
                                 "graphics"
+                              ],
+                              "enumDescriptions": [
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
                               ],
                               "location": "query",
                               "repeated": true,
@@ -1154,7 +1161,7 @@
                         "samples": {
                           "methods": {
                             "batchCreate": {
-                              "description": "Creates a batch of PerfSamples\n- a client can submit multiple batches of Perf Samples through repeated\ncalls to this method in order to split up a large request payload\n- duplicates and existing timestamp entries will be ignored.\n- the batch operation may partially succeed\n- the set of elements successfully inserted is returned in the response\n(omits items which already existed in the database).\n\nMay return any of the following canonical error codes:\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
+                              "description": "Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database). May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist",
                               "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate",
                               "httpMethod": "POST",
                               "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate",
@@ -1209,7 +1216,7 @@
                               ]
                             },
                             "list": {
-                              "description": "Lists the Performance Samples of a given Sample Series\n- The list results are sorted by timestamps ascending\n- The default page size is 500 samples; and maximum size allowed 5000\n- The response token indicates the last returned PerfSample timestamp\n- When the results size exceeds the page size, submit a subsequent request\nincluding the page token to return the rest of the samples up to the\npage limit\n\nMay return any of the following canonical error codes:\n- OUT_OF_RANGE - The specified request page_token is out of valid range\n- NOT_FOUND - The containing PerfSampleSeries does not exist",
+                              "description": "Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist",
                               "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples",
                               "httpMethod": "GET",
                               "id": "toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list",
@@ -1234,7 +1241,7 @@
                                   "type": "string"
                                 },
                                 "pageSize": {
-                                  "description": "The default page size is 500 samples, and the maximum size is 5000. If\nthe page_size is greater than 5000, the effective page size will be 5000",
+                                  "description": "The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000",
                                   "format": "int32",
                                   "location": "query",
                                   "type": "integer"
@@ -1278,7 +1285,7 @@
                     "testCases": {
                       "methods": {
                         "get": {
-                          "description": "Gets details of a Test Case for a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Test Case does not exist",
+                          "description": "Gets details of a Test Case for a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}",
                           "httpMethod": "GET",
                           "id": "toolresults.projects.histories.executions.steps.testCases.get",
@@ -1291,31 +1298,31 @@
                           ],
                           "parameters": {
                             "executionId": {
-                              "description": "A Execution id\n\nRequired.",
+                              "description": "A Execution id Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "historyId": {
-                              "description": "A History id.\n\nRequired.",
+                              "description": "A History id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "projectId": {
-                              "description": "A Project id.\n\nRequired.",
+                              "description": "A Project id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "stepId": {
-                              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                              "description": "A Step id. Note: This step must include a TestExecutionStep. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "testCaseId": {
-                              "description": "A Test Case id.\n\nRequired.",
+                              "description": "A Test Case id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
@@ -1330,7 +1337,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Lists Test Cases attached to a Step.\nExperimental test cases API. Still in active development.\n\nMay return any of the following canonical error codes:\n\n- PERMISSION_DENIED - if the user is not authorized to write to project\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the containing Step does not exist",
+                          "description": "Lists Test Cases attached to a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases",
                           "httpMethod": "GET",
                           "id": "toolresults.projects.histories.executions.steps.testCases.list",
@@ -1342,36 +1349,36 @@
                           ],
                           "parameters": {
                             "executionId": {
-                              "description": "A Execution id\n\nRequired.",
+                              "description": "A Execution id Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "historyId": {
-                              "description": "A History id.\n\nRequired.",
+                              "description": "A History id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of TestCases to fetch.\n\nDefault value: 100. The server will use this default if the field is not\nset or has a value of 0.\n\nOptional.",
+                              "description": "The maximum number of TestCases to fetch. Default value: 100. The server will use this default if the field is not set or has a value of 0. Optional.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                              "description": "A continuation token to resume the query at the next item. Optional.",
                               "location": "query",
                               "type": "string"
                             },
                             "projectId": {
-                              "description": "A Project id.\n\nRequired.",
+                              "description": "A Project id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "stepId": {
-                              "description": "A Step id.\nNote: This step must include a TestExecutionStep.\n\nRequired.",
+                              "description": "A Step id. Note: This step must include a TestExecutionStep. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
@@ -1390,7 +1397,7 @@
                     "thumbnails": {
                       "methods": {
                         "list": {
-                          "description": "Lists thumbnails of images attached to a step.\n\nMay return any of the following canonical error codes:\n- PERMISSION_DENIED - if the user is not authorized to read from the\n                      project, or from any of the images\n- INVALID_ARGUMENT - if the request is malformed\n- NOT_FOUND - if the step does not exist, or if any of the images\n              do not exist",
+                          "description": "Lists thumbnails of images attached to a step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images do not exist",
                           "flatPath": "toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails",
                           "httpMethod": "GET",
                           "id": "toolresults.projects.histories.executions.steps.thumbnails.list",
@@ -1402,36 +1409,36 @@
                           ],
                           "parameters": {
                             "executionId": {
-                              "description": "An Execution id.\n\nRequired.",
+                              "description": "An Execution id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "historyId": {
-                              "description": "A History id.\n\nRequired.",
+                              "description": "A History id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of thumbnails to fetch.\n\nDefault value: 50. The server will use this default if the field is not set\nor has a value of 0.\n\nOptional.",
+                              "description": "The maximum number of thumbnails to fetch. Default value: 50. The server will use this default if the field is not set or has a value of 0. Optional.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "A continuation token to resume the query at the next item.\n\nOptional.",
+                              "description": "A continuation token to resume the query at the next item. Optional.",
                               "location": "query",
                               "type": "string"
                             },
                             "projectId": {
-                              "description": "A Project id.\n\nRequired.",
+                              "description": "A Project id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
                             },
                             "stepId": {
-                              "description": "A Step id.\n\nRequired.",
+                              "description": "A Step id. Required.",
                               "location": "path",
                               "required": true,
                               "type": "string"
@@ -1456,7 +1463,7 @@
       }
     }
   },
-  "revision": "20200723",
+  "revision": "20200803",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1465,7 +1472,7 @@
       "properties": {
         "stackTrace": {
           "$ref": "StackTrace",
-          "description": "The stack trace of the ANR crash.\nOptional."
+          "description": "The stack trace of the ANR crash. Optional."
         }
       },
       "type": "object"
@@ -1475,73 +1482,73 @@
       "id": "AndroidAppInfo",
       "properties": {
         "name": {
-          "description": "The name of the app.\nOptional",
+          "description": "The name of the app. Optional",
           "type": "string"
         },
         "packageName": {
-          "description": "The package name of the app.\nRequired.",
+          "description": "The package name of the app. Required.",
           "type": "string"
         },
         "versionCode": {
-          "description": "The internal version code of the app.\nOptional.",
+          "description": "The internal version code of the app. Optional.",
           "type": "string"
         },
         "versionName": {
-          "description": "The version name of the app.\nOptional.",
+          "description": "The version name of the app. Optional.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AndroidInstrumentationTest": {
-      "description": "A test of an Android application that can control an Android component\nindependently of its normal lifecycle.\n\nSee <http://developer.android.com/tools/testing/testing_android.html> for\nmore information on types of Android tests.",
+      "description": "A test of an Android application that can control an Android component independently of its normal lifecycle. See for more information on types of Android tests.",
       "id": "AndroidInstrumentationTest",
       "properties": {
         "testPackageId": {
-          "description": "The java package for the test to be executed.\nRequired",
+          "description": "The java package for the test to be executed. Required",
           "type": "string"
         },
         "testRunnerClass": {
-          "description": "The InstrumentationTestRunner class.\nRequired",
+          "description": "The InstrumentationTestRunner class. Required",
           "type": "string"
         },
         "testTargets": {
-          "description": "Each target must be fully qualified with the package name or class name,\nin one of these formats:\n - \"package package_name\"\n - \"class package_name.class_name\"\n - \"class package_name.class_name#method_name\"\n\nIf empty, all targets in the module will be run.",
+          "description": "Each target must be fully qualified with the package name or class name, in one of these formats: - \"package package_name\" - \"class package_name.class_name\" - \"class package_name.class_name#method_name\" If empty, all targets in the module will be run.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "useOrchestrator": {
-          "description": "The flag indicates whether Android Test Orchestrator will be used to run\ntest or not.",
+          "description": "The flag indicates whether Android Test Orchestrator will be used to run test or not.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "AndroidRoboTest": {
-      "description": "A test of an android application that explores the application on a virtual\nor physical Android device, finding culprits and crashes as it goes.",
+      "description": "A test of an android application that explores the application on a virtual or physical Android device, finding culprits and crashes as it goes.",
       "id": "AndroidRoboTest",
       "properties": {
         "appInitialActivity": {
-          "description": "The initial activity that should be used to start the app.\nOptional",
+          "description": "The initial activity that should be used to start the app. Optional",
           "type": "string"
         },
         "bootstrapPackageId": {
-          "description": "The java package for the bootstrap.\nOptional",
+          "description": "The java package for the bootstrap. Optional",
           "type": "string"
         },
         "bootstrapRunnerClass": {
-          "description": "The runner class for the bootstrap.\nOptional",
+          "description": "The runner class for the bootstrap. Optional",
           "type": "string"
         },
         "maxDepth": {
-          "description": "The max depth of the traversal stack Robo can explore.\nOptional",
+          "description": "The max depth of the traversal stack Robo can explore. Optional",
           "format": "int32",
           "type": "integer"
         },
         "maxSteps": {
-          "description": "The max number of steps/actions Robo can execute.\nDefault is no limit (0).\nOptional",
+          "description": "The max number of steps/actions Robo can execute. Default is no limit (0). Optional",
           "format": "int32",
           "type": "integer"
         }
@@ -1570,23 +1577,23 @@
         },
         "testTimeout": {
           "$ref": "Duration",
-          "description": "Max time a test is allowed to run before it is\nautomatically cancelled."
+          "description": "Max time a test is allowed to run before it is automatically cancelled."
         }
       },
       "type": "object"
     },
     "AndroidTestLoop": {
-      "description": "Test Loops are tests that can be launched by the app itself, determining\nwhen to run by listening for an intent.",
+      "description": "Test Loops are tests that can be launched by the app itself, determining when to run by listening for an intent.",
       "id": "AndroidTestLoop",
       "properties": {},
       "type": "object"
     },
     "Any": {
-      "description": "\n`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\n# JSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message google.protobuf.Duration):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+      "description": " `Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message. Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type. Example 1: Pack and unpack a message in C++. Foo foo = ...; Any any; any.PackFrom(foo); ... if (any.UnpackTo(&foo)) { ... } Example 2: Pack and unpack a message in Java. Foo foo = ...; Any any = Any.pack(foo); ... if (any.is(Foo.class)) { foo = any.unpack(Foo.class); } Example 3: Pack and unpack a message in Python. foo = Foo(...) any = Any() any.Pack(foo) ... if any.Is(Foo.DESCRIPTOR): any.Unpack(foo) ... Example 4: Pack and unpack a message in Go foo := &pb.Foo{...} any, err := ptypes.MarshalAny(foo) ... foo := &pb.Foo{} if err := ptypes.UnmarshalAny(any, foo); err != nil { ... } The pack methods provided by protobuf library will by default use 'type.googleapis.com/full.type.name' as the type URL and the unpack methods only use the fully qualified type name after the last '/' in the type URL, for example \"foo.bar.com/x/y.z\" will yield type name \"y.z\". # JSON The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example: package google.profile; message Person { string first_name = 1; string last_name = 2; } { \"@type\": \"type.googleapis.com/google.profile.Person\", \"firstName\": , \"lastName\": } If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message google.protobuf.Duration): { \"@type\": \"type.googleapis.com/google.protobuf.Duration\", \"value\": \"1.212s\" }",
       "id": "Any",
       "properties": {
         "typeUrl": {
-          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a google.protobuf.Type\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one \"/\" character. The last segment of the URL's path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading \".\" is not accepted). In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows: * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a google.protobuf.Type value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the URL, or have them precompiled into a binary to avoid any lookup. Therefore, binary compatibility needs to be preserved on changes to types. (Use versioned type names to manage breaking changes.) Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com. Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.",
           "type": "string"
         },
         "value": {
@@ -1602,11 +1609,11 @@
       "properties": {
         "fullyDrawnTime": {
           "$ref": "Duration",
-          "description": "Optional. The time from app start to reaching the developer-reported\n\"fully drawn\" time. This is only stored if the app includes a call to\nActivity.reportFullyDrawn(). See\nhttps://developer.android.com/topic/performance/launch-time.html#time-full"
+          "description": "Optional. The time from app start to reaching the developer-reported \"fully drawn\" time. This is only stored if the app includes a call to Activity.reportFullyDrawn(). See https://developer.android.com/topic/performance/launch-time.html#time-full"
         },
         "initialDisplayTime": {
           "$ref": "Duration",
-          "description": "The time from app start to the first displayed activity being drawn,\nas reported in Logcat. See\nhttps://developer.android.com/topic/performance/launch-time.html#time-initial"
+          "description": "The time from app start to the first displayed activity being drawn, as reported in Logcat. See https://developer.android.com/topic/performance/launch-time.html#time-initial"
         }
       },
       "type": "object"
@@ -1694,7 +1701,7 @@
       "type": "object"
     },
     "BatchCreatePerfSamplesRequest": {
-      "description": "The request must provide up to a maximum of 5000 samples to be\ncreated; a larger sample size will cause an INVALID_ARGUMENT error",
+      "description": "The request must provide up to a maximum of 5000 samples to be created; a larger sample size will cause an INVALID_ARGUMENT error",
       "id": "BatchCreatePerfSamplesRequest",
       "properties": {
         "perfSamples": {
@@ -1720,7 +1727,7 @@
       "type": "object"
     },
     "BlankScreen": {
-      "description": "A warning that Robo encountered a screen that was mostly blank; this may\nindicate a problem with the app.",
+      "description": "A warning that Robo encountered a screen that was mostly blank; this may indicate a problem with the app.",
       "id": "BlankScreen",
       "properties": {
         "screenId": {
@@ -1762,16 +1769,16 @@
       "type": "object"
     },
     "Duration": {
-      "description": "\nA Duration represents a signed, fixed-length span of time represented\nas a count of seconds and fractions of seconds at nanosecond\nresolution. It is independent of any calendar and concepts like \"day\"\nor \"month\". It is related to Timestamp in that the difference between\ntwo Timestamp values is a Duration and it can be added or subtracted\nfrom a Timestamp. Range is approximately +-10,000 years.",
+      "description": " A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like \"day\" or \"month\". It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.",
       "id": "Duration",
       "properties": {
         "nanos": {
-          "description": "Signed fractions of a second at nanosecond resolution of the span\nof time. Durations less than one second are represented with a 0\n`seconds` field and a positive or negative `nanos` field. For durations\nof one second or more, a non-zero value for the `nanos` field must be\nof the same sign as the `seconds` field. Must be from -999,999,999\nto +999,999,999 inclusive.",
+          "description": "Signed fractions of a second at nanosecond resolution of the span of time. Durations less than one second are represented with a 0 `seconds` field and a positive or negative `nanos` field. For durations of one second or more, a non-zero value for the `nanos` field must be of the same sign as the `seconds` field. Must be from -999,999,999 to +999,999,999 inclusive.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Signed seconds of the span of time. Must be from -315,576,000,000\nto +315,576,000,000 inclusive. Note: these bounds are computed from:\n60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years",
+          "description": "Signed seconds of the span of time. Must be from -315,576,000,000 to +315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years",
           "format": "int64",
           "type": "string"
         }
@@ -1798,7 +1805,7 @@
       "type": "object"
     },
     "EncounteredNonAndroidUiWidgetScreen": {
-      "description": "Additional details about encountered screens with elements that are not\nAndroid UI widgets.",
+      "description": "Additional details about encountered screens with elements that are not Android UI widgets.",
       "id": "EncounteredNonAndroidUiWidgetScreen",
       "properties": {
         "distinctScreens": {
@@ -1817,26 +1824,26 @@
       "type": "object"
     },
     "Environment": {
-      "description": "An Environment represents the set of test runs (Steps) from the parent\nExecution that are configured with the same set of dimensions (Model,\nVersion, Locale, and Orientation). Multiple such runs occur particularly\nbecause of features like sharding (splitting up a test suite to run in\nparallel across devices) and reruns (running a test multiple times to check\nfor different outcomes).",
+      "description": "An Environment represents the set of test runs (Steps) from the parent Execution that are configured with the same set of dimensions (Model, Version, Locale, and Orientation). Multiple such runs occur particularly because of features like sharding (splitting up a test suite to run in parallel across devices) and reruns (running a test multiple times to check for different outcomes).",
       "id": "Environment",
       "properties": {
         "completionTime": {
           "$ref": "Timestamp",
-          "description": "Output only. The time when the Environment status was set to complete.\n\nThis value will be set automatically when state transitions to\nCOMPLETE."
+          "description": "Output only. The time when the Environment status was set to complete. This value will be set automatically when state transitions to COMPLETE."
         },
         "creationTime": {
           "$ref": "Timestamp",
           "description": "Output only. The time when the Environment was created."
         },
         "dimensionValue": {
-          "description": "Dimension values describing the environment. Dimension values always\nconsist of \"Model\", \"Version\", \"Locale\", and \"Orientation\".\n\n- In response: always set\n- In create request: always set\n- In update request: never set",
+          "description": "Dimension values describing the environment. Dimension values always consist of \"Model\", \"Version\", \"Locale\", and \"Orientation\". - In response: always set - In create request: always set - In update request: never set",
           "items": {
             "$ref": "EnvironmentDimensionValueEntry"
           },
           "type": "array"
         },
         "displayName": {
-          "description": "A short human-readable name to display in the UI.\nMaximum of 100 characters.\nFor example: Nexus 5, API 27.",
+          "description": "A short human-readable name to display in the UI. Maximum of 100 characters. For example: Nexus 5, API 27.",
           "type": "string"
         },
         "environmentId": {
@@ -1864,7 +1871,7 @@
           "description": "The location where output files are stored in the user bucket."
         },
         "shardSummaries": {
-          "description": "Output only. Summaries of shards.\n\nOnly one shard will present unless sharding feature is enabled in\nTestExecutionService.",
+          "description": "Output only. Summaries of shards. Only one shard will present unless sharding feature is enabled in TestExecutionService.",
           "items": {
             "$ref": "ShardSummary"
           },
@@ -1886,38 +1893,38 @@
       "type": "object"
     },
     "Execution": {
-      "description": "An Execution represents a collection of Steps. For instance, it could\nrepresent:\n   - a mobile test executed across a range of device configurations\n   - a jenkins job with a build step followed by a test step\n\nThe maximum size of an execution message is 1 MiB.\n\nAn Execution can be updated until its state is set to COMPLETE at which\npoint it becomes immutable.",
+      "description": "An Execution represents a collection of Steps. For instance, it could represent: - a mobile test executed across a range of device configurations - a jenkins job with a build step followed by a test step The maximum size of an execution message is 1 MiB. An Execution can be updated until its state is set to COMPLETE at which point it becomes immutable.",
       "id": "Execution",
       "properties": {
         "completionTime": {
           "$ref": "Timestamp",
-          "description": "The time when the Execution status transitioned to COMPLETE.\n\nThis value will be set automatically when state transitions to\nCOMPLETE.\n\n- In response: set if the execution state is COMPLETE.\n- In create/update request: never set"
+          "description": "The time when the Execution status transitioned to COMPLETE. This value will be set automatically when state transitions to COMPLETE. - In response: set if the execution state is COMPLETE. - In create/update request: never set"
         },
         "creationTime": {
           "$ref": "Timestamp",
-          "description": "The time when the Execution was created.\n\nThis value will be set automatically when CreateExecution is called.\n\n- In response: always set\n- In create/update request: never set"
+          "description": "The time when the Execution was created. This value will be set automatically when CreateExecution is called. - In response: always set - In create/update request: never set"
         },
         "dimensionDefinitions": {
-          "description": "The dimensions along which different steps in this execution may vary.\nThis must remain fixed over the life of the execution.\n\nReturns INVALID_ARGUMENT if this field is set in an update request.\n\nReturns INVALID_ARGUMENT if the same name occurs in more than one\ndimension_definition.\n\nReturns INVALID_ARGUMENT if the size of the list is over 100.\n\n- In response: present if set by create\n- In create request: optional\n- In update request: never set",
+          "description": "The dimensions along which different steps in this execution may vary. This must remain fixed over the life of the execution. Returns INVALID_ARGUMENT if this field is set in an update request. Returns INVALID_ARGUMENT if the same name occurs in more than one dimension_definition. Returns INVALID_ARGUMENT if the size of the list is over 100. - In response: present if set by create - In create request: optional - In update request: never set",
           "items": {
             "$ref": "MatrixDimensionDefinition"
           },
           "type": "array"
         },
         "executionId": {
-          "description": "A unique identifier within a History for this Execution.\n\nReturns INVALID_ARGUMENT if this field is set or overwritten by the caller.\n\n- In response always set\n- In create/update request: never set",
+          "description": "A unique identifier within a History for this Execution. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response always set - In create/update request: never set",
           "type": "string"
         },
         "outcome": {
           "$ref": "Outcome",
-          "description": "Classify the result, for example into SUCCESS or FAILURE\n\n- In response: present if set by create/update request\n- In create/update request: optional"
+          "description": "Classify the result, for example into SUCCESS or FAILURE - In response: present if set by create/update request - In create/update request: optional"
         },
         "specification": {
           "$ref": "Specification",
-          "description": "Lightweight information about execution request.\n\n- In response: present if set by create\n- In create: optional\n- In update: optional"
+          "description": "Lightweight information about execution request. - In response: present if set by create - In create: optional - In update: optional"
         },
         "state": {
-          "description": "The initial state is IN_PROGRESS.\n\nThe only legal state transitions is from IN_PROGRESS to COMPLETE.\n\nA PRECONDITION_FAILED will be returned if an invalid transition is\nrequested.\n\nThe state can only be set to COMPLETE once. A FAILED_PRECONDITION will be\nreturned if the state is set to COMPLETE multiple times.\n\nIf the state is set to COMPLETE, all the in-progress steps within the\nexecution will be set as COMPLETE. If the outcome of the step is not set,\nthe outcome will be set to INCONCLUSIVE.\n\n- In response always set\n- In create/update request: optional",
+          "description": "The initial state is IN_PROGRESS. The only legal state transitions is from IN_PROGRESS to COMPLETE. A PRECONDITION_FAILED will be returned if an invalid transition is requested. The state can only be set to COMPLETE once. A FAILED_PRECONDITION will be returned if the state is set to COMPLETE multiple times. If the state is set to COMPLETE, all the in-progress steps within the execution will be set as COMPLETE. If the outcome of the step is not set, the outcome will be set to INCONCLUSIVE. - In response always set - In create/update request: optional",
           "enum": [
             "unknownState",
             "pending",
@@ -1925,15 +1932,15 @@
             "complete"
           ],
           "enumDescriptions": [
-            "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
-            "The Execution/Step is created, ready to run, but not running yet.\nIf an Execution/Step is created without initial state, it is assumed\nthat the Execution/Step is in PENDING state.",
+            "Should never be in this state. Exists for proto deserialization backward compatibility.",
+            "The Execution/Step is created, ready to run, but not running yet. If an Execution/Step is created without initial state, it is assumed that the Execution/Step is in PENDING state.",
             "The Execution/Step is in progress.",
-            "The finalized, immutable state. Steps/Executions in this state cannot be\nmodified."
+            "The finalized, immutable state. Steps/Executions in this state cannot be modified."
           ],
           "type": "string"
         },
         "testExecutionMatrixId": {
-          "description": "TestExecution Matrix ID that the TestExecutionService uses.\n\n- In response: present if set by create\n- In create: optional\n- In update: never set",
+          "description": "TestExecution Matrix ID that the TestExecutionService uses. - In response: present if set by create - In create: optional - In update: never set",
           "type": "string"
         }
       },
@@ -1954,11 +1961,11 @@
           "type": "boolean"
         },
         "failedRoboscript": {
-          "description": "If the Roboscript failed to complete successfully, e.g., because a\nRoboscript action or assertion failed or a Roboscript action could not be\nmatched during the entire crawl.",
+          "description": "If the Roboscript failed to complete successfully, e.g., because a Roboscript action or assertion failed or a Roboscript action could not be matched during the entire crawl.",
           "type": "boolean"
         },
         "notInstalled": {
-          "description": "If an app is not installed and thus no test can be run with the app.\nThis might be caused by trying to run a test on an unsupported platform.",
+          "description": "If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.",
           "type": "boolean"
         },
         "otherNativeCrash": {
@@ -1970,7 +1977,7 @@
           "type": "boolean"
         },
         "unableToCrawl": {
-          "description": "If the robo was unable to crawl the app; perhaps because the app did not\nstart.",
+          "description": "If the robo was unable to crawl the app; perhaps because the app did not start.",
           "type": "boolean"
         }
       },
@@ -1982,7 +1989,7 @@
       "properties": {
         "stackTrace": {
           "$ref": "StackTrace",
-          "description": "The stack trace of the fatal exception.\nOptional."
+          "description": "The stack trace of the fatal exception. Optional."
         }
       },
       "type": "object"
@@ -1992,18 +1999,18 @@
       "id": "FileReference",
       "properties": {
         "fileUri": {
-          "description": "The URI of a file stored in Google Cloud Storage.\n\nFor example: http://storage.googleapis.com/mybucket/path/to/test.xml\nor in gsutil format: gs://mybucket/path/to/test.xml\nwith version-specific info,\ngs://mybucket/path/to/test.xml#1360383693690000\n\nAn INVALID_ARGUMENT error will be returned if the URI format is not\nsupported.\n\n- In response: always set\n- In create/update request: always set",
+          "description": "The URI of a file stored in Google Cloud Storage. For example: http://storage.googleapis.com/mybucket/path/to/test.xml or in gsutil format: gs://mybucket/path/to/test.xml with version-specific info, gs://mybucket/path/to/test.xml#1360383693690000 An INVALID_ARGUMENT error will be returned if the URI format is not supported. - In response: always set - In create/update request: always set",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GraphicsStats": {
-      "description": "Graphics statistics for the App.\nThe information is collected from 'adb shell dumpsys graphicsstats'.\nFor more info see:\nhttps://developer.android.com/training/testing/performance.html\nStatistics will only be present for API 23+.",
+      "description": "Graphics statistics for the App. The information is collected from 'adb shell dumpsys graphicsstats'. For more info see: https://developer.android.com/training/testing/performance.html Statistics will only be present for API 23+.",
       "id": "GraphicsStats",
       "properties": {
         "buckets": {
-          "description": "Histogram of frame render times. There should be 154 buckets ranging from\n[5ms, 6ms) to [4950ms, infinity)",
+          "description": "Histogram of frame render times. There should be 154 buckets ranging from [5ms, 6ms) to [4950ms, infinity)",
           "items": {
             "$ref": "GraphicsStatsBucket"
           },
@@ -2084,23 +2091,23 @@
       "type": "object"
     },
     "History": {
-      "description": "A History represents a sorted list of Executions ordered by the\nstart_timestamp_millis field (descending). It can be used to group all the\nExecutions of a continuous build.\n\nNote that the ordering only operates on one-dimension. If a repository has\nmultiple branches, it means that multiple histories will need to be\nused in order to order Executions per branch.",
+      "description": "A History represents a sorted list of Executions ordered by the start_timestamp_millis field (descending). It can be used to group all the Executions of a continuous build. Note that the ordering only operates on one-dimension. If a repository has multiple branches, it means that multiple histories will need to be used in order to order Executions per branch.",
       "id": "History",
       "properties": {
         "displayName": {
-          "description": "A short human-readable (plain text) name to display in the UI.\nMaximum of 100 characters.\n\n- In response: present if set during create.\n- In create request: optional",
+          "description": "A short human-readable (plain text) name to display in the UI. Maximum of 100 characters. - In response: present if set during create. - In create request: optional",
           "type": "string"
         },
         "historyId": {
-          "description": "A unique identifier within a project for this History.\n\nReturns INVALID_ARGUMENT if this field is set or overwritten by the caller.\n\n- In response always set\n- In create request: never set",
+          "description": "A unique identifier within a project for this History. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response always set - In create request: never set",
           "type": "string"
         },
         "name": {
-          "description": "A name to uniquely identify a history within a project.\nMaximum of 200 characters.\n\n- In response always set\n- In create request: always set",
+          "description": "A name to uniquely identify a history within a project. Maximum of 200 characters. - In response always set - In create request: always set",
           "type": "string"
         },
         "testPlatform": {
-          "description": "The platform of the test history.\n\n- In response: always set. Returns the platform of the last execution if\nunknown.",
+          "description": "The platform of the test history. - In response: always set. Returns the platform of the last execution if unknown.",
           "enum": [
             "unknownPlatform",
             "android",
@@ -2126,10 +2133,10 @@
         },
         "sourceImage": {
           "$ref": "ToolOutputReference",
-          "description": "A reference to the full-size, original image.\n\nThis is the same as the tool_outputs entry for the image under its Step.\n\nAlways set."
+          "description": "A reference to the full-size, original image. This is the same as the tool_outputs entry for the image under its Step. Always set."
         },
         "stepId": {
-          "description": "The step to which the image is attached.\n\nAlways set.",
+          "description": "The step to which the image is attached. Always set.",
           "type": "string"
         },
         "thumbnail": {
@@ -2144,7 +2151,7 @@
       "id": "InAppPurchasesFound",
       "properties": {
         "inAppPurchasesFlowsExplored": {
-          "description": "The total number of in-app purchases flows explored: how many times the\nrobo tries to buy a SKU.",
+          "description": "The total number of in-app purchases flows explored: how many times the robo tries to buy a SKU.",
           "format": "int32",
           "type": "integer"
         },
@@ -2161,26 +2168,26 @@
       "id": "InconclusiveDetail",
       "properties": {
         "abortedByUser": {
-          "description": "If the end user aborted the test execution before a pass or fail could be\ndetermined.\nFor example, the user pressed ctrl-c which sent a kill signal to the test\nrunner while the test was running.",
+          "description": "If the end user aborted the test execution before a pass or fail could be determined. For example, the user pressed ctrl-c which sent a kill signal to the test runner while the test was running.",
           "type": "boolean"
         },
         "hasErrorLogs": {
-          "description": "If results are being provided to the user in certain cases of\ninfrastructure failures",
+          "description": "If results are being provided to the user in certain cases of infrastructure failures",
           "type": "boolean"
         },
         "infrastructureFailure": {
-          "description": "If the test runner could not determine success or failure because the test\ndepends on a component other than the system under test which failed.\n\nFor example, a mobile test requires provisioning a device where the test\nexecutes, and that provisioning can fail.",
+          "description": "If the test runner could not determine success or failure because the test depends on a component other than the system under test which failed. For example, a mobile test requires provisioning a device where the test executes, and that provisioning can fail.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "IndividualOutcome": {
-      "description": "Step Id and outcome of each individual step that was run as a group with\nother steps with the same configuration.",
+      "description": "Step Id and outcome of each individual step that was run as a group with other steps with the same configuration.",
       "id": "IndividualOutcome",
       "properties": {
         "multistepNumber": {
-          "description": "Unique int given to each step.\nRanges from 0(inclusive) to total number of steps(exclusive).\nThe primary step is 0.",
+          "description": "Unique int given to each step. Ranges from 0(inclusive) to total number of steps(exclusive). The primary step is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -2195,11 +2202,11 @@
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
-            "The test matrix run was successful, for instance:\n- All the test cases passed.\n- Robo did not detect a crash of the application under test.",
-            "A run failed, for instance:\n- One or more test case failed.\n- A test timed out.\n- The application under test crashed.",
-            "Something unexpected happened. The run should still be considered\nunsuccessful but this is likely a transient problem and re-running the\ntest might be successful.",
-            "All tests were skipped, for instance:\n- All device configurations were incompatible.",
-            "A group of steps that were run with the same configuration had both\nfailure and success outcomes."
+            "The test matrix run was successful, for instance: - All the test cases passed. - Robo did not detect a crash of the application under test.",
+            "A run failed, for instance: - One or more test case failed. - A test timed out. - The application under test crashed.",
+            "Something unexpected happened. The run should still be considered unsuccessful but this is likely a transient problem and re-running the test might be successful.",
+            "All tests were skipped, for instance: - All device configurations were incompatible.",
+            "A group of steps that were run with the same configuration had both failure and success outcomes."
           ],
           "type": "string"
         },
@@ -2225,7 +2232,7 @@
       "properties": {
         "stackTrace": {
           "$ref": "StackTrace",
-          "description": "The stack trace, if one is available.\nOptional."
+          "description": "The stack trace, if one is available. Optional."
         }
       },
       "type": "object"
@@ -2235,7 +2242,7 @@
       "id": "IosAppInfo",
       "properties": {
         "name": {
-          "description": "The name of the app.\nRequired",
+          "description": "The name of the app. Required",
           "type": "string"
         }
       },
@@ -2269,7 +2276,7 @@
         },
         "testTimeout": {
           "$ref": "Duration",
-          "description": "Max time a test is allowed to run before it is\nautomatically cancelled."
+          "description": "Max time a test is allowed to run before it is automatically cancelled."
         }
       },
       "type": "object"
@@ -2311,26 +2318,26 @@
       "id": "ListEnvironmentsResponse",
       "properties": {
         "environments": {
-          "description": "Environments.\n\nAlways set.",
+          "description": "Environments. Always set.",
           "items": {
             "$ref": "Environment"
           },
           "type": "array"
         },
         "executionId": {
-          "description": "A Execution id\n\nAlways set.",
+          "description": "A Execution id Always set.",
           "type": "string"
         },
         "historyId": {
-          "description": "A History id.\n\nAlways set.",
+          "description": "A History id. Always set.",
           "type": "string"
         },
         "nextPageToken": {
-          "description": "A continuation token to resume the query at the next item.\n\nWill only be set if there are more Environments to fetch.",
+          "description": "A continuation token to resume the query at the next item. Will only be set if there are more Environments to fetch.",
           "type": "string"
         },
         "projectId": {
-          "description": "A Project id.\n\nAlways set.",
+          "description": "A Project id. Always set.",
           "type": "string"
         }
       },
@@ -2340,14 +2347,14 @@
       "id": "ListExecutionsResponse",
       "properties": {
         "executions": {
-          "description": "Executions.\n\nAlways set.",
+          "description": "Executions. Always set.",
           "items": {
             "$ref": "Execution"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A continuation token to resume the query at the next item.\n\nWill only be set if there are more Executions to fetch.",
+          "description": "A continuation token to resume the query at the next item. Will only be set if there are more Executions to fetch.",
           "type": "string"
         }
       },
@@ -2365,7 +2372,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A continuation token to resume the query at the next item.\n\nWill only be set if there are more histories to fetch.\n\nTokens are valid for up to one hour from the time of the first list\nrequest. For instance, if you make a list request at 1PM and use the token\nfrom this first request 10 minutes later, the token from this second\nresponse will only be valid for 50 minutes.",
+          "description": "A continuation token to resume the query at the next item. Will only be set if there are more histories to fetch. Tokens are valid for up to one hour from the time of the first list request. For instance, if you make a list request at 1PM and use the token from this first request 10 minutes later, the token from this second response will only be valid for 50 minutes.",
           "type": "string"
         }
       },
@@ -2388,7 +2395,7 @@
       "id": "ListPerfSamplesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Optional, returned if result size exceeds the page size specified in the\nrequest (or the default page size, 500, if unspecified). It indicates the\nlast sample timestamp to be used as page_token in subsequent request",
+          "description": "Optional, returned if result size exceeds the page size specified in the request (or the default page size, 500, if unspecified). It indicates the last sample timestamp to be used as page_token in subsequent request",
           "type": "string"
         },
         "perfSamples": {
@@ -2404,7 +2411,7 @@
       "id": "ListScreenshotClustersResponse",
       "properties": {
         "clusters": {
-          "description": "The set of clusters associated with an execution\nAlways set",
+          "description": "The set of clusters associated with an execution Always set",
           "items": {
             "$ref": "ScreenshotCluster"
           },
@@ -2418,14 +2425,14 @@
       "id": "ListStepAccessibilityClustersResponse",
       "properties": {
         "clusters": {
-          "description": "A sequence of accessibility suggestions, grouped into clusters.\nWithin the sequence, clusters that belong to the same SuggestionCategory\nshould be adjacent.\nWithin each category, clusters should be ordered by their\nSuggestionPriority (ERRORs first).\nThe categories should be ordered by their highest priority cluster.",
+          "description": "A sequence of accessibility suggestions, grouped into clusters. Within the sequence, clusters that belong to the same SuggestionCategory should be adjacent. Within each category, clusters should be ordered by their SuggestionPriority (ERRORs first). The categories should be ordered by their highest priority cluster.",
           "items": {
             "$ref": "SuggestionClusterProto"
           },
           "type": "array"
         },
         "name": {
-          "description": "A full resource name of the step.\nFor example, projects/my-project/histories/bh.1234567890abcdef/executions/\n1234567890123456789/steps/bs.1234567890abcdef\n\nAlways presents.",
+          "description": "A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Always presents.",
           "type": "string"
         }
       },
@@ -2436,11 +2443,11 @@
       "id": "ListStepThumbnailsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A continuation token to resume the query at the next item.\n\nIf set, indicates that there are more thumbnails to read, by calling list\nagain with this value in the page_token field.",
+          "description": "A continuation token to resume the query at the next item. If set, indicates that there are more thumbnails to read, by calling list again with this value in the page_token field.",
           "type": "string"
         },
         "thumbnails": {
-          "description": "A list of image data.\n\nImages are returned in a deterministic order; they are ordered by these\nfactors, in order of\nimportance:\n* First, by their associated test case. Images without a test case are\n  considered greater than images with one.\n* Second, by their creation time. Images without a creation time are\n  greater than images with one.\n* Third, by the order in which they were added to the step (by calls to\n  CreateStep or UpdateStep).",
+          "description": "A list of image data. Images are returned in a deterministic order; they are ordered by these factors, in order of importance: * First, by their associated test case. Images without a test case are considered greater than images with one. * Second, by their creation time. Images without a creation time are greater than images with one. * Third, by the order in which they were added to the step (by calls to CreateStep or UpdateStep).",
           "items": {
             "$ref": "Image"
           },
@@ -2454,7 +2461,7 @@
       "id": "ListStepsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A continuation token to resume the query at the next item.\n\nIf set, indicates that there are more steps to read, by calling list again\nwith this value in the page_token field.",
+          "description": "A continuation token to resume the query at the next item. If set, indicates that there are more steps to read, by calling list again with this value in the page_token field.",
           "type": "string"
         },
         "steps": {
@@ -2507,7 +2514,7 @@
       "type": "object"
     },
     "MergedResult": {
-      "description": "Merged test result for environment.\n\nIf the environment has only one step (no reruns or shards), then the merged\nresult is the same as the step result. If the environment has multiple shards\nand/or reruns, then the results of shards and reruns that belong to the same\nenvironment are merged into one environment result.",
+      "description": "Merged test result for environment. If the environment has only one step (no reruns or shards), then the merged result is the same as the step result. If the environment has multiple shards and/or reruns, then the results of shards and reruns that belong to the same environment are merged into one environment result.",
       "id": "MergedResult",
       "properties": {
         "outcome": {
@@ -2523,15 +2530,15 @@
             "complete"
           ],
           "enumDescriptions": [
-            "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
-            "The Execution/Step is created, ready to run, but not running yet.\nIf an Execution/Step is created without initial state, it is assumed\nthat the Execution/Step is in PENDING state.",
+            "Should never be in this state. Exists for proto deserialization backward compatibility.",
+            "The Execution/Step is created, ready to run, but not running yet. If an Execution/Step is created without initial state, it is assumed that the Execution/Step is in PENDING state.",
             "The Execution/Step is in progress.",
-            "The finalized, immutable state. Steps/Executions in this state cannot be\nmodified."
+            "The finalized, immutable state. Steps/Executions in this state cannot be modified."
           ],
           "type": "string"
         },
         "testSuiteOverviews": {
-          "description": "The combined and rolled-up result of each test suite that was run as part\n of this environment.\n\n Combining:\n When the test cases from a suite are run in different steps (sharding),\n the results are added back together in one overview. (e.g., if shard1 has\n 2 failures and shard2 has 1 failure than the overview failure_count = 3).\n\n Rollup:\n When test cases from the same suite are run multiple times (flaky), the\n results are combined (e.g., if testcase1.run1 fails, testcase1.run2\n passes, and both testcase2.run1 and testcase2.run2 fail then the overview\n flaky_count = 1 and failure_count = 1).",
+          "description": "The combined and rolled-up result of each test suite that was run as part of this environment. Combining: When the test cases from a suite are run in different steps (sharding), the results are added back together in one overview. (e.g., if shard1 has 2 failures and shard2 has 1 failure than the overview failure_count = 3). Rollup: When test cases from the same suite are run multiple times (flaky), the results are combined (e.g., if testcase1.run1 fails, testcase1.run2 passes, and both testcase2.run1 and testcase2.run2 fail then the overview flaky_count = 1 and failure_count = 1).",
           "items": {
             "$ref": "TestSuiteOverview"
           },
@@ -2545,7 +2552,7 @@
       "id": "MultiStep",
       "properties": {
         "multistepNumber": {
-          "description": "Unique int given to each step.\nRanges from 0(inclusive) to total number of steps(exclusive).\nThe primary step is 0.",
+          "description": "Unique int given to each step. Ranges from 0(inclusive) to total number of steps(exclusive). The primary step is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -2566,13 +2573,13 @@
       "properties": {
         "stackTrace": {
           "$ref": "StackTrace",
-          "description": "The stack trace of the native crash.\nOptional."
+          "description": "The stack trace of the native crash. Optional."
         }
       },
       "type": "object"
     },
     "NonSdkApi": {
-      "description": "A non-sdk API and examples of it being called along with other metadata\nSee\nhttps://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces",
+      "description": "A non-sdk API and examples of it being called along with other metadata See https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces",
       "id": "NonSdkApi",
       "properties": {
         "apiSignature": {
@@ -2628,23 +2635,23 @@
       "id": "NonSdkApiInsight",
       "properties": {
         "exampleTraceMessages": {
-          "description": "Optional sample stack traces, for which this insight applies (there\nshould be at least one).",
+          "description": "Optional sample stack traces, for which this insight applies (there should be at least one).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "matcherId": {
-          "description": "A unique ID, to be used for determining the effectiveness of this\nparticular insight in the context of a matcher. (required)",
+          "description": "A unique ID, to be used for determining the effectiveness of this particular insight in the context of a matcher. (required)",
           "type": "string"
         },
         "pendingGoogleUpdateInsight": {
           "$ref": "PendingGoogleUpdateInsight",
-          "description": "An insight indicating that the hidden API usage originates from a\nGoogle-provided library."
+          "description": "An insight indicating that the hidden API usage originates from a Google-provided library."
         },
         "upgradeInsight": {
           "$ref": "UpgradeInsight",
-          "description": "An insight indicating that the hidden API usage originates from the\nuse of a library that needs to be upgraded."
+          "description": "An insight indicating that the hidden API usage originates from the use of a library that needs to be upgraded."
         }
       },
       "type": "object"
@@ -2703,22 +2710,22 @@
       "properties": {
         "failureDetail": {
           "$ref": "FailureDetail",
-          "description": "More information about a FAILURE outcome.\n\nReturns INVALID_ARGUMENT if this field is set\nbut the summary is not FAILURE.\n\nOptional"
+          "description": "More information about a FAILURE outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not FAILURE. Optional"
         },
         "inconclusiveDetail": {
           "$ref": "InconclusiveDetail",
-          "description": "More information about an INCONCLUSIVE outcome.\n\nReturns INVALID_ARGUMENT if this field is set\nbut the summary is not INCONCLUSIVE.\n\nOptional"
+          "description": "More information about an INCONCLUSIVE outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not INCONCLUSIVE. Optional"
         },
         "skippedDetail": {
           "$ref": "SkippedDetail",
-          "description": "More information about a SKIPPED outcome.\n\nReturns INVALID_ARGUMENT if this field is set\nbut the summary is not SKIPPED.\n\nOptional"
+          "description": "More information about a SKIPPED outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not SKIPPED. Optional"
         },
         "successDetail": {
           "$ref": "SuccessDetail",
-          "description": "More information about a SUCCESS outcome.\n\nReturns INVALID_ARGUMENT if this field is set\nbut the summary is not SUCCESS.\n\nOptional"
+          "description": "More information about a SUCCESS outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not SUCCESS. Optional"
         },
         "summary": {
-          "description": "The simplest way to interpret a result.\n\nRequired",
+          "description": "The simplest way to interpret a result. Required",
           "enum": [
             "unset",
             "success",
@@ -2729,11 +2736,11 @@
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
-            "The test matrix run was successful, for instance:\n- All the test cases passed.\n- Robo did not detect a crash of the application under test.",
-            "A run failed, for instance:\n- One or more test case failed.\n- A test timed out.\n- The application under test crashed.",
-            "Something unexpected happened. The run should still be considered\nunsuccessful but this is likely a transient problem and re-running the\ntest might be successful.",
-            "All tests were skipped, for instance:\n- All device configurations were incompatible.",
-            "A group of steps that were run with the same configuration had both\nfailure and success outcomes."
+            "The test matrix run was successful, for instance: - All the test cases passed. - Robo did not detect a crash of the application under test.",
+            "A run failed, for instance: - One or more test case failed. - A test timed out. - The application under test crashed.",
+            "Something unexpected happened. The run should still be considered unsuccessful but this is likely a transient problem and re-running the test might be successful.",
+            "All tests were skipped, for instance: - All device configurations were incompatible.",
+            "A group of steps that were run with the same configuration had both failure and success outcomes."
           ],
           "type": "string"
         }
@@ -2741,7 +2748,7 @@
       "type": "object"
     },
     "OverlappingUIElements": {
-      "description": "A warning that Robo encountered a screen that has overlapping clickable\nelements; this may indicate a potential UI issue.",
+      "description": "A warning that Robo encountered a screen that has overlapping clickable elements; this may indicate a potential UI issue.",
       "id": "OverlappingUIElements",
       "properties": {
         "resourceName": {
@@ -2759,7 +2766,7 @@
       "type": "object"
     },
     "PendingGoogleUpdateInsight": {
-      "description": "This insight indicates that the hidden API usage originates from a\nGoogle-provided library. Users need not take any action.",
+      "description": "This insight indicates that the hidden API usage originates from a Google-provided library. Users need not take any action.",
       "id": "PendingGoogleUpdateInsight",
       "properties": {
         "nameOfGoogleLibrary": {
@@ -2792,15 +2799,15 @@
           "$ref": "AppStartTime"
         },
         "executionId": {
-          "description": "A tool results execution ID.\n@OutputOnly",
+          "description": "A tool results execution ID. @OutputOnly",
           "type": "string"
         },
         "graphicsStats": {
           "$ref": "GraphicsStats",
-          "description": "Graphics statistics for the entire run. Statistics are reset at the\nbeginning of the run and collected at the end of the run."
+          "description": "Graphics statistics for the entire run. Statistics are reset at the beginning of the run and collected at the end of the run."
         },
         "historyId": {
-          "description": "A tool results history ID.\n@OutputOnly",
+          "description": "A tool results history ID. @OutputOnly",
           "type": "string"
         },
         "perfEnvironment": {
@@ -2824,16 +2831,23 @@
               "network",
               "graphics"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
         },
         "projectId": {
-          "description": "The cloud project\n@OutputOnly",
+          "description": "The cloud project @OutputOnly",
           "type": "string"
         },
         "stepId": {
-          "description": "A tool results step ID.\n@OutputOnly",
+          "description": "A tool results step ID. @OutputOnly",
           "type": "string"
         }
       },
@@ -2864,23 +2878,23 @@
           "description": "Basic series represented by a line chart"
         },
         "executionId": {
-          "description": "A tool results execution ID.\n@OutputOnly",
+          "description": "A tool results execution ID. @OutputOnly",
           "type": "string"
         },
         "historyId": {
-          "description": "A tool results history ID.\n@OutputOnly",
+          "description": "A tool results history ID. @OutputOnly",
           "type": "string"
         },
         "projectId": {
-          "description": "The cloud project\n@OutputOnly",
+          "description": "The cloud project @OutputOnly",
           "type": "string"
         },
         "sampleSeriesId": {
-          "description": "A sample series id\n@OutputOnly",
+          "description": "A sample series id @OutputOnly",
           "type": "string"
         },
         "stepId": {
-          "description": "A tool results step ID.\n@OutputOnly",
+          "description": "A tool results step ID. @OutputOnly",
           "type": "string"
         }
       },
@@ -2905,7 +2919,7 @@
       "type": "object"
     },
     "PrimaryStep": {
-      "description": "Stores rollup test status of multiple steps that were run as a group and\noutcome of each individual step.",
+      "description": "Stores rollup test status of multiple steps that were run as a group and outcome of each individual step.",
       "id": "PrimaryStep",
       "properties": {
         "individualOutcome": {
@@ -2916,7 +2930,7 @@
           "type": "array"
         },
         "rollUp": {
-          "description": "Rollup test status of multiple steps that were run with the same\nconfiguration as a group.",
+          "description": "Rollup test status of multiple steps that were run with the same configuration as a group.",
           "enum": [
             "unset",
             "success",
@@ -2927,11 +2941,11 @@
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
-            "The test matrix run was successful, for instance:\n- All the test cases passed.\n- Robo did not detect a crash of the application under test.",
-            "A run failed, for instance:\n- One or more test case failed.\n- A test timed out.\n- The application under test crashed.",
-            "Something unexpected happened. The run should still be considered\nunsuccessful but this is likely a transient problem and re-running the\ntest might be successful.",
-            "All tests were skipped, for instance:\n- All device configurations were incompatible.",
-            "A group of steps that were run with the same configuration had both\nfailure and success outcomes."
+            "The test matrix run was successful, for instance: - All the test cases passed. - Robo did not detect a crash of the application under test.",
+            "A run failed, for instance: - One or more test case failed. - A test timed out. - The application under test crashed.",
+            "Something unexpected happened. The run should still be considered unsuccessful but this is likely a transient problem and re-running the test might be successful.",
+            "All tests were skipped, for instance: - All device configurations were incompatible.",
+            "A group of steps that were run with the same configuration had both failure and success outcomes."
           ],
           "type": "string"
         }
@@ -2943,11 +2957,11 @@
       "id": "ProjectSettings",
       "properties": {
         "defaultBucket": {
-          "description": "The name of the Google Cloud Storage bucket to which results are written.\n\nBy default, this is unset.\n\nIn update request: optional\nIn response: optional",
+          "description": "The name of the Google Cloud Storage bucket to which results are written. By default, this is unset. In update request: optional In response: optional",
           "type": "string"
         },
         "name": {
-          "description": "The name of the project's settings.\n\nAlways of the form:\nprojects/{project-id}/settings\n\nIn update request: never set\nIn response: always set",
+          "description": "The name of the project's settings. Always of the form: projects/{project-id}/settings In update request: never set In response: always set",
           "type": "string"
         }
       },
@@ -2958,7 +2972,7 @@
       "id": "PublishXunitXmlFilesRequest",
       "properties": {
         "xunitXmlFiles": {
-          "description": "URI of the Xunit XML files to publish.\n\nThe maximum size of the file this reference is pointing to is 50MB.\n\nRequired.",
+          "description": "URI of the Xunit XML files to publish. The maximum size of the file this reference is pointing to is 50MB. Required.",
           "items": {
             "$ref": "FileReference"
           },
@@ -2972,22 +2986,22 @@
       "id": "RegionProto",
       "properties": {
         "heightPx": {
-          "description": "The height, in pixels.\nAlways set.",
+          "description": "The height, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         },
         "leftPx": {
-          "description": "The left side of the rectangle, in pixels.\nAlways set.",
+          "description": "The left side of the rectangle, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         },
         "topPx": {
-          "description": "The top of the rectangle, in pixels.\nAlways set.",
+          "description": "The top of the rectangle, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         },
         "widthPx": {
-          "description": "The width, in pixels.\nAlways set.",
+          "description": "The width, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         }
@@ -3027,11 +3041,11 @@
       "type": "object"
     },
     "SafeHtmlProto": {
-      "description": "IMPORTANT: It is unsafe to accept this message from an untrusted source,\nsince it's trivial for an attacker to forge serialized messages that\ndon't fulfill the type's safety contract -- for example, it could contain\nattacker controlled script. A system which receives a SafeHtmlProto\nimplicitly trusts the producer of the SafeHtmlProto. So, it's generally safe\nto return this message in RPC responses, but generally unsafe to accept it\nin RPC requests.",
+      "description": "IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.",
       "id": "SafeHtmlProto",
       "properties": {
         "privateDoNotAccessOrElseSafeHtmlWrappedValue": {
-          "description": "IMPORTANT: Never set or read this field, even from tests, it is private.\nSee documentation at the top of .proto file for programming language\npackages with which to create or read this message.",
+          "description": "IMPORTANT: Never set or read this field, even from tests, it is private. See documentation at the top of .proto file for programming language packages with which to create or read this message.",
           "type": "string"
         }
       },
@@ -3041,19 +3055,19 @@
       "id": "Screen",
       "properties": {
         "fileReference": {
-          "description": "File reference of the png file.\nRequired.",
+          "description": "File reference of the png file. Required.",
           "type": "string"
         },
         "locale": {
-          "description": "Locale of the device that the screenshot was taken on.\nRequired.",
+          "description": "Locale of the device that the screenshot was taken on. Required.",
           "type": "string"
         },
         "model": {
-          "description": "Model of the device that the screenshot was taken on.\nRequired.",
+          "description": "Model of the device that the screenshot was taken on. Required.",
           "type": "string"
         },
         "version": {
-          "description": "OS version of the device that the screenshot was taken on.\nRequired.",
+          "description": "OS version of the device that the screenshot was taken on. Required.",
           "type": "string"
         }
       },
@@ -3067,12 +3081,12 @@
           "type": "string"
         },
         "clusterId": {
-          "description": "A unique identifier for the cluster.\n@OutputOnly",
+          "description": "A unique identifier for the cluster. @OutputOnly",
           "type": "string"
         },
         "keyScreen": {
           "$ref": "Screen",
-          "description": "A singular screen that represents the cluster as a whole. This screen will\nact as the \"cover\" of the entire cluster. When users look at the clusters,\nonly the key screen from each cluster will be shown. Which screen is the\nkey screen is determined by the ClusteringAlgorithm"
+          "description": "A singular screen that represents the cluster as a whole. This screen will act as the \"cover\" of the entire cluster. When users look at the clusters, only the key screen from each cluster will be shown. Which screen is the key screen is determined by the ClusteringAlgorithm"
         },
         "screens": {
           "description": "Full list of screens.",
@@ -3089,7 +3103,7 @@
       "id": "ShardSummary",
       "properties": {
         "runs": {
-          "description": "Summaries of the steps belonging to the shard.\n\nWith flaky_test_attempts enabled from TestExecutionService, more than one\nrun (Step) can present. And the runs will be sorted by multistep_number.",
+          "description": "Summaries of the steps belonging to the shard. With flaky_test_attempts enabled from TestExecutionService, more than one run (Step) can present. And the runs will be sorted by multistep_number.",
           "items": {
             "$ref": "StepSummary"
           },
@@ -3141,7 +3155,7 @@
       "id": "StackTrace",
       "properties": {
         "exception": {
-          "description": "The stack trace message.\n\nRequired",
+          "description": "The stack trace message. Required",
           "type": "string"
         }
       },
@@ -3161,7 +3175,7 @@
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -3170,7 +3184,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -3181,45 +3195,45 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Step": {
-      "description": "A Step represents a single operation performed as part of\nExecution. A step can be used to represent the execution of a tool (\nfor example a test runner execution or an execution of a compiler).\n\nSteps can overlap (for instance two steps might have the same\nstart time if some operations are done in parallel).\n\nHere is an example, let's consider that we have a continuous build is\nexecuting a test runner for each iteration. The workflow would look like:\n- user creates a Execution with id 1\n- user creates an TestExecutionStep with id 100 for Execution 1\n- user update TestExecutionStep with id 100 to add a raw xml log\n    + the service parses the xml logs and returns a TestExecutionStep with\n     updated TestResult(s).\n- user update the status of TestExecutionStep with id 100 to COMPLETE\n\nA Step can be updated until its state is set to COMPLETE at which\npoints it becomes immutable.\n\nNext tag: 27",
+      "description": "A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler). Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel). Here is an example, let's consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE A Step can be updated until its state is set to COMPLETE at which points it becomes immutable. Next tag: 27",
       "id": "Step",
       "properties": {
         "completionTime": {
           "$ref": "Timestamp",
-          "description": "The time when the step status was set to complete.\n\nThis value will be set automatically when state transitions to\nCOMPLETE.\n\n- In response: set if the execution state is COMPLETE.\n- In create/update request: never set"
+          "description": "The time when the step status was set to complete. This value will be set automatically when state transitions to COMPLETE. - In response: set if the execution state is COMPLETE. - In create/update request: never set"
         },
         "creationTime": {
           "$ref": "Timestamp",
-          "description": "The time when the step was created.\n\n- In response: always set\n- In create/update request: never set"
+          "description": "The time when the step was created. - In response: always set - In create/update request: never set"
         },
         "description": {
-          "description": "A description of this tool\nFor example: mvn clean package -D skipTests=true\n\n- In response: present if set by create/update request\n- In create/update request: optional",
+          "description": "A description of this tool For example: mvn clean package -D skipTests=true - In response: present if set by create/update request - In create/update request: optional",
           "type": "string"
         },
         "deviceUsageDuration": {
           "$ref": "Duration",
-          "description": "How much the device resource is used to perform the test.\n\nThis is the device usage used for billing purpose, which is different from\nthe run_duration, for example, infrastructure failure won't be charged for\ndevice usage.\n\nPRECONDITION_FAILED will be returned if one attempts to set a\ndevice_usage on a step which already has this field set.\n\n- In response: present if previously set.\n- In create request: optional\n- In update request: optional"
+          "description": "How much the device resource is used to perform the test. This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won't be charged for device usage. PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set. - In response: present if previously set. - In create request: optional - In update request: optional"
         },
         "dimensionValue": {
-          "description": "If the execution containing this step has any dimension_definition set,\nthen this field allows the child to specify the values of the dimensions.\n\nThe keys must exactly match the dimension_definition of the execution.\n\nFor example, if the execution has\n`dimension_definition = ['attempt', 'device']`\nthen a step must define values for those dimensions, eg.\n`dimension_value = ['attempt': '1', 'device': 'Nexus 6']`\n\nIf a step does not participate in one dimension of the matrix,\nthe value for that dimension should be empty string.\nFor example, if one of the tests is executed by a runner which\ndoes not support retries, the step could have\n`dimension_value = ['attempt': '', 'device': 'Nexus 6']`\n\nIf the step does not participate in any dimensions of the matrix,\nit may leave dimension_value unset.\n\nA PRECONDITION_FAILED will be returned if any of the keys do not exist\nin the dimension_definition of the execution.\n\nA PRECONDITION_FAILED will be returned if another step in this execution\nalready has the same name and dimension_value, but differs on other data\nfields, for example, step field is different.\n\nA PRECONDITION_FAILED will be returned if dimension_value is set, and\nthere is a dimension_definition in the execution which is not specified\nas one of the keys.\n\n- In response: present if set by create\n- In create request: optional\n- In update request: never set",
+          "description": "If the execution containing this step has any dimension_definition set, then this field allows the child to specify the values of the dimensions. The keys must exactly match the dimension_definition of the execution. For example, if the execution has `dimension_definition = ['attempt', 'device']` then a step must define values for those dimensions, eg. `dimension_value = ['attempt': '1', 'device': 'Nexus 6']` If a step does not participate in one dimension of the matrix, the value for that dimension should be empty string. For example, if one of the tests is executed by a runner which does not support retries, the step could have `dimension_value = ['attempt': '', 'device': 'Nexus 6']` If the step does not participate in any dimensions of the matrix, it may leave dimension_value unset. A PRECONDITION_FAILED will be returned if any of the keys do not exist in the dimension_definition of the execution. A PRECONDITION_FAILED will be returned if another step in this execution already has the same name and dimension_value, but differs on other data fields, for example, step field is different. A PRECONDITION_FAILED will be returned if dimension_value is set, and there is a dimension_definition in the execution which is not specified as one of the keys. - In response: present if set by create - In create request: optional - In update request: never set",
           "items": {
             "$ref": "StepDimensionValueEntry"
           },
           "type": "array"
         },
         "hasImages": {
-          "description": "Whether any of the outputs of this step are images whose\nthumbnails can be fetched with ListThumbnails.\n\n- In response: always set\n- In create/update request: never set",
+          "description": "Whether any of the outputs of this step are images whose thumbnails can be fetched with ListThumbnails. - In response: always set - In create/update request: never set",
           "type": "boolean"
         },
         "labels": {
-          "description": "Arbitrary user-supplied key/value pairs that are associated with the\nstep.\n\nUsers are responsible for managing the key namespace such that keys\ndon't accidentally collide.\n\nAn INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or\nif the length of any of the keys or values exceeds 100 characters.\n\n- In response: always set\n- In create request: optional\n- In update request: optional; any new key/value pair will be added to the\n  map, and any new value for an existing key will update that key's value",
+          "description": "Arbitrary user-supplied key/value pairs that are associated with the step. Users are responsible for managing the key namespace such that keys don't accidentally collide. An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters. - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the map, and any new value for an existing key will update that key's value",
           "items": {
             "$ref": "StepLabelsEntry"
           },
@@ -3227,22 +3241,22 @@
         },
         "multiStep": {
           "$ref": "MultiStep",
-          "description": "Details when multiple steps are run with the same configuration as a group.\nThese details can be used identify which group this step is part of.\nIt also identifies the groups 'primary step' which indexes all the group\nmembers.\n\n- In response: present if previously set.\n- In create request: optional, set iff this step was performed more than\nonce.\n- In update request: optional"
+          "description": "Details when multiple steps are run with the same configuration as a group. These details can be used identify which group this step is part of. It also identifies the groups 'primary step' which indexes all the group members. - In response: present if previously set. - In create request: optional, set iff this step was performed more than once. - In update request: optional"
         },
         "name": {
-          "description": "A short human-readable name to display in the UI.\nMaximum of 100 characters.\nFor example: Clean build\n\nA PRECONDITION_FAILED will be returned upon creating a new step if it\nshares its name and dimension_value with an existing step. If two steps\nrepresent a similar action, but have different dimension values, they\nshould share the same name. For instance, if the same set of tests is\nrun on two different platforms, the two steps should have the same name.\n\n- In response: always set\n- In create request: always set\n- In update request: never set",
+          "description": "A short human-readable name to display in the UI. Maximum of 100 characters. For example: Clean build A PRECONDITION_FAILED will be returned upon creating a new step if it shares its name and dimension_value with an existing step. If two steps represent a similar action, but have different dimension values, they should share the same name. For instance, if the same set of tests is run on two different platforms, the two steps should have the same name. - In response: always set - In create request: always set - In update request: never set",
           "type": "string"
         },
         "outcome": {
           "$ref": "Outcome",
-          "description": "Classification of the result, for example into SUCCESS or FAILURE\n\n- In response: present if set by create/update request\n- In create/update request: optional"
+          "description": "Classification of the result, for example into SUCCESS or FAILURE - In response: present if set by create/update request - In create/update request: optional"
         },
         "runDuration": {
           "$ref": "Duration",
-          "description": "How long it took for this step to run.\n\nIf unset, this is set to the difference between creation_time and\ncompletion_time when the step is set to the COMPLETE state. In some cases,\nit is appropriate to set this value separately: For instance, if a step is\ncreated, but the operation it represents is queued for a few minutes before\nit executes, it would be appropriate not to include the time spent queued\nin its run_duration.\n\nPRECONDITION_FAILED will be returned if one attempts to set a\nrun_duration on a step which already has this field set.\n\n- In response: present if previously set; always present on COMPLETE step\n- In create request: optional\n- In update request: optional"
+          "description": "How long it took for this step to run. If unset, this is set to the difference between creation_time and completion_time when the step is set to the COMPLETE state. In some cases, it is appropriate to set this value separately: For instance, if a step is created, but the operation it represents is queued for a few minutes before it executes, it would be appropriate not to include the time spent queued in its run_duration. PRECONDITION_FAILED will be returned if one attempts to set a run_duration on a step which already has this field set. - In response: present if previously set; always present on COMPLETE step - In create request: optional - In update request: optional"
         },
         "state": {
-          "description": "The initial state is IN_PROGRESS.\nThe only legal state transitions are\n* IN_PROGRESS -> COMPLETE\n\nA PRECONDITION_FAILED will be returned if an invalid transition is\nrequested.\n\nIt is valid to create Step with a state set to COMPLETE.\nThe state can only be set to COMPLETE once. A PRECONDITION_FAILED will be\nreturned if the state is set to COMPLETE multiple times.\n\n- In response: always set\n- In create/update request: optional",
+          "description": "The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -> COMPLETE A PRECONDITION_FAILED will be returned if an invalid transition is requested. It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times. - In response: always set - In create/update request: optional",
           "enum": [
             "unknownState",
             "pending",
@@ -3250,15 +3264,15 @@
             "complete"
           ],
           "enumDescriptions": [
-            "Should never be in this state. Exists for proto deserialization backward\ncompatibility.",
-            "The Execution/Step is created, ready to run, but not running yet.\nIf an Execution/Step is created without initial state, it is assumed\nthat the Execution/Step is in PENDING state.",
+            "Should never be in this state. Exists for proto deserialization backward compatibility.",
+            "The Execution/Step is created, ready to run, but not running yet. If an Execution/Step is created without initial state, it is assumed that the Execution/Step is in PENDING state.",
             "The Execution/Step is in progress.",
-            "The finalized, immutable state. Steps/Executions in this state cannot be\nmodified."
+            "The finalized, immutable state. Steps/Executions in this state cannot be modified."
           ],
           "type": "string"
         },
         "stepId": {
-          "description": "A unique identifier within a Execution for this Step.\n\nReturns INVALID_ARGUMENT if this field is set or overwritten by the caller.\n\n- In response: always set\n- In create/update request: never set",
+          "description": "A unique identifier within a Execution for this Step. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response: always set - In create/update request: never set",
           "type": "string"
         },
         "testExecutionStep": {
@@ -3303,7 +3317,7 @@
       "type": "object"
     },
     "SuccessDetail": {
-      "description": "Details for an outcome with a SUCCESS outcome summary.\nLINT.IfChange",
+      "description": "Details for an outcome with a SUCCESS outcome summary. LINT.IfChange",
       "id": "SuccessDetail",
       "properties": {
         "otherNativeCrash": {
@@ -3314,11 +3328,11 @@
       "type": "object"
     },
     "SuggestionClusterProto": {
-      "description": "A set of similar suggestions that we suspect are closely related.\n\nThis proto and most of the nested protos are branched from\nfoxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR's\ndependencies with FTL's.",
+      "description": "A set of similar suggestions that we suspect are closely related. This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR's dependencies with FTL's.",
       "id": "SuggestionClusterProto",
       "properties": {
         "category": {
-          "description": "Category in which these types of suggestions should appear.\nAlways set.",
+          "description": "Category in which these types of suggestions should appear. Always set.",
           "enum": [
             "unknownCategory",
             "contentLabeling",
@@ -3336,7 +3350,7 @@
           "type": "string"
         },
         "suggestions": {
-          "description": "A sequence of suggestions. All of the suggestions within a cluster must\nhave the same SuggestionPriority and belong to the same SuggestionCategory.\nSuggestions with the same screenshot URL should be adjacent.",
+          "description": "A sequence of suggestions. All of the suggestions within a cluster must have the same SuggestionPriority and belong to the same SuggestionCategory. Suggestions with the same screenshot URL should be adjacent.",
           "items": {
             "$ref": "SuggestionProto"
           },
@@ -3349,15 +3363,15 @@
       "id": "SuggestionProto",
       "properties": {
         "helpUrl": {
-          "description": "Reference to a help center article concerning this type of suggestion.\nAlways set.",
+          "description": "Reference to a help center article concerning this type of suggestion. Always set.",
           "type": "string"
         },
         "longMessage": {
           "$ref": "SafeHtmlProto",
-          "description": "Message, in the user's language, explaining the suggestion, which may\ncontain markup.\nAlways set."
+          "description": "Message, in the user's language, explaining the suggestion, which may contain markup. Always set."
         },
         "priority": {
-          "description": "Relative importance of a suggestion.\nAlways set.",
+          "description": "Relative importance of a suggestion. Always set.",
           "enum": [
             "unknownPriority",
             "error",
@@ -3373,32 +3387,32 @@
           "type": "string"
         },
         "pseudoResourceId": {
-          "description": "A somewhat human readable identifier of the source view, if it does not\nhave a resource_name. This is a path within the accessibility hierarchy,\nan element with resource name; similar to an XPath.",
+          "description": "A somewhat human readable identifier of the source view, if it does not have a resource_name. This is a path within the accessibility hierarchy, an element with resource name; similar to an XPath.",
           "type": "string"
         },
         "region": {
           "$ref": "RegionProto",
-          "description": "Region within the screenshot that is relevant to this suggestion.\nOptional."
+          "description": "Region within the screenshot that is relevant to this suggestion. Optional."
         },
         "resourceName": {
-          "description": "Reference to a view element, identified by its resource name, if it has\none.",
+          "description": "Reference to a view element, identified by its resource name, if it has one.",
           "type": "string"
         },
         "screenId": {
-          "description": "ID of the screen for the suggestion.\nIt is used for getting the corresponding screenshot path. For example,\nscreen_id \"1\" corresponds to \"1.png\" file in GCS.\nAlways set.",
+          "description": "ID of the screen for the suggestion. It is used for getting the corresponding screenshot path. For example, screen_id \"1\" corresponds to \"1.png\" file in GCS. Always set.",
           "type": "string"
         },
         "secondaryPriority": {
-          "description": "Relative importance of a suggestion as compared with other suggestions\nthat have the same priority and category.\nThis is a meaningless value that can be used to order suggestions that are\nin the same category and have the same priority.\nThe larger values have higher priority (i.e., are more important).\nOptional.",
+          "description": "Relative importance of a suggestion as compared with other suggestions that have the same priority and category. This is a meaningless value that can be used to order suggestions that are in the same category and have the same priority. The larger values have higher priority (i.e., are more important). Optional.",
           "format": "double",
           "type": "number"
         },
         "shortMessage": {
           "$ref": "SafeHtmlProto",
-          "description": "Concise message, in the user's language, representing the suggestion,\nwhich may contain markup.\nAlways set."
+          "description": "Concise message, in the user's language, representing the suggestion, which may contain markup. Always set."
         },
         "title": {
-          "description": "General title for the suggestion, in the user's language, without markup.\nAlways set.",
+          "description": "General title for the suggestion, in the user's language, without markup. Always set.",
           "type": "string"
         }
       },
@@ -3409,18 +3423,18 @@
       "properties": {
         "elapsedTime": {
           "$ref": "Duration",
-          "description": "The elapsed run time of the test case.\n\nRequired."
+          "description": "The elapsed run time of the test case. Required."
         },
         "endTime": {
           "$ref": "Timestamp",
           "description": "The end time of the test case."
         },
         "skippedMessage": {
-          "description": "Why the test case was skipped.\n\nPresent only for skipped test case",
+          "description": "Why the test case was skipped. Present only for skipped test case",
           "type": "string"
         },
         "stackTraces": {
-          "description": "The stack trace details if the test case failed or encountered an error.\n\nThe maximum size of the stack traces is 100KiB, beyond which the stack\ntrack will be truncated.\n\nZero if the test case passed.",
+          "description": "The stack trace details if the test case failed or encountered an error. The maximum size of the stack traces is 100KiB, beyond which the stack track will be truncated. Zero if the test case passed.",
           "items": {
             "$ref": "StackTrace"
           },
@@ -3431,7 +3445,7 @@
           "description": "The start time of the test case."
         },
         "status": {
-          "description": "The status of the test case.\n\nRequired.",
+          "description": "The status of the test case. Required.",
           "enum": [
             "passed",
             "failed",
@@ -3444,7 +3458,7 @@
             "Test failed.",
             "Test encountered an error",
             "Test skipped",
-            "Test flaked.\n\nPresent only for rollup test cases; test cases from steps that were run\nwith the same configuration had both failure and success outcomes."
+            "Test flaked. Present only for rollup test cases; test cases from steps that were run with the same configuration had both failure and success outcomes."
           ],
           "type": "string"
         },
@@ -3454,10 +3468,10 @@
         },
         "testCaseReference": {
           "$ref": "TestCaseReference",
-          "description": "Test case reference, e.g. name, class name and test suite name.\n\nRequired."
+          "description": "Test case reference, e.g. name, class name and test suite name. Required."
         },
         "toolOutputs": {
-          "description": "References to opaque files of any format output by the tool execution.\n\n@OutputOnly",
+          "description": "References to opaque files of any format output by the tool execution. @OutputOnly",
           "items": {
             "$ref": "ToolOutputReference"
           },
@@ -3467,7 +3481,7 @@
       "type": "object"
     },
     "TestCaseReference": {
-      "description": "A reference to a test case.\n\nTest case references are canonically ordered lexicographically by these three\nfactors:\n* First, by test_suite_name.\n* Second, by class_name.\n* Third, by name.",
+      "description": "A reference to a test case. Test case references are canonically ordered lexicographically by these three factors: * First, by test_suite_name. * Second, by class_name. * Third, by name.",
       "id": "TestCaseReference",
       "properties": {
         "className": {
@@ -3475,7 +3489,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the test case.\n\nRequired.",
+          "description": "The name of the test case. Required.",
           "type": "string"
         },
         "testSuiteName": {
@@ -3486,18 +3500,18 @@
       "type": "object"
     },
     "TestExecutionStep": {
-      "description": "A step that represents running tests.\n\nIt accepts ant-junit xml files which will be parsed into structured test\nresults by the service. Xml file paths are updated in order to append more\nfiles, however they can't be deleted.\n\nUsers can also add test results manually by using the test_result field.",
+      "description": "A step that represents running tests. It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can't be deleted. Users can also add test results manually by using the test_result field.",
       "id": "TestExecutionStep",
       "properties": {
         "testIssues": {
-          "description": "Issues observed during the test execution.\n\nFor example, if the mobile app under test crashed during the test,\nthe error message and the stack trace content can be recorded here\nto assist debugging.\n\n- In response: present if set by create or update\n- In create/update request: optional",
+          "description": "Issues observed during the test execution. For example, if the mobile app under test crashed during the test, the error message and the stack trace content can be recorded here to assist debugging. - In response: present if set by create or update - In create/update request: optional",
           "items": {
             "$ref": "TestIssue"
           },
           "type": "array"
         },
         "testSuiteOverviews": {
-          "description": "List of test suite overview contents. This could be parsed from xUnit XML\nlog by server, or uploaded directly by user. This references should only be\ncalled when test suites are fully parsed or uploaded.\n\nThe maximum allowed number of test suite overviews per step is 1000.\n\n- In response: always set\n- In create request: optional\n- In update request: never (use publishXunitXmlFiles custom method instead)",
+          "description": "List of test suite overview contents. This could be parsed from xUnit XML log by server, or uploaded directly by user. This references should only be called when test suites are fully parsed or uploaded. The maximum allowed number of test suite overviews per step is 1000. - In response: always set - In create request: optional - In update request: never (use publishXunitXmlFiles custom method instead)",
           "items": {
             "$ref": "TestSuiteOverview"
           },
@@ -3505,11 +3519,11 @@
         },
         "testTiming": {
           "$ref": "TestTiming",
-          "description": "The timing break down of the test execution.\n\n- In response: present if set by create or update\n- In create/update request: optional"
+          "description": "The timing break down of the test execution. - In response: present if set by create or update - In create/update request: optional"
         },
         "toolExecution": {
           "$ref": "ToolExecution",
-          "description": "Represents the execution of the test runner.\n\nThe exit code of this tool will be used to determine if the test passed.\n\n- In response: always set\n- In create/update request: optional"
+          "description": "Represents the execution of the test runner. The exit code of this tool will be used to determine if the test passed. - In response: always set - In create/update request: optional"
         }
       },
       "type": "object"
@@ -3519,25 +3533,25 @@
       "id": "TestIssue",
       "properties": {
         "category": {
-          "description": "Category of issue.\nRequired.",
+          "description": "Category of issue. Required.",
           "enum": [
             "unspecifiedCategory",
             "common",
             "robo"
           ],
           "enumDescriptions": [
-            "Default unspecified category.\nDo not use. For versioning only.",
+            "Default unspecified category. Do not use. For versioning only.",
             "Issue is not specific to a particular test kind (e.g., a native crash).",
             "Issue is specific to Robo run."
           ],
           "type": "string"
         },
         "errorMessage": {
-          "description": "A brief human-readable message describing the issue.\nRequired.",
+          "description": "A brief human-readable message describing the issue. Required.",
           "type": "string"
         },
         "severity": {
-          "description": "Severity of issue.\nRequired.",
+          "description": "Severity of issue. Required.",
           "enum": [
             "unspecifiedSeverity",
             "info",
@@ -3546,9 +3560,9 @@
             "severe"
           ],
           "enumDescriptions": [
-            "Default unspecified severity.\nDo not use. For versioning only.",
+            "Default unspecified severity. Do not use. For versioning only.",
             "Non critical issue, providing users with some info about the test run.",
-            "Non critical issue, providing users with some hints on improving their\ntesting experience, e.g., suggesting to use Game Loops.",
+            "Non critical issue, providing users with some hints on improving their testing experience, e.g., suggesting to use Game Loops.",
             "Potentially critical issue.",
             "Critical issue."
           ],
@@ -3559,7 +3573,7 @@
           "description": "Deprecated in favor of stack trace fields inside specific warnings."
         },
         "type": {
-          "description": "Type of issue.\nRequired.",
+          "description": "Type of issue. Required.",
           "enum": [
             "unspecifiedType",
             "fatalException",
@@ -3592,7 +3606,7 @@
             "unityException"
           ],
           "enumDescriptions": [
-            "Default unspecified type.\nDo not use. For versioning only.",
+            "Default unspecified type. Do not use. For versioning only.",
             "Issue is a fatal exception.",
             "Issue is a native crash.",
             "Issue is an ANR crash.",
@@ -3606,7 +3620,7 @@
             "The app-under-test has deep links, but none were provided to Robo.",
             "App accessed a non-sdk Api.",
             "App accessed a non-sdk Api (new detailed report)",
-            "Robo crawl encountered at least one screen with elements that are not\nAndroid UI widgets.",
+            "Robo crawl encountered at least one screen with elements that are not Android UI widgets.",
             "Robo crawl encountered at least one probable login screen.",
             "Robo signed in with Google.",
             "iOS App crashed with an exception.",
@@ -3626,13 +3640,13 @@
         },
         "warning": {
           "$ref": "Any",
-          "description": "Warning message with additional details of the issue.\nShould always be a message from com.google.devtools.toolresults.v1.warnings"
+          "description": "Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings"
         }
       },
       "type": "object"
     },
     "TestSuiteOverview": {
-      "description": "A summary of a test suite result either parsed from XML or uploaded\ndirectly by a user.\n\nNote: the API related comments are for StepService only. This message is\nalso being used in ExecutionService in a read only mode for the corresponding\nstep.",
+      "description": "A summary of a test suite result either parsed from XML or uploaded directly by a user. Note: the API related comments are for StepService only. This message is also being used in ExecutionService in a read only mode for the corresponding step.",
       "id": "TestSuiteOverview",
       "properties": {
         "elapsedTime": {
@@ -3640,37 +3654,37 @@
           "description": "Elapsed time of test suite."
         },
         "errorCount": {
-          "description": "Number of test cases in error, typically set by the service by parsing the\nxml_source.\n\n- In create/response: always set\n- In update request: never",
+          "description": "Number of test cases in error, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never",
           "format": "int32",
           "type": "integer"
         },
         "failureCount": {
-          "description": "Number of failed test cases, typically set by the service by parsing the\nxml_source. May also be set by the user.\n\n- In create/response: always set\n- In update request: never",
+          "description": "Number of failed test cases, typically set by the service by parsing the xml_source. May also be set by the user. - In create/response: always set - In update request: never",
           "format": "int32",
           "type": "integer"
         },
         "flakyCount": {
-          "description": "Number of flaky test cases, set by the service by rolling up flaky test\nattempts.\n\nPresent only for rollup test suite overview at environment level. A step\ncannot have flaky test cases.",
+          "description": "Number of flaky test cases, set by the service by rolling up flaky test attempts. Present only for rollup test suite overview at environment level. A step cannot have flaky test cases.",
           "format": "int32",
           "type": "integer"
         },
         "name": {
-          "description": "The name of the test suite.\n\n- In create/response: always set\n- In update request: never",
+          "description": "The name of the test suite. - In create/response: always set - In update request: never",
           "type": "string"
         },
         "skippedCount": {
-          "description": "Number of test cases not run, typically set by the service by parsing the\nxml_source.\n\n- In create/response: always set\n- In update request: never",
+          "description": "Number of test cases not run, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never",
           "format": "int32",
           "type": "integer"
         },
         "totalCount": {
-          "description": "Number of test cases, typically set by the service by parsing the\nxml_source.\n\n- In create/response: always set\n- In update request: never",
+          "description": "Number of test cases, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never",
           "format": "int32",
           "type": "integer"
         },
         "xmlSource": {
           "$ref": "FileReference",
-          "description": "If this test suite was parsed from XML, this is the URI where the original\nXML file is stored.\n\nNote: Multiple test suites can share the same xml_source\n\nReturns INVALID_ARGUMENT if the uri format is not supported.\n\n- In create/response: optional\n- In update request: never"
+          "description": "If this test suite was parsed from XML, this is the URI where the original XML file is stored. Note: Multiple test suites can share the same xml_source Returns INVALID_ARGUMENT if the uri format is not supported. - In create/response: optional - In update request: never"
         }
       },
       "type": "object"
@@ -3681,7 +3695,7 @@
       "properties": {
         "testProcessDuration": {
           "$ref": "Duration",
-          "description": "How long it took to run the test process.\n\n- In response: present if previously set.\n- In create/update request: optional"
+          "description": "How long it took to run the test process. - In response: present if previously set. - In create/update request: optional"
         }
       },
       "type": "object"
@@ -3691,21 +3705,21 @@
       "id": "Thumbnail",
       "properties": {
         "contentType": {
-          "description": "The thumbnail's content type, i.e. \"image/png\".\n\nAlways set.",
+          "description": "The thumbnail's content type, i.e. \"image/png\". Always set.",
           "type": "string"
         },
         "data": {
-          "description": "The thumbnail file itself.\n\nThat is, the bytes here are precisely the bytes that make up the thumbnail\nfile; they can be served as an image as-is (with the appropriate content\ntype.)\n\nAlways set.",
+          "description": "The thumbnail file itself. That is, the bytes here are precisely the bytes that make up the thumbnail file; they can be served as an image as-is (with the appropriate content type.) Always set.",
           "format": "byte",
           "type": "string"
         },
         "heightPx": {
-          "description": "The height of the thumbnail, in pixels.\n\nAlways set.",
+          "description": "The height of the thumbnail, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         },
         "widthPx": {
-          "description": "The width of the thumbnail, in pixels.\n\nAlways set.",
+          "description": "The width of the thumbnail, in pixels. Always set.",
           "format": "int32",
           "type": "integer"
         }
@@ -3713,16 +3727,16 @@
       "type": "object"
     },
     "Timestamp": {
-      "description": "A Timestamp represents a point in time independent of any time zone or local\ncalendar, encoded as a count of seconds and fractions of seconds at\nnanosecond resolution. The count is relative to an epoch at UTC midnight on\nJanuary 1, 1970, in the proleptic Gregorian calendar which extends the\nGregorian calendar backwards to year one.\n\nAll minutes are 60 seconds long. Leap seconds are \"smeared\" so that no leap\nsecond table is needed for interpretation, using a [24-hour linear\nsmear](https://developers.google.com/time/smear).\n\nThe range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By\nrestricting to that range, we ensure that we can convert to and from [RFC\n3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.",
+      "description": "A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are \"smeared\" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.",
       "id": "Timestamp",
       "properties": {
         "nanos": {
-          "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive.",
+          "description": "Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Represents seconds of UTC time since Unix epoch\n1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n9999-12-31T23:59:59Z inclusive.",
+          "description": "Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.",
           "format": "int64",
           "type": "string"
         }
@@ -3730,11 +3744,11 @@
       "type": "object"
     },
     "ToolExecution": {
-      "description": "An execution of an arbitrary tool. It could be a test runner or a tool\ncopying artifacts or deploying code.",
+      "description": "An execution of an arbitrary tool. It could be a test runner or a tool copying artifacts or deploying code.",
       "id": "ToolExecution",
       "properties": {
         "commandLineArguments": {
-          "description": "The full tokenized command line including the program name (equivalent to\nargv in a C program).\n\n- In response: present if set by create request\n- In create request: optional\n- In update request: never set",
+          "description": "The full tokenized command line including the program name (equivalent to argv in a C program). - In response: present if set by create request - In create request: optional - In update request: never set",
           "items": {
             "type": "string"
           },
@@ -3742,17 +3756,17 @@
         },
         "exitCode": {
           "$ref": "ToolExitCode",
-          "description": "Tool execution exit code. This field will be set once the tool has\nexited.\n\n- In response: present if set by create/update request\n- In create request: optional\n- In update request: optional, a FAILED_PRECONDITION error will be\n  returned if an exit_code is already set."
+          "description": "Tool execution exit code. This field will be set once the tool has exited. - In response: present if set by create/update request - In create request: optional - In update request: optional, a FAILED_PRECONDITION error will be returned if an exit_code is already set."
         },
         "toolLogs": {
-          "description": "References to any plain text logs output the tool execution.\n\nThis field can be set before the tool has exited in order to be able to\nhave access to a live view of the logs while the tool is running.\n\nThe maximum allowed number of tool logs per step is 1000.\n\n- In response: present if set by create/update request\n- In create request: optional\n- In update request: optional, any value provided will be appended to the\n  existing list",
+          "description": "References to any plain text logs output the tool execution. This field can be set before the tool has exited in order to be able to have access to a live view of the logs while the tool is running. The maximum allowed number of tool logs per step is 1000. - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the existing list",
           "items": {
             "$ref": "FileReference"
           },
           "type": "array"
         },
         "toolOutputs": {
-          "description": "References to opaque files of any format output by the tool execution.\n\nThe maximum allowed number of tool outputs per step is 1000.\n\n- In response: present if set by create/update request\n- In create request: optional\n- In update request: optional, any value provided will be appended to the\n  existing list",
+          "description": "References to opaque files of any format output by the tool execution. The maximum allowed number of tool outputs per step is 1000. - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the existing list",
           "items": {
             "$ref": "ToolOutputReference"
           },
@@ -3762,12 +3776,12 @@
       "type": "object"
     },
     "ToolExecutionStep": {
-      "description": "Generic tool step to be used for binaries we do not explicitly support.\nFor example: running cp to copy artifacts from one location to another.",
+      "description": "Generic tool step to be used for binaries we do not explicitly support. For example: running cp to copy artifacts from one location to another.",
       "id": "ToolExecutionStep",
       "properties": {
         "toolExecution": {
           "$ref": "ToolExecution",
-          "description": "A Tool execution.\n\n- In response: present if set by create/update request\n- In create/update request: optional"
+          "description": "A Tool execution. - In response: present if set by create/update request - In create/update request: optional"
         }
       },
       "type": "object"
@@ -3777,7 +3791,7 @@
       "id": "ToolExitCode",
       "properties": {
         "number": {
-          "description": "Tool execution exit code. A value of 0 means that the execution was\nsuccessful.\n\n- In response: always set\n- In create/update request: always set",
+          "description": "Tool execution exit code. A value of 0 means that the execution was successful. - In response: always set - In create/update request: always set",
           "format": "int32",
           "type": "integer"
         }
@@ -3790,15 +3804,15 @@
       "properties": {
         "creationTime": {
           "$ref": "Timestamp",
-          "description": "The creation time of the file.\n\n- In response: present if set by create/update request\n- In create/update request: optional"
+          "description": "The creation time of the file. - In response: present if set by create/update request - In create/update request: optional"
         },
         "output": {
           "$ref": "FileReference",
-          "description": "A FileReference to an output file.\n\n- In response: always set\n- In create/update request: always set"
+          "description": "A FileReference to an output file. - In response: always set - In create/update request: always set"
         },
         "testCase": {
           "$ref": "TestCaseReference",
-          "description": "The test case to which this output file belongs.\n\n- In response: present if set by create/update request\n- In create/update request: optional"
+          "description": "The test case to which this output file belongs. - In response: present if set by create/update request - In create/update request: optional"
         }
       },
       "type": "object"
@@ -3841,7 +3855,7 @@
       "type": "object"
     },
     "UpgradeInsight": {
-      "description": "This insight is a recommendation to upgrade a given library to the specified\nversion, in order to avoid dependencies on non-SDK APIs.",
+      "description": "This insight is a recommendation to upgrade a given library to the specified version, in order to avoid dependencies on non-SDK APIs.",
       "id": "UpgradeInsight",
       "properties": {
         "packageName": {
@@ -3849,7 +3863,7 @@
           "type": "string"
         },
         "upgradeToVersion": {
-          "description": "The suggested version to upgrade to.\nOptional: In case we are not sure which version solves this problem",
+          "description": "The suggested version to upgrade to. Optional: In case we are not sure which version solves this problem",
           "type": "string"
         }
       },
@@ -3867,7 +3881,7 @@
       "type": "object"
     },
     "UsedRoboIgnoreDirective": {
-      "description": "Additional details of a used Robo directive with an ignore action.\nNote: This is a different scenario than unused directive.",
+      "description": "Additional details of a used Robo directive with an ignore action. Note: This is a different scenario than unused directive.",
       "id": "UsedRoboIgnoreDirective",
       "properties": {
         "resourceName": {

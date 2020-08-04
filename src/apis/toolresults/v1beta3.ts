@@ -149,7 +149,7 @@ export namespace toolresults_v1beta3 {
     versionName?: string | null;
   }
   /**
-   * A test of an Android application that can control an Android component independently of its normal lifecycle.  See &lt;http://developer.android.com/tools/testing/testing_android.html&gt; for more information on types of Android tests.
+   * A test of an Android application that can control an Android component independently of its normal lifecycle. See for more information on types of Android tests.
    */
   export interface Schema$AndroidInstrumentationTest {
     /**
@@ -161,7 +161,7 @@ export namespace toolresults_v1beta3 {
      */
     testRunnerClass?: string | null;
     /**
-     * Each target must be fully qualified with the package name or class name, in one of these formats:  - &quot;package package_name&quot;  - &quot;class package_name.class_name&quot;  - &quot;class package_name.class_name#method_name&quot;  If empty, all targets in the module will be run.
+     * Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot; If empty, all targets in the module will be run.
      */
     testTargets?: string[] | null;
     /**
@@ -233,11 +233,11 @@ export namespace toolresults_v1beta3 {
     stackTrace?: Schema$StackTrace;
   }
   /**
-   *  `Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message.  Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type.  Example 1: Pack and unpack a message in C++.      Foo foo = ...;     Any any;     any.PackFrom(foo);     ...     if (any.UnpackTo(&amp;foo)) {       ...     }  Example 2: Pack and unpack a message in Java.      Foo foo = ...;     Any any = Any.pack(foo);     ...     if (any.is(Foo.class)) {       foo = any.unpack(Foo.class);     }   Example 3: Pack and unpack a message in Python.      foo = Foo(...)     any = Any()     any.Pack(foo)     ...     if any.Is(Foo.DESCRIPTOR):       any.Unpack(foo)       ...   Example 4: Pack and unpack a message in Go       foo := &amp;pb.Foo{...}      any, err := ptypes.MarshalAny(foo)      ...      foo := &amp;pb.Foo{}      if err := ptypes.UnmarshalAny(any, foo); err != nil {        ...      }  The pack methods provided by protobuf library will by default use &#39;type.googleapis.com/full.type.name&#39; as the type URL and the unpack methods only use the fully qualified type name after the last &#39;/&#39; in the type URL, for example &quot;foo.bar.com/x/y.z&quot; will yield type name &quot;y.z&quot;.   # JSON  The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example:      package google.profile;     message Person {       string first_name = 1;       string last_name = 2;     }      {       &quot;@type&quot;: &quot;type.googleapis.com/google.profile.Person&quot;,       &quot;firstName&quot;: &lt;string&gt;,       &quot;lastName&quot;: &lt;string&gt;     }  If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message google.protobuf.Duration):      {       &quot;@type&quot;: &quot;type.googleapis.com/google.protobuf.Duration&quot;,       &quot;value&quot;: &quot;1.212s&quot;     }
+   *  `Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message. Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type. Example 1: Pack and unpack a message in C++. Foo foo = ...; Any any; any.PackFrom(foo); ... if (any.UnpackTo(&amp;foo)) { ... } Example 2: Pack and unpack a message in Java. Foo foo = ...; Any any = Any.pack(foo); ... if (any.is(Foo.class)) { foo = any.unpack(Foo.class); } Example 3: Pack and unpack a message in Python. foo = Foo(...) any = Any() any.Pack(foo) ... if any.Is(Foo.DESCRIPTOR): any.Unpack(foo) ... Example 4: Pack and unpack a message in Go foo := &amp;pb.Foo{...} any, err := ptypes.MarshalAny(foo) ... foo := &amp;pb.Foo{} if err := ptypes.UnmarshalAny(any, foo); err != nil { ... } The pack methods provided by protobuf library will by default use &#39;type.googleapis.com/full.type.name&#39; as the type URL and the unpack methods only use the fully qualified type name after the last &#39;/&#39; in the type URL, for example &quot;foo.bar.com/x/y.z&quot; will yield type name &quot;y.z&quot;. # JSON The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example: package google.profile; message Person { string first_name = 1; string last_name = 2; } { &quot;@type&quot;: &quot;type.googleapis.com/google.profile.Person&quot;, &quot;firstName&quot;: , &quot;lastName&quot;: } If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message google.protobuf.Duration): { &quot;@type&quot;: &quot;type.googleapis.com/google.protobuf.Duration&quot;, &quot;value&quot;: &quot;1.212s&quot; }
    */
   export interface Schema$Any {
     /**
-     * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one &quot;/&quot; character. The last segment of the URL&#39;s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading &quot;.&quot; is not accepted).  In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows:  * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a google.protobuf.Type   value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the   URL, or have them precompiled into a binary to avoid any   lookup. Therefore, binary compatibility needs to be preserved   on changes to types. (Use versioned type names to manage   breaking changes.)  Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com.  Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
+     * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one &quot;/&quot; character. The last segment of the URL&#39;s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading &quot;.&quot; is not accepted). In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows: * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a google.protobuf.Type value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the URL, or have them precompiled into a binary to avoid any lookup. Therefore, binary compatibility needs to be preserved on changes to types. (Use versioned type names to manage breaking changes.) Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com. Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
      */
     typeUrl?: string | null;
     /**
@@ -355,7 +355,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$Environment {
     /**
-     * Output only. The time when the Environment status was set to complete.  This value will be set automatically when state transitions to COMPLETE.
+     * Output only. The time when the Environment status was set to complete. This value will be set automatically when state transitions to COMPLETE.
      */
     completionTime?: Schema$Timestamp;
     /**
@@ -363,7 +363,7 @@ export namespace toolresults_v1beta3 {
      */
     creationTime?: Schema$Timestamp;
     /**
-     * Dimension values describing the environment. Dimension values always consist of &quot;Model&quot;, &quot;Version&quot;, &quot;Locale&quot;, and &quot;Orientation&quot;.  - In response: always set - In create request: always set - In update request: never set
+     * Dimension values describing the environment. Dimension values always consist of &quot;Model&quot;, &quot;Version&quot;, &quot;Locale&quot;, and &quot;Orientation&quot;. - In response: always set - In create request: always set - In update request: never set
      */
     dimensionValue?: Schema$EnvironmentDimensionValueEntry[];
     /**
@@ -395,7 +395,7 @@ export namespace toolresults_v1beta3 {
      */
     resultsStorage?: Schema$ResultsStorage;
     /**
-     * Output only. Summaries of shards.  Only one shard will present unless sharding feature is enabled in TestExecutionService.
+     * Output only. Summaries of shards. Only one shard will present unless sharding feature is enabled in TestExecutionService.
      */
     shardSummaries?: Schema$ShardSummary[];
   }
@@ -404,39 +404,39 @@ export namespace toolresults_v1beta3 {
     value?: string | null;
   }
   /**
-   * An Execution represents a collection of Steps. For instance, it could represent:    - a mobile test executed across a range of device configurations    - a jenkins job with a build step followed by a test step  The maximum size of an execution message is 1 MiB.  An Execution can be updated until its state is set to COMPLETE at which point it becomes immutable.
+   * An Execution represents a collection of Steps. For instance, it could represent: - a mobile test executed across a range of device configurations - a jenkins job with a build step followed by a test step The maximum size of an execution message is 1 MiB. An Execution can be updated until its state is set to COMPLETE at which point it becomes immutable.
    */
   export interface Schema$Execution {
     /**
-     * The time when the Execution status transitioned to COMPLETE.  This value will be set automatically when state transitions to COMPLETE.  - In response: set if the execution state is COMPLETE. - In create/update request: never set
+     * The time when the Execution status transitioned to COMPLETE. This value will be set automatically when state transitions to COMPLETE. - In response: set if the execution state is COMPLETE. - In create/update request: never set
      */
     completionTime?: Schema$Timestamp;
     /**
-     * The time when the Execution was created.  This value will be set automatically when CreateExecution is called.  - In response: always set - In create/update request: never set
+     * The time when the Execution was created. This value will be set automatically when CreateExecution is called. - In response: always set - In create/update request: never set
      */
     creationTime?: Schema$Timestamp;
     /**
-     * The dimensions along which different steps in this execution may vary. This must remain fixed over the life of the execution.  Returns INVALID_ARGUMENT if this field is set in an update request.  Returns INVALID_ARGUMENT if the same name occurs in more than one dimension_definition.  Returns INVALID_ARGUMENT if the size of the list is over 100.  - In response: present if set by create - In create request: optional - In update request: never set
+     * The dimensions along which different steps in this execution may vary. This must remain fixed over the life of the execution. Returns INVALID_ARGUMENT if this field is set in an update request. Returns INVALID_ARGUMENT if the same name occurs in more than one dimension_definition. Returns INVALID_ARGUMENT if the size of the list is over 100. - In response: present if set by create - In create request: optional - In update request: never set
      */
     dimensionDefinitions?: Schema$MatrixDimensionDefinition[];
     /**
-     * A unique identifier within a History for this Execution.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response always set - In create/update request: never set
+     * A unique identifier within a History for this Execution. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response always set - In create/update request: never set
      */
     executionId?: string | null;
     /**
-     * Classify the result, for example into SUCCESS or FAILURE  - In response: present if set by create/update request - In create/update request: optional
+     * Classify the result, for example into SUCCESS or FAILURE - In response: present if set by create/update request - In create/update request: optional
      */
     outcome?: Schema$Outcome;
     /**
-     * Lightweight information about execution request.  - In response: present if set by create - In create: optional - In update: optional
+     * Lightweight information about execution request. - In response: present if set by create - In create: optional - In update: optional
      */
     specification?: Schema$Specification;
     /**
-     * The initial state is IN_PROGRESS.  The only legal state transitions is from IN_PROGRESS to COMPLETE.  A PRECONDITION_FAILED will be returned if an invalid transition is requested.  The state can only be set to COMPLETE once. A FAILED_PRECONDITION will be returned if the state is set to COMPLETE multiple times.  If the state is set to COMPLETE, all the in-progress steps within the execution will be set as COMPLETE. If the outcome of the step is not set, the outcome will be set to INCONCLUSIVE.  - In response always set - In create/update request: optional
+     * The initial state is IN_PROGRESS. The only legal state transitions is from IN_PROGRESS to COMPLETE. A PRECONDITION_FAILED will be returned if an invalid transition is requested. The state can only be set to COMPLETE once. A FAILED_PRECONDITION will be returned if the state is set to COMPLETE multiple times. If the state is set to COMPLETE, all the in-progress steps within the execution will be set as COMPLETE. If the outcome of the step is not set, the outcome will be set to INCONCLUSIVE. - In response always set - In create/update request: optional
      */
     state?: string | null;
     /**
-     * TestExecution Matrix ID that the TestExecutionService uses.  - In response: present if set by create - In create: optional - In update: never set
+     * TestExecution Matrix ID that the TestExecutionService uses. - In response: present if set by create - In create: optional - In update: never set
      */
     testExecutionMatrixId?: string | null;
   }
@@ -487,7 +487,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$FileReference {
     /**
-     * The URI of a file stored in Google Cloud Storage.  For example: http://storage.googleapis.com/mybucket/path/to/test.xml or in gsutil format: gs://mybucket/path/to/test.xml with version-specific info, gs://mybucket/path/to/test.xml#1360383693690000  An INVALID_ARGUMENT error will be returned if the URI format is not supported.  - In response: always set - In create/update request: always set
+     * The URI of a file stored in Google Cloud Storage. For example: http://storage.googleapis.com/mybucket/path/to/test.xml or in gsutil format: gs://mybucket/path/to/test.xml with version-specific info, gs://mybucket/path/to/test.xml#1360383693690000 An INVALID_ARGUMENT error will be returned if the URI format is not supported. - In response: always set - In create/update request: always set
      */
     fileUri?: string | null;
   }
@@ -555,23 +555,23 @@ export namespace toolresults_v1beta3 {
     renderMillis?: string | null;
   }
   /**
-   * A History represents a sorted list of Executions ordered by the start_timestamp_millis field (descending). It can be used to group all the Executions of a continuous build.  Note that the ordering only operates on one-dimension. If a repository has multiple branches, it means that multiple histories will need to be used in order to order Executions per branch.
+   * A History represents a sorted list of Executions ordered by the start_timestamp_millis field (descending). It can be used to group all the Executions of a continuous build. Note that the ordering only operates on one-dimension. If a repository has multiple branches, it means that multiple histories will need to be used in order to order Executions per branch.
    */
   export interface Schema$History {
     /**
-     * A short human-readable (plain text) name to display in the UI. Maximum of 100 characters.  - In response: present if set during create. - In create request: optional
+     * A short human-readable (plain text) name to display in the UI. Maximum of 100 characters. - In response: present if set during create. - In create request: optional
      */
     displayName?: string | null;
     /**
-     * A unique identifier within a project for this History.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response always set - In create request: never set
+     * A unique identifier within a project for this History. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response always set - In create request: never set
      */
     historyId?: string | null;
     /**
-     * A name to uniquely identify a history within a project. Maximum of 200 characters.  - In response always set - In create request: always set
+     * A name to uniquely identify a history within a project. Maximum of 200 characters. - In response always set - In create request: always set
      */
     name?: string | null;
     /**
-     * The platform of the test history.  - In response: always set. Returns the platform of the last execution if unknown.
+     * The platform of the test history. - In response: always set. Returns the platform of the last execution if unknown.
      */
     testPlatform?: string | null;
   }
@@ -584,11 +584,11 @@ export namespace toolresults_v1beta3 {
      */
     error?: Schema$Status;
     /**
-     * A reference to the full-size, original image.  This is the same as the tool_outputs entry for the image under its Step.  Always set.
+     * A reference to the full-size, original image. This is the same as the tool_outputs entry for the image under its Step. Always set.
      */
     sourceImage?: Schema$ToolOutputReference;
     /**
-     * The step to which the image is attached.  Always set.
+     * The step to which the image is attached. Always set.
      */
     stepId?: string | null;
     /**
@@ -622,7 +622,7 @@ export namespace toolresults_v1beta3 {
      */
     hasErrorLogs?: boolean | null;
     /**
-     * If the test runner could not determine success or failure because the test depends on a component other than the system under test which failed.  For example, a mobile test requires provisioning a device where the test executes, and that provisioning can fail.
+     * If the test runner could not determine success or failure because the test depends on a component other than the system under test which failed. For example, a mobile test requires provisioning a device where the test executes, and that provisioning can fail.
      */
     infrastructureFailure?: boolean | null;
   }
@@ -723,33 +723,33 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ListEnvironmentsResponse {
     /**
-     * Environments.  Always set.
+     * Environments. Always set.
      */
     environments?: Schema$Environment[];
     /**
-     * A Execution id  Always set.
+     * A Execution id Always set.
      */
     executionId?: string | null;
     /**
-     * A History id.  Always set.
+     * A History id. Always set.
      */
     historyId?: string | null;
     /**
-     * A continuation token to resume the query at the next item.  Will only be set if there are more Environments to fetch.
+     * A continuation token to resume the query at the next item. Will only be set if there are more Environments to fetch.
      */
     nextPageToken?: string | null;
     /**
-     * A Project id.  Always set.
+     * A Project id. Always set.
      */
     projectId?: string | null;
   }
   export interface Schema$ListExecutionsResponse {
     /**
-     * Executions.  Always set.
+     * Executions. Always set.
      */
     executions?: Schema$Execution[];
     /**
-     * A continuation token to resume the query at the next item.  Will only be set if there are more Executions to fetch.
+     * A continuation token to resume the query at the next item. Will only be set if there are more Executions to fetch.
      */
     nextPageToken?: string | null;
   }
@@ -762,7 +762,7 @@ export namespace toolresults_v1beta3 {
      */
     histories?: Schema$History[];
     /**
-     * A continuation token to resume the query at the next item.  Will only be set if there are more histories to fetch.  Tokens are valid for up to one hour from the time of the first list request. For instance, if you make a list request at 1PM and use the token from this first request 10 minutes later, the token from this second response will only be valid for 50 minutes.
+     * A continuation token to resume the query at the next item. Will only be set if there are more histories to fetch. Tokens are valid for up to one hour from the time of the first list request. For instance, if you make a list request at 1PM and use the token from this first request 10 minutes later, the token from this second response will only be valid for 50 minutes.
      */
     nextPageToken?: string | null;
   }
@@ -794,7 +794,7 @@ export namespace toolresults_v1beta3 {
      */
     clusters?: Schema$SuggestionClusterProto[];
     /**
-     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Always presents.
+     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Always presents.
      */
     name?: string | null;
   }
@@ -803,7 +803,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ListStepsResponse {
     /**
-     * A continuation token to resume the query at the next item.  If set, indicates that there are more steps to read, by calling list again with this value in the page_token field.
+     * A continuation token to resume the query at the next item. If set, indicates that there are more steps to read, by calling list again with this value in the page_token field.
      */
     nextPageToken?: string | null;
     /**
@@ -816,11 +816,11 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ListStepThumbnailsResponse {
     /**
-     * A continuation token to resume the query at the next item.  If set, indicates that there are more thumbnails to read, by calling list again with this value in the page_token field.
+     * A continuation token to resume the query at the next item. If set, indicates that there are more thumbnails to read, by calling list again with this value in the page_token field.
      */
     nextPageToken?: string | null;
     /**
-     * A list of image data.  Images are returned in a deterministic order; they are ordered by these factors, in order of importance: * First, by their associated test case. Images without a test case are   considered greater than images with one. * Second, by their creation time. Images without a creation time are   greater than images with one. * Third, by the order in which they were added to the step (by calls to   CreateStep or UpdateStep).
+     * A list of image data. Images are returned in a deterministic order; they are ordered by these factors, in order of importance: * First, by their associated test case. Images without a test case are considered greater than images with one. * Second, by their creation time. Images without a creation time are greater than images with one. * Third, by the order in which they were added to the step (by calls to CreateStep or UpdateStep).
      */
     thumbnails?: Schema$Image[];
   }
@@ -849,7 +849,7 @@ export namespace toolresults_v1beta3 {
     memoryTotalInKibibyte?: string | null;
   }
   /**
-   * Merged test result for environment.  If the environment has only one step (no reruns or shards), then the merged result is the same as the step result. If the environment has multiple shards and/or reruns, then the results of shards and reruns that belong to the same environment are merged into one environment result.
+   * Merged test result for environment. If the environment has only one step (no reruns or shards), then the merged result is the same as the step result. If the environment has multiple shards and/or reruns, then the results of shards and reruns that belong to the same environment are merged into one environment result.
    */
   export interface Schema$MergedResult {
     /**
@@ -861,7 +861,7 @@ export namespace toolresults_v1beta3 {
      */
     state?: string | null;
     /**
-     * The combined and rolled-up result of each test suite that was run as part  of this environment.   Combining:  When the test cases from a suite are run in different steps (sharding),  the results are added back together in one overview. (e.g., if shard1 has  2 failures and shard2 has 1 failure than the overview failure_count = 3).   Rollup:  When test cases from the same suite are run multiple times (flaky), the  results are combined (e.g., if testcase1.run1 fails, testcase1.run2  passes, and both testcase2.run1 and testcase2.run2 fail then the overview  flaky_count = 1 and failure_count = 1).
+     * The combined and rolled-up result of each test suite that was run as part of this environment. Combining: When the test cases from a suite are run in different steps (sharding), the results are added back together in one overview. (e.g., if shard1 has 2 failures and shard2 has 1 failure than the overview failure_count = 3). Rollup: When test cases from the same suite are run multiple times (flaky), the results are combined (e.g., if testcase1.run1 fails, testcase1.run2 passes, and both testcase2.run1 and testcase2.run2 fail then the overview flaky_count = 1 and failure_count = 1).
      */
     testSuiteOverviews?: Schema$TestSuiteOverview[];
   }
@@ -976,23 +976,23 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$Outcome {
     /**
-     * More information about a FAILURE outcome.  Returns INVALID_ARGUMENT if this field is set but the summary is not FAILURE.  Optional
+     * More information about a FAILURE outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not FAILURE. Optional
      */
     failureDetail?: Schema$FailureDetail;
     /**
-     * More information about an INCONCLUSIVE outcome.  Returns INVALID_ARGUMENT if this field is set but the summary is not INCONCLUSIVE.  Optional
+     * More information about an INCONCLUSIVE outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not INCONCLUSIVE. Optional
      */
     inconclusiveDetail?: Schema$InconclusiveDetail;
     /**
-     * More information about a SKIPPED outcome.  Returns INVALID_ARGUMENT if this field is set but the summary is not SKIPPED.  Optional
+     * More information about a SKIPPED outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not SKIPPED. Optional
      */
     skippedDetail?: Schema$SkippedDetail;
     /**
-     * More information about a SUCCESS outcome.  Returns INVALID_ARGUMENT if this field is set but the summary is not SUCCESS.  Optional
+     * More information about a SUCCESS outcome. Returns INVALID_ARGUMENT if this field is set but the summary is not SUCCESS. Optional
      */
     successDetail?: Schema$SuccessDetail;
     /**
-     * The simplest way to interpret a result.  Required
+     * The simplest way to interpret a result. Required
      */
     summary?: string | null;
   }
@@ -1138,11 +1138,11 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ProjectSettings {
     /**
-     * The name of the Google Cloud Storage bucket to which results are written.  By default, this is unset.  In update request: optional In response: optional
+     * The name of the Google Cloud Storage bucket to which results are written. By default, this is unset. In update request: optional In response: optional
      */
     defaultBucket?: string | null;
     /**
-     * The name of the project&#39;s settings.  Always of the form: projects/{project-id}/settings  In update request: never set In response: always set
+     * The name of the project&#39;s settings. Always of the form: projects/{project-id}/settings In update request: never set In response: always set
      */
     name?: string | null;
   }
@@ -1151,7 +1151,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$PublishXunitXmlFilesRequest {
     /**
-     * URI of the Xunit XML files to publish.  The maximum size of the file this reference is pointing to is 50MB.  Required.
+     * URI of the Xunit XML files to publish. The maximum size of the file this reference is pointing to is 50MB. Required.
      */
     xunitXmlFiles?: Schema$FileReference[];
   }
@@ -1252,7 +1252,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ShardSummary {
     /**
-     * Summaries of the steps belonging to the shard.  With flaky_test_attempts enabled from TestExecutionService, more than one run (Step) can present. And the runs will be sorted by multistep_number.
+     * Summaries of the steps belonging to the shard. With flaky_test_attempts enabled from TestExecutionService, more than one run (Step) can present. And the runs will be sorted by multistep_number.
      */
     runs?: Schema$StepSummary[];
     /**
@@ -1295,7 +1295,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$StackTrace {
     /**
-     * The stack trace message.  Required
+     * The stack trace message. Required
      */
     exception?: string | null;
   }
@@ -1307,7 +1307,7 @@ export namespace toolresults_v1beta3 {
     uri?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1315,7 +1315,7 @@ export namespace toolresults_v1beta3 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1324,59 +1324,59 @@ export namespace toolresults_v1beta3 {
     message?: string | null;
   }
   /**
-   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler).  Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel).  Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log     + the service parses the xml logs and returns a TestExecutionStep with      updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE  A Step can be updated until its state is set to COMPLETE at which points it becomes immutable.  Next tag: 27
+   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler). Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel). Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE A Step can be updated until its state is set to COMPLETE at which points it becomes immutable. Next tag: 27
    */
   export interface Schema$Step {
     /**
-     * The time when the step status was set to complete.  This value will be set automatically when state transitions to COMPLETE.  - In response: set if the execution state is COMPLETE. - In create/update request: never set
+     * The time when the step status was set to complete. This value will be set automatically when state transitions to COMPLETE. - In response: set if the execution state is COMPLETE. - In create/update request: never set
      */
     completionTime?: Schema$Timestamp;
     /**
-     * The time when the step was created.  - In response: always set - In create/update request: never set
+     * The time when the step was created. - In response: always set - In create/update request: never set
      */
     creationTime?: Schema$Timestamp;
     /**
-     * A description of this tool For example: mvn clean package -D skipTests=true  - In response: present if set by create/update request - In create/update request: optional
+     * A description of this tool For example: mvn clean package -D skipTests=true - In response: present if set by create/update request - In create/update request: optional
      */
     description?: string | null;
     /**
-     * How much the device resource is used to perform the test.  This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won&#39;t be charged for device usage.  PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set.  - In response: present if previously set. - In create request: optional - In update request: optional
+     * How much the device resource is used to perform the test. This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won&#39;t be charged for device usage. PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set. - In response: present if previously set. - In create request: optional - In update request: optional
      */
     deviceUsageDuration?: Schema$Duration;
     /**
-     * If the execution containing this step has any dimension_definition set, then this field allows the child to specify the values of the dimensions.  The keys must exactly match the dimension_definition of the execution.  For example, if the execution has `dimension_definition = [&#39;attempt&#39;, &#39;device&#39;]` then a step must define values for those dimensions, eg. `dimension_value = [&#39;attempt&#39;: &#39;1&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]`  If a step does not participate in one dimension of the matrix, the value for that dimension should be empty string. For example, if one of the tests is executed by a runner which does not support retries, the step could have `dimension_value = [&#39;attempt&#39;: &#39;&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]`  If the step does not participate in any dimensions of the matrix, it may leave dimension_value unset.  A PRECONDITION_FAILED will be returned if any of the keys do not exist in the dimension_definition of the execution.  A PRECONDITION_FAILED will be returned if another step in this execution already has the same name and dimension_value, but differs on other data fields, for example, step field is different.  A PRECONDITION_FAILED will be returned if dimension_value is set, and there is a dimension_definition in the execution which is not specified as one of the keys.  - In response: present if set by create - In create request: optional - In update request: never set
+     * If the execution containing this step has any dimension_definition set, then this field allows the child to specify the values of the dimensions. The keys must exactly match the dimension_definition of the execution. For example, if the execution has `dimension_definition = [&#39;attempt&#39;, &#39;device&#39;]` then a step must define values for those dimensions, eg. `dimension_value = [&#39;attempt&#39;: &#39;1&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]` If a step does not participate in one dimension of the matrix, the value for that dimension should be empty string. For example, if one of the tests is executed by a runner which does not support retries, the step could have `dimension_value = [&#39;attempt&#39;: &#39;&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]` If the step does not participate in any dimensions of the matrix, it may leave dimension_value unset. A PRECONDITION_FAILED will be returned if any of the keys do not exist in the dimension_definition of the execution. A PRECONDITION_FAILED will be returned if another step in this execution already has the same name and dimension_value, but differs on other data fields, for example, step field is different. A PRECONDITION_FAILED will be returned if dimension_value is set, and there is a dimension_definition in the execution which is not specified as one of the keys. - In response: present if set by create - In create request: optional - In update request: never set
      */
     dimensionValue?: Schema$StepDimensionValueEntry[];
     /**
-     * Whether any of the outputs of this step are images whose thumbnails can be fetched with ListThumbnails.  - In response: always set - In create/update request: never set
+     * Whether any of the outputs of this step are images whose thumbnails can be fetched with ListThumbnails. - In response: always set - In create/update request: never set
      */
     hasImages?: boolean | null;
     /**
-     * Arbitrary user-supplied key/value pairs that are associated with the step.  Users are responsible for managing the key namespace such that keys don&#39;t accidentally collide.  An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters.  - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the   map, and any new value for an existing key will update that key&#39;s value
+     * Arbitrary user-supplied key/value pairs that are associated with the step. Users are responsible for managing the key namespace such that keys don&#39;t accidentally collide. An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters. - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the map, and any new value for an existing key will update that key&#39;s value
      */
     labels?: Schema$StepLabelsEntry[];
     /**
-     * Details when multiple steps are run with the same configuration as a group. These details can be used identify which group this step is part of. It also identifies the groups &#39;primary step&#39; which indexes all the group members.  - In response: present if previously set. - In create request: optional, set iff this step was performed more than once. - In update request: optional
+     * Details when multiple steps are run with the same configuration as a group. These details can be used identify which group this step is part of. It also identifies the groups &#39;primary step&#39; which indexes all the group members. - In response: present if previously set. - In create request: optional, set iff this step was performed more than once. - In update request: optional
      */
     multiStep?: Schema$MultiStep;
     /**
-     * A short human-readable name to display in the UI. Maximum of 100 characters. For example: Clean build  A PRECONDITION_FAILED will be returned upon creating a new step if it shares its name and dimension_value with an existing step. If two steps represent a similar action, but have different dimension values, they should share the same name. For instance, if the same set of tests is run on two different platforms, the two steps should have the same name.  - In response: always set - In create request: always set - In update request: never set
+     * A short human-readable name to display in the UI. Maximum of 100 characters. For example: Clean build A PRECONDITION_FAILED will be returned upon creating a new step if it shares its name and dimension_value with an existing step. If two steps represent a similar action, but have different dimension values, they should share the same name. For instance, if the same set of tests is run on two different platforms, the two steps should have the same name. - In response: always set - In create request: always set - In update request: never set
      */
     name?: string | null;
     /**
-     * Classification of the result, for example into SUCCESS or FAILURE  - In response: present if set by create/update request - In create/update request: optional
+     * Classification of the result, for example into SUCCESS or FAILURE - In response: present if set by create/update request - In create/update request: optional
      */
     outcome?: Schema$Outcome;
     /**
-     * How long it took for this step to run.  If unset, this is set to the difference between creation_time and completion_time when the step is set to the COMPLETE state. In some cases, it is appropriate to set this value separately: For instance, if a step is created, but the operation it represents is queued for a few minutes before it executes, it would be appropriate not to include the time spent queued in its run_duration.  PRECONDITION_FAILED will be returned if one attempts to set a run_duration on a step which already has this field set.  - In response: present if previously set; always present on COMPLETE step - In create request: optional - In update request: optional
+     * How long it took for this step to run. If unset, this is set to the difference between creation_time and completion_time when the step is set to the COMPLETE state. In some cases, it is appropriate to set this value separately: For instance, if a step is created, but the operation it represents is queued for a few minutes before it executes, it would be appropriate not to include the time spent queued in its run_duration. PRECONDITION_FAILED will be returned if one attempts to set a run_duration on a step which already has this field set. - In response: present if previously set; always present on COMPLETE step - In create request: optional - In update request: optional
      */
     runDuration?: Schema$Duration;
     /**
-     * The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -&gt; COMPLETE  A PRECONDITION_FAILED will be returned if an invalid transition is requested.  It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times.  - In response: always set - In create/update request: optional
+     * The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -&gt; COMPLETE A PRECONDITION_FAILED will be returned if an invalid transition is requested. It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times. - In response: always set - In create/update request: optional
      */
     state?: string | null;
     /**
-     * A unique identifier within a Execution for this Step.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response: always set - In create/update request: never set
+     * A unique identifier within a Execution for this Step. Returns INVALID_ARGUMENT if this field is set or overwritten by the caller. - In response: always set - In create/update request: never set
      */
     stepId?: string | null;
     /**
@@ -1410,7 +1410,7 @@ export namespace toolresults_v1beta3 {
     otherNativeCrash?: boolean | null;
   }
   /**
-   * A set of similar suggestions that we suspect are closely related.  This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR&#39;s dependencies with FTL&#39;s.
+   * A set of similar suggestions that we suspect are closely related. This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR&#39;s dependencies with FTL&#39;s.
    */
   export interface Schema$SuggestionClusterProto {
     /**
@@ -1466,7 +1466,7 @@ export namespace toolresults_v1beta3 {
   }
   export interface Schema$TestCase {
     /**
-     * The elapsed run time of the test case.  Required.
+     * The elapsed run time of the test case. Required.
      */
     elapsedTime?: Schema$Duration;
     /**
@@ -1474,11 +1474,11 @@ export namespace toolresults_v1beta3 {
      */
     endTime?: Schema$Timestamp;
     /**
-     * Why the test case was skipped.  Present only for skipped test case
+     * Why the test case was skipped. Present only for skipped test case
      */
     skippedMessage?: string | null;
     /**
-     * The stack trace details if the test case failed or encountered an error.  The maximum size of the stack traces is 100KiB, beyond which the stack track will be truncated.  Zero if the test case passed.
+     * The stack trace details if the test case failed or encountered an error. The maximum size of the stack traces is 100KiB, beyond which the stack track will be truncated. Zero if the test case passed.
      */
     stackTraces?: Schema$StackTrace[];
     /**
@@ -1486,7 +1486,7 @@ export namespace toolresults_v1beta3 {
      */
     startTime?: Schema$Timestamp;
     /**
-     * The status of the test case.  Required.
+     * The status of the test case. Required.
      */
     status?: string | null;
     /**
@@ -1494,16 +1494,16 @@ export namespace toolresults_v1beta3 {
      */
     testCaseId?: string | null;
     /**
-     * Test case reference, e.g. name, class name and test suite name.  Required.
+     * Test case reference, e.g. name, class name and test suite name. Required.
      */
     testCaseReference?: Schema$TestCaseReference;
     /**
-     * References to opaque files of any format output by the tool execution.  @OutputOnly
+     * References to opaque files of any format output by the tool execution. @OutputOnly
      */
     toolOutputs?: Schema$ToolOutputReference[];
   }
   /**
-   * A reference to a test case.  Test case references are canonically ordered lexicographically by these three factors: * First, by test_suite_name. * Second, by class_name. * Third, by name.
+   * A reference to a test case. Test case references are canonically ordered lexicographically by these three factors: * First, by test_suite_name. * Second, by class_name. * Third, by name.
    */
   export interface Schema$TestCaseReference {
     /**
@@ -1511,7 +1511,7 @@ export namespace toolresults_v1beta3 {
      */
     className?: string | null;
     /**
-     * The name of the test case.  Required.
+     * The name of the test case. Required.
      */
     name?: string | null;
     /**
@@ -1520,23 +1520,23 @@ export namespace toolresults_v1beta3 {
     testSuiteName?: string | null;
   }
   /**
-   * A step that represents running tests.  It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can&#39;t be deleted.  Users can also add test results manually by using the test_result field.
+   * A step that represents running tests. It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can&#39;t be deleted. Users can also add test results manually by using the test_result field.
    */
   export interface Schema$TestExecutionStep {
     /**
-     * Issues observed during the test execution.  For example, if the mobile app under test crashed during the test, the error message and the stack trace content can be recorded here to assist debugging.  - In response: present if set by create or update - In create/update request: optional
+     * Issues observed during the test execution. For example, if the mobile app under test crashed during the test, the error message and the stack trace content can be recorded here to assist debugging. - In response: present if set by create or update - In create/update request: optional
      */
     testIssues?: Schema$TestIssue[];
     /**
-     * List of test suite overview contents. This could be parsed from xUnit XML log by server, or uploaded directly by user. This references should only be called when test suites are fully parsed or uploaded.  The maximum allowed number of test suite overviews per step is 1000.  - In response: always set - In create request: optional - In update request: never (use publishXunitXmlFiles custom method instead)
+     * List of test suite overview contents. This could be parsed from xUnit XML log by server, or uploaded directly by user. This references should only be called when test suites are fully parsed or uploaded. The maximum allowed number of test suite overviews per step is 1000. - In response: always set - In create request: optional - In update request: never (use publishXunitXmlFiles custom method instead)
      */
     testSuiteOverviews?: Schema$TestSuiteOverview[];
     /**
-     * The timing break down of the test execution.  - In response: present if set by create or update - In create/update request: optional
+     * The timing break down of the test execution. - In response: present if set by create or update - In create/update request: optional
      */
     testTiming?: Schema$TestTiming;
     /**
-     * Represents the execution of the test runner.  The exit code of this tool will be used to determine if the test passed.  - In response: always set - In create/update request: optional
+     * Represents the execution of the test runner. The exit code of this tool will be used to determine if the test passed. - In response: always set - In create/update request: optional
      */
     toolExecution?: Schema$ToolExecution;
   }
@@ -1570,7 +1570,7 @@ export namespace toolresults_v1beta3 {
     warning?: Schema$Any;
   }
   /**
-   * A summary of a test suite result either parsed from XML or uploaded directly by a user.  Note: the API related comments are for StepService only. This message is also being used in ExecutionService in a read only mode for the corresponding step.
+   * A summary of a test suite result either parsed from XML or uploaded directly by a user. Note: the API related comments are for StepService only. This message is also being used in ExecutionService in a read only mode for the corresponding step.
    */
   export interface Schema$TestSuiteOverview {
     /**
@@ -1578,31 +1578,31 @@ export namespace toolresults_v1beta3 {
      */
     elapsedTime?: Schema$Duration;
     /**
-     * Number of test cases in error, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
+     * Number of test cases in error, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never
      */
     errorCount?: number | null;
     /**
-     * Number of failed test cases, typically set by the service by parsing the xml_source. May also be set by the user.  - In create/response: always set - In update request: never
+     * Number of failed test cases, typically set by the service by parsing the xml_source. May also be set by the user. - In create/response: always set - In update request: never
      */
     failureCount?: number | null;
     /**
-     * Number of flaky test cases, set by the service by rolling up flaky test attempts.  Present only for rollup test suite overview at environment level. A step cannot have flaky test cases.
+     * Number of flaky test cases, set by the service by rolling up flaky test attempts. Present only for rollup test suite overview at environment level. A step cannot have flaky test cases.
      */
     flakyCount?: number | null;
     /**
-     * The name of the test suite.  - In create/response: always set - In update request: never
+     * The name of the test suite. - In create/response: always set - In update request: never
      */
     name?: string | null;
     /**
-     * Number of test cases not run, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
+     * Number of test cases not run, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never
      */
     skippedCount?: number | null;
     /**
-     * Number of test cases, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
+     * Number of test cases, typically set by the service by parsing the xml_source. - In create/response: always set - In update request: never
      */
     totalCount?: number | null;
     /**
-     * If this test suite was parsed from XML, this is the URI where the original XML file is stored.  Note: Multiple test suites can share the same xml_source  Returns INVALID_ARGUMENT if the uri format is not supported.  - In create/response: optional - In update request: never
+     * If this test suite was parsed from XML, this is the URI where the original XML file is stored. Note: Multiple test suites can share the same xml_source Returns INVALID_ARGUMENT if the uri format is not supported. - In create/response: optional - In update request: never
      */
     xmlSource?: Schema$FileReference;
   }
@@ -1611,7 +1611,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$TestTiming {
     /**
-     * How long it took to run the test process.  - In response: present if previously set. - In create/update request: optional
+     * How long it took to run the test process. - In response: present if previously set. - In create/update request: optional
      */
     testProcessDuration?: Schema$Duration;
   }
@@ -1620,24 +1620,24 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$Thumbnail {
     /**
-     * The thumbnail&#39;s content type, i.e. &quot;image/png&quot;.  Always set.
+     * The thumbnail&#39;s content type, i.e. &quot;image/png&quot;. Always set.
      */
     contentType?: string | null;
     /**
-     * The thumbnail file itself.  That is, the bytes here are precisely the bytes that make up the thumbnail file; they can be served as an image as-is (with the appropriate content type.)  Always set.
+     * The thumbnail file itself. That is, the bytes here are precisely the bytes that make up the thumbnail file; they can be served as an image as-is (with the appropriate content type.) Always set.
      */
     data?: string | null;
     /**
-     * The height of the thumbnail, in pixels.  Always set.
+     * The height of the thumbnail, in pixels. Always set.
      */
     heightPx?: number | null;
     /**
-     * The width of the thumbnail, in pixels.  Always set.
+     * The width of the thumbnail, in pixels. Always set.
      */
     widthPx?: number | null;
   }
   /**
-   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one.  All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear).  The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
    */
   export interface Schema$Timestamp {
     /**
@@ -1654,19 +1654,19 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ToolExecution {
     /**
-     * The full tokenized command line including the program name (equivalent to argv in a C program).  - In response: present if set by create request - In create request: optional - In update request: never set
+     * The full tokenized command line including the program name (equivalent to argv in a C program). - In response: present if set by create request - In create request: optional - In update request: never set
      */
     commandLineArguments?: string[] | null;
     /**
-     * Tool execution exit code. This field will be set once the tool has exited.  - In response: present if set by create/update request - In create request: optional - In update request: optional, a FAILED_PRECONDITION error will be   returned if an exit_code is already set.
+     * Tool execution exit code. This field will be set once the tool has exited. - In response: present if set by create/update request - In create request: optional - In update request: optional, a FAILED_PRECONDITION error will be returned if an exit_code is already set.
      */
     exitCode?: Schema$ToolExitCode;
     /**
-     * References to any plain text logs output the tool execution.  This field can be set before the tool has exited in order to be able to have access to a live view of the logs while the tool is running.  The maximum allowed number of tool logs per step is 1000.  - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the   existing list
+     * References to any plain text logs output the tool execution. This field can be set before the tool has exited in order to be able to have access to a live view of the logs while the tool is running. The maximum allowed number of tool logs per step is 1000. - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the existing list
      */
     toolLogs?: Schema$FileReference[];
     /**
-     * References to opaque files of any format output by the tool execution.  The maximum allowed number of tool outputs per step is 1000.  - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the   existing list
+     * References to opaque files of any format output by the tool execution. The maximum allowed number of tool outputs per step is 1000. - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the existing list
      */
     toolOutputs?: Schema$ToolOutputReference[];
   }
@@ -1675,7 +1675,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ToolExecutionStep {
     /**
-     * A Tool execution.  - In response: present if set by create/update request - In create/update request: optional
+     * A Tool execution. - In response: present if set by create/update request - In create/update request: optional
      */
     toolExecution?: Schema$ToolExecution;
   }
@@ -1684,7 +1684,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ToolExitCode {
     /**
-     * Tool execution exit code. A value of 0 means that the execution was successful.  - In response: always set - In create/update request: always set
+     * Tool execution exit code. A value of 0 means that the execution was successful. - In response: always set - In create/update request: always set
      */
     number?: number | null;
   }
@@ -1693,15 +1693,15 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$ToolOutputReference {
     /**
-     * The creation time of the file.  - In response: present if set by create/update request - In create/update request: optional
+     * The creation time of the file. - In response: present if set by create/update request - In create/update request: optional
      */
     creationTime?: Schema$Timestamp;
     /**
-     * A FileReference to an output file.  - In response: always set - In create/update request: always set
+     * A FileReference to an output file. - In response: always set - In create/update request: always set
      */
     output?: Schema$FileReference;
     /**
-     * The test case to which this output file belongs.  - In response: present if set by create/update request - In create/update request: optional
+     * The test case to which this output file belongs. - In response: present if set by create/update request - In create/update request: optional
      */
     testCase?: Schema$TestCaseReference;
   }
@@ -1777,7 +1777,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.getSettings
-     * @desc Gets the Tool Results settings for a project.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read from project
+     * @desc Gets the Tool Results settings for a project. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from project
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1802,9 +1802,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.getSettings({
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1825,7 +1823,7 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1910,7 +1908,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.initializeSettings
-     * @desc Creates resources for settings which have not yet been set.  Currently, this creates a single resource: a Google Cloud Storage bucket, to be used as the default bucket for this project. The bucket is created in an FTL-own storage project. Except for in rare cases, calling this method in parallel from multiple clients will only create a single bucket. In order to avoid unnecessary storage charges, the bucket is configured to automatically delete objects older than 90 days.  The bucket is created with the following permissions: - Owner access for owners of central storage project (FTL-owned) - Writer access for owners/editors of customer project - Reader access for viewers of customer project The default ACL on objects created in the bucket is: - Owner access for owners of central storage project - Reader access for owners/editors/viewers of customer project See Google Cloud Storage documentation for more details.  If there is already a default bucket set and the project can access the bucket, this call does nothing. However, if the project doesn't have the permission to access the bucket or the bucket is deleted, a new bucket will be created.  May return any canonical error codes, including the following:  - PERMISSION_DENIED - if the user is not authorized to write to project - Any error code raised by Google Cloud Storage
+     * @desc Creates resources for settings which have not yet been set. Currently, this creates a single resource: a Google Cloud Storage bucket, to be used as the default bucket for this project. The bucket is created in an FTL-own storage project. Except for in rare cases, calling this method in parallel from multiple clients will only create a single bucket. In order to avoid unnecessary storage charges, the bucket is configured to automatically delete objects older than 90 days. The bucket is created with the following permissions: - Owner access for owners of central storage project (FTL-owned) - Writer access for owners/editors of customer project - Reader access for viewers of customer project The default ACL on objects created in the bucket is: - Owner access for owners of central storage project - Reader access for owners/editors/viewers of customer project See Google Cloud Storage documentation for more details. If there is already a default bucket set and the project can access the bucket, this call does nothing. However, if the project doesn't have the permission to access the bucket or the bucket is deleted, a new bucket will be created. May return any canonical error codes, including the following: - PERMISSION_DENIED - if the user is not authorized to write to project - Any error code raised by Google Cloud Storage
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1935,9 +1933,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.initializeSettings({
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1958,7 +1954,7 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2048,14 +2044,14 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Getsettings
     extends StandardParameters {
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Initializesettings
     extends StandardParameters {
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
@@ -2072,7 +2068,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.create
-     * @desc Creates a History.  The returned History will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
+     * @desc Creates a History. The returned History will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2097,14 +2093,9 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.create({
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2138,8 +2129,8 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      * @param {().History} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2225,7 +2216,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.get
-     * @desc Gets a History.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
+     * @desc Gets a History. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2250,13 +2241,9 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.get({
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2279,8 +2266,8 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2366,7 +2353,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.list
-     * @desc Lists Histories for a given Project.  The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
+     * @desc Lists Histories for a given Project. The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2391,24 +2378,13 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.list({
-     *     // If set, only return histories with the given name.
-     *     //
-     *     // Optional.
+     *     // If set, only return histories with the given name. Optional.
      *     filterByName: 'placeholder-value',
-     *     // The maximum number of Histories to fetch.
-     *     //
-     *     // Default value: 20. The server will use this default if the field is not set
-     *     // or has a value of 0. Any value greater than 100 will be treated as 100.
-     *     //
-     *     // Optional.
+     *     // The maximum number of Histories to fetch. Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100. Optional.
      *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
+     *     // A continuation token to resume the query at the next item. Optional.
      *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2429,10 +2405,10 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filterByName If set, only return histories with the given name.  Optional.
-     * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string=} params.filterByName If set, only return histories with the given name. Optional.
+     * @param {integer=} params.pageSize The maximum number of Histories to fetch. Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100. Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2524,11 +2500,11 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Create
     extends StandardParameters {
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      */
     requestId?: string;
 
@@ -2540,30 +2516,30 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Get
     extends StandardParameters {
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$List
     extends StandardParameters {
     /**
-     * If set, only return histories with the given name.  Optional.
+     * If set, only return histories with the given name. Optional.
      */
     filterByName?: string;
     /**
-     * The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
+     * The maximum number of Histories to fetch. Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100. Optional.
      */
     pageSize?: number;
     /**
-     * A continuation token to resume the query at the next item.  Optional.
+     * A continuation token to resume the query at the next item. Optional.
      */
     pageToken?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
@@ -2588,7 +2564,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.create
-     * @desc Creates an Execution.  The returned Execution will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * @desc Creates an Execution. The returned Execution will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2613,18 +2589,11 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.create({
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2666,9 +2635,9 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      * @param {().Execution} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2755,7 +2724,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.get
-     * @desc Gets an Execution.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
+     * @desc Gets an Execution. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2780,17 +2749,11 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.get({
-     *     // An Execution id.
-     *     //
-     *     // Required.
+     *     // An Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2817,9 +2780,9 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.executionId An Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2905,7 +2868,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.list
-     * @desc Lists Executions for a given History.  The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * @desc Lists Executions for a given History. The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2930,24 +2893,13 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.list({
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // The maximum number of Executions to fetch.
-     *     //
-     *     // Default value: 25. The server will use this default if the field is not set
-     *     // or has a value of 0.
-     *     //
-     *     // Optional.
+     *     // The maximum number of Executions to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
      *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
+     *     // A continuation token to resume the query at the next item. Optional.
      *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2968,10 +2920,10 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {integer=} params.pageSize The maximum number of Executions to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3062,7 +3014,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.patch
-     * @desc Updates an existing Execution with the supplied partial entity.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
+     * @desc Updates an existing Execution with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3091,13 +3043,9 @@ export namespace toolresults_v1beta3 {
      *     executionId: 'placeholder-value',
      *     // Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3142,7 +3090,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId Required.
      * @param {string} params.historyId Required.
      * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      * @param {().Execution} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3231,15 +3179,15 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Create
     extends StandardParameters {
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      */
     requestId?: string;
 
@@ -3251,34 +3199,34 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Get
     extends StandardParameters {
     /**
-     * An Execution id.  Required.
+     * An Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$List
     extends StandardParameters {
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * The maximum number of Executions to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
      */
     pageSize?: number;
     /**
-     * A continuation token to resume the query at the next item.  Optional.
+     * A continuation token to resume the query at the next item. Optional.
      */
     pageToken?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
@@ -3297,7 +3245,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
     /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      */
     requestId?: string;
 
@@ -3340,21 +3288,13 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.clusters.get({
-     *     // A Cluster id
-     *     //
-     *     // Required.
+     *     // A Cluster id Required.
      *     clusterId: 'placeholder-value',
-     *     // An Execution id.
-     *     //
-     *     // Required.
+     *     // An Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3377,10 +3317,10 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId A Cluster id  Required.
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.clusterId A Cluster id Required.
+     * @param {string} params.executionId An Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3469,7 +3409,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.clusters.list
-     * @desc Lists Screenshot Clusters  Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
+     * @desc Lists Screenshot Clusters Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3494,17 +3434,11 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.clusters.list({
-     *     // An Execution id.
-     *     //
-     *     // Required.
+     *     // An Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3524,9 +3458,9 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.executionId An Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3623,34 +3557,34 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
     extends StandardParameters {
     /**
-     * A Cluster id  Required.
+     * A Cluster id Required.
      */
     clusterId?: string;
     /**
-     * An Execution id.  Required.
+     * An Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Clusters$List
     extends StandardParameters {
     /**
-     * An Execution id.  Required.
+     * An Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
@@ -3663,7 +3597,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.environments.get
-     * @desc Gets an Environment.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
+     * @desc Gets an Environment. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3818,7 +3752,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.environments.list
-     * @desc Lists Environments for a given Execution.  The Environments are sorted by display name.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
+     * @desc Lists Environments for a given Execution. The Environments are sorted by display name. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3848,10 +3782,7 @@ export namespace toolresults_v1beta3 {
      *       executionId: 'placeholder-value',
      *       // Required. A History id.
      *       historyId: 'placeholder-value',
-     *       // The maximum number of Environments to fetch.
-     *       //
-     *       // Default value: 25. The server will use this default if the field is not set
-     *       // or has a value of 0.
+     *       // The maximum number of Environments to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0.
      *       pageSize: 'placeholder-value',
      *       // A continuation token to resume the query at the next item.
      *       pageToken: 'placeholder-value',
@@ -3882,7 +3813,7 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.executionId Required. An Execution id.
      * @param {string} params.historyId Required. A History id.
-     * @param {integer=} params.pageSize The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
+     * @param {integer=} params.pageSize The maximum number of Environments to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0.
      * @param {string=} params.pageToken A continuation token to resume the query at the next item.
      * @param {string} params.projectId Required. A Project id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4004,7 +3935,7 @@ export namespace toolresults_v1beta3 {
      */
     historyId?: string;
     /**
-     * The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
+     * The maximum number of Environments to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0.
      */
     pageSize?: number;
     /**
@@ -4041,7 +3972,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.accessibilityClusters
-     * @desc Lists accessibility clusters for a given Step  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be                         invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
+     * @desc Lists accessibility clusters for a given Step May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4067,19 +3998,9 @@ export namespace toolresults_v1beta3 {
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.accessibilityClusters(
      *     {
-     *       // The accepted format is the canonical Unicode format with hyphen as a
-     *       // delimiter. Language must be lowercase, Language Script - Capitalized,
-     *       // Region - UPPERCASE.
-     *       // See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for
-     *       // details.
-     *       //
-     *       // Required.
+     *       // The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
      *       locale: 'placeholder-value',
-     *       // A full resource name of the step.
-     *       // For example, projects/my-project/histories/bh.1234567890abcdef/executions/
-     *       // 1234567890123456789/steps/bs.1234567890abcdef
-     *       //
-     *       // Required.
+     *       // A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
      *       name:
      *         'projects/my-project/histories/my-historie/executions/my-execution/steps/my-step',
      *     }
@@ -4102,8 +4023,8 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locale The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
-     * @param {string} params.name A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Required.
+     * @param {string=} params.locale The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
+     * @param {string} params.name A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4203,7 +4124,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.create
-     * @desc Creates a Step.  The returned Step will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
+     * @desc Creates a Step. The returned Step will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4234,10 +4155,7 @@ export namespace toolresults_v1beta3 {
      *     historyId: 'placeholder-value',
      *     // Required. A Project id.
      *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4296,7 +4214,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.executionId Required. An Execution id.
      * @param {string} params.historyId Required. A History id.
      * @param {string} params.projectId Required. A Project id.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      * @param {().Step} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4383,7 +4301,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.get
-     * @desc Gets a Step.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist
+     * @desc Gets a Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4408,21 +4326,13 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.get({
-     *     // A Execution id.
-     *     //
-     *     // Required.
+     *     // A Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
-     *     // A Step id.
-     *     //
-     *     // Required.
+     *     // A Step id. Required.
      *     stepId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4456,10 +4366,10 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id.  Required.
+     * @param {string} params.executionId A Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string} params.stepId A Step id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4545,7 +4455,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.getPerfMetricsSummary
-     * @desc Retrieves a PerfMetricsSummary.  May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist
+     * @desc Retrieves a PerfMetricsSummary. May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4699,7 +4609,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.list
-     * @desc Lists Steps for a given Execution.  The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be                         invalid; e.g. if an attempt is made to list the                         children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist
+     * @desc Lists Steps for a given Execution. The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if an attempt is made to list the children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4724,28 +4634,15 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.list({
-     *     // A Execution id.
-     *     //
-     *     // Required.
+     *     // A Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // The maximum number of Steps to fetch.
-     *     //
-     *     // Default value: 25. The server will use this default if the field is not set
-     *     // or has a value of 0.
-     *     //
-     *     // Optional.
+     *     // The maximum number of Steps to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
      *     pageSize: 'placeholder-value',
-     *     // A continuation token to resume the query at the next item.
-     *     //
-     *     // Optional.
+     *     // A continuation token to resume the query at the next item. Optional.
      *     pageToken: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4766,11 +4663,11 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.executionId A Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {integer=} params.pageSize The maximum number of Steps to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
+     * @param {string} params.projectId A Project id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4859,7 +4756,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.patch
-     * @desc Updates an existing Step with the supplied partial entity.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal                         (e.g try to upload a duplicate xml file), if the                         updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
+     * @desc Updates an existing Step with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal (e.g try to upload a duplicate xml file), if the updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4884,26 +4781,15 @@ export namespace toolresults_v1beta3 {
      *
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.patch({
-     *     // A Execution id.
-     *     //
-     *     // Required.
+     *     // A Execution id. Required.
      *     executionId: 'placeholder-value',
-     *     // A History id.
-     *     //
-     *     // Required.
+     *     // A History id. Required.
      *     historyId: 'placeholder-value',
-     *     // A Project id.
-     *     //
-     *     // Required.
+     *     // A Project id. Required.
      *     projectId: 'placeholder-value',
-     *     // A unique request ID for server to detect duplicated requests.
-     *     // For example, a UUID.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
-     *     // A Step id.
-     *     //
-     *     // Required.
+     *     // A Step id. Required.
      *     stepId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4959,11 +4845,11 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {string} params.stepId A Step id.  Required.
+     * @param {string} params.executionId A Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
+     * @param {string} params.stepId A Step id. Required.
      * @param {().Step} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5050,7 +4936,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.publishXunitXmlFiles
-     * @desc Publish xml files to an existing Step.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist
+     * @desc Publish xml files to an existing Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5076,22 +4962,13 @@ export namespace toolresults_v1beta3 {
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.publishXunitXmlFiles(
      *     {
-     *       // A Execution id.
-     *       //
-     *       // Required.
+     *       // A Execution id. Required.
      *       executionId: 'placeholder-value',
-     *       // A History id.
-     *       //
-     *       // Required.
+     *       // A History id. Required.
      *       historyId: 'placeholder-value',
-     *       // A Project id.
-     *       //
-     *       // Required.
+     *       // A Project id. Required.
      *       projectId: 'placeholder-value',
-     *       // A Step id.
-     *       // Note: This step must include a TestExecutionStep.
-     *       //
-     *       // Required.
+     *       // A Step id. Note: This step must include a TestExecutionStep. Required.
      *       stepId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -5134,10 +5011,10 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * @param {string} params.executionId A Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
      * @param {().PublishXunitXmlFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5226,11 +5103,11 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
     extends StandardParameters {
     /**
-     * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
+     * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
      */
     locale?: string;
     /**
-     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Required.
+     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
      */
     name?: string;
   }
@@ -5249,7 +5126,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
     /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      */
     requestId?: string;
 
@@ -5261,19 +5138,19 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$Get
     extends StandardParameters {
     /**
-     * A Execution id.  Required.
+     * A Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A Step id.  Required.
+     * A Step id. Required.
      */
     stepId?: string;
   }
@@ -5299,46 +5176,46 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$List
     extends StandardParameters {
     /**
-     * A Execution id.  Required.
+     * A Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * The maximum number of Steps to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
      */
     pageSize?: number;
     /**
-     * A continuation token to resume the query at the next item.  Optional.
+     * A continuation token to resume the query at the next item. Optional.
      */
     pageToken?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
     extends StandardParameters {
     /**
-     * A Execution id.  Required.
+     * A Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
+     * A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
      */
     requestId?: string;
     /**
-     * A Step id.  Required.
+     * A Step id. Required.
      */
     stepId?: string;
 
@@ -5350,19 +5227,19 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
     extends StandardParameters {
     /**
-     * A Execution id.  Required.
+     * A Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * A Step id. Note: This step must include a TestExecutionStep. Required.
      */
     stepId?: string;
 
@@ -5380,7 +5257,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
-     * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created.  May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
+     * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created. May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5584,7 +5461,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.create
-     * @desc Creates a PerfSampleSeries.  May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
+     * @desc Creates a PerfSampleSeries. May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5745,7 +5622,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.get
-     * @desc Gets a PerfSampleSeries.  May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
+     * @desc Gets a PerfSampleSeries. May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5907,7 +5784,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.list
-     * @desc Lists PerfSampleSeries for a given Step.  The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids.  May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
+     * @desc Lists PerfSampleSeries for a given Step. The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids. May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6139,7 +6016,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
-     * @desc Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database).  May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * @desc Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database). May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6314,7 +6191,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
-     * @desc Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit  May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * @desc Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6344,8 +6221,7 @@ export namespace toolresults_v1beta3 {
      *       executionId: 'placeholder-value',
      *       // A tool results history ID.
      *       historyId: 'placeholder-value',
-     *       // The default page size is 500 samples, and the maximum size is 5000. If
-     *       // the page_size is greater than 5000, the effective page size will be 5000
+     *       // The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
      *       pageSize: 'placeholder-value',
      *       // Optional, the next_page_token returned in the previous response
      *       pageToken: 'placeholder-value',
@@ -6551,7 +6427,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.testCases.get
-     * @desc Gets details of a Test Case for a Step. Experimental test cases API. Still in active development.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist
+     * @desc Gets details of a Test Case for a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6577,26 +6453,15 @@ export namespace toolresults_v1beta3 {
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.testCases.get(
      *     {
-     *       // A Execution id
-     *       //
-     *       // Required.
+     *       // A Execution id Required.
      *       executionId: 'placeholder-value',
-     *       // A History id.
-     *       //
-     *       // Required.
+     *       // A History id. Required.
      *       historyId: 'placeholder-value',
-     *       // A Project id.
-     *       //
-     *       // Required.
+     *       // A Project id. Required.
      *       projectId: 'placeholder-value',
-     *       // A Step id.
-     *       // Note: This step must include a TestExecutionStep.
-     *       //
-     *       // Required.
+     *       // A Step id. Note: This step must include a TestExecutionStep. Required.
      *       stepId: 'placeholder-value',
-     *       // A Test Case id.
-     *       //
-     *       // Required.
+     *       // A Test Case id. Required.
      *       testCaseId: 'placeholder-value',
      *     }
      *   );
@@ -6625,11 +6490,11 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
-     * @param {string} params.testCaseId A Test Case id.  Required.
+     * @param {string} params.executionId A Execution id Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
+     * @param {string} params.testCaseId A Test Case id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6727,7 +6592,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.testCases.list
-     * @desc Lists Test Cases attached to a Step. Experimental test cases API. Still in active development.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist
+     * @desc Lists Test Cases attached to a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6753,33 +6618,17 @@ export namespace toolresults_v1beta3 {
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.testCases.list(
      *     {
-     *       // A Execution id
-     *       //
-     *       // Required.
+     *       // A Execution id Required.
      *       executionId: 'placeholder-value',
-     *       // A History id.
-     *       //
-     *       // Required.
+     *       // A History id. Required.
      *       historyId: 'placeholder-value',
-     *       // The maximum number of TestCases to fetch.
-     *       //
-     *       // Default value: 100. The server will use this default if the field is not
-     *       // set or has a value of 0.
-     *       //
-     *       // Optional.
+     *       // The maximum number of TestCases to fetch. Default value: 100. The server will use this default if the field is not set or has a value of 0. Optional.
      *       pageSize: 'placeholder-value',
-     *       // A continuation token to resume the query at the next item.
-     *       //
-     *       // Optional.
+     *       // A continuation token to resume the query at the next item. Optional.
      *       pageToken: 'placeholder-value',
-     *       // A Project id.
-     *       //
-     *       // Required.
+     *       // A Project id. Required.
      *       projectId: 'placeholder-value',
-     *       // A Step id.
-     *       // Note: This step must include a TestExecutionStep.
-     *       //
-     *       // Required.
+     *       // A Step id. Note: This step must include a TestExecutionStep. Required.
      *       stepId: 'placeholder-value',
      *     }
      *   );
@@ -6801,12 +6650,12 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of TestCases to fetch.  Default value: 100. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * @param {string} params.executionId A Execution id Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {integer=} params.pageSize The maximum number of TestCases to fetch. Default value: 100. The server will use this default if the field is not set or has a value of 0. Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6899,50 +6748,50 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
     extends StandardParameters {
     /**
-     * A Execution id  Required.
+     * A Execution id Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * A Step id. Note: This step must include a TestExecutionStep. Required.
      */
     stepId?: string;
     /**
-     * A Test Case id.  Required.
+     * A Test Case id. Required.
      */
     testCaseId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
     extends StandardParameters {
     /**
-     * A Execution id  Required.
+     * A Execution id Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * The maximum number of TestCases to fetch.  Default value: 100. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * The maximum number of TestCases to fetch. Default value: 100. The server will use this default if the field is not set or has a value of 0. Optional.
      */
     pageSize?: number;
     /**
-     * A continuation token to resume the query at the next item.  Optional.
+     * A continuation token to resume the query at the next item. Optional.
      */
     pageToken?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * A Step id. Note: This step must include a TestExecutionStep. Required.
      */
     stepId?: string;
   }
@@ -6955,7 +6804,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.steps.thumbnails.list
-     * @desc Lists thumbnails of images attached to a step.  May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the                       project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images               do not exist
+     * @desc Lists thumbnails of images attached to a step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images do not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6981,32 +6830,17 @@ export namespace toolresults_v1beta3 {
      *   // Do the magic
      *   const res = await toolresults.projects.histories.executions.steps.thumbnails.list(
      *     {
-     *       // An Execution id.
-     *       //
-     *       // Required.
+     *       // An Execution id. Required.
      *       executionId: 'placeholder-value',
-     *       // A History id.
-     *       //
-     *       // Required.
+     *       // A History id. Required.
      *       historyId: 'placeholder-value',
-     *       // The maximum number of thumbnails to fetch.
-     *       //
-     *       // Default value: 50. The server will use this default if the field is not set
-     *       // or has a value of 0.
-     *       //
-     *       // Optional.
+     *       // The maximum number of thumbnails to fetch. Default value: 50. The server will use this default if the field is not set or has a value of 0. Optional.
      *       pageSize: 'placeholder-value',
-     *       // A continuation token to resume the query at the next item.
-     *       //
-     *       // Optional.
+     *       // A continuation token to resume the query at the next item. Optional.
      *       pageToken: 'placeholder-value',
-     *       // A Project id.
-     *       //
-     *       // Required.
+     *       // A Project id. Required.
      *       projectId: 'placeholder-value',
-     *       // A Step id.
-     *       //
-     *       // Required.
+     *       // A Step id. Required.
      *       stepId: 'placeholder-value',
      *     }
      *   );
@@ -7028,12 +6862,12 @@ export namespace toolresults_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id.  Required.
-     * @param {string} params.historyId A History id.  Required.
-     * @param {integer=} params.pageSize The maximum number of thumbnails to fetch.  Default value: 50. The server will use this default if the field is not set or has a value of 0.  Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
-     * @param {string} params.projectId A Project id.  Required.
-     * @param {string} params.stepId A Step id.  Required.
+     * @param {string} params.executionId An Execution id. Required.
+     * @param {string} params.historyId A History id. Required.
+     * @param {integer=} params.pageSize The maximum number of thumbnails to fetch. Default value: 50. The server will use this default if the field is not set or has a value of 0. Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
+     * @param {string} params.projectId A Project id. Required.
+     * @param {string} params.stepId A Step id. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7128,27 +6962,27 @@ export namespace toolresults_v1beta3 {
   export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
     extends StandardParameters {
     /**
-     * An Execution id.  Required.
+     * An Execution id. Required.
      */
     executionId?: string;
     /**
-     * A History id.  Required.
+     * A History id. Required.
      */
     historyId?: string;
     /**
-     * The maximum number of thumbnails to fetch.  Default value: 50. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * The maximum number of thumbnails to fetch. Default value: 50. The server will use this default if the field is not set or has a value of 0. Optional.
      */
     pageSize?: number;
     /**
-     * A continuation token to resume the query at the next item.  Optional.
+     * A continuation token to resume the query at the next item. Optional.
      */
     pageToken?: string;
     /**
-     * A Project id.  Required.
+     * A Project id. Required.
      */
     projectId?: string;
     /**
-     * A Step id.  Required.
+     * A Step id. Required.
      */
     stepId?: string;
   }
