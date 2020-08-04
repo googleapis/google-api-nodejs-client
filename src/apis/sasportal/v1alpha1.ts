@@ -138,7 +138,7 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalAssignment {
     /**
-     * The identities the role is assigned to. It can have the following values:  * `{user_email}`: An email address that represents a specific    Google account. For example: `alice@gmail.com`.  * `{group_email}`: An email address that represents a Google    group.  For example, `viewers@gmail.com`.
+     * The identities the role is assigned to. It can have the following values: * `{user_email}`: An email address that represents a specific Google account. For example: `alice@gmail.com`. * `{group_email}`: An email address that represents a Google group. For example, `viewers@gmail.com`.
      */
     members?: string[] | null;
     /**
@@ -237,11 +237,11 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalDeviceAirInterface {
     /**
-     * This field specifies the radio access technology that is used for the CBSD.  Conditional
+     * This field specifies the radio access technology that is used for the CBSD. Conditional
      */
     radioTechnology?: string | null;
     /**
-     * This field is related to the radioTechnology field and provides the air interface specification that the CBSD is compliant with at the time of registration.  Optional
+     * This field is related to the radioTechnology field and provides the air interface specification that the CBSD is compliant with at the time of registration. Optional
      */
     supportedSpec?: string | null;
   }
@@ -366,7 +366,7 @@ export namespace sasportal_v1alpha1 {
     frequencyRange?: Schema$SasPortalFrequencyRange;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$SasPortalEmpty {}
   /**
@@ -413,7 +413,7 @@ export namespace sasportal_v1alpha1 {
      */
     antennaAzimuth?: number | null;
     /**
-     * 3-dB antenna beamwidth of the antenna in the horizontal-plane in degrees.  This parameter is an unsigned integer having a value between 0 and 360 (degrees) inclusive; it is optional for Category A devices and conditional for Category B devices.
+     * 3-dB antenna beamwidth of the antenna in the horizontal-plane in degrees. This parameter is an unsigned integer having a value between 0 and 360 (degrees) inclusive; it is optional for Category A devices and conditional for Category B devices.
      */
     antennaBeamwidth?: number | null;
     /**
@@ -552,7 +552,7 @@ export namespace sasportal_v1alpha1 {
      */
     error?: Schema$SasPortalStatus;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -560,7 +560,7 @@ export namespace sasportal_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -570,7 +570,7 @@ export namespace sasportal_v1alpha1 {
   export interface Schema$SasPortalPolicy {
     assignments?: Schema$SasPortalAssignment[];
     /**
-     * The [etag] is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.  It is strongly suggested that systems make use of the [etag] in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An [etag] is returned in the response to [GetPolicy], and systems are expected to put that etag in the request to [SetPolicy] to ensure that their change will be applied to the same version of the policy.  If no [etag] is provided in the call to [SetPolicy], then the existing policy is overwritten blindly.
+     * The [etag] is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the [etag] in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An [etag] is returned in the response to [GetPolicy], and systems are expected to put that etag in the request to [SetPolicy] to ensure that their change will be applied to the same version of the policy. If no [etag] is provided in the call to [SetPolicy], then the existing policy is overwritten blindly.
      */
     etag?: string | null;
   }
@@ -597,7 +597,7 @@ export namespace sasportal_v1alpha1 {
     device?: Schema$SasPortalDevice;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$SasPortalStatus {
     /**
@@ -605,7 +605,7 @@ export namespace sasportal_v1alpha1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -839,11 +839,9 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.customers.list({
-     *     // The maximum number of customers
-     *     // to return in the response.
+     *     // The maximum number of customers to return in the response.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListCustomers method that indicates where
-     *     // this listing should continue from.
+     *     // A pagination token returned from a previous call to ListCustomers method that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1885,16 +1883,11 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.customers.devices.list({
-     *     // The filter expression. The filter should have one of the following
-     *     // formats: "sn=123454" or "display_name=MyDevice". sn
-     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      *     filter: 'placeholder-value',
-     *     // The maximum number of devices to return in the response.
-     *     // If empty or zero, all devices will be listed.
-     *     // Must be in the range [0, 1000].
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListDevices
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the parent resource.
      *     parent: 'customers/my-customer',
@@ -3163,8 +3156,7 @@ export namespace sasportal_v1alpha1 {
      *   const res = await sasportal.customers.nodes.list({
      *     // The maximum number of nodes to return in the response.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListNodes method
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example, "nodes/1".
      *     parent: 'customers/my-customer',
@@ -3307,8 +3299,7 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.customers.nodes.move({
-     *     // Required. The name of the node to
-     *     // move.
+     *     // Required. The name of the node to move.
      *     name: 'customers/my-customer/nodes/my-node',
      *
      *     // Request body metadata
@@ -3822,8 +3813,7 @@ export namespace sasportal_v1alpha1 {
      *   const res = await sasportal.customers.nodes.nodes.list({
      *     // The maximum number of nodes to return in the response.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListNodes method
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example, "nodes/1".
      *     parent: 'customers/my-customer/nodes/my-node',
@@ -5174,16 +5164,11 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.nodes.devices.list({
-     *     // The filter expression. The filter should have one of the following
-     *     // formats: "sn=123454" or "display_name=MyDevice". sn
-     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      *     filter: 'placeholder-value',
-     *     // The maximum number of devices to return in the response.
-     *     // If empty or zero, all devices will be listed.
-     *     // Must be in the range [0, 1000].
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListDevices
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the parent resource.
      *     parent: 'nodes/my-node',
@@ -6453,8 +6438,7 @@ export namespace sasportal_v1alpha1 {
      *   const res = await sasportal.nodes.nodes.list({
      *     // The maximum number of nodes to return in the response.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListNodes method
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example, "nodes/1".
      *     parent: 'nodes/my-node',
@@ -6596,8 +6580,7 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.nodes.nodes.move({
-     *     // Required. The name of the node to
-     *     // move.
+     *     // Required. The name of the node to move.
      *     name: 'nodes/my-node/nodes/my-node',
      *
      *     // Request body metadata
@@ -7415,16 +7398,11 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await sasportal.nodes.nodes.devices.list({
-     *     // The filter expression. The filter should have one of the following
-     *     // formats: "sn=123454" or "display_name=MyDevice". sn
-     *     // corresponds to serial_number of the device. The filter is case insensitive.
+     *     // The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      *     filter: 'placeholder-value',
-     *     // The maximum number of devices to return in the response.
-     *     // If empty or zero, all devices will be listed.
-     *     // Must be in the range [0, 1000].
+     *     // The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListDevices
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the parent resource.
      *     parent: 'nodes/my-node/nodes/my-node',
@@ -7779,8 +7757,7 @@ export namespace sasportal_v1alpha1 {
      *   const res = await sasportal.nodes.nodes.nodes.list({
      *     // The maximum number of nodes to return in the response.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call to ListNodes method
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example, "nodes/1".
      *     parent: 'nodes/my-node/nodes/my-node',
