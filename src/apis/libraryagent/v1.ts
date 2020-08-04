@@ -360,13 +360,9 @@ export namespace libraryagent_v1 {
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.list({
-     *     // Requested page size. Server may return fewer shelves than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer shelves than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListShelvesResponse.next_page_token
-     *     // returned from the previous call to `ListShelves` method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListShelvesResponse.next_page_token returned from the previous call to `ListShelves` method.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -822,13 +818,9 @@ export namespace libraryagent_v1 {
      *
      *   // Do the magic
      *   const res = await libraryagent.shelves.books.list({
-     *     // Requested page size. Server may return fewer books than requested.
-     *     // If unspecified, server will pick an appropriate default.
+     *     // Requested page size. Server may return fewer books than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     // Typically, this is the value of
-     *     // ListBooksResponse.next_page_token.
-     *     // returned from the previous call to `ListBooks` method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListBooksResponse.next_page_token. returned from the previous call to `ListBooks` method.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the shelf whose books we'd like to list.
      *     parent: 'shelves/my-shelve',
