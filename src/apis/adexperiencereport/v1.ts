@@ -138,7 +138,7 @@ export namespace adexperiencereport_v1 {
      */
     betterAdsStatus?: string | null;
     /**
-     * The time at which [enforcement](https://support.google.com/webtools/answer/7308033) against the site began or will begin on this platform.  Not set when the filter_status is OFF.
+     * The time at which [enforcement](https://support.google.com/webtools/answer/7308033) against the site began or will begin on this platform. Not set when the filter_status is OFF.
      */
     enforcementTime?: string | null;
     /**
@@ -150,11 +150,11 @@ export namespace adexperiencereport_v1 {
      */
     lastChangeTime?: string | null;
     /**
-     * The site&#39;s regions on this platform.  No longer populated, because there is no longer any semantic difference between sites in different regions.
+     * The site&#39;s regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions.
      */
     region?: string[] | null;
     /**
-     * A link to the full Ad Experience Report for the site on this platform..  Not set in ViolatingSitesResponse.  Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report.
+     * A link to the full Ad Experience Report for the site on this platform.. Not set in ViolatingSitesResponse. Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report.
      */
     reportUrl?: string | null;
     /**
@@ -222,10 +222,7 @@ export namespace adexperiencereport_v1 {
      *
      *   // Do the magic
      *   const res = await adexperiencereport.sites.get({
-     *     // Required. The name of the site whose summary to get, e.g.
-     *     // `sites/http%3A%2F%2Fwww.google.com%2F`.
-     *     //
-     *     // Format: `sites/{site}`
+     *     // Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
      *     name: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -247,7 +244,7 @@ export namespace adexperiencereport_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`.  Format: `sites/{site}`
+     * @param {string} params.name Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -334,7 +331,7 @@ export namespace adexperiencereport_v1 {
 
   export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
-     * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`.  Format: `sites/{site}`
+     * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
      */
     name?: string;
   }
