@@ -128,7 +128,7 @@ export namespace admob_v1 {
   }
 
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
@@ -167,7 +167,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$MediationReportSpec;
   }
   /**
-   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;date_range&quot;: {           &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}         },         &quot;localization_settings&quot;: {           &quot;currency_code&quot;: &quot;USD&quot;,           &quot;language_code&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimension_values&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              &quot;display_label&quot;: &quot;My app name!&quot;           }         },         &quot;metric_values&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;decimal_value&quot;: &quot;1324746&quot;}         }       }     },     {       &quot;footer&quot;: {&quot;matching_row_count&quot;: 1}     }]
+   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ &quot;header&quot;: { &quot;date_range&quot;: { &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1} }, &quot;localization_settings&quot;: { &quot;currency_code&quot;: &quot;USD&quot;, &quot;language_code&quot;: &quot;en-US&quot; } } }, { &quot;row&quot;: { &quot;dimension_values&quot;: { &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;}, &quot;APP&quot;: { &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;, &quot;display_label&quot;: &quot;My app name!&quot; } }, &quot;metric_values&quot;: { &quot;ESTIMATED_EARNINGS&quot;: {&quot;decimal_value&quot;: &quot;1324746&quot;} } } }, { &quot;footer&quot;: {&quot;matching_row_count&quot;: 1} }]
    */
   export interface Schema$GenerateMediationReportResponse {
     /**
@@ -193,7 +193,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$NetworkReportSpec;
   }
   /**
-   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message.  For example:      [{       &quot;header&quot;: {         &quot;dateRange&quot;: {           &quot;startDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},           &quot;endDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}         },         &quot;localizationSettings&quot;: {           &quot;currencyCode&quot;: &quot;USD&quot;,           &quot;languageCode&quot;: &quot;en-US&quot;         }       }     },     {       &quot;row&quot;: {         &quot;dimensionValues&quot;: {           &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;},           &quot;APP&quot;: {             &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;,              displayLabel: &quot;My app name!&quot;           }         },         &quot;metricValues&quot;: {           &quot;ESTIMATED_EARNINGS&quot;: {&quot;microsValue&quot;: 6500000}         }       }     },     {       &quot;footer&quot;: {&quot;matchingRowCount&quot;: 1}     }]
+   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ &quot;header&quot;: { &quot;dateRange&quot;: { &quot;startDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;endDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1} }, &quot;localizationSettings&quot;: { &quot;currencyCode&quot;: &quot;USD&quot;, &quot;languageCode&quot;: &quot;en-US&quot; } } }, { &quot;row&quot;: { &quot;dimensionValues&quot;: { &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;}, &quot;APP&quot;: { &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;, displayLabel: &quot;My app name!&quot; } }, &quot;metricValues&quot;: { &quot;ESTIMATED_EARNINGS&quot;: {&quot;microsValue&quot;: 6500000} } } }, { &quot;footer&quot;: {&quot;matchingRowCount&quot;: 1} }]
    */
   export interface Schema$GenerateNetworkReportResponse {
     /**
@@ -236,7 +236,7 @@ export namespace admob_v1 {
     languageCode?: string | null;
   }
   /**
-   * The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the &#39;US&#39; and &#39;CN&#39; countries can look like the following example:      {       &quot;date_range&quot;: {         &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1},         &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 30}       },       &quot;dimensions&quot;: [&quot;AD_SOURCE&quot;, &quot;APP&quot;, &quot;COUNTRY&quot;],       &quot;metrics&quot;: [&quot;OBSERVED_ECPM&quot;],       &quot;dimension_filters&quot;: [         {           &quot;dimension&quot;: &quot;COUNTRY&quot;,           &quot;matches_any&quot;: {&quot;values&quot;: [{&quot;value&quot;: &quot;US&quot;, &quot;value&quot;: &quot;CN&quot;}]}         }       ],       &quot;sort_conditions&quot;: [         {&quot;dimension&quot;:&quot;APP&quot;, order: &quot;ASCENDING&quot;}       ],       &quot;localization_settings&quot;: {         &quot;currency_code&quot;: &quot;USD&quot;,         &quot;language_code&quot;: &quot;en-US&quot;       }     }  For a better understanding, you can treat the preceding specification like the following pseudo SQL:      SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM     FROM MEDIATION_REPORT     WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39;         AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;)     GROUP BY AD_SOURCE, APP, COUNTRY     ORDER BY APP ASC;
+   * The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the &#39;US&#39; and &#39;CN&#39; countries can look like the following example: { &quot;date_range&quot;: { &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 30} }, &quot;dimensions&quot;: [&quot;AD_SOURCE&quot;, &quot;APP&quot;, &quot;COUNTRY&quot;], &quot;metrics&quot;: [&quot;OBSERVED_ECPM&quot;], &quot;dimension_filters&quot;: [ { &quot;dimension&quot;: &quot;COUNTRY&quot;, &quot;matches_any&quot;: {&quot;values&quot;: [{&quot;value&quot;: &quot;US&quot;, &quot;value&quot;: &quot;CN&quot;}]} } ], &quot;sort_conditions&quot;: [ {&quot;dimension&quot;:&quot;APP&quot;, order: &quot;ASCENDING&quot;} ], &quot;localization_settings&quot;: { &quot;currency_code&quot;: &quot;USD&quot;, &quot;language_code&quot;: &quot;en-US&quot; } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39; AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;) GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;
    */
   export interface Schema$MediationReportSpec {
     /**
@@ -268,7 +268,7 @@ export namespace admob_v1 {
      */
     sortConditions?: Schema$MediationReportSpecSortCondition[];
     /**
-     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot;  If no time zone is defined, the account default takes effect. Check default value by the get account action.  **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
+     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot; If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
      */
     timeZone?: string | null;
   }
@@ -303,7 +303,7 @@ export namespace admob_v1 {
     order?: string | null;
   }
   /**
-   * The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the &#39;US&#39; and &#39;CN&#39; countries can look like the following example:      {       &#39;date_range&#39;: {         &#39;start_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 1},         &#39;end_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 30}       },       &#39;dimensions&#39;: [&#39;DATE&#39;, &#39;APP&#39;, &#39;COUNTRY&#39;],       &#39;metrics&#39;: [&#39;CLICKS&#39;, &#39;ESTIMATED_EARNINGS&#39;],       &#39;dimension_filters&#39;: [         {           &#39;dimension&#39;: &#39;COUNTRY&#39;,           &#39;matches_any&#39;: {&#39;values&#39;: [{&#39;value&#39;: &#39;US&#39;, &#39;value&#39;: &#39;CN&#39;}]}         }       ],       &#39;sort_conditions&#39;: [         {&#39;dimension&#39;:&#39;APP&#39;, order: &#39;ASCENDING&#39;},         {&#39;metric&#39;:&#39;CLICKS&#39;, order: &#39;DESCENDING&#39;}       ],       &#39;localization_settings&#39;: {         &#39;currency_code&#39;: &#39;USD&#39;,         &#39;language_code&#39;: &#39;en-US&#39;       }     }  For a better understanding, you can treat the preceding specification like the following pseudo SQL:      SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS     FROM NETWORK_REPORT     WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39;         AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;)     GROUP BY DATE, APP, COUNTRY     ORDER BY APP ASC, CLICKS DESC;
+   * The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the &#39;US&#39; and &#39;CN&#39; countries can look like the following example: { &#39;date_range&#39;: { &#39;start_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 1}, &#39;end_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 30} }, &#39;dimensions&#39;: [&#39;DATE&#39;, &#39;APP&#39;, &#39;COUNTRY&#39;], &#39;metrics&#39;: [&#39;CLICKS&#39;, &#39;ESTIMATED_EARNINGS&#39;], &#39;dimension_filters&#39;: [ { &#39;dimension&#39;: &#39;COUNTRY&#39;, &#39;matches_any&#39;: {&#39;values&#39;: [{&#39;value&#39;: &#39;US&#39;, &#39;value&#39;: &#39;CN&#39;}]} } ], &#39;sort_conditions&#39;: [ {&#39;dimension&#39;:&#39;APP&#39;, order: &#39;ASCENDING&#39;}, {&#39;metric&#39;:&#39;CLICKS&#39;, order: &#39;DESCENDING&#39;} ], &#39;localization_settings&#39;: { &#39;currency_code&#39;: &#39;USD&#39;, &#39;language_code&#39;: &#39;en-US&#39; } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39; AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;) GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;
    */
   export interface Schema$NetworkReportSpec {
     /**
@@ -335,7 +335,7 @@ export namespace admob_v1 {
      */
     sortConditions?: Schema$NetworkReportSpecSortCondition[];
     /**
-     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot;  If no time zone is defined, the account default takes effect. Check default value by the get account action.  **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
+     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot; If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
      */
     timeZone?: string | null;
   }
@@ -395,7 +395,7 @@ export namespace admob_v1 {
    */
   export interface Schema$ReportFooter {
     /**
-     * Total number of rows that matched the request.  Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response.
+     * Total number of rows that matched the request. Warning: This count does NOT always match the number of rows in the response. Do not make that assumption when processing the response.
      */
     matchingRowCount?: string | null;
     /**
@@ -525,8 +525,7 @@ export namespace admob_v1 {
      *
      *   // Do the magic
      *   const res = await admob.accounts.get({
-     *     // Resource name of the publisher account to retrieve.
-     *     // Example: accounts/pub-9876543210987654
+     *     // Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
      *     name: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -658,9 +657,7 @@ export namespace admob_v1 {
      *   const res = await admob.accounts.list({
      *     // Maximum number of accounts to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListPublisherAccountsResponse`; indicates
-     *     // that this is a continuation of a prior `ListPublisherAccounts` call, and
-     *     // that the system should return the next page of data.
+     *     // The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -822,8 +819,7 @@ export namespace admob_v1 {
      *
      *   // Do the magic
      *   const res = await admob.accounts.mediationReport.generate({
-     *     // Resource name of the account to generate the report for.
-     *     // Example: accounts/pub-9876543210987654
+     *     // Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
@@ -994,8 +990,7 @@ export namespace admob_v1 {
      *
      *   // Do the magic
      *   const res = await admob.accounts.networkReport.generate({
-     *     // Resource name of the account to generate the report for.
-     *     // Example: accounts/pub-9876543210987654
+     *     // Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
