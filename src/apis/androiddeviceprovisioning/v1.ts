@@ -191,7 +191,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     companyName?: string | null;
     /**
-     * Output only. The API resource name of the company. The resource name is one of the following formats:  * `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]/customers/[CUSTOMER_ID]`  Assigned by the server.
+     * Output only. The API resource name of the company. The resource name is one of the following formats: * `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]/customers/[CUSTOMER_ID]` Assigned by the server.
      */
     name?: string | null;
     /**
@@ -204,7 +204,7 @@ export namespace androiddeviceprovisioning_v1 {
     termsStatus?: string | null;
   }
   /**
-   * A configuration collects the provisioning options for Android devices. Each configuration combines the following:  * The EMM device policy controller (DPC) installed on the devices. * EMM policies enforced on the devices. * Metadata displayed on the device to help users during setup.  Customers can add as many configurations as they need. However, zero-touch enrollment works best when a customer sets a default configuration that&#39;s applied to any new devices the organization purchases.
+   * A configuration collects the provisioning options for Android devices. Each configuration combines the following: * The EMM device policy controller (DPC) installed on the devices. * EMM policies enforced on the devices. * Metadata displayed on the device to help users during setup. Customers can add as many configurations as they need. However, zero-touch enrollment works best when a customer sets a default configuration that&#39;s applied to any new devices the organization purchases.
    */
   export interface Schema$Configuration {
     /**
@@ -421,7 +421,7 @@ export namespace androiddeviceprovisioning_v1 {
     entries?: {[key: string]: string} | null;
   }
   /**
-   * A `DeviceReference` is an API abstraction that lets you supply a _device_ argument to a method using one of the following identifier types:  * A numeric API resource ID. * Real-world hardware IDs, such as IMEI number, belonging to the manufactured   device.  Methods that operate on devices take a `DeviceReference` as a parameter type because it&#39;s more flexible for the caller. To learn more about device identifiers, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers).
+   * A `DeviceReference` is an API abstraction that lets you supply a _device_ argument to a method using one of the following identifier types: * A numeric API resource ID. * Real-world hardware IDs, such as IMEI number, belonging to the manufactured device. Methods that operate on devices take a `DeviceReference` as a parameter type because it&#39;s more flexible for the caller. To learn more about device identifiers, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers).
    */
   export interface Schema$DeviceReference {
     /**
@@ -481,7 +481,7 @@ export namespace androiddeviceprovisioning_v1 {
     packageName?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -721,7 +721,7 @@ export namespace androiddeviceprovisioning_v1 {
     status?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -729,7 +729,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -846,8 +846,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.list({
-     *     // The maximum number of customers to show in a page of results.
-     *     // A number between 1 and 100 (inclusive).
+     *     // The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      *     pageSize: 'placeholder-value',
      *     // A token specifying which result page to return.
      *     pageToken: 'placeholder-value',
@@ -1006,8 +1005,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.create({
-     *     // Required. The customer that manages the configuration. An API resource name
-     *     // in the format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *     parent: 'customers/my-customer',
      *
      *     // Request body metadata
@@ -1166,9 +1164,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.delete({
-     *     // Required. The configuration to delete. An API resource name in the format
-     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the
-     *     // configuration is applied to any devices, the API call fails.
+     *     // Required. The configuration to delete. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the configuration is applied to any devices, the API call fails.
      *     name: 'customers/my-customer/configurations/my-configuration',
      *   });
      *   console.log(res.data);
@@ -1295,8 +1291,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.get({
-     *     // Required. The configuration to get. An API resource name in the format
-     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
+     *     // Required. The configuration to get. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
      *     name: 'customers/my-customer/configurations/my-configuration',
      *   });
      *   console.log(res.data);
@@ -1434,8 +1429,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.list({
-     *     // Required. The customer that manages the listed configurations. An API
-     *     // resource name in the format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer that manages the listed configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *     parent: 'customers/my-customer',
      *   });
      *   console.log(res.data);
@@ -1576,14 +1570,9 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.patch({
-     *     // Output only. The API resource name in the format
-     *     // `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by
-     *     // the server.
+     *     // Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      *     name: 'customers/my-customer/configurations/my-configuration',
-     *     // Required. The field mask applied to the target `Configuration` before
-     *     // updating the fields. To learn more about using field masks, read
-     *     // [FieldMask](/protocol-buffers/docs/reference/google.protobuf#fieldmask) in
-     *     // the Protocol Buffers documentation.
+     *     // Required. The field mask applied to the target `Configuration` before updating the fields. To learn more about using field masks, read [FieldMask](/protocol-buffers/docs/reference/google.protobuf#fieldmask) in the Protocol Buffers documentation.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1798,8 +1787,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.applyConfiguration(
      *     {
-     *       // Required. The customer managing the device. An API resource name in the
-     *       // format `customers/[CUSTOMER_ID]`.
+     *       // Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *       parent: 'customers/my-customer',
      *
      *       // Request body metadata
@@ -1940,8 +1928,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.get({
-     *     // Required. The device to get. An API resource name in the format
-     *     // `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
+     *     // Required. The device to get. An API resource name in the format `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
      *     name: 'customers/my-customer/devices/my-device',
      *   });
      *   console.log(res.data);
@@ -2075,13 +2062,11 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.list({
-     *     // The maximum number of devices to show in a page of results.
-     *     // Must be between 1 and 100 inclusive.
+     *     // The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      *     pageSize: 'placeholder-value',
      *     // A token specifying which result page to return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The customer managing the devices. An API resource name in the
-     *     // format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer managing the devices. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *     parent: 'customers/my-customer',
      *   });
      *   console.log(res.data);
@@ -2224,8 +2209,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.removeConfiguration(
      *     {
-     *       // Required. The customer managing the device in the format
-     *       // `customers/[CUSTOMER_ID]`.
+     *       // Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
      *       parent: 'customers/my-customer',
      *
      *       // Request body metadata
@@ -2339,7 +2323,7 @@ export namespace androiddeviceprovisioning_v1 {
 
     /**
      * androiddeviceprovisioning.customers.devices.unclaim
-     * @desc Unclaims a device from a customer and removes it from zero-touch enrollment.  After removing a device, a customer must contact their reseller to register the device into zero-touch enrollment again.
+     * @desc Unclaims a device from a customer and removes it from zero-touch enrollment. After removing a device, a customer must contact their reseller to register the device into zero-touch enrollment again.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2364,8 +2348,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.unclaim({
-     *     // Required. The customer managing the device. An API resource name in the
-     *     // format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *     parent: 'customers/my-customer',
      *
      *     // Request body metadata
@@ -2570,8 +2553,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.dpcs.list({
-     *     // Required. The customer that can use the DPCs in configurations. An API
-     *     // resource name in the format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer that can use the DPCs in configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *     parent: 'customers/my-customer',
      *   });
      *   console.log(res.data);
@@ -2695,7 +2677,7 @@ export namespace androiddeviceprovisioning_v1 {
 
     /**
      * androiddeviceprovisioning.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2879,8 +2861,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.customers.create({
-     *     // Required. The parent resource ID in the format `partners/[PARTNER_ID]` that
-     *     // identifies the reseller.
+     *     // Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
      *     parent: 'partners/my-partner',
      *
      *     // Request body metadata
@@ -3026,8 +3007,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.customers.list({
-     *     // The maximum number of results to be returned. If not specified or 0, all
-     *     // the records are returned.
+     *     // The maximum number of results to be returned. If not specified or 0, all the records are returned.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results returned by the server.
      *     pageToken: 'placeholder-value',
@@ -3812,8 +3792,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.get({
-     *     // Required. The device API resource name in the format
-     *     // `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
+     *     // Required. The device API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      *     name: 'partners/my-partner/devices/my-device',
      *   });
      *   console.log(res.data);
@@ -4810,8 +4789,7 @@ export namespace androiddeviceprovisioning_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results returned by the server.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name in the format
-     *     // `partners/[PARTNER_ID]/vendors/[VENDOR_ID]`.
+     *     // Required. The resource name in the format `partners/[PARTNER_ID]/vendors/[VENDOR_ID]`.
      *     parent: 'partners/my-partner/vendors/my-vendor',
      *   });
      *   console.log(res.data);
