@@ -227,7 +227,7 @@ export namespace servicenetworking_v1 {
      */
     description?: string | null;
     /**
-     * Required. The prefix length of the subnet&#39;s IP address range.  Use CIDR range notation, such as `30` to provision a subnet with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer&#39;s allocated range.
+     * Required. The prefix length of the subnet&#39;s IP address range. Use CIDR range notation, such as `30` to provision a subnet with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer&#39;s allocated range.
      */
     ipPrefixLength?: number | null;
     /**
@@ -252,7 +252,7 @@ export namespace servicenetworking_v1 {
     subnetworkUsers?: string[] | null;
   }
   /**
-   * Api is a light-weight descriptor for an API Interface.  Interfaces are also described as &quot;protocol buffer services&quot; in some contexts, such as by the &quot;service&quot; keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as &quot;APIs&quot; in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
+   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as &quot;protocol buffer services&quot; in some contexts, such as by the &quot;service&quot; keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as &quot;APIs&quot; in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
    */
   export interface Schema$Api {
     /**
@@ -280,12 +280,12 @@ export namespace servicenetworking_v1 {
      */
     syntax?: string | null;
     /**
-     * A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here.  The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan.  The major version is also reflected in the package name of the interface, which must end in `v&lt;major-version&gt;`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces.
+     * A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here. The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan. The major version is also reflected in the package name of the interface, which must end in `v`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces.
      */
     version?: string | null;
   }
   /**
-   * `Authentication` defines the authentication configuration for an API.  Example for an API targeted for external use:      name: calendar.googleapis.com     authentication:       providers:       - id: google_calendar_auth         jwks_uri: https://www.googleapis.com/oauth2/v1/certs         issuer: https://securetoken.google.com       rules:       - selector: &quot;*&quot;         requirements:           provider_id: google_calendar_auth
+   * `Authentication` defines the authentication configuration for an API. Example for an API targeted for external use: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: &quot;*&quot; requirements: provider_id: google_calendar_auth
    */
   export interface Schema$Authentication {
     /**
@@ -293,12 +293,12 @@ export namespace servicenetworking_v1 {
      */
     providers?: Schema$AuthProvider[];
     /**
-     * A list of authentication rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of authentication rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$AuthenticationRule[];
   }
   /**
-   * Authentication rules for the service.  By default, if a method has any authentication requirements, every request must include a valid credential matching one of the requirements. It&#39;s an error to include more than one kind of credential in a single request.  If a method doesn&#39;t have any auth requirements, request credentials will be ignored.
+   * Authentication rules for the service. By default, if a method has any authentication requirements, every request must include a valid credential matching one of the requirements. It&#39;s an error to include more than one kind of credential in a single request. If a method doesn&#39;t have any auth requirements, request credentials will be ignored.
    */
   export interface Schema$AuthenticationRule {
     /**
@@ -314,7 +314,7 @@ export namespace servicenetworking_v1 {
      */
     requirements?: Schema$AuthRequirement[];
     /**
-     * Selects the methods to which this rule applies.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
@@ -323,7 +323,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$AuthProvider {
     /**
-     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences:   - &quot;https://[service.name]/[google.protobuf.Api.name]&quot;   - &quot;https://[service.name]/&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences:   -   https://library-example.googleapis.com/google.example.library.v1.LibraryService   - https://library-example.googleapis.com/  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
+     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences: - &quot;https://[service.name]/[google.protobuf.Api.name]&quot; - &quot;https://[service.name]/&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences: - https://library-example.googleapis.com/google.example.library.v1.LibraryService - https://library-example.googleapis.com/ Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com
      */
     audiences?: string | null;
     /**
@@ -331,19 +331,19 @@ export namespace servicenetworking_v1 {
      */
     authorizationUrl?: string | null;
     /**
-     * The unique identifier of the auth provider. It will be referred to by `AuthRequirement.provider_id`.  Example: &quot;bookstore_auth&quot;.
+     * The unique identifier of the auth provider. It will be referred to by `AuthRequirement.provider_id`. Example: &quot;bookstore_auth&quot;.
      */
     id?: string | null;
     /**
-     * Identifies the principal that issued the JWT. See https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1 Usually a URL or an email address.  Example: https://securetoken.google.com Example: 1234567-compute@developer.gserviceaccount.com
+     * Identifies the principal that issued the JWT. See https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1 Usually a URL or an email address. Example: https://securetoken.google.com Example: 1234567-compute@developer.gserviceaccount.com
      */
     issuer?: string | null;
     /**
-     * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document:  - can be retrieved from    [OpenID    Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of    the issuer.  - can be inferred from the email domain of the issuer (e.g. a Google  service account).  Example: https://www.googleapis.com/oauth2/v1/certs
+     * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document: - can be retrieved from [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of the issuer. - can be inferred from the email domain of the issuer (e.g. a Google service account). Example: https://www.googleapis.com/oauth2/v1/certs
      */
     jwksUri?: string | null;
     /**
-     * Defines the locations to extract the JWT.  JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters.  If not specified,  default to use following 3 locations:    1) Authorization: Bearer    2) x-goog-iap-jwt-assertion    3) access_token query parameter  Default locations can be specified as followings:    jwt_locations:    - header: Authorization      value_prefix: &quot;Bearer &quot;    - header: x-goog-iap-jwt-assertion    - query: access_token
+     * Defines the locations to extract the JWT. JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: &quot;Bearer &quot; - header: x-goog-iap-jwt-assertion - query: access_token
      */
     jwtLocations?: Schema$JwtLocation[];
   }
@@ -352,11 +352,11 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$AuthRequirement {
     /**
-     * NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components.  The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
+     * NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components. The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;. Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com
      */
     audiences?: string | null;
     /**
-     * id from authentication provider.  Example:      provider_id: bookstore_auth
+     * id from authentication provider. Example: provider_id: bookstore_auth
      */
     providerId?: string | null;
   }
@@ -365,7 +365,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Backend {
     /**
-     * A list of API backend rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of API backend rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$BackendRule[];
   }
@@ -374,7 +374,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$BackendRule {
     /**
-     * The address of the API backend.  The scheme is used to determine the backend protocol and security. The following schemes are accepted:     SCHEME        PROTOCOL    SECURITY    http://       HTTP        None    https://      HTTP        TLS    grpc://       gRPC        None    grpcs://      gRPC        TLS  It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms.  If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS  For HTTP backends, use protocol to specify the protocol version.
+     * The address of the API backend. The scheme is used to determine the backend protocol and security. The following schemes are accepted: SCHEME PROTOCOL SECURITY http:// HTTP None https:// HTTP TLS grpc:// gRPC None grpcs:// gRPC TLS It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms. If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS For HTTP backends, use protocol to specify the protocol version.
      */
     address?: string | null;
     /**
@@ -399,16 +399,16 @@ export namespace servicenetworking_v1 {
     operationDeadline?: number | null;
     pathTranslation?: string | null;
     /**
-     * The protocol used for sending a request to the backend. The supported values are &quot;http/1.1&quot; and &quot;h2&quot;.  The default value is inferred from the scheme in the address field:     SCHEME        PROTOCOL    http://       http/1.1    https://      http/1.1    grpc://       h2    grpcs://      h2  For secure HTTP backends (https://) that support HTTP/2, set this field to &quot;h2&quot; for improved performance.  Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends.  See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
+     * The protocol used for sending a request to the backend. The supported values are &quot;http/1.1&quot; and &quot;h2&quot;. The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to &quot;h2&quot; for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
      */
     protocol?: string | null;
     /**
-     * Selects the methods to which this rule applies.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
   /**
-   * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently:       monitored_resources:     - type: library.googleapis.com/billing_branch       labels:       - key: cloud.googleapis.com/location         description: |           Predefined label to support billing location restriction.       - key: city         description: |           Custom label to define the city where the library branch is located           in.       - key: name         description: Custom label to define the name of the library branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64       unit: &quot;1&quot;     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/billing_branch         metrics:         - library.googleapis.com/book/borrowed_count
+   * Billing related configuration of the service. The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently: monitored_resources: - type: library.googleapis.com/billing_branch labels: - key: cloud.googleapis.com/location description: | Predefined label to support billing location restriction. - key: city description: | Custom label to define the city where the library branch is located in. - key: name description: Custom label to define the name of the library branch. metrics: - name: library.googleapis.com/book/borrowed_count metric_kind: DELTA value_type: INT64 unit: &quot;1&quot; billing: consumer_destinations: - monitored_resource: library.googleapis.com/billing_branch metrics: - library.googleapis.com/book/borrowed_count
    */
   export interface Schema$Billing {
     /**
@@ -464,11 +464,11 @@ export namespace servicenetworking_v1 {
     projectNum?: string | null;
   }
   /**
-   * `Context` defines which contexts an API requests.  Example:      context:       rules:       - selector: &quot;*&quot;         requested:         - google.rpc.context.ProjectContext         - google.rpc.context.OriginContext  The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`.  Available context types are defined in package `google.rpc.context`.  This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext-&lt;extension_id&gt;-bin” and “x-goog-ext-&lt;extension_id&gt;-jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file:  Example:      context:       rules:        - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;          allowed_request_extensions:          - google.foo.v1.NewExtension          allowed_response_extensions:          - google.foo.v1.NewExtension  You can also specify extension ID instead of fully qualified extension name here.
+   * `Context` defines which contexts an API requests. Example: context: rules: - selector: &quot;*&quot; requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot; allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
    */
   export interface Schema$Context {
     /**
-     * A list of RPC context rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of RPC context rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$ContextRule[];
   }
@@ -493,12 +493,12 @@ export namespace servicenetworking_v1 {
      */
     requested?: string[] | null;
     /**
-     * Selects the methods to which this rule applies.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
   /**
-   * Selects and configures the service controller used by the service.  The service controller handles features like abuse, quota, billing, logging, monitoring, etc.
+   * Selects and configures the service controller used by the service. The service controller handles features like abuse, quota, billing, logging, monitoring, etc.
    */
   export interface Schema$Control {
     /**
@@ -507,11 +507,11 @@ export namespace servicenetworking_v1 {
     environment?: string | null;
   }
   /**
-   * Customize service error responses.  For example, list any service specific protobuf types that can appear in error detail lists of error responses.  Example:      custom_error:       types:       - google.foo.v1.CustomError       - google.foo.v1.AnotherError
+   * Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError
    */
   export interface Schema$CustomError {
     /**
-     * The list of custom error rules that apply to individual API messages.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * The list of custom error rules that apply to individual API messages. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$CustomErrorRule[];
     /**
@@ -524,11 +524,11 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$CustomErrorRule {
     /**
-     * Mark this message as possible payload in error response.  Otherwise, objects of this type will be filtered when they appear in error payload.
+     * Mark this message as possible payload in error response. Otherwise, objects of this type will be filtered when they appear in error payload.
      */
     isErrorType?: boolean | null;
     /**
-     * Selects messages to which this rule applies.  Refer to selector for syntax details.
+     * Selects messages to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
@@ -589,7 +589,7 @@ export namespace servicenetworking_v1 {
     name?: string | null;
   }
   /**
-   * `Documentation` provides the information for describing a service.  Example: &lt;pre&gt;&lt;code&gt;documentation:   summary: &gt;     The Google Calendar API gives access     to most calendar features.   pages:   - name: Overview     content: &amp;#40;== include google/foo/overview.md ==&amp;#41;   - name: Tutorial     content: &amp;#40;== include google/foo/tutorial.md ==&amp;#41;     subpages;     - name: Java       content: &amp;#40;== include google/foo/tutorial_java.md ==&amp;#41;   rules:   - selector: google.calendar.Calendar.Get     description: &gt;       ...   - selector: google.calendar.Calendar.Put     description: &gt;       ... &lt;/code&gt;&lt;/pre&gt; Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded.  Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided.  A number of constructs specific to the API platform are supported in documentation text.  In order to reference a proto element, the following notation can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;fully.qualified.proto.name]&amp;#91;]&lt;/code&gt;&lt;/pre&gt; To override the display text used for the link, this can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;display text]&amp;#91;fully.qualified.proto.name]&lt;/code&gt;&lt;/pre&gt; Text can be excluded from doc using the following notation: &lt;pre&gt;&lt;code&gt;&amp;#40;-- internal comment --&amp;#41;&lt;/code&gt;&lt;/pre&gt;  A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: &lt;pre&gt;&lt;code&gt;&amp;#40;== include path/to/file ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: &lt;pre&gt;&lt;code&gt;&amp;#40;== resource_for v1.shelves.books ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
+   * `Documentation` provides the information for describing a service. Example: documentation: summary: &gt; The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages; - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: &gt; ... - selector: google.calendar.Calendar.Put description: &gt; ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
   export interface Schema$Documentation {
     /**
@@ -597,7 +597,7 @@ export namespace servicenetworking_v1 {
      */
     documentationRootUrl?: string | null;
     /**
-     * Declares a single overview page. For example: &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   overview: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; This is a shortcut for the following declaration (using pages style): &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   pages:   - name: Overview     content: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; Note: you cannot specify both `overview` field and `pages` field.
+     * Declares a single overview page. For example: documentation: summary: ... overview: (== include overview.md ==) This is a shortcut for the following declaration (using pages style): documentation: summary: ... pages: - name: Overview content: (== include overview.md ==) Note: you cannot specify both `overview` field and `pages` field.
      */
     overview?: string | null;
     /**
@@ -605,7 +605,7 @@ export namespace servicenetworking_v1 {
      */
     pages?: Schema$Page[];
     /**
-     * A list of documentation rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$DocumentationRule[];
     /**
@@ -635,7 +635,7 @@ export namespace servicenetworking_v1 {
     selector?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -648,11 +648,11 @@ export namespace servicenetworking_v1 {
     consumerNetwork?: string | null;
   }
   /**
-   * `Endpoint` describes a network endpoint that serves a set of APIs. A service may expose any number of endpoints, and all endpoints share the same service configuration, such as quota configuration and monitoring configuration.  Example service configuration:      name: library-example.googleapis.com     endpoints:       # Below entry makes &#39;google.example.library.v1.Library&#39;       # API be served from endpoint address library-example.googleapis.com.       # It also allows HTTP OPTIONS calls to be passed to the backend, for       # it to decide whether the subsequent cross-origin request is       # allowed to proceed.     - name: library-example.googleapis.com       allow_cors: true
+   * `Endpoint` describes a network endpoint that serves a set of APIs. A service may expose any number of endpoints, and all endpoints share the same service configuration, such as quota configuration and monitoring configuration. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes &#39;google.example.library.v1.Library&#39; # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true
    */
   export interface Schema$Endpoint {
     /**
-     * DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases.  Additional names that this endpoint will be hosted on.
+     * DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
      */
     aliases?: string[] | null;
     /**
@@ -781,16 +781,16 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Http {
     /**
-     * When set to true, URL path parameters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be left encoded.  The default behavior is to not decode RFC 6570 reserved characters in multi segment matches.
+     * When set to true, URL path parameters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be left encoded. The default behavior is to not decode RFC 6570 reserved characters in multi segment matches.
      */
     fullyDecodeReservedExpansion?: boolean | null;
     /**
-     * A list of HTTP configuration rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of HTTP configuration rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$HttpRule[];
   }
   /**
-   * # gRPC Transcoding  gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services.  `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method.  Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path.  Example:      service Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {         option (google.api.http) = {             get: &quot;/v1/{name=messages/*}&quot;         };       }     }     message GetMessageRequest {       string name = 1; // Mapped to URL path.     }     message Message {       string text = 1; // The resource content.     }  This enables an HTTP REST to gRPC mapping as below:  HTTP | gRPC -----|----- `GET /v1/messages/123456`  | `GetMessage(name: &quot;messages/123456&quot;)`  Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example:      service Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {         option (google.api.http) = {             get:&quot;/v1/messages/{message_id}&quot;         };       }     }     message GetMessageRequest {       message SubMessage {         string subfield = 1;       }       string message_id = 1; // Mapped to URL path.       int64 revision = 2;    // Mapped to URL query parameter `revision`.       SubMessage sub = 3;    // Mapped to URL query parameter `sub.subfield`.     }  This enables a HTTP JSON to RPC mapping as below:  HTTP | gRPC -----|----- `GET /v1/messages/123456?revision=2&amp;sub.subfield=foo` | `GetMessage(message_id: &quot;123456&quot; revision: 2 sub: SubMessage(subfield: &quot;foo&quot;))`  Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&amp;param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&amp;foo.b=B&amp;foo.c=C`.  For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection:      service Messaging {       rpc UpdateMessage(UpdateMessageRequest) returns (Message) {         option (google.api.http) = {           patch: &quot;/v1/messages/{message_id}&quot;           body: &quot;message&quot;         };       }     }     message UpdateMessageRequest {       string message_id = 1; // mapped to the URL       Message message = 2;   // mapped to the body     }  The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding:  HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id: &quot;123456&quot; message { text: &quot;Hi!&quot; })`  The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body.  This enables the following alternative definition of the update method:      service Messaging {       rpc UpdateMessage(Message) returns (Message) {         option (google.api.http) = {           patch: &quot;/v1/messages/{message_id}&quot;           body: &quot;*&quot;         };       }     }     message Message {       string message_id = 1;       string text = 2;     }   The following HTTP JSON to RPC mapping is enabled:  HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id: &quot;123456&quot; text: &quot;Hi!&quot;)`  Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don&#39;t use the URL at all for transferring data.  It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example:      service Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {         option (google.api.http) = {           get: &quot;/v1/messages/{message_id}&quot;           additional_bindings {             get: &quot;/v1/users/{user_id}/messages/{message_id}&quot;           }         };       }     }     message GetMessageRequest {       string message_id = 1;       string user_id = 2;     }  This enables the following two alternative HTTP JSON to RPC mappings:  HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(message_id: &quot;123456&quot;)` `GET /v1/users/me/messages/123456` | `GetMessage(user_id: &quot;me&quot; message_id: &quot;123456&quot;)`  ## Rules for HTTP mapping  1. Leaf request fields (recursive expansion nested messages in the request    message) are classified into three categories:    - Fields referred by the path template. They are passed via the URL path.    - Fields referred by the HttpRule.body. They are passed via the HTTP      request body.    - All other fields are passed via the URL query parameters, and the      parameter name is the field path in the request message. A repeated      field can be represented as multiple query parameters under the same      name.  2. If HttpRule.body is &quot;*&quot;, there is no URL query parameter, all fields     are passed via URL path and HTTP request body.  3. If HttpRule.body is omitted, there is no HTTP request body, all     fields are passed via URL path and URL query parameters.  ### Path template syntax      Template = &quot;/&quot; Segments [ Verb ] ;     Segments = Segment { &quot;/&quot; Segment } ;     Segment  = &quot;*&quot; | &quot;**&quot; | LITERAL | Variable ;     Variable = &quot;{&quot; FieldPath [ &quot;=&quot; Segments ] &quot;}&quot; ;     FieldPath = IDENT { &quot;.&quot; IDENT } ;     Verb     = &quot;:&quot; LITERAL ;  The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`.  The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`.  The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching.  If a variable contains exactly one path segment, such as `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`.  If a variable contains multiple path segments, such as `&quot;{var=foo/*}&quot;` or `&quot;{var=**}&quot;`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except &quot;%2F&quot; and &quot;%2f&quot; are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`.  ## Using gRPC API Service Configuration  gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message.  As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto.  Example:      http:       rules:         # Selects a gRPC method and applies HttpRule to it.         - selector: example.v1.Messaging.GetMessage           get: /v1/messages/{message_id}/{sub.subfield}  ## Special notes  When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json).  While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables.  The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion.  The path variables **must not** capture the leading &quot;/&quot; character. The reason is that the most common use case &quot;{var}&quot; does not capture the leading &quot;/&quot; character. For consistency, all path variables must share the same behavior.  Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping.  If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.
+   * # gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: &quot;/v1/{name=messages/*}&quot; }; } } message GetMessageRequest { string name = 1; // Mapped to URL path. } message Message { string text = 1; // The resource content. } This enables an HTTP REST to gRPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(name: &quot;messages/123456&quot;)` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:&quot;/v1/messages/{message_id}&quot; }; } } message GetMessageRequest { message SubMessage { string subfield = 1; } string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. } This enables a HTTP JSON to RPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456?revision=2&amp;sub.subfield=foo` | `GetMessage(message_id: &quot;123456&quot; revision: 2 sub: SubMessage(subfield: &quot;foo&quot;))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&amp;param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&amp;foo.b=B&amp;foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: &quot;/v1/messages/{message_id}&quot; body: &quot;message&quot; }; } } message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body } The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id: &quot;123456&quot; message { text: &quot;Hi!&quot; })` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: &quot;/v1/messages/{message_id}&quot; body: &quot;*&quot; }; } } message Message { string message_id = 1; string text = 2; } The following HTTP JSON to RPC mapping is enabled: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id: &quot;123456&quot; text: &quot;Hi!&quot;)` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don&#39;t use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: &quot;/v1/messages/{message_id}&quot; additional_bindings { get: &quot;/v1/users/{user_id}/messages/{message_id}&quot; } }; } } message GetMessageRequest { string message_id = 1; string user_id = 2; } This enables the following two alternative HTTP JSON to RPC mappings: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(message_id: &quot;123456&quot;)` `GET /v1/users/me/messages/123456` | `GetMessage(user_id: &quot;me&quot; message_id: &quot;123456&quot;)` ## Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is &quot;*&quot;, there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. ### Path template syntax Template = &quot;/&quot; Segments [ Verb ] ; Segments = Segment { &quot;/&quot; Segment } ; Segment = &quot;*&quot; | &quot;**&quot; | LITERAL | Variable ; Variable = &quot;{&quot; FieldPath [ &quot;=&quot; Segments ] &quot;}&quot; ; FieldPath = IDENT { &quot;.&quot; IDENT } ; Verb = &quot;:&quot; LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`. If a variable contains multiple path segments, such as `&quot;{var=foo/*}&quot;` or `&quot;{var=**}&quot;`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except &quot;%2F&quot; and &quot;%2f&quot; are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`. ## Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. Example: http: rules: # Selects a gRPC method and applies HttpRule to it. - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id}/{sub.subfield} ## Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading &quot;/&quot; character. The reason is that the most common use case &quot;{var}&quot; does not capture the leading &quot;/&quot; character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.
    */
   export interface Schema$HttpRule {
     /**
@@ -802,7 +802,7 @@ export namespace servicenetworking_v1 {
      */
     allowHalfDuplex?: boolean | null;
     /**
-     * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body.  NOTE: the referred field must be present at the top-level of the request message type.
+     * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body. NOTE: the referred field must be present at the top-level of the request message type.
      */
     body?: string | null;
     /**
@@ -830,11 +830,11 @@ export namespace servicenetworking_v1 {
      */
     put?: string | null;
     /**
-     * Optional. The name of the response field whose value is mapped to the HTTP response body. When omitted, the entire response message will be used as the HTTP response body.  NOTE: The referred field must be present at the top-level of the response message type.
+     * Optional. The name of the response field whose value is mapped to the HTTP response body. When omitted, the entire response message will be used as the HTTP response body. NOTE: The referred field must be present at the top-level of the response message type.
      */
     responseBody?: string | null;
     /**
-     * Selects a method to which this rule applies.  Refer to selector for syntax details.
+     * Selects a method to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
@@ -851,7 +851,7 @@ export namespace servicenetworking_v1 {
      */
     query?: string | null;
     /**
-     * The value prefix. The value format is &quot;value_prefix{token}&quot; Only applies to &quot;in&quot; header type. Must be empty for &quot;in&quot; query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed.  For example, for &quot;Authorization: Bearer {JWT}&quot;, value_prefix=&quot;Bearer &quot; with a space at the end.
+     * The value prefix. The value format is &quot;value_prefix{token}&quot; Only applies to &quot;in&quot; header type. Must be empty for &quot;in&quot; query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed. For example, for &quot;Authorization: Bearer {JWT}&quot;, value_prefix=&quot;Bearer &quot; with a space at the end.
      */
     valuePrefix?: string | null;
   }
@@ -895,7 +895,7 @@ export namespace servicenetworking_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A description of a log type. Example in YAML format:      - name: library.googleapis.com/activity_history       description: The history of borrowing and returning library items.       display_name: Activity       labels:       - key: /customer_id         description: Identifier of a library customer
+   * A description of a log type. Example in YAML format: - name: library.googleapis.com/activity_history description: The history of borrowing and returning library items. display_name: Activity labels: - key: /customer_id description: Identifier of a library customer
    */
   export interface Schema$LogDescriptor {
     /**
@@ -916,7 +916,7 @@ export namespace servicenetworking_v1 {
     name?: string | null;
   }
   /**
-   * Logging configuration of the service.  The following example shows how to configure logs to be sent to the producer and consumer projects. In the example, the `activity_history` log is sent to both the producer and consumer projects, whereas the `purchase_history` log is only sent to the producer project.      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     logs:     - name: activity_history       labels:       - key: /customer_id     - name: purchase_history     logging:       producer_destinations:       - monitored_resource: library.googleapis.com/branch         logs:         - activity_history         - purchase_history       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         logs:         - activity_history
+   * Logging configuration of the service. The following example shows how to configure logs to be sent to the producer and consumer projects. In the example, the `activity_history` log is sent to both the producer and consumer projects, whereas the `purchase_history` log is only sent to the producer project. monitored_resources: - type: library.googleapis.com/branch labels: - key: /city description: The city where the library branch is located in. - key: /name description: The name of the branch. logs: - name: activity_history labels: - key: /customer_id - name: purchase_history logging: producer_destinations: - monitored_resource: library.googleapis.com/branch logs: - activity_history - purchase_history consumer_destinations: - monitored_resource: library.googleapis.com/branch logs: - activity_history
    */
   export interface Schema$Logging {
     /**
@@ -975,7 +975,7 @@ export namespace servicenetworking_v1 {
     syntax?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type` and `description`   fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable. The following are specific rules for service defined Monitoring metric descriptors: * `type`, `metric_kind`, `value_type` and `description` fields are all required. The `unit` field must be specified if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed. The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -987,7 +987,7 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type.  The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type. The label key name must follow: * Only upper and lower-case letters, digits and underscores (_) are allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1011,11 +1011,11 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All service defined metrics must be prefixed with the service name, in the format of `{service name}/{relative metric name}`, such as `cloudsql.googleapis.com/database/cpu/utilization`. The relative metric name must follow:  * Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are   allowed. * The maximum number of characters allowed for the relative_metric_name is   100.  All user-defined metric types have the DNS name `custom.googleapis.com`, `external.googleapis.com`, or `logging.googleapis.com/user/`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded. All service defined metrics must be prefixed with the service name, in the format of `{service name}/{relative metric name}`, such as `cloudsql.googleapis.com/database/cpu/utilization`. The relative metric name must follow: * Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are allowed. * The maximum number of characters allowed for the relative_metric_name is 100. All user-defined metric types have the DNS name `custom.googleapis.com`, `external.googleapis.com`, or `logging.googleapis.com/user/`. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values.  Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..  If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`.  Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`).  The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day * `1`     dimensionless  **Prefixes (PREFIX)**  * `k`     kilo    (10^3) * `M`     mega    (10^6) * `G`     giga    (10^9) * `T`     tera    (10^12) * `P`     peta    (10^15) * `E`     exa     (10^18) * `Z`     zetta   (10^21) * `Y`     yotta   (10^24)  * `m`     milli   (10^-3) * `u`     micro   (10^-6) * `n`     nano    (10^-9) * `p`     pico    (10^-12) * `f`     femto   (10^-15) * `a`     atto    (10^-18) * `z`     zepto   (10^-21) * `y`     yocto   (10^-24)  * `Ki`    kibi    (2^10) * `Mi`    mebi    (2^20) * `Gi`    gibi    (2^30) * `Ti`    tebi    (2^40) * `Pi`    pebi    (2^50)  **Grammar**  The grammar also includes these connectors:  * `/`    division or ratio (as an infix operator). For examples,          `kBy/{email}` or `MiBy/10ms` (although you should almost never          have `/s` in a metric `unit`; rates should always be computed at          query time from the underlying cumulative or delta value). * `.`    multiplication or composition (as an infix operator). For          examples, `GBy.d` or `k{watt}.h`.  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT`. If the annotation    is used alone, then the unit is equivalent to `1`. For examples,    `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing `{` or `}`. * `1` represents a unitary [dimensionless    unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such    as in `1/s`. It is typically used when none of the basic units are    appropriate. For example, &quot;new users per day&quot; can be represented as    `1/d` or `{new-users}/d` (and a metric value `5` would mean &quot;5 new    users). Alternatively, &quot;thousands of page views per day&quot; would be    represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric    value of `5.3` would mean &quot;5300 page views per day&quot;). * `%` represents dimensionless value of 1/100, and annotates values giving    a percentage (so the metric values are typically in the range of 0..100,    and a metric value `3` means &quot;3 percent&quot;). * `10^2.%` indicates a metric contains a ratio, typically in the range    0..1, that will be multiplied by 100 and displayed as a percentage    (so a metric value `0.03` means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed.. If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`. Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`). The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard: **Basic units (UNIT)** * `bit` bit * `By` byte * `s` second * `min` minute * `h` hour * `d` day * `1` dimensionless **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `E` exa (10^18) * `Z` zetta (10^21) * `Y` yotta (10^24) * `m` milli (10^-3) * `u` micro (10^-6) * `n` nano (10^-9) * `p` pico (10^-12) * `f` femto (10^-15) * `a` atto (10^-18) * `z` zepto (10^-21) * `y` yocto (10^-24) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For examples, `kBy/{email}` or `MiBy/10ms` (although you should almost never have `/s` in a metric `unit`; rates should always be computed at query time from the underlying cumulative or delta value). * `.` multiplication or composition (as an infix operator). For examples, `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ; Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ] | Annotation | &quot;1&quot; ; Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: * `Annotation` is just a comment if it follows a `UNIT`. If the annotation is used alone, then the unit is equivalent to `1`. For examples, `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not containing `{` or `}`. * `1` represents a unitary [dimensionless unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in `1/s`. It is typically used when none of the basic units are appropriate. For example, &quot;new users per day&quot; can be represented as `1/d` or `{new-users}/d` (and a metric value `5` would mean &quot;5 new users). Alternatively, &quot;thousands of page views per day&quot; would be represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric value of `5.3` would mean &quot;5300 page views per day&quot;). * `%` represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value `3` means &quot;3 percent&quot;). * `10^2.%` indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value `0.03` means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -1045,16 +1045,16 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$MetricRule {
     /**
-     * Metrics to update when the selected methods are called, and the associated cost applied to each metric.  The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
+     * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
     metricCosts?: {[key: string]: string} | null;
     /**
-     * Selects the methods to which this rule applies.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
   /**
-   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows:  - If after comment and whitespace stripping, the documentation   string of the redeclared method is empty, it will be inherited   from the original method.  - Each annotation belonging to the service config (http,   visibility) which is not set in the redeclared method will be   inherited.  - If an http annotation is inherited, the path pattern will be   modified as follows. Any version prefix will be replaced by the   version of the including interface plus the root path if   specified.  Example of a simple mixin:      package google.acl.v1;     service AccessControl {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v1/{resource=**}:getAcl&quot;;       }     }      package google.storage.v2;     service Storage {       //       rpc GetAcl(GetAclRequest) returns (Acl);        // Get a data record.       rpc GetData(GetDataRequest) returns (Data) {         option (google.api.http).get = &quot;/v2/{resource=**}&quot;;       }     }  Example of a mixin configuration:      apis:     - name: google.storage.v2.Storage       mixins:       - name: google.acl.v1.AccessControl  The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows:      service Storage {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v2/{resource=**}:getAcl&quot;;       }       ...     }  Note how the version in the path pattern changed from `v1` to `v2`.  If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example:      apis:     - name: google.storage.v2.Storage       mixins:       - name: google.acl.v1.AccessControl         root: acls  This implies the following inherited HTTP annotation:      service Storage {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v2/acls/{resource=**}:getAcl&quot;;       }       ...     }
+   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v1/{resource=**}:getAcl&quot;; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = &quot;/v2/{resource=**}&quot;; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/{resource=**}:getAcl&quot;; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = &quot;/v2/acls/{resource=**}:getAcl&quot;; } ... }
    */
   export interface Schema$Mixin {
     /**
@@ -1067,7 +1067,7 @@ export namespace servicenetworking_v1 {
     root?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different services can support different monitored resource types.  The following are specific rules to service defined monitored resources for Monitoring and Logging:  * The `type`, `display_name`, `description`, `labels` and `launch_stage`   fields are all required. * The first label of the monitored resource descriptor must be   `resource_container`. There are legacy monitored resource descritptors   start with `project_id`. * It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors   is allowed per service. * Maximum of default 10 labels per monitored resource is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances. Different services can support different monitored resource types. The following are specific rules to service defined monitored resources for Monitoring and Logging: * The `type`, `display_name`, `description`, `labels` and `launch_stage` fields are all required. * The first label of the monitored resource descriptor must be `resource_container`. There are legacy monitored resource descritptors start with `project_id`. * It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors is allowed per service. * Maximum of default 10 labels per monitored resource is allowed. The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -1079,7 +1079,7 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, an individual Google Cloud SQL database is identified by values for the labels `database_id` and `location`.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow: * Only upper and lower-case letters, digits and underscores (_) are allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters. For example, an individual Google Cloud SQL database is identified by values for the labels `database_id` and `location`.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1087,16 +1087,16 @@ export namespace servicenetworking_v1 {
      */
     launchStage?: string | null;
     /**
-     * Optional. The resource name of the monitored resource descriptor: `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where {type} is the value of the `type` field in this object and {project_id} is a project ID that provides API-specific context for accessing the type.  APIs that do not use project information can use the resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
+     * Optional. The resource name of the monitored resource descriptor: `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where {type} is the value of the `type` field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `cloudsql_database` represents databases in Google Cloud SQL.  All service defined monitored resource types must be prefixed with the service name, in the format of `{service name}/{relative resource name}`. The relative resource name must follow:  * Only upper and lower-case letters and digits are allowed. * It must start with upper case character and is recommended to use Upper   Camel Case style. * The maximum number of characters allowed for the relative_resource_name   is 100.  Note there are legacy service monitored resources not following this rule.
+     * Required. The monitored resource type. For example, the type `cloudsql_database` represents databases in Google Cloud SQL. All service defined monitored resource types must be prefixed with the service name, in the format of `{service name}/{relative resource name}`. The relative resource name must follow: * Only upper and lower-case letters and digits are allowed. * It must start with upper case character and is recommended to use Upper Camel Case style. * The maximum number of characters allowed for the relative_resource_name is 100. Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
   /**
-   * Monitoring configuration of the service.  The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/num_overdue` metric is only sent to the consumer project.      monitored_resources:     - type: library.googleapis.com/Branch       display_name: &quot;Library Branch&quot;       description: &quot;A branch of a library.&quot;       launch_stage: GA       labels:       - key: resource_container         description: &quot;The Cloud container (ie. project id) for the Branch.&quot;       - key: location         description: &quot;The location of the library branch.&quot;       - key: branch_id         description: &quot;The id of the branch.&quot;     metrics:     - name: library.googleapis.com/book/returned_count       display_name: &quot;Books Returned&quot;       description: &quot;The count of books that have been returned.&quot;       launch_stage: GA       metric_kind: DELTA       value_type: INT64       unit: &quot;1&quot;       labels:       - key: customer_id         description: &quot;The id of the customer.&quot;     - name: library.googleapis.com/book/num_overdue       display_name: &quot;Books Overdue&quot;       description: &quot;The current number of overdue books.&quot;       launch_stage: GA       metric_kind: GAUGE       value_type: INT64       unit: &quot;1&quot;       labels:       - key: customer_id         description: &quot;The id of the customer.&quot;     monitoring:       producer_destinations:       - monitored_resource: library.googleapis.com/Branch         metrics:         - library.googleapis.com/book/returned_count       consumer_destinations:       - monitored_resource: library.googleapis.com/Branch         metrics:         - library.googleapis.com/book/returned_count         - library.googleapis.com/book/num_overdue
+   * Monitoring configuration of the service. The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/num_overdue` metric is only sent to the consumer project. monitored_resources: - type: library.googleapis.com/Branch display_name: &quot;Library Branch&quot; description: &quot;A branch of a library.&quot; launch_stage: GA labels: - key: resource_container description: &quot;The Cloud container (ie. project id) for the Branch.&quot; - key: location description: &quot;The location of the library branch.&quot; - key: branch_id description: &quot;The id of the branch.&quot; metrics: - name: library.googleapis.com/book/returned_count display_name: &quot;Books Returned&quot; description: &quot;The count of books that have been returned.&quot; launch_stage: GA metric_kind: DELTA value_type: INT64 unit: &quot;1&quot; labels: - key: customer_id description: &quot;The id of the customer.&quot; - name: library.googleapis.com/book/num_overdue display_name: &quot;Books Overdue&quot; description: &quot;The current number of overdue books.&quot; launch_stage: GA metric_kind: GAUGE value_type: INT64 unit: &quot;1&quot; labels: - key: customer_id description: &quot;The id of the customer.&quot; monitoring: producer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count consumer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count - library.googleapis.com/book/num_overdue
    */
   export interface Schema$Monitoring {
     /**
@@ -1122,11 +1122,11 @@ export namespace servicenetworking_v1 {
     monitoredResource?: string | null;
   }
   /**
-   * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for &quot;Read-only access to Google Calendar&quot; and &quot;Access to Cloud Platform&quot;. Users can consent to a scope for an application, giving it permission to access that data on their behalf.  OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means.  In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs.  When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice.  Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
+   * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for &quot;Read-only access to Google Calendar&quot; and &quot;Access to Cloud Platform&quot;. Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
    */
   export interface Schema$OAuthRequirements {
     /**
-     * The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted.  Example:       canonical_scopes: https://www.googleapis.com/auth/calendar,                        https://www.googleapis.com/auth/calendar.read
+     * The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted. Example: canonical_scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.read
      */
     canonicalScopes?: string | null;
   }
@@ -1143,7 +1143,7 @@ export namespace servicenetworking_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1151,7 +1151,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1173,11 +1173,11 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use &lt;code&gt;&amp;#40;== include {path} ==&amp;#41;&lt;/code&gt; to include content from a Markdown file.
+     * The Markdown content of the page. You can use (== include {path} ==) to include content from a Markdown file.
      */
     content?: string | null;
     /**
-     * The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: &lt;pre&gt;&lt;code&gt;pages: - name: Tutorial   content: &amp;#40;== include tutorial.md ==&amp;#41;   subpages:   - name: Java     content: &amp;#40;== include tutorial_java.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; You can reference `Java` page using Markdown reference link syntax: `Java`.
+     * The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: pages: - name: Tutorial content: (== include tutorial.md ==) subpages: - name: Java content: (== include tutorial_java.md ==) You can reference `Java` page using Markdown reference link syntax: `Java`.
      */
     name?: string | null;
     /**
@@ -1190,16 +1190,16 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$PolicyBinding {
     /**
-     * Required. Member to bind the role with. See /iam/docs/reference/rest/v1/Policy#Binding for how to format each member. Eg.   - user:myuser@mydomain.com   - serviceAccount:my-service-account@app.gserviceaccount.com
+     * Required. Member to bind the role with. See /iam/docs/reference/rest/v1/Policy#Binding for how to format each member. Eg. - user:myuser@mydomain.com - serviceAccount:my-service-account@app.gserviceaccount.com
      */
     member?: string | null;
     /**
-     * Required. Role to apply. Only whitelisted roles can be used at the specified granularity. The role must be one of the following:   - &#39;roles/container.hostServiceAgentUser&#39; applied on the shared VPC host     project   - &#39;roles/compute.securityAdmin&#39; applied on the shared VPC host project
+     * Required. Role to apply. Only whitelisted roles can be used at the specified granularity. The role must be one of the following: - &#39;roles/container.hostServiceAgentUser&#39; applied on the shared VPC host project - &#39;roles/compute.securityAdmin&#39; applied on the shared VPC host project
      */
     role?: string | null;
   }
   /**
-   * Quota configuration helps to achieve fairness and budgeting in service usage.  The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with   corresponding costs. - The quota.limits defines limits on the metrics, which will be used for   quota checks at runtime.  An example quota configuration in yaml format:     quota:      limits:       - name: apiWriteQpsPerProject        metric: library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;  # rate limit for consumer projects        values:          STANDARD: 10000        # The metric rules bind all methods to the read_calls metric,      # except for the UpdateBook and DeleteBook methods. These two methods      # are mapped to the write_calls metric, with the UpdateBook method      # consuming at twice rate as the DeleteBook method.      metric_rules:      - selector: &quot;*&quot;        metric_costs:          library.googleapis.com/read_calls: 1      - selector: google.example.library.v1.LibraryService.UpdateBook        metric_costs:          library.googleapis.com/write_calls: 2      - selector: google.example.library.v1.LibraryService.DeleteBook        metric_costs:          library.googleapis.com/write_calls: 1   Corresponding Metric definition:       metrics:      - name: library.googleapis.com/read_calls        display_name: Read requests        metric_kind: DELTA        value_type: INT64       - name: library.googleapis.com/write_calls        display_name: Write requests        metric_kind: DELTA        value_type: INT64
+   * Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: &quot;1/min/{project}&quot; # rate limit for consumer projects values: STANDARD: 10000 # The metric rules bind all methods to the read_calls metric, # except for the UpdateBook and DeleteBook methods. These two methods # are mapped to the write_calls metric, with the UpdateBook method # consuming at twice rate as the DeleteBook method. metric_rules: - selector: &quot;*&quot; metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64
    */
   export interface Schema$Quota {
     /**
@@ -1216,7 +1216,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$QuotaLimit {
     /**
-     * Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project.  Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed.  Used by group-based quotas only.
+     * Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project. Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed. Used by group-based quotas only.
      */
     defaultLimit?: string | null;
     /**
@@ -1228,15 +1228,15 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * Duration of this limit in textual notation. Must be &quot;100s&quot; or &quot;1d&quot;.  Used by group-based quotas only.
+     * Duration of this limit in textual notation. Must be &quot;100s&quot; or &quot;1d&quot;. Used by group-based quotas only.
      */
     duration?: string | null;
     /**
-     * Free tier value displayed in the Developers Console for this limit. The free tier is the number of tokens that will be subtracted from the billed amount when billing is enabled. This field can only be set on a limit with duration &quot;1d&quot;, in a billable group; it is invalid on any other limit. If this field is not set, it defaults to 0, indicating that there is no free tier for this service.  Used by group-based quotas only.
+     * Free tier value displayed in the Developers Console for this limit. The free tier is the number of tokens that will be subtracted from the billed amount when billing is enabled. This field can only be set on a limit with duration &quot;1d&quot;, in a billable group; it is invalid on any other limit. If this field is not set, it defaults to 0, indicating that there is no free tier for this service. Used by group-based quotas only.
      */
     freeTier?: string | null;
     /**
-     * Maximum number of tokens that can be consumed during the specified duration. Client application developers can override the default limit up to this maximum. If specified, this value cannot be set to a value less than the default limit. If not specified, it is set to the default limit.  To allow clients to apply overrides with no upper bound, set this to -1, indicating unlimited maximum quota.  Used by group-based quotas only.
+     * Maximum number of tokens that can be consumed during the specified duration. Client application developers can override the default limit up to this maximum. If specified, this value cannot be set to a value less than the default limit. If not specified, it is set to the default limit. To allow clients to apply overrides with no upper bound, set this to -1, indicating unlimited maximum quota. Used by group-based quotas only.
      */
     maxLimit?: string | null;
     /**
@@ -1244,11 +1244,11 @@ export namespace servicenetworking_v1 {
      */
     metric?: string | null;
     /**
-     * Name of the quota limit.  The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as &#39;-&#39;.  The maximum length of the limit name is 64 characters.
+     * Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as &#39;-&#39;. The maximum length of the limit name is 64 characters.
      */
     name?: string | null;
     /**
-     * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system.  Here are some examples: * &quot;1/min/{project}&quot; for quota per minute per project.  Note: the order of unit components is insignificant. The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
+     * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * &quot;1/min/{project}&quot; for quota per minute per project. Note: the order of unit components is insignificant. The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
      */
     unit?: string | null;
     /**
@@ -1363,7 +1363,7 @@ export namespace servicenetworking_v1 {
     network?: string | null;
   }
   /**
-   * `Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details.  Example:      type: google.api.Service     config_version: 3     name: calendar.googleapis.com     title: Google Calendar API     apis:     - name: google.calendar.v3.Calendar     authentication:       providers:       - id: google_calendar_auth         jwks_uri: https://www.googleapis.com/oauth2/v1/certs         issuer: https://securetoken.google.com       rules:       - selector: &quot;*&quot;         requirements:           provider_id: google_calendar_auth
+   * `Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details. Example: type: google.api.Service config_version: 3 name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: &quot;*&quot; requirements: provider_id: google_calendar_auth
    */
   export interface Schema$Service {
     /**
@@ -1383,7 +1383,7 @@ export namespace servicenetworking_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions.  The latest config version is `3`.
+     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
      */
     configVersion?: number | null;
     /**
@@ -1403,11 +1403,11 @@ export namespace servicenetworking_v1 {
      */
     documentation?: Schema$Documentation;
     /**
-     * Configuration for network endpoints.  If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
+     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
      */
     endpoints?: Schema$Endpoint[];
     /**
-     * A list of all enum types included in this API service.  Enums referenced directly or indirectly by the `apis` are automatically included.  Enums which are not referenced but shall be included should be listed here by name. Example:      enums:     - name: google.someapi.v1.SomeEnum
+     * A list of all enum types included in this API service. Enums referenced directly or indirectly by the `apis` are automatically included. Enums which are not referenced but shall be included should be listed here by name. Example: enums: - name: google.someapi.v1.SomeEnum
      */
     enums?: Schema$Enum[];
     /**
@@ -1467,7 +1467,7 @@ export namespace servicenetworking_v1 {
      */
     title?: string | null;
     /**
-     * A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
+     * A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included. Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example: types: - name: google.protobuf.Int32
      */
     types?: Schema$Type[];
     /**
@@ -1476,7 +1476,7 @@ export namespace servicenetworking_v1 {
     usage?: Schema$Usage;
   }
   /**
-   * The per-product per-project service identity for a service.   Use this field to configure per-product per-project service identity. Example of a service identity configuration.      usage:       service_identity:       - service_account_parent: &quot;projects/123456789&quot;         display_name: &quot;Cloud XXX Service Agent&quot;         description: &quot;Used as the identity of Cloud XXX to access resources&quot;
+   * The per-product per-project service identity for a service. Use this field to configure per-product per-project service identity. Example of a service identity configuration. usage: service_identity: - service_account_parent: &quot;projects/123456789&quot; display_name: &quot;Cloud XXX Service Agent&quot; description: &quot;Used as the identity of Cloud XXX to access resources&quot;
    */
   export interface Schema$ServiceIdentity {
     /**
@@ -1488,7 +1488,7 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * A service account project that hosts the service accounts.  An example name would be: `projects/123456789`
+     * A service account project that hosts the service accounts. An example name would be: `projects/123456789`
      */
     serviceAccountParent?: string | null;
   }
@@ -1497,7 +1497,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$SourceContext {
     /**
-     * The path-qualified name of the .proto file that contained the associated protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot;`.
+     * The path-qualified name of the .proto file that contained the associated protobuf element. For example: `&quot;google/protobuf/source_context.proto&quot;`.
      */
     fileName?: string | null;
   }
@@ -1511,7 +1511,7 @@ export namespace servicenetworking_v1 {
     sourceFiles?: Array<{[key: string]: any}> | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -1519,7 +1519,7 @@ export namespace servicenetworking_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -1574,16 +1574,16 @@ export namespace servicenetworking_v1 {
      */
     parameters?: Schema$SystemParameter[];
     /**
-     * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs. Refer to selector for syntax details.
      */
     selector?: string | null;
   }
   /**
-   * ### System parameter configuration  A system parameter is a special kind of parameter defined by the API system, not by an individual API. It is typically mapped to an HTTP header and/or a URL query parameter. This configuration specifies which methods change the names of the system parameters.
+   * ### System parameter configuration A system parameter is a special kind of parameter defined by the API system, not by an individual API. It is typically mapped to an HTTP header and/or a URL query parameter. This configuration specifies which methods change the names of the system parameters.
    */
   export interface Schema$SystemParameters {
     /**
-     * Define system parameters.  The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent.  Example: define api key for all methods      system_parameters       rules:         - selector: &quot;*&quot;           parameters:             - name: api_key               url_query_parameter: api_key   Example: define 2 api key names for a specific method.      system_parameters       rules:         - selector: &quot;/ListShelves&quot;           parameters:             - name: api_key               http_header: Api-Key1             - name: api_key               http_header: Api-Key2  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * Define system parameters. The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent. Example: define api key for all methods system_parameters rules: - selector: &quot;*&quot; parameters: - name: api_key url_query_parameter: api_key Example: define 2 api key names for a specific method. system_parameters rules: - selector: &quot;/ListShelves&quot; parameters: - name: api_key http_header: Api-Key1 - name: api_key http_header: Api-Key2 **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$SystemParameterRule[];
   }
@@ -1646,15 +1646,15 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Usage {
     /**
-     * The full resource name of a channel used for sending notifications to the service producer.  Google Service Management currently only supports [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification channel. To use Google Cloud Pub/Sub as the channel, this must be the name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format documented in https://cloud.google.com/pubsub/docs/overview.
+     * The full resource name of a channel used for sending notifications to the service producer. Google Service Management currently only supports [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification channel. To use Google Cloud Pub/Sub as the channel, this must be the name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format documented in https://cloud.google.com/pubsub/docs/overview.
      */
     producerNotificationChannel?: string | null;
     /**
-     * Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id&gt;; for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
+     * Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form /; for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
      */
     requirements?: string[] | null;
     /**
-     * A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+     * A list of usage rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$UsageRule[];
     /**
@@ -1663,7 +1663,7 @@ export namespace servicenetworking_v1 {
     serviceIdentity?: Schema$ServiceIdentity;
   }
   /**
-   * Usage configuration rules for the service.  NOTE: Under development.   Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls.  Example of an API that wants to allow unregistered calls for entire service.      usage:       rules:       - selector: &quot;*&quot;         allow_unregistered_calls: true  Example of a method that wants to allow unregistered calls.      usage:       rules:       - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;         allow_unregistered_calls: true
+   * Usage configuration rules for the service. NOTE: Under development. Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls. Example of an API that wants to allow unregistered calls for entire service. usage: rules: - selector: &quot;*&quot; allow_unregistered_calls: true Example of a method that wants to allow unregistered calls. usage: rules: - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot; allow_unregistered_calls: true
    */
   export interface Schema$UsageRule {
     /**
@@ -1671,7 +1671,7 @@ export namespace servicenetworking_v1 {
      */
     allowUnregisteredCalls?: boolean | null;
     /**
-     * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
+     * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs. Refer to selector for syntax details.
      */
     selector?: string | null;
     /**
@@ -1710,7 +1710,7 @@ export namespace servicenetworking_v1 {
 
     /**
      * servicenetworking.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1977,7 +1977,7 @@ export namespace servicenetworking_v1 {
 
     /**
      * servicenetworking.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2112,7 +2112,7 @@ export namespace servicenetworking_v1 {
 
     /**
      * servicenetworking.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2345,14 +2345,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.addSubnetwork({
-     *     // Required. A tenant project in the service producer organization, in the
-     *     // following format: services/{service}/{collection-id}/{resource-id}.
-     *     // {collection-id} is the cloud resource collection type that represents the
-     *     // tenant project. Only `projects` are supported.
-     *     // {resource-id} is the tenant project numeric id, such as
-     *     // `123456`. {service} the name of the peering service, such as
-     *     // `service-peering.example.com`. This service must already be
-     *     // enabled in the service consumer's project.
+     *     // Required. A tenant project in the service producer organization, in the following format: services/{service}/{collection-id}/{resource-id}. {collection-id} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id} is the tenant project numeric id, such as `123456`. {service} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
      *     parent: 'services/my-service/[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -2508,9 +2501,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.disableVpcServiceControls({
-     *     // The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -2660,9 +2651,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.enableVpcServiceControls({
-     *     // The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -2812,8 +2801,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.searchRange({
-     *     // Required. This is in a form services/{service}. {service} the name of the private
-     *     // access management service, for example 'service-peering.example.com'.
+     *     // Required. This is in a form services/{service}. {service} the name of the private access management service, for example 'service-peering.example.com'.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -2962,9 +2950,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.validate({
-     *     // Required. This is in a form services/{service} where {service} is the name of the
-     *     // private access management service. For example
-     *     // 'service-peering.example.com'.
+     *     // Required. This is in a form services/{service} where {service} is the name of the private access management service. For example 'service-peering.example.com'.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -3189,9 +3175,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.connections.create({
-     *     // The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -3342,19 +3326,9 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.connections.list({
-     *     // The name of service consumer's VPC network that's connected with service
-     *     // producer network through a private connection. The network name must be in
-     *     // the following format:
-     *     // `projects/{project}/global/networks/{network}`. {project} is a
-     *     // project number, such as in `12345` that includes the VPC service
-     *     // consumer's VPC network. {network} is the name of the service consumer's VPC
-     *     // network.
+     *     // The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project}/global/networks/{network}`. {project} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network} is the name of the service consumer's VPC network.
      *     network: 'placeholder-value',
-     *     // The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
-     *     // If you specify `services/-` as the parameter value, all configured peering
-     *     // services are listed.
+     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`. If you specify `services/-` as the parameter value, all configured peering services are listed.
      *     parent: 'services/my-service',
      *   });
      *   console.log(res.data);
@@ -3495,18 +3469,11 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.connections.patch({
-     *     // If a previously defined allocated range is removed, force flag must be
-     *     // set to true.
+     *     // If a previously defined allocated range is removed, force flag must be set to true.
      *     force: 'placeholder-value',
-     *     // The private service connection that connects to a service producer
-     *     // organization. The name includes both the private service name and the VPC
-     *     // network peering name in the format of
-     *     // `services/{peering_service_name}/connections/{vpc_peering_name}`. For
-     *     // Google services that support this functionality, this is
-     *     // `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
+     *     // The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name}/connections/{vpc_peering_name}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
      *     name: 'services/my-service/connections/my-connection',
-     *     // The update mask. If this is omitted, it defaults to "*". You can only
-     *     // update the listed peering ranges.
+     *     // The update mask. If this is omitted, it defaults to "*". You can only update the listed peering ranges.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3707,9 +3674,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.dnsRecordSets.add({
-     *     // Required. The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -3859,9 +3824,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.dnsRecordSets.remove({
-     *     // Required. The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -4011,9 +3974,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.dnsRecordSets.update({
-     *     // Required. The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -4208,9 +4169,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.dnsZones.add({
-     *     // Required. The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -4360,9 +4319,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.dnsZones.remove({
-     *     // Required. The service that is managing peering connectivity for a service producer's
-     *     // organization. For Google services that support this functionality, this
-     *     // value is `services/servicenetworking.googleapis.com`.
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
@@ -4543,9 +4500,7 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.roles.add({
-     *     // Required. This is in a form services/{service} where {service} is the name of the
-     *     // private access management service. For example
-     *     // 'service-peering.example.com'.
+     *     // Required. This is in a form services/{service} where {service} is the name of the private access management service. For example 'service-peering.example.com'.
      *     parent: 'services/my-service',
      *
      *     // Request body metadata
