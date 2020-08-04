@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20200703",
+  "revision": "20200714",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -2025,7 +2025,7 @@
       "properties": {
         "integratedGradientsAttribution": {
           "$ref": "GoogleCloudMlV1__IntegratedGradientsAttribution",
-          "description": "Attributes credit by computing the Aumann-Shapley value taking advantage\nof the model's fully differentiable structure. Refer to this paper for\nmore details: http://proceedings.mlr.press/v70/sundararajan17a.html"
+          "description": "Attributes credit by computing the Aumann-Shapley value taking advantage\nof the model's fully differentiable structure. Refer to this paper for\nmore details: https://arxiv.org/abs/1703.01365"
         },
         "sampledShapleyAttribution": {
           "$ref": "GoogleCloudMlV1__SampledShapleyAttribution",
@@ -3049,7 +3049,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the Job\nis peered. For example, projects/12345/global/networks/myVPC. Format is of\nthe form projects/{project}/global/networks/{network}. Where {project} is a\nproject number, as in '12345', and {network} is network name.\".\n\nPrivate services access must already be configured for the network. If left\nunspecified, the Job is not peered with any network. Learn more -\nConnecting Job to user network over private\nIP.",
+          "description": "Optional. The full name of the [Compute Engine network](/vpc/docs/vpc) to which the\nJob is peered. For example, `projects/12345/global/networks/myVPC`. The\nformat of this field is `projects/{project}/global/networks/{network}`,\nwhere {project} is a project number (like `12345`) and {network} is network\nname.\n\nPrivate services access must already be configured for the network. If left\nunspecified, the Job is not peered with any network. [Learn about using VPC\nNetwork Peering.](/ai-platform/training/docs/vpc-peering).",
           "type": "string"
         },
         "packageUris": {
@@ -3113,7 +3113,7 @@
           "description": "Optional. Scheduling options for a training job."
         },
         "serviceAccount": {
-          "description": "Optional. Specifies the service account for workload run-as account.\nUsers submitting jobs must have act-as permission on this run-as account.\nIf not specified, then CMLE P4SA will be used by default.",
+          "description": "Optional. The email address of a service account to use when running the\ntraining appplication. You must have the `iam.serviceAccounts.actAs`\npermission for the specified service account. In addition, the AI Platform\nTraining Google-managed service account must have the\n`roles/iam.serviceAccountAdmin` role for the specified service account.\n[Learn more about configuring a service\naccount.](/ai-platform/training/docs/custom-service-account)\n\nIf not specified, the AI Platform Training Google-managed service account\nis used by default.",
           "type": "string"
         },
         "useChiefInTfConfig": {
