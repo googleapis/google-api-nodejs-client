@@ -697,7 +697,7 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
-   * Information about the current page.  List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.
+   * Information about the current page. List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.
    */
   export interface Schema$PageInfo {
     /**
@@ -879,7 +879,7 @@ export namespace androidpublisher_v3 {
      */
     desiredExpiryTimeMillis?: string | null;
     /**
-     * The expected expiry time for the subscription.  If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
+     * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
   }
@@ -892,7 +892,7 @@ export namespace androidpublisher_v3 {
      */
     newPrice?: Schema$Price;
     /**
-     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to     agree. In this state, you can optionally seek confirmation from the     user using the In-App API. 1. Accepted: State for an accepted price change that the subscription     will renew with unless it&#39;s canceled. The price change takes effect on     a future date when the subscription renews. Note that the change might     not occur when the subscription is renewed next.
+     * The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless it&#39;s canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
      */
     state?: number | null;
   }
@@ -913,7 +913,7 @@ export namespace androidpublisher_v3 {
      */
     autoResumeTimeMillis?: string | null;
     /**
-     * The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled the subscription 1. Subscription was canceled by the system,       for example because of a billing problem 2. Subscription was replaced with a new subscription 3. Subscription was canceled by the developer
+     * The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled the subscription 1. Subscription was canceled by the system, for example because of a billing problem 2. Subscription was replaced with a new subscription 3. Subscription was canceled by the developer
      */
     cancelReason?: number | null;
     /**
@@ -949,7 +949,7 @@ export namespace androidpublisher_v3 {
      */
     givenName?: string | null;
     /**
-     * Introductory price information of the subscription. This is only present when the subscription was purchased with an introductory price.  This field does not indicate the subscription is currently in introductory price period.
+     * Introductory price information of the subscription. This is only present when the subscription was purchased with an introductory price. This field does not indicate the subscription is currently in introductory price period.
      */
     introductoryPriceInfo?: Schema$IntroductoryPriceInfo;
     /**
@@ -957,11 +957,11 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
+     * The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
      */
     linkedPurchaseToken?: string | null;
     /**
-     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Present for the following purchases:   * If account linking happened as part of the subscription purchase flow.   * It was specified using     https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid     when the purchase was made.
+     * An obfuscated version of the id that is uniquely associated with the user&#39;s account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
      */
     obfuscatedExternalAccountId?: string | null;
     /**
@@ -977,11 +977,11 @@ export namespace androidpublisher_v3 {
      */
     paymentState?: number | null;
     /**
-     * Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is &amp;euro;1.99, price_amount_micros is 1990000.
+     * Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
      */
     priceAmountMicros?: string | null;
     /**
-     * The latest price change information available. This is present only when there is an upcoming price change for the subscription yet to be applied.  Once the subscription renews with the new price or the subscription is canceled, no price change information will be returned.
+     * The latest price change information available. This is present only when there is an upcoming price change for the subscription yet to be applied. Once the subscription renews with the new price or the subscription is canceled, no price change information will be returned.
      */
     priceChange?: Schema$SubscriptionPriceChange;
     /**
@@ -1076,7 +1076,7 @@ export namespace androidpublisher_v3 {
     seconds?: string | null;
   }
   /**
-   * Pagination information returned by a List operation when token pagination is enabled.  List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned.  When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.
+   * Pagination information returned by a List operation when token pagination is enabled. List operations that supports paging return only one &quot;page&quot; of results. This protocol buffer message describes the page that has been returned. When using token pagination, clients should use the next/previous token to get another page of the result. The presence or absence of next/previous token indicates whether a next/previous page is available and provides a mean of accessing this page. ListRequest.page_token should be set to either next_page_token or previous_page_token to access another page.
    */
   export interface Schema$TokenPagination {
     /**
@@ -2690,9 +2690,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.upload({
-     *     // Must be set to true if the bundle installation may trigger a warning on
-     *     // user devices (for example, if installation size may be over a threshold,
-     *     // typically 100 MB).
+     *     // Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      *     ackBundleInstallationWarning: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -2900,8 +2898,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.deobfuscationfiles.upload({
-     *     // The version code of the APK whose Deobfuscation File is being
-     *     // uploaded.
+     *     // The version code of the APK whose Deobfuscation File is being uploaded.
      *     apkVersionCode: 'placeholder-value',
      *     // The type of the deobfuscation file.
      *     deobfuscationFileType: 'placeholder-value',
@@ -3608,8 +3605,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.get({
-     *     // The version code of the APK whose expansion file configuration is being
-     *     // read or modified.
+     *     // The version code of the APK whose expansion file configuration is being read or modified.
      *     apkVersionCode: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -3760,8 +3756,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.patch({
-     *     // The version code of the APK whose expansion file configuration is being
-     *     // read or modified.
+     *     // The version code of the APK whose expansion file configuration is being read or modified.
      *     apkVersionCode: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -3922,8 +3917,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.update({
-     *     // The version code of the APK whose expansion file configuration is being
-     *     // read or modified.
+     *     // The version code of the APK whose expansion file configuration is being read or modified.
      *     apkVersionCode: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -4084,8 +4078,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.upload({
-     *     // The version code of the APK whose expansion file configuration is being
-     *     // read or modified.
+     *     // The version code of the APK whose expansion file configuration is being read or modified.
      *     apkVersionCode: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -4379,8 +4372,7 @@ export namespace androidpublisher_v3 {
      *     imageId: 'placeholder-value',
      *     // Type of the Image.
      *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -4524,12 +4516,9 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.images.deleteall({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Type of the Image.
-     *     // Providing an image type that refers to no images is a no-op.
+     *     // Type of the Image. Providing an image type that refers to no images is a no-op.
      *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
-     *     // Providing a language that is not supported by the App is a no-op.
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -4674,12 +4663,9 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.images.list({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Type of the Image. Providing an image type that refers to no images will
-     *     // return an empty response.
+     *     // Type of the Image. Providing an image type that refers to no images will return an empty response.
      *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
-     *     // There must be a store listing for the specified language.
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language.
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -4822,9 +4808,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Type of the Image.
      *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
-     *     // Providing a language that is not supported by the App is a no-op.
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -5090,8 +5074,7 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.listings.delete({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -5348,8 +5331,7 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.listings.get({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -5630,8 +5612,7 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.listings.patch({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -5785,8 +5766,7 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.listings.update({
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT"
-     *     // for Austrian German).
+     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
      *     language: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -7445,9 +7425,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.insert({
-     *     // If true the prices for all regions targeted by the parent app that don't
-     *     // have a price specified for this in-app product will be auto converted to
-     *     // the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -7760,9 +7738,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.patch({
-     *     // If true the prices for all regions targeted by the parent app that don't
-     *     // have a price specified for this in-app product will be auto converted to
-     *     // the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -7928,9 +7904,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.update({
-     *     // If true the prices for all regions targeted by the parent app that don't
-     *     // have a price specified for this in-app product will be auto converted to
-     *     // the target currency based on the default price. Defaults to false.
+     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
@@ -8176,7 +8150,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.internalappsharingartifacts.uploadapk
-     * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended).  See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
+     * @desc Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8331,7 +8305,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.internalappsharingartifacts.uploadbundle
-     * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended).  See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
+     * @desc Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8573,16 +8547,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.orders.refund({
-     *     // The order ID provided to the user when the subscription or in-app order was
-     *     // purchased.
+     *     // The order ID provided to the user when the subscription or in-app order was purchased.
      *     orderId: 'placeholder-value',
-     *     // The package name of the application for which this subscription or in-app
-     *     // item was purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
-     *     // Whether to revoke the purchased item. If set to true, access to the
-     *     // subscription or in-app item will be terminated immediately. If the item is
-     *     // a recurring subscription, all future payments will also be terminated.
-     *     // Consumed in-app items need to be handled by developer's app. (optional).
+     *     // Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
      *     revoke: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8744,13 +8713,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.acknowledge({
-     *     // The package name of the application the inapp product was sold in (for
-     *     // example, 'com.some.thing').
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
      *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was
-     *     // purchased.
+     *     // The token provided to the user's device when the inapp product was purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8885,13 +8852,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.get({
-     *     // The package name of the application the inapp product was sold in (for
-     *     // example, 'com.some.thing').
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
      *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was
-     *     // purchased.
+     *     // The token provided to the user's device when the inapp product was purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9079,13 +9044,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.acknowledge({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9220,13 +9183,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.cancel({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9352,13 +9313,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.defer({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9509,13 +9468,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.get({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9681,13 +9638,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.refund({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // "The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9813,13 +9768,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.revoke({
-     *     // The package name of the application for which this subscription was
-     *     // purchased (for example, 'com.some.thing').
+     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
      *     // The purchased subscription ID (for example, 'monthly001').
      *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was
-     *     // purchased.
+     *     // The token provided to the user's device when the subscription was purchased.
      *     token: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10053,47 +10006,19 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.voidedpurchases.list({
-     *     // The time, in milliseconds since the Epoch, of the newest voided purchase
-     *     // that you want to see in the response. The value of this parameter cannot
-     *     // be greater than the current time and is ignored if a pagination token is
-     *     // set. Default value is current time.
-     *     // Note: This filter is applied on the time at which the record is seen as
-     *     // voided by our systems and not the actual voided time returned in the
-     *     // response.
+     *     // The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      *     endTime: 'placeholder-value',
-     *     // Defines how many results the list operation should return.
-     *     // The default number depends on the resource collection.
+     *     // Defines how many results the list operation should return. The default number depends on the resource collection.
      *     maxResults: 'placeholder-value',
-     *     // The package name of the application for which voided purchases need to be
-     *     // returned (for example, 'com.some.thing').
+     *     // The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
      *     packageName: 'placeholder-value',
-     *     // Defines the index of the first element to return.
-     *     // This can only be used if indexed paging is enabled.
+     *     // Defines the index of the first element to return. This can only be used if indexed paging is enabled.
      *     startIndex: 'placeholder-value',
-     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase
-     *     // that you want to see in the response. The value of this parameter cannot
-     *     // be older than 30 days and is ignored if a pagination token is set.
-     *     // Default value is current time minus 30 days.
-     *     // Note: This filter is applied on the time at which the record is seen as
-     *     // voided by our systems and not the actual voided time returned in the
-     *     // response.
+     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      *     startTime: 'placeholder-value',
-     *     // Defines the token of the page to return, usually taken from
-     *     // TokenPagination.
-     *     // This can only be used if token paging is enabled.
+     *     // Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
      *     token: 'placeholder-value',
-     *     // The type of voided purchases that you want to see in the response.
-     *     // Possible values are:
-     *     // 0. Only voided in-app product purchases will be returned in the
-     *     //    response. This is the default value.
-     *     // 1. Both voided in-app purchases and voided subscription purchases
-     *     //    will be returned in the response.
-     *     //
-     *     // Note: Before requesting to receive voided subscription purchases, you
-     *     // must switch to use orderId in the response which uniquely identifies
-     *     // one-time purchases and subscriptions. Otherwise, you will receive multiple
-     *     // subscription orders with the same PurchaseToken, because subscription
-     *     // renewal orders share the same PurchaseToken.
+     *     // The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10121,7 +10046,7 @@ export namespace androidpublisher_v3 {
      * @param {integer=} params.startIndex Defines the index of the first element to return. This can only be used if indexed paging is enabled.
      * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      * @param {string=} params.token Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
-     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the    response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases    will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     * @param {integer=} params.type The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10240,7 +10165,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
     /**
-     * The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the    response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases    will be returned in the response.  Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
+     * The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
      */
     type?: number;
   }
