@@ -321,11 +321,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     desktopInfo?: Schema$DesktopInfo;
     /**
-     * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps More examples can be found in description of getNormalizedUriPrefix in j/c/g/firebase/dynamiclinks/uri/DdlDomain.java  Will fallback to dynamic_link_domain is this field is missing
+     * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps More examples can be found in description of getNormalizedUriPrefix in j/c/g/firebase/dynamiclinks/uri/DdlDomain.java Will fallback to dynamic_link_domain is this field is missing
      */
     domainUriPrefix?: string | null;
     /**
-     * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn more](https://firebase.google.com/docs/dynamic-links/android/receive) on how to set up Dynamic Link domain associated with your Firebase project.  Required if missing domain_uri_prefix.
+     * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn more](https://firebase.google.com/docs/dynamic-links/android/receive) on how to set up Dynamic Link domain associated with your Firebase project. Required if missing domain_uri_prefix.
      */
     dynamicLinkDomain?: string | null;
     /**
@@ -333,7 +333,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     iosInfo?: Schema$IosInfo;
     /**
-     * The link your app will open, You can specify any URL your app can handle. This link must be a well-formatted URL, be properly URL-encoded, and use the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).  Required.
+     * The link your app will open, You can specify any URL your app can handle. This link must be a well-formatted URL, be properly URL-encoded, and use the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually). Required.
      */
     link?: string | null;
     /**
@@ -486,7 +486,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     bundleId?: string | null;
     /**
-     * FDL link to be verified from an app universal link open. The FDL link can be one of: 1) short FDL. e.g. &lt;app_code&gt;.page.link/&lt;ddl_id&gt;, or 2) long FDL. e.g. &lt;app_code&gt;.page.link/?{query params}, or 3) Invite FDL. e.g. &lt;app_code&gt;.page.link/i/&lt;invite_id_or_alias&gt;
+     * FDL link to be verified from an app universal link open. The FDL link can be one of: 1) short FDL. e.g. .page.link/, or 2) long FDL. e.g. .page.link/?{query params}, or 3) Invite FDL. e.g. .page.link/i/
      */
     requestedLink?: string | null;
     /**
@@ -635,11 +635,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     info?: Schema$DynamicLinkInfo;
     /**
-     * Short durable link url, for example, &quot;https://sample.app.goo.gl/xyz123&quot;.  Required.
+     * Short durable link url, for example, &quot;https://sample.app.goo.gl/xyz123&quot;. Required.
      */
     link?: string | null;
     /**
-     * Link name defined by the creator.  Required.
+     * Link name defined by the creator. Required.
      */
     linkName?: string | null;
     /**
@@ -695,7 +695,7 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * firebasedynamiclinks.managedShortLinks.create
-     * @desc Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire.  This differs from CreateShortDynamicLink in the following ways:   - The request will also contain a name for the link (non unique name     for the front end).   - The response must be authenticated with an auth token (generated with     the admin service account).   - The link will appear in the FDL list of links in the console front end.  The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @desc Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. This differs from CreateShortDynamicLink in the following ways: - The request will also contain a name for the link (non unique name for the front end). - The response must be authenticated with an auth token (generated with the admin service account). - The link will appear in the FDL list of links in the console front end. The Dynamic Link domain in the request must be owned by requester's Firebase project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -862,7 +862,7 @@ export namespace firebasedynamiclinks_v1 {
 
     /**
      * firebasedynamiclinks.shortLinks.create
-     * @desc Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire.  Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link.  The Dynamic Link domain in the request must be owned by requester's Firebase project.
+     * @desc Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link. The Dynamic Link domain in the request must be owned by requester's Firebase project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
