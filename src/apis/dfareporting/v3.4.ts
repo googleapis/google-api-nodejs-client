@@ -36824,6 +36824,186 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
+     * dfareporting.reports.patch
+     * @desc Updates a report. This method supports patch semantics.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v3.4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.reports.patch({
+     *     // The DFA user profile ID.
+     *     profileId: 'placeholder-value',
+     *     // The ID of the report.
+     *     reportId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "criteria": {},
+     *       //   "crossDimensionReachCriteria": {},
+     *       //   "delivery": {},
+     *       //   "etag": "my_etag",
+     *       //   "fileName": "my_fileName",
+     *       //   "floodlightCriteria": {},
+     *       //   "format": "my_format",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "name": "my_name",
+     *       //   "ownerProfileId": "my_ownerProfileId",
+     *       //   "pathAttributionCriteria": {},
+     *       //   "pathCriteria": {},
+     *       //   "pathToConversionCriteria": {},
+     *       //   "reachCriteria": {},
+     *       //   "schedule": {},
+     *       //   "subAccountId": "my_subAccountId",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "criteria": {},
+     *   //   "crossDimensionReachCriteria": {},
+     *   //   "delivery": {},
+     *   //   "etag": "my_etag",
+     *   //   "fileName": "my_fileName",
+     *   //   "floodlightCriteria": {},
+     *   //   "format": "my_format",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "name": "my_name",
+     *   //   "ownerProfileId": "my_ownerProfileId",
+     *   //   "pathAttributionCriteria": {},
+     *   //   "pathCriteria": {},
+     *   //   "pathToConversionCriteria": {},
+     *   //   "reachCriteria": {},
+     *   //   "schedule": {},
+     *   //   "subAccountId": "my_subAccountId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dfareporting.reports.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
+     * @param {().Report} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Reports$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Reports$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    patch(
+      params: Params$Resource$Reports$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Reports$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    patch(
+      params: Params$Resource$Reports$Patch,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Report>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Patch
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'reportId'],
+        pathParams: ['profileId', 'reportId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Report>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Report>(parameters);
+      }
+    }
+
+    /**
      * dfareporting.reports.run
      * @desc Runs a report.
      * @example
@@ -37205,6 +37385,21 @@ export namespace dfareporting_v3_4 {
      * Order of sorted results.
      */
     sortOrder?: string;
+  }
+  export interface Params$Resource$Reports$Patch extends StandardParameters {
+    /**
+     * The DFA user profile ID.
+     */
+    profileId?: string;
+    /**
+     * The ID of the report.
+     */
+    reportId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Report;
   }
   export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
