@@ -20,7 +20,7 @@
   "description": "Manages your DoubleClick Campaign Manager ad campaigns and reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/qc9rDDh3ersvNrKbY8B0EqQ-tKo\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/PkTxU6cmNYCuywUBM2esTiF_8pQ\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
     "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
@@ -7795,6 +7795,41 @@
             "https://www.googleapis.com/auth/dfareporting"
           ]
         },
+        "patch": {
+          "description": "Updates a report. This method supports patch semantics.",
+          "httpMethod": "PATCH",
+          "id": "dfareporting.reports.patch",
+          "parameterOrder": [
+            "profileId",
+            "reportId"
+          ],
+          "parameters": {
+            "profileId": {
+              "description": "The DFA user profile ID.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reportId": {
+              "description": "The ID of the report.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "userprofiles/{profileId}/reports/{reportId}",
+          "request": {
+            "$ref": "Report"
+          },
+          "response": {
+            "$ref": "Report"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfareporting"
+          ]
+        },
         "run": {
           "description": "Runs a report.",
           "httpMethod": "POST",
@@ -9395,7 +9430,7 @@
       }
     }
   },
-  "revision": "20200722",
+  "revision": "20200730",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
