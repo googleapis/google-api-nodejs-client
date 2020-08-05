@@ -199,6 +199,10 @@
                     "BASIC_CERTIFICATE",
                     "FULL_CERTIFICATE"
                   ],
+                  "enumDescriptions": [
+                    "Basic certificate information, including applicable domains and expiration date.",
+                    "The information from BASIC_CERTIFICATE, plus detailed information on the domain mappings that have this certificate mapped."
+                  ],
                   "location": "query",
                   "type": "string"
                 }
@@ -244,6 +248,10 @@
                   "enum": [
                     "BASIC_CERTIFICATE",
                     "FULL_CERTIFICATE"
+                  ],
+                  "enumDescriptions": [
+                    "Basic certificate information, including applicable domains and expiration date.",
+                    "The information from BASIC_CERTIFICATE, plus detailed information on the domain mappings that have this certificate mapped."
                   ],
                   "location": "query",
                   "type": "string"
@@ -370,6 +378,11 @@
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY",
                     "STRICT",
                     "OVERRIDE"
+                  ],
+                  "enumDescriptions": [
+                    "Strategy unspecified. Defaults to STRICT.",
+                    "Overrides not allowed. If a mapping already exists for the specified domain, the request will return an ALREADY_EXISTS (409).",
+                    "Overrides allowed. If a mapping already exists for the specified domain, the request will overwrite it. Note that this might stop another Google product from serving. For example, if the domain is mapped to another App Engine application, that app will no longer serve from that domain."
                   ],
                   "location": "query",
                   "type": "string"
@@ -695,7 +708,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200802",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -769,11 +782,11 @@
       "id": "CertificateRawData",
       "properties": {
         "privateKey": {
-          "description": "Unencrypted PEM encoded RSA private key. This field is set once on certificate creation and then encrypted. The key size must be 2048 bits or fewer. Must include the header and footer. Example: <pre> -----BEGIN RSA PRIVATE KEY----- <unencrypted_key_value> -----END RSA PRIVATE KEY----- </pre> @InputOnly",
+          "description": "Unencrypted PEM encoded RSA private key. This field is set once on certificate creation and then encrypted. The key size must be 2048 bits or fewer. Must include the header and footer. Example: -----BEGIN RSA PRIVATE KEY----- -----END RSA PRIVATE KEY----- @InputOnly",
           "type": "string"
         },
         "publicCertificate": {
-          "description": "PEM encoded x.509 public key certificate. This field is set once on certificate creation. Must include the header and footer. Example: <pre> -----BEGIN CERTIFICATE----- <certificate_value> -----END CERTIFICATE----- </pre>",
+          "description": "PEM encoded x.509 public key certificate. This field is set once on certificate creation. Must include the header and footer. Example: -----BEGIN CERTIFICATE----- -----END CERTIFICATE----- ",
           "type": "string"
         }
       },
@@ -839,7 +852,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:\nservice Foo {\n  rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n}\nThe JSON representation for Empty is empty JSON object {}.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -946,7 +959,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Cross-service attributes for the location. For example\n{\"cloud.googleapis.com/region\": \"us-east1\"}\n",
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"} ",
           "type": "object"
         },
         "locationId": {
