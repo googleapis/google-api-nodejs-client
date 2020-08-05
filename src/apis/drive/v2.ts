@@ -1393,6 +1393,10 @@ export namespace drive_v2 {
      */
     value?: string | null;
     /**
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. published is the only supported value.
+     */
+    view?: string | null;
+    /**
      * Whether the link is required for this permission.
      */
     withLink?: boolean | null;
@@ -2597,6 +2601,8 @@ export namespace drive_v2 {
      *     includeDeleted: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      *     includeSubscribed: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
@@ -2644,6 +2650,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
@@ -2776,6 +2783,8 @@ export namespace drive_v2 {
      *     includeDeleted: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      *     includeSubscribed: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
@@ -2842,6 +2851,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeSubscribed Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults Maximum number of changes to return.
@@ -2994,6 +3004,10 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      */
     includeSubscribed?: boolean;
@@ -3047,6 +3061,10 @@ export namespace drive_v2 {
      * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
      */
@@ -6087,6 +6105,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to copy.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      *     ocr: 'placeholder-value',
      *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
@@ -6270,6 +6290,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      * @param {string} params.fileId The ID of the file to copy.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
@@ -6922,6 +6943,8 @@ export namespace drive_v2 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID for the file in question.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // This parameter is deprecated and has no function.
      *     projection: 'placeholder-value',
      *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
@@ -7021,6 +7044,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param {string} params.fileId The ID for the file in question.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -7144,6 +7168,8 @@ export namespace drive_v2 {
      *     convert: 'placeholder-value',
      *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      *     enforceSingleParent: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      *     ocr: 'placeholder-value',
      *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
@@ -7332,6 +7358,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.convert Whether to convert this file to the corresponding Google Docs format.
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
@@ -7472,6 +7499,8 @@ export namespace drive_v2 {
      *     driveId: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
      *     includeTeamDriveItems: 'placeholder-value',
      *     // The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
@@ -7520,6 +7549,7 @@ export namespace drive_v2 {
      * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
@@ -7651,6 +7681,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      *     modifiedDateBehavior: 'placeholder-value',
      *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
@@ -7845,6 +7877,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.convert This parameter is deprecated and has no function.
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file to update.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -7976,6 +8009,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.touch({
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
@@ -8068,6 +8103,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8186,6 +8222,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.trash({
      *     // The ID of the file to trash.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
@@ -8278,6 +8316,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8396,6 +8435,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.untrash({
      *     // The ID of the file to untrash.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
@@ -8488,6 +8529,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8614,6 +8656,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      *     modifiedDateBehavior: 'placeholder-value',
      *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
@@ -8812,6 +8856,7 @@ export namespace drive_v2 {
      * @param {boolean=} params.convert This parameter is deprecated and has no function.
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file to update.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {string=} params.modifiedDateBehavior Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      * @param {boolean=} params.newRevision Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -8954,6 +8999,8 @@ export namespace drive_v2 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID for the file in question.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // This parameter is deprecated and has no function.
      *     projection: 'placeholder-value',
      *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
@@ -9010,6 +9057,7 @@ export namespace drive_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param {string} params.fileId The ID for the file in question.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -9113,6 +9161,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      */
     ocr?: boolean;
@@ -9197,6 +9249,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * This parameter is deprecated and has no function.
      */
     projection?: string;
@@ -9226,6 +9282,10 @@ export namespace drive_v2 {
      * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      */
     enforceSingleParent?: boolean;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      */
@@ -9301,6 +9361,10 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Deprecated use includeItemsFromAllDrives instead.
      */
     includeTeamDriveItems?: boolean;
@@ -9358,6 +9422,10 @@ export namespace drive_v2 {
      * The ID of the file to update.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      */
@@ -9422,6 +9490,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
@@ -9436,6 +9508,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
@@ -9449,6 +9525,10 @@ export namespace drive_v2 {
      * The ID of the file to untrash.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether the requesting application supports both My Drives and shared drives.
      */
@@ -9475,6 +9555,10 @@ export namespace drive_v2 {
      * The ID of the file to update.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
      */
@@ -9557,6 +9641,10 @@ export namespace drive_v2 {
      * The ID for the file in question.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * This parameter is deprecated and has no function.
      */
@@ -10431,6 +10519,7 @@ export namespace drive_v2 {
      *   //   "teamDrivePermissionDetails": [],
      *   //   "type": "my_type",
      *   //   "value": "my_value",
+     *   //   "view": "my_view",
      *   //   "withLink": false
      *   // }
      * }
@@ -10739,6 +10828,7 @@ export namespace drive_v2 {
      *       //   "teamDrivePermissionDetails": [],
      *       //   "type": "my_type",
      *       //   "value": "my_value",
+     *       //   "view": "my_view",
      *       //   "withLink": false
      *       // }
      *     },
@@ -10764,6 +10854,7 @@ export namespace drive_v2 {
      *   //   "teamDrivePermissionDetails": [],
      *   //   "type": "my_type",
      *   //   "value": "my_value",
+     *   //   "view": "my_view",
      *   //   "withLink": false
      *   // }
      * }
@@ -10905,6 +10996,8 @@ export namespace drive_v2 {
      *   const res = await drive.permissions.list({
      *     // The ID for the file or shared drive.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      *     maxResults: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
@@ -10938,6 +11031,7 @@ export namespace drive_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file or shared drive.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -11091,6 +11185,7 @@ export namespace drive_v2 {
      *       //   "teamDrivePermissionDetails": [],
      *       //   "type": "my_type",
      *       //   "value": "my_value",
+     *       //   "view": "my_view",
      *       //   "withLink": false
      *       // }
      *     },
@@ -11116,6 +11211,7 @@ export namespace drive_v2 {
      *   //   "teamDrivePermissionDetails": [],
      *   //   "type": "my_type",
      *   //   "value": "my_value",
+     *   //   "view": "my_view",
      *   //   "withLink": false
      *   // }
      * }
@@ -11285,6 +11381,7 @@ export namespace drive_v2 {
      *       //   "teamDrivePermissionDetails": [],
      *       //   "type": "my_type",
      *       //   "value": "my_value",
+     *       //   "view": "my_view",
      *       //   "withLink": false
      *       // }
      *     },
@@ -11310,6 +11407,7 @@ export namespace drive_v2 {
      *   //   "teamDrivePermissionDetails": [],
      *   //   "type": "my_type",
      *   //   "value": "my_value",
+     *   //   "view": "my_view",
      *   //   "withLink": false
      *   // }
      * }
@@ -11511,6 +11609,10 @@ export namespace drive_v2 {
      * The ID for the file or shared drive.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      */

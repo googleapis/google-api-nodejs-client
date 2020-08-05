@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/Y8vbFl0i1r1N0KsawuiIYIt6icM\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/a4Ez9tiFRSeZTVCssBYotIRGffk\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -327,6 +327,11 @@
               "location": "query",
               "type": "boolean"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "includeSubscribed": {
               "default": "true",
               "description": "Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.",
@@ -424,6 +429,11 @@
               "description": "Whether both My Drive and shared drive items should be included in results.",
               "location": "query",
               "type": "boolean"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
             },
             "includeSubscribed": {
               "default": "true",
@@ -1138,6 +1148,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "ocr": {
               "default": "false",
               "description": "Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.",
@@ -1331,6 +1346,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "projection": {
               "description": "This parameter is deprecated and has no function.",
               "enum": [
@@ -1417,6 +1437,11 @@
               "description": "Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.",
               "location": "query",
               "type": "boolean"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
             },
             "ocr": {
               "default": "false",
@@ -1528,6 +1553,11 @@
               "location": "query",
               "type": "boolean"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "includeTeamDriveItems": {
               "default": "false",
               "description": "Deprecated use includeItemsFromAllDrives instead.",
@@ -1637,6 +1667,11 @@
               "description": "The ID of the file to update.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "modifiedDateBehavior": {
@@ -1759,6 +1794,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "supportsAllDrives": {
               "default": "false",
               "description": "Whether the requesting application supports both My Drives and shared drives.",
@@ -1798,6 +1838,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "supportsAllDrives": {
               "default": "false",
               "description": "Whether the requesting application supports both My Drives and shared drives.",
@@ -1834,6 +1879,11 @@
               "description": "The ID of the file to untrash.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "supportsAllDrives": {
@@ -1905,6 +1955,11 @@
               "description": "The ID of the file to update.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "modifiedDateBehavior": {
@@ -2032,6 +2087,11 @@
               "description": "The ID for the file in question.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "projection": {
@@ -2454,6 +2514,11 @@
               "description": "The ID for the file or shared drive.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "maxResults": {
@@ -3442,7 +3507,7 @@
       }
     }
   },
-  "revision": "20200719",
+  "revision": "20200723",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -5442,6 +5507,10 @@
         },
         "value": {
           "description": "The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.",
+          "type": "string"
+        },
+        "view": {
+          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. published is the only supported value.",
           "type": "string"
         },
         "withLink": {
