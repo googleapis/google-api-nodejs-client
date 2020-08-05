@@ -128,7 +128,7 @@ export namespace chromeuxreport_v1 {
   }
 
   /**
-   * A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf.  A bin&#39;s start and end values are given in the value type of the metric it represents. For example, &quot;first contentful paint&quot; is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, &quot;cumulative layout shift&quot; is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type.
+   * A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf. A bin&#39;s start and end values are given in the value type of the metric it represents. For example, &quot;first contentful paint&quot; is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, &quot;cumulative layout shift&quot; is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type.
    */
   export interface Schema$Bin {
     /**
@@ -149,19 +149,19 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$Key {
     /**
-     * The effective connection type is the general connection class that all users experienced for this record. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types  If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned.
+     * The effective connection type is the general connection class that all users experienced for this record. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned.
      */
     effectiveConnectionType?: string | null;
     /**
-     * The form factor is the device class that all users used to access the site for this record.  If the form factor is unspecified, then aggregated data over all form factors will be returned.
+     * The form factor is the device class that all users used to access the site for this record. If the form factor is unspecified, then aggregated data over all form factors will be returned.
      */
     formFactor?: string | null;
     /**
-     * Origin specifies the origin that this record is for.  Note: When specifying an origin, data for loads under this origin over all pages are aggregated into origin level user experience data.
+     * Origin specifies the origin that this record is for. Note: When specifying an origin, data for loads under this origin over all pages are aggregated into origin level user experience data.
      */
     origin?: string | null;
     /**
-     * Url specifies a specific url that this record is for.  Note: When specifying a &quot;url&quot; only data for that specific url will be aggregated.
+     * Url specifies a specific url that this record is for. Note: When specifying a &quot;url&quot; only data for that specific url will be aggregated.
      */
     url?: string | null;
   }
@@ -188,32 +188,32 @@ export namespace chromeuxreport_v1 {
     p75?: any | null;
   }
   /**
-   * Request payload sent by a physical web client.  This request includes all necessary context to load a particular user experience record.
+   * Request payload sent by a physical web client. This request includes all necessary context to load a particular user experience record.
    */
   export interface Schema$QueryRequest {
     /**
-     * The effective connection type is a query dimension that specifies the effective network class that the record&#39;s data should belong to. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types  Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned.
+     * The effective connection type is a query dimension that specifies the effective network class that the record&#39;s data should belong to. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned.
      */
     effectiveConnectionType?: string | null;
     /**
-     * The form factor is a query dimension that specifies the device class that the record&#39;s data should belong to.  Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
+     * The form factor is a query dimension that specifies the device class that the record&#39;s data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
      */
     formFactor?: string | null;
     /**
-     * The metrics that should be included in the response. If none are specified then any metrics found will be returned.  Allowed values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
+     * The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
      */
     metrics?: string[] | null;
     /**
-     * The url pattern &quot;origin&quot; refers to a url pattern that is the origin of a website.  Examples: &quot;https://example.com&quot;, &quot;https://cloud.google.com&quot;
+     * The url pattern &quot;origin&quot; refers to a url pattern that is the origin of a website. Examples: &quot;https://example.com&quot;, &quot;https://cloud.google.com&quot;
      */
     origin?: string | null;
     /**
-     * The url pattern &quot;url&quot; refers to a url pattern that is any arbitrary url.  Examples: &quot;https://example.com/&quot;,   &quot;https://cloud.google.com/why-google-cloud/&quot;
+     * The url pattern &quot;url&quot; refers to a url pattern that is any arbitrary url. Examples: &quot;https://example.com/&quot;, &quot;https://cloud.google.com/why-google-cloud/&quot;
      */
     url?: string | null;
   }
   /**
-   * Response payload sent back to a physical web client.  This response contains the record found based on the identiers present in a `QueryRequest`.  The returned response will have a record, and sometimes details on normalization actions taken on the request that were necessary to make the request successful.
+   * Response payload sent back to a physical web client. This response contains the record found based on the identiers present in a `QueryRequest`. The returned response will have a record, and sometimes details on normalization actions taken on the request that were necessary to make the request successful.
    */
   export interface Schema$QueryResponse {
     /**
@@ -234,7 +234,7 @@ export namespace chromeuxreport_v1 {
      */
     key?: Schema$Key;
     /**
-     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name.  Allowed key values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
+     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
      */
     metrics?: {[key: string]: Schema$Metric} | null;
   }
@@ -260,7 +260,7 @@ export namespace chromeuxreport_v1 {
 
     /**
      * chromeuxreport.records.queryRecord
-     * @desc Queries the Chrome User Experience for a single `record` for a given site.  Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site.
+     * @desc Queries the Chrome User Experience for a single `record` for a given site. Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
