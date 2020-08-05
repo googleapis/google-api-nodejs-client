@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/5xWpo5tIrmAJSGI9aUUKlxei4EI\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/NTo0tX-aprtnuYL-8aTRdweYwcQ\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -183,6 +183,11 @@
               "location": "query",
               "type": "boolean"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "includeRemoved": {
               "default": "true",
               "description": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.",
@@ -279,6 +284,11 @@
               "description": "Whether both My Drive and shared drive items should be included in results.",
               "location": "query",
               "type": "boolean"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
             },
             "includeRemoved": {
               "default": "true",
@@ -788,6 +798,11 @@
               "location": "query",
               "type": "boolean"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "keepRevisionForever": {
               "default": "false",
               "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
@@ -858,6 +873,11 @@
               "description": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.",
               "location": "query",
               "type": "boolean"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
             },
             "keepRevisionForever": {
               "default": "false",
@@ -1028,6 +1048,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "supportsAllDrives": {
               "default": "false",
               "description": "Whether the requesting application supports both My Drives and shared drives.",
@@ -1091,6 +1116,11 @@
               "description": "Whether both My Drive and shared drive items should be included in results.",
               "location": "query",
               "type": "boolean"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
             },
             "includeTeamDriveItems": {
               "default": "false",
@@ -1201,6 +1231,11 @@
               "required": true,
               "type": "string"
             },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
+              "type": "string"
+            },
             "keepRevisionForever": {
               "default": "false",
               "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
@@ -1270,6 +1305,11 @@
               "description": "The ID of the file.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "supportsAllDrives": {
@@ -1494,6 +1534,11 @@
               "description": "The ID of the file or shared drive.",
               "location": "path",
               "required": true,
+              "type": "string"
+            },
+            "includePermissionsForView": {
+              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "location": "query",
               "type": "string"
             },
             "pageSize": {
@@ -2126,7 +2171,7 @@
       }
     }
   },
-  "revision": "20200719",
+  "revision": "20200723",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3446,6 +3491,10 @@
             ]
           },
           "description": "The type of the grantee. Valid values are:  \n- user \n- group \n- domain \n- anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn't extra information required for a anyone type.",
+          "type": "string"
+        },
+        "view": {
+          "description": "Indicates the view for this permission. Only populated for permissions that belong to a view. published is the only supported value.",
           "type": "string"
         }
       },
