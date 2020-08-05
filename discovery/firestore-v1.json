@@ -1160,7 +1160,7 @@
       }
     }
   },
-  "revision": "20200709",
+  "revision": "20200725",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1597,8 +1597,8 @@
             "The given `field` is greater than or equal to the given `value`.\n\nRequires:\n\n* That `field` come first in `order_by`.",
             "The given `field` is equal to the given `value`.",
             "The given `field` is an array that contains the given `value`.",
-            "The given `field` is equal to at least one value in the given array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN`, `ARRAY_CONTAINS_ANY`, or `NOT_IN`.",
-            "The given `field` is an array that contains any of the values in the\ngiven array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN`, `ARRAY_CONTAINS_ANY`, or `NOT_IN`."
+            "The given `field` is equal to at least one value in the given array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN` or `ARRAY_CONTAINS_ANY`.",
+            "The given `field` is an array that contains any of the values in the\ngiven array.\n\nRequires:\n\n* That `value` is a non-empty `ArrayValue` with at most 10 values.\n* No other `IN` or `ARRAY_CONTAINS_ANY`."
           ],
           "type": "string"
         },

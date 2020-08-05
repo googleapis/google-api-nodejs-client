@@ -140,6 +140,7 @@ import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
 import * as prod_tt_sasportal from './prod_tt_sasportal';
 import * as pubsub from './pubsub';
+import * as pubsublite from './pubsublite';
 import * as realtimebidding from './realtimebidding';
 import * as recommendationengine from './recommendationengine';
 import * as recommender from './recommender';
@@ -323,6 +324,7 @@ export const APIS: APIList = {
   poly: poly.VERSIONS,
   prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
   pubsub: pubsub.VERSIONS,
+  pubsublite: pubsublite.VERSIONS,
   realtimebidding: realtimebidding.VERSIONS,
   recommendationengine: recommendationengine.VERSIONS,
   recommender: recommender.VERSIONS,
@@ -503,6 +505,7 @@ export class GeneratedAPIs {
   poly = poly.poly;
   prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
   pubsub = pubsub.pubsub;
+  pubsublite = pubsublite.pubsublite;
   realtimebidding = realtimebidding.realtimebidding;
   recommendationengine = recommendationengine.recommendationengine;
   recommender = recommender.recommender;

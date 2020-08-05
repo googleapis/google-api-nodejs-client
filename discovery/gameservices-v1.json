@@ -1312,7 +1312,7 @@
       }
     }
   },
-  "revision": "20200721",
+  "revision": "20200730",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1769,6 +1769,7 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -1793,6 +1794,7 @@
         "updateTime": {
           "description": "Output only. The last-modified time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1820,6 +1822,7 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -1854,6 +1857,7 @@
         "updateTime": {
           "description": "Output only. The last-modified time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1881,6 +1885,7 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -1905,6 +1910,7 @@
         "updateTime": {
           "description": "Output only. The last-modified time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1917,6 +1923,7 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "defaultGameServerConfig": {
@@ -1941,6 +1948,7 @@
         "updateTime": {
           "description": "Output only. The last-modified time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2201,16 +2209,19 @@
       "properties": {
         "apiVersion": {
           "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
           "description": "Output only. The time the operation was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "endTime": {
           "description": "Output only. The time the operation finished running.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "operationStatus": {
@@ -2218,18 +2229,22 @@
             "$ref": "OperationStatus"
           },
           "description": "Output only. Operation status for Game Services API operations. Operation status is in the form of key-value pairs where keys are resource IDs and the values show the status of the operation. In case of failures, the value includes an error code and error message.",
+          "readOnly": true,
           "type": "object"
         },
         "requestedCancellation": {
           "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
           "type": "boolean"
         },
         "statusMessage": {
           "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
           "type": "string"
         },
         "target": {
           "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
           "type": "string"
         },
         "unreachable": {
@@ -2237,10 +2252,12 @@
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2251,6 +2268,7 @@
       "properties": {
         "done": {
           "description": "Output only. Whether the operation is done or still in progress.",
+          "readOnly": true,
           "type": "boolean"
         },
         "errorCode": {
@@ -2406,6 +2424,7 @@
         "createTime": {
           "description": "Output only. The creation time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -2434,6 +2453,7 @@
         "updateTime": {
           "description": "Output only. The last-modified time.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
