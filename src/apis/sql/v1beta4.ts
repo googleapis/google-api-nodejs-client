@@ -160,7 +160,7 @@ export namespace sql_v1beta4 {
      */
     name?: string | null;
     /**
-     * The whitelisted value for the access control list.
+     * The allowlisted value for the access control list.
      */
     value?: string | null;
   }
@@ -318,7 +318,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$CloneContext {
     /**
-     * Binary log coordinates, if specified, identify the position up to which the source instance should be cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
+     * Binary log coordinates, if specified, identify the position up to which the source instance is cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
     /**
@@ -381,11 +381,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$DatabaseFlags {
     /**
-     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags should be specified with underscores, not hyphens. For more information, see &lt;a href=&quot;/sql/docs/mysql/flags&quot;&gt;Configuring Database Flags&lt;/a&gt; in the Cloud SQL documentation.
+     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags are specified with underscores, not hyphens. For more information, see &lt;a href=&quot;/sql/docs/mysql/flags&quot;&gt;Configuring Database Flags&lt;/a&gt; in the Cloud SQL documentation.
      */
     name?: string | null;
     /**
-     * The value of the flag. Booleans should be set to &lt;b&gt;on&lt;/b&gt; for true and &lt;b&gt;off&lt;/b&gt; for false. This field must be omitted if the flag doesn&#39;t take a value.
+     * The value of the flag. Booleans are set to &lt;b&gt;on&lt;/b&gt; for true and &lt;b&gt;off&lt;/b&gt; for false. This field must be omitted if the flag doesn&#39;t take a value.
      */
     value?: string | null;
   }
@@ -402,7 +402,7 @@ export namespace sql_v1beta4 {
      */
     connectionName?: string | null;
     /**
-     * The current disk usage of the instance in bytes. This property has been deprecated. Users should use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see &lt;a href=&quot;https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ&quot;&gt;this announcement&lt;/a&gt; for details.
+     * The current disk usage of the instance in bytes. This property has been deprecated. Use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see &lt;a href=&quot;https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ&quot;&gt;this announcement&lt;/a&gt; for details.
      */
     currentDiskSize?: string | null;
     /**
@@ -566,11 +566,11 @@ export namespace sql_v1beta4 {
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s x509 certificate.
+     * PEM representation of the replica&#39;s x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the slave&#39;s private key can be either PKCS #1 or PKCS #8.
+     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the replica&#39;s private key can be either PKCS #1 or PKCS #8.
      */
     clientKey?: string | null;
     /**
@@ -691,7 +691,7 @@ export namespace sql_v1beta4 {
      */
     minValue?: string | null;
     /**
-     * This is the name of the flag. Flag names always use underscores, not hyphens, e.g. &lt;b&gt;max_allowed_packet&lt;/b&gt;
+     * This is the name of the flag. Flag names always use underscores, not hyphens, for example: &lt;b&gt;max_allowed_packet&lt;/b&gt;
      */
     name?: string | null;
     /**
@@ -867,11 +867,11 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (e.g. &lt;b&gt;192.168.100.0/24&lt;/b&gt;).
+     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (for example: &lt;b&gt;192.168.100.0/24&lt;/b&gt;).
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
-     * Whether the instance should be assigned an IP address or not.
+     * Whether the instance is assigned a public IP address or not.
      */
     ipv4Enabled?: boolean | null;
     /**
@@ -879,7 +879,7 @@ export namespace sql_v1beta4 {
      */
     privateNetwork?: string | null;
     /**
-     * Whether SSL connections over IP should be enforced or not.
+     * Whether SSL connections over IP are enforced or not.
      */
     requireSsl?: boolean | null;
   }
@@ -901,7 +901,7 @@ export namespace sql_v1beta4 {
     type?: string | null;
   }
   /**
-   * Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
+   * Preferred location. This specifies where a Cloud SQL instance is located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
    */
   export interface Schema$LocationPreference {
     /**
@@ -913,12 +913,12 @@ export namespace sql_v1beta4 {
      */
     kind?: string | null;
     /**
-     * The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.).
+     * The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.).
      */
     zone?: string | null;
   }
   /**
-   * Maintenance window. This specifies when a v2 Cloud SQL instance should preferably be restarted for system maintenance purposes.
+   * Maintenance window. This specifies when a Cloud SQL instance is restarted for system maintenance purposes.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -947,11 +947,11 @@ export namespace sql_v1beta4 {
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s x509 certificate.
+     * PEM representation of the replica&#39;s x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
+     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
      */
     clientKey?: string | null;
     /**
@@ -959,7 +959,7 @@ export namespace sql_v1beta4 {
      */
     connectRetryInterval?: number | null;
     /**
-     * Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump.
+     * Path to a SQL dump file in Google Cloud Storage from which the replica instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps have the binlog co-ordinates from which replication begins. This can be accomplished by setting --master-data to 1 when using mysqldump.
      */
     dumpFilePath?: string | null;
     /**
@@ -996,11 +996,11 @@ export namespace sql_v1beta4 {
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s x509 certificate.
+     * PEM representation of the replica&#39;s x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
+     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
      */
     clientKey?: string | null;
     /**
@@ -1706,7 +1706,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1860,7 +1860,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2035,7 +2035,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2185,7 +2185,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2409,7 +2409,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2556,7 +2556,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2723,7 +2723,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2865,7 +2865,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3035,7 +3035,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3205,7 +3205,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3442,7 +3442,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3604,7 +3604,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3764,7 +3764,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3914,7 +3914,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4073,7 +4073,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4229,7 +4229,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4389,7 +4389,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4553,7 +4553,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4708,7 +4708,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4893,7 +4893,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5051,7 +5051,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5196,7 +5196,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5385,7 +5385,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5535,7 +5535,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5686,7 +5686,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5837,7 +5837,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5997,7 +5997,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6157,7 +6157,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6308,7 +6308,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6459,7 +6459,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6619,7 +6619,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6806,7 +6806,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7244,7 +7244,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7393,7 +7393,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7599,7 +7599,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7658,7 +7658,7 @@ export namespace sql_v1beta4 {
      *   const res = await sql.projects.instances.startExternalSync({
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // ID of the project that contains the first generation instance.
+     *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
      *     // External sync mode
      *     syncMode: 'placeholder-value',
@@ -7695,7 +7695,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project ID of the project that contains the first generation instance.
+     * @param {string} params.project ID of the project that contains the instance.
      * @param {string=} params.syncMode External sync mode
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7753,7 +7753,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7918,7 +7918,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7971,7 +7971,7 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
-     * ID of the project that contains the first generation instance.
+     * ID of the project that contains the instance.
      */
     project?: string;
     /**
@@ -8132,7 +8132,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8285,7 +8285,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8432,7 +8432,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8585,7 +8585,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8727,7 +8727,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8941,7 +8941,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9111,7 +9111,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9277,7 +9277,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9418,7 +9418,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9590,7 +9590,7 @@ export namespace sql_v1beta4 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
