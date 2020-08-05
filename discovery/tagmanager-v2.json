@@ -30,7 +30,7 @@
   "baseUrl": "https://www.googleapis.com/",
   "batchPath": "batch/tagmanager/v2",
   "canonicalName": "Tag Manager",
-  "description": "This API allows clients to access and modify container and tag\n     configuration.",
+  "description": "This API allows clients to access and modify container and tag configuration.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/tag-manager",
   "icons": {
@@ -134,7 +134,7 @@
           ],
           "parameters": {
             "path": {
-              "description": "GTM Accounts's API relative path.\nExample: accounts/{account_id}",
+              "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -184,12 +184,12 @@
           ],
           "parameters": {
             "fingerprint": {
-              "description": "When provided, this fingerprint must match the fingerprint of the account\nin storage.",
+              "description": "When provided, this fingerprint must match the fingerprint of the account in storage.",
               "location": "query",
               "type": "string"
             },
             "path": {
-              "description": "GTM Accounts's API relative path.\nExample: accounts/{account_id}",
+              "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -221,7 +221,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "GTM Account's API relative path.\nExample: accounts/{account_id}.",
+                  "description": "GTM Account's API relative path. Example: accounts/{account_id}.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -249,7 +249,7 @@
               ],
               "parameters": {
                 "path": {
-                  "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                  "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/containers/[^/]+$",
                   "required": true,
@@ -271,7 +271,7 @@
               ],
               "parameters": {
                 "path": {
-                  "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                  "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/containers/[^/]+$",
                   "required": true,
@@ -302,7 +302,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "GTM Accounts's API relative path.\nExample: accounts/{account_id}.",
+                  "description": "GTM Accounts's API relative path. Example: accounts/{account_id}.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -328,12 +328,12 @@
               ],
               "parameters": {
                 "fingerprint": {
-                  "description": "When provided, this fingerprint must match the fingerprint of the\ncontainer in storage.",
+                  "description": "When provided, this fingerprint must match the fingerprint of the container in storage.",
                   "location": "query",
                   "type": "string"
                 },
                 "path": {
-                  "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                  "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/containers/[^/]+$",
                   "required": true,
@@ -365,7 +365,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -393,7 +393,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Environment's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/environments/{environment_id}",
+                      "description": "GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -415,7 +415,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Environment's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/environments/{environment_id}",
+                      "description": "GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -446,7 +446,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -472,7 +472,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Environment's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/environments/{environment_id}",
+                      "description": "GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -500,12 +500,12 @@
                   ],
                   "parameters": {
                     "fingerprint": {
-                      "description": "When provided, this fingerprint must match the fingerprint of the\nenvironment in storage.",
+                      "description": "When provided, this fingerprint must match the fingerprint of the environment in storage.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM Environment's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/environments/{environment_id}",
+                      "description": "GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -537,7 +537,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -573,7 +573,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -604,7 +604,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -626,12 +626,12 @@
                   ],
                   "parameters": {
                     "containerVersionId": {
-                      "description": "The GTM ContainerVersion ID. Specify <code>published</code> to retrieve\nthe currently published version.",
+                      "description": "The GTM ContainerVersion ID. Specify published to retrieve the currently published version.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -658,7 +658,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "GTM Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -684,12 +684,12 @@
                   ],
                   "parameters": {
                     "fingerprint": {
-                      "description": "When provided, this fingerprint must match the fingerprint of the\ncontainer version in storage.",
+                      "description": "When provided, this fingerprint must match the fingerprint of the container version in storage.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -705,7 +705,7 @@
                   ]
                 },
                 "set_latest": {
-                  "description": "Sets the latest version used for synchronization of workspaces when\ndetecting conflicts and errors.",
+                  "description": "Sets the latest version used for synchronization of workspaces when detecting conflicts and errors.",
                   "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/versions/{versionsId}:set_latest",
                   "httpMethod": "POST",
                   "id": "tagmanager.accounts.containers.versions.set_latest",
@@ -714,7 +714,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -739,7 +739,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -764,12 +764,12 @@
                   ],
                   "parameters": {
                     "fingerprint": {
-                      "description": "When provided, this fingerprint must match the fingerprint of the\ncontainer version in storage.",
+                      "description": "When provided, this fingerprint must match the fingerprint of the container version in storage.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM ContainerVersion's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/versions/{version_id}",
+                      "description": "GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -801,7 +801,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "GTM parent Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -820,7 +820,7 @@
                   ]
                 },
                 "create_version": {
-                  "description": "Creates a Container Version from the entities present in the workspace,\ndeletes the workspace, and sets the base container version to the newly\ncreated version.",
+                  "description": "Creates a Container Version from the entities present in the workspace, deletes the workspace, and sets the base container version to the newly created version.",
                   "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}:create_version",
                   "httpMethod": "POST",
                   "id": "tagmanager.accounts.containers.workspaces.create_version",
@@ -829,7 +829,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -857,7 +857,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -879,7 +879,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -905,7 +905,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -936,7 +936,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "GTM parent Container's API relative path.\nExample: accounts/{account_id}/containers/{container_id}",
+                      "description": "GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+$",
                       "required": true,
@@ -953,7 +953,7 @@
                   ]
                 },
                 "quick_preview": {
-                  "description": "Quick previews a workspace by creating a fake container version from all\nentities in the provided workspace.",
+                  "description": "Quick previews a workspace by creating a fake container version from all entities in the provided workspace.",
                   "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}:quick_preview",
                   "httpMethod": "POST",
                   "id": "tagmanager.accounts.containers.workspaces.quick_preview",
@@ -962,7 +962,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -978,7 +978,7 @@
                   ]
                 },
                 "resolve_conflict": {
-                  "description": "Resolves a merge conflict for a workspace entity by updating it to the\nresolved entity passed in the request.",
+                  "description": "Resolves a merge conflict for a workspace entity by updating it to the resolved entity passed in the request.",
                   "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}:resolve_conflict",
                   "httpMethod": "POST",
                   "id": "tagmanager.accounts.containers.workspaces.resolve_conflict",
@@ -987,12 +987,12 @@
                   ],
                   "parameters": {
                     "fingerprint": {
-                      "description": "When provided, this fingerprint must match the fingerprint of the\nentity_in_workspace in the merge conflict.",
+                      "description": "When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -1008,7 +1008,7 @@
                   ]
                 },
                 "sync": {
-                  "description": "Syncs a workspace to the latest container version by updating all\nunmodified workspace entities and displaying conflicts for modified\nentities.",
+                  "description": "Syncs a workspace to the latest container version by updating all unmodified workspace entities and displaying conflicts for modified entities.",
                   "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}:sync",
                   "httpMethod": "POST",
                   "id": "tagmanager.accounts.containers.workspaces.sync",
@@ -1017,7 +1017,7 @@
                   ],
                   "parameters": {
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -1042,12 +1042,12 @@
                   ],
                   "parameters": {
                     "fingerprint": {
-                      "description": "When provided, this fingerprint must match the fingerprint of the\nworkspace in storage.",
+                      "description": "When provided, this fingerprint must match the fingerprint of the workspace in storage.",
                       "location": "query",
                       "type": "string"
                     },
                     "path": {
-                      "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                      "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                       "required": true,
@@ -1079,7 +1079,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1199,6 +1199,118 @@
                             "clientName",
                             "queryString"
                           ],
+                          "enumDescriptions": [
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "For web or mobile.",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ],
                           "location": "query",
                           "repeated": true,
                           "type": "string"
@@ -1222,7 +1334,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM BuiltInVariable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables",
+                          "description": "GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/built_in_variables$",
                           "required": true,
@@ -1342,6 +1454,118 @@
                             "clientName",
                             "queryString"
                           ],
+                          "enumDescriptions": [
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "For web or mobile.",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ],
                           "location": "query",
                           "repeated": true,
                           "type": "string"
@@ -1367,7 +1591,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1393,7 +1617,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM BuiltInVariable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables",
+                          "description": "GTM BuiltInVariable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1513,6 +1737,118 @@
                             "clientName",
                             "queryString"
                           ],
+                          "enumDescriptions": [
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "For web or mobile.",
+                            "",
+                            "For web or mobile.",
+                            "For web or mobile.",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ],
                           "location": "query",
                           "type": "string"
                         }
@@ -1539,7 +1875,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1567,7 +1903,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1594,7 +1930,7 @@
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1620,7 +1956,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1651,7 +1987,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1677,7 +2013,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1720,12 +2056,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the tag\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the tag in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1750,12 +2086,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the folder in\nstorage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the folder in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Folder's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
+                          "description": "GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/folders/[^/]+$",
                           "required": true,
@@ -1787,7 +2123,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1815,7 +2151,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Tag's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
+                          "description": "GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -1837,7 +2173,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Tag's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
+                          "description": "GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -1868,7 +2204,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1894,12 +2230,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of thetag\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of thetag in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Tag's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
+                          "description": "GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -1924,12 +2260,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the tag in\nstorage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the tag in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Tag's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
+                          "description": "GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -1961,7 +2297,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -1989,7 +2325,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Custom Template's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
+                          "description": "GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/templates/[^/]+$",
                           "required": true,
@@ -2011,7 +2347,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Custom Template's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
+                          "description": "GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/templates/[^/]+$",
                           "required": true,
@@ -2042,7 +2378,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2068,12 +2404,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the template\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the template in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Custom Template's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
+                          "description": "GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/templates/[^/]+$",
                           "required": true,
@@ -2098,12 +2434,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the templates\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the templates in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Custom Template's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
+                          "description": "GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/templates/[^/]+$",
                           "required": true,
@@ -2135,7 +2471,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspaces's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2163,7 +2499,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Trigger's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
+                          "description": "GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/triggers/[^/]+$",
                           "required": true,
@@ -2185,7 +2521,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Trigger's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
+                          "description": "GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/triggers/[^/]+$",
                           "required": true,
@@ -2216,7 +2552,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspaces's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2242,12 +2578,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the trigger\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the trigger in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Trigger's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
+                          "description": "GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/triggers/[^/]+$",
                           "required": true,
@@ -2272,12 +2608,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the trigger\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the trigger in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Trigger's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
+                          "description": "GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/triggers/[^/]+$",
                           "required": true,
@@ -2309,7 +2645,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2337,7 +2673,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Variable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
+                          "description": "GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/variables/[^/]+$",
                           "required": true,
@@ -2359,7 +2695,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Variable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
+                          "description": "GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/variables/[^/]+$",
                           "required": true,
@@ -2390,7 +2726,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2416,12 +2752,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the variable\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the variable in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Variable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
+                          "description": "GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/variables/[^/]+$",
                           "required": true,
@@ -2446,12 +2782,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the variable\nin storage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the variable in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Variable's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
+                          "description": "GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/variables/[^/]+$",
                           "required": true,
@@ -2483,7 +2819,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2511,7 +2847,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Zone's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
+                          "description": "GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -2533,7 +2869,7 @@
                       ],
                       "parameters": {
                         "path": {
-                          "description": "GTM Zone's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
+                          "description": "GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -2564,7 +2900,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspace's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2590,12 +2926,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the zone in\nstorage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the zone in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Zone's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
+                          "description": "GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -2620,12 +2956,12 @@
                       ],
                       "parameters": {
                         "fingerprint": {
-                          "description": "When provided, this fingerprint must match the fingerprint of the zone in\nstorage.",
+                          "description": "When provided, this fingerprint must match the fingerprint of the zone in storage.",
                           "location": "query",
                           "type": "string"
                         },
                         "path": {
-                          "description": "GTM Zone's API relative path.\nExample:\naccounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
+                          "description": "GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -2661,7 +2997,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "GTM Account's API relative path.\nExample: accounts/{account_id}",
+                  "description": "GTM Account's API relative path. Example: accounts/{account_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -2680,7 +3016,7 @@
               ]
             },
             "delete": {
-              "description": "Removes a user from the account, revoking access to it and all of its\ncontainers.",
+              "description": "Removes a user from the account, revoking access to it and all of its containers.",
               "flatPath": "tagmanager/v2/accounts/{accountsId}/user_permissions/{user_permissionsId}",
               "httpMethod": "DELETE",
               "id": "tagmanager.accounts.user_permissions.delete",
@@ -2689,7 +3025,7 @@
               ],
               "parameters": {
                 "path": {
-                  "description": "GTM UserPermission's API relative path.\nExample: accounts/{account_id}/user_permissions/{user_permission_id}",
+                  "description": "GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/user_permissions/[^/]+$",
                   "required": true,
@@ -2711,7 +3047,7 @@
               ],
               "parameters": {
                 "path": {
-                  "description": "GTM UserPermission's API relative path.\nExample: accounts/{account_id}/user_permissions/{user_permission_id}",
+                  "description": "GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/user_permissions/[^/]+$",
                   "required": true,
@@ -2727,7 +3063,7 @@
               ]
             },
             "list": {
-              "description": "List all users that have access to the account along with Account and\nContainer user access granted to each of them.",
+              "description": "List all users that have access to the account along with Account and Container user access granted to each of them.",
               "flatPath": "tagmanager/v2/accounts/{accountsId}/user_permissions",
               "httpMethod": "GET",
               "id": "tagmanager.accounts.user_permissions.list",
@@ -2741,7 +3077,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "GTM Accounts's API relative path.\nExample: accounts/{account_id}",
+                  "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -2766,7 +3102,7 @@
               ],
               "parameters": {
                 "path": {
-                  "description": "GTM UserPermission's API relative path.\nExample: accounts/{account_id}/user_permissions/{user_permission_id}",
+                  "description": "GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/user_permissions/[^/]+$",
                   "required": true,
@@ -2789,7 +3125,7 @@
       }
     }
   },
-  "revision": "20200728",
+  "revision": "20200803",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2801,11 +3137,11 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Account as computed at storage time.\nThis value is recomputed whenever the account is modified.",
+          "description": "The fingerprint of the GTM Account as computed at storage time. This value is recomputed whenever the account is modified.",
           "type": "string"
         },
         "name": {
-          "description": "Account display name.\n@mutable tagmanager.accounts.create\n@mutable tagmanager.accounts.update",
+          "description": "Account display name. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update",
           "type": "string"
         },
         "path": {
@@ -2813,7 +3149,7 @@
           "type": "string"
         },
         "shareData": {
-          "description": "Whether the account shares data anonymously with Google and others.\nThis flag enables benchmarking by sharing your data in an anonymous form.\nGoogle will remove all identifiable information about your website, combine\nthe data with hundreds of other anonymous sites and report aggregate trends\nin the benchmarking service.\n@mutable tagmanager.accounts.create\n@mutable tagmanager.accounts.update",
+          "description": "Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service. @mutable tagmanager.accounts.create @mutable tagmanager.accounts.update",
           "type": "boolean"
         },
         "tagManagerUrl": {
@@ -2828,7 +3164,7 @@
       "id": "AccountAccess",
       "properties": {
         "permission": {
-          "description": "Whether the user has no access, user access, or admin access to an account.\n@mutable tagmanager.accounts.permissions.create\n@mutable tagmanager.accounts.permissions.update",
+          "description": "Whether the user has no access, user access, or admin access to an account. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update",
           "enum": [
             "accountPermissionUnspecified",
             "noAccess",
@@ -2847,7 +3183,7 @@
       "type": "object"
     },
     "BuiltInVariable": {
-      "description": "Built-in variables are a special category of variables that are pre-created\nand non-customizable. They provide common functionality like accessing\npropeties of the gtm data layer, monitoring clicks, or accessing elements\nof a page URL.",
+      "description": "Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing propeties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.",
       "id": "BuiltInVariable",
       "properties": {
         "accountId": {
@@ -2867,7 +3203,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Type of built-in variable.\n@required.tagmanager.accounts.containers.workspaces.built_in_variable.update\n@mutable tagmanager.accounts.containers.workspaces.built_in_variable.update",
+          "description": "Type of built-in variable. @required.tagmanager.accounts.containers.workspaces.built_in_variable.update @mutable tagmanager.accounts.containers.workspaces.built_in_variable.update",
           "enum": [
             "builtInVariableTypeUnspecified",
             "pageUrl",
@@ -3117,15 +3453,15 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Client as computed at storage time.\nThis value is recomputed whenever the client is modified.",
+          "description": "The fingerprint of the GTM Client as computed at storage time. This value is recomputed whenever the client is modified.",
           "type": "string"
         },
         "name": {
-          "description": "Client display name.\n@mutable tagmanager.accounts.containers.workspaces.clients.create\n@mutable tagmanager.accounts.containers.workspaces.clients.update",
+          "description": "Client display name. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "type": "string"
         },
         "parameter": {
-          "description": "The client's parameters.\n@mutable tagmanager.accounts.containers.workspaces.clients.create\n@mutable tagmanager.accounts.containers.workspaces.clients.update",
+          "description": "The client's parameters. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -3140,7 +3476,7 @@
           "type": "string"
         },
         "priority": {
-          "description": "Priority determines relative firing order.\n@mutable tagmanager.accounts.containers.workspaces.clients.create\n@mutable tagmanager.accounts.containers.workspaces.clients.update",
+          "description": "Priority determines relative firing order. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "format": "int32",
           "type": "integer"
         },
@@ -3149,7 +3485,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Client type.\n@mutable tagmanager.accounts.containers.workspaces.clients.create\n@mutable tagmanager.accounts.containers.workspaces.clients.update",
+          "description": "Client type. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "type": "string"
         },
         "workspaceId": {
@@ -3170,7 +3506,7 @@
               "tagmanager.accounts.containers.workspaces.triggers.update"
             ]
           },
-          "description": "A list of named parameters (key/value), depending on the condition's type.\nNotes:<ul>\n<li>For binary operators, include parameters named <code>arg0</code> and\n   <code>arg1</code> for specifying the left and right operands,\n   respectively.</li>\n<li>At this time, the left operand (<code>arg0</code>) must be a reference\n    to a variable.</li>\n<li>For case-insensitive Regex matching, include a boolean parameter named\n    <code>ignore_case</code> that is set to <code>true</code>.\n    If not specified or set to any other value, the matching will be case\n    sensitive.</li>\n<li>To negate an operator, include a boolean parameter named\n    <code>negate</code> boolean parameter that is set to <code>true</code>.\n    </li>\n</ul>\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "A list of named parameters (key/value), depending on the condition's type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -3183,7 +3519,7 @@
               "tagmanager.accounts.containers.workspaces.triggers.update"
             ]
           },
-          "description": "The type of operator for this condition.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "The type of operator for this condition. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "enum": [
             "conditionTypeUnspecified",
             "equals",
@@ -3210,7 +3546,7 @@
             "",
             "",
             "",
-            "NOTE(lanzone): When defining a ConditionType here, don't forget to also\ndefine a matching PredicateType (in condition.proto)."
+            "NOTE(lanzone): When defining a ConditionType here, don't forget to also define a matching PredicateType (in condition.proto)."
           ],
           "type": "string"
         }
@@ -3218,7 +3554,7 @@
       "type": "object"
     },
     "Container": {
-      "description": "Represents a Google Tag Manager Container, which specifies the platform tags\nwill run on, manages workspaces, and retains container versions.",
+      "description": "Represents a Google Tag Manager Container, which specifies the platform tags will run on, manages workspaces, and retains container versions.",
       "id": "Container",
       "properties": {
         "accountId": {
@@ -3230,14 +3566,14 @@
           "type": "string"
         },
         "domainName": {
-          "description": "List of domain names associated with the Container.\n@mutable tagmanager.accounts.containers.create\n@mutable tagmanager.accounts.containers.update",
+          "description": "List of domain names associated with the Container. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Container as computed at storage time.  This\nvalue is recomputed whenever the account is modified.",
+          "description": "The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.",
           "type": "string"
         },
         "name": {
@@ -3246,11 +3582,11 @@
               "tagmanager.accounts.containers.create"
             ]
           },
-          "description": "Container display name.\n@mutable tagmanager.accounts.containers.create\n@mutable tagmanager.accounts.containers.update",
+          "description": "Container display name. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
           "type": "string"
         },
         "notes": {
-          "description": "Container Notes.\n@mutable tagmanager.accounts.containers.create\n@mutable tagmanager.accounts.containers.update",
+          "description": "Container Notes. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
           "type": "string"
         },
         "path": {
@@ -3272,7 +3608,7 @@
               "tagmanager.accounts.containers.update"
             ]
           },
-          "description": "List of Usage Contexts for the Container. Valid values include: <code>web,\nandroid, or ios</code>.\n@mutable tagmanager.accounts.containers.create\n@mutable tagmanager.accounts.containers.update",
+          "description": "List of Usage Contexts for the Container. Valid values include: web, android, or ios. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
           "enumDescriptions": [
             "",
             "",
@@ -3292,6 +3628,15 @@
               "iosSdk5",
               "amp"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
@@ -3304,11 +3649,11 @@
       "id": "ContainerAccess",
       "properties": {
         "containerId": {
-          "description": "GTM Container ID.\n@mutable tagmanager.accounts.permissions.create\n@mutable tagmanager.accounts.permissions.update",
+          "description": "GTM Container ID. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update",
           "type": "string"
         },
         "permission": {
-          "description": "List of Container permissions.\n@mutable tagmanager.accounts.permissions.create\n@mutable tagmanager.accounts.permissions.update",
+          "description": "List of Container permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update",
           "enum": [
             "containerPermissionUnspecified",
             "noAccess",
@@ -3376,11 +3721,11 @@
           "type": "boolean"
         },
         "description": {
-          "description": "Container version description.\n@mutable tagmanager.accounts.containers.versions.update",
+          "description": "Container version description. @mutable tagmanager.accounts.containers.versions.update",
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Container Version as computed at\nstorage time. This value is recomputed whenever the container version is\nmodified.",
+          "description": "The fingerprint of the GTM Container Version as computed at storage time. This value is recomputed whenever the container version is modified.",
           "type": "string"
         },
         "folder": {
@@ -3391,7 +3736,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Container version display name.\n@mutable tagmanager.accounts.containers.versions.update",
+          "description": "Container version display name. @mutable tagmanager.accounts.containers.versions.update",
           "type": "string"
         },
         "path": {
@@ -3533,12 +3878,12 @@
           "description": "The container version created."
         },
         "newWorkspacePath": {
-          "description": "Auto generated workspace path created as a result of version creation. This\nfield should only be populated if the created version was not a quick\npreview.",
+          "description": "Auto generated workspace path created as a result of version creation. This field should only be populated if the created version was not a quick preview.",
           "type": "string"
         },
         "syncStatus": {
           "$ref": "SyncStatus",
-          "description": "Whether version creation failed when syncing the workspace to the latest\ncontainer version."
+          "description": "Whether version creation failed when syncing the workspace to the latest container version."
         }
       },
       "type": "object"
@@ -3556,7 +3901,7 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Custom Template as computed at storage time.\nThis value is recomputed whenever the template is modified.",
+          "description": "The fingerprint of the GTM Custom Template as computed at storage time. This value is recomputed whenever the template is modified.",
           "type": "string"
         },
         "galleryReference": {
@@ -3591,7 +3936,7 @@
       "type": "object"
     },
     "Entity": {
-      "description": "A workspace entity that may represent a tag, trigger, variable, or folder in\naddition to its status in the workspace.",
+      "description": "A workspace entity that may represent a tag, trigger, variable, or folder in addition to its status in the workspace.",
       "id": "Entity",
       "properties": {
         "changeStatus": {
@@ -3632,7 +3977,7 @@
       "type": "object"
     },
     "Environment": {
-      "description": "Represents a Google Tag Manager Environment. Note that a user can create,\ndelete and update environments of type USER, but can only update the\nenable_debug and url fields of environments of other types.",
+      "description": "Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types.",
       "id": "Environment",
       "properties": {
         "accountId": {
@@ -3657,11 +4002,11 @@
           "type": "string"
         },
         "description": {
-          "description": "The environment description. Can be set or changed only on USER type\nenvironments.\n@mutable tagmanager.accounts.containers.environments.create\n@mutable tagmanager.accounts.containers.environments.update",
+          "description": "The environment description. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update",
           "type": "string"
         },
         "enableDebug": {
-          "description": "Whether or not to enable debug by default for the environment.\n@mutable tagmanager.accounts.containers.environments.create\n@mutable tagmanager.accounts.containers.environments.update",
+          "description": "Whether or not to enable debug by default for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update",
           "type": "boolean"
         },
         "environmentId": {
@@ -3669,7 +4014,7 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM environment as computed at storage time.\nThis value is recomputed whenever the environment is modified.",
+          "description": "The fingerprint of the GTM environment as computed at storage time. This value is recomputed whenever the environment is modified.",
           "type": "string"
         },
         "name": {
@@ -3679,7 +4024,7 @@
               "tagmanager.accounts.containers.environments.update"
             ]
           },
-          "description": "The environment display name. Can be set or changed only on USER type\nenvironments.\n@mutable tagmanager.accounts.containers.environments.create\n@mutable tagmanager.accounts.containers.environments.update",
+          "description": "The environment display name. Can be set or changed only on USER type environments. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update",
           "type": "string"
         },
         "path": {
@@ -3702,12 +4047,12 @@
             "Points to a user defined environment.",
             "Points to the current live container version.",
             "Points to the latest container version.",
-            "Automatically managed environment that points to a workspace preview or\nversion created by a workspace."
+            "Automatically managed environment that points to a workspace preview or version created by a workspace."
           ],
           "type": "string"
         },
         "url": {
-          "description": "Default preview page url for the environment.\n@mutable tagmanager.accounts.containers.environments.create\n@mutable tagmanager.accounts.containers.environments.update",
+          "description": "Default preview page url for the environment. @mutable tagmanager.accounts.containers.environments.create @mutable tagmanager.accounts.containers.environments.update",
           "type": "string"
         },
         "workspaceId": {
@@ -3730,7 +4075,7 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Folder as computed at storage time.\nThis value is recomputed whenever the folder is modified.",
+          "description": "The fingerprint of the GTM Folder as computed at storage time. This value is recomputed whenever the folder is modified.",
           "type": "string"
         },
         "folderId": {
@@ -3744,11 +4089,11 @@
               "tagmanager.accounts.containers.workspaces.folders.update"
             ]
           },
-          "description": "Folder display name.\n@mutable tagmanager.accounts.containers.workspaces.folders.create\n@mutable tagmanager.accounts.containers.workspaces.folders.update",
+          "description": "Folder display name. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update",
           "type": "string"
         },
         "notes": {
-          "description": "User notes on how to apply this folder in the container.\n@mutable tagmanager.accounts.containers.workspaces.folders.create\n@mutable tagmanager.accounts.containers.workspaces.folders.update",
+          "description": "User notes on how to apply this folder in the container. @mutable tagmanager.accounts.containers.workspaces.folders.create @mutable tagmanager.accounts.containers.workspaces.folders.update",
           "type": "string"
         },
         "path": {
@@ -3799,7 +4144,7 @@
       "type": "object"
     },
     "GalleryReference": {
-      "description": "Represents the link between a custom template and an entry on the Community\nTemplate Gallery site.",
+      "description": "Represents the link between a custom template and an entry on the Community Template Gallery site.",
       "id": "GalleryReference",
       "properties": {
         "host": {
@@ -3807,7 +4152,7 @@
           "type": "string"
         },
         "isModified": {
-          "description": "If a user has manually edited the community  gallery template.",
+          "description": "If a user has manually edited the community gallery template.",
           "type": "boolean"
         },
         "owner": {
@@ -3819,7 +4164,7 @@
           "type": "string"
         },
         "signature": {
-          "description": "The signature of the community gallery template as computed at import time.\nThis value is recomputed whenever the template is updated from the gallery.",
+          "description": "The signature of the community gallery template as computed at import time. This value is recomputed whenever the template is updated from the gallery.",
           "type": "string"
         },
         "version": {
@@ -3830,7 +4175,7 @@
       "type": "object"
     },
     "GetWorkspaceStatusResponse": {
-      "description": "The changes that have occurred in the workspace since the base container\nversion.",
+      "description": "The changes that have occurred in the workspace since the base container version.",
       "id": "GetWorkspaceStatusResponse",
       "properties": {
         "mergeConflict": {
@@ -4088,11 +4433,11 @@
       "properties": {
         "entityInBaseVersion": {
           "$ref": "Entity",
-          "description": "The base version entity (since the latest sync operation) that has\nconflicting changes compared to the workspace. If this field is missing,\nit means the workspace entity is deleted from the base version."
+          "description": "The base version entity (since the latest sync operation) that has conflicting changes compared to the workspace. If this field is missing, it means the workspace entity is deleted from the base version."
         },
         "entityInWorkspace": {
           "$ref": "Entity",
-          "description": "The workspace entity that has conflicting changes compared to the\nbase version. If an entity is deleted in a workspace, it will still\nappear with a deleted change status."
+          "description": "The workspace entity that has conflicting changes compared to the base version. If an entity is deleted in a workspace, it will still appear with a deleted change status."
         }
       },
       "type": "object"
@@ -4102,18 +4447,18 @@
       "id": "Parameter",
       "properties": {
         "key": {
-          "description": "The named key that uniquely identifies a parameter.  Required for top-level\nparameters, as well as map values.  Ignored for list values.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "list": {
-          "description": "This list parameter's parameters (keys will be ignored).\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "This list parameter's parameters (keys will be ignored). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "$ref": "Parameter"
           },
           "type": "array"
         },
         "map": {
-          "description": "This map parameter's parameters (must have keys; keys must be unique).\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "This map parameter's parameters (must have keys; keys must be unique). @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -4130,7 +4475,7 @@
               "tagmanager.accounts.containers.workspaces.variables.update"
             ]
           },
-          "description": "The parameter type.  Valid values are:<ul>\n<li><code>boolean</code>: The value represents a boolean, represented as\n    'true' or 'false'</li>\n<li><code>integer</code>: The value represents a 64-bit signed integer\n    value, in base 10</li>\n<li><code>list</code>: A list of parameters should be specified</li>\n<li><code>map</code>: A map of parameters should be specified</li>\n<li><code>template</code>: The value represents any text; this can include\n    variable references (even variable references that might return\n    non-string types)</li>\n<li><code>trigger_reference</code>: The value represents a trigger,\n    represented as the trigger id</li>\n<li><code>tag_reference</code>: The value represents a tag, represented as\n    the tag name</li>\n</ul>\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "The parameter type. Valid values are: - boolean: The value represents a boolean, represented as 'true' or 'false' - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "enum": [
             "typeUnspecified",
             "template",
@@ -4154,7 +4499,7 @@
           "type": "string"
         },
         "value": {
-          "description": "A parameter's value (may contain variable references such as\n\"{{myVariable}}\")\nas appropriate to the specified type.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "A parameter's value (may contain variable references such as \"{{myVariable}}\") as appropriate to the specified type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         }
       },
@@ -4189,7 +4534,7 @@
         },
         "syncStatus": {
           "$ref": "SyncStatus",
-          "description": "Whether quick previewing failed when syncing the workspace to the latest\ncontainer version."
+          "description": "Whether quick previewing failed when syncing the workspace to the latest container version."
         }
       },
       "type": "object"
@@ -4211,7 +4556,7 @@
       "properties": {
         "folder": {
           "$ref": "Folder",
-          "description": "Folder as it appears in the latest container version since the last\nworkspace synchronization operation. If no folder is present, that means\nthe folder was deleted in the latest container version."
+          "description": "Folder as it appears in the latest container version since the last workspace synchronization operation. If no folder is present, that means the folder was deleted in the latest container version."
         }
       },
       "type": "object"
@@ -4222,7 +4567,7 @@
       "properties": {
         "tag": {
           "$ref": "Tag",
-          "description": "Tag as it appears in the latest container version since the last\nworkspace synchronization operation. If no tag is present, that means\nthe tag was deleted in the latest container version."
+          "description": "Tag as it appears in the latest container version since the last workspace synchronization operation. If no tag is present, that means the tag was deleted in the latest container version."
         }
       },
       "type": "object"
@@ -4233,7 +4578,7 @@
       "properties": {
         "template": {
           "$ref": "CustomTemplate",
-          "description": "Template as it appears in the latest container version since the last\nworkspace synchronization operation. If no template is present, that means\nthe template was deleted in the latest container version."
+          "description": "Template as it appears in the latest container version since the last workspace synchronization operation. If no template is present, that means the template was deleted in the latest container version."
         }
       },
       "type": "object"
@@ -4244,7 +4589,7 @@
       "properties": {
         "trigger": {
           "$ref": "Trigger",
-          "description": "Trigger as it appears in the latest container version since the last\nworkspace synchronization operation. If no trigger is present, that means\nthe trigger was deleted in the latest container version."
+          "description": "Trigger as it appears in the latest container version since the last workspace synchronization operation. If no trigger is present, that means the trigger was deleted in the latest container version."
         }
       },
       "type": "object"
@@ -4255,7 +4600,7 @@
       "properties": {
         "variable": {
           "$ref": "Variable",
-          "description": "Variable as it appears in the latest container version since the last\nworkspace synchronization operation. If no variable is present, that means\nthe variable was deleted in the latest container version."
+          "description": "Variable as it appears in the latest container version since the last workspace synchronization operation. If no variable is present, that means the variable was deleted in the latest container version."
         }
       },
       "type": "object"
@@ -4266,17 +4611,17 @@
       "properties": {
         "zone": {
           "$ref": "Zone",
-          "description": "Zone as it appears in the latest container version since the last\nworkspace synchronization operation. If no zone is present, that means\nthe zone was deleted in the latest container version."
+          "description": "Zone as it appears in the latest container version since the last workspace synchronization operation. If no zone is present, that means the zone was deleted in the latest container version."
         }
       },
       "type": "object"
     },
     "SetupTag": {
-      "description": "Represents a reference to atag that fires before another tag in order to\nset up dependencies.",
+      "description": "Represents a reference to atag that fires before another tag in order to set up dependencies.",
       "id": "SetupTag",
       "properties": {
         "stopOnSetupFailure": {
-          "description": "If true, fire the main tag if and only if the setup tag fires\nsuccessfully.\nIf false, fire the main tag regardless of setup tag firing status.",
+          "description": "If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.",
           "type": "boolean"
         },
         "tagName": {
@@ -4306,7 +4651,7 @@
       "id": "SyncWorkspaceResponse",
       "properties": {
         "mergeConflict": {
-          "description": "The merge conflict after sync.\nIf this field is not empty, the sync is still treated as successful.\nBut a version cannot be created until all conflicts are resolved.",
+          "description": "The merge conflict after sync. If this field is not empty, the sync is still treated as successful. But a version cannot be created until all conflicts are resolved.",
           "items": {
             "$ref": "MergeConflict"
           },
@@ -4328,14 +4673,14 @@
           "type": "string"
         },
         "blockingRuleId": {
-          "description": "Blocking rule IDs. If any of the listed rules evaluate to true, the tag\n    will not fire.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "blockingTriggerId": {
-          "description": "Blocking trigger IDs. If any of the listed triggers evaluate to true, the\ntag will not fire.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "type": "string"
           },
@@ -4346,33 +4691,33 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Tag as computed at storage time.\nThis value is recomputed whenever the tag is modified.",
+          "description": "The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.",
           "type": "string"
         },
         "firingRuleId": {
-          "description": "Firing rule IDs. A tag will fire when any of the listed rules are true and\n    all of its <code>blockingRuleIds</code> (if any specified) are false.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "firingTriggerId": {
-          "description": "Firing trigger IDs. A tag will fire when any of the listed triggers are\ntrue and all of its <code>blockingTriggerIds</code> (if any specified) are\nfalse.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "liveOnly": {
-          "description": "If set to true, this tag will only fire in the live environment (e.g. not\nin preview or debug mode).\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode). @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "boolean"
         },
         "monitoringMetadata": {
           "$ref": "Parameter",
-          "description": "A map of key-value pairs of tag metadata to be included in the event data\nfor tag monitoring.\nNotes:<ul>\n<li>This parameter must be type <code>MAP</code>.</li>\n<li>Each parameter in the map are type <code>TEMPLATE</code>, however\ncannot contain variable references.</li>\n</ul>\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update"
+          "description": "A map of key-value pairs of tag metadata to be included in the event data for tag monitoring. Notes: - This parameter must be type MAP. - Each parameter in the map are type TEMPLATE, however cannot contain variable references. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update"
         },
         "monitoringMetadataTagNameKey": {
-          "description": "If non-empty, then the tag display name will be included in the monitoring\nmetadata map using the key specified.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "If non-empty, then the tag display name will be included in the monitoring metadata map using the key specified. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "name": {
@@ -4382,15 +4727,15 @@
               "tagmanager.accounts.containers.workspaces.tags.update"
             ]
           },
-          "description": "Tag display name.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Tag display name. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "notes": {
-          "description": "User notes on how to apply this tag in the container.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "parameter": {
-          "description": "The tag's parameters.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "The tag's parameters. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -4405,20 +4750,20 @@
           "type": "string"
         },
         "paused": {
-          "description": "Indicates whether the tag is paused, which prevents the tag from firing.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "Indicates whether the tag is paused, which prevents the tag from firing. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "boolean"
         },
         "priority": {
           "$ref": "Parameter",
-          "description": "User defined numeric priority of the tag. Tags are fired asynchronously in\norder of priority. Tags with higher numeric value fire first. A tag's\npriority can be a positive or negative value. The default value is 0.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update"
+          "description": "User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag's priority can be a positive or negative value. The default value is 0. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update"
         },
         "scheduleEndMs": {
-          "description": "The end timestamp in milliseconds to schedule a tag.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "The end timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "format": "int64",
           "type": "string"
         },
         "scheduleStartMs": {
-          "description": "The start timestamp in milliseconds to schedule a tag.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "The start timestamp in milliseconds to schedule a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "format": "int64",
           "type": "string"
         },
@@ -4440,7 +4785,7 @@
           "enumDescriptions": [
             "",
             "Tag can be fired multiple times per event.",
-            "Tag can only be fired per event but can be fired multiple times per load\n(e.g., app load or page load).",
+            "Tag can only be fired per event but can be fired multiple times per load (e.g., app load or page load).",
             "Tag can only be fired per load (e.g., app load or page load)."
           ],
           "type": "string"
@@ -4467,7 +4812,7 @@
               "tagmanager.accounts.containers.workspaces.tags.update"
             ]
           },
-          "description": "GTM Tag Type.\n@mutable tagmanager.accounts.containers.workspaces.tags.create\n@mutable tagmanager.accounts.containers.workspaces.tags.update",
+          "description": "GTM Tag Type. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "workspaceId": {
@@ -4478,11 +4823,11 @@
       "type": "object"
     },
     "TeardownTag": {
-      "description": "Represents a tag that fires after another tag in order to tear down\ndependencies.",
+      "description": "Represents a tag that fires after another tag in order to tear down dependencies.",
       "id": "TeardownTag",
       "properties": {
         "stopTeardownOnFailure": {
-          "description": "If true, fire the teardown tag if and only if the main tag fires\nsuccessfully.\nIf false, fire the teardown tag regardless of main tag firing status.",
+          "description": "If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.",
           "type": "boolean"
         },
         "tagName": {
@@ -4501,7 +4846,7 @@
           "type": "string"
         },
         "autoEventFilter": {
-          "description": "Used in the case of auto event tracking.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "Used in the case of auto event tracking. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "items": {
             "$ref": "Condition"
           },
@@ -4509,7 +4854,7 @@
         },
         "checkValidation": {
           "$ref": "Parameter",
-          "description": "Whether or not we should only fire tags if the form submit or link click\nevent is not cancelled by some other event handler (e.g. because of\nvalidation). Only valid for Form Submission and Link Click triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "containerId": {
           "description": "GTM Container ID.",
@@ -4517,10 +4862,10 @@
         },
         "continuousTimeMinMilliseconds": {
           "$ref": "Parameter",
-          "description": "A visibility trigger minimum continuous visible time (in milliseconds).\nOnly valid for AMP Visibility trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "customEventFilter": {
-          "description": "Used in the case of custom event, which is fired iff all Conditions are\ntrue.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "Used in the case of custom event, which is fired iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "items": {
             "$ref": "Condition"
           },
@@ -4528,38 +4873,38 @@
         },
         "eventName": {
           "$ref": "Parameter",
-          "description": "Name of the GTM event that is fired. Only valid for Timer triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Name of the GTM event that is fired. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "filter": {
-          "description": "The trigger will only fire iff all Conditions are true.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "The trigger will only fire iff all Conditions are true. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "items": {
             "$ref": "Condition"
           },
           "type": "array"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Trigger as computed at storage time.\nThis value is recomputed whenever the trigger is modified.",
+          "description": "The fingerprint of the GTM Trigger as computed at storage time. This value is recomputed whenever the trigger is modified.",
           "type": "string"
         },
         "horizontalScrollPercentageList": {
           "$ref": "Parameter",
-          "description": "List of integer percentage values for scroll triggers. The trigger will\nfire when each percentage is reached when the view is scrolled\nhorizontally. Only valid for AMP scroll triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "interval": {
           "$ref": "Parameter",
-          "description": "Time between triggering recurring Timer Events (in milliseconds). Only\nvalid for Timer triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "intervalSeconds": {
           "$ref": "Parameter",
-          "description": "Time between Timer Events to fire (in seconds). Only valid for AMP Timer\ntrigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "limit": {
           "$ref": "Parameter",
-          "description": "Limit of the number of GTM events this Timer Trigger will fire. If no limit\nis set, we will continue to fire GTM events until the user leaves the page.\nOnly valid for Timer triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "maxTimerLengthSeconds": {
           "$ref": "Parameter",
-          "description": "Max time to fire Timer Events (in seconds). Only valid for AMP Timer\ntrigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "name": {
           "annotations": {
@@ -4568,15 +4913,15 @@
               "tagmanager.accounts.containers.workspaces.triggers.update"
             ]
           },
-          "description": "Trigger display name.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "Trigger display name. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "type": "string"
         },
         "notes": {
-          "description": "User notes on how to apply this trigger in the container.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "User notes on how to apply this trigger in the container. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "type": "string"
         },
         "parameter": {
-          "description": "Additional parameters.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "Additional parameters. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -4592,7 +4937,7 @@
         },
         "selector": {
           "$ref": "Parameter",
-          "description": "A click trigger CSS selector (i.e. \"a\", \"button\" etc.). Only valid for AMP\nClick trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A click trigger CSS selector (i.e. \"a\", \"button\" etc.). Only valid for AMP Click trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "tagManagerUrl": {
           "description": "Auto generated link to the tag manager UI",
@@ -4600,7 +4945,7 @@
         },
         "totalTimeMinMilliseconds": {
           "$ref": "Parameter",
-          "description": "A visibility trigger minimum total visible time (in milliseconds).\nOnly valid for AMP Visibility trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "triggerId": {
           "description": "The Trigger ID uniquely identifies the GTM Trigger.",
@@ -4612,7 +4957,7 @@
               "tagmanager.accounts.containers.workspaces.triggers.create"
             ]
           },
-          "description": "Defines the data layer event that causes this trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update",
+          "description": "Defines the data layer event that causes this trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update",
           "enum": [
             "eventTypeUnspecified",
             "pageview",
@@ -4685,31 +5030,31 @@
         },
         "uniqueTriggerId": {
           "$ref": "Parameter",
-          "description": "Globally unique id of the trigger that auto-generates this (a Form Submit,\nLink Click or Timer listener) if any. Used to make incompatible auto-events\nwork together with trigger filtering based on trigger ids. This value is\npopulated during output generation since the tags implied by triggers don't\nexist until then. Only valid for Form Submit, Link Click and Timer\ntriggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don't exist until then. Only valid for Form Submit, Link Click and Timer triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "verticalScrollPercentageList": {
           "$ref": "Parameter",
-          "description": "List of integer percentage values for scroll triggers. The trigger will\nfire when each percentage is reached when the view is scrolled vertically.\nOnly valid for AMP scroll triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "visibilitySelector": {
           "$ref": "Parameter",
-          "description": "A visibility trigger CSS selector (i.e. \"#id\"). Only valid for AMP\nVisibility trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A visibility trigger CSS selector (i.e. \"#id\"). Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "visiblePercentageMax": {
           "$ref": "Parameter",
-          "description": "A visibility trigger maximum percent visibility. Only valid for AMP\nVisibility trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "visiblePercentageMin": {
           "$ref": "Parameter",
-          "description": "A visibility trigger minimum percent visibility. Only valid for AMP\nVisibility trigger.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "waitForTags": {
           "$ref": "Parameter",
-          "description": "Whether or not we should delay the form submissions or link opening\nuntil all of the tags have fired (by preventing the default\naction and later simulating the default action). Only valid for\nForm Submission and Link Click triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "waitForTagsTimeout": {
           "$ref": "Parameter",
-          "description": "How long to wait (in milliseconds) for tags to fire when 'waits_for_tags'\nabove evaluates to <code>true</code>.  Only valid for Form Submission and\nLink Click triggers.\n@mutable tagmanager.accounts.containers.workspaces.triggers.create\n@mutable tagmanager.accounts.containers.workspaces.triggers.update"
+          "description": "How long to wait (in milliseconds) for tags to fire when 'waits_for_tags' above evaluates to true. Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update"
         },
         "workspaceId": {
           "description": "GTM Workspace ID.",
@@ -4724,21 +5069,21 @@
       "properties": {
         "accountAccess": {
           "$ref": "AccountAccess",
-          "description": "GTM Account access permissions.\n@mutable tagmanager.accounts.permissions.create\n@mutable tagmanager.accounts.permissions.update"
+          "description": "GTM Account access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update"
         },
         "accountId": {
           "description": "The Account ID uniquely identifies the GTM Account.",
           "type": "string"
         },
         "containerAccess": {
-          "description": "GTM Container access permissions.\n@mutable tagmanager.accounts.permissions.create\n@mutable tagmanager.accounts.permissions.update",
+          "description": "GTM Container access permissions. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update",
           "items": {
             "$ref": "ContainerAccess"
           },
           "type": "array"
         },
         "emailAddress": {
-          "description": "User's email address.\n@mutable tagmanager.accounts.permissions.create",
+          "description": "User's email address. @mutable tagmanager.accounts.permissions.create",
           "type": "string"
         },
         "path": {
@@ -4761,21 +5106,21 @@
           "type": "string"
         },
         "disablingTriggerId": {
-          "description": "For mobile containers only: A list of trigger IDs for disabling conditional\nvariables; the variable is enabled if one of the enabling trigger is true\nwhile all the disabling trigger are false. Treated as an unordered set.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "enablingTriggerId": {
-          "description": "For mobile containers only: A list of trigger IDs for enabling conditional\nvariables; the variable is enabled if one of the enabling triggers is true\nwhile all the disabling triggers are false. Treated as an unordered set.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Variable as computed at storage time.\nThis value is recomputed whenever the variable is modified.",
+          "description": "The fingerprint of the GTM Variable as computed at storage time. This value is recomputed whenever the variable is modified.",
           "type": "string"
         },
         "formatValue": {
@@ -4789,15 +5134,15 @@
               "tagmanager.accounts.containers.workspaces.variables.update"
             ]
           },
-          "description": "Variable display name.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "Variable display name. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "type": "string"
         },
         "notes": {
-          "description": "User notes on how to apply this variable in the container.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "User notes on how to apply this variable in the container. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "type": "string"
         },
         "parameter": {
-          "description": "The variable's parameters.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "The variable's parameters. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "items": {
             "$ref": "Parameter"
           },
@@ -4812,12 +5157,12 @@
           "type": "string"
         },
         "scheduleEndMs": {
-          "description": "The end timestamp in milliseconds to schedule a variable.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "The end timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "format": "int64",
           "type": "string"
         },
         "scheduleStartMs": {
-          "description": "The start timestamp in milliseconds to schedule a variable.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "The start timestamp in milliseconds to schedule a variable. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "format": "int64",
           "type": "string"
         },
@@ -4832,7 +5177,7 @@
               "tagmanager.accounts.containers.workspaces.variables.update"
             ]
           },
-          "description": "GTM Variable Type.\n@mutable tagmanager.accounts.containers.workspaces.variables.create\n@mutable tagmanager.accounts.containers.workspaces.variables.update",
+          "description": "GTM Variable Type. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update",
           "type": "string"
         },
         "variableId": {
@@ -4850,7 +5195,7 @@
       "id": "VariableFormatValue",
       "properties": {
         "caseConversionType": {
-          "description": "The option to convert a string-type variable value to either lowercase or\nuppercase.",
+          "description": "The option to convert a string-type variable value to either lowercase or uppercase.",
           "enum": [
             "none",
             "lowercase",
@@ -4895,11 +5240,11 @@
           "type": "string"
         },
         "description": {
-          "description": "Workspace description.\n@mutable tagmanager.accounts.containers.workspaces.create\n@mutable tagmanager.accounts.containers.workspaces.update",
+          "description": "Workspace description. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update",
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Workspace as computed at storage time. This\nvalue is recomputed whenever the workspace is modified.",
+          "description": "The fingerprint of the GTM Workspace as computed at storage time. This value is recomputed whenever the workspace is modified.",
           "type": "string"
         },
         "name": {
@@ -4909,7 +5254,7 @@
               "tagmanager.accounts.containers.workspaces.update"
             ]
           },
-          "description": "Workspace display name.\n@mutable tagmanager.accounts.containers.workspaces.create\n@mutable tagmanager.accounts.containers.workspaces.update",
+          "description": "Workspace display name. @mutable tagmanager.accounts.containers.workspaces.create @mutable tagmanager.accounts.containers.workspaces.update",
           "type": "string"
         },
         "path": {
@@ -4951,7 +5296,7 @@
           "type": "string"
         },
         "fingerprint": {
-          "description": "The fingerprint of the GTM Zone as computed at storage time.\nThis value is recomputed whenever the zone is modified.",
+          "description": "The fingerprint of the GTM Zone as computed at storage time. This value is recomputed whenever the zone is modified.",
           "type": "string"
         },
         "name": {
@@ -4997,7 +5342,7 @@
           "type": "array"
         },
         "customEvaluationTriggerId": {
-          "description": "Custom evaluation trigger IDs. A zone will evaluate its boundary\nconditions when any of the listed triggers are true.",
+          "description": "Custom evaluation trigger IDs. A zone will evaluate its boundary conditions when any of the listed triggers are true.",
           "items": {
             "type": "string"
           },
