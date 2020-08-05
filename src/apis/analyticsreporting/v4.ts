@@ -212,7 +212,7 @@ export namespace analyticsreporting_v4 {
     type?: string | null;
   }
   /**
-   * Defines a cohort group. For example:      &quot;cohortGroup&quot;: {       &quot;cohorts&quot;: [{         &quot;name&quot;: &quot;cohort 1&quot;,         &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;,         &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-08-01&quot;, &quot;endDate&quot;: &quot;2015-08-01&quot; }       },{         &quot;name&quot;: &quot;cohort 2&quot;          &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;          &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-07-01&quot;, &quot;endDate&quot;: &quot;2015-07-01&quot; }       }]     }
+   * Defines a cohort group. For example: &quot;cohortGroup&quot;: { &quot;cohorts&quot;: [{ &quot;name&quot;: &quot;cohort 1&quot;, &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;, &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-08-01&quot;, &quot;endDate&quot;: &quot;2015-08-01&quot; } },{ &quot;name&quot;: &quot;cohort 2&quot; &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot; &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-07-01&quot;, &quot;endDate&quot;: &quot;2015-07-01&quot; } }] }
    */
   export interface Schema$CohortGroup {
     /**
@@ -220,7 +220,7 @@ export namespace analyticsreporting_v4 {
      */
     cohorts?: Schema$Cohort[];
     /**
-     * Enable Life Time Value (LTV).  LTV measures lifetime value for users acquired through different channels. Please see: [Cohort Analysis](https://support.google.com/analytics/answer/6074676) and [Lifetime Value](https://support.google.com/analytics/answer/6182550) If the value of lifetimeValue is false:  - The metric values are similar to the values in the web interface cohort   report. - The cohort definition date ranges must be aligned to the calendar week   and month. i.e. while requesting `ga:cohortNthWeek` the `startDate` in   the cohort definition should be a Sunday and the `endDate` should be the   following Saturday, and for `ga:cohortNthMonth`, the `startDate`   should be the 1st of the month and `endDate` should be the last day   of the month.  When the lifetimeValue is true:  - The metric values will correspond to the values in the web interface   LifeTime value report. - The Lifetime Value report shows you how user value (Revenue) and   engagement (Appviews, Goal Completions, Sessions, and Session Duration)   grow during the 90 days after a user is acquired. - The metrics are calculated as a cumulative average per user per the time   increment. - The cohort definition date ranges need not be aligned to the calendar   week and month boundaries. - The `viewId` must be an   [app view   ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
+     * Enable Life Time Value (LTV). LTV measures lifetime value for users acquired through different channels. Please see: [Cohort Analysis](https://support.google.com/analytics/answer/6074676) and [Lifetime Value](https://support.google.com/analytics/answer/6182550) If the value of lifetimeValue is false: - The metric values are similar to the values in the web interface cohort report. - The cohort definition date ranges must be aligned to the calendar week and month. i.e. while requesting `ga:cohortNthWeek` the `startDate` in the cohort definition should be a Sunday and the `endDate` should be the following Saturday, and for `ga:cohortNthMonth`, the `startDate` should be the 1st of the month and `endDate` should be the last day of the month. When the lifetimeValue is true: - The metric values will correspond to the values in the web interface LifeTime value report. - The Lifetime Value report shows you how user value (Revenue) and engagement (Appviews, Goal Completions, Sessions, and Session Duration) grow during the 90 days after a user is acquired. - The metrics are calculated as a cumulative average per user per the time increment. - The cohort definition date ranges need not be aligned to the calendar week and month boundaries. - The `viewId` must be an [app view ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
      */
     lifetimeValue?: boolean | null;
   }
@@ -281,7 +281,7 @@ export namespace analyticsreporting_v4 {
    */
   export interface Schema$Dimension {
     /**
-     * If non-empty, we place dimension values into buckets after string to int64. Dimension values that are not the string representation of an integral value will be converted to zero.  The bucket values have to be in increasing order.  Each bucket is closed on the lower end, and open on the upper end. The &quot;first&quot; bucket includes all values less than the first boundary, the &quot;last&quot; bucket includes all values up to infinity. Dimension values that fall in a bucket get transformed to a new dimension value. For example, if one gives a list of &quot;0, 1, 3, 4, 7&quot;, then we return the following buckets:  - bucket #1: values &lt; 0, dimension value &quot;&lt;0&quot; - bucket #2: values in [0,1), dimension value &quot;0&quot; - bucket #3: values in [1,3), dimension value &quot;1-2&quot; - bucket #4: values in [3,4), dimension value &quot;3&quot; - bucket #5: values in [4,7), dimension value &quot;4-6&quot; - bucket #6: values &gt;= 7, dimension value &quot;7+&quot;  NOTE: If you are applying histogram mutation on any dimension, and using that dimension in sort, you will want to use the sort type `HISTOGRAM_BUCKET` for that purpose. Without that the dimension values will be sorted according to dictionary (lexicographic) order. For example the ascending dictionary order is:     &quot;&lt;50&quot;, &quot;1001+&quot;, &quot;121-1000&quot;, &quot;50-120&quot;  And the ascending `HISTOGRAM_BUCKET` order is:     &quot;&lt;50&quot;, &quot;50-120&quot;, &quot;121-1000&quot;, &quot;1001+&quot;  The client has to explicitly request `&quot;orderType&quot;: &quot;HISTOGRAM_BUCKET&quot;` for a histogram-mutated dimension.
+     * If non-empty, we place dimension values into buckets after string to int64. Dimension values that are not the string representation of an integral value will be converted to zero. The bucket values have to be in increasing order. Each bucket is closed on the lower end, and open on the upper end. The &quot;first&quot; bucket includes all values less than the first boundary, the &quot;last&quot; bucket includes all values up to infinity. Dimension values that fall in a bucket get transformed to a new dimension value. For example, if one gives a list of &quot;0, 1, 3, 4, 7&quot;, then we return the following buckets: - bucket #1: values &lt; 0, dimension value &quot;&lt;0&quot; - bucket #2: values in [0,1), dimension value &quot;0&quot; - bucket #3: values in [1,3), dimension value &quot;1-2&quot; - bucket #4: values in [3,4), dimension value &quot;3&quot; - bucket #5: values in [4,7), dimension value &quot;4-6&quot; - bucket #6: values &gt;= 7, dimension value &quot;7+&quot; NOTE: If you are applying histogram mutation on any dimension, and using that dimension in sort, you will want to use the sort type `HISTOGRAM_BUCKET` for that purpose. Without that the dimension values will be sorted according to dictionary (lexicographic) order. For example the ascending dictionary order is: &quot;&lt;50&quot;, &quot;1001+&quot;, &quot;121-1000&quot;, &quot;50-120&quot; And the ascending `HISTOGRAM_BUCKET` order is: &quot;&lt;50&quot;, &quot;50-120&quot;, &quot;121-1000&quot;, &quot;1001+&quot; The client has to explicitly request `&quot;orderType&quot;: &quot;HISTOGRAM_BUCKET&quot;` for a histogram-mutated dimension.
      */
     histogramBuckets?: string[] | null;
     /**
@@ -603,7 +603,7 @@ export namespace analyticsreporting_v4 {
      */
     metrics?: Schema$Metric[];
     /**
-     * If k metrics were requested, then the response will contain some data-dependent multiple of k columns in the report.  E.g., if you pivoted on the dimension `ga:browser` then you&#39;d get k columns for &quot;Firefox&quot;, k columns for &quot;IE&quot;, k columns for &quot;Chrome&quot;, etc. The ordering of the groups of columns is determined by descending order of &quot;total&quot; for the first of the k values.  Ties are broken by lexicographic ordering of the first pivot dimension, then lexicographic ordering of the second pivot dimension, and so on.  E.g., if the totals for the first value for Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns would be Chrome, Firefox, IE.  The following let you choose which of the groups of k columns are included in the response.
+     * If k metrics were requested, then the response will contain some data-dependent multiple of k columns in the report. E.g., if you pivoted on the dimension `ga:browser` then you&#39;d get k columns for &quot;Firefox&quot;, k columns for &quot;IE&quot;, k columns for &quot;Chrome&quot;, etc. The ordering of the groups of columns is determined by descending order of &quot;total&quot; for the first of the k values. Ties are broken by lexicographic ordering of the first pivot dimension, then lexicographic ordering of the second pivot dimension, and so on. E.g., if the totals for the first value for Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns would be Chrome, Firefox, IE. The following let you choose which of the groups of k columns are included in the response.
      */
     startGroup?: number | null;
   }
@@ -721,7 +721,7 @@ export namespace analyticsreporting_v4 {
      */
     samplingSpaceSizes?: string[] | null;
     /**
-     * For each requested date range, for the set of all rows that match the query, every requested value format gets a total. The total for a value format is computed by first totaling the metrics mentioned in the value format and then evaluating the value format as a scalar expression.  E.g., The &quot;totals&quot; for `3 / (ga:sessions + 2)` we compute `3 / ((sum of all relevant ga:sessions) + 2)`. Totals are computed before pagination.
+     * For each requested date range, for the set of all rows that match the query, every requested value format gets a total. The total for a value format is computed by first totaling the metrics mentioned in the value format and then evaluating the value format as a scalar expression. E.g., The &quot;totals&quot; for `3 / (ga:sessions + 2)` we compute `3 / ((sum of all relevant ga:sessions) + 2)`. Totals are computed before pagination.
      */
     totals?: Schema$DateRangeValues[];
   }
@@ -762,7 +762,7 @@ export namespace analyticsreporting_v4 {
      */
     includeEmptyRows?: boolean | null;
     /**
-     * The metric filter clauses. They are logically combined with the `AND` operator.  Metric filters look at only the first date range and not the comparing date range. Note that filtering on metrics occurs after the metrics are aggregated.
+     * The metric filter clauses. They are logically combined with the `AND` operator. Metric filters look at only the first date range and not the comparing date range. Note that filtering on metrics occurs after the metrics are aggregated.
      */
     metricFilterClauses?: Schema$MetricFilterClause[];
     /**
@@ -770,7 +770,7 @@ export namespace analyticsreporting_v4 {
      */
     metrics?: Schema$Metric[];
     /**
-     * Sort order on output rows. To compare two rows, the elements of the following are applied in order until a difference is found.  All date ranges in the output get the same row order.
+     * Sort order on output rows. To compare two rows, the elements of the following are applied in order until a difference is found. All date ranges in the output get the same row order.
      */
     orderBys?: Schema$OrderBy[];
     /**
@@ -786,7 +786,7 @@ export namespace analyticsreporting_v4 {
      */
     pivots?: Schema$Pivot[];
     /**
-     * The desired report [sample](https://support.google.com/analytics/answer/2637192) size. If the the `samplingLevel` field is unspecified the `DEFAULT` sampling level is used. Every [ReportRequest](#ReportRequest) within a `batchGet` method must contain the same `samplingLevel` definition. See [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)  for details.
+     * The desired report [sample](https://support.google.com/analytics/answer/2637192) size. If the the `samplingLevel` field is unspecified the `DEFAULT` sampling level is used. Every [ReportRequest](#ReportRequest) within a `batchGet` method must contain the same `samplingLevel` definition. See [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling) for details.
      */
     samplingLevel?: string | null;
     /**
@@ -948,7 +948,7 @@ export namespace analyticsreporting_v4 {
    */
   export interface Schema$SegmentFilter {
     /**
-     * If true, match the complement of simple or sequence segment. For example, to match all visits not from &quot;New York&quot;, we can define the segment as follows:        &quot;sessionSegment&quot;: {         &quot;segmentFilters&quot;: [{           &quot;simpleSegment&quot; :{             &quot;orFiltersForSegment&quot;: [{               &quot;segmentFilterClauses&quot;:[{                 &quot;dimensionFilter&quot;: {                   &quot;dimensionName&quot;: &quot;ga:city&quot;,                   &quot;expressions&quot;: [&quot;New York&quot;]                 }               }]             }]           },           &quot;not&quot;: &quot;True&quot;         }]       },
+     * If true, match the complement of simple or sequence segment. For example, to match all visits not from &quot;New York&quot;, we can define the segment as follows: &quot;sessionSegment&quot;: { &quot;segmentFilters&quot;: [{ &quot;simpleSegment&quot; :{ &quot;orFiltersForSegment&quot;: [{ &quot;segmentFilterClauses&quot;:[{ &quot;dimensionFilter&quot;: { &quot;dimensionName&quot;: &quot;ga:city&quot;, &quot;expressions&quot;: [&quot;New York&quot;] } }] }] }, &quot;not&quot;: &quot;True&quot; }] },
      */
     not?: boolean | null;
     /**
@@ -998,7 +998,7 @@ export namespace analyticsreporting_v4 {
      */
     operator?: string | null;
     /**
-     * Scope for a metric defines the level at which that metric is defined.  The specified metric scope must be equal to or greater than its primary scope as defined in the data model. The primary scope is defined by if the segment is selecting users or sessions.
+     * Scope for a metric defines the level at which that metric is defined. The specified metric scope must be equal to or greater than its primary scope as defined in the data model. The primary scope is defined by if the segment is selecting users or sessions.
      */
     scope?: string | null;
   }
