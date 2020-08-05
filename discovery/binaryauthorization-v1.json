@@ -494,7 +494,7 @@
       }
     }
   },
-  "revision": "20200605",
+  "revision": "20200731",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -713,8 +713,11 @@
             "RSA_SIGN_PKCS1_4096_SHA256",
             "RSA_SIGN_PKCS1_4096_SHA512",
             "ECDSA_P256_SHA256",
+            "EC_SIGN_P256_SHA256",
             "ECDSA_P384_SHA384",
-            "ECDSA_P521_SHA512"
+            "EC_SIGN_P384_SHA384",
+            "ECDSA_P521_SHA512",
+            "EC_SIGN_P521_SHA512"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -727,7 +730,10 @@
             "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA256 digest.",
             "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA512 digest.",
             "ECDSA on the NIST P-256 curve with a SHA256 digest.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
+            "ECDSA on the NIST P-521 curve with a SHA512 digest.",
             "ECDSA on the NIST P-521 curve with a SHA512 digest."
           ],
           "type": "string"
