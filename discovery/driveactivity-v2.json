@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200801",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -141,7 +141,7 @@
       "properties": {
         "actor": {
           "$ref": "Actor",
-          "description": "The actor responsible for this action (or empty if all actors are\nresponsible)."
+          "description": "The actor responsible for this action (or empty if all actors are responsible)."
         },
         "detail": {
           "$ref": "ActionDetail",
@@ -149,7 +149,7 @@
         },
         "target": {
           "$ref": "Target",
-          "description": "The target this action affects (or empty if affecting all targets). This\nrepresents the state of the target immediately after this action occurred."
+          "description": "The target this action affects (or empty if affecting all targets). This represents the state of the target immediately after this action occurred."
         },
         "timeRange": {
           "$ref": "TimeRange",
@@ -248,7 +248,7 @@
       "type": "object"
     },
     "AnonymousUser": {
-      "description": "Empty message representing an anonymous user or indicating the authenticated\nuser should be anonymized.",
+      "description": "Empty message representing an anonymous user or indicating the authenticated user should be anonymized.",
       "id": "AnonymousUser",
       "properties": {},
       "type": "object"
@@ -342,7 +342,7 @@
       "type": "object"
     },
     "ConsolidationStrategy": {
-      "description": "How the individual activities are consolidated. A set of activities may be\nconsolidated into one combined activity if they are related in some way, such\nas one actor performing the same action on multiple targets, or multiple\nactors performing the same action on a single target. The strategy defines\nthe rules for which activities are related.",
+      "description": "How the individual activities are consolidated. A set of activities may be consolidated into one combined activity if they are related in some way, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.",
       "id": "ConsolidationStrategy",
       "properties": {
         "legacy": {
@@ -373,15 +373,15 @@
       "properties": {
         "copy": {
           "$ref": "Copy",
-          "description": "If present, indicates the object was created by copying an existing Drive\nobject."
+          "description": "If present, indicates the object was created by copying an existing Drive object."
         },
         "new": {
           "$ref": "New",
-          "description": "If present, indicates the object was newly created (e.g. as a blank\ndocument), not derived from a Drive object or external object."
+          "description": "If present, indicates the object was newly created (e.g. as a blank document), not derived from a Drive object or external object."
         },
         "upload": {
           "$ref": "Upload",
-          "description": "If present, indicates the object originated externally and was uploaded\nto Drive."
+          "description": "If present, indicates the object originated externally and was uploaded to Drive."
         }
       },
       "type": "object"
@@ -454,7 +454,7 @@
       "id": "Drive",
       "properties": {
         "name": {
-          "description": "The resource name of the shared drive. The format is\n\"COLLECTION_ID/DRIVE_ID\". Clients should not assume a specific collection\nID for this resource name.",
+          "description": "The resource name of the shared drive. The format is \"COLLECTION_ID/DRIVE_ID\". Clients should not assume a specific collection ID for this resource name.",
           "type": "string"
         },
         "root": {
@@ -469,7 +469,7 @@
       "type": "object"
     },
     "DriveActivity": {
-      "description": "A single Drive activity comprising one or more Actions by one or more\nActors on one or more Targets. Some Action groupings occur spontaneously,\nsuch as moving an item into a shared folder triggering a permission change.\nOther groupings of related Actions, such as multiple Actors editing one item\nor moving multiple files into a new folder, are controlled by the selection\nof a ConsolidationStrategy in the QueryDriveActivityRequest.",
+      "description": "A single Drive activity comprising one or more Actions by one or more Actors on one or more Targets. Some Action groupings occur spontaneously, such as moving an item into a shared folder triggering a permission change. Other groupings of related Actions, such as multiple Actors editing one item or moving multiple files into a new folder, are controlled by the selection of a ConsolidationStrategy in the QueryDriveActivityRequest.",
       "id": "DriveActivity",
       "properties": {
         "actions": {
@@ -488,10 +488,10 @@
         },
         "primaryActionDetail": {
           "$ref": "ActionDetail",
-          "description": "Key information about the primary action for this activity. This is either\nrepresentative, or the most important, of all actions in the activity,\naccording to the ConsolidationStrategy in the request."
+          "description": "Key information about the primary action for this activity. This is either representative, or the most important, of all actions in the activity, according to the ConsolidationStrategy in the request."
         },
         "targets": {
-          "description": "All Google Drive objects this activity is about (e.g. file, folder, drive).\nThis represents the state of the target immediately after the actions\noccurred.",
+          "description": "All Google Drive objects this activity is about (e.g. file, folder, drive). This represents the state of the target immediately after the actions occurred.",
           "items": {
             "$ref": "Target"
           },
@@ -548,7 +548,7 @@
         },
         "driveFolder": {
           "$ref": "DriveFolder",
-          "description": "The Drive item is a folder. Includes information about the type of\nfolder."
+          "description": "The Drive item is a folder. Includes information about the type of folder."
         },
         "file": {
           "$ref": "File",
@@ -559,7 +559,7 @@
           "description": "This field is deprecated; please use the `driveFolder` field instead."
         },
         "mimeType": {
-          "description": "The MIME type of the Drive item.  See\nhttps://developers.google.com/drive/v3/web/mime-types.",
+          "description": "The MIME type of the Drive item. See https://developers.google.com/drive/v3/web/mime-types.",
           "type": "string"
         },
         "name": {
@@ -587,7 +587,7 @@
         },
         "driveFolder": {
           "$ref": "DriveFolder",
-          "description": "The Drive item is a folder. Includes information about the type of\nfolder."
+          "description": "The Drive item is a folder. Includes information about the type of folder."
         },
         "file": {
           "$ref": "File",
@@ -613,7 +613,7 @@
       "id": "DriveReference",
       "properties": {
         "name": {
-          "description": "The resource name of the shared drive. The format is\n\"COLLECTION_ID/DRIVE_ID\". Clients should not assume a specific collection\nID for this resource name.",
+          "description": "The resource name of the shared drive. The format is \"COLLECTION_ID/DRIVE_ID\". Clients should not assume a specific collection ID for this resource name.",
           "type": "string"
         },
         "title": {
@@ -640,15 +640,15 @@
       "id": "FileComment",
       "properties": {
         "legacyCommentId": {
-          "description": "The comment in the discussion thread. This identifier is an opaque string\ncompatible with the Drive API; see\nhttps://developers.google.com/drive/v3/reference/comments/get",
+          "description": "The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/drive/v3/reference/comments/get",
           "type": "string"
         },
         "legacyDiscussionId": {
-          "description": "The discussion thread to which the comment was added. This identifier is an\nopaque string compatible with the Drive API and references the first\ncomment in a discussion; see\nhttps://developers.google.com/drive/v3/reference/comments/get",
+          "description": "The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/drive/v3/reference/comments/get",
           "type": "string"
         },
         "linkToDiscussion": {
-          "description": "The link to the discussion thread containing this comment, for example,\n\"https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID\".",
+          "description": "The link to the discussion thread containing this comment, for example, \"https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID\".",
           "type": "string"
         },
         "parent": {
@@ -697,7 +697,7 @@
       "type": "object"
     },
     "Impersonation": {
-      "description": "Information about an impersonation, where an admin acts on behalf of an end\nuser. Information about the acting admin is not currently available.",
+      "description": "Information about an impersonation, where an admin acts on behalf of an end user. Information about the acting admin is not currently available.",
       "id": "Impersonation",
       "properties": {
         "impersonatedUser": {
@@ -716,14 +716,14 @@
           "type": "boolean"
         },
         "personName": {
-          "description": "The identifier for this user that can be used with the People API to get\nmore information. The format is \"people/ACCOUNT_ID\". See\nhttps://developers.google.com/people/.",
+          "description": "The identifier for this user that can be used with the People API to get more information. The format is \"people/ACCOUNT_ID\". See https://developers.google.com/people/.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Legacy": {
-      "description": "A strategy which consolidates activities using the grouping rules from the\nlegacy V1 Activity API. Similar actions occurring within a window of time\ncan be grouped across multiple targets (such as moving a set of files at\nonce) or multiple actors (such as several users editing the same item).\nGrouping rules for this strategy are specific to each type of action.",
+      "description": "A strategy which consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.",
       "id": "Legacy",
       "properties": {},
       "type": "object"
@@ -789,7 +789,7 @@
       "id": "Permission",
       "properties": {
         "allowDiscovery": {
-          "description": "If true, the item can be discovered (e.g. in the user's \"Shared with me\"\ncollection) without needing a link to the item.",
+          "description": "If true, the item can be discovered (e.g. in the user's \"Shared with me\" collection) without needing a link to the item.",
           "type": "boolean"
         },
         "anyone": {
@@ -805,7 +805,7 @@
           "description": "The group to whom this permission applies."
         },
         "role": {
-          "description": "Indicates the\n<a href=\"/drive/web/manage-sharing#roles\">Google Drive permissions\nrole</a>. The role determines a user's ability to read, write, and\ncomment on items.",
+          "description": "Indicates the Google Drive permissions role. The role determines a user's ability to read, write, and comment on items.",
           "enum": [
             "ROLE_UNSPECIFIED",
             "OWNER",
@@ -821,10 +821,10 @@
             "A role granting full access.",
             "A role granting the ability to manage people and settings.",
             "A role granting the ability to contribute and manage content.",
-            "A role granting the ability to contribute content. This role is sometimes\nalso known as \"writer\".",
+            "A role granting the ability to contribute content. This role is sometimes also known as \"writer\".",
             "A role granting the ability to view and comment on content.",
-            "A role granting the ability to view content. This role is sometimes also\nknown as \"reader\".",
-            "A role granting the ability to view content only after it has been\npublished to the web. This role is sometimes also known as \"published\nreader\". See https://support.google.com/sites/answer/6372880 for more\ninformation."
+            "A role granting the ability to view content. This role is sometimes also known as \"reader\".",
+            "A role granting the ability to view content only after it has been published to the web. This role is sometimes also known as \"published reader\". See https://support.google.com/sites/answer/6372880 for more information."
           ],
           "type": "string"
         },
@@ -890,28 +890,28 @@
       "id": "QueryDriveActivityRequest",
       "properties": {
         "ancestorName": {
-          "description": "Return activities for this Drive folder and all children and descendants.\nThe format is \"items/ITEM_ID\".",
+          "description": "Return activities for this Drive folder and all children and descendants. The format is \"items/ITEM_ID\".",
           "type": "string"
         },
         "consolidationStrategy": {
           "$ref": "ConsolidationStrategy",
-          "description": "Details on how to consolidate related actions that make up the activity. If\nnot set, then related actions are not consolidated."
+          "description": "Details on how to consolidate related actions that make up the activity. If not set, then related actions are not consolidated."
         },
         "filter": {
-          "description": "The filtering for items returned from this query request. The format of the\nfilter string is a sequence of expressions, joined by an optional \"AND\",\nwhere each expression is of the form \"field operator value\".\n\nSupported fields:\n\n  - <tt>time</tt>: Uses numerical operators on date values either in\n    terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.\n    Examples:\n      - <tt>time > 1452409200000 AND time <= 1492812924310</tt>\n      - <tt>time >= \"2016-01-10T01:02:03-05:00\"</tt>\n\n  - <tt>detail.action_detail_case</tt>: Uses the \"has\" operator (:) and\n    either a singular value or a list of allowed action types enclosed in\n    parentheses.\n    Examples:\n      - <tt>detail.action_detail_case: RENAME</tt>\n      - <tt>detail.action_detail_case:(CREATE EDIT)</tt>\n      - <tt>-detail.action_detail_case:MOVE</tt>",
+          "description": "The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional \"AND\", where each expression is of the form \"field operator value\". Supported fields: - time: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - time > 1452409200000 AND time <= 1492812924310 - time >= \"2016-01-10T01:02:03-05:00\" - detail.action_detail_case: Uses the \"has\" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - detail.action_detail_case: RENAME - detail.action_detail_case:(CREATE EDIT) - -detail.action_detail_case:MOVE",
           "type": "string"
         },
         "itemName": {
-          "description": "Return activities for this Drive item. The format is\n\"items/ITEM_ID\".",
+          "description": "Return activities for this Drive item. The format is \"items/ITEM_ID\".",
           "type": "string"
         },
         "pageSize": {
-          "description": "The miminum number of activities desired in the response; the server will\nattempt to return at least this quanitity. The server may also return fewer\nactivities if it has a partial response ready before the request times out.\nIf not set, a default value is used.",
+          "description": "The miminum number of activities desired in the response; the server will attempt to return at least this quanitity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.",
           "format": "int32",
           "type": "integer"
         },
         "pageToken": {
-          "description": "The token identifying which page of results to return. Set this to the\nnext_page_token value returned from a previous query to obtain the\nfollowing page of results. If not set, the first page of results will be\nreturned.",
+          "description": "The token identifying which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results will be returned.",
           "type": "string"
         }
       },
@@ -929,7 +929,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or\nempty if there are no more results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
@@ -984,9 +984,9 @@
           ],
           "enumDescriptions": [
             "The feature which changed restriction settings was not available.",
-            "When restricted, this prevents items from being shared outside the\ndomain.",
+            "When restricted, this prevents items from being shared outside the domain.",
             "When restricted, this prevents direct sharing of individual items.",
-            "When restricted, this prevents actions like copy, download, and print\nthat might result in uncontrolled duplicates of items.",
+            "When restricted, this prevents actions like copy, download, and print that might result in uncontrolled duplicates of items.",
             "When restricted, this prevents use of Drive File Stream."
           ],
           "type": "string"
