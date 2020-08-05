@@ -136,11 +136,11 @@ export namespace billingbudgets_v1beta1 {
      */
     monitoringNotificationChannels?: string[] | null;
     /**
-     * Required. The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it&#39;s set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.
+     * Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it&#39;s set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.
      */
     pubsubTopic?: string | null;
     /**
-     * Required. The schema version of the notification sent to `pubsub_topic`. Only &quot;1.0&quot; is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
+     * Optional. The schema version of the notification sent to `pubsub_topic`. Only &quot;1.0&quot; is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format
      */
     schemaVersion?: string | null;
   }
@@ -268,7 +268,7 @@ export namespace billingbudgets_v1beta1 {
     updateMask?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -306,7 +306,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.create
-     * @desc Creates a new budget. See <a href="https://cloud.google.com/billing/quotas">Quotas and limits</a> for more information on the limits of the number of budgets you can create.
+     * @desc Creates a new budget. See Quotas and limits for more information on the limits of the number of budgets you can create.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -331,8 +331,7 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.create({
-     *     // Required. The name of the billing account to create the budget in. Values
-     *     // are of the form `billingAccounts/{billingAccountId}`.
+     *     // Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.
      *     parent: 'billingAccounts/my-billingAccount',
      *
      *     // Request body metadata
@@ -494,8 +493,7 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.delete({
-     *     // Required. Name of the budget to delete. Values are of the form
-     *     // `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *   });
      *   console.log(res.data);
@@ -600,7 +598,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.get
-     * @desc Returns a budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * @desc Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -625,8 +623,7 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.get({
-     *     // Required. Name of budget to get. Values are of the form
-     *     // `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *   });
      *   console.log(res.data);
@@ -751,7 +748,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.list
-     * @desc Returns a list of budgets for a billing account.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+     * @desc Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -776,15 +773,11 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.list({
-     *     // Optional. The maximum number of budgets to return per page.
-     *     // The default and maximum value are 100.
+     *     // Optional. The maximum number of budgets to return per page. The default and maximum value are 100.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The value returned by the last `ListBudgetsResponse` which
-     *     // indicates that this is a continuation of a prior `ListBudgets` call,
-     *     // and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListBudgetsResponse` which indicates that this is a continuation of a prior `ListBudgets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of billing account to list budgets under. Values
-     *     // are of the form `billingAccounts/{billingAccountId}`.
+     *     // Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId}`.
      *     parent: 'billingAccounts/my-billingAccount',
      *   });
      *   console.log(res.data);
@@ -920,7 +913,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.patch
-     * @desc Updates a budget and returns the updated budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
+     * @desc Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -945,9 +938,7 @@ export namespace billingbudgets_v1beta1 {
      *
      *   // Do the magic
      *   const res = await billingbudgets.billingAccounts.budgets.patch({
-     *     // Output only. Resource name of the budget.
-     *     // The resource name implies the scope of a budget. Values are of the form
-     *     // `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     *     // Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     name: 'billingAccounts/my-billingAccount/budgets/my-budget',
      *
      *     // Request body metadata
