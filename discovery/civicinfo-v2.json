@@ -206,6 +206,17 @@
                 "subLocality2",
                 "special"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -224,6 +235,19 @@
                 "judge",
                 "schoolBoard",
                 "specialPurposeOfficer"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
               ],
               "location": "query",
               "repeated": true,
@@ -257,6 +281,17 @@
                 "subLocality2",
                 "special"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -287,6 +322,19 @@
                 "schoolBoard",
                 "specialPurposeOfficer"
               ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -300,7 +348,7 @@
       }
     }
   },
-  "revision": "20200706",
+  "revision": "20200804",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -513,6 +561,17 @@
               "subLocality2",
               "special"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
@@ -613,6 +672,19 @@
               "judge",
               "schoolBoard",
               "specialPurposeOfficer"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ],
             "type": "string"
           },
@@ -856,6 +928,17 @@
               "subLocality2",
               "special"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
@@ -900,6 +983,19 @@
               "judge",
               "schoolBoard",
               "specialPurposeOfficer"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ],
             "type": "string"
           },
