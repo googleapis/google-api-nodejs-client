@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20200703",
+  "revision": "20200731",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -166,13 +166,15 @@
             "AUDIO_ENCODING_UNSPECIFIED",
             "LINEAR16",
             "MP3",
-            "OGG_OPUS"
+            "OGG_OPUS",
+            "MULAW"
           ],
           "enumDescriptions": [
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
             "Uncompressed 16-bit signed little-endian samples (Linear PCM).\nAudio content returned as LINEAR16 also contains a WAV header.",
             "MP3 audio at 32kbps.",
-            "Opus encoded audio wrapped in an ogg container. The result will be a\nfile which can be played natively on Android, and in browsers (at least\nChrome and Firefox). The quality of the encoding is considerably higher\nthan MP3 while using approximately the same bitrate."
+            "Opus encoded audio wrapped in an ogg container. The result will be a\nfile which can be played natively on Android, and in browsers (at least\nChrome and Firefox). The quality of the encoding is considerably higher\nthan MP3 while using approximately the same bitrate.",
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.\nAudio content returned as MULAW also contains a WAV header."
           ],
           "type": "string"
         },
@@ -243,6 +245,21 @@
           "$ref": "AudioConfig",
           "description": "Required. The configuration of the synthesized audio."
         },
+        "enableTimePointing": {
+          "description": "Whether and what timepoints are returned in the response.",
+          "enumDescriptions": [
+            "Not specified. No timepoint information will be returned.",
+            "Timepoint information of <mark> tags in SSML input will be returned."
+          ],
+          "items": {
+            "enum": [
+              "TIMEPOINT_TYPE_UNSPECIFIED",
+              "SSML_MARK"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "input": {
           "$ref": "SynthesisInput",
           "description": "Required. The Synthesizer requires either plain text or SSML as input."
@@ -258,10 +275,37 @@
       "description": "The message returned to the client by the `SynthesizeSpeech` method.",
       "id": "SynthesizeSpeechResponse",
       "properties": {
+        "audioConfig": {
+          "$ref": "AudioConfig",
+          "description": "The audio metadata of `audio_content`."
+        },
         "audioContent": {
           "description": "The audio data bytes encoded as specified in the request, including the\nheader for encodings that are wrapped in containers (e.g. MP3, OGG_OPUS).\nFor LINEAR16 audio, we include the WAV header. Note: as\nwith all bytes fields, protobuffers use a pure binary representation,\nwhereas JSON representations use base64.",
           "format": "byte",
           "type": "string"
+        },
+        "timepoints": {
+          "description": "A link between a position in the original request input and a corresponding\ntime in the output audio. It's only supported via <mark> of SSML input.",
+          "items": {
+            "$ref": "Timepoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Timepoint": {
+      "description": "This contains a mapping between a certain point in the input text and a\ncorresponding time in the output audio.",
+      "id": "Timepoint",
+      "properties": {
+        "markName": {
+          "description": "Timepoint name as received from the client within <mark> tag.",
+          "type": "string"
+        },
+        "timeSeconds": {
+          "description": "Time offset in seconds from the start of the synthesized audio.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"

@@ -189,6 +189,10 @@ export namespace texttospeech_v1beta1 {
      */
     audioConfig?: Schema$AudioConfig;
     /**
+     * Whether and what timepoints are returned in the response.
+     */
+    enableTimePointing?: string[] | null;
+    /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      */
     input?: Schema$SynthesisInput;
@@ -202,9 +206,30 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$SynthesizeSpeechResponse {
     /**
+     * The audio metadata of `audio_content`.
+     */
+    audioConfig?: Schema$AudioConfig;
+    /**
      * The audio data bytes encoded as specified in the request, including the header for encodings that are wrapped in containers (e.g. MP3, OGG_OPUS). For LINEAR16 audio, we include the WAV header. Note: as with all bytes fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     audioContent?: string | null;
+    /**
+     * A link between a position in the original request input and a corresponding time in the output audio. It&#39;s only supported via &lt;mark&gt; of SSML input.
+     */
+    timepoints?: Schema$Timepoint[];
+  }
+  /**
+   * This contains a mapping between a certain point in the input text and a corresponding time in the output audio.
+   */
+  export interface Schema$Timepoint {
+    /**
+     * Timepoint name as received from the client within &lt;mark&gt; tag.
+     */
+    markName?: string | null;
+    /**
+     * Time offset in seconds from the start of the synthesized audio.
+     */
+    timeSeconds?: number | null;
   }
   /**
    * Description of a voice supported by the TTS service.
@@ -283,6 +308,7 @@ export namespace texttospeech_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "audioConfig": {},
+     *       //   "enableTimePointing": [],
      *       //   "input": {},
      *       //   "voice": {}
      *       // }
@@ -292,7 +318,9 @@ export namespace texttospeech_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "audioContent": "my_audioContent"
+     *   //   "audioConfig": {},
+     *   //   "audioContent": "my_audioContent",
+     *   //   "timepoints": []
      *   // }
      * }
      *
