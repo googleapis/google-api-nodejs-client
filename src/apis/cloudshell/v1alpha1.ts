@@ -154,7 +154,7 @@ export namespace cloudshell_v1alpha1 {
     key?: Schema$PublicKey;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -178,7 +178,7 @@ export namespace cloudshell_v1alpha1 {
      */
     publicKeys?: Schema$PublicKey[];
     /**
-     * Indicates the size of the backing VM running the environment.  If set to something other than DEFAULT, it will be reverted to the default VM size after vm_size_expire_time.
+     * Indicates the size of the backing VM running the environment. If set to something other than DEFAULT, it will be reverted to the default VM size after vm_size_expire_time.
      */
     size?: string | null;
     /**
@@ -223,7 +223,7 @@ export namespace cloudshell_v1alpha1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -231,7 +231,7 @@ export namespace cloudshell_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -284,7 +284,7 @@ export namespace cloudshell_v1alpha1 {
     environment?: Schema$Environment;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -292,7 +292,7 @@ export namespace cloudshell_v1alpha1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -347,9 +347,7 @@ export namespace cloudshell_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await cloudshell.users.environments.authorize({
-     *     // Name of the resource that should receive the credentials, for example
-     *     // `users/me/environments/default` or
-     *     // `users/someone@example.com/environments/default`.
+     *     // Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      *     name: 'users/my-user/environments/my-environment',
      *
      *     // Request body metadata
@@ -489,8 +487,7 @@ export namespace cloudshell_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await cloudshell.users.environments.get({
-     *     // Name of the requested resource, for example `users/me/environments/default`
-     *     // or `users/someone@example.com/environments/default`.
+     *     // Name of the requested resource, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      *     name: 'users/my-user/environments/my-environment',
      *   });
      *   console.log(res.data);
@@ -629,9 +626,7 @@ export namespace cloudshell_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await cloudshell.users.environments.patch({
-     *     // Name of the resource to be updated, for example
-     *     // `users/me/environments/default` or
-     *     // `users/someone@example.com/environments/default`.
+     *     // Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      *     name: 'users/my-user/environments/my-environment',
      *     // Mask specifying which fields in the environment should be updated.
      *     updateMask: 'placeholder-value',
@@ -793,9 +788,7 @@ export namespace cloudshell_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await cloudshell.users.environments.start({
-     *     // Name of the resource that should be started, for example
-     *     // `users/me/environments/default` or
-     *     // `users/someone@example.com/environments/default`.
+     *     // Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      *     name: 'users/my-user/environments/my-environment',
      *
      *     // Request body metadata
@@ -1137,8 +1130,7 @@ export namespace cloudshell_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await cloudshell.users.environments.publicKeys.delete({
-     *     // Name of the resource to be deleted, e.g.
-     *     // `users/me/environments/default/publicKeys/my-key`.
+     *     // Name of the resource to be deleted, e.g. `users/me/environments/default/publicKeys/my-key`.
      *     name: 'users/my-user/environments/my-environment/publicKeys/my-publicKey',
      *   });
      *   console.log(res.data);
