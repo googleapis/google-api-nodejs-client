@@ -401,7 +401,7 @@
       }
     }
   },
-  "revision": "20200613",
+  "revision": "20200731",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1014,7 +1014,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices",
       "properties": {
         "allowedServices": {
-          "description": "The list of APIs usable within the Service Perimeter. Must be empty\nunless 'enable_restriction' is True.",
+          "description": "The list of APIs usable within the Service Perimeter. Must be empty\nunless 'enable_restriction' is True. You can specify a list of individual\nservices, as well as include the 'RESTRICTED-SERVICES' value, which\nautomatically includes all of the services protected by the perimeter.",
           "items": {
             "type": "string"
           },
