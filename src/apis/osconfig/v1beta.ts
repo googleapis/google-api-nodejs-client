@@ -285,6 +285,44 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$Empty {}
   /**
+   * A resource that contains custom validation and enforcement steps.
+   */
+  export interface Schema$ExecResource {
+    /**
+     * What to run to bring this resource into the desired state. Optional if policy is in validate only mode.
+     */
+    enforce?: Schema$ExecResourceExec;
+    /**
+     * What to run to validate this resource is in the desired state. A successful exit code indicates resource is in the desired state.
+     */
+    validate?: Schema$ExecResourceExec;
+  }
+  /**
+   * A file or script to execute.
+   */
+  export interface Schema$ExecResourceExec {
+    /**
+     * Exit codes that indicate success.
+     */
+    allowedSuccessCodes?: number[] | null;
+    /**
+     * Arguments to use.
+     */
+    args?: string[] | null;
+    /**
+     * A remote or local file.
+     */
+    file?: Schema$File;
+    /**
+     * The script interpreter to use.
+     */
+    interpreter?: string | null;
+    /**
+     * An inline script.
+     */
+    script?: string | null;
+  }
+  /**
    * A step that runs an executable for a PatchJob.
    */
   export interface Schema$ExecStep {
@@ -350,6 +388,107 @@ export namespace osconfig_v1beta {
      * Rollout strategy of the patch job.
      */
     rollout?: Schema$PatchRollout;
+  }
+  /**
+   * A resource that extracts an archive
+   */
+  export interface Schema$ExtractArchiveResource {
+    /**
+     * Local file path that signals this resource is in the desired state. The absence of this file will indicate whether the archive needs to be extracted.
+     */
+    creates?: string | null;
+    /**
+     * Directory to extract archive to.
+     */
+    destination?: string | null;
+    /**
+     * Whether to overwrite existing files during extraction. If this is set to true, any existing files in the destination location will be overwritten by the extraction.
+     */
+    overwrite?: boolean | null;
+    /**
+     * The source archive to extract.
+     */
+    source?: Schema$File;
+    /**
+     * The type of the archive to extract.
+     */
+    type?: string | null;
+  }
+  /**
+   * A remote or local file.
+   */
+  export interface Schema$File {
+    /**
+     * Defaults to false. When false, files will be subject to validations based on the file type:  Remote: A checksum must be specified. GCS:    An object generation number must be specified.
+     */
+    allowInsecure?: boolean | null;
+    /**
+     * A GCS object.
+     */
+    gcs?: Schema$FileGcs;
+    /**
+     * A local path to use.
+     */
+    localPath?: string | null;
+    /**
+     * A generic remote file.
+     */
+    remote?: Schema$FileRemote;
+  }
+  /**
+   * Specifies a file available as a GCS Object.
+   */
+  export interface Schema$FileGcs {
+    /**
+     * Bucket of the GCS object.
+     */
+    bucket?: string | null;
+    /**
+     * Generation number of the GCS object.
+     */
+    generation?: string | null;
+    /**
+     * Name of the GCS object.
+     */
+    object?: string | null;
+  }
+  /**
+   * Specifies a file available via some URI.
+   */
+  export interface Schema$FileRemote {
+    /**
+     * SHA256 checksum of the remote file.
+     */
+    sha256Checksum?: string | null;
+    /**
+     * URI from which to fetch the object. It should contain both the protocol and path following the format {protocol}://{location}.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A resource that manages the state of a file.
+   */
+  export interface Schema$FileResource {
+    /**
+     * A a file with this content.
+     */
+    content?: string | null;
+    /**
+     * A remote or local source.
+     */
+    file?: Schema$File;
+    /**
+     * The absolute path of the file.
+     */
+    path?: string | null;
+    /**
+     * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755.  Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
+     */
+    permissions?: string | null;
+    /**
+     * Desired state of the file.
+     */
+    state?: string | null;
   }
   /**
    * Message encapsulating a value that can be either absolute (&quot;fixed&quot;) or relative (&quot;percent&quot;) to a value.
@@ -567,6 +706,122 @@ export namespace osconfig_v1beta {
      * A Zypper Repository.
      */
     zypper?: Schema$ZypperRepository;
+  }
+  /**
+   * A resource that manages a system package.
+   */
+  export interface Schema$PackageResource {
+    /**
+     * A package managed by Apt.
+     */
+    apt?: Schema$PackageResourceAPT;
+    /**
+     * A deb package file.
+     */
+    deb?: Schema$PackageResourceDeb;
+    /**
+     * The desired_state the agent should maintain for this package. The default is to ensure the package is installed.
+     */
+    desiredState?: string | null;
+    /**
+     * A package managed by GooGet.
+     */
+    googet?: Schema$PackageResourceGooGet;
+    /**
+     * An MSI package.
+     */
+    msi?: Schema$PackageResourceMSI;
+    /**
+     * An rpm package file.
+     */
+    rpm?: Schema$PackageResourceRPM;
+    /**
+     * A package managed by YUM.
+     */
+    yum?: Schema$PackageResourceYUM;
+    /**
+     * A package managed by Zypper.
+     */
+    zypper?: Schema$PackageResourceZypper;
+  }
+  /**
+   * A package managed by APT. install: `apt-get update &amp;&amp; apt-get -y install [name]` remove: `apt-get -y remove [name]`
+   */
+  export interface Schema$PackageResourceAPT {
+    /**
+     * Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * A deb package file. dpkg packages only support INSTALLED state.
+   */
+  export interface Schema$PackageResourceDeb {
+    /**
+     * Whether dependencies should also be installed. install when false: `dpkg -i package` install when true: `apt-get update &amp;&amp; apt-get -y install package.deb`
+     */
+    pullDeps?: boolean | null;
+    /**
+     * A deb package.
+     */
+    source?: Schema$File;
+  }
+  /**
+   * A package managed by GooGet. install: `googet -noconfirm install package` remove: `googet -noconfirm remove package`
+   */
+  export interface Schema$PackageResourceGooGet {
+    /**
+     * Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * An MSI package. MSI packages only support INSTALLED state. Install msiexec /i /qn /norestart
+   */
+  export interface Schema$PackageResourceMSI {
+    /**
+     * Return codes that indicate that the software installed or updated successfully. Behaviour defaults to [0]
+     */
+    allowedSuccessCodes?: number[] | null;
+    /**
+     * Flags to use during package install. Appended to the defalts of &quot;/i /qn /norestart&quot;
+     */
+    flags?: string[] | null;
+    /**
+     * The MSI package.
+     */
+    source?: Schema$File;
+  }
+  /**
+   * An RPM package file. RPM packages only support INSTALLED state.
+   */
+  export interface Schema$PackageResourceRPM {
+    /**
+     * Whether dependencies should also be installed. install when false: `rpm --upgrade --replacepkgs package.rpm` install when true: `yum -y install package.rpm` or `zypper -y install package.rpm`
+     */
+    pullDeps?: boolean | null;
+    /**
+     * An rpm package.
+     */
+    source?: Schema$File;
+  }
+  /**
+   * A package managed by YUM. install: `yum -y install package` remove: `yum -y remove package`
+   */
+  export interface Schema$PackageResourceYUM {
+    /**
+     * Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * A package managed by Zypper. install: `zypper -y install package` remove: `zypper -y rm package`
+   */
+  export interface Schema$PackageResourceZypper {
+    /**
+     * Package name.
+     */
+    name?: string | null;
   }
   /**
    * Patch configuration specifications. Contains details on how to apply the patch(es) to a VM instance.
@@ -897,6 +1152,111 @@ export namespace osconfig_v1beta {
      */
     weekly?: Schema$WeeklySchedule;
   }
+  /**
+   * A resource that manages a package repository.
+   */
+  export interface Schema$RepositoryResource {
+    /**
+     * An Apt Repository.
+     */
+    apt?: Schema$RepositoryResourceAptRepository;
+    /**
+     * A Goo Repository.
+     */
+    goo?: Schema$RepositoryResourceGooRepository;
+    /**
+     * A Yum Repository.
+     */
+    yum?: Schema$RepositoryResourceYumRepository;
+    /**
+     * A Zypper Repository.
+     */
+    zypper?: Schema$RepositoryResourceZypperRepository;
+  }
+  /**
+   * Represents a single apt package repository. These will be added to a repo file that will be managed at /etc/apt/sources.list.d/google_osconfig.list.
+   */
+  export interface Schema$RepositoryResourceAptRepository {
+    /**
+     * Type of archive files in this repository. The default behavior is DEB.
+     */
+    archiveType?: string | null;
+    /**
+     * List of components for this repository. Must contain at least one item.
+     */
+    components?: string[] | null;
+    /**
+     * Distribution of this repository.
+     */
+    distribution?: string | null;
+    /**
+     * URI of the key file for this repository. The agent will maintain a keyring at /etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg.
+     */
+    gpgKey?: string | null;
+    /**
+     * URI for this repository.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a Goo package repository. These will be added to a repo file that will be managed at C:/ProgramData/GooGet/repos/google_osconfig.repo.
+   */
+  export interface Schema$RepositoryResourceGooRepository {
+    /**
+     * The name of the repository.
+     */
+    name?: string | null;
+    /**
+     * The url of the repository.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents a single yum package repository. These will be added to a repo file that will be managed at /etc/yum.repos.d/google_osconfig.repo.
+   */
+  export interface Schema$RepositoryResourceYumRepository {
+    /**
+     * The location of the repository directory.
+     */
+    baseUrl?: string | null;
+    /**
+     * The display name of the repository.
+     */
+    displayName?: string | null;
+    /**
+     * URIs of GPG keys.
+     */
+    gpgKeys?: string[] | null;
+    /**
+     * A one word, unique name for this repository. This will be the `repo id` in the yum config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for resource conflicts.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a single zypper package repository. These will be added to a repo file that will be managed at /etc/zypp/repos.d/google_osconfig.repo.
+   */
+  export interface Schema$RepositoryResourceZypperRepository {
+    /**
+     * The location of the repository directory.
+     */
+    baseUrl?: string | null;
+    /**
+     * The display name of the repository.
+     */
+    displayName?: string | null;
+    /**
+     * URIs of GPG keys.
+     */
+    gpgKeys?: string[] | null;
+    /**
+     * A one word, unique name for this repository. This will be the `repo id` in the zypper config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts.
+     */
+    id?: string | null;
+  }
+  /**
+   * A resource that manages a system service.
+   */
+  export interface Schema$ServiceResource {}
   /**
    * A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software.  Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package.  Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell.  Updating a software recipe  If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `UPDATED`, then the recipe is updated to the new version.  Script Working Directories  Each script or execution step is run in its own temporary directory which is deleted after completing the step.
    */
