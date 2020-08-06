@@ -296,7 +296,7 @@ export namespace bigquerydatatransfer_v1 {
     enableFailureEmail?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -373,7 +373,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -451,7 +451,7 @@ export namespace bigquerydatatransfer_v1 {
     runs?: Schema$TransferRun[];
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -459,7 +459,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -485,7 +485,7 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$TransferConfig {
     /**
-     * The number of days to look back to automatically refresh the data. For example, if `data_refresh_window_days = 10`, then every day BigQuery reingests data for [today-10, today-1], rather than ingesting data for just [today-1]. Only valid if the data source supports the feature. Set the value to  0 to use the default value.
+     * The number of days to look back to automatically refresh the data. For example, if `data_refresh_window_days = 10`, then every day BigQuery reingests data for [today-10, today-1], rather than ingesting data for just [today-1]. Only valid if the data source supports the feature. Set the value to 0 to use the default value.
      */
     dataRefreshWindowDays?: number | null;
     /**
@@ -685,9 +685,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
-     *     // Required. The data source in the form:
-     *     // `projects/{project_id}/dataSources/{data_source_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *     // Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *     name: 'projects/my-project/dataSources/my-dataSource',
      *
      *     // Request body metadata
@@ -838,9 +836,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.get({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/dataSources/{data_source_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      *     name: 'projects/my-project/dataSources/my-dataSource',
      *   });
      *   console.log(res.data);
@@ -993,15 +989,9 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.dataSources.list({
      *     // Page size. The default page size is the maximum value of 1000 results.
      *     pageSize: 'placeholder-value',
-     *     // Pagination token, which can be used to request a specific page
-     *     // of `ListDataSourcesRequest` list results. For multiple-page
-     *     // results, `ListDataSourcesResponse` outputs
-     *     // a `next_page` token, which can be used as the
-     *     // `page_token` value to request the next page of list results.
+     *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned.
-     *     // Must be in the form: `projects/{project_id}` or
-     *     // `projects/{project_id}/locations/{location_id}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1521,9 +1511,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
      *     {
-     *       // Required. The data source in the form:
-     *       // `projects/{project_id}/dataSources/{data_source_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *       // Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *       name:
      *         'projects/my-project/locations/my-location/dataSources/my-dataSource',
      *
@@ -1676,9 +1664,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/dataSources/{data_source_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      *     name: 'projects/my-project/locations/my-location/dataSources/my-dataSource',
      *   });
      *   console.log(res.data);
@@ -1831,15 +1817,9 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.list({
      *     // Page size. The default page size is the maximum value of 1000 results.
      *     pageSize: 'placeholder-value',
-     *     // Pagination token, which can be used to request a specific page
-     *     // of `ListDataSourcesRequest` list results. For multiple-page
-     *     // results, `ListDataSourcesResponse` outputs
-     *     // a `next_page` token, which can be used as the
-     *     // `page_token` value to request the next page of list results.
+     *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned.
-     *     // Must be in the form: `projects/{project_id}` or
-     *     // `projects/{project_id}/locations/{location_id}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2026,39 +2006,13 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
      *     {
-     *       // Optional OAuth2 authorization code to use with this transfer configuration.
-     *       // This is required if new credentials are needed, as indicated by
-     *       // `CheckValidCreds`.
-     *       // In order to obtain authorization_code, please make a
-     *       // request to
-     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
-     *       //
-     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *       //   data source returned by ListDataSources method.
-     *       // * data_source_scopes are the scopes returned by ListDataSources method.
-     *       // * redirect_uri is an optional parameter. If not specified, then
-     *       //   authorization code is posted to the opener of authorization flow window.
-     *       //   Otherwise it will be sent to the redirect uri. A special value of
-     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *       //   returned in the title bar of the browser, with the page text prompting
-     *       //   the user to copy the code and paste it in the application.
+     *       // Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
-     *       // Required. The BigQuery project id where the transfer configuration should be created.
-     *       // Must be in the format projects/{project_id}/locations/{location_id} or
-     *       // projects/{project_id}. If specified location and location of the
-     *       // destination bigquery dataset do not match - the request will fail.
+     *       // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional service account name. If this field is set, transfer config will
-     *       // be created with this service account credentials. It requires that
-     *       // requesting user calling this API has permissions to act as this service
-     *       // account.
+     *       // Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *       serviceAccountName: 'placeholder-value',
-     *       // Optional version info. If users want to find a very recent access token,
-     *       // that is, immediately after approving access, users have to set the
-     *       // version_info claim in the token request. To obtain the version_info, users
-     *       // must use the "none+gsession" response type. which be return a
-     *       // version_info back in the authorization response which be be put in a JWT
-     *       // claim in the token request.
+     *       // Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      *       versionInfo: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2117,7 +2071,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
@@ -2237,9 +2191,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *     }
@@ -2374,9 +2326,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *     }
@@ -2532,15 +2482,9 @@ export namespace bigquerydatatransfer_v1 {
      *       dataSourceIds: 'placeholder-value',
      *       // Page size. The default page size is the maximum value of 1000 results.
      *       pageSize: 'placeholder-value',
-     *       // Pagination token, which can be used to request a specific page
-     *       // of `ListTransfersRequest` list results. For multiple-page
-     *       // results, `ListTransfersResponse` outputs
-     *       // a `next_page` token, which can be used as the
-     *       // `page_token` value to request the next page of list results.
+     *       // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. The BigQuery project id for which data sources
-     *       // should be returned: `projects/{project_id}` or
-     *       // `projects/{project_id}/locations/{location_id}`
+     *       // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      *       parent: 'projects/my-project/locations/my-location',
      *     }
      *   );
@@ -2685,46 +2629,16 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
      *     {
-     *       // Optional OAuth2 authorization code to use with this transfer configuration.
-     *       // If it is provided, the transfer configuration will be associated with the
-     *       // authorizing user.
-     *       // In order to obtain authorization_code, please make a
-     *       // request to
-     *       // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
-     *       //
-     *       // * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *       //   data source returned by ListDataSources method.
-     *       // * data_source_scopes are the scopes returned by ListDataSources method.
-     *       // * redirect_uri is an optional parameter. If not specified, then
-     *       //   authorization code is posted to the opener of authorization flow window.
-     *       //   Otherwise it will be sent to the redirect uri. A special value of
-     *       //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *       //   returned in the title bar of the browser, with the page text prompting
-     *       //   the user to copy the code and paste it in the application.
+     *       // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
-     *       // The resource name of the transfer config.
-     *       // Transfer config names have the form of
-     *       // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     *       // The name is automatically generated based on the config_id specified in
-     *       // CreateTransferConfigRequest along with project_id and region. If config_id
-     *       // is not provided, usually a uuid, even though it is not guaranteed or
-     *       // required, will be generated for config_id.
+     *       // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
-     *       // Optional service account name. If this field is set and
-     *       // "service_account_name" is set in update_mask, transfer config will be
-     *       // updated to use this service account credentials. It requires that
-     *       // requesting user calling this API has permissions to act as this service
-     *       // account.
+     *       // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *       serviceAccountName: 'placeholder-value',
      *       // Required. Required list of fields to be updated in this request.
      *       updateMask: 'placeholder-value',
-     *       // Optional version info. If users want to find a very recent access token,
-     *       // that is, immediately after approving access, users have to set the
-     *       // version_info claim in the token request. To obtain the version_info, users
-     *       // must use the "none+gsession" response type. which be return a
-     *       // version_info back in the authorization response which be be put in a JWT
-     *       // claim in the token request.
+     *       // Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      *       versionInfo: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2783,7 +2697,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
@@ -2901,9 +2815,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
      *     {
-     *       // Required. Transfer configuration name in the form:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *
@@ -3060,9 +2972,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
      *     {
-     *       // Transfer configuration name in the form:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *
@@ -3192,7 +3102,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
@@ -3249,7 +3159,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
@@ -3340,9 +3250,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example:
-     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -3477,9 +3385,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example:
-     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -3632,16 +3538,9 @@ export namespace bigquerydatatransfer_v1 {
      *     {
      *       // Page size. The default page size is the maximum value of 1000 results.
      *       pageSize: 'placeholder-value',
-     *       // Pagination token, which can be used to request a specific page
-     *       // of `ListTransferRunsRequest` list results. For multiple-page
-     *       // results, `ListTransferRunsResponse` outputs
-     *       // a `next_page` token, which can be used as the
-     *       // `page_token` value to request the next page of list results.
+     *       // Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of transfer configuration for which transfer runs should be retrieved.
-     *       // Format of transfer configuration resource name is:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *       // Indicates how run attempts are to be pulled.
@@ -3837,20 +3736,13 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
      *     {
-     *       // Message types to return. If not populated - INFO, WARNING and ERROR
-     *       // messages are returned.
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      *       messageTypes: 'placeholder-value',
      *       // Page size. The default page size is the maximum value of 1000 results.
      *       pageSize: 'placeholder-value',
-     *       // Pagination token, which can be used to request a specific page
-     *       // of `ListTransferLogsRequest` list results. For multiple-page
-     *       // results, `ListTransferLogsResponse` outputs
-     *       // a `next_page` token, which can be used as the
-     *       // `page_token` value to request the next page of list results.
+     *       // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Transfer run name in the form:
-     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -4022,39 +3914,13 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
-     *     // Optional OAuth2 authorization code to use with this transfer configuration.
-     *     // This is required if new credentials are needed, as indicated by
-     *     // `CheckValidCreds`.
-     *     // In order to obtain authorization_code, please make a
-     *     // request to
-     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
-     *     //
-     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *     //   data source returned by ListDataSources method.
-     *     // * data_source_scopes are the scopes returned by ListDataSources method.
-     *     // * redirect_uri is an optional parameter. If not specified, then
-     *     //   authorization code is posted to the opener of authorization flow window.
-     *     //   Otherwise it will be sent to the redirect uri. A special value of
-     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *     //   returned in the title bar of the browser, with the page text prompting
-     *     //   the user to copy the code and paste it in the application.
+     *     // Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *     authorizationCode: 'placeholder-value',
-     *     // Required. The BigQuery project id where the transfer configuration should be created.
-     *     // Must be in the format projects/{project_id}/locations/{location_id} or
-     *     // projects/{project_id}. If specified location and location of the
-     *     // destination bigquery dataset do not match - the request will fail.
+     *     // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      *     parent: 'projects/my-project',
-     *     // Optional service account name. If this field is set, transfer config will
-     *     // be created with this service account credentials. It requires that
-     *     // requesting user calling this API has permissions to act as this service
-     *     // account.
+     *     // Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *     serviceAccountName: 'placeholder-value',
-     *     // Optional version info. If users want to find a very recent access token,
-     *     // that is, immediately after approving access, users have to set the
-     *     // version_info claim in the token request. To obtain the version_info, users
-     *     // must use the "none+gsession" response type. which be return a
-     *     // version_info back in the authorization response which be be put in a JWT
-     *     // claim in the token request.
+     *     // Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      *     versionInfo: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4112,7 +3978,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
@@ -4231,9 +4097,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/transferConfigs/{config_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *   });
      *   console.log(res.data);
@@ -4365,9 +4229,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/transferConfigs/{config_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *   });
      *   console.log(res.data);
@@ -4520,15 +4382,9 @@ export namespace bigquerydatatransfer_v1 {
      *     dataSourceIds: 'placeholder-value',
      *     // Page size. The default page size is the maximum value of 1000 results.
      *     pageSize: 'placeholder-value',
-     *     // Pagination token, which can be used to request a specific page
-     *     // of `ListTransfersRequest` list results. For multiple-page
-     *     // results, `ListTransfersResponse` outputs
-     *     // a `next_page` token, which can be used as the
-     *     // `page_token` value to request the next page of list results.
+     *     // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources
-     *     // should be returned: `projects/{project_id}` or
-     *     // `projects/{project_id}/locations/{location_id}`
+     *     // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4671,45 +4527,15 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
-     *     // Optional OAuth2 authorization code to use with this transfer configuration.
-     *     // If it is provided, the transfer configuration will be associated with the
-     *     // authorizing user.
-     *     // In order to obtain authorization_code, please make a
-     *     // request to
-     *     // https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
-     *     //
-     *     // * client_id should be OAuth client_id of BigQuery DTS API for the given
-     *     //   data source returned by ListDataSources method.
-     *     // * data_source_scopes are the scopes returned by ListDataSources method.
-     *     // * redirect_uri is an optional parameter. If not specified, then
-     *     //   authorization code is posted to the opener of authorization flow window.
-     *     //   Otherwise it will be sent to the redirect uri. A special value of
-     *     //   urn:ietf:wg:oauth:2.0:oob means that authorization code should be
-     *     //   returned in the title bar of the browser, with the page text prompting
-     *     //   the user to copy the code and paste it in the application.
+     *     // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *     authorizationCode: 'placeholder-value',
-     *     // The resource name of the transfer config.
-     *     // Transfer config names have the form of
-     *     // `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     *     // The name is automatically generated based on the config_id specified in
-     *     // CreateTransferConfigRequest along with project_id and region. If config_id
-     *     // is not provided, usually a uuid, even though it is not guaranteed or
-     *     // required, will be generated for config_id.
+     *     // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
-     *     // Optional service account name. If this field is set and
-     *     // "service_account_name" is set in update_mask, transfer config will be
-     *     // updated to use this service account credentials. It requires that
-     *     // requesting user calling this API has permissions to act as this service
-     *     // account.
+     *     // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *     serviceAccountName: 'placeholder-value',
      *     // Required. Required list of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
-     *     // Optional version info. If users want to find a very recent access token,
-     *     // that is, immediately after approving access, users have to set the
-     *     // version_info claim in the token request. To obtain the version_info, users
-     *     // must use the "none+gsession" response type. which be return a
-     *     // version_info back in the authorization response which be be put in a JWT
-     *     // claim in the token request.
+     *     // Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      *     versionInfo: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4767,7 +4593,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
@@ -4884,9 +4710,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
-     *     // Required. Transfer configuration name in the form:
-     *     // `projects/{project_id}/transferConfigs/{config_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     // Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *
      *     // Request body metadata
@@ -5041,9 +4865,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
      *     {
-     *       // Transfer configuration name in the form:
-     *       // `projects/{project_id}/transferConfigs/{config_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *
      *       // Request body metadata
@@ -5172,7 +4994,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Create
     extends StandardParameters {
     /**
-     * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
@@ -5229,7 +5051,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
+     * Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      */
     authorizationCode?: string;
     /**
@@ -5319,9 +5141,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *   });
      *   console.log(res.data);
@@ -5453,9 +5273,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
-     *     // Required. The field will contain name of the resource requested, for example:
-     *     // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *   });
      *   console.log(res.data);
@@ -5605,16 +5423,9 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.list({
      *     // Page size. The default page size is the maximum value of 1000 results.
      *     pageSize: 'placeholder-value',
-     *     // Pagination token, which can be used to request a specific page
-     *     // of `ListTransferRunsRequest` list results. For multiple-page
-     *     // results, `ListTransferRunsResponse` outputs
-     *     // a `next_page` token, which can be used as the
-     *     // `page_token` value to request the next page of list results.
+     *     // Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of transfer configuration for which transfer runs should be retrieved.
-     *     // Format of transfer configuration resource name is:
-     *     // `projects/{project_id}/transferConfigs/{config_id}` or
-     *     // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *     // Indicates how run attempts are to be pulled.
      *     runAttempt: 'placeholder-value',
@@ -5808,20 +5619,13 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(
      *     {
-     *       // Message types to return. If not populated - INFO, WARNING and ERROR
-     *       // messages are returned.
+     *       // Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      *       messageTypes: 'placeholder-value',
      *       // Page size. The default page size is the maximum value of 1000 results.
      *       pageSize: 'placeholder-value',
-     *       // Pagination token, which can be used to request a specific page
-     *       // of `ListTransferLogsRequest` list results. For multiple-page
-     *       // results, `ListTransferLogsResponse` outputs
-     *       // a `next_page` token, which can be used as the
-     *       // `page_token` value to request the next page of list results.
+     *       // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Transfer run name in the form:
-     *       // `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *       // `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *       parent:
      *         'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *     }
