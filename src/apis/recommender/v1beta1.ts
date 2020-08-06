@@ -259,7 +259,7 @@ export namespace recommender_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Optional. State properties user wish to include with this state.  Full replace of the current state_metadata.
+     * Optional. State properties user wish to include with this state. Full replace of the current state_metadata.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -303,7 +303,7 @@ export namespace recommender_v1beta1 {
     stateMetadata?: {[key: string]: string} | null;
   }
   /**
-   * Contains an operation for a resource loosely based on the JSON-PATCH format with support for:  * Custom filters for describing partial array patch. * Extended path values for describing nested arrays. * Custom fields for describing the resource for which the operation is being   described. * Allows extension to custom operations not natively supported by RFC6902. See https://tools.ietf.org/html/rfc6902 for details on the original RFC.
+   * Contains an operation for a resource loosely based on the JSON-PATCH format with support for: * Custom filters for describing partial array patch. * Extended path values for describing nested arrays. * Custom fields for describing the resource for which the operation is being described. * Allows extension to custom operations not natively supported by RFC6902. See https://tools.ietf.org/html/rfc6902 for details on the original RFC.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1Operation {
     /**
@@ -315,7 +315,7 @@ export namespace recommender_v1beta1 {
      */
     path?: string | null;
     /**
-     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers.  * Example: {   &quot;/versions/x/name&quot; : &quot;it-123&quot;   &quot;/versions/x/targetSize/percent&quot;: 20   } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/condition&quot; : null   } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/members/*&quot; : [&quot;x@google.com&quot;, &quot;y@google.com&quot;]   } When both path_filters and path_value_matchers are set, an implicit AND must be performed.
+     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: { &quot;/versions/x/name&quot; : &quot;it-123&quot; &quot;/versions/x/targetSize/percent&quot;: 20 } * Example: { &quot;/bindings/x/role&quot;: &quot;roles/admin&quot; &quot;/bindings/x/condition&quot; : null } * Example: { &quot;/bindings/x/role&quot;: &quot;roles/admin&quot; &quot;/bindings/x/members/*&quot; : [&quot;x@google.com&quot;, &quot;y@google.com&quot;] } When both path_filters and path_value_matchers are set, an implicit AND must be performed.
      */
     pathFilters?: {[key: string]: any} | null;
     /**
@@ -337,7 +337,7 @@ export namespace recommender_v1beta1 {
      */
     sourcePath?: string | null;
     /**
-     * Can be set with action &#39;copy&#39; to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = &#39;copy&#39;, path = &quot;/&quot;, from = &quot;/&quot;, source_resource = &lt;source&gt; and resource_name = &lt;target&gt;. This field is empty for all other values of `action`.
+     * Can be set with action &#39;copy&#39; to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = &#39;copy&#39;, path = &quot;/&quot;, from = &quot;/&quot;, source_resource = and resource_name = . This field is empty for all other values of `action`.
      */
     sourceResource?: string | null;
     /**
@@ -395,7 +395,7 @@ export namespace recommender_v1beta1 {
      */
     primaryImpact?: Schema$GoogleCloudRecommenderV1beta1Impact;
     /**
-     * Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender.  Examples:   For recommender = &quot;google.iam.policy.Recommender&quot;,   recommender_subtype can be one of &quot;REMOVE_ROLE&quot;/&quot;REPLACE_ROLE&quot;
+     * Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = &quot;google.iam.policy.Recommender&quot;, recommender_subtype can be one of &quot;REMOVE_ROLE&quot;/&quot;REPLACE_ROLE&quot;
      */
     recommenderSubtype?: string | null;
     /**
@@ -683,27 +683,13 @@ export namespace recommender_v1beta1 {
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.list({
-     *     // Optional. Filter expression to restrict the insights returned. Supported
-     *     // filter fields: state
-     *     // Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of results to return from this request.  Non-positive
-     *     // values are ignored. If not specified, the server will determine the number
-     *     // of results to return.
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *     pageSize: 'placeholder-value',
-     *     // Optional. If present, retrieves the next batch of results from the preceding call to
-     *     // this method. `page_token` must be the value of `next_page_token` from the
-     *     // previous response. The values of other method parameters must be identical
-     *     // to those in the previous call.
+     *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The container resource on which to execute the request.
-     *     // Acceptable formats:
-     *     //
-     *     // 1.
-     *     // "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
-     *     //
-     *     // LOCATION here refers to GCP Locations:
-     *     // https://cloud.google.com/about/locations/
+     *     // Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      *     parent:
      *       'projects/my-project/locations/my-location/insightTypes/my-insightType',
      *   });
@@ -726,9 +712,9 @@ export namespace recommender_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -836,7 +822,7 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.insightTypes.insights.markAccepted
-     * @desc Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated.  MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
+     * @desc Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1018,7 +1004,7 @@ export namespace recommender_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      */
     pageSize?: number;
     /**
@@ -1026,7 +1012,7 @@ export namespace recommender_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      */
     parent?: string;
   }
@@ -1251,27 +1237,13 @@ export namespace recommender_v1beta1 {
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.list(
      *     {
-     *       // Filter expression to restrict the recommendations returned. Supported
-     *       // filter fields: state_info.state
-     *       // Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
      *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of results to return from this request.  Non-positive
-     *       // values are ignored. If not specified, the server will determine the number
-     *       // of results to return.
+     *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *       pageSize: 'placeholder-value',
-     *       // Optional. If present, retrieves the next batch of results from the preceding call to
-     *       // this method. `page_token` must be the value of `next_page_token` from the
-     *       // previous response. The values of other method parameters must be identical
-     *       // to those in the previous call.
+     *       // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
      *       pageToken: 'placeholder-value',
-     *       // Required. The container resource on which to execute the request.
-     *       // Acceptable formats:
-     *       //
-     *       // 1.
-     *       // "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
-     *       //
-     *       // LOCATION here refers to GCP Locations:
-     *       // https://cloud.google.com/about/locations/
+     *       // Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      *       parent:
      *         'projects/my-project/locations/my-location/recommenders/my-recommender',
      *     }
@@ -1295,9 +1267,9 @@ export namespace recommender_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1409,7 +1381,7 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markClaimed
-     * @desc Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationClaimed can be applied to recommendations in CLAIMED or ACTIVE state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1585,7 +1557,7 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markFailed
-     * @desc Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1761,7 +1733,7 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markSucceeded
-     * @desc Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1950,7 +1922,7 @@ export namespace recommender_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      */
     pageSize?: number;
     /**
@@ -1958,7 +1930,7 @@ export namespace recommender_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      */
     parent?: string;
   }
