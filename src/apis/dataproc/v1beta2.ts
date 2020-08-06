@@ -308,6 +308,10 @@ export namespace dataproc_v1beta2 {
      */
     masterConfig?: Schema$InstanceGroupConfig;
     /**
+     * Optional. Metastore configuration.
+     */
+    metastoreConfig?: Schema$MetastoreConfig;
+    /**
      * Optional. The Compute Engine config settings for additional worker instances in a cluster.
      */
     secondaryWorkerConfig?: Schema$InstanceGroupConfig;
@@ -1095,6 +1099,15 @@ export namespace dataproc_v1beta2 {
      * Output only. The name of the Instance Template used for the Managed Instance Group.
      */
     instanceTemplateName?: string | null;
+  }
+  /**
+   * Specifies the metastore configuration.
+   */
+  export interface Schema$MetastoreConfig {
+    /**
+     * Optional. Relative resource name of an existing Dataproc Metastore service.
+     */
+    dataprocMetastoreService?: string | null;
   }
   /**
    * A full, namespace-isolated deployment target for an existing GKE cluster.
