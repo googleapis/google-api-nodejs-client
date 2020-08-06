@@ -121,13 +121,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. Maximum number of results to return. If unspecified, defaults\nto 50. Max allowed value is 1000.",
+                      "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A page token, received from a previous `ListCatalogs`\ncall. Provide this to retrieve the subsequent page.",
+                      "description": "Optional. A page token, received from a previous `ListCatalogs` call. Provide this to retrieve the subsequent page.",
                       "location": "query",
                       "type": "string"
                     },
@@ -164,7 +164,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Indicates which fields in the provided 'recommendation_model' to\nupdate. If not set, will only update the catalog_item_level_config field.",
+                      "description": "Optional. Indicates which fields in the provided 'recommendation_model' to update. If not set, will only update the catalog_item_level_config field.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -195,7 +195,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent catalog resource name, such as\n\"projects/*/locations/global/catalogs/default_catalog\".",
+                          "description": "Required. The parent catalog resource name, such as \"projects/*/locations/global/catalogs/default_catalog\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
                           "required": true,
@@ -223,7 +223,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Full resource name of catalog item, such as\n\"projects/*/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id\".",
+                          "description": "Required. Full resource name of catalog item, such as \"projects/*/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/catalogItems/.*$",
                           "required": true,
@@ -248,7 +248,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Full resource name of catalog item, such as\n\"projects/*/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id\".",
+                          "description": "Required. Full resource name of catalog item, such as \"projects/*/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/catalogItems/.*$",
                           "required": true,
@@ -263,38 +263,8 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
-                    "getGroupIdItems": {
-                      "description": "Method for getting the catalog items associated with item group id.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/catalogItems:groupIdItems",
-                      "httpMethod": "GET",
-                      "id": "recommendationengine.projects.locations.catalogs.catalogItems.getGroupIdItems",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "itemGroupId": {
-                          "description": "Required. Catalog item identifier for prediction results.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent resource name of group id item, such as\n\"projects/*/locations/global/catalogs/default_catalog\".",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+parent}/catalogItems:groupIdItems",
-                      "response": {
-                        "$ref": "GoogleCloudRecommendationengineV1beta1GetCatalogItemsWithItemGroupIdResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "import": {
-                      "description": "Bulk import of multiple catalog items. Request processing may be\nsynchronous. No partial updating supported. Non-existing items will be\ncreated.\n\nOperation.response is of type ImportResponse. Note that it is\npossible for a subset of the items to be successfully updated.",
+                      "description": "Bulk import of multiple catalog items. Request processing may be synchronous. No partial updating supported. Non-existing items will be created. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully updated.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/catalogItems:import",
                       "httpMethod": "POST",
                       "id": "recommendationengine.projects.locations.catalogs.catalogItems.import",
@@ -303,7 +273,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. \"projects/1234/locations/global/catalogs/default_catalog\"\n\nIf no updateMask is specified, requires catalogItems.create permission.\nIf updateMask is specified, requires catalogItems.update permission.",
+                          "description": "Required. \"projects/1234/locations/global/catalogs/default_catalog\" If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
                           "required": true,
@@ -336,7 +306,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Maximum number of results to return per page. If zero, the\nservice will choose a reasonable default.",
+                          "description": "Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -347,7 +317,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent catalog resource name, such as\n\"projects/*/locations/global/catalogs/default_catalog\".",
+                          "description": "Required. The parent catalog resource name, such as \"projects/*/locations/global/catalogs/default_catalog\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
                           "required": true,
@@ -363,7 +333,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a catalog item. Partial updating is supported. Non-existing\nitems will be created.",
+                      "description": "Updates a catalog item. Partial updating is supported. Non-existing items will be created.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/catalogItems/{catalogItemsId}",
                       "httpMethod": "PATCH",
                       "id": "recommendationengine.projects.locations.catalogs.catalogItems.patch",
@@ -372,14 +342,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Full resource name of catalog item, such as\n\"projects/*/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id\".",
+                          "description": "Required. Full resource name of catalog item, such as \"projects/*/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id\".",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/catalogItems/.*$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. Indicates which fields in the provided 'item' to update. If not\nset, will by default update all fields.",
+                          "description": "Optional. Indicates which fields in the provided 'item' to update. If not set, will by default update all fields.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -403,7 +373,7 @@
                     "operations": {
                       "methods": {
                         "get": {
-                          "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/operations/{operationsId}",
                           "httpMethod": "GET",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.operations.get",
@@ -428,7 +398,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/operations",
                           "httpMethod": "GET",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.operations.list",
@@ -473,7 +443,7 @@
                     "placements": {
                       "methods": {
                         "predict": {
-                          "description": "Makes a recommendation prediction. If using API Key based authentication,\nthe API Key must be registered using the\nPredictionApiKeyRegistry\nservice. [Learn more](/recommendations-ai/docs/setting-up#register-key).",
+                          "description": "Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/placements/{placementsId}:predict",
                           "httpMethod": "POST",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.placements.predict",
@@ -482,7 +452,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full resource name of the format:\n{name=projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/*}\nThe id of the recommendation engine placement. This id is used to identify\nthe set of models that will be used to make the prediction.\n\nWe currently support three placements with the following IDs by default:\n\n* `shopping_cart`: Predicts items frequently bought together with one or\n  more catalog items in the same shopping session. Commonly displayed after\n  `add-to-cart` events, on product detail pages, or on the shopping cart\n  page.\n\n* `home_page`: Predicts the next product that a user will most likely\n  engage with or purchase based on the shopping or viewing history of the\n  specified `userId` or `visitorId`. For example - Recommendations for you.\n\n* `product_detail`: Predicts the next product that a user will most likely\n  engage with or purchase. The prediction is based on the shopping or\n  viewing history of the specified `userId` or `visitorId` and its\n  relevance to a specified `CatalogItem`. Typically used on product detail\n  pages. For example - More items like this.\n\n* `recently_viewed_default`: Returns up to 75 items recently viewed by the\n  specified `userId` or `visitorId`, most recent ones first. Returns\n  nothing if neither of them has viewed any items yet. For example -\n  Recently viewed.\n\nThe full list of available placements can be seen at\nhttps://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard",
+                              "description": "Required. Full resource name of the format: {name=projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/*} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+/placements/[^/]+$",
                               "required": true,
@@ -514,7 +484,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The parent resource path.\n\"projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
+                              "description": "Required. The parent resource path. \"projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -542,7 +512,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The API key to unregister including full resource path.\n\"projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>\"",
+                              "description": "Required. The API key to unregister including full resource path. \"projects/*/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/\"",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+/predictionApiKeyRegistrations/[^/]+$",
                               "required": true,
@@ -567,7 +537,7 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "Optional. Maximum number of results to return per page. If unset, the\nservice will choose a reasonable default.",
+                              "description": "Optional. Maximum number of results to return per page. If unset, the service will choose a reasonable default.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -578,7 +548,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The parent placement resource name such as\n\"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\"",
+                              "description": "Required. The parent placement resource name such as \"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\"",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -598,7 +568,7 @@
                     "userEvents": {
                       "methods": {
                         "collect": {
-                          "description": "Writes a single user event from the browser. This uses a GET request to\ndue to browser restriction of POST-ing to a 3rd party domain.\n\nThis method is used only by the Recommendations AI JavaScript pixel.\nUsers should not call this method directly.",
+                          "description": "Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Recommendations AI JavaScript pixel. Users should not call this method directly.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/userEvents:collect",
                           "httpMethod": "GET",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.userEvents.collect",
@@ -607,20 +577,20 @@
                           ],
                           "parameters": {
                             "ets": {
-                              "description": "Optional. The event timestamp in milliseconds. This prevents browser caching of\notherwise identical get requests. The name is abbreviated to reduce the\npayload bytes.",
+                              "description": "Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.",
                               "format": "int64",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The parent eventStore name, such as\n\"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
+                              "description": "Required. The parent eventStore name, such as \"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "uri": {
-                              "description": "Optional. The url including cgi-parameters but excluding the hash fragment. The URL\nmust be truncated to 1.5K bytes to conservatively be under the 2K bytes.\nThis is often more useful than the referer url, because many browsers only\nsend the domain for 3rd party requests.",
+                              "description": "Optional. The url including cgi-parameters but excluding the hash fragment. The URL must be truncated to 1.5K bytes to conservatively be under the 2K bytes. This is often more useful than the referer url, because many browsers only send the domain for 3rd party requests.",
                               "location": "query",
                               "type": "string"
                             },
@@ -639,7 +609,7 @@
                           ]
                         },
                         "import": {
-                          "description": "Bulk import of User events. Request processing might be\nsynchronous. Events that already exist are skipped.\nUse this method for backfilling historical user events.\n\nOperation.response is of type ImportResponse. Note that it is\npossible for a subset of the items to be successfully inserted.\nOperation.metadata is of type ImportMetadata.",
+                          "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/userEvents:import",
                           "httpMethod": "POST",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.userEvents.import",
@@ -667,7 +637,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Gets a list of user events within a time range, with potential filtering.\nThe method does not list unjoined user events.\n\nUnjoined user event definition: when a user event is ingested from\nRecommendations AI User Event APIs, the catalog item included in the user\nevent is connected with the current catalog. If a catalog item of the\ningested event is not in the current catalog, it could lead to degraded\nmodel quality. This is called an unjoined event.",
+                          "description": "Gets a list of user events within a time range, with potential filtering. The method does not list unjoined user events. Unjoined user event definition: when a user event is ingested from Recommendations AI User Event APIs, the catalog item included in the user event is connected with the current catalog. If a catalog item of the ingested event is not in the current catalog, it could lead to degraded model quality. This is called an unjoined event.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/userEvents",
                           "httpMethod": "GET",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.userEvents.list",
@@ -676,12 +646,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. Filtering expression to specify restrictions over\nreturned events. This is a sequence of terms, where each term applies some\nkind of a restriction to the returned user events. Use this expression to\nrestrict results to a specific time range, or filter events by eventType.\n   eg: eventTime > \"2012-04-23T18:25:43.511Z\" eventsMissingCatalogItems\n   eventTime<\"2012-04-23T18:25:43.511Z\" eventType=search\n\n  We expect only 3 types of fields:\n\n   * eventTime: this can be specified a maximum of 2 times, once with a\n     less than operator and once with a greater than operator. The\n     eventTime restrict should result in one contiguous valid eventTime\n     range.\n\n   * eventType: only 1 eventType restriction can be specified.\n\n   * eventsMissingCatalogItems: specififying this will restrict results\n     to events for which catalog items were not found in the catalog. The\n     default behavior is to return only those events for which catalog\n     items were found.\n\n  Some examples of valid filters expressions:\n\n  * Example 1: eventTime > \"2012-04-23T18:25:43.511Z\"\n            eventTime < \"2012-04-23T18:30:43.511Z\"\n  * Example 2: eventTime > \"2012-04-23T18:25:43.511Z\"\n            eventType = detail-page-view\n  * Example 3: eventsMissingCatalogItems\n            eventType = search eventTime < \"2018-04-23T18:30:43.511Z\"\n  * Example 4: eventTime > \"2012-04-23T18:25:43.511Z\"\n  * Example 5: eventType = search\n  * Example 6: eventsMissingCatalogItems",
+                              "description": "Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime > \"2012-04-23T18:25:43.511Z\" eventsMissingCatalogItems eventTime<\"2012-04-23T18:25:43.511Z\" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime > \"2012-04-23T18:25:43.511Z\" eventTime < \"2012-04-23T18:30:43.511Z\" * Example 2: eventTime > \"2012-04-23T18:25:43.511Z\" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < \"2018-04-23T18:30:43.511Z\" * Example 4: eventTime > \"2012-04-23T18:25:43.511Z\" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems",
                               "location": "query",
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Optional. Maximum number of results to return per page. If zero, the\nservice will choose a reasonable default.",
+                              "description": "Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -692,7 +662,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The parent eventStore resource name, such as\n\"projects/*/locations/*/catalogs/default_catalog/eventStores/default_event_store\".",
+                              "description": "Required. The parent eventStore resource name, such as \"projects/*/locations/*/catalogs/default_catalog/eventStores/default_event_store\".",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -708,7 +678,7 @@
                           ]
                         },
                         "purge": {
-                          "description": "Deletes permanently all user events specified by the filter provided.\nDepending on the number of events specified by the filter, this operation\ncould take hours or days to complete. To test a filter, use the list\ncommand first.",
+                          "description": "Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/userEvents:purge",
                           "httpMethod": "POST",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge",
@@ -717,7 +687,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The resource name of the event_store under which the events are\ncreated. The format is\n\"projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}\"",
+                              "description": "Required. The resource name of the event_store under which the events are created. The format is \"projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}\"",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -736,7 +706,7 @@
                           ]
                         },
                         "rejoin": {
-                          "description": "Triggers a user event rejoin operation with latest catalog data. Events\nwill not be annotated with detailed catalog information if catalog item is\nmissing at the time the user event is ingested, and these events are stored\nas unjoined events with a limited usage on training and serving. This API\ncan be used to trigger a 'join' operation on specified events with latest\nversion of catalog items. It can also be used to correct events joined with\nwrong catalog items.",
+                          "description": "Triggers a user event rejoin operation with latest catalog data. Events will not be annotated with detailed catalog information if catalog item is missing at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This API can be used to trigger a 'join' operation on specified events with latest version of catalog items. It can also be used to correct events joined with wrong catalog items.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/userEvents:rejoin",
                           "httpMethod": "POST",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin",
@@ -745,7 +715,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. Full resource name of user event, such as\n\"projects/*/locations/*/catalogs/default_catalog/eventStores/default_event_store\".",
+                              "description": "Required. Full resource name of user event, such as \"projects/*/locations/*/catalogs/default_catalog/eventStores/default_event_store\".",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -773,7 +743,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The parent eventStore resource name, such as\n\"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
+                              "description": "Required. The parent eventStore resource name, such as \"projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store\".",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/eventStores/[^/]+$",
                               "required": true,
@@ -798,7 +768,7 @@
                 "operations": {
                   "methods": {
                     "get": {
-                      "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/operations/{operationsId}",
                       "httpMethod": "GET",
                       "id": "recommendationengine.projects.locations.catalogs.operations.get",
@@ -823,7 +793,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/operations",
                       "httpMethod": "GET",
                       "id": "recommendationengine.projects.locations.catalogs.operations.list",
@@ -872,11 +842,11 @@
       }
     }
   },
-  "revision": "20200728",
+  "revision": "20200803",
   "rootUrl": "https://recommendationengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
-      "description": "Message that represents an arbitrary HTTP body. It should only be used for\npayload formats that can't be represented as JSON, such as raw binary or\nan HTML page.\n\n\nThis message can be used both in streaming and non-streaming API methods in\nthe request as well as the response.\n\nIt can be used as a top-level request field, which is convenient if one\nwants to extract parameters from either the URL or HTTP template into the\nrequest fields and also want access to the raw HTTP body.\n\nExample:\n\n    message GetResourceRequest {\n      // A unique request id.\n      string request_id = 1;\n\n      // The raw HTTP body is bound to this field.\n      google.api.HttpBody http_body = 2;\n    }\n\n    service ResourceService {\n      rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);\n      rpc UpdateResource(google.api.HttpBody) returns\n      (google.protobuf.Empty);\n    }\n\nExample with streaming methods:\n\n    service CaldavService {\n      rpc GetCalendar(stream google.api.HttpBody)\n        returns (stream google.api.HttpBody);\n      rpc UpdateCalendar(stream google.api.HttpBody)\n        returns (stream google.api.HttpBody);\n    }\n\nUse of this type only changes how the request and response bodies are\nhandled, all other features will continue to work unchanged.",
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
       "id": "GoogleApiHttpBody",
       "properties": {
         "contentType": {
@@ -889,7 +859,7 @@
           "type": "string"
         },
         "extensions": {
-          "description": "Application specific response metadata. Must be set in the first response\nfor streaming APIs.",
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -925,7 +895,7 @@
       "id": "GoogleCloudRecommendationengineV1alphaTuningMetadata",
       "properties": {
         "recommendationModel": {
-          "description": "The resource name of the recommendation model that this tune applies to.\nFormat:\nprojects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/eventStores/{event_store_id}/recommendationModels/{recommendation_model_id}",
+          "description": "The resource name of the recommendation model that this tune applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/eventStores/{event_store_id}/recommendationModels/{recommendation_model_id}",
           "type": "string"
         }
       },
@@ -942,7 +912,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1BigQuerySource",
       "properties": {
         "dataSchema": {
-          "description": "Optional. The schema to use when parsing the data from the source.\n\nSupported values for catalog imports:\n\n 1: \"catalog_recommendations_ai\" using\n   https://cloud.google.com/recommendations-ai/docs/upload-catalog#json\n   (Default for catalogItems.import)\n\n 2: \"catalog_merchant_center\" using\n   https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc\n\nSupported values for user event imports:\n\n 1: \"user_events_recommendations_ai\" using\n https://cloud.google.com/recommendations-ai/docs/manage-user-events#import\n (Default for userEvents.import)",
+          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)",
           "type": "string"
         },
         "datasetId": {
@@ -950,11 +920,11 @@
           "type": "string"
         },
         "gcsStagingDir": {
-          "description": "Optional. Intermediate Cloud Storage directory used for the import. Can be specified\nif one wants to have the BigQuery export to a specific Cloud Storage\ndirectory.",
+          "description": "Optional. Intermediate Cloud Storage directory used for the import. Can be specified if one wants to have the BigQuery export to a specific Cloud Storage directory.",
           "type": "string"
         },
         "projectId": {
-          "description": "Optional. The project id (can be project # or id) that the BigQuery source is in. If\nnot specified, inherits the project id from the parent request.",
+          "description": "Optional. The project id (can be project # or id) that the BigQuery source is in. If not specified, inherits the project id from the parent request.",
           "type": "string"
         },
         "tableId": {
@@ -965,7 +935,7 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1Catalog": {
-      "description": "The catalog configuration.\nNext ID: 5.",
+      "description": "The catalog configuration. Next ID: 5.",
       "id": "GoogleCloudRecommendationengineV1beta1Catalog",
       "properties": {
         "catalogItemLevelConfig": {
@@ -973,7 +943,7 @@
           "description": "Required. The catalog item level configuration."
         },
         "defaultEventStoreId": {
-          "description": "Required. The id of the default event store.",
+          "description": "Required. The ID of the default event store.",
           "type": "string"
         },
         "displayName": {
@@ -992,7 +962,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1CatalogInlineSource",
       "properties": {
         "catalogItems": {
-          "description": "Optional. A list of catalog items to update/create. Recommended max of 10k\nitems.",
+          "description": "Optional. A list of catalog items to update/create. Recommended max of 10k items.",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItem"
           },
@@ -1006,30 +976,30 @@
       "id": "GoogleCloudRecommendationengineV1beta1CatalogItem",
       "properties": {
         "categoryHierarchies": {
-          "description": "Required. Catalog item categories. This field is repeated for supporting\none catalog item belonging to several parallel category hierarchies.\n\nFor example, if a shoes product belongs to both\n[\"Shoes & Accessories\" -> \"Shoes\"] and\n[\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be\nrepresented as:\n\n     \"categoryHierarchies\": [\n       { \"categories\": [\"Shoes & Accessories\", \"Shoes\"]},\n       { \"categories\": [\"Sports & Fitness\", \"Athletic Clothing\", \"Shoes\"] }\n     ]",
+          "description": "Required. Catalog item categories. This field is repeated for supporting one catalog item belonging to several parallel category hierarchies. For example, if a shoes product belongs to both [\"Shoes & Accessories\" -> \"Shoes\"] and [\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be represented as: \"categoryHierarchies\": [ { \"categories\": [\"Shoes & Accessories\", \"Shoes\"]}, { \"categories\": [\"Sports & Fitness\", \"Athletic Clothing\", \"Shoes\"] } ]",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy"
           },
           "type": "array"
         },
         "description": {
-          "description": "Optional. Catalog item description. UTF-8 encoded string with a length\nlimit of 5 KiB.",
+          "description": "Optional. Catalog item description. UTF-8 encoded string with a length limit of 5 KiB.",
           "type": "string"
         },
         "id": {
-          "description": "Required. Catalog item identifier. UTF-8 encoded string with a length limit\nof 128 bytes.\n\nThis id must be unique among all catalog items within the same catalog. It\nshould also be used when logging user events in order for the user events\nto be joined with the Catalog.",
+          "description": "Required. Catalog item identifier. UTF-8 encoded string with a length limit of 128 bytes. This id must be unique among all catalog items within the same catalog. It should also be used when logging user events in order for the user events to be joined with the Catalog.",
           "type": "string"
         },
         "itemAttributes": {
           "$ref": "GoogleCloudRecommendationengineV1beta1FeatureMap",
-          "description": "Optional. Highly encouraged. Extra catalog item attributes to be\nincluded in the recommendation model. For example, for retail products,\nthis could include the store name, vendor, style, color, etc. These are\nvery strong signals for recommendation model, thus we highly recommend\nproviding the item attributes here."
+          "description": "Optional. Highly encouraged. Extra catalog item attributes to be included in the recommendation model. For example, for retail products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the item attributes here."
         },
         "itemGroupId": {
-          "description": "Optional. Variant group identifier for prediction results. UTF-8 encoded\nstring with a length limit of 128 bytes.\n\nThis field must be enabled before it can be used. [Learn\nmore](/recommendations-ai/docs/catalog#item-group-id).",
+          "description": "Optional. Variant group identifier for prediction results. UTF-8 encoded string with a length limit of 128 bytes. This field must be enabled before it can be used. [Learn more](/recommendations-ai/docs/catalog#item-group-id).",
           "type": "string"
         },
         "languageCode": {
-          "description": "Optional. Deprecated. The model automatically detects the text language. Your\ncatalog can include text in different languages, but duplicating\ncatalog items to provide text in multiple languages can result in\ndegraded model performance.",
+          "description": "Optional. Deprecated. The model automatically detects the text language. Your catalog can include text in different languages, but duplicating catalog items to provide text in multiple languages can result in degraded model performance.",
           "type": "string"
         },
         "productMetadata": {
@@ -1037,14 +1007,14 @@
           "description": "Optional. Metadata specific to retail products."
         },
         "tags": {
-          "description": "Optional. Filtering tags associated with the catalog item. Each tag should\nbe a UTF-8 encoded string with a length limit of 1 KiB.\n\nThis tag can be used for filtering recommendation results by passing the\ntag as part of the predict request filter.",
+          "description": "Optional. Filtering tags associated with the catalog item. Each tag should be a UTF-8 encoded string with a length limit of 1 KiB. This tag can be used for filtering recommendation results by passing the tag as part of the predict request filter.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "title": {
-          "description": "Required. Catalog item title. UTF-8 encoded string with a length limit of 1\nKiB.",
+          "description": "Required. Catalog item title. UTF-8 encoded string with a length limit of 1 KiB.",
           "type": "string"
         }
       },
@@ -1055,7 +1025,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy",
       "properties": {
         "categories": {
-          "description": "Required. Catalog item categories. Each category should be a UTF-8\nencoded string with a length limit of 2 KiB.\n\nNote that the order in the list denotes the specificity (from least to\nmost specific).",
+          "description": "Required. Catalog item categories. Each category should be a UTF-8 encoded string with a length limit of 2 KiB. Note that the order in the list denotes the specificity (from least to most specific).",
           "items": {
             "type": "string"
           },
@@ -1065,11 +1035,11 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig": {
-      "description": "Configures what level the catalog should be uploaded with regards to\nhow users will be send events and how predictions will be made.",
+      "description": "Configures the catalog level that users send events to, and the level at which predictions are made.",
       "id": "GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig",
       "properties": {
         "eventItemLevel": {
-          "description": "Optional. What level of the catalog are events uploaded at.\nSee https://cloud.google.com/recommendations-ai/docs/catalog#catalog-levels\nfor more details.",
+          "description": "Optional. Level of the catalog at which events are uploaded. See https://cloud.google.com/recommendations-ai/docs/catalog#catalog-levels for more details.",
           "enum": [
             "CATALOG_ITEM_LEVEL_UNSPECIFIED",
             "VARIANT",
@@ -1083,7 +1053,7 @@
           "type": "string"
         },
         "predictItemLevel": {
-          "description": "Optional. What level of the catalog are predictions made at.\nSee https://cloud.google.com/recommendations-ai/docs/catalog#catalog-levels\nfor more details.",
+          "description": "Optional. Level of the catalog at which predictions are made. See https://cloud.google.com/recommendations-ai/docs/catalog#catalog-levels for more details.",
           "enum": [
             "CATALOG_ITEM_LEVEL_UNSPECIFIED",
             "VARIANT",
@@ -1116,50 +1086,50 @@
       "properties": {
         "eventAttributes": {
           "$ref": "GoogleCloudRecommendationengineV1beta1FeatureMap",
-          "description": "Optional. Extra user event features to include in the recommendation\nmodel.\n\nFor product recommendation, an example of extra user information is\ntraffic_channel, i.e. how user arrives at the site. Users can arrive\nat the site by coming to the site directly, or coming through Google\nsearch, and etc."
+          "description": "Optional. Extra user event features to include in the recommendation model. For product recommendation, an example of extra user information is traffic_channel, i.e. how user arrives at the site. Users can arrive at the site by coming to the site directly, or coming through Google search, and etc."
         },
         "experimentIds": {
-          "description": "Optional. A list of identifiers for the independent experiment groups\nthis user event belongs to. This is used to distinguish between user events\nassociated with different experiment setups (e.g. using Recommendation\nEngine system, using different recommendation models).",
+          "description": "Optional. A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (e.g. using Recommendation Engine system, using different recommendation models).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "pageViewId": {
-          "description": "Optional. A unique id of a web page view.\nThis should be kept the same for all user events triggered from the same\npageview. For example, an item detail page view could trigger multiple\nevents as the user is browsing the page.\nThe `pageViewId` property should be kept the same for all these events so\nthat they can be grouped together properly. This `pageViewId` will be\nautomatically generated if using the JavaScript pixel.",
+          "description": "Optional. A unique id of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageViewId` property should be kept the same for all these events so that they can be grouped together properly. This `pageViewId` will be automatically generated if using the JavaScript pixel.",
           "type": "string"
         },
         "recommendationToken": {
-          "description": "Optional. Recommendation token included in the recommendation prediction\nresponse.\n\nThis field enables accurate attribution of recommendation model\nperformance.\n\nThis token enables us to accurately attribute page view or purchase back to\nthe event and the particular predict response containing this\nclicked/purchased item. If user clicks on product K in the recommendation\nresults, pass the `PredictResponse.recommendationToken` property as a url\nparameter to product K's page. When recording events on product K's page,\nlog the PredictResponse.recommendation_token to this field.\n\nOptional, but highly encouraged for user events that are the result of a\nrecommendation prediction query.",
+          "description": "Optional. Recommendation token included in the recommendation prediction response. This field enables accurate attribution of recommendation model performance. This token enables us to accurately attribute page view or purchase back to the event and the particular predict response containing this clicked/purchased item. If user clicks on product K in the recommendation results, pass the `PredictResponse.recommendationToken` property as a url parameter to product K's page. When recording events on product K's page, log the PredictResponse.recommendation_token to this field. Optional, but highly encouraged for user events that are the result of a recommendation prediction query.",
           "type": "string"
         },
         "referrerUri": {
-          "description": "Optional. The referrer url of the current page. When using\nthe JavaScript pixel, this value is filled in automatically.",
+          "description": "Optional. The referrer url of the current page. When using the JavaScript pixel, this value is filled in automatically.",
           "type": "string"
         },
         "uri": {
-          "description": "Optional. Complete url (window.location.href) of the user's current page.\nWhen using the JavaScript pixel, this value is filled in automatically.\nMaximum length 5KB.",
+          "description": "Optional. Complete url (window.location.href) of the user's current page. When using the JavaScript pixel, this value is filled in automatically. Maximum length 5KB.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1FeatureMap": {
-      "description": "FeatureMap represents extra features that customers want to include in the\nrecommendation model for catalogs/user events as categorical/numerical\nfeatures.",
+      "description": "FeatureMap represents extra features that customers want to include in the recommendation model for catalogs/user events as categorical/numerical features.",
       "id": "GoogleCloudRecommendationengineV1beta1FeatureMap",
       "properties": {
         "categoricalFeatures": {
           "additionalProperties": {
             "$ref": "GoogleCloudRecommendationengineV1beta1FeatureMapStringList"
           },
-          "description": "Categorical features that can take on one of a limited number of possible\nvalues. Some examples would be the brand/maker of a product, or country of\na customer.\n\nFeature names and values must be UTF-8 encoded strings.\n\nFor example: `{ \"colors\": {\"value\": [\"yellow\", \"green\"]},\n                \"sizes\": {\"value\":[\"S\", \"M\"]}`",
+          "description": "Categorical features that can take on one of a limited number of possible values. Some examples would be the brand/maker of a product, or country of a customer. Feature names and values must be UTF-8 encoded strings. For example: `{ \"colors\": {\"value\": [\"yellow\", \"green\"]}, \"sizes\": {\"value\":[\"S\", \"M\"]}`",
           "type": "object"
         },
         "numericalFeatures": {
           "additionalProperties": {
             "$ref": "GoogleCloudRecommendationengineV1beta1FeatureMapFloatList"
           },
-          "description": "Numerical features. Some examples would be the height/weight of a product,\nor age of a customer.\n\nFeature names must be UTF-8 encoded strings.\n\nFor example: `{ \"lengths_cm\": {\"value\":[2.3, 15.4]},\n                \"heights_cm\": {\"value\":[8.1, 6.4]} }`",
+          "description": "Numerical features. Some examples would be the height/weight of a product, or age of a customer. Feature names must be UTF-8 encoded strings. For example: `{ \"lengths_cm\": {\"value\":[2.3, 15.4]}, \"heights_cm\": {\"value\":[8.1, 6.4]} }`",
           "type": "object"
         }
       },
@@ -1195,37 +1165,19 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1GcsSource": {
-      "description": "Google Cloud Storage location for input content.\nformat.",
+      "description": "Google Cloud Storage location for input content. format.",
       "id": "GoogleCloudRecommendationengineV1beta1GcsSource",
       "properties": {
         "inputUris": {
-          "description": "Required. Google Cloud Storage URIs to input files. URI can be up to\n2000 characters long. URIs can match the full object path (for example,\ngs://bucket/directory/object.json) or a pattern matching one or more\nfiles, such as gs://bucket/directory/*.json. A request can\ncontain at most 100 files, and each file can be up to 2 GB. See\n[Importing catalog information](/recommendations-ai/docs/upload-catalog)\nfor the expected file format and setup instructions.",
+          "description": "Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, gs://bucket/directory/object.json) or a pattern matching one or more files, such as gs://bucket/directory/*.json. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing catalog information](/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "jsonSchema": {
-          "description": "Optional. The schema to use when parsing the data from the source.\n\nSupported values for catalog imports:\n\n 1: \"catalog_recommendations_ai\" using\n   https://cloud.google.com/recommendations-ai/docs/upload-catalog#json\n   (Default for catalogItems.import)\n\n 2: \"catalog_merchant_center\" using\n   https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc\n\nSupported values for user events imports:\n\n 1: \"user_events_recommendations_ai\" using\n https://cloud.google.com/recommendations-ai/docs/manage-user-events#import\n (Default for userEvents.import)",
+          "description": "Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: \"catalog_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: \"catalog_merchant_center\" using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: \"user_events_recommendations_ai\" using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudRecommendationengineV1beta1GetCatalogItemsWithItemGroupIdResponse": {
-      "description": "Response message for GetCatalogItemsWithItemGroupId method.",
-      "id": "GoogleCloudRecommendationengineV1beta1GetCatalogItemsWithItemGroupIdResponse",
-      "properties": {
-        "canonicalCatalogItem": {
-          "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItem",
-          "description": "The canonical catalog item representing all items associated with the item\ngroup id."
-        },
-        "catalogItems": {
-          "description": "The list of catalog items associated with the item group id.",
-          "items": {
-            "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItem"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1264,11 +1216,11 @@
           "description": "Required. The desired input location of the data."
         },
         "requestId": {
-          "description": "Optional. Unique identifier provided by client, within the ancestor\ndataset scope. Ensures idempotency and used for request deduplication.\nServer-generated if unspecified. Up to 128 characters long. This is\nreturned as google.longrunning.Operation.name in the response.",
+          "description": "Optional. Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long. This is returned as google.longrunning.Operation.name in the response.",
           "type": "string"
         },
         "updateMask": {
-          "description": "Optional. Indicates which fields in the provided imported 'items' to update. If not\nset, will by default update all fields.",
+          "description": "Optional. Indicates which fields in the provided imported 'items' to update. If not set, will by default update all fields.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1276,7 +1228,7 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1ImportCatalogItemsResponse": {
-      "description": "Response of the ImportCatalogItemsRequest. If the long running\noperation is done, then this message is returned by the\ngoogle.longrunning.Operations.response field if the operation was successful.",
+      "description": "Response of the ImportCatalogItemsRequest. If the long running operation is done, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
       "id": "GoogleCloudRecommendationengineV1beta1ImportCatalogItemsResponse",
       "properties": {
         "errorSamples": {
@@ -1298,14 +1250,14 @@
       "id": "GoogleCloudRecommendationengineV1beta1ImportErrorsConfig",
       "properties": {
         "gcsPrefix": {
-          "description": "Google Cloud Storage path for import errors. This must be an empty,\nexisting Cloud Storage bucket. Import errors will be written to a file in\nthis bucket, one per line, as a JSON-encoded\n`google.rpc.Status` message.",
+          "description": "Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Import errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1ImportMetadata": {
-      "description": "Metadata related to the progress of the Import operation. This will be\nreturned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRecommendationengineV1beta1ImportMetadata",
       "properties": {
         "createTime": {
@@ -1323,7 +1275,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Id of the request / operation. This is parroting back the requestId that\nwas passed in the request.",
+          "description": "Id of the request / operation. This is parroting back the requestId that was passed in the request.",
           "type": "string"
         },
         "successCount": {
@@ -1332,7 +1284,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Operation last update time. If the operation is done, this is also the\nfinish time.",
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1352,14 +1304,14 @@
           "description": "Required. The desired input location of the data."
         },
         "requestId": {
-          "description": "Optional. Unique identifier provided by client, within the ancestor\ndataset scope. Ensures idempotency for expensive long running operations.\nServer-generated if unspecified. Up to 128 characters long. This is\nreturned as google.longrunning.Operation.name in the response. Note that\nthis field must not be set if the desired input config is\ncatalog_inline_source.",
+          "description": "Optional. Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency for expensive long running operations. Server-generated if unspecified. Up to 128 characters long. This is returned as google.longrunning.Operation.name in the response. Note that this field must not be set if the desired input config is catalog_inline_source.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1ImportUserEventsResponse": {
-      "description": "Response of the ImportUserEventsRequest. If the long running\noperation was successful, then this message is returned by the\ngoogle.longrunning.Operations.response field if the operation was successful.",
+      "description": "Response of the ImportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
       "id": "GoogleCloudRecommendationengineV1beta1ImportUserEventsResponse",
       "properties": {
         "errorSamples": {
@@ -1371,7 +1323,7 @@
         },
         "errorsConfig": {
           "$ref": "GoogleCloudRecommendationengineV1beta1ImportErrorsConfig",
-          "description": "Echoes the destination for the complete errors if this field was set in\nthe request."
+          "description": "Echoes the destination for the complete errors if this field was set in the request."
         },
         "importSummary": {
           "$ref": "GoogleCloudRecommendationengineV1beta1UserEventImportSummary",
@@ -1415,7 +1367,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "If empty, the list is complete. If nonempty, the token to pass to the next\nrequest's ListCatalogItemRequest.page_token.",
+          "description": "If empty, the list is complete. If nonempty, the token to pass to the next request's ListCatalogItemRequest.page_token.",
           "type": "string"
         }
       },
@@ -1430,6 +1382,7 @@
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1Catalog"
           },
+          "readOnly": true,
           "type": "array"
         },
         "nextPageToken": {
@@ -1444,7 +1397,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If empty, the list is complete. If nonempty, pass the token to the next\nrequest's `ListPredictionApiKeysRegistrationsRequest.pageToken`.",
+          "description": "If empty, the list is complete. If nonempty, pass the token to the next request's `ListPredictionApiKeysRegistrationsRequest.pageToken`.",
           "type": "string"
         },
         "predictionApiKeyRegistrations": {
@@ -1462,7 +1415,7 @@
       "id": "GoogleCloudRecommendationengineV1beta1ListUserEventsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If empty, the list is complete. If nonempty, the token to pass to the next\nrequest's ListUserEvents.page_token.",
+          "description": "If empty, the list is complete. If nonempty, the token to pass to the next request's ListUserEvents.page_token.",
           "type": "string"
         },
         "userEvents": {
@@ -1480,22 +1433,22 @@
       "id": "GoogleCloudRecommendationengineV1beta1PredictRequest",
       "properties": {
         "dryRun": {
-          "description": "Optional. Use dryRun mode for this prediction query. If set to true, a\ndummy model will be used that returns arbitrary catalog items.\nNote that the dryRun mode should only be used for testing the API, or if\nthe model is not ready.",
+          "description": "Optional. Use dryRun mode for this prediction query. If set to true, a dummy model will be used that returns arbitrary catalog items. Note that the dryRun mode should only be used for testing the API, or if the model is not ready.",
           "type": "boolean"
         },
         "filter": {
-          "description": "Optional. Filter for restricting prediction results. Accepts values for\ntags and the `filterOutOfStockItems` flag.\n\n * Tag expressions. Restricts predictions to items that match all of the\n   specified tags. Boolean operators `OR` and `NOT` are supported if the\n   expression is enclosed in parentheses, and must be separated from the\n   tag values by a space. `-\"tagA\"` is also supported and is equivalent to\n   `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings\n   with a size limit of 1 KiB.\n\n * filterOutOfStockItems. Restricts predictions to items that do not have a\n   stockState value of OUT_OF_STOCK.\n\nExamples:\n\n * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\")\n * filterOutOfStockItems  tag=(-\"promotional\")\n * filterOutOfStockItems\n\nIf your filter blocks all prediction results, nothing will be returned. If\nyou want generic (unfiltered) popular items to be returned instead, set\n`strictFiltering` to false in `PredictRequest.params`.",
+          "description": "Optional. Filter for restricting prediction results. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to items that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1 KiB. * filterOutOfStockItems. Restricts predictions to items that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular items to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The labels for the predict request.\n\n * Label keys can contain lowercase letters, digits and hyphens, must start\n   with a letter, and must end with a letter or digit.\n * Non-zero label values can contain lowercase letters, digits and hyphens,\n   must start with a letter, and must end with a letter or digit.\n * No more than 64 labels can be associated with a given request.\n\nSee https://goo.gl/xmQnxf for more information on and examples of labels.",
+          "description": "Optional. The labels for the predict request. * Label keys can contain lowercase letters, digits and hyphens, must start with a letter, and must end with a letter or digit. * Non-zero label values can contain lowercase letters, digits and hyphens, must start with a letter, and must end with a letter or digit. * No more than 64 labels can be associated with a given request. See https://goo.gl/xmQnxf for more information on and examples of labels.",
           "type": "object"
         },
         "pageSize": {
-          "description": "Optional. Maximum number of results to return per page. Set this property\nto the number of prediction results required. If zero, the service will\nchoose a reasonable default.",
+          "description": "Optional. Maximum number of results to return per page. Set this property to the number of prediction results required. If zero, the service will choose a reasonable default.",
           "format": "int32",
           "type": "integer"
         },
@@ -1507,12 +1460,12 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Optional. Additional domain specific parameters for the predictions.\n\nAllowed values:\n\n* `returnCatalogItem`: Boolean. If set to true, the associated catalogItem\n   object will be returned in the\n  `PredictResponse.PredictionResult.itemMetadata` object in the method\n   response.\n* `returnItemScore`: Boolean. If set to true, the prediction 'score'\n   corresponding to each returned item will be set in the `metadata`\n   field in the prediction response. The given 'score' indicates the\n   probability of an item being clicked/purchased given the user's context\n   and history.\n* `strictFiltering`: Boolean. True by default. If set to false, the service\n   will return generic (unfiltered) popular items instead of empty if your\n   filter blocks all prediction results.",
+          "description": "Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned item will be set in the `metadata` field in the prediction response. The given 'score' indicates the probability of an item being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results.",
           "type": "object"
         },
         "userEvent": {
           "$ref": "GoogleCloudRecommendationengineV1beta1UserEvent",
-          "description": "Required. Context about the user, what they are looking at and what action\nthey took to trigger the predict request. Note that this user event detail\nwon't be ingested to userEvent logs. Thus, a separate userEvent write\nrequest is required for event logging."
+          "description": "Required. Context about the user, what they are looking at and what action they took to trigger the predict request. Note that this user event detail won't be ingested to userEvent logs. Thus, a separate userEvent write request is required for event logging."
         }
       },
       "type": "object"
@@ -1540,15 +1493,15 @@
           "type": "object"
         },
         "nextPageToken": {
-          "description": "If empty, the list is complete. If nonempty, the token to pass to the next\nrequest's PredictRequest.page_token.",
+          "description": "If empty, the list is complete. If nonempty, the token to pass to the next request's PredictRequest.page_token.",
           "type": "string"
         },
         "recommendationToken": {
-          "description": "A unique recommendation token. This should be included in the user event\nlogs resulting from this recommendation, which enables accurate attribution\nof recommendation model performance.",
+          "description": "A unique recommendation token. This should be included in the user event logs resulting from this recommendation, which enables accurate attribution of recommendation model performance.",
           "type": "string"
         },
         "results": {
-          "description": "A list of recommended items. The order represents the ranking (from the\nmost relevant item to the least).",
+          "description": "A list of recommended items. The order represents the ranking (from the most relevant item to the least).",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult"
           },
@@ -1569,7 +1522,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional item metadata / annotations.\n\nPossible values:\n\n* `catalogItem`: JSON representation of the catalogItem. Will be set if\n  `returnCatalogItem` is set to true in `PredictRequest.params`.\n* `score`: Prediction score in double value. Will be set if\n  `returnItemScore` is set to true in `PredictRequest.params`.",
+          "description": "Additional item metadata / annotations. Possible values: * `catalogItem`: JSON representation of the catalogItem. Will be set if `returnCatalogItem` is set to true in `PredictRequest.params`. * `score`: Prediction score in double value. Will be set if `returnItemScore` is set to true in `PredictRequest.params`.",
           "type": "object"
         }
       },
@@ -1596,7 +1549,7 @@
           "type": "string"
         },
         "canonicalProductUri": {
-          "description": "Optional. Canonical URL directly linking to the item detail page with a\nlength limit of 5 KiB..",
+          "description": "Optional. Canonical URL directly linking to the item detail page with a length limit of 5 KiB..",
           "type": "string"
         },
         "costs": {
@@ -1604,11 +1557,11 @@
             "format": "float",
             "type": "number"
           },
-          "description": "Optional. A map to pass the costs associated with the product.\n\nFor example:\n{\"manufacturing\": 45.5} The profit of selling this item is computed like\nso:\n\n* If 'exactPrice' is provided, profit = displayPrice - sum(costs)\n* If 'priceRange' is provided, profit = minPrice - sum(costs)",
+          "description": "Optional. A map to pass the costs associated with the product. For example: {\"manufacturing\": 45.5} The profit of selling this item is computed like so: * If 'exactPrice' is provided, profit = displayPrice - sum(costs) * If 'priceRange' is provided, profit = minPrice - sum(costs)",
           "type": "object"
         },
         "currencyCode": {
-          "description": "Optional. Only required if the price is set. Currency code for price/costs. Use\nthree-character ISO-4217 code.",
+          "description": "Optional. Only required if the price is set. Currency code for price/costs. Use three-character ISO-4217 code.",
           "type": "string"
         },
         "exactPrice": {
@@ -1657,7 +1610,7 @@
           "type": "number"
         },
         "originalPrice": {
-          "description": "Optional. Price of the product without any discount. If zero, by default\nset to be the 'displayPrice'.",
+          "description": "Optional. Price of the product without any discount. If zero, by default set to be the 'displayPrice'.",
           "format": "float",
           "type": "number"
         }
@@ -1665,7 +1618,7 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1ProductCatalogItemPriceRange": {
-      "description": "Product price range when there are a range of prices for different\nvariations of the same product.",
+      "description": "Product price range when there are a range of prices for different variations of the same product.",
       "id": "GoogleCloudRecommendationengineV1beta1ProductCatalogItemPriceRange",
       "properties": {
         "max": {
@@ -1686,21 +1639,21 @@
       "id": "GoogleCloudRecommendationengineV1beta1ProductDetail",
       "properties": {
         "availableQuantity": {
-          "description": "Optional. Quantity of the products in stock when a user event happens.\nOptional. If provided, this overrides the available quantity in Catalog for\nthis event. and can only be set if `stock_status` is set to `IN_STOCK`.\n\nNote that if an item is out of stock, you must set the `stock_state` field\nto be `OUT_OF_STOCK`. Leaving this field unspecified / as zero is not\nsufficient to mark the item out of stock.",
+          "description": "Optional. Quantity of the products in stock when a user event happens. Optional. If provided, this overrides the available quantity in Catalog for this event. and can only be set if `stock_status` is set to `IN_STOCK`. Note that if an item is out of stock, you must set the `stock_state` field to be `OUT_OF_STOCK`. Leaving this field unspecified / as zero is not sufficient to mark the item out of stock.",
           "format": "int32",
           "type": "integer"
         },
         "currencyCode": {
-          "description": "Optional. Currency code for price/costs. Use three-character ISO-4217\ncode. Required only if originalPrice or displayPrice is set.",
+          "description": "Optional. Currency code for price/costs. Use three-character ISO-4217 code. Required only if originalPrice or displayPrice is set.",
           "type": "string"
         },
         "displayPrice": {
-          "description": "Optional. Display price of the product (e.g. discounted price). If\nprovided, this will override the display price in Catalog for this product.",
+          "description": "Optional. Display price of the product (e.g. discounted price). If provided, this will override the display price in Catalog for this product.",
           "format": "float",
           "type": "number"
         },
         "id": {
-          "description": "Required. Catalog item ID. UTF-8 encoded string with a length limit of 128\ncharacters.",
+          "description": "Required. Catalog item ID. UTF-8 encoded string with a length limit of 128 characters.",
           "type": "string"
         },
         "itemAttributes": {
@@ -1708,17 +1661,17 @@
           "description": "Optional. Extra features associated with a product in the user event."
         },
         "originalPrice": {
-          "description": "Optional. Original price of the product. If provided, this will override\nthe original price in Catalog for this product.",
+          "description": "Optional. Original price of the product. If provided, this will override the original price in Catalog for this product.",
           "format": "float",
           "type": "number"
         },
         "quantity": {
-          "description": "Optional. Quantity of the product associated with the user event. For\nexample, this field will be 2 if two products are added to the shopping\ncart for `add-to-cart` event. Required for `add-to-cart`, `add-to-list`,\n`remove-from-cart`, `checkout-start`, `purchase-complete`, `refund` event\ntypes.",
+          "description": "Optional. Quantity of the product associated with the user event. For example, this field will be 2 if two products are added to the shopping cart for `add-to-cart` event. Required for `add-to-cart`, `add-to-list`, `remove-from-cart`, `checkout-start`, `purchase-complete`, `refund` event types.",
           "format": "int32",
           "type": "integer"
         },
         "stockState": {
-          "description": "Optional. Item stock state. If provided, this overrides the stock state\nin Catalog for items in this event.",
+          "description": "Optional. Item stock state. If provided, this overrides the stock state in Catalog for items in this event.",
           "enum": [
             "STOCK_STATE_UNSPECIFIED",
             "IN_STOCK",
@@ -1739,26 +1692,26 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1ProductEventDetail": {
-      "description": "ProductEventDetail captures user event information specific to retail\nproducts.",
+      "description": "ProductEventDetail captures user event information specific to retail products.",
       "id": "GoogleCloudRecommendationengineV1beta1ProductEventDetail",
       "properties": {
         "cartId": {
-          "description": "Optional. The id or name of the associated shopping cart. This id is used\nto associate multiple items added or present in the cart before purchase.\n\nThis can only be set for `add-to-cart`, `remove-from-cart`,\n`checkout-start`, `purchase-complete`, or `shopping-cart-page-view` events.",
+          "description": "Optional. The id or name of the associated shopping cart. This id is used to associate multiple items added or present in the cart before purchase. This can only be set for `add-to-cart`, `remove-from-cart`, `checkout-start`, `purchase-complete`, or `shopping-cart-page-view` events.",
           "type": "string"
         },
         "listId": {
-          "description": "Required for `add-to-list` and `remove-from-list` events. The id or name of\nthe list that the item is being added to or removed from. Other event types\nshould not set this field.",
+          "description": "Required for `add-to-list` and `remove-from-list` events. The id or name of the list that the item is being added to or removed from. Other event types should not set this field.",
           "type": "string"
         },
         "pageCategories": {
-          "description": "Required for `category-page-view` events. Other event types should not set\nthis field.\nThe categories associated with a category page.\nCategory pages include special pages such as sales or promotions. For\ninstance, a special sale page may have the category hierarchy:\ncategories : [\"Sales\", \"2017 Black Friday Deals\"].",
+          "description": "Required for `category-page-view` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : [\"Sales\", \"2017 Black Friday Deals\"].",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy"
           },
           "type": "array"
         },
         "productDetails": {
-          "description": "The main product details related to the event.\n\nThis field is required for the following event types:\n\n* `add-to-cart`\n* `add-to-list`\n* `checkout-start`\n* `detail-page-view`\n* `purchase-complete`\n* `refund`\n* `remove-from-cart`\n* `remove-from-list`\n\nThis field is optional for the following event types:\n\n* `page-visit`\n* `shopping-cart-page-view` - note that 'product_details' should be set for\n  this unless the shopping cart is empty.\n* `search` (highly encouraged)\n\nIn a `search` event, this field represents the products returned to the end\nuser on the current page (the end user may have not finished broswing the\nwhole page yet). When a new page is returned to the end user, after\npagination/filtering/ordering even for the same query, a new SEARCH event\nwith different product_details is desired. The end user may have not\nfinished broswing the whole page yet.\n\nThis field is not allowed for the following event types:\n\n* `category-page-view`\n* `home-page-view`",
+          "description": "The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that 'product_details' should be set for this unless the shopping cart is empty. * `search` (highly encouraged) In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished broswing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new SEARCH event with different product_details is desired. The end user may have not finished broswing the whole page yet. This field is not allowed for the following event types: * `category-page-view` * `home-page-view`",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1ProductDetail"
           },
@@ -1766,10 +1719,10 @@
         },
         "purchaseTransaction": {
           "$ref": "GoogleCloudRecommendationengineV1beta1PurchaseTransaction",
-          "description": "Optional. A transaction represents the entire purchase transaction.\nRequired for `purchase-complete` events. Optional for `checkout-start`\nevents. Other event types should not set this field."
+          "description": "Optional. A transaction represents the entire purchase transaction. Required for `purchase-complete` events. Optional for `checkout-start` events. Other event types should not set this field."
         },
         "searchQuery": {
-          "description": "Required for `search` events. Other event types should not set this field.\nThe user's search query as UTF-8 encoded text with a length limit of 5 KiB.",
+          "description": "Required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.",
           "type": "string"
         }
       },
@@ -1784,11 +1737,11 @@
             "format": "float",
             "type": "number"
           },
-          "description": "Optional. All the costs associated with the product. These can be\nmanufacturing costs, shipping expenses not borne by the end user, or any\nother costs.\n\nTotal product cost such that\n  profit = revenue - (sum(taxes) + sum(costs))\nIf product_cost is not set, then\n  profit = revenue - tax - shipping - sum(CatalogItem.costs).\n\nIf CatalogItem.cost is not specified for one of the items, CatalogItem.cost\nbased profit *cannot* be calculated for this Transaction.",
+          "description": "Optional. All the costs associated with the product. These can be manufacturing costs, shipping expenses not borne by the end user, or any other costs. Total product cost such that profit = revenue - (sum(taxes) + sum(costs)) If product_cost is not set, then profit = revenue - tax - shipping - sum(CatalogItem.costs). If CatalogItem.cost is not specified for one of the items, CatalogItem.cost based profit *cannot* be calculated for this Transaction.",
           "type": "object"
         },
         "currencyCode": {
-          "description": "Required. Currency code. Use three-character ISO-4217 code. This field\nis not required if the event type is `refund`.",
+          "description": "Required. Currency code. Use three-character ISO-4217 code. This field is not required if the event type is `refund`.",
           "type": "string"
         },
         "id": {
@@ -1796,7 +1749,7 @@
           "type": "string"
         },
         "revenue": {
-          "description": "Required. Total revenue or grand total associated with the transaction.\nThis value include shipping, tax, or other adjustments to total revenue\nthat you want to include as part of your revenue calculations. This field\nis not required if the event type is `refund`.",
+          "description": "Required. Total revenue or grand total associated with the transaction. This value include shipping, tax, or other adjustments to total revenue that you want to include as part of your revenue calculations. This field is not required if the event type is `refund`.",
           "format": "float",
           "type": "number"
         },
@@ -1812,7 +1765,7 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1PurgeUserEventsMetadata": {
-      "description": "Metadata related to the progress of the PurgeUserEvents operation.\nThis will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the PurgeUserEvents operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRecommendationengineV1beta1PurgeUserEventsMetadata",
       "properties": {
         "createTime": {
@@ -1832,18 +1785,18 @@
       "id": "GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest",
       "properties": {
         "filter": {
-          "description": "Required. The filter string to specify the events to be deleted. Empty\nstring filter is not allowed. The eligible fields\nfor filtering are:\n\n* `eventType`: UserEvent.eventType field of type string.\n* `eventTime`: in ISO 8601 \"zulu\" format.\n* `visitorId`: field of type string. Specifying this will delete all\n  events associated with a visitor.\n* `userId`: field of type string. Specifying this will delete all events\n  associated with a user.\n\nExamples:\n\n* Deleting all events in a time range:\n  `eventTime > \"2012-04-23T18:25:43.511Z\"\n  eventTime < \"2012-04-23T18:30:43.511Z\"`\n* Deleting specific eventType in time range:\n  `eventTime > \"2012-04-23T18:25:43.511Z\" eventType = \"detail-page-view\"`\n* Deleting all events for a specific visitor:\n  `visitorId = \"visitor1024\"`\n\nThe filtering fields are assumed to have an implicit AND.",
+          "description": "Required. The filter string to specify the events to be deleted. Empty string filter is not allowed. The eligible fields for filtering are: * `eventType`: UserEvent.eventType field of type string. * `eventTime`: in ISO 8601 \"zulu\" format. * `visitorId`: field of type string. Specifying this will delete all events associated with a visitor. * `userId`: field of type string. Specifying this will delete all events associated with a user. Examples: * Deleting all events in a time range: `eventTime > \"2012-04-23T18:25:43.511Z\" eventTime < \"2012-04-23T18:30:43.511Z\"` * Deleting specific eventType in time range: `eventTime > \"2012-04-23T18:25:43.511Z\" eventType = \"detail-page-view\"` * Deleting all events for a specific visitor: `visitorId = \"visitor1024\"` The filtering fields are assumed to have an implicit AND.",
           "type": "string"
         },
         "force": {
-          "description": "Optional. The default value is false. Override this flag to true to\nactually perform the purge. If the field is not set to true, a sampling of\nevents to be deleted will be returned.",
+          "description": "Optional. The default value is false. Override this flag to true to actually perform the purge. If the field is not set to true, a sampling of events to be deleted will be returned.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1PurgeUserEventsResponse": {
-      "description": "Response of the PurgeUserEventsRequest. If the long running operation is\nsuccessfully done, then this message is returned by the\ngoogle.longrunning.Operations.response field.",
+      "description": "Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
       "id": "GoogleCloudRecommendationengineV1beta1PurgeUserEventsResponse",
       "properties": {
         "purgedEventsCount": {
@@ -1852,7 +1805,7 @@
           "type": "string"
         },
         "userEventsSample": {
-          "description": "A sampling of events deleted (or will be deleted) depending on the `force`\nproperty in the request. Max of 500 items will be returned.",
+          "description": "A sampling of events deleted (or will be deleted) depending on the `force` property in the request. Max of 500 items will be returned.",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1UserEvent"
           },
@@ -1866,14 +1819,14 @@
       "id": "GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest",
       "properties": {
         "userEventRejoinScope": {
-          "description": "Required. The type of the catalog rejoin to define the scope and range of the user\nevents to be rejoined with catalog items.",
+          "description": "Required. The type of the catalog rejoin to define the scope and range of the user events to be rejoined with catalog items.",
           "enum": [
             "USER_EVENT_REJOIN_SCOPE_UNSPECIFIED",
             "JOINED_EVENTS",
             "UNJOINED_EVENTS"
           ],
           "enumDescriptions": [
-            "Rejoin catalogs with all events including both joined events and\nunjoined events.",
+            "Rejoin catalogs with all events including both joined events and unjoined events.",
             "Only rejoin catalogs with joined events.",
             "Only rejoin catalogs with unjoined events."
           ],
@@ -1883,15 +1836,15 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1UserEvent": {
-      "description": "UserEvent captures all metadata information recommendation engine needs to\nknow about how end users interact with customers' website.",
+      "description": "UserEvent captures all metadata information recommendation engine needs to know about how end users interact with customers' website.",
       "id": "GoogleCloudRecommendationengineV1beta1UserEvent",
       "properties": {
         "eventDetail": {
           "$ref": "GoogleCloudRecommendationengineV1beta1EventDetail",
-          "description": "Optional. User event detailed information common across different\nrecommendation types."
+          "description": "Optional. User event detailed information common across different recommendation types."
         },
         "eventSource": {
-          "description": "Optional. This field should *not* be set when using JavaScript pixel\nor the Recommendations AI Tag. Defaults to `EVENT_SOURCE_UNSPECIFIED`.",
+          "description": "Optional. This field should *not* be set when using JavaScript pixel or the Recommendations AI Tag. Defaults to `EVENT_SOURCE_UNSPECIFIED`.",
           "enum": [
             "EVENT_SOURCE_UNSPECIFIED",
             "AUTOML",
@@ -1900,24 +1853,24 @@
           ],
           "enumDescriptions": [
             "Unspecified event source.",
-            "The event is ingested via a javascript pixel or Recommendations AI Tag\nthrough automl datalayer or JS Macros.",
-            "The event is ingested via Recommendations AI Tag through Enhanced\nEcommerce datalayer.",
+            "The event is ingested via a javascript pixel or Recommendations AI Tag through automl datalayer or JS Macros.",
+            "The event is ingested via Recommendations AI Tag through Enhanced Ecommerce datalayer.",
             "The event is ingested via Import user events API."
           ],
           "type": "string"
         },
         "eventTime": {
-          "description": "Optional. Only required for ImportUserEvents method. Timestamp of user\nevent created.",
+          "description": "Optional. Only required for ImportUserEvents method. Timestamp of user event created.",
           "format": "google-datetime",
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are:\n\n* `add-to-cart` Products being added to cart.\n* `add-to-list` Items being added to a list (shopping list, favorites\n  etc).\n* `category-page-view` Special pages such as sale or promotion pages\n  viewed.\n* `checkout-start` User starting a checkout process.\n* `detail-page-view` Products detail page viewed.\n* `home-page-view` Homepage viewed.\n* `page-visit` Generic page visits not included in the event types above.\n* `purchase-complete` User finishing a purchase.\n* `refund` Purchased items being refunded or returned.\n* `remove-from-cart` Products being removed from cart.\n* `remove-from-list` Items being removed from a list.\n* `search` Product search.\n* `shopping-cart-page-view` User viewing a shopping cart.\n* `impression` List of items displayed. Used by Google Tag Manager.",
+          "description": "Required. User event type. Allowed values are: * `add-to-cart` Products being added to cart. * `add-to-list` Items being added to a list (shopping list, favorites etc). * `category-page-view` Special pages such as sale or promotion pages viewed. * `checkout-start` User starting a checkout process. * `detail-page-view` Products detail page viewed. * `home-page-view` Homepage viewed. * `page-visit` Generic page visits not included in the event types above. * `purchase-complete` User finishing a purchase. * `refund` Purchased items being refunded or returned. * `remove-from-cart` Products being removed from cart. * `remove-from-list` Items being removed from a list. * `search` Product search. * `shopping-cart-page-view` User viewing a shopping cart. * `impression` List of items displayed. Used by Google Tag Manager.",
           "type": "string"
         },
         "productEventDetail": {
           "$ref": "GoogleCloudRecommendationengineV1beta1ProductEventDetail",
-          "description": "Optional. Retail product specific user event metadata.\n\nThis field is required for the following event types:\n\n* `add-to-cart`\n* `add-to-list`\n* `category-page-view`\n* `checkout-start`\n* `detail-page-view`\n* `purchase-complete`\n* `refund`\n* `remove-from-cart`\n* `remove-from-list`\n* `search`\n\nThis field is optional for the following event types:\n\n* `page-visit`\n* `shopping-cart-page-view` - note that 'product_event_detail' should be\n  set for this unless the shopping cart is empty.\n\nThis field is not allowed for the following event types:\n\n* `home-page-view`"
+          "description": "Optional. Retail product specific user event metadata. This field is required for the following event types: * `add-to-cart` * `add-to-list` * `category-page-view` * `checkout-start` * `detail-page-view` * `purchase-complete` * `refund` * `remove-from-cart` * `remove-from-list` * `search` This field is optional for the following event types: * `page-visit` * `shopping-cart-page-view` - note that 'product_event_detail' should be set for this unless the shopping cart is empty. This field is not allowed for the following event types: * `home-page-view`"
         },
         "userInfo": {
           "$ref": "GoogleCloudRecommendationengineV1beta1UserInfo",
@@ -1927,7 +1880,7 @@
       "type": "object"
     },
     "GoogleCloudRecommendationengineV1beta1UserEventImportSummary": {
-      "description": "A summary of import result. The UserEventImportSummary summarizes\nthe import status for user events.",
+      "description": "A summary of import result. The UserEventImportSummary summarizes the import status for user events.",
       "id": "GoogleCloudRecommendationengineV1beta1UserEventImportSummary",
       "properties": {
         "joinedEventsCount": {
@@ -1936,7 +1889,7 @@
           "type": "string"
         },
         "unjoinedEventsCount": {
-          "description": "Count of user events imported, but with catalog information not found\nin the imported catalog.",
+          "description": "Count of user events imported, but with catalog information not found in the imported catalog.",
           "format": "int64",
           "type": "string"
         }
@@ -1962,23 +1915,23 @@
       "id": "GoogleCloudRecommendationengineV1beta1UserInfo",
       "properties": {
         "directUserRequest": {
-          "description": "Optional. Indicates if the request is made directly from the end user\nin which case the user_agent and ip_address fields can be populated\nfrom the HTTP request. This should *not* be set when using the javascript\npixel. This flag should be set only if the API request is made directly\nfrom the end user such as a mobile app (and not if a gateway or a server is\nprocessing and pushing the user events).",
+          "description": "Optional. Indicates if the request is made directly from the end user in which case the user_agent and ip_address fields can be populated from the HTTP request. This should *not* be set when using the javascript pixel. This flag should be set only if the API request is made directly from the end user such as a mobile app (and not if a gateway or a server is processing and pushing the user events).",
           "type": "boolean"
         },
         "ipAddress": {
-          "description": "Optional. IP address of the user. This could be either IPv4 (e.g. 104.133.9.80) or\nIPv6 (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334). This should *not* be\nset when using the javascript pixel or if `direct_user_request` is set.\nUsed to extract location information for personalization.",
+          "description": "Optional. IP address of the user. This could be either IPv4 (e.g. 104.133.9.80) or IPv6 (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334). This should *not* be set when using the javascript pixel or if `direct_user_request` is set. Used to extract location information for personalization.",
           "type": "string"
         },
         "userAgent": {
-          "description": "Optional. User agent as included in the HTTP header. UTF-8 encoded string\nwith a length limit of 1 KiB.\n\nThis should *not* be set when using the JavaScript pixel or if\n`directUserRequest` is set.",
+          "description": "Optional. User agent as included in the HTTP header. UTF-8 encoded string with a length limit of 1 KiB. This should *not* be set when using the JavaScript pixel or if `directUserRequest` is set.",
           "type": "string"
         },
         "userId": {
-          "description": "Optional. Unique identifier for logged-in user with a length limit of 128\nbytes. Required only for logged-in users.",
+          "description": "Optional. Unique identifier for logged-in user with a length limit of 128 bytes. Required only for logged-in users.",
           "type": "string"
         },
         "visitorId": {
-          "description": "Required. A unique identifier for tracking visitors with a length limit of\n128 bytes.\n\nFor example, this could be implemented with a http cookie, which should be\nable to uniquely identify a visitor on a single device. This unique\nidentifier should not change if the visitor log in/out of the website.\nMaximum length 128 bytes. Cannot be empty.",
+          "description": "Required. A unique identifier for tracking visitors with a length limit of 128 bytes. For example, this could be implemented with a http cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor log in/out of the website. Maximum length 128 bytes. Cannot be empty.",
           "type": "string"
         }
       },
@@ -2003,11 +1956,11 @@
       "type": "object"
     },
     "GoogleLongrunningOperation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "GoogleLongrunningOperation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -2019,11 +1972,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -2031,20 +1984,20 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
     },
     "GoogleRpcStatus": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "GoogleRpcStatus",
       "properties": {
         "code": {
@@ -2053,7 +2006,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -2064,7 +2017,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
