@@ -492,7 +492,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter specifying constraints of a list operation.\nFiltering is not supported yet, and the parameter currently has no effect.\nIf missing, no filtering is performed.",
+                      "description": "Optional. Filter specifying constraints of a list operation.\nSpecify the constraint by the format of \"key=value\", where key must be\n\"src\" or \"tgt\", and the value must be a valid language code.\nFor multiple restrictions, concatenate them by \"AND\" (uppercase only),\nsuch as: \"src=en-US AND tgt=zh-CN\". Notice that the exact match is used\nhere, which means using 'en-US' and 'en' can lead to different results,\nwhich depends on the language code you used when you create the glossary.\nFor the unidirectional glossaries, the \"src\" and \"tgt\" add restrictions\non the source and target language code separately.\nFor the equivalent term set glossaries, the \"src\" and/or \"tgt\" add\nrestrictions on the term set.\nFor example: \"src=en-US AND tgt=zh-CN\" will only pick the unidirectional\nglossaries which exactly match the source language code as \"en-US\" and the\ntarget language code \"zh-CN\", but all equivalent term set glossaries which\ncontain \"en-US\" and \"zh-CN\" in their language set will be picked.\nIf missing, no filtering is performed.",
                       "location": "query",
                       "type": "string"
                     },
@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20200522",
+  "revision": "20200730",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {
