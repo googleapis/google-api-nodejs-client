@@ -113,7 +113,7 @@
         "locations": {
           "methods": {
             "searchReservationGrants": {
-              "description": "Look up grants for a specified resource for a particular region.\nIf the request is about a project:\n  1) Grants created on the project will be returned if they exist.\n  2) Otherwise grants created on the closest ancestor will be returned.\n  3) Grants for different JobTypes will all be returned.\nSame logic applies if the request is about a folder.\nIf the request is about an organization, then grants created on the\norganization will be returned (organization doesn't have ancestors).\nComparing to ListReservationGrants, there are two behavior\ndifferences:\n  1) permission on the grantee will be verified in this API.\n  2) Hierarchy lookup (project->folder->organization) happens in this API.",
+              "description": "Look up grants for a specified resource for a particular region. If the request is about a project: 1) Grants created on the project will be returned if they exist. 2) Otherwise grants created on the closest ancestor will be returned. 3) Grants for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then grants created on the organization will be returned (organization doesn't have ancestors). Comparing to ListReservationGrants, there are two behavior differences: 1) permission on the grantee will be verified in this API. 2) Hierarchy lookup (project->folder->organization) happens in this API.",
               "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}:SearchReservationGrants",
               "httpMethod": "GET",
               "id": "bigqueryreservation.projects.locations.searchReservationGrants",
@@ -133,14 +133,14 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent resource name (containing project and location), which owns the\ngrants. e.g.:\n  \"projects/myproject/locations/us-central1\".",
+                  "description": "The parent resource name (containing project and location), which owns the grants. e.g.: \"projects/myproject/locations/us-central1\".",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "query": {
-                  "description": "Please specify resource name as grantee in the query.\ne.g., \"grantee=projects/myproject\"\n      \"grantee=folders/123\"\n      \"grantee=organizations/456\"",
+                  "description": "Please specify resource name as grantee in the query. e.g., \"grantee=projects/myproject\" \"grantee=folders/123\" \"grantee=organizations/456\"",
                   "location": "query",
                   "type": "string"
                 }
@@ -159,7 +159,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.operations.cancel",
@@ -185,7 +185,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "bigqueryreservation.projects.locations.operations.get",
@@ -215,7 +215,7 @@
             "reservationGrants": {
               "methods": {
                 "create": {
-                  "description": "Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have\n'bigquery.admin' permissions on the project using the reservation\nand the project that owns this reservation.\nReturns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant\ndoes not match location of the reservation.",
+                  "description": "Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant does not match location of the reservation.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservationGrants",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.reservationGrants.create",
@@ -224,7 +224,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent resource name of the reservation grant\nE.g.: projects/myproject/location/eu.",
+                      "description": "The parent resource name of the reservation grant E.g.: projects/myproject/location/eu.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -244,7 +244,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a reservation grant. No expansion will happen.\nE.g:\norganizationA contains project1 and project2. Reservation res1 exists.\nCreateReservationGrant was invoked previously and following grants were\ncreated explicitly:\n  <organizationA, res1>\n  <project1, res1>\nThen deletion of <organizationA, res1> won't affect <project1, res1>. After\ndeletion of <organizationA, res1>, queries from project1 will still use\nres1, while queries from project2 will use on-demand mode.",
+                  "description": "Deletes a reservation grant. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then deletion of won't affect . After deletion of , queries from project1 will still use res1, while queries from project2 will use on-demand mode.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservationGrants/{reservationGrantsId}",
                   "httpMethod": "DELETE",
                   "id": "bigqueryreservation.projects.locations.reservationGrants.delete",
@@ -253,7 +253,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of the resource, e.g.:\n  projects/myproject/locations/eu/reservationGrants/123",
+                      "description": "Name of the resource, e.g.: projects/myproject/locations/eu/reservationGrants/123",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservationGrants/[^/]+$",
                       "required": true,
@@ -270,7 +270,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists reservation grants.\nOnly explicitly created grants will be returned. E.g:\norganizationA contains project1 and project2. Reservation res1 exists.\nCreateReservationGrant was invoked previously and following grants were\ncreated explicitly:\n  <organizationA, res1>\n  <project1, res1>\nThen this API will just return the above two grants for reservation res1,\nand no expansion/merge will happen.",
+                  "description": "Lists reservation grants. Only explicitly created grants will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then this API will just return the above two grants for reservation res1, and no expansion/merge will happen.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservationGrants",
                   "httpMethod": "GET",
                   "id": "bigqueryreservation.projects.locations.reservationGrants.list",
@@ -311,7 +311,7 @@
             "reservations": {
               "methods": {
                 "create": {
-                  "description": "Creates a new reservation resource. Multiple reservations are created if\nthe ancestor reservations do not exist.",
+                  "description": "Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservations",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.reservations.create",
@@ -320,14 +320,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Project, location, and (optionally) reservation name. E.g.,\n   projects/myproject/locations/us-central1/reservations/parent",
+                      "description": "Project, location, and (optionally) reservation name. E.g., projects/myproject/locations/us-central1/reservations/parent",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "reservationId": {
-                      "description": "The reservation ID relative to the parent, e.g., \"dev\". This field must\nonly contain alphanumeric characters.",
+                      "description": "The reservation ID relative to the parent, e.g., \"dev\". This field must only contain alphanumeric characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -345,7 +345,7 @@
                   ]
                 },
                 "createReservation": {
-                  "description": "Creates a new reservation resource. Multiple reservations are created if\nthe ancestor reservations do not exist.",
+                  "description": "Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
                   "httpMethod": "POST",
                   "id": "bigqueryreservation.projects.locations.reservations.createReservation",
@@ -354,14 +354,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Project, location, and (optionally) reservation name. E.g.,\n   projects/myproject/locations/us-central1/reservations/parent",
+                      "description": "Project, location, and (optionally) reservation name. E.g., projects/myproject/locations/us-central1/reservations/parent",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/.*$",
                       "required": true,
                       "type": "string"
                     },
                     "reservationId": {
-                      "description": "The reservation ID relative to the parent, e.g., \"dev\". This field must\nonly contain alphanumeric characters.",
+                      "description": "The reservation ID relative to the parent, e.g., \"dev\". This field must only contain alphanumeric characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -379,7 +379,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a reservation.\nReturns `google.rpc.Code.FAILED_PRECONDITION` in the following cases:\n  1. When reservation has child reservations. This check can be bypassed by\n     setting DeleteReservationRequest.force flag to true.\n  2. When top-level reservation with slot pools is being deleted.",
+                  "description": "Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` in the following cases: 1. When reservation has child reservations. This check can be bypassed by setting DeleteReservationRequest.force flag to true. 2. When top-level reservation with slot pools is being deleted.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
                   "httpMethod": "DELETE",
                   "id": "bigqueryreservation.projects.locations.reservations.delete",
@@ -388,12 +388,12 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "If true, deletes all the child reservations of the given reservation.\nOtherwise, attempting to delete a reservation that has child\nreservations will fail with error code\n`google.rpc.Code.FAILED_PRECONDITION`.",
+                      "description": "If true, deletes all the child reservations of the given reservation. Otherwise, attempting to delete a reservation that has child reservations will fail with error code `google.rpc.Code.FAILED_PRECONDITION`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Resource name of the reservation to retrieve. E.g.,\n   projects/myproject/locations/us-central1/reservations/my_reservation",
+                      "description": "Resource name of the reservation to retrieve. E.g., projects/myproject/locations/us-central1/reservations/my_reservation",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/.*$",
                       "required": true,
@@ -419,7 +419,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Resource name of the reservation to retrieve. E.g.,\n   projects/myproject/locations/us-central1/reservations/path/to/reserv",
+                      "description": "Resource name of the reservation to retrieve. E.g., projects/myproject/locations/us-central1/reservations/path/to/reserv",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/.*$",
                       "required": true,
@@ -445,7 +445,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Can be used to filter out reservations based on names, capacity, etc, e.g.:\nfilter=\"reservation.slot_capacity > 200\"\nfilter=\"reservation.name = \\\"*dev/*\\\"\"\nAdvanced filtering syntax can be\n[here](https://cloud.google.com/logging/docs/view/advanced-filters).",
+                      "description": "Can be used to filter out reservations based on names, capacity, etc, e.g.: filter=\"reservation.slot_capacity > 200\" filter=\"reservation.name = \\\"*dev/*\\\"\" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).",
                       "location": "query",
                       "type": "string"
                     },
@@ -461,7 +461,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent resource name containing project and location, e.g.:\n  \"projects/myproject/locations/us-central1\"",
+                      "description": "The parent resource name containing project and location, e.g.: \"projects/myproject/locations/us-central1\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -478,7 +478,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing reservation resource. Applicable only for child\nreservations.",
+                  "description": "Updates an existing reservation resource. Applicable only for child reservations.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/{reservationsId1}",
                   "httpMethod": "PATCH",
                   "id": "bigqueryreservation.projects.locations.reservations.patch",
@@ -487,7 +487,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the reservation, e.g.,\n\"projects/*/locations/*/reservations/dev/team/product\". Reservation names\n(e.g., \"dev/team/product\") exceeding a depth of six will fail with\n`google.rpc.Code.INVALID_ARGUMENT`.",
+                      "description": "The resource name of the reservation, e.g., \"projects/*/locations/*/reservations/dev/team/product\". Reservation names (e.g., \"dev/team/product\") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/.*$",
                       "required": true,
@@ -517,7 +517,7 @@
                 "slotPools": {
                   "methods": {
                     "delete": {
-                      "description": "Deletes a slot pool. Attempting to delete slot pool before its\ncommitment_end_time will fail with the error code\n`google.rpc.Code.FAILED_PRECONDITION`.",
+                      "description": "Deletes a slot pool. Attempting to delete slot pool before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.",
                       "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/slotPools/{slotPoolsId}",
                       "httpMethod": "DELETE",
                       "id": "bigqueryreservation.projects.locations.reservations.slotPools.delete",
@@ -526,7 +526,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the slot pool to delete. E.g.,\n   projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123",
+                          "description": "Resource name of the slot pool to delete. E.g., projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/slotPools/[^/]+$",
                           "required": true,
@@ -552,7 +552,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Resource name of the slot pool to retrieve. E.g.,\n   projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123",
+                          "description": "Resource name of the slot pool to retrieve. E.g., projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/slotPools/[^/]+$",
                           "required": true,
@@ -589,7 +589,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Resource name of the parent reservation. Only top-level reservations can\nhave slot pools. E.g.,\n   projects/myproject/locations/us-central1/reservations/my_reservation",
+                          "description": "Resource name of the parent reservation. Only top-level reservations can have slot pools. E.g., projects/myproject/locations/us-central1/reservations/my_reservation",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                           "required": true,
@@ -614,22 +614,22 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200801",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "CreateSlotPoolMetadata": {
-      "description": "The metadata for operation returned from\nReservationService.CreateSlotPool.",
+      "description": "The metadata for operation returned from ReservationService.CreateSlotPool.",
       "id": "CreateSlotPoolMetadata",
       "properties": {
         "slotPool": {
-          "description": "Resource name of the slot pool that is being created. E.g.,\nprojects/myproject/locations/us-central1/reservations/foo/slotPools/123",
+          "description": "Resource name of the slot pool that is being created. E.g., projects/myproject/locations/us-central1/reservations/foo/slotPools/123",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -639,7 +639,7 @@
       "id": "ListReservationGrantsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "reservationGrants": {
@@ -657,7 +657,7 @@
       "id": "ListReservationsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "reservations": {
@@ -675,7 +675,7 @@
       "id": "ListSlotPoolsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "slotPools": {
@@ -689,11 +689,11 @@
       "type": "object"
     },
     "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -705,11 +705,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any.",
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -717,7 +717,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -728,27 +728,27 @@
       "id": "Reservation",
       "properties": {
         "name": {
-          "description": "The resource name of the reservation, e.g.,\n\"projects/*/locations/*/reservations/dev/team/product\". Reservation names\n(e.g., \"dev/team/product\") exceeding a depth of six will fail with\n`google.rpc.Code.INVALID_ARGUMENT`.",
+          "description": "The resource name of the reservation, e.g., \"projects/*/locations/*/reservations/dev/team/product\". Reservation names (e.g., \"dev/team/product\") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.",
           "type": "string"
         },
         "slotCapacity": {
-          "description": "Maximum slots available to this reservation and its children. A slot is a\nunit of computational power in BigQuery, and serves as the unit of\nparallelism. In a scan of a multi-partitioned table, a single slot operates\non a single partition of the table.\n\nIf the new reservation's slot capacity exceed the parent's slot capacity or\nif total slot capacity of the new reservation and its siblings exceeds the\nparent's slot capacity, the request will fail with\n`google.rpc.Code.RESOURCE_EXHAUSTED`.",
+          "description": "Maximum slots available to this reservation and its children. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. In a scan of a multi-partitioned table, a single slot operates on a single partition of the table. If the new reservation's slot capacity exceed the parent's slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent's slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.",
           "format": "int64",
           "type": "string"
         },
         "useParentReservation": {
-          "description": "If true, any query using this reservation will also be submitted to the\nparent reservation. This allows the query to share the additional slot\ncapacity of the parent with other queries in the parent reservation. If the\nparent also has this field set to true, then this process will continue\nuntil it encounters a reservation for which this is false.\nIf false, a query using this reservation will\nexecute with the maximum slot capacity as specified above.\nIf not specified, default value is true.\nIgnored for top-level reservation.",
+          "description": "If true, any query using this reservation will also be submitted to the parent reservation. This allows the query to share the additional slot capacity of the parent with other queries in the parent reservation. If the parent also has this field set to true, then this process will continue until it encounters a reservation for which this is false. If false, a query using this reservation will execute with the maximum slot capacity as specified above. If not specified, default value is true. Ignored for top-level reservation.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "ReservationGrant": {
-      "description": "A ReservationGrant allows a project to submit jobs\nof a certain type using slots from the specified reservation.",
+      "description": "A ReservationGrant allows a project to submit jobs of a certain type using slots from the specified reservation.",
       "id": "ReservationGrant",
       "properties": {
         "grantee": {
-          "description": "The resource which will use the reservation. E.g.\nprojects/myproject, folders/123, organizations/456.",
+          "description": "The resource which will use the reservation. E.g. projects/myproject, folders/123, organizations/456.",
           "type": "string"
         },
         "jobType": {
@@ -759,18 +759,18 @@
             "QUERY"
           ],
           "enumDescriptions": [
-            "Invalid type. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
+            "Invalid type. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Pipeline (load/export) jobs from the project will use the reservation.",
             "Query jobs from the project will use the reservation."
           ],
           "type": "string"
         },
         "name": {
-          "description": "Output only. Name of the resource. E.g.:\nprojects/myproject/locations/eu/reservationGrants/123.",
+          "description": "Output only. Name of the resource. E.g.: projects/myproject/locations/eu/reservationGrants/123.",
           "type": "string"
         },
         "reservation": {
-          "description": "Resource name of the reservation.\nE.g., projects/myproject/locations/eu/reservations/my_reservation.\nThis reservation must be in the same location as the grant.\nThis reservation should belong to the same parent project.",
+          "description": "Resource name of the reservation. E.g., projects/myproject/locations/eu/reservations/my_reservation. This reservation must be in the same location as the grant. This reservation should belong to the same parent project.",
           "type": "string"
         },
         "state": {
@@ -782,9 +782,10 @@
           ],
           "enumDescriptions": [
             "Invalid state value.",
-            "Queries from grantee will be executed as on-demand, if related\nReservationGrant is pending.",
+            "Queries from grantee will be executed as on-demand, if related ReservationGrant is pending.",
             "ReservationGrant is ready."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -795,7 +796,7 @@
       "id": "SearchReservationGrantsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no\nmore results in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "reservationGrants": {
@@ -809,20 +810,21 @@
       "type": "object"
     },
     "SlotPool": {
-      "description": "Slot pool is a way to purchase slots with some minimum committed period of\nusage. Slot pool is immutable and cannot be deleted until the end of the\ncommitment period. After the end of the commitment period, slots are still\navailable but can be freely removed any time. Annual commitments will\nautomatically be downgraded to monthly after the commitment ends.\n\nA slot pool resource exists as a child resource of a top-level reservation.\nSum of all the ACTIVE pools slot_count is always equal to the reservation\nslot_capacity.",
+      "description": "Slot pool is a way to purchase slots with some minimum committed period of usage. Slot pool is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time. Annual commitments will automatically be downgraded to monthly after the commitment ends. A slot pool resource exists as a child resource of a top-level reservation. Sum of all the ACTIVE pools slot_count is always equal to the reservation slot_capacity.",
       "id": "SlotPool",
       "properties": {
         "commitmentEndTime": {
-          "description": "Output only. The end of the commitment period. Slot pool cannot be\nremoved before commitment_end_time. It is applicable only for ACTIVE slot\npools and is computed as a combination of the plan and the time when the\nslot pool became ACTIVE.",
+          "description": "Output only. The end of the commitment period. Slot pool cannot be removed before commitment_end_time. It is applicable only for ACTIVE slot pools and is computed as a combination of the plan and the time when the slot pool became ACTIVE.",
           "format": "google-datetime",
           "type": "string"
         },
         "failureStatus": {
           "$ref": "Status",
-          "description": "Output only. For FAILED slot pool, provides the reason of failure."
+          "description": "Output only. For FAILED slot pool, provides the reason of failure.",
+          "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name of the slot pool, e.g.,\n   projects/myproject/locations/us-central1/reservations/myreservation/slotPools/123",
+          "description": "Output only. The resource name of the slot pool, e.g., projects/myproject/locations/us-central1/reservations/myreservation/slotPools/123",
           "type": "string"
         },
         "plan": {
@@ -835,11 +837,11 @@
             "ANNUAL"
           ],
           "enumDescriptions": [
-            "Invalid plan value. Requests with this value will be rejected with\nerror code `google.rpc.Code.INVALID_ARGUMENT`.",
+            "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Slot pool can be removed at any point, even after becoming ACTIVE.",
-            "Trial commitments have a committed period of 182 days after becoming\nACTIVE. After that, they are converted to a new commitment based on the\nrenewal_plan. Default renewal_plan for Trial commitment is Flex so that\nit can be deleted right after committed period ends.",
+            "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the renewal_plan. Default renewal_plan for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Slot pool cannot be removed for 30 days after becoming ACTIVE.",
-            "Slot pool cannot be removed for 365 days after becoming ACTIVE.\nNote: annual commitments are automatically downgraded to monthly after\n365 days."
+            "Slot pool cannot be removed for 365 days after becoming ACTIVE. Note: annual commitments are automatically downgraded to monthly after 365 days."
           ],
           "type": "string"
         },
@@ -858,8 +860,8 @@
           ],
           "enumDescriptions": [
             "Invalid state value.",
-            "Slot pool is pending provisioning. Pending slot pool does not\ncontribute to the parent's slot_capacity.",
-            "Once slots are provisioned, slot pool becomes active. slot_count is\nadded to the parent's slot_capacity.",
+            "Slot pool is pending provisioning. Pending slot pool does not contribute to the parent's slot_capacity.",
+            "Once slots are provisioned, slot pool becomes active. slot_count is added to the parent's slot_capacity.",
             "Slot pool is failed to be activated by the backend."
           ],
           "type": "string"
@@ -868,7 +870,7 @@
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -877,7 +879,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -888,7 +890,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
