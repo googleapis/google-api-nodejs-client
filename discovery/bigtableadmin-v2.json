@@ -1746,7 +1746,7 @@
       }
     }
   },
-  "revision": "20200715",
+  "revision": "20200725",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2213,6 +2213,34 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FailureTrace": {
+      "description": "Added to the error payload.",
+      "id": "FailureTrace",
+      "properties": {
+        "frames": {
+          "items": {
+            "$ref": "Frame"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Frame": {
+      "id": "Frame",
+      "properties": {
+        "targetName": {
+          "type": "string"
+        },
+        "workflowGuid": {
+          "type": "string"
+        },
+        "zoneId": {
           "type": "string"
         }
       },
