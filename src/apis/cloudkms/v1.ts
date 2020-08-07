@@ -136,7 +136,7 @@ export namespace cloudkms_v1 {
      */
     ciphertext?: string | null;
     /**
-     * Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received AsymmetricDecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricDecryptRequest.ciphertext) is equal to AsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received AsymmetricDecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricDecryptRequest.ciphertext) is equal to AsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     ciphertextCrc32c?: string | null;
   }
@@ -149,11 +149,11 @@ export namespace cloudkms_v1 {
      */
     plaintext?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned AsymmetricDecryptResponse.plaintext. An integrity check of AsymmetricDecryptResponse.plaintext can be performed by computing the CRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricDecryptResponse.plaintext. An integrity check of AsymmetricDecryptResponse.plaintext can be performed by computing the CRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     plaintextCrc32c?: string | null;
     /**
-     * Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     * Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
     verifiedCiphertextCrc32c?: boolean | null;
   }
@@ -166,7 +166,7 @@ export namespace cloudkms_v1 {
      */
     digest?: Schema$Digest;
     /**
-     * Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If specified, KeyManagementService will verify the integrity of the received AsymmetricSignRequest.digest using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricSignRequest.digest) is equal to AsymmetricSignRequest.digest_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If specified, KeyManagementService will verify the integrity of the received AsymmetricSignRequest.digest using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricSignRequest.digest) is equal to AsymmetricSignRequest.digest_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     digestCrc32c?: string | null;
   }
@@ -175,7 +175,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$AsymmetricSignResponse {
     /**
-     * The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing.  NOTE: This field is in Beta.
+     * The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing. NOTE: This field is in Beta.
      */
     name?: string | null;
     /**
@@ -183,16 +183,16 @@ export namespace cloudkms_v1 {
      */
     signature?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned AsymmetricSignResponse.signature. An integrity check of AsymmetricSignResponse.signature can be performed by computing the CRC32C checksum of AsymmetricSignResponse.signature and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned AsymmetricSignResponse.signature. An integrity check of AsymmetricSignResponse.signature can be performed by computing the CRC32C checksum of AsymmetricSignResponse.signature and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     signatureCrc32c?: string | null;
     /**
-     * Integrity verification field. A flag indicating whether AsymmetricSignRequest.digest_crc32c was received by KeyManagementService and used for the integrity verification of the digest. A false value of this field indicates either that AsymmetricSignRequest.digest_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricSignRequest.digest_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     * Integrity verification field. A flag indicating whether AsymmetricSignRequest.digest_crc32c was received by KeyManagementService and used for the integrity verification of the digest. A false value of this field indicates either that AsymmetricSignRequest.digest_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set AsymmetricSignRequest.digest_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
     verifiedDigestCrc32c?: boolean | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;,           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -205,7 +205,7 @@ export namespace cloudkms_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -222,11 +222,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -235,7 +235,7 @@ export namespace cloudkms_v1 {
     role?: string | null;
   }
   /**
-   * A CryptoKey represents a logical key that can be used for cryptographic operations.  A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
+   * A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
    */
   export interface Schema$CryptoKey {
     /**
@@ -251,11 +251,11 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * At next_rotation_time, the Key Management Service will automatically:  1. Create a new version of this CryptoKey. 2. Mark the new version as primary.  Key rotations performed manually via CreateCryptoKeyVersion and UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
+     * At next_rotation_time, the Key Management Service will automatically: 1. Create a new version of this CryptoKey. 2. Mark the new version as primary. Key rotations performed manually via CreateCryptoKeyVersion and UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time. Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
      */
     nextRotationTime?: string | null;
     /**
-     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  Keys with purpose ENCRYPT_DECRYPT may have a primary. For other keys, this field will be omitted.
+     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name. The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion. Keys with purpose ENCRYPT_DECRYPT may have a primary. For other keys, this field will be omitted.
      */
     primary?: Schema$CryptoKeyVersion;
     /**
@@ -263,7 +263,7 @@ export namespace cloudkms_v1 {
      */
     purpose?: string | null;
     /**
-     * next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.  If rotation_period is set, next_rotation_time must also be set.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
+     * next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours. If rotation_period is set, next_rotation_time must also be set. Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
      */
     rotationPeriod?: string | null;
     /**
@@ -272,7 +272,7 @@ export namespace cloudkms_v1 {
     versionTemplate?: Schema$CryptoKeyVersionTemplate;
   }
   /**
-   * A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.  An ENABLED version can be used for cryptographic operations.  For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS.
+   * A CryptoKeyVersion represents an individual cryptographic key, and the associated key material. An ENABLED version can be used for cryptographic operations. For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS.
    */
   export interface Schema$CryptoKeyVersion {
     /**
@@ -333,7 +333,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$CryptoKeyVersionTemplate {
     /**
-     * Required. Algorithm to use when creating a CryptoKeyVersion based on this template.  For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both this field is omitted and CryptoKey.purpose is ENCRYPT_DECRYPT.
+     * Required. Algorithm to use when creating a CryptoKeyVersion based on this template. For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both this field is omitted and CryptoKey.purpose is ENCRYPT_DECRYPT.
      */
     algorithm?: string | null;
     /**
@@ -350,7 +350,7 @@ export namespace cloudkms_v1 {
      */
     additionalAuthenticatedData?: string | null;
     /**
-     * Optional. An optional CRC32C checksum of the DecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.additional_authenticated_data) is equal to DecryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the DecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.additional_authenticated_data) is equal to DecryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     additionalAuthenticatedDataCrc32c?: string | null;
     /**
@@ -358,7 +358,7 @@ export namespace cloudkms_v1 {
      */
     ciphertext?: string | null;
     /**
-     * Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.ciphertext) is equal to DecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.ciphertext) is equal to DecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     ciphertextCrc32c?: string | null;
   }
@@ -371,7 +371,7 @@ export namespace cloudkms_v1 {
      */
     plaintext?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     plaintextCrc32c?: string | null;
   }
@@ -401,19 +401,19 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$EncryptRequest {
     /**
-     * Optional. Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
+     * Optional. Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data. The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     additionalAuthenticatedData?: string | null;
     /**
-     * Optional. An optional CRC32C checksum of the EncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.additional_authenticated_data) is equal to EncryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the EncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.additional_authenticated_data) is equal to EncryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     additionalAuthenticatedDataCrc32c?: string | null;
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
+     * Required. The data to encrypt. Must be no larger than 64KiB. The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     plaintext?: string | null;
     /**
-     * Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.plaintext) is equal to EncryptRequest.plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.plaintext) is equal to EncryptRequest.plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     plaintextCrc32c?: string | null;
   }
@@ -426,7 +426,7 @@ export namespace cloudkms_v1 {
      */
     ciphertext?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned EncryptResponse.ciphertext. An integrity check of EncryptResponse.ciphertext can be performed by computing the CRC32C checksum of EncryptResponse.ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned EncryptResponse.ciphertext. An integrity check of EncryptResponse.ciphertext can be performed by computing the CRC32C checksum of EncryptResponse.ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     ciphertextCrc32c?: string | null;
     /**
@@ -434,16 +434,16 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     * Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
     verifiedAdditionalAuthenticatedDataCrc32c?: boolean | null;
     /**
-     * Integrity verification field. A flag indicating whether EncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that EncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries.  NOTE: This field is in Beta.
+     * Integrity verification field. A flag indicating whether EncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that EncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you&#39;ve set EncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
     verifiedPlaintextCrc32c?: boolean | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -485,12 +485,12 @@ export namespace cloudkms_v1 {
      */
     importJob?: string | null;
     /**
-     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  If importing symmetric key material, it is expected that the unwrapped key contains plain bytes. If importing asymmetric key material, it is expected that the unwrapped key is in PKCS#8-encoded DER format (the PrivateKeyInfo structure from RFC 5208).  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
+     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256. This field contains the concatenation of two wrapped keys: 1. An ephemeral AES-256 wrapping key wrapped with the public_key using RSAES-OAEP with SHA-1, MGF1 with SHA-1, and an empty label. 2. The key to be imported, wrapped with the ephemeral AES-256 key using AES-KWP (RFC 5649). If importing symmetric key material, it is expected that the unwrapped key contains plain bytes. If importing asymmetric key material, it is expected that the unwrapped key is in PKCS#8-encoded DER format (the PrivateKeyInfo structure from RFC 5208). This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
      */
     rsaAesWrappedKey?: string | null;
   }
   /**
-   * An ImportJob can be used to create CryptoKeys and CryptoKeyVersions using pre-existing key material, generated outside of Cloud KMS.  When an ImportJob is created, Cloud KMS will generate a &quot;wrapping key&quot;, which is a public/private key pair. You use the wrapping key to encrypt (also known as wrap) the pre-existing key material to protect it during the import process. The nature of the wrapping key depends on the choice of import_method. When the wrapping key generation is complete, the state will be set to ACTIVE and the public_key can be fetched. The fetched public key can then be used to wrap your pre-existing key material.  Once the key material is wrapped, it can be imported into a new CryptoKeyVersion in an existing CryptoKey by calling ImportCryptoKeyVersion. Multiple CryptoKeyVersions can be imported with a single ImportJob. Cloud KMS uses the private key portion of the wrapping key to unwrap the key material. Only Cloud KMS has access to the private key.  An ImportJob expires 3 days after it is created. Once expired, Cloud KMS will no longer be able to import or unwrap any key material that was wrapped with the ImportJob&#39;s public key.  For more information, see [Importing a key](https://cloud.google.com/kms/docs/importing-a-key).
+   * An ImportJob can be used to create CryptoKeys and CryptoKeyVersions using pre-existing key material, generated outside of Cloud KMS. When an ImportJob is created, Cloud KMS will generate a &quot;wrapping key&quot;, which is a public/private key pair. You use the wrapping key to encrypt (also known as wrap) the pre-existing key material to protect it during the import process. The nature of the wrapping key depends on the choice of import_method. When the wrapping key generation is complete, the state will be set to ACTIVE and the public_key can be fetched. The fetched public key can then be used to wrap your pre-existing key material. Once the key material is wrapped, it can be imported into a new CryptoKeyVersion in an existing CryptoKey by calling ImportCryptoKeyVersion. Multiple CryptoKeyVersions can be imported with a single ImportJob. Cloud KMS uses the private key portion of the wrapping key to unwrap the key material. Only Cloud KMS has access to the private key. An ImportJob expires 3 days after it is created. Once expired, Cloud KMS will no longer be able to import or unwrap any key material that was wrapped with the ImportJob&#39;s public key. For more information, see [Importing a key](https://cloud.google.com/kms/docs/importing-a-key).
    */
   export interface Schema$ImportJob {
     /**
@@ -650,7 +650,7 @@ export namespace cloudkms_v1 {
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -680,7 +680,7 @@ export namespace cloudkms_v1 {
     hsmAvailable?: boolean | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [             &quot;user:eve@example.com&quot;           ],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -692,11 +692,11 @@ export namespace cloudkms_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -709,7 +709,7 @@ export namespace cloudkms_v1 {
      */
     algorithm?: string | null;
     /**
-     * The name of the CryptoKeyVersion public key. Provided here for verification.  NOTE: This field is in Beta.
+     * The name of the CryptoKeyVersion public key. Provided here for verification. NOTE: This field is in Beta.
      */
     name?: string | null;
     /**
@@ -717,7 +717,7 @@ export namespace cloudkms_v1 {
      */
     pem?: string | null;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.  NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     pemCrc32c?: string | null;
   }
@@ -734,7 +734,7 @@ export namespace cloudkms_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -1148,11 +1148,9 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.create({
-     *     // Required. It must be unique within a location and match the regular
-     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     // Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      *     keyRingId: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the
-     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     // Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1430,21 +1428,9 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.getIamPolicy({
-     *     // Optional. The policy format version to be returned.
-     *     //
-     *     // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *     // rejected.
-     *     //
-     *     // Requests for policies with any conditional bindings must specify version 3.
-     *     // Policies without any conditional bindings may specify any valid value or
-     *     // leave the field unset.
-     *     //
-     *     // To learn which resources support conditions in their IAM policies, see the
-     *     // [IAM
-     *     // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *   });
      *   console.log(res.data);
@@ -1467,7 +1453,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1582,26 +1568,15 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.list({
-     *     // Optional. Only include resources that match the filter in the response. For
-     *     // more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted. If not specified, the
-     *     // results will be sorted in the default order.  For more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     orderBy: 'placeholder-value',
-     *     // Optional. Optional limit on the number of KeyRings to include in the
-     *     // response.  Further KeyRings can subsequently be obtained by
-     *     // including the ListKeyRingsResponse.next_page_token in a subsequent
-     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     // Optional. Optional limit on the number of KeyRings to include in the response. Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. Optional pagination token, returned earlier via
-     *     // ListKeyRingsResponse.next_page_token.
+     *     // Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the
-     *     // KeyRings, in the format `projects/x/locations/x`.
+     *     // Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1624,8 +1599,8 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order.  For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of KeyRings to include in the response. Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1718,7 +1693,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1746,8 +1721,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *
      *     // Request body metadata
@@ -1866,7 +1840,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1894,8 +1868,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *
      *     // Request body metadata
@@ -2042,7 +2015,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2057,11 +2030,11 @@ export namespace cloudkms_v1 {
      */
     filter?: string;
     /**
-     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order.  For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      */
     orderBy?: string;
     /**
-     * Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of KeyRings to include in the response. Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
@@ -2110,7 +2083,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.create
-     * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
+     * @desc Create a new CryptoKey within a KeyRing. CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2138,17 +2111,11 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.create({
-     *     // Required. It must be unique within a KeyRing and match the regular
-     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     // Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      *     cryptoKeyId: 'placeholder-value',
-     *     // Required. The name of the KeyRing associated with the
-     *     // CryptoKeys.
+     *     // Required. The name of the KeyRing associated with the CryptoKeys.
      *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
-     *     // If set to true, the request will create a CryptoKey without any
-     *     // CryptoKeyVersions. You must manually call
-     *     // CreateCryptoKeyVersion or
-     *     // ImportCryptoKeyVersion
-     *     // before you can use this CryptoKey.
+     *     // If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
      *     skipInitialVersionCreation: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2307,8 +2274,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
-     *     // Required. The resource name of the CryptoKey to use for decryption.
-     *     // The server will choose the appropriate version.
+     *     // Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
      *     name:
      *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
@@ -2456,11 +2422,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
-     *     // Required. The resource name of the CryptoKey or CryptoKeyVersion
-     *     // to use for encryption.
-     *     //
-     *     // If a CryptoKey is specified, the server will use its
-     *     // primary version.
+     *     // Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
      *     name:
      *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
      *
@@ -2496,7 +2458,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
+     * @param {string} params.name Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
      * @param {().EncryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2751,21 +2713,9 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *     }
@@ -2790,7 +2740,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2905,26 +2855,15 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.list({
-     *     // Optional. Only include resources that match the filter in the response. For
-     *     // more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted. If not specified, the
-     *     // results will be sorted in the default order. For more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     orderBy: 'placeholder-value',
-     *     // Optional. Optional limit on the number of CryptoKeys to include in the
-     *     // response.  Further CryptoKeys can subsequently be obtained by
-     *     // including the ListCryptoKeysResponse.next_page_token in a subsequent
-     *     // request.  If unspecified, the server will pick an appropriate default.
+     *     // Optional. Optional limit on the number of CryptoKeys to include in the response. Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. Optional pagination token, returned earlier via
-     *     // ListCryptoKeysResponse.next_page_token.
+     *     // Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the KeyRing to list, in the format
-     *     // `projects/x/locations/x/keyRings/x`.
+     *     // Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *     // The fields of the primary version to include in the response.
      *     versionView: 'placeholder-value',
@@ -2950,7 +2889,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeys to include in the response. Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      * @param {string=} params.versionView The fields of the primary version to include in the response.
@@ -3072,8 +3011,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
-     *     // Output only. The resource name for this CryptoKey in the format
-     *     // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *     // Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      *     name:
      *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *     // Required. List of fields to be updated in this request.
@@ -3203,7 +3141,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3232,8 +3170,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
@@ -3354,7 +3291,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3383,8 +3320,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
@@ -3508,7 +3444,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
-     * @desc Update the version of a CryptoKey that will be used in Encrypt.  Returns an error if called on an asymmetric key.
+     * @desc Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on an asymmetric key.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3697,7 +3633,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
     extends StandardParameters {
     /**
-     * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
+     * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
      */
     name?: string;
 
@@ -3716,7 +3652,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3735,7 +3671,7 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of CryptoKeys to include in the response. Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
@@ -3841,8 +3777,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
      *     {
-     *       // Required. The resource name of the CryptoKeyVersion to use for
-     *       // decryption.
+     *       // Required. The resource name of the CryptoKeyVersion to use for decryption.
      *       name:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *
@@ -4126,7 +4061,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
-     * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
+     * @desc Create a new CryptoKeyVersion in a CryptoKey. The server will assign the next sequential id. If unset, state will be set to ENABLED.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4155,8 +4090,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
      *     {
-     *       // Required. The name of the CryptoKey associated with
-     *       // the CryptoKeyVersions.
+     *       // Required. The name of the CryptoKey associated with the CryptoKeyVersions.
      *       parent:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
@@ -4297,7 +4231,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
-     * @desc Schedule a CryptoKeyVersion for destruction.  Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed.  Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
+     * @desc Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4628,8 +4562,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
      *     {
-     *       // Required. The name of the CryptoKeyVersion public key to
-     *       // get.
+     *       // Required. The name of the CryptoKeyVersion public key to get.
      *       name:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *     }
@@ -4740,7 +4673,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import
-     * @desc Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request.  The version ID will be assigned the next sequential id within the CryptoKey.
+     * @desc Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request. The version ID will be assigned the next sequential id within the CryptoKey.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4769,8 +4702,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
      *     {
-     *       // Required. The name of the CryptoKey to
-     *       // be imported into.
+     *       // Required. The name of the CryptoKey to be imported into.
      *       parent:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
@@ -4930,27 +4862,15 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
      *     {
-     *       // Optional. Only include resources that match the filter in the response. For
-     *       // more information, see
-     *       // [Sorting and filtering list
-     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *       filter: 'placeholder-value',
-     *       // Optional. Specify how the results should be sorted. If not specified, the
-     *       // results will be sorted in the default order. For more information, see
-     *       // [Sorting and filtering list
-     *       // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *       orderBy: 'placeholder-value',
-     *       // Optional. Optional limit on the number of CryptoKeyVersions to
-     *       // include in the response. Further CryptoKeyVersions can
-     *       // subsequently be obtained by including the
-     *       // ListCryptoKeyVersionsResponse.next_page_token in a subsequent request.
-     *       // If unspecified, the server will pick an appropriate default.
+     *       // Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. Optional pagination token, returned earlier via
-     *       // ListCryptoKeyVersionsResponse.next_page_token.
+     *       // Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the CryptoKey to list, in the format
-     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *       // Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *       // The fields to include in the response.
@@ -5076,7 +4996,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
-     * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
+     * @desc Update a CryptoKeyVersion's metadata. state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5105,8 +5025,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
      *     {
-     *       // Output only. The resource name for this CryptoKeyVersion in the format
-     *       // `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     *       // Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      *       name:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *       // Required. List of fields to be updated in this request.
@@ -5247,7 +5166,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
-     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
+     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state. Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5540,7 +5459,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.create
-     * @desc Create a new ImportJob within a KeyRing.  ImportJob.import_method is required.
+     * @desc Create a new ImportJob within a KeyRing. ImportJob.import_method is required.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -5568,11 +5487,9 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.create({
-     *     // Required. It must be unique within a KeyRing and match the regular
-     *     // expression `[a-zA-Z0-9_-]{1,63}`
+     *     // Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      *     importJobId: 'placeholder-value',
-     *     // Required. The name of the KeyRing associated with the
-     *     // ImportJobs.
+     *     // Required. The name of the KeyRing associated with the ImportJobs.
      *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *
      *     // Request body metadata
@@ -5876,21 +5793,9 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
      *     {
-     *       // Optional. The policy format version to be returned.
-     *       //
-     *       // Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-     *       // rejected.
-     *       //
-     *       // Requests for policies with any conditional bindings must specify version 3.
-     *       // Policies without any conditional bindings may specify any valid value or
-     *       // leave the field unset.
-     *       //
-     *       // To learn which resources support conditions in their IAM policies, see the
-     *       // [IAM
-     *       // documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
      *     }
@@ -5915,7 +5820,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6030,26 +5935,15 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.list({
-     *     // Optional. Only include resources that match the filter in the response. For
-     *     // more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted. If not specified, the
-     *     // results will be sorted in the default order. For more information, see
-     *     // [Sorting and filtering list
-     *     // results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      *     orderBy: 'placeholder-value',
-     *     // Optional. Optional limit on the number of ImportJobs to include in the
-     *     // response. Further ImportJobs can subsequently be obtained by
-     *     // including the ListImportJobsResponse.next_page_token in a subsequent
-     *     // request. If unspecified, the server will pick an appropriate default.
+     *     // Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. Optional pagination token, returned earlier via
-     *     // ListImportJobsResponse.next_page_token.
+     *     // Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the KeyRing to list, in the format
-     *     // `projects/x/locations/x/keyRings/x`.
+     *     // Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      *     parent: 'projects/my-project/locations/my-location/keyRings/my-keyRing',
      *   });
      *   console.log(res.data);
@@ -6166,7 +6060,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6195,8 +6089,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
      *     {
-     *       // REQUIRED: The resource for which the policy is being specified.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
      *
@@ -6317,7 +6210,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -6346,8 +6239,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(
      *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested.
-     *       // See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
      *
@@ -6496,7 +6388,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**

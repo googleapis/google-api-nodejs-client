@@ -15,7 +15,7 @@
   "baseUrl": "https://cloudkms.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud KMS",
-  "description": "Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications.\n",
+  "description": "Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/kms/",
   "fullyEncodeReservedExpansion": true,
@@ -194,12 +194,12 @@
                   ],
                   "parameters": {
                     "keyRingId": {
-                      "description": "Required. It must be unique within a location and match the regular\nexpression `[a-zA-Z0-9_-]{1,63}`",
+                      "description": "Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the location associated with the\nKeyRings, in the format `projects/*/locations/*`.",
+                      "description": "Required. The resource name of the location associated with the KeyRings, in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -245,7 +245,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "cloudkms.projects.locations.keyRings.getIamPolicy",
@@ -254,13 +254,13 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                       "required": true,
@@ -286,28 +286,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter in the response. For\nmore information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Specify how the results should be sorted. If not specified, the\nresults will be sorted in the default order.  For more information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Optional limit on the number of KeyRings to include in the\nresponse.  Further KeyRings can subsequently be obtained by\nincluding the ListKeyRingsResponse.next_page_token in a subsequent\nrequest.  If unspecified, the server will pick an appropriate default.",
+                      "description": "Optional. Optional limit on the number of KeyRings to include in the response. Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Optional pagination token, returned earlier via\nListKeyRingsResponse.next_page_token.",
+                      "description": "Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the location associated with the\nKeyRings, in the format `projects/*/locations/*`.",
+                      "description": "Required. The resource name of the location associated with the KeyRings, in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -324,7 +324,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "cloudkms.projects.locations.keyRings.setIamPolicy",
@@ -333,7 +333,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                       "required": true,
@@ -353,7 +353,7 @@
                   ]
                 },
                 "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "cloudkms.projects.locations.keyRings.testIamPermissions",
@@ -362,7 +362,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                       "required": true,
@@ -386,7 +386,7 @@
                 "cryptoKeys": {
                   "methods": {
                     "create": {
-                      "description": "Create a new CryptoKey within a KeyRing.\n\nCryptoKey.purpose and\nCryptoKey.version_template.algorithm\nare required.",
+                      "description": "Create a new CryptoKey within a KeyRing. CryptoKey.purpose and CryptoKey.version_template.algorithm are required.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.create",
@@ -395,19 +395,19 @@
                       ],
                       "parameters": {
                         "cryptoKeyId": {
-                          "description": "Required. It must be unique within a KeyRing and match the regular\nexpression `[a-zA-Z0-9_-]{1,63}`",
+                          "description": "Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the KeyRing associated with the\nCryptoKeys.",
+                          "description": "Required. The name of the KeyRing associated with the CryptoKeys.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "skipInitialVersionCreation": {
-                          "description": "If set to true, the request will create a CryptoKey without any\nCryptoKeyVersions. You must manually call\nCreateCryptoKeyVersion or\nImportCryptoKeyVersion\nbefore you can use this CryptoKey.",
+                          "description": "If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -425,7 +425,7 @@
                       ]
                     },
                     "decrypt": {
-                      "description": "Decrypts data that was protected by Encrypt. The CryptoKey.purpose\nmust be ENCRYPT_DECRYPT.",
+                      "description": "Decrypts data that was protected by Encrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:decrypt",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.decrypt",
@@ -434,7 +434,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the CryptoKey to use for decryption.\nThe server will choose the appropriate version.",
+                          "description": "Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                           "required": true,
@@ -454,7 +454,7 @@
                       ]
                     },
                     "encrypt": {
-                      "description": "Encrypts data, so that it can only be recovered by a call to Decrypt.\nThe CryptoKey.purpose must be\nENCRYPT_DECRYPT.",
+                      "description": "Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:encrypt",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.encrypt",
@@ -463,7 +463,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the CryptoKey or CryptoKeyVersion\nto use for encryption.\n\nIf a CryptoKey is specified, the server will use its\nprimary version.",
+                          "description": "Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/.*$",
                           "required": true,
@@ -483,7 +483,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Returns metadata for a given CryptoKey, as well as its\nprimary CryptoKeyVersion.",
+                      "description": "Returns metadata for a given CryptoKey, as well as its primary CryptoKeyVersion.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}",
                       "httpMethod": "GET",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.get",
@@ -509,7 +509,7 @@
                       ]
                     },
                     "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:getIamPolicy",
                       "httpMethod": "GET",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy",
@@ -518,13 +518,13 @@
                       ],
                       "parameters": {
                         "options.requestedPolicyVersion": {
-                          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                           "required": true,
@@ -550,28 +550,28 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Only include resources that match the filter in the response. For\nmore information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Specify how the results should be sorted. If not specified, the\nresults will be sorted in the default order. For more information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Optional limit on the number of CryptoKeys to include in the\nresponse.  Further CryptoKeys can subsequently be obtained by\nincluding the ListCryptoKeysResponse.next_page_token in a subsequent\nrequest.  If unspecified, the server will pick an appropriate default.",
+                          "description": "Optional. Optional limit on the number of CryptoKeys to include in the response. Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Optional pagination token, returned earlier via\nListCryptoKeysResponse.next_page_token.",
+                          "description": "Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the KeyRing to list, in the format\n`projects/*/locations/*/keyRings/*`.",
+                          "description": "Required. The resource name of the KeyRing to list, in the format `projects/*/locations/*/keyRings/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                           "required": true,
@@ -582,6 +582,10 @@
                           "enum": [
                             "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED",
                             "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Default view for each CryptoKeyVersion. Does not include the attestation field.",
+                            "Provides all fields in each CryptoKeyVersion, including the attestation."
                           ],
                           "location": "query",
                           "type": "string"
@@ -606,7 +610,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name for this CryptoKey in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+                          "description": "Output only. The resource name for this CryptoKey in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                           "required": true,
@@ -632,7 +636,7 @@
                       ]
                     },
                     "setIamPolicy": {
-                      "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy",
@@ -641,7 +645,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                           "required": true,
@@ -661,7 +665,7 @@
                       ]
                     },
                     "testIamPermissions": {
-                      "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions",
@@ -670,7 +674,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                           "required": true,
@@ -690,7 +694,7 @@
                       ]
                     },
                     "updatePrimaryVersion": {
-                      "description": "Update the version of a CryptoKey that will be used in Encrypt.\n\nReturns an error if called on an asymmetric key.",
+                      "description": "Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on an asymmetric key.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:updatePrimaryVersion",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion",
@@ -723,7 +727,7 @@
                     "cryptoKeyVersions": {
                       "methods": {
                         "asymmetricDecrypt": {
-                          "description": "Decrypts data that was encrypted with a public key retrieved from\nGetPublicKey corresponding to a CryptoKeyVersion with\nCryptoKey.purpose ASYMMETRIC_DECRYPT.",
+                          "description": "Decrypts data that was encrypted with a public key retrieved from GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_DECRYPT.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:asymmetricDecrypt",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt",
@@ -732,7 +736,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the CryptoKeyVersion to use for\ndecryption.",
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for decryption.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
                               "required": true,
@@ -752,7 +756,7 @@
                           ]
                         },
                         "asymmetricSign": {
-                          "description": "Signs data using a CryptoKeyVersion with CryptoKey.purpose\nASYMMETRIC_SIGN, producing a signature that can be verified with the public\nkey retrieved from GetPublicKey.",
+                          "description": "Signs data using a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_SIGN, producing a signature that can be verified with the public key retrieved from GetPublicKey.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:asymmetricSign",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign",
@@ -781,7 +785,7 @@
                           ]
                         },
                         "create": {
-                          "description": "Create a new CryptoKeyVersion in a CryptoKey.\n\nThe server will assign the next sequential id. If unset,\nstate will be set to\nENABLED.",
+                          "description": "Create a new CryptoKeyVersion in a CryptoKey. The server will assign the next sequential id. If unset, state will be set to ENABLED.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create",
@@ -790,7 +794,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The name of the CryptoKey associated with\nthe CryptoKeyVersions.",
+                              "description": "Required. The name of the CryptoKey associated with the CryptoKeyVersions.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                               "required": true,
@@ -810,7 +814,7 @@
                           ]
                         },
                         "destroy": {
-                          "description": "Schedule a CryptoKeyVersion for destruction.\n\nUpon calling this method, CryptoKeyVersion.state will be set to\nDESTROY_SCHEDULED\nand destroy_time will be set to a time 24\nhours in the future, at which point the state\nwill be changed to\nDESTROYED, and the key\nmaterial will be irrevocably destroyed.\n\nBefore the destroy_time is reached,\nRestoreCryptoKeyVersion may be called to reverse the process.",
+                          "description": "Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:destroy",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy",
@@ -865,7 +869,7 @@
                           ]
                         },
                         "getPublicKey": {
-                          "description": "Returns the public key for the given CryptoKeyVersion. The\nCryptoKey.purpose must be\nASYMMETRIC_SIGN or\nASYMMETRIC_DECRYPT.",
+                          "description": "Returns the public key for the given CryptoKeyVersion. The CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}/publicKey",
                           "httpMethod": "GET",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey",
@@ -874,7 +878,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the CryptoKeyVersion public key to\nget.",
+                              "description": "Required. The name of the CryptoKeyVersion public key to get.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
                               "required": true,
@@ -891,7 +895,7 @@
                           ]
                         },
                         "import": {
-                          "description": "Imports a new CryptoKeyVersion into an existing CryptoKey using the\nwrapped key material provided in the request.\n\nThe version ID will be assigned the next sequential id within the\nCryptoKey.",
+                          "description": "Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request. The version ID will be assigned the next sequential id within the CryptoKey.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions:import",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import",
@@ -900,7 +904,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The name of the CryptoKey to\nbe imported into.",
+                              "description": "Required. The name of the CryptoKey to be imported into.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                               "required": true,
@@ -929,28 +933,28 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. Only include resources that match the filter in the response. For\nmore information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                              "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Optional. Specify how the results should be sorted. If not specified, the\nresults will be sorted in the default order. For more information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                              "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                               "location": "query",
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Optional. Optional limit on the number of CryptoKeyVersions to\ninclude in the response. Further CryptoKeyVersions can\nsubsequently be obtained by including the\nListCryptoKeyVersionsResponse.next_page_token in a subsequent request.\nIf unspecified, the server will pick an appropriate default.",
+                              "description": "Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "Optional. Optional pagination token, returned earlier via\nListCryptoKeyVersionsResponse.next_page_token.",
+                              "description": "Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the CryptoKey to list, in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+                              "description": "Required. The resource name of the CryptoKey to list, in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                               "required": true,
@@ -961,6 +965,10 @@
                               "enum": [
                                 "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED",
                                 "FULL"
+                              ],
+                              "enumDescriptions": [
+                                "Default view for each CryptoKeyVersion. Does not include the attestation field.",
+                                "Provides all fields in each CryptoKeyVersion, including the attestation."
                               ],
                               "location": "query",
                               "type": "string"
@@ -976,7 +984,7 @@
                           ]
                         },
                         "patch": {
-                          "description": "Update a CryptoKeyVersion's metadata.\n\nstate may be changed between\nENABLED and\nDISABLED using this\nmethod. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to\nmove between other states.",
+                          "description": "Update a CryptoKeyVersion's metadata. state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}",
                           "httpMethod": "PATCH",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch",
@@ -985,7 +993,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. The resource name for this CryptoKeyVersion in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.",
+                              "description": "Output only. The resource name for this CryptoKeyVersion in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
                               "required": true,
@@ -1011,7 +1019,7 @@
                           ]
                         },
                         "restore": {
-                          "description": "Restore a CryptoKeyVersion in the\nDESTROY_SCHEDULED\nstate.\n\nUpon restoration of the CryptoKeyVersion, state\nwill be set to DISABLED,\nand destroy_time will be cleared.",
+                          "description": "Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state. Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:restore",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore",
@@ -1046,7 +1054,7 @@
                 "importJobs": {
                   "methods": {
                     "create": {
-                      "description": "Create a new ImportJob within a KeyRing.\n\nImportJob.import_method is required.",
+                      "description": "Create a new ImportJob within a KeyRing. ImportJob.import_method is required.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/importJobs",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.importJobs.create",
@@ -1055,12 +1063,12 @@
                       ],
                       "parameters": {
                         "importJobId": {
-                          "description": "Required. It must be unique within a KeyRing and match the regular\nexpression `[a-zA-Z0-9_-]{1,63}`",
+                          "description": "Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the KeyRing associated with the\nImportJobs.",
+                          "description": "Required. The name of the KeyRing associated with the ImportJobs.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                           "required": true,
@@ -1106,7 +1114,7 @@
                       ]
                     },
                     "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource.\nReturns an empty policy if the resource exists and does not have a policy\nset.",
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/importJobs/{importJobsId}:getIamPolicy",
                       "httpMethod": "GET",
                       "id": "cloudkms.projects.locations.keyRings.importJobs.getIamPolicy",
@@ -1115,13 +1123,13 @@
                       ],
                       "parameters": {
                         "options.requestedPolicyVersion": {
-                          "description": "Optional. The policy format version to be returned.\n\nValid values are 0, 1, and 3. Requests specifying an invalid value will be\nrejected.\n\nRequests for policies with any conditional bindings must specify version 3.\nPolicies without any conditional bindings may specify any valid value or\nleave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/importJobs/[^/]+$",
                           "required": true,
@@ -1147,28 +1155,28 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Only include resources that match the filter in the response. For\nmore information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Specify how the results should be sorted. If not specified, the\nresults will be sorted in the default order. For more information, see\n[Sorting and filtering list\nresults](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. Optional limit on the number of ImportJobs to include in the\nresponse. Further ImportJobs can subsequently be obtained by\nincluding the ListImportJobsResponse.next_page_token in a subsequent\nrequest. If unspecified, the server will pick an appropriate default.",
+                          "description": "Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Optional pagination token, returned earlier via\nListImportJobsResponse.next_page_token.",
+                          "description": "Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the KeyRing to list, in the format\n`projects/*/locations/*/keyRings/*`.",
+                          "description": "Required. The resource name of the KeyRing to list, in the format `projects/*/locations/*/keyRings/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
                           "required": true,
@@ -1185,7 +1193,7 @@
                       ]
                     },
                     "setIamPolicy": {
-                      "description": "Sets the access control policy on the specified resource. Replaces any\nexisting policy.\n\nCan return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/importJobs/{importJobsId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.importJobs.setIamPolicy",
@@ -1194,7 +1202,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/importJobs/[^/]+$",
                           "required": true,
@@ -1214,7 +1222,7 @@
                       ]
                     },
                     "testIamPermissions": {
-                      "description": "Returns permissions that a caller has on the specified resource.\nIf the resource does not exist, this will return an empty set of\npermissions, not a `NOT_FOUND` error.\n\nNote: This operation is designed to be used for building permission-aware\nUIs and command-line tools, not for authorization checking. This operation\nmay \"fail open\" without warning.",
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/importJobs/{importJobsId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.importJobs.testIamPermissions",
@@ -1223,7 +1231,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested.\nSee the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/importJobs/[^/]+$",
                           "required": true,
@@ -1251,7 +1259,7 @@
       }
     }
   },
-  "revision": "20200609",
+  "revision": "20200803",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1259,12 +1267,12 @@
       "id": "AsymmetricDecryptRequest",
       "properties": {
         "ciphertext": {
-          "description": "Required. The data encrypted with the named CryptoKeyVersion's public\nkey using OAEP.",
+          "description": "Required. The data encrypted with the named CryptoKeyVersion's public key using OAEP.",
           "format": "byte",
           "type": "string"
         },
         "ciphertextCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext.\nIf specified, KeyManagementService will verify the integrity of the\nreceived AsymmetricDecryptRequest.ciphertext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(AsymmetricDecryptRequest.ciphertext) is equal to\nAsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a\nlimited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the AsymmetricDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received AsymmetricDecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricDecryptRequest.ciphertext) is equal to AsymmetricDecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -1281,12 +1289,12 @@
           "type": "string"
         },
         "plaintextCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned\nAsymmetricDecryptResponse.plaintext. An integrity check of\nAsymmetricDecryptResponse.plaintext can be performed by computing the\nCRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing\nyour results to this field. Discard the response in case of non-matching\nchecksum values, and perform a limited number of retries. A persistent\nmismatch may indicate an issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned AsymmetricDecryptResponse.plaintext. An integrity check of AsymmetricDecryptResponse.plaintext can be performed by computing the CRC32C checksum of AsymmetricDecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
         "verifiedCiphertextCrc32c": {
-          "description": "Integrity verification field. A flag indicating whether\nAsymmetricDecryptRequest.ciphertext_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nciphertext. A false value of this\nfield indicates either that AsymmetricDecryptRequest.ciphertext_crc32c\nwas left unset or that it was not delivered to KeyManagementService. If\nyou've set AsymmetricDecryptRequest.ciphertext_crc32c but this field is\nstill false, discard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.",
           "type": "boolean"
         }
       },
@@ -1298,10 +1306,10 @@
       "properties": {
         "digest": {
           "$ref": "Digest",
-          "description": "Required. The digest of the data to sign. The digest must be produced with\nthe same digest algorithm as specified by the key version's\nalgorithm."
+          "description": "Required. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version's algorithm."
         },
         "digestCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If\nspecified, KeyManagementService will verify the integrity of the\nreceived AsymmetricSignRequest.digest using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(AsymmetricSignRequest.digest) is equal to\nAsymmetricSignRequest.digest_crc32c, and if so, perform a limited\nnumber of retries. A persistent mismatch may indicate an issue in your\ncomputation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the AsymmetricSignRequest.digest. If specified, KeyManagementService will verify the integrity of the received AsymmetricSignRequest.digest using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(AsymmetricSignRequest.digest) is equal to AsymmetricSignRequest.digest_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -1313,7 +1321,7 @@
       "id": "AsymmetricSignResponse",
       "properties": {
         "name": {
-          "description": "The resource name of the CryptoKeyVersion used for signing. Check\nthis field to verify that the intended resource was used for signing.\n\nNOTE: This field is in Beta.",
+          "description": "The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing. NOTE: This field is in Beta.",
           "type": "string"
         },
         "signature": {
@@ -1322,19 +1330,19 @@
           "type": "string"
         },
         "signatureCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned\nAsymmetricSignResponse.signature. An integrity check of\nAsymmetricSignResponse.signature can be performed by computing the\nCRC32C checksum of AsymmetricSignResponse.signature and comparing your\nresults to this field. Discard the response in case of non-matching\nchecksum values, and perform a limited number of retries. A persistent\nmismatch may indicate an issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned AsymmetricSignResponse.signature. An integrity check of AsymmetricSignResponse.signature can be performed by computing the CRC32C checksum of AsymmetricSignResponse.signature and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
         "verifiedDigestCrc32c": {
-          "description": "Integrity verification field. A flag indicating whether\nAsymmetricSignRequest.digest_crc32c was received by\nKeyManagementService and used for the integrity verification of the\ndigest. A false value of this field\nindicates either that AsymmetricSignRequest.digest_crc32c was left\nunset or that it was not delivered to KeyManagementService. If you've\nset AsymmetricSignRequest.digest_crc32c but this field is still false,\ndiscard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A flag indicating whether AsymmetricSignRequest.digest_crc32c was received by KeyManagementService and used for the integrity verification of the digest. A false value of this field indicates either that AsymmetricSignRequest.digest_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set AsymmetricSignRequest.digest_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1345,18 +1353,18 @@
           "type": "array"
         },
         "service": {
-          "description": "Specifies a service that will be enabled for audit logging.\nFor example, `storage.googleapis.com`, `cloudsql.googleapis.com`.\n`allServices` is a special value that covers all services.",
+          "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
-          "description": "Specifies the identities that do not cause logging for this type of\npermission.\nFollows the same format of Binding.members.",
+          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.",
           "items": {
             "type": "string"
           },
@@ -1387,50 +1395,53 @@
       "properties": {
         "condition": {
           "$ref": "Expr",
-          "description": "The condition that is associated with this binding.\n\nIf the condition evaluates to `true`, then this binding applies to the\ncurrent request.\n\nIf the condition evaluates to `false`, then this binding does not apply to\nthe current request. However, a different role binding might grant the same\nrole to one or more of the members in this binding.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM\ndocumentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the identities requesting access for a Cloud Platform resource.\n`members` can have the following values:\n\n* `allUsers`: A special identifier that represents anyone who is\n   on the internet; with or without a Google account.\n\n* `allAuthenticatedUsers`: A special identifier that represents anyone\n   who is authenticated with a Google account or a service account.\n\n* `user:{emailid}`: An email address that represents a specific Google\n   account. For example, `alice@example.com` .\n\n\n* `serviceAccount:{emailid}`: An email address that represents a service\n   account. For example, `my-other-app@appspot.gserviceaccount.com`.\n\n* `group:{emailid}`: An email address that represents a Google group.\n   For example, `admins@example.com`.\n\n* `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a user that has been recently deleted. For\n   example, `alice@example.com?uid=123456789012345678901`. If the user is\n   recovered, this value reverts to `user:{emailid}` and the recovered user\n   retains the role in the binding.\n\n* `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus\n   unique identifier) representing a service account that has been recently\n   deleted. For example,\n   `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.\n   If the service account is undeleted, this value reverts to\n   `serviceAccount:{emailid}` and the undeleted service account retains the\n   role in the binding.\n\n* `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique\n   identifier) representing a Google group that has been recently\n   deleted. For example, `admins@example.com?uid=123456789012345678901`. If\n   the group is recovered, this value reverts to `group:{emailid}` and the\n   recovered group retains the role in the binding.\n\n\n* `domain:{domain}`: The G Suite domain (primary) that represents all the\n   users of that domain. For example, `google.com` or `example.com`.\n\n",
+          "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to `members`.\nFor example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "CryptoKey": {
-      "description": "A CryptoKey represents a logical key that can be used for cryptographic\noperations.\n\nA CryptoKey is made up of zero or more versions,\nwhich represent the actual key material used in cryptographic operations.",
+      "description": "A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.",
       "id": "CryptoKey",
       "properties": {
         "createTime": {
           "description": "Output only. The time at which this CryptoKey was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels with user-defined metadata. For more information, see\n[Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).",
+          "description": "Labels with user-defined metadata. For more information, see [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).",
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource name for this CryptoKey in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "description": "Output only. The resource name for this CryptoKey in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "readOnly": true,
           "type": "string"
         },
         "nextRotationTime": {
-          "description": "At next_rotation_time, the Key Management Service will automatically:\n\n1. Create a new version of this CryptoKey.\n2. Mark the new version as primary.\n\nKey rotations performed manually via\nCreateCryptoKeyVersion and\nUpdateCryptoKeyPrimaryVersion\ndo not affect next_rotation_time.\n\nKeys with purpose\nENCRYPT_DECRYPT support\nautomatic rotation. For other keys, this field must be omitted.",
+          "description": "At next_rotation_time, the Key Management Service will automatically: 1. Create a new version of this CryptoKey. 2. Mark the new version as primary. Key rotations performed manually via CreateCryptoKeyVersion and UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time. Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.",
           "format": "google-datetime",
           "type": "string"
         },
         "primary": {
           "$ref": "CryptoKeyVersion",
-          "description": "Output only. A copy of the \"primary\" CryptoKeyVersion that will be used\nby Encrypt when this CryptoKey is given\nin EncryptRequest.name.\n\nThe CryptoKey's primary version can be updated via\nUpdateCryptoKeyPrimaryVersion.\n\nKeys with purpose\nENCRYPT_DECRYPT may have a\nprimary. For other keys, this field will be omitted."
+          "description": "Output only. A copy of the \"primary\" CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name. The CryptoKey's primary version can be updated via UpdateCryptoKeyPrimaryVersion. Keys with purpose ENCRYPT_DECRYPT may have a primary. For other keys, this field will be omitted.",
+          "readOnly": true
         },
         "purpose": {
           "description": "Immutable. The immutable purpose of this CryptoKey.",
@@ -1442,30 +1453,30 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "CryptoKeys with this purpose may be used with\nEncrypt and\nDecrypt.",
-            "CryptoKeys with this purpose may be used with\nAsymmetricSign and\nGetPublicKey.",
-            "CryptoKeys with this purpose may be used with\nAsymmetricDecrypt and\nGetPublicKey."
+            "CryptoKeys with this purpose may be used with Encrypt and Decrypt.",
+            "CryptoKeys with this purpose may be used with AsymmetricSign and GetPublicKey.",
+            "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey."
           ],
           "type": "string"
         },
         "rotationPeriod": {
-          "description": "next_rotation_time will be advanced by this period when the service\nautomatically rotates a key. Must be at least 24 hours and at most\n876,000 hours.\n\nIf rotation_period is set, next_rotation_time must also be set.\n\nKeys with purpose\nENCRYPT_DECRYPT support\nautomatic rotation. For other keys, this field must be omitted.",
+          "description": "next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours. If rotation_period is set, next_rotation_time must also be set. Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.",
           "format": "google-duration",
           "type": "string"
         },
         "versionTemplate": {
           "$ref": "CryptoKeyVersionTemplate",
-          "description": "A template describing settings for new CryptoKeyVersion instances.\nThe properties of new CryptoKeyVersion instances created by either\nCreateCryptoKeyVersion or\nauto-rotation are controlled by this template."
+          "description": "A template describing settings for new CryptoKeyVersion instances. The properties of new CryptoKeyVersion instances created by either CreateCryptoKeyVersion or auto-rotation are controlled by this template."
         }
       },
       "type": "object"
     },
     "CryptoKeyVersion": {
-      "description": "A CryptoKeyVersion represents an individual cryptographic key, and the\nassociated key material.\n\nAn ENABLED version can be\nused for cryptographic operations.\n\nFor security reasons, the raw cryptographic key material represented by a\nCryptoKeyVersion can never be viewed or exported. It can only be used to\nencrypt, decrypt, or sign data when an authorized user or application invokes\nCloud KMS.",
+      "description": "A CryptoKeyVersion represents an individual cryptographic key, and the associated key material. An ENABLED version can be used for cryptographic operations. For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS.",
       "id": "CryptoKeyVersion",
       "properties": {
         "algorithm": {
-          "description": "Output only. The CryptoKeyVersionAlgorithm that this\nCryptoKeyVersion supports.",
+          "description": "Output only. The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.",
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
@@ -1504,55 +1515,65 @@
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "attestation": {
           "$ref": "KeyOperationAttestation",
-          "description": "Output only. Statement that was generated and signed by the HSM at key\ncreation time. Use this statement to verify attributes of the key as stored\non the HSM, independently of Google. Only provided for key versions with\nprotection_level HSM."
+          "description": "Output only. Statement that was generated and signed by the HSM at key creation time. Use this statement to verify attributes of the key as stored on the HSM, independently of Google. Only provided for key versions with protection_level HSM.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. The time at which this CryptoKeyVersion was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "destroyEventTime": {
-          "description": "Output only. The time this CryptoKeyVersion's key material was\ndestroyed. Only present if state is\nDESTROYED.",
+          "description": "Output only. The time this CryptoKeyVersion's key material was destroyed. Only present if state is DESTROYED.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "destroyTime": {
-          "description": "Output only. The time this CryptoKeyVersion's key material is scheduled\nfor destruction. Only present if state is\nDESTROY_SCHEDULED.",
+          "description": "Output only. The time this CryptoKeyVersion's key material is scheduled for destruction. Only present if state is DESTROY_SCHEDULED.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "externalProtectionLevelOptions": {
           "$ref": "ExternalProtectionLevelOptions",
-          "description": "ExternalProtectionLevelOptions stores a group of additional fields for\nconfiguring a CryptoKeyVersion that are specific to the\nEXTERNAL protection level."
+          "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level."
         },
         "generateTime": {
-          "description": "Output only. The time this CryptoKeyVersion's key material was\ngenerated.",
+          "description": "Output only. The time this CryptoKeyVersion's key material was generated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "importFailureReason": {
-          "description": "Output only. The root cause of an import failure. Only present if\nstate is\nIMPORT_FAILED.",
+          "description": "Output only. The root cause of an import failure. Only present if state is IMPORT_FAILED.",
+          "readOnly": true,
           "type": "string"
         },
         "importJob": {
-          "description": "Output only. The name of the ImportJob used to import this\nCryptoKeyVersion. Only present if the underlying key material was\nimported.",
+          "description": "Output only. The name of the ImportJob used to import this CryptoKeyVersion. Only present if the underlying key material was imported.",
+          "readOnly": true,
           "type": "string"
         },
         "importTime": {
-          "description": "Output only. The time at which this CryptoKeyVersion's key material\nwas imported.",
+          "description": "Output only. The time at which this CryptoKeyVersion's key material was imported.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this CryptoKeyVersion in the format\n`projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.",
+          "description": "Output only. The resource name for this CryptoKeyVersion in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.",
+          "readOnly": true,
           "type": "string"
         },
         "protectionLevel": {
-          "description": "Output only. The ProtectionLevel describing how crypto operations are\nperformed with this CryptoKeyVersion.",
+          "description": "Output only. The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion.",
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
@@ -1565,6 +1586,7 @@
             "Crypto operations are performed in a Hardware Security Module.",
             "Crypto operations are performed by an external key manager."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -1581,13 +1603,13 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "This version is still being generated. It may not be used, enabled,\ndisabled, or destroyed yet. Cloud KMS will automatically mark this\nversion ENABLED as soon as the version is ready.",
+            "This version is still being generated. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version may be used for cryptographic operations.",
-            "This version may not be used, but the key material is still available,\nand the version can be placed back into the ENABLED state.",
-            "This version is destroyed, and the key material is no longer stored.\nA version may not leave this state once entered.",
-            "This version is scheduled for destruction, and will be destroyed soon.\nCall\nRestoreCryptoKeyVersion\nto put it back into the DISABLED state.",
-            "This version is still being imported. It may not be used, enabled,\ndisabled, or destroyed yet. Cloud KMS will automatically mark this\nversion ENABLED as soon as the version is ready.",
-            "This version was not imported successfully. It may not be used, enabled,\ndisabled, or destroyed. The submitted key material has been discarded.\nAdditional details can be found in\nCryptoKeyVersion.import_failure_reason."
+            "This version may not be used, but the key material is still available, and the version can be placed back into the ENABLED state.",
+            "This version is destroyed, and the key material is no longer stored. A version may not leave this state once entered.",
+            "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
+            "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
+            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."
           ],
           "type": "string"
         }
@@ -1595,11 +1617,11 @@
       "type": "object"
     },
     "CryptoKeyVersionTemplate": {
-      "description": "A CryptoKeyVersionTemplate specifies the properties to use when creating\na new CryptoKeyVersion, either manually with\nCreateCryptoKeyVersion or\nautomatically as a result of auto-rotation.",
+      "description": "A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation.",
       "id": "CryptoKeyVersionTemplate",
       "properties": {
         "algorithm": {
-          "description": "Required. Algorithm to use\nwhen creating a CryptoKeyVersion based on this template.\n\nFor backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both\nthis field is omitted and CryptoKey.purpose is\nENCRYPT_DECRYPT.",
+          "description": "Required. Algorithm to use when creating a CryptoKeyVersion based on this template. For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both this field is omitted and CryptoKey.purpose is ENCRYPT_DECRYPT.",
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
@@ -1641,7 +1663,7 @@
           "type": "string"
         },
         "protectionLevel": {
-          "description": "ProtectionLevel to use when creating a CryptoKeyVersion based on\nthis template. Immutable. Defaults to SOFTWARE.",
+          "description": "ProtectionLevel to use when creating a CryptoKeyVersion based on this template. Immutable. Defaults to SOFTWARE.",
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
@@ -1664,22 +1686,22 @@
       "id": "DecryptRequest",
       "properties": {
         "additionalAuthenticatedData": {
-          "description": "Optional. Optional data that must match the data originally supplied in\nEncryptRequest.additional_authenticated_data.",
+          "description": "Optional. Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.",
           "format": "byte",
           "type": "string"
         },
         "additionalAuthenticatedDataCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the\nDecryptRequest.additional_authenticated_data. If specified,\nKeyManagementService will verify the integrity of the received\nDecryptRequest.additional_authenticated_data using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(DecryptRequest.additional_authenticated_data) is equal to\nDecryptRequest.additional_authenticated_data_crc32c, and if so, perform\na limited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the DecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.additional_authenticated_data) is equal to DecryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
         "ciphertext": {
-          "description": "Required. The encrypted data originally returned in\nEncryptResponse.ciphertext.",
+          "description": "Required. The encrypted data originally returned in EncryptResponse.ciphertext.",
           "format": "byte",
           "type": "string"
         },
         "ciphertextCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If\nspecified, KeyManagementService will verify the integrity of the\nreceived DecryptRequest.ciphertext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(DecryptRequest.ciphertext) is equal to\nDecryptRequest.ciphertext_crc32c, and if so, perform a limited number\nof retries. A persistent mismatch may indicate an issue in your computation\nof the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the DecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecryptRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecryptRequest.ciphertext) is equal to DecryptRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -1696,7 +1718,7 @@
           "type": "string"
         },
         "plaintextCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned\nDecryptResponse.plaintext. An integrity check of\nDecryptResponse.plaintext can be performed by computing the CRC32C\nchecksum of DecryptResponse.plaintext and comparing your results to\nthis field. Discard the response in case of non-matching checksum values,\nand perform a limited number of retries. A persistent mismatch may indicate\nan issue in your computation of the CRC32C checksum. Note: receiving this\nresponse message indicates that KeyManagementService is able to\nsuccessfully decrypt the ciphertext.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -1736,22 +1758,22 @@
       "id": "EncryptRequest",
       "properties": {
         "additionalAuthenticatedData": {
-          "description": "Optional. Optional data that, if specified, must also be provided during decryption\nthrough DecryptRequest.additional_authenticated_data.\n\nThe maximum size depends on the key version's\nprotection_level. For\nSOFTWARE keys, the AAD must be no larger than\n64KiB. For HSM keys, the combined length of the\nplaintext and additional_authenticated_data fields must be no larger than\n8KiB.",
+          "description": "Optional. Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data. The maximum size depends on the key version's protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
           "format": "byte",
           "type": "string"
         },
         "additionalAuthenticatedDataCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the\nEncryptRequest.additional_authenticated_data. If specified,\nKeyManagementService will verify the integrity of the received\nEncryptRequest.additional_authenticated_data using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(EncryptRequest.additional_authenticated_data) is equal to\nEncryptRequest.additional_authenticated_data_crc32c, and if so, perform\na limited number of retries. A persistent mismatch may indicate an issue in\nyour computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the EncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.additional_authenticated_data) is equal to EncryptRequest.additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
         "plaintext": {
-          "description": "Required. The data to encrypt. Must be no larger than 64KiB.\n\nThe maximum size depends on the key version's\nprotection_level. For\nSOFTWARE keys, the plaintext must be no larger\nthan 64KiB. For HSM keys, the combined length of the\nplaintext and additional_authenticated_data fields must be no larger than\n8KiB.",
+          "description": "Required. The data to encrypt. Must be no larger than 64KiB. The maximum size depends on the key version's protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
           "format": "byte",
           "type": "string"
         },
         "plaintextCrc32c": {
-          "description": "Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If\nspecified, KeyManagementService will verify the integrity of the\nreceived EncryptRequest.plaintext using this checksum.\nKeyManagementService will report an error if the checksum verification\nfails. If you receive a checksum error, your client should verify that\nCRC32C(EncryptRequest.plaintext) is equal to\nEncryptRequest.plaintext_crc32c, and if so, perform a limited number of\nretries. A persistent mismatch may indicate an issue in your computation of\nthe CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Optional. An optional CRC32C checksum of the EncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received EncryptRequest.plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(EncryptRequest.plaintext) is equal to EncryptRequest.plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -1768,50 +1790,50 @@
           "type": "string"
         },
         "ciphertextCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned\nEncryptResponse.ciphertext. An integrity check of\nEncryptResponse.ciphertext can be performed by computing the CRC32C\nchecksum of EncryptResponse.ciphertext and comparing your results to\nthis field. Discard the response in case of non-matching checksum values,\nand perform a limited number of retries. A persistent mismatch may indicate\nan issue in your computation of the CRC32C checksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned EncryptResponse.ciphertext. An integrity check of EncryptResponse.ciphertext can be performed by computing the CRC32C checksum of EncryptResponse.ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the CryptoKeyVersion used in encryption. Check\nthis field to verify that the intended resource was used for encryption.",
+          "description": "The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.",
           "type": "string"
         },
         "verifiedAdditionalAuthenticatedDataCrc32c": {
-          "description": "Integrity verification field. A flag indicating whether\nEncryptRequest.additional_authenticated_data_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nAAD. A false value of this\nfield indicates either that\nEncryptRequest.additional_authenticated_data_crc32c was left unset or\nthat it was not delivered to KeyManagementService. If you've set\nEncryptRequest.additional_authenticated_data_crc32c but this field is\nstill false, discard the response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.",
           "type": "boolean"
         },
         "verifiedPlaintextCrc32c": {
-          "description": "Integrity verification field. A flag indicating whether\nEncryptRequest.plaintext_crc32c was received by\nKeyManagementService and used for the integrity verification of the\nplaintext. A false value of this field\nindicates either that EncryptRequest.plaintext_crc32c was left unset or\nthat it was not delivered to KeyManagementService. If you've set\nEncryptRequest.plaintext_crc32c but this field is still false, discard\nthe response and perform a limited number of retries.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A flag indicating whether EncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that EncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set EncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "Expr": {
-      "description": "Represents a textual expression in the Common Expression Language (CEL)\nsyntax. CEL is a C-like expression language. The syntax and semantics of CEL\nare documented at https://github.com/google/cel-spec.\n\nExample (Comparison):\n\n    title: \"Summary size limit\"\n    description: \"Determines if a summary is less than 100 chars\"\n    expression: \"document.summary.size() < 100\"\n\nExample (Equality):\n\n    title: \"Requestor is owner\"\n    description: \"Determines if requestor is the document owner\"\n    expression: \"document.owner == request.auth.claims.email\"\n\nExample (Logic):\n\n    title: \"Public documents\"\n    description: \"Determine whether the document should be publicly visible\"\n    expression: \"document.type != 'private' && document.type != 'internal'\"\n\nExample (Data Manipulation):\n\n    title: \"Notification string\"\n    description: \"Create a notification string with a timestamp.\"\n    expression: \"'New message received at ' + string(document.create_time)\"\n\nThe exact variables and functions that may be referenced within an expression\nare determined by the service that evaluates it. See the service\ndocumentation for additional information.",
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
       "properties": {
         "description": {
-          "description": "Optional. Description of the expression. This is a longer text which\ndescribes the expression, e.g. when hovered over it in a UI.",
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
           "type": "string"
         },
         "expression": {
-          "description": "Textual representation of an expression in Common Expression Language\nsyntax.",
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
           "type": "string"
         },
         "location": {
-          "description": "Optional. String indicating the location of the expression for error\nreporting, e.g. a file name and a position in the file.",
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
           "type": "string"
         },
         "title": {
-          "description": "Optional. Title for the expression, i.e. a short string describing\nits purpose. This can be used e.g. in UIs which allow to enter the\nexpression.",
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ExternalProtectionLevelOptions": {
-      "description": "ExternalProtectionLevelOptions stores a group of additional fields for\nconfiguring a CryptoKeyVersion that are specific to the\nEXTERNAL protection level.",
+      "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.",
       "id": "ExternalProtectionLevelOptions",
       "properties": {
         "externalKeyUri": {
@@ -1826,7 +1848,7 @@
       "id": "ImportCryptoKeyVersionRequest",
       "properties": {
         "algorithm": {
-          "description": "Required. The algorithm of\nthe key being imported. This does not need to match the\nversion_template of the CryptoKey this\nversion imports into.",
+          "description": "Required. The algorithm of the key being imported. This does not need to match the version_template of the CryptoKey this version imports into.",
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
@@ -1868,11 +1890,11 @@
           "type": "string"
         },
         "importJob": {
-          "description": "Required. The name of the ImportJob that was used to\nwrap this key material.",
+          "description": "Required. The name of the ImportJob that was used to wrap this key material.",
           "type": "string"
         },
         "rsaAesWrappedKey": {
-          "description": "Wrapped key material produced with\nRSA_OAEP_3072_SHA1_AES_256\nor\nRSA_OAEP_4096_SHA1_AES_256.\n\nThis field contains the concatenation of two wrapped keys:\n<ol>\n  <li>An ephemeral AES-256 wrapping key wrapped with the\n      public_key using RSAES-OAEP with SHA-1,\n      MGF1 with SHA-1, and an empty label.\n  </li>\n  <li>The key to be imported, wrapped with the ephemeral AES-256 key\n      using AES-KWP (RFC 5649).\n  </li>\n</ol>\n\nIf importing symmetric key material, it is expected that the unwrapped\nkey contains plain bytes. If importing asymmetric key material, it is\nexpected that the unwrapped key is in PKCS#8-encoded DER format (the\nPrivateKeyInfo structure from RFC 5208).\n\nThis format is the same as the format produced by PKCS#11 mechanism\nCKM_RSA_AES_KEY_WRAP.",
+          "description": "Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256. This field contains the concatenation of two wrapped keys: 1. An ephemeral AES-256 wrapping key wrapped with the public_key using RSAES-OAEP with SHA-1, MGF1 with SHA-1, and an empty label. 2. The key to be imported, wrapped with the ephemeral AES-256 key using AES-KWP (RFC 5649). If importing symmetric key material, it is expected that the unwrapped key contains plain bytes. If importing asymmetric key material, it is expected that the unwrapped key is in PKCS#8-encoded DER format (the PrivateKeyInfo structure from RFC 5208). This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.",
           "format": "byte",
           "type": "string"
         }
@@ -1880,31 +1902,36 @@
       "type": "object"
     },
     "ImportJob": {
-      "description": "An ImportJob can be used to create CryptoKeys and\nCryptoKeyVersions using pre-existing key material,\ngenerated outside of Cloud KMS.\n\nWhen an ImportJob is created, Cloud KMS will generate a \"wrapping key\",\nwhich is a public/private key pair. You use the wrapping key to encrypt (also\nknown as wrap) the pre-existing key material to protect it during the import\nprocess. The nature of the wrapping key depends on the choice of\nimport_method. When the wrapping key generation\nis complete, the state will be set to\nACTIVE and the public_key\ncan be fetched. The fetched public key can then be used to wrap your\npre-existing key material.\n\nOnce the key material is wrapped, it can be imported into a new\nCryptoKeyVersion in an existing CryptoKey by calling\nImportCryptoKeyVersion.\nMultiple CryptoKeyVersions can be imported with a single\nImportJob. Cloud KMS uses the private key portion of the wrapping key to\nunwrap the key material. Only Cloud KMS has access to the private key.\n\nAn ImportJob expires 3 days after it is created. Once expired, Cloud KMS\nwill no longer be able to import or unwrap any key material that was wrapped\nwith the ImportJob's public key.\n\nFor more information, see\n[Importing a key](https://cloud.google.com/kms/docs/importing-a-key).",
+      "description": "An ImportJob can be used to create CryptoKeys and CryptoKeyVersions using pre-existing key material, generated outside of Cloud KMS. When an ImportJob is created, Cloud KMS will generate a \"wrapping key\", which is a public/private key pair. You use the wrapping key to encrypt (also known as wrap) the pre-existing key material to protect it during the import process. The nature of the wrapping key depends on the choice of import_method. When the wrapping key generation is complete, the state will be set to ACTIVE and the public_key can be fetched. The fetched public key can then be used to wrap your pre-existing key material. Once the key material is wrapped, it can be imported into a new CryptoKeyVersion in an existing CryptoKey by calling ImportCryptoKeyVersion. Multiple CryptoKeyVersions can be imported with a single ImportJob. Cloud KMS uses the private key portion of the wrapping key to unwrap the key material. Only Cloud KMS has access to the private key. An ImportJob expires 3 days after it is created. Once expired, Cloud KMS will no longer be able to import or unwrap any key material that was wrapped with the ImportJob's public key. For more information, see [Importing a key](https://cloud.google.com/kms/docs/importing-a-key).",
       "id": "ImportJob",
       "properties": {
         "attestation": {
           "$ref": "KeyOperationAttestation",
-          "description": "Output only. Statement that was generated and signed by the key creator\n(for example, an HSM) at key creation time. Use this statement to verify\nattributes of the key as stored on the HSM, independently of Google.\nOnly present if the chosen ImportMethod is one with a protection\nlevel of HSM."
+          "description": "Output only. Statement that was generated and signed by the key creator (for example, an HSM) at key creation time. Use this statement to verify attributes of the key as stored on the HSM, independently of Google. Only present if the chosen ImportMethod is one with a protection level of HSM.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. The time at which this ImportJob was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "expireEventTime": {
-          "description": "Output only. The time this ImportJob expired. Only present if\nstate is EXPIRED.",
+          "description": "Output only. The time this ImportJob expired. Only present if state is EXPIRED.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. The time at which this ImportJob is scheduled for\nexpiration and can no longer be used to import key material.",
+          "description": "Output only. The time at which this ImportJob is scheduled for expiration and can no longer be used to import key material.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "generateTime": {
           "description": "Output only. The time this ImportJob's key material was generated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "importMethod": {
@@ -1916,17 +1943,18 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping\nscheme defined in the PKCS #11 standard. In summary, this involves\nwrapping the raw key with an ephemeral AES key, and wrapping the\nephemeral AES key with a 3072 bit RSA key. For more details, see\n[RSA AES key wrap\nmechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).",
-            "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping\nscheme defined in the PKCS #11 standard. In summary, this involves\nwrapping the raw key with an ephemeral AES key, and wrapping the\nephemeral AES key with a 4096 bit RSA key. For more details, see\n[RSA AES key wrap\nmechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908)."
+            "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping scheme defined in the PKCS #11 standard. In summary, this involves wrapping the raw key with an ephemeral AES key, and wrapping the ephemeral AES key with a 3072 bit RSA key. For more details, see [RSA AES key wrap mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).",
+            "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping scheme defined in the PKCS #11 standard. In summary, this involves wrapping the raw key with an ephemeral AES key, and wrapping the ephemeral AES key with a 4096 bit RSA key. For more details, see [RSA AES key wrap mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908)."
           ],
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this ImportJob in the format\n`projects/*/locations/*/keyRings/*/importJobs/*`.",
+          "description": "Output only. The resource name for this ImportJob in the format `projects/*/locations/*/keyRings/*/importJobs/*`.",
+          "readOnly": true,
           "type": "string"
         },
         "protectionLevel": {
-          "description": "Required. Immutable. The protection level of the ImportJob. This must match the\nprotection_level of the\nversion_template on the CryptoKey you\nattempt to import into.",
+          "description": "Required. Immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.",
           "enum": [
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
@@ -1943,10 +1971,11 @@
         },
         "publicKey": {
           "$ref": "WrappingPublicKey",
-          "description": "Output only. The public key with which to wrap key material prior to\nimport. Only returned if state is\nACTIVE."
+          "description": "Output only. The public key with which to wrap key material prior to import. Only returned if state is ACTIVE.",
+          "readOnly": true
         },
         "state": {
-          "description": "Output only. The current state of the ImportJob, indicating if it can\nbe used.",
+          "description": "Output only. The current state of the ImportJob, indicating if it can be used.",
           "enum": [
             "IMPORT_JOB_STATE_UNSPECIFIED",
             "PENDING_GENERATION",
@@ -1955,22 +1984,24 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "The wrapping key for this job is still being generated. It may not be\nused. Cloud KMS will automatically mark this job as\nACTIVE as soon as the wrapping key is generated.",
-            "This job may be used in\nCreateCryptoKey and\nCreateCryptoKeyVersion\nrequests.",
+            "The wrapping key for this job is still being generated. It may not be used. Cloud KMS will automatically mark this job as ACTIVE as soon as the wrapping key is generated.",
+            "This job may be used in CreateCryptoKey and CreateCryptoKeyVersion requests.",
             "This job can no longer be used and may not leave this state once entered."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
     "KeyOperationAttestation": {
-      "description": "Contains an HSM-generated attestation about a key operation. For more\ninformation, see [Verifying attestations]\n(https://cloud.google.com/kms/docs/attest-key).",
+      "description": "Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).",
       "id": "KeyOperationAttestation",
       "properties": {
         "content": {
-          "description": "Output only. The attestation data provided by the HSM when the key\noperation was performed.",
+          "description": "Output only. The attestation data provided by the HSM when the key operation was performed.",
           "format": "byte",
+          "readOnly": true,
           "type": "string"
         },
         "format": {
@@ -1982,9 +2013,10 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Cavium HSM attestation compressed with gzip. Note that this format is\ndefined by Cavium and subject to change at any time.",
-            "Cavium HSM attestation V2 compressed with gzip. This is a new format\nintroduced in Cavium's version 3.2-08."
+            "Cavium HSM attestation compressed with gzip. Note that this format is defined by Cavium and subject to change at any time.",
+            "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1997,10 +2029,12 @@
         "createTime": {
           "description": "Output only. The time at which this KeyRing was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for the KeyRing in the format\n`projects/*/locations/*/keyRings/*`.",
+          "description": "Output only. The resource name for the KeyRing in the format `projects/*/locations/*/keyRings/*`.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2018,11 +2052,11 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in\nListCryptoKeyVersionsRequest.page_token to retrieve the next page of\nresults.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCryptoKeyVersionsRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "totalSize": {
-          "description": "The total number of CryptoKeyVersions that matched the\nquery.",
+          "description": "The total number of CryptoKeyVersions that matched the query.",
           "format": "int32",
           "type": "integer"
         }
@@ -2041,7 +2075,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in\nListCryptoKeysRequest.page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCryptoKeysRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "totalSize": {
@@ -2064,7 +2098,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in\nListImportJobsRequest.page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListImportJobsRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "totalSize": {
@@ -2087,7 +2121,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in\nListKeyRingsRequest.page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListKeyRingsRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "totalSize": {
@@ -2121,14 +2155,14 @@
       "id": "Location",
       "properties": {
         "displayName": {
-          "description": "The friendly name for this location, typically a nearby city name.\nFor example, \"Tokyo\".",
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Cross-service attributes for the location. For example\n\n    {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
           "type": "object"
         },
         "locationId": {
@@ -2140,11 +2174,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata. For example the available capacity at the given\nlocation.",
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
           "type": "object"
         },
         "name": {
-          "description": "Resource name for the location, which may vary between implementations.\nFor example: `\"projects/example-project/locations/us-east1\"`",
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
         }
       },
@@ -2155,18 +2189,18 @@
       "id": "LocationMetadata",
       "properties": {
         "ekmAvailable": {
-          "description": "Indicates whether CryptoKeys with\nprotection_level\nEXTERNAL can be created in this location.",
+          "description": "Indicates whether CryptoKeys with protection_level EXTERNAL can be created in this location.",
           "type": "boolean"
         },
         "hsmAvailable": {
-          "description": "Indicates whether CryptoKeys with\nprotection_level\nHSM can be created in this location.",
+          "description": "Indicates whether CryptoKeys with protection_level HSM can be created in this location.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access\ncontrols for Google Cloud resources.\n\n\nA `Policy` is a collection of `bindings`. A `binding` binds one or more\n`members` to a single `role`. Members can be user accounts, service accounts,\nGoogle groups, and domains (such as G Suite). A `role` is a named list of\npermissions; each `role` can be an IAM predefined role or a user-created\ncustom role.\n\nFor some types of Google Cloud resources, a `binding` can also specify a\n`condition`, which is a logical expression that allows access to a resource\nonly if the expression evaluates to `true`. A condition can add constraints\nbased on attributes of the request, the resource, or both. To learn which\nresources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).\n\n**JSON example:**\n\n    {\n      \"bindings\": [\n        {\n          \"role\": \"roles/resourcemanager.organizationAdmin\",\n          \"members\": [\n            \"user:mike@example.com\",\n            \"group:admins@example.com\",\n            \"domain:google.com\",\n            \"serviceAccount:my-project-id@appspot.gserviceaccount.com\"\n          ]\n        },\n        {\n          \"role\": \"roles/resourcemanager.organizationViewer\",\n          \"members\": [\n            \"user:eve@example.com\"\n          ],\n          \"condition\": {\n            \"title\": \"expirable access\",\n            \"description\": \"Does not grant access after Sep 2020\",\n            \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\",\n          }\n        }\n      ],\n      \"etag\": \"BwWWja0YfJA=\",\n      \"version\": 3\n    }\n\n**YAML example:**\n\n    bindings:\n    - members:\n      - user:mike@example.com\n      - group:admins@example.com\n      - domain:google.com\n      - serviceAccount:my-project-id@appspot.gserviceaccount.com\n      role: roles/resourcemanager.organizationAdmin\n    - members:\n      - user:eve@example.com\n      role: roles/resourcemanager.organizationViewer\n      condition:\n        title: expirable access\n        description: Does not grant access after Sep 2020\n        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')\n    - etag: BwWWja0YfJA=\n    - version: 3\n\nFor a description of IAM and its features, see the\n[IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2177,19 +2211,19 @@
           "type": "array"
         },
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a\n`condition` that determines how and when the `bindings` are applied. Each\nof the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
           "items": {
             "$ref": "Binding"
           },
           "type": "array"
         },
         "etag": {
-          "description": "`etag` is used for optimistic concurrency control as a way to help\nprevent simultaneous updates of a policy from overwriting each other.\nIt is strongly suggested that systems make use of the `etag` in the\nread-modify-write cycle to perform policy updates in order to avoid race\nconditions: An `etag` is returned in the response to `getIamPolicy`, and\nsystems are expected to put that etag in the request to `setIamPolicy` to\nensure that their change will be applied to the same version of the policy.\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.",
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
           "format": "byte",
           "type": "string"
         },
         "version": {
-          "description": "Specifies the format of the policy.\n\nValid values are `0`, `1`, and `3`. Requests that specify an invalid value\nare rejected.\n\nAny operation that affects conditional role bindings must specify version\n`3`. This requirement applies to the following operations:\n\n* Getting a policy that includes a conditional role binding\n* Adding a conditional role binding to a policy\n* Changing a conditional role binding in a policy\n* Removing any role binding, with or without a condition, from a policy\n  that includes conditions\n\n**Important:** If you use IAM Conditions, you must include the `etag` field\nwhenever you call `setIamPolicy`. If you omit this field, then IAM allows\nyou to overwrite a version `3` policy with a version `1` policy, and all of\nthe conditions in the version `3` policy are lost.\n\nIf a policy does not include any conditions, operations on that policy may\nspecify any valid version or leave the field unset.\n\nTo learn which resources support conditions in their IAM policies, see the\n[IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -2197,11 +2231,11 @@
       "type": "object"
     },
     "PublicKey": {
-      "description": "The public key for a given CryptoKeyVersion. Obtained via\nGetPublicKey.",
+      "description": "The public key for a given CryptoKeyVersion. Obtained via GetPublicKey.",
       "id": "PublicKey",
       "properties": {
         "algorithm": {
-          "description": "The Algorithm associated\nwith this key.",
+          "description": "The Algorithm associated with this key.",
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
@@ -2243,15 +2277,15 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the CryptoKeyVersion public key.\nProvided here for verification.\n\nNOTE: This field is in Beta.",
+          "description": "The name of the CryptoKeyVersion public key. Provided here for verification. NOTE: This field is in Beta.",
           "type": "string"
         },
         "pem": {
-          "description": "The public key, encoded in PEM format. For more information, see the\n[RFC 7468](https://tools.ietf.org/html/rfc7468) sections for\n[General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and\n[Textual Encoding of Subject Public Key Info]\n(https://tools.ietf.org/html/rfc7468#section-13).",
+          "description": "The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).",
           "type": "string"
         },
         "pemCrc32c": {
-          "description": "Integrity verification field. A CRC32C checksum of the returned\nPublicKey.pem. An integrity check of PublicKey.pem can be performed\nby computing the CRC32C checksum of PublicKey.pem and\ncomparing your results to this field. Discard the response in case of\nnon-matching checksum values, and perform a limited number of retries. A\npersistent mismatch may indicate an issue in your computation of the CRC32C\nchecksum.\nNote: This field is defined as int64 for reasons of compatibility across\ndifferent languages. However, it is a non-negative integer, which will\nnever exceed 2^32-1, and can be safely downconverted to uint32 in languages\nthat support this type.\n\nNOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         }
@@ -2270,10 +2304,10 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of\nthe policy is limited to a few 10s of KB. An empty policy is a\nvalid policy but certain Cloud Platform services (such as Projects)\nmight reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
         },
         "updateMask": {
-          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only\nthe fields in the mask will be modified. If no mask is provided, the\nfollowing default mask is used:\n\n`paths: \"bindings, etag\"`",
+          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -2285,7 +2319,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with\nwildcards (such as '*' or 'storage.*') are not allowed. For more\ninformation see\n[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -2299,7 +2333,7 @@
       "id": "TestIamPermissionsResponse",
       "properties": {
         "permissions": {
-          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is\nallowed.",
+          "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
           },
@@ -2320,11 +2354,11 @@
       "type": "object"
     },
     "WrappingPublicKey": {
-      "description": "The public key component of the wrapping key. For details of the type of\nkey this public key corresponds to, see the ImportMethod.",
+      "description": "The public key component of the wrapping key. For details of the type of key this public key corresponds to, see the ImportMethod.",
       "id": "WrappingPublicKey",
       "properties": {
         "pem": {
-          "description": "The public key, encoded in PEM format. For more information, see the [RFC\n7468](https://tools.ietf.org/html/rfc7468) sections for [General\nConsiderations](https://tools.ietf.org/html/rfc7468#section-2) and\n[Textual Encoding of Subject Public Key Info]\n(https://tools.ietf.org/html/rfc7468#section-13).",
+          "description": "The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).",
           "type": "string"
         }
       },
