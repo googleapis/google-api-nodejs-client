@@ -156,7 +156,7 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * Annotations associated with the plain-text body of the message.  Example plain-text message body: ``` Hello @FooBot how are you!&quot; ```  The corresponding annotations metadata: ``` &quot;annotations&quot;:[{   &quot;type&quot;:&quot;USER_MENTION&quot;,   &quot;startIndex&quot;:6,   &quot;length&quot;:7,   &quot;userMention&quot;: {     &quot;user&quot;: {       &quot;name&quot;:&quot;users/107946847022116401880&quot;,       &quot;displayName&quot;:&quot;FooBot&quot;,       &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,       &quot;type&quot;:&quot;BOT&quot;     },     &quot;type&quot;:&quot;MENTION&quot;    } }] ```
+   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!&quot; ``` The corresponding annotations metadata: ``` &quot;annotations&quot;:[{ &quot;type&quot;:&quot;USER_MENTION&quot;, &quot;startIndex&quot;:6, &quot;length&quot;:7, &quot;userMention&quot;: { &quot;user&quot;: { &quot;name&quot;:&quot;users/107946847022116401880&quot;, &quot;displayName&quot;:&quot;FooBot&quot;, &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;, &quot;type&quot;:&quot;BOT&quot; }, &quot;type&quot;:&quot;MENTION&quot; } }] ```
    */
   export interface Schema$Annotation {
     /**
@@ -338,7 +338,7 @@ export namespace chat_v1 {
     driveFileId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -471,7 +471,7 @@ export namespace chat_v1 {
      */
     member?: Schema$User;
     /**
-     * Resource name of the membership, in the form &quot;spaces/x/members/*&quot;.  Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     * Resource name of the membership, in the form &quot;spaces/x/members/*&quot;. Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string | null;
     /**
@@ -512,7 +512,7 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Resource name, in the form &quot;spaces/x/messages/*&quot;.  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/messages/*&quot;. Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string | null;
     /**
@@ -580,7 +580,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the space, in the form &quot;spaces/*&quot;.  Example: spaces/AAAAMpdlehYs
+     * Resource name of the space, in the form &quot;spaces/*&quot;. Example: spaces/AAAAMpdlehYs
      */
     name?: string | null;
     /**
@@ -620,7 +620,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form &quot;spaces/x/threads/*&quot;.  Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
+     * Resource name, in the form &quot;spaces/x/threads/*&quot;. Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
      */
     name?: string | null;
   }
@@ -713,8 +713,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.media.download({
-     *     // Name of the media that is being downloaded.  See
-     *     // ReadRequest.resource_name.
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
      *     resourceName: '.*',
      *   });
      *   console.log(res.data);
@@ -734,7 +733,7 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -820,7 +819,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Name of the media that is being downloaded.  See ReadRequest.resource_name.
+     * Name of the media that is being downloaded. See ReadRequest.resource_name.
      */
     resourceName?: string;
   }
@@ -862,9 +861,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.get({
-     *     // Required. Resource name of the space, in the form "spaces/x".
-     *     //
-     *     // Example: spaces/AAAAMpdlehY
+     *     // Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     name: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -888,7 +885,7 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * @param {string} params.name Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -995,9 +992,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.list({
-     *     // Requested page size. The value is capped at 1000.
-     *     // Server may return fewer results than requested.
-     *     // If unspecified, server will default to 100.
+     *     // Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
@@ -1107,7 +1102,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Required. Resource name of the space, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     name?: string;
   }
@@ -1155,10 +1150,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to be retrieved, in the form
-     *     // "spaces/x/members/x".
-     *     //
-     *     // Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     *     // Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -1181,7 +1173,7 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1289,16 +1281,11 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.list({
-     *     // Requested page size. The value is capped at 1000.
-     *     // Server may return fewer results than requested.
-     *     // If unspecified, server will default to 100.
+     *     // Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the space for which membership list is to be
-     *     // fetched, in the form "spaces/x".
-     *     //
-     *     // Example: spaces/AAAAMpdlehY
+     *     // Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -1321,7 +1308,7 @@ export namespace chat_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      * @param {string=} params.pageToken A token identifying a page of results the server should return.
-     * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1414,7 +1401,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
      */
     name?: string;
   }
@@ -1429,7 +1416,7 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
   }
@@ -1469,18 +1456,9 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.create({
-     *     // Required. Space resource name, in the form "spaces/x".
-     *     // Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
-     *     // Opaque thread identifier string that can be specified to group messages
-     *     // into a single thread. If this is the first message with a given thread
-     *     // identifier, a new thread is created. Subsequent messages with the same
-     *     // thread identifier will be posted into the same thread. This relieves bots
-     *     // and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post
-     *     // further updates to it.
-     *     //
-     *     // Has no effect if thread field,
-     *     // corresponding to an existing thread, is set in message.
+     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1533,7 +1511,7 @@ export namespace chat_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-     * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1645,10 +1623,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.delete({
-     *     // Required. Resource name of the message to be deleted, in the form
-     *     // "spaces/x/messages/x"
-     *     //
-     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     // Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -1666,7 +1641,7 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1774,10 +1749,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
-     *     // Required. Resource name of the message to be retrieved, in the form
-     *     // "spaces/x/messages/x".
-     *     //
-     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     // Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -1809,7 +1781,7 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1917,16 +1889,9 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
-     *     // Resource name, in the form "spaces/x/messages/x".
-     *     //
-     *     // Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     // Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to be updated, comma separated if there are
-     *     // multiple.
-     *     //
-     *     // Currently supported field paths:
-     *     // * text
-     *     // * cards
+     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1978,8 +1943,8 @@ export namespace chat_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {string=} params.updateMask Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
+     * @param {string} params.name Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * @param {string=} params.updateMask Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
      * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2069,7 +2034,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -2081,25 +2046,25 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     * Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string;
     /**
-     * Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
+     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
      */
     updateMask?: string;
 
@@ -2142,8 +2107,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.attachments.get({
-     *     // Resource name of the attachment, in the form
-     *     // "spaces/x/messages/x/attachments/x".
+     *     // Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
      *     name: 'spaces/my-space/messages/my-message/attachments/my-attachment',
      *   });
      *   console.log(res.data);
