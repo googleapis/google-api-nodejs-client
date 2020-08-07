@@ -132,62 +132,9 @@ export namespace cloudshell_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
-  /**
-   * A Cloud Shell environment, which is defined as the combination of a Docker image specifying what is installed on the environment and a home directory containing the user&#39;s data that will remain across sessions. Each user has a single environment with the ID &quot;default&quot;.
-   */
-  export interface Schema$Environment {
-    /**
-     * Required. Full path to the Docker image used to run this environment, e.g. &quot;gcr.io/dev-con/cloud-devshell:latest&quot;.
-     */
-    dockerImage?: string | null;
-    /**
-     * Output only. The environment&#39;s identifier, unique among the user&#39;s environments.
-     */
-    id?: string | null;
-    /**
-     * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the email address of the user to whom this environment belongs, and `{environment_id}` is the identifier of this environment. For example, `users/someone@example.com/environments/default`.
-     */
-    name?: string | null;
-    /**
-     * Output only. Public keys associated with the environment. Clients can connect to this environment via SSH only if they possess a private key corresponding to at least one of these public keys. Keys can be added to or removed from the environment using the CreatePublicKey and DeletePublicKey methods.
-     */
-    publicKeys?: Schema$PublicKey[];
-    /**
-     * Indicates the size of the backing VM running the environment.  If set to something other than DEFAULT, it will be reverted to the default VM size after vm_size_expire_time.
-     */
-    size?: string | null;
-    /**
-     * Output only. Host to which clients can connect to initiate SSH sessions with the environment.
-     */
-    sshHost?: string | null;
-    /**
-     * Output only. Port to which clients can connect to initiate SSH sessions with the environment.
-     */
-    sshPort?: number | null;
-    /**
-     * Output only. Username that clients should use when initiating SSH sessions with the environment.
-     */
-    sshUsername?: string | null;
-    /**
-     * Output only. Current execution state of this environment.
-     */
-    state?: string | null;
-    /**
-     * Output only. The time when the Environment will expire back to the default VM size.
-     */
-    vmSizeExpireTime?: string | null;
-    /**
-     * Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.
-     */
-    webHost?: string | null;
-    /**
-     * Output only. Ports to which clients can connect to initiate HTTPS or WSS connections with the environment.
-     */
-    webPorts?: number[] | null;
-  }
   /**
    * The response message for Operations.ListOperations.
    */
@@ -214,7 +161,7 @@ export namespace cloudshell_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -222,47 +169,12 @@ export namespace cloudshell_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * A public SSH key, corresponding to a private SSH key held by the client.
-   */
-  export interface Schema$PublicKey {
-    /**
-     * Required. Format of this key&#39;s content.
-     */
-    format?: string | null;
-    /**
-     * Required. Content of this key.
-     */
-    key?: string | null;
-    /**
-     * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}/publicKeys/{key_id}`. `{owner_email}` is the email address of the user to whom the key belongs. `{environment_id}` is the identifier of the environment to which the key grants access. `{key_id}` is the unique identifier of the key. For example, `users/someone@example.com/environments/default/publicKeys/myKey`.
-     */
-    name?: string | null;
-  }
-  /**
-   * Message included in the metadata field of operations returned from StartEnvironment.
-   */
-  export interface Schema$StartEnvironmentMetadata {
-    /**
-     * Current state of the environment being started.
-     */
-    state?: string | null;
-  }
-  /**
-   * Message included in the response field of operations returned from StartEnvironment once the operation is complete.
-   */
-  export interface Schema$StartEnvironmentResponse {
-    /**
-     * Environment that was started.
-     */
-    environment?: Schema$Environment;
-  }
-  /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -270,7 +182,7 @@ export namespace cloudshell_v1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -287,7 +199,7 @@ export namespace cloudshell_v1 {
 
     /**
      * cloudshell.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -546,7 +458,7 @@ export namespace cloudshell_v1 {
 
     /**
      * cloudshell.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -677,7 +589,7 @@ export namespace cloudshell_v1 {
 
     /**
      * cloudshell.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

@@ -68,6 +68,10 @@
     "package": "@google-cloud/connect-firestore"
   },
   {
+    "api": "cloudfunctions",
+    "package": "@google-cloud/functions"
+  },
+  {
     "api": "gameservices",
     "package": "@google-cloud/game-servers"
   },
@@ -148,6 +152,10 @@
     "package": "@google-cloud/phishing-protection"
   },
   {
+    "api": "cloudprofiler",
+    "package": "@google-cloud/profiler"
+  },
+  {
     "api": "pubsub",
     "package": "@google-cloud/pubsub"
   },
@@ -222,10 +230,6 @@
   {
     "api": "monitoring",
     "package": "@google-cloud/monitoring"
-  },
-  {
-    "api": "cloudprofiler",
-    "package": "@google-cloud/profiler"
   },
   {
     "api": "cloudtrace",

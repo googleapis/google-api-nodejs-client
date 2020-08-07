@@ -140,7 +140,7 @@ export namespace genomics_v2alpha1 {
      */
     count?: string | null;
     /**
-     * The accelerator type string (for example, &quot;nvidia-tesla-k80&quot;).  Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
+     * The accelerator type string (for example, &quot;nvidia-tesla-k80&quot;). Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
      */
     type?: string | null;
   }
@@ -153,7 +153,7 @@ export namespace genomics_v2alpha1 {
      */
     commands?: string[] | null;
     /**
-     * If the specified image is hosted on a private registry other than Google Container Registry, the credentials required to pull the image must be specified here as an encrypted secret.  The secret must decrypt to a JSON-encoded dictionary containing both `username` and `password` keys.
+     * If the specified image is hosted on a private registry other than Google Container Registry, the credentials required to pull the image must be specified here as an encrypted secret. The secret must decrypt to a JSON-encoded dictionary containing both `username` and `password` keys.
      */
     credentials?: Schema$Secret;
     /**
@@ -161,7 +161,7 @@ export namespace genomics_v2alpha1 {
      */
     entrypoint?: string | null;
     /**
-     * The environment to pass into the container. This environment is merged with values specified in the google.genomics.v2alpha1.Pipeline message, overwriting any duplicate values.  In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten.  `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute.  `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
+     * The environment to pass into the container. This environment is merged with values specified in the google.genomics.v2alpha1.Pipeline message, overwriting any duplicate values. In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten. `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute. `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
      */
     environment?: {[key: string]: string} | null;
     /**
@@ -169,7 +169,7 @@ export namespace genomics_v2alpha1 {
      */
     flags?: string[] | null;
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline.  The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library.  No schema is required in any of these cases.  If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.genomics.v2alpha1.Action.credentials field.
+     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline. The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library. No schema is required in any of these cases. If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.genomics.v2alpha1.Action.credentials field.
      */
     imageUri?: string | null;
     /**
@@ -177,7 +177,7 @@ export namespace genomics_v2alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A list of mounts to make available to the action.  In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components.  &lt;ul&gt;   &lt;li&gt;&lt;code&gt;/google/logs&lt;/code&gt; All logs written during the pipeline   execution.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/output&lt;/code&gt; The combined standard output and   standard error of all actions run as part of the pipeline   execution.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/action/x/stdout&lt;/code&gt; The complete contents of   each individual action&#39;s standard output.&lt;/li&gt;   &lt;li&gt;&lt;code&gt;/google/logs/action/x/stderr&lt;/code&gt; The complete contents of   each individual action&#39;s standard error output.&lt;/li&gt; &lt;/ul&gt;
+     * A list of mounts to make available to the action. In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components. - /google/logs All logs written during the pipeline execution. - /google/logs/output The combined standard output and standard error of all actions run as part of the pipeline execution. - /google/logs/action/x/stdout The complete contents of each individual action&#39;s standard output. - /google/logs/action/x/stderr The complete contents of each individual action&#39;s standard error output.
      */
     mounts?: Schema$Mount[];
     /**
@@ -185,11 +185,11 @@ export namespace genomics_v2alpha1 {
      */
     name?: string | null;
     /**
-     * An optional identifier for a PID namespace to run the action inside. Multiple actions should use the same string to share a namespace.  If unspecified, a separate isolated namespace is used.
+     * An optional identifier for a PID namespace to run the action inside. Multiple actions should use the same string to share a namespace. If unspecified, a separate isolated namespace is used.
      */
     pidNamespace?: string | null;
     /**
-     * A map of containers to host port mappings for this container. If the container already specifies exposed ports, use the `PUBLISH_EXPOSED_PORTS` flag instead.  The host port number must be less than 65536. If it is zero, an unused random port is assigned. To determine the resulting port number, consult the `ContainerStartedEvent` in the operation metadata.
+     * A map of containers to host port mappings for this container. If the container already specifies exposed ports, use the `PUBLISH_EXPOSED_PORTS` flag instead. The host port number must be less than 65536. If it is zero, an unused random port is assigned. To determine the resulting port number, consult the `ContainerStartedEvent` in the operation metadata.
      */
     portMappings?: {[key: string]: number} | null;
     /**
@@ -222,6 +222,10 @@ export namespace genomics_v2alpha1 {
      */
     result?: Schema$Status;
     /**
+     * An SOS report for an unexpected VM failure.
+     */
+    sosReport?: string | null;
+    /**
      * Data about the status of the worker VM.
      */
     workerStatus?: Schema$WorkerStatus;
@@ -231,7 +235,7 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$CheckInResponse {
     /**
-     * The deadline by which the worker must request an extension.  The backend will allow for network transmission time and other delays, but the worker must attempt to transmit the extension request no later than the deadline.
+     * The deadline by which the worker must request an extension. The backend will allow for network transmission time and other delays, but the worker must attempt to transmit the extension request no later than the deadline.
      */
     deadline?: string | null;
     /**
@@ -299,7 +303,7 @@ export namespace genomics_v2alpha1 {
      */
     exitStatus?: number | null;
     /**
-     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
+     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag. Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
      */
     stderr?: string | null;
   }
@@ -317,7 +321,7 @@ export namespace genomics_v2alpha1 {
     metrics?: string[] | null;
   }
   /**
-   * Carries information about a disk that can be attached to a VM.  See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
    */
   export interface Schema$Disk {
     /**
@@ -325,7 +329,7 @@ export namespace genomics_v2alpha1 {
      */
     name?: string | null;
     /**
-     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance.  If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
+     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance. If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
      */
     sizeGb?: number | null;
     /**
@@ -351,7 +355,7 @@ export namespace genomics_v2alpha1 {
     totalSpaceBytes?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -448,15 +452,15 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$Network {
     /**
-     * The network name to attach the VM&#39;s network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL.  If unspecified, the global default network is used.
+     * The network name to attach the VM&#39;s network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL. If unspecified, the global default network is used.
      */
     name?: string | null;
     /**
-     * If the specified network is configured for custom subnet creation, the name of the subnetwork to attach the instance to must be specified here.  The value is prefixed with `regions/x/subnetworks/` unless it contains a `/`, in which case it is assumed to be a fully specified subnetwork resource URL.  If the `*` character appears in the value, it is replaced with the region that the virtual machine has been allocated in.
+     * If the specified network is configured for custom subnet creation, the name of the subnetwork to attach the instance to must be specified here. The value is prefixed with `regions/x/subnetworks/` unless it contains a `/`, in which case it is assumed to be a fully specified subnetwork resource URL. If the `*` character appears in the value, it is replaced with the region that the virtual machine has been allocated in.
      */
     subnetwork?: string | null;
     /**
-     * If set to true, do not attach a public IP address to the VM. Note that without a public IP address, additional configuration is required to allow the VM to access Google services.  See https://cloud.google.com/vpc/docs/configure-private-google-access for more information.
+     * If set to true, do not attach a public IP address to the VM. Note that without a public IP address, additional configuration is required to allow the VM to access Google services. See https://cloud.google.com/vpc/docs/configure-private-google-access for more information.
      */
     usePrivateAddress?: boolean | null;
   }
@@ -477,7 +481,7 @@ export namespace genomics_v2alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
+     * The server-assigned name, which is only unique within the same service that originally returns it. For example: `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
      */
     name?: string | null;
     /**
@@ -560,7 +564,7 @@ export namespace genomics_v2alpha1 {
      */
     resources?: Schema$Resources;
     /**
-     * The maximum amount of time to give the pipeline to complete.  This includes the time spent waiting for a worker to be allocated.  If the pipeline fails to complete before the timeout, it will be cancelled and the error code will be set to DEADLINE_EXCEEDED.  If unspecified, it will default to 7 days.
+     * The maximum amount of time to give the pipeline to complete. This includes the time spent waiting for a worker to be allocated. If the pipeline fails to complete before the timeout, it will be cancelled and the error code will be set to DEADLINE_EXCEEDED. If unspecified, it will default to 7 days.
      */
     timeout?: string | null;
   }
@@ -583,7 +587,7 @@ export namespace genomics_v2alpha1 {
     imageUri?: string | null;
   }
   /**
-   * The system resources for the pipeline run.  At least one zone or region must be specified or the pipeline run will fail.
+   * The system resources for the pipeline run. At least one zone or region must be specified or the pipeline run will fail.
    */
   export interface Schema$Resources {
     /**
@@ -608,7 +612,7 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$RunPipelineRequest {
     /**
-     * User-defined labels to associate with the returned operation. These labels are not propagated to any Google Cloud Platform resources used by the operation, and can be modified at any time.  To associate labels with resources created while executing the operation, see the appropriate resource message (for example, `VirtualMachine`).
+     * User-defined labels to associate with the returned operation. These labels are not propagated to any Google Cloud Platform resources used by the operation, and can be modified at any time. To associate labels with resources created while executing the operation, see the appropriate resource message (for example, `VirtualMachine`).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -656,7 +660,7 @@ export namespace genomics_v2alpha1 {
     scopes?: string[] | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -664,7 +668,7 @@ export namespace genomics_v2alpha1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -711,11 +715,11 @@ export namespace genomics_v2alpha1 {
      */
     bootDiskSizeGb?: number | null;
     /**
-     * The host operating system image to use.  Currently, only Container-Optimized OS images can be used.  The default value is `projects/cos-cloud/global/images/family/cos-stable`, which selects the latest stable release of Container-Optimized OS.  This option is provided to allow testing against the beta release of the operating system to ensure that the new version does not interact negatively with production pipelines.  To test a pipeline against the beta release of Container-Optimized OS, use the value `projects/cos-cloud/global/images/family/cos-beta`.
+     * The host operating system image to use. Currently, only Container-Optimized OS images can be used. The default value is `projects/cos-cloud/global/images/family/cos-stable`, which selects the latest stable release of Container-Optimized OS. This option is provided to allow testing against the beta release of the operating system to ensure that the new version does not interact negatively with production pipelines. To test a pipeline against the beta release of Container-Optimized OS, use the value `projects/cos-cloud/global/images/family/cos-beta`.
      */
     bootImage?: string | null;
     /**
-     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as &quot;Intel Skylake&quot;). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact.  For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
+     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as &quot;Intel Skylake&quot;). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact. For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      */
     cpuPlatform?: string | null;
     /**
@@ -731,7 +735,7 @@ export namespace genomics_v2alpha1 {
      */
     enableStackdriverMonitoring?: boolean | null;
     /**
-     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine.  Labels keys with the prefix &#39;google-&#39; are reserved for use by Google.  Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
+     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine. Labels keys with the prefix &#39;google-&#39; are reserved for use by Google. Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -819,7 +823,7 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.pipelines.run
-     * @desc Runs a pipeline.  The returned Operation's metadata field will contain a google.genomics.v2alpha1.Metadata object describing the status of the pipeline execution.  The [response] field will contain a google.genomics.v2alpha1.RunPipelineResponse object if the pipeline completes successfully.  **Note:** Before you can use this method, the Genomics Service Agent must have access to your project. This is done automatically when the Cloud Genomics API is first enabled, but if you delete this permission, or if you enabled the Cloud Genomics API before the v2alpha1 API launch, you must disable and re-enable the API to grant the Genomics Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission:  * `genomics.operations.create`  [1]: /genomics/gsa
+     * @desc Runs a pipeline. The returned Operation's metadata field will contain a google.genomics.v2alpha1.Metadata object describing the status of the pipeline execution. The [response] field will contain a google.genomics.v2alpha1.RunPipelineResponse object if the pipeline completes successfully. **Note:** Before you can use this method, the Genomics Service Agent must have access to your project. This is done automatically when the Cloud Genomics API is first enabled, but if you delete this permission, or if you enabled the Cloud Genomics API before the v2alpha1 API launch, you must disable and re-enable the API to grant the Genomics Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission: * `genomics.operations.create` [1]: /genomics/gsa
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -987,7 +991,7 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.projects.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.cancel`
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.cancel`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1126,7 +1130,7 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.get`
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.get`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1261,7 +1265,7 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.projects.operations.list
-     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.list`
+     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.list`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1289,36 +1293,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.projects.operations.list({
-     *     // A string for filtering Operations.
-     *     // In v2alpha1, the following filter fields are supported&#58;
-     *     //
-     *     // * createTime&#58; The time this job was created
-     *     // * events&#58; The set of event (names) that have occurred while running
-     *     //   the pipeline.  The &#58; operator can be used to determine if a
-     *     //   particular event has occurred.
-     *     // * error&#58; If the pipeline is running, this value is NULL.  Once the
-     *     //   pipeline finishes, the value is the standard Google error code.
-     *     // * labels.key or labels."key with space" where key is a label key.
-     *     // * done&#58; If the pipeline is running, this value is false. Once the
-     *     //   pipeline finishes, the value is true.
-     *     //
-     *     // In v1 and v1alpha2, the following filter fields are supported&#58;
-     *     //
-     *     // * projectId&#58; Required. Corresponds to
-     *     //   OperationMetadata.projectId.
-     *     // * createTime&#58; The time this job was created, in seconds from the
-     *     //   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
-     *     //   operators.
-     *     // * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only
-     *     //   one status may be specified.
-     *     // * labels.key where key is a label key.
-     *     //
-     *     // Examples&#58;
-     *     //
-     *     // * `projectId = my-project AND createTime >= 1432140000`
-     *     // * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
-     *     // * `projectId = my-project AND labels.color = *`
-     *     // * `projectId = my-project AND labels.color = red`
+     *     // A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
      *     name: 'projects/my-project/operations',
@@ -1345,7 +1320,7 @@ export namespace genomics_v2alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The maximum number of results to return. The maximum value is 256.
      * @param {string=} params.pageToken The standard list page token.
@@ -1457,7 +1432,7 @@ export namespace genomics_v2alpha1 {
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
     /**
-     * A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      */
     filter?: string;
     /**
@@ -1510,8 +1485,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.projects.workers.checkIn({
-     *     // The VM identity token for authenticating the VM instance.
-     *     // https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     *     // The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     id: 'projects/my-project/workers/my-worker',
      *
      *     // Request body metadata
@@ -1522,6 +1496,7 @@ export namespace genomics_v2alpha1 {
      *       //   "event": {},
      *       //   "events": [],
      *       //   "result": {},
+     *       //   "sosReport": "my_sosReport",
      *       //   "workerStatus": {}
      *       // }
      *     },
@@ -1679,8 +1654,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.workers.checkIn({
-     *     // The VM identity token for authenticating the VM instance.
-     *     // https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     *     // The VM identity token for authenticating the VM instance. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     id: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1691,6 +1665,7 @@ export namespace genomics_v2alpha1 {
      *       //   "event": {},
      *       //   "events": [],
      *       //   "result": {},
+     *       //   "sosReport": "my_sosReport",
      *       //   "workerStatus": {}
      *       // }
      *     },

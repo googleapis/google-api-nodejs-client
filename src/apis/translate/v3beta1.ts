@@ -2591,7 +2591,20 @@ export namespace translate_v3beta1 {
      *   // Do the magic
      *   const res = await translate.projects.locations.glossaries.list({
      *     // Optional. Filter specifying constraints of a list operation.
-     *     // Filtering is not supported yet, and the parameter currently has no effect.
+     *     // Specify the constraint by the format of "key=value", where key must be
+     *     // "src" or "tgt", and the value must be a valid language code.
+     *     // For multiple restrictions, concatenate them by "AND" (uppercase only),
+     *     // such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used
+     *     // here, which means using 'en-US' and 'en' can lead to different results,
+     *     // which depends on the language code you used when you create the glossary.
+     *     // For the unidirectional glossaries, the "src" and "tgt" add restrictions
+     *     // on the source and target language code separately.
+     *     // For the equivalent term set glossaries, the "src" and/or "tgt" add
+     *     // restrictions on the term set.
+     *     // For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional
+     *     // glossaries which exactly match the source language code as "en-US" and the
+     *     // target language code "zh-CN", but all equivalent term set glossaries which
+     *     // contain "en-US" and "zh-CN" in their language set will be picked.
      *     // If missing, no filtering is performed.
      *     filter: 'placeholder-value',
      *     // Optional. Requested page size. The server may return fewer glossaries than
@@ -2623,7 +2636,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter specifying constraints of a list operation. Filtering is not supported yet, and the parameter currently has no effect. If missing, no filtering is performed.
+     * @param {string=} params.filter Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of "key=value", where key must be "src" or "tgt", and the value must be a valid language code. For multiple restrictions, concatenate them by "AND" (uppercase only), such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the "src" and "tgt" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the "src" and/or "tgt" add restrictions on the term set. For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which exactly match the source language code as "en-US" and the target language code "zh-CN", but all equivalent term set glossaries which contain "en-US" and "zh-CN" in their language set will be picked. If missing, no filtering is performed.
      * @param {integer=} params.pageSize Optional. Requested page size. The server may return fewer glossaries than requested. If unspecified, the server picks an appropriate default.
      * @param {string=} params.pageToken Optional. A token identifying a page of results the server should return. Typically, this is the value of [ListGlossariesResponse.next_page_token] returned from the previous call to `ListGlossaries` method. The first page is returned if `page_token`is empty or missing.
      * @param {string} params.parent Required. The name of the project from which to list all of the glossaries.
@@ -2745,7 +2758,7 @@ export namespace translate_v3beta1 {
   export interface Params$Resource$Projects$Locations$Glossaries$List
     extends StandardParameters {
     /**
-     * Optional. Filter specifying constraints of a list operation. Filtering is not supported yet, and the parameter currently has no effect. If missing, no filtering is performed.
+     * Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of "key=value", where key must be "src" or "tgt", and the value must be a valid language code. For multiple restrictions, concatenate them by "AND" (uppercase only), such as: "src=en-US AND tgt=zh-CN". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the "src" and "tgt" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the "src" and/or "tgt" add restrictions on the term set. For example: "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which exactly match the source language code as "en-US" and the target language code "zh-CN", but all equivalent term set glossaries which contain "en-US" and "zh-CN" in their language set will be picked. If missing, no filtering is performed.
      */
     filter?: string;
     /**

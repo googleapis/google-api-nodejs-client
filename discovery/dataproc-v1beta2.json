@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20200725",
+  "revision": "20200731",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2471,6 +2471,10 @@
         "masterConfig": {
           "$ref": "InstanceGroupConfig",
           "description": "Optional. The Compute Engine config settings for the master instance in a cluster."
+        },
+        "metastoreConfig": {
+          "$ref": "MetastoreConfig",
+          "description": "Optional. Metastore configuration."
         },
         "secondaryWorkerConfig": {
           "$ref": "InstanceGroupConfig",
@@ -3598,6 +3602,17 @@
         "instanceTemplateName": {
           "description": "Output only. The name of the Instance Template used for the Managed Instance Group.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MetastoreConfig": {
+      "description": "Specifies the metastore configuration.",
+      "id": "MetastoreConfig",
+      "properties": {
+        "dataprocMetastoreService": {
+          "description": "Optional. Relative resource name of an existing Dataproc Metastore service.",
           "type": "string"
         }
       },

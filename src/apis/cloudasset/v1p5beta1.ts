@@ -505,7 +505,7 @@ export namespace cloudasset_v1p5beta1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices {
     /**
-     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True. You can specify a list of individual services, as well as include the &#39;RESTRICTED-SERVICES&#39; value, which automatically includes all of the services protected by the perimeter.
      */
     allowedServices?: string[] | null;
     /**

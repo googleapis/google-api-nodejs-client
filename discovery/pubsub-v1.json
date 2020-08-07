@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20200726",
+  "revision": "20200731",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1633,6 +1633,10 @@
         "deadLetterPolicy": {
           "$ref": "DeadLetterPolicy",
           "description": "A policy that specifies the conditions for dead lettering messages in\nthis subscription. If dead_letter_policy is not set, dead lettering\nis disabled.\n\nThe Cloud Pub/Sub service account associated with this subscriptions's\nparent project (i.e.,\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have\npermission to Acknowledge() messages on this subscription."
+        },
+        "detached": {
+          "description": "Indicates whether the subscription is detached from its topic. Detached\nsubscriptions don't receive messages from their topic and don't retain any\nbacklog. `Pull` and `StreamingPull` requests will return\nFAILED_PRECONDITION. If the subscription is a push subscription, pushes to\nthe endpoint will not be made.",
+          "type": "boolean"
         },
         "enableMessageOrdering": {
           "description": "If true, messages published with the same `ordering_key` in `PubsubMessage`\nwill be delivered to the subscribers in the order in which they\nare received by the Pub/Sub system. Otherwise, they may be delivered in\nany order.",

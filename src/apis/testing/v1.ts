@@ -192,7 +192,7 @@ export namespace testing_v1 {
     androidDevices?: Schema$AndroidDevice[];
   }
   /**
-   * A test of an Android application that can control an Android component independently of its normal lifecycle. Android instrumentation tests run an application APK and test APK inside the same process on a virtual or physical AndroidDevice.  They also specify a test runner class, such as com.google.GoogleTestRunner, which can vary on the specific instrumentation framework chosen.  See &lt;http://developer.android.com/tools/testing/testing_android.html&gt; for more information on types of Android tests.
+   * A test of an Android application that can control an Android component independently of its normal lifecycle. Android instrumentation tests run an application APK and test APK inside the same process on a virtual or physical AndroidDevice. They also specify a test runner class, such as com.google.GoogleTestRunner, which can vary on the specific instrumentation framework chosen. See for more information on types of Android tests.
    */
   export interface Schema$AndroidInstrumentationTest {
     /**
@@ -208,7 +208,7 @@ export namespace testing_v1 {
      */
     appPackageId?: string | null;
     /**
-     * The option of whether running each test within its own invocation of instrumentation with Android Test Orchestrator or not. ** Orchestrator is only compatible with AndroidJUnitRunner version 1.0 or higher! ** Orchestrator offers the following benefits:  - No shared state  - Crashes are isolated  - Logs are scoped per test  See &lt;https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator&gt; for more information about Android Test Orchestrator.  If not set, the test will be run without the orchestrator.
+     * The option of whether running each test within its own invocation of instrumentation with Android Test Orchestrator or not. ** Orchestrator is only compatible with AndroidJUnitRunner version 1.0 or higher! ** Orchestrator offers the following benefits: - No shared state - Crashes are isolated - Logs are scoped per test See for more information about Android Test Orchestrator. If not set, the test will be run without the orchestrator.
      */
     orchestratorOption?: string | null;
     /**
@@ -228,12 +228,12 @@ export namespace testing_v1 {
      */
     testRunnerClass?: string | null;
     /**
-     * Each target must be fully qualified with the package name or class name, in one of these formats:  - &quot;package package_name&quot;  - &quot;class package_name.class_name&quot;  - &quot;class package_name.class_name#method_name&quot;  If empty, all targets in the module will be run.
+     * Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot; If empty, all targets in the module will be run.
      */
     testTargets?: string[] | null;
   }
   /**
-   * A set of Android device configuration permutations is defined by the the cross-product of the given axes. Internally, the given AndroidMatrix will be expanded into a set of AndroidDevices.  Only supported permutations will be instantiated.  Invalid permutations (e.g., incompatible models/versions) are ignored.
+   * A set of Android device configuration permutations is defined by the the cross-product of the given axes. Internally, the given AndroidMatrix will be expanded into a set of AndroidDevices. Only supported permutations will be instantiated. Invalid permutations (e.g., incompatible models/versions) are ignored.
    */
   export interface Schema$AndroidMatrix {
     /**
@@ -302,7 +302,7 @@ export namespace testing_v1 {
      */
     screenY?: number | null;
     /**
-     * The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list.  Elements are optionally prefixed by &quot;version_id:&quot; (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version.
+     * The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list. Elements are optionally prefixed by &quot;version_id:&quot; (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version.
      */
     supportedAbis?: string[] | null;
     /**
@@ -373,7 +373,7 @@ export namespace testing_v1 {
     orientations?: Schema$Orientation[];
   }
   /**
-   * A test of an Android Application with a Test Loop. The intent \&lt;intent-name\&gt; will be implicitly added, since Games is the only user of this api, for the time being.
+   * A test of an Android Application with a Test Loop. The intent \ will be implicitly added, since Games is the only user of this api, for the time being.
    */
   export interface Schema$AndroidTestLoop {
     /**
@@ -476,7 +476,7 @@ export namespace testing_v1 {
     targetSdkVersion?: number | null;
   }
   /**
-   * An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. &lt;p&gt;See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles.
+   * An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles.
    */
   export interface Schema$AppBundle {
     /**
@@ -520,7 +520,7 @@ export namespace testing_v1 {
     value?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
@@ -663,19 +663,19 @@ export namespace testing_v1 {
     gcsPath?: string | null;
   }
   /**
-   * The &lt;intent-filter&gt; section of an &lt;activity&gt; tag. https://developer.android.com/guide/topics/manifest/intent-filter-element.html
+   * The section of an tag. https://developer.android.com/guide/topics/manifest/intent-filter-element.html
    */
   export interface Schema$IntentFilter {
     /**
-     * The android:name value of the &lt;action&gt; tag.
+     * The android:name value of the tag.
      */
     actionNames?: string[] | null;
     /**
-     * The android:name value of the &lt;category&gt; tag.
+     * The android:name value of the tag.
      */
     categoryNames?: string[] | null;
     /**
-     * The android:mimeType value of the &lt;data&gt; tag.
+     * The android:mimeType value of the tag.
      */
     mimeType?: string | null;
   }
@@ -886,11 +886,11 @@ export namespace testing_v1 {
     tags?: string[] | null;
   }
   /**
-   * Shards test cases into the specified groups of packages, classes, and/or methods.  With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid.
+   * Shards test cases into the specified groups of packages, classes, and/or methods. With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid.
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected,  the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected, the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 250.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -920,7 +920,7 @@ export namespace testing_v1 {
      */
     obb?: Schema$FileReference;
     /**
-     * Required. OBB file name which must conform to the format as specified by Android e.g. [main|patch].0300110.com.example.android.obb which will be installed into   \&lt;shared-storage\&gt;/Android/obb/\&lt;package-name\&gt;/ on the device.
+     * Required. OBB file name which must conform to the format as specified by Android e.g. [main|patch].0300110.com.example.android.obb which will be installed into \/Android/obb/\/ on the device.
      */
     obbFileName?: string | null;
   }
@@ -959,7 +959,7 @@ export namespace testing_v1 {
      */
     content?: Schema$FileReference;
     /**
-     * Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: &lt;p&gt;${EXTERNAL_STORAGE}, /sdcard, or /storage&lt;/p&gt; &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt; &lt;p&gt;Specifying a path outside of these directory trees is invalid.  &lt;p&gt; The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there.  &lt;p&gt; It is strongly advised to use the &lt;a href= &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt; Environment API&lt;/a&gt; in app and test code to access files on the device in a portable way.
+     * Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: ${EXTERNAL_STORAGE}, /sdcard, or /storage ${ANDROID_DATA}/local/tmp, or /data/local/tmp Specifying a path outside of these directory trees is invalid. The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there. It is strongly advised to use the Environment API in app and test code to access files on the device in a portable way.
      */
     devicePath?: string | null;
   }
@@ -980,7 +980,7 @@ export namespace testing_v1 {
      */
     toolResultsExecution?: Schema$ToolResultsExecution;
     /**
-     * The tool results history that contains the tool results execution that results are written to.  If not provided, the service will choose an appropriate value.
+     * The tool results history that contains the tool results execution that results are written to. If not provided, the service will choose an appropriate value.
      */
     toolResultsHistory?: Schema$ToolResultsHistory;
   }
@@ -997,7 +997,7 @@ export namespace testing_v1 {
      */
     inputText?: string | null;
     /**
-     * Required. The android resource name of the target UI element. For example,    in Java: R.string.foo    in xml: @string/foo Only the &quot;foo&quot; part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html
+     * Required. The android resource name of the target UI element. For example, in Java: R.string.foo in xml: @string/foo Only the &quot;foo&quot; part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html
      */
     resourceName?: string | null;
   }
@@ -1080,7 +1080,7 @@ export namespace testing_v1 {
      */
     errorMessage?: string | null;
     /**
-     * Output only. Human-readable, detailed descriptions of the test&#39;s progress. For example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;.  During the course of execution new data may be appended to the end of progress_messages.
+     * Output only. Human-readable, detailed descriptions of the test&#39;s progress. For example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;. During the course of execution new data may be appended to the end of progress_messages.
      */
     progressMessages?: string[] | null;
   }
@@ -1167,7 +1167,7 @@ export namespace testing_v1 {
      */
     environmentMatrix?: Schema$EnvironmentMatrix;
     /**
-     * The number of times a TestExecution should be re-attempted if one or more of its test cases fail for any reason. The maximum number of reruns allowed is 10.  Default is 0, which implies no reruns.
+     * The number of times a TestExecution should be re-attempted if one or more of its test cases fail for any reason. The maximum number of reruns allowed is 10. Default is 0, which implies no reruns.
      */
     flakyTestAttempts?: number | null;
     /**
@@ -1220,7 +1220,7 @@ export namespace testing_v1 {
      */
     additionalApks?: Schema$Apk[];
     /**
-     * List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard, /storage or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and /  Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.
+     * List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard, /storage or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and / Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device.
      */
     directoriesToPull?: string[] | null;
     /**
@@ -1294,12 +1294,12 @@ export namespace testing_v1 {
    */
   export interface Schema$TestTargetsForShard {
     /**
-     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, “package com.my.packages” “class com.my.package.MyClass”.  The number of shard_test_targets must be greater than 0.
+     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, &quot;package com.my.packages&quot; &quot;class com.my.package.MyClass&quot;. The number of shard_test_targets must be greater than 0.
      */
     testTargets?: string[] | null;
   }
   /**
-   * Represents a tool results execution resource.  This has the results of a TestMatrix.
+   * Represents a tool results execution resource. This has the results of a TestMatrix.
    */
   export interface Schema$ToolResultsExecution {
     /**
@@ -1329,7 +1329,7 @@ export namespace testing_v1 {
     projectId?: string | null;
   }
   /**
-   * Represents a tool results step resource.  This has the results of a TestExecution.
+   * Represents a tool results step resource. This has the results of a TestExecution.
    */
   export interface Schema$ToolResultsStep {
     /**
@@ -1375,7 +1375,7 @@ export namespace testing_v1 {
     packetLossRatio?: number | null;
   }
   /**
-   * Uniformly shards test cases given a total number of shards.  For Instrumentation test, it will be translated to “-e numShard” “-e shardIndex” AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
+   * Uniformly shards test cases given a total number of shards. For Instrumentation test, it will be translated to &quot;-e numShard&quot; &quot;-e shardIndex&quot; AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
    */
   export interface Schema$UniformSharding {
     /**
@@ -1571,7 +1571,7 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.cancel
-     * @desc Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asychronously. If the matrix is already final, this operation will have no effect.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @desc Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asynchronously. If the matrix is already final, this operation will have no effect. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1712,7 +1712,7 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.create
-     * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. Matrices are limited to at most 200 supported executions.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix expands                      to more than 200 supported executions
+     * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. Matrices are limited to at most 200 supported executions. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix expands to more than 200 supported executions
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1739,12 +1739,7 @@ export namespace testing_v1 {
      *   const res = await testing.projects.testMatrices.create({
      *     // The GCE project under which this job will run.
      *     projectId: 'placeholder-value',
-     *     // A string id used to detect duplicated requests.
-     *     // Ids are automatically scoped to a project, so
-     *     // users should ensure the ID is unique per-project.
-     *     // A UUID is recommended.
-     *     //
-     *     // Optional, but strongly recommended.
+     *     // A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1795,7 +1790,7 @@ export namespace testing_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId The GCE project under which this job will run.
-     * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended.  Optional, but strongly recommended.
+     * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended.
      * @param {().TestMatrix} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1882,7 +1877,7 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.get
-     * @desc Checks the status of a test matrix.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * @desc Checks the status of a test matrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2046,7 +2041,7 @@ export namespace testing_v1 {
      */
     projectId?: string;
     /**
-     * A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended.  Optional, but strongly recommended.
+     * A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended.
      */
     requestId?: string;
 
@@ -2075,7 +2070,7 @@ export namespace testing_v1 {
 
     /**
      * testing.testEnvironmentCatalog.get
-     * @desc Gets the catalog of supported test environments.  May return any of the following canonical error codes:  - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
+     * @desc Gets the catalog of supported test environments. May return any of the following canonical error codes: - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
      * @example
      * // Before running the sample:
      * // - Enable the API at:

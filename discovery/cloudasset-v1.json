@@ -450,7 +450,7 @@
       }
     }
   },
-  "revision": "20200724",
+  "revision": "20200731",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -670,7 +670,7 @@
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context mananger Policy set on an asset."
+            "The Cloud Access context manager Policy set on an asset."
           ],
           "type": "string"
         },
@@ -729,7 +729,7 @@
         },
         "condition": {
           "$ref": "Expr",
-          "description": "A condition which determines whether an asset update should be published.\nIf specified, an asset will be returned only when the expression evaluates\nto true.\nWhen set, `expression` field in the `Expr` must be a valid [CEL expression]\n(https://github.com/google/cel-spec) on a TemporalAsset with name\n`temporal_asset`. Example: a Feed with expression (\"temporal_asset.deleted\n== true\") will only publish Asset deletions. Other fields of `Expr` are\noptional."
+          "description": "A condition which determines whether an asset update should be published.\nIf specified, an asset will be returned only when the expression evaluates\nto true.\nWhen set, `expression` field in the `Expr` must be a valid [CEL expression]\n(https://github.com/google/cel-spec) on a TemporalAsset with name\n`temporal_asset`. Example: a Feed with expression (\"temporal_asset.deleted\n== true\") will only publish Asset deletions. Other fields of `Expr` are\noptional.\n\nSee our [user\nguide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)\nfor detailed instructions."
         },
         "contentType": {
           "description": "Asset content type. If not specified, no content but the asset name and\ntype will be returned.",
@@ -745,7 +745,7 @@
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context mananger Policy set on an asset."
+            "The Cloud Access context manager Policy set on an asset."
           ],
           "type": "string"
         },
@@ -1195,7 +1195,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices",
       "properties": {
         "allowedServices": {
-          "description": "The list of APIs usable within the Service Perimeter. Must be empty\nunless 'enable_restriction' is True.",
+          "description": "The list of APIs usable within the Service Perimeter. Must be empty\nunless 'enable_restriction' is True. You can specify a list of individual\nservices, as well as include the 'RESTRICTED-SERVICES' value, which\nautomatically includes all of the services protected by the perimeter.",
           "items": {
             "type": "string"
           },
