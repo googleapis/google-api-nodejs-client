@@ -254,17 +254,13 @@
       "name": "adsensehost",
       "version": "v4.1",
       "title": "AdSense Host API",
-      "description": "Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adsensehost/v4.1/rest",
-      "discoveryLink": "./apis/adsensehost/v4.1/rest",
+      "description": "The AdSense Host API gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.",
+      "discoveryRestUrl": "https://adsensehost.googleapis.com/$discovery/rest?version=v4.1",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/adsense-16.png",
-        "x32": "https://www.google.com/images/icons/product/adsense-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/adsense/host/",
-      "labels": [
-        "limited_availability"
-      ],
+      "documentationLink": "https://developers.google.com/adsense/host/index",
       "preferred": true
     },
     {
@@ -4234,22 +4230,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/vision/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "webfonts:v1",
-      "name": "webfonts",
-      "version": "v1",
-      "title": "Google Fonts Developer API",
-      "description": "Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/webfonts/v1/rest",
-      "discoveryLink": "./apis/webfonts/v1/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/feature/font_api-16.png",
-        "x32": "https://www.google.com/images/icons/feature/font_api-32.gif"
-      },
-      "documentationLink": "https://developers.google.com/fonts/docs/developer_api",
       "preferred": true
     },
     {
