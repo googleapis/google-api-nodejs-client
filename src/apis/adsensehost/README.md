@@ -2,7 +2,7 @@
 
 # adsensehost
 
-> Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
+> The AdSense Host API gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.
 
 ## Installation
 
