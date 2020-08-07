@@ -330,7 +330,7 @@ export namespace language_v1beta2 {
     label?: string | null;
   }
   /**
-   * ################################################################ #  Represents the input to API methods.
+   * ################################################################ # Represents the input to API methods.
    */
   export interface Schema$Document {
     /**
@@ -346,7 +346,7 @@ export namespace language_v1beta2 {
      */
     gcsContentUri?: string | null;
     /**
-     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](https://cloud.google.com/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
+     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted. [Language Support](https://cloud.google.com/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
     language?: string | null;
     /**
@@ -367,7 +367,7 @@ export namespace language_v1beta2 {
      */
     mentions?: Schema$EntityMention[];
     /**
-     * Metadata associated with the entity.  For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
+     * Metadata associated with the entity. For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
      */
     metadata?: {[key: string]: string} | null;
     /**
@@ -375,7 +375,7 @@ export namespace language_v1beta2 {
      */
     name?: string | null;
     /**
-     * The salience score associated with the entity in the [0, 1.0] range.  The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.
+     * The salience score associated with the entity in the [0, 1.0] range. The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.
      */
     salience?: number | null;
     /**
@@ -509,7 +509,7 @@ export namespace language_v1beta2 {
     score?: number | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -517,7 +517,7 @@ export namespace language_v1beta2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
