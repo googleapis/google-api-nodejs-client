@@ -128,7 +128,7 @@ export namespace cloudtrace_v1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -183,7 +183,7 @@ export namespace cloudtrace_v1 {
      */
     kind?: string | null;
     /**
-     * Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values).  Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats:  * `/category/product/key` for agents of well-known products (e.g.   `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g.   `foo.com/myproduct/bar`)  Predefined labels include:  *   `/agent` *   `/component` *   `/error/message` *   `/error/name` *   `/http/client_city` *   `/http/client_country` *   `/http/client_protocol` *   `/http/client_region` *   `/http/host` *   `/http/method` *   `/http/path` *   `/http/redirected_url` *   `/http/request/size` *   `/http/response/size` *   `/http/route` *   `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *   `/stacktrace` *   `/tid`
+     * Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values). Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats: * `/category/product/key` for agents of well-known products (e.g. `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g. `foo.com/myproduct/bar`) Predefined labels include: * `/agent` * `/component` * `/error/message` * `/error/name` * `/http/client_city` * `/http/client_country` * `/http/client_protocol` * `/http/client_region` * `/http/host` * `/http/method` * `/http/path` * `/http/redirected_url` * `/http/request/size` * `/http/response/size` * `/http/route` * `/http/status_code` * `/http/url` * `/http/user_agent` * `/pid` * `/stacktrace` * `/tid`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -541,68 +541,21 @@ export namespace cloudtrace_v1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.list({
-     *     // End of the time interval (inclusive) during which the trace data was
-     *     // collected from the application.
+     *     // End of the time interval (inclusive) during which the trace data was collected from the application.
      *     endTime: 'placeholder-value',
-     *     // Optional. A filter against labels for the request.
-     *     //
-     *     // By default, searches use prefix matching. To specify exact match, prepend
-     *     // a plus symbol (`+`) to the search term.
-     *     // Multiple terms are ANDed. Syntax:
-     *     //
-     *     // *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root
-     *     //     span starts with `NAME_PREFIX`.
-     *     // *   `+root:NAME` or `+NAME`: Return traces where any root span's name is
-     *     //     exactly `NAME`.
-     *     // *   `span:NAME_PREFIX`: Return traces where any span starts with
-     *     //     `NAME_PREFIX`.
-     *     // *   `+span:NAME`: Return traces where any span's name is exactly
-     *     //     `NAME`.
-     *     // *   `latency:DURATION`: Return traces whose overall latency is
-     *     //     greater or equal to than `DURATION`. Accepted units are nanoseconds
-     *     //     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For
-     *     //     example, `latency:24ms` returns traces whose overall latency
-     *     //     is greater than or equal to 24 milliseconds.
-     *     // *   `label:LABEL_KEY`: Return all traces containing the specified
-     *     //     label key (exact match, case-sensitive) regardless of the key:value
-     *     //     pair's value (including empty values).
-     *     // *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified
-     *     //     label key (exact match, case-sensitive) whose value starts with
-     *     //     `VALUE_PREFIX`. Both a key and a value must be specified.
-     *     // *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair
-     *     //     exactly matching the specified text. Both a key and a value must be
-     *     //     specified.
-     *     // *   `method:VALUE`: Equivalent to `/http/method:VALUE`.
-     *     // *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     *     // Optional. A filter against labels for the request. By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax: * `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root span starts with `NAME_PREFIX`. * `+root:NAME` or `+NAME`: Return traces where any root span's name is exactly `NAME`. * `span:NAME_PREFIX`: Return traces where any span starts with `NAME_PREFIX`. * `+span:NAME`: Return traces where any span's name is exactly `NAME`. * `latency:DURATION`: Return traces whose overall latency is greater or equal to than `DURATION`. Accepted units are nanoseconds (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For example, `latency:24ms` returns traces whose overall latency is greater than or equal to 24 milliseconds. * `label:LABEL_KEY`: Return all traces containing the specified label key (exact match, case-sensitive) regardless of the key:value pair's value (including empty values). * `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified label key (exact match, case-sensitive) whose value starts with `VALUE_PREFIX`. Both a key and a value must be specified. * `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair exactly matching the specified text. Both a key and a value must be specified. * `method:VALUE`: Equivalent to `/http/method:VALUE`. * `url:VALUE`: Equivalent to `/http/url:VALUE`.
      *     filter: 'placeholder-value',
-     *     // Optional. Field used to sort the returned traces.
-     *     // Can be one of the following:
-     *     //
-     *     // *   `trace_id`
-     *     // *   `name` (`name` field of root span in the trace)
-     *     // *   `duration` (difference between `end_time` and `start_time` fields of
-     *     //      the root span)
-     *     // *   `start` (`start_time` field of the root span)
-     *     //
-     *     // Descending order can be specified by appending `desc` to the sort field
-     *     // (for example, `name desc`).
-     *     //
-     *     // Only one sort field is permitted.
+     *     // Optional. Field used to sort the returned traces. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of traces to return. If not specified or <= 0, the
-     *     // implementation selects a reasonable value.  The implementation may
-     *     // return fewer traces than the requested page size.
+     *     // Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size.
      *     pageSize: 'placeholder-value',
-     *     // Token identifying the page of results to return. If provided, use the
-     *     // value of the `next_page_token` field from a previous request.
+     *     // Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
      *     pageToken: 'placeholder-value',
      *     // Required. ID of the Cloud project where the trace data is stored.
      *     projectId: 'placeholder-value',
-     *     // Start of the time interval (inclusive) during which the trace data was
-     *     // collected from the application.
+     *     // Start of the time interval (inclusive) during which the trace data was collected from the application.
      *     startTime: 'placeholder-value',
-     *     // Optional. Type of data returned for traces in the list. Default is
-     *     // `MINIMAL`.
+     *     // Optional. Type of data returned for traces in the list. Default is `MINIMAL`.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -624,9 +577,9 @@ export namespace cloudtrace_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.endTime End of the time interval (inclusive) during which the trace data was collected from the application.
-     * @param {string=} params.filter Optional. A filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
-     * @param {string=} params.orderBy Optional. Field used to sort the returned traces. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
-     * @param {integer=} params.pageSize Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size.
+     * @param {string=} params.filter Optional. A filter against labels for the request. By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax: * `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root span starts with `NAME_PREFIX`. * `+root:NAME` or `+NAME`: Return traces where any root span's name is exactly `NAME`. * `span:NAME_PREFIX`: Return traces where any span starts with `NAME_PREFIX`. * `+span:NAME`: Return traces where any span's name is exactly `NAME`. * `latency:DURATION`: Return traces whose overall latency is greater or equal to than `DURATION`. Accepted units are nanoseconds (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For example, `latency:24ms` returns traces whose overall latency is greater than or equal to 24 milliseconds. * `label:LABEL_KEY`: Return all traces containing the specified label key (exact match, case-sensitive) regardless of the key:value pair's value (including empty values). * `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified label key (exact match, case-sensitive) whose value starts with `VALUE_PREFIX`. Both a key and a value must be specified. * `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair exactly matching the specified text. Both a key and a value must be specified. * `method:VALUE`: Equivalent to `/http/method:VALUE`. * `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     * @param {string=} params.orderBy Optional. Field used to sort the returned traces. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
+     * @param {integer=} params.pageSize Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size.
      * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request.
      * @param {string} params.projectId Required. ID of the Cloud project where the trace data is stored.
      * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
@@ -736,15 +689,15 @@ export namespace cloudtrace_v1 {
      */
     endTime?: string;
     /**
-     * Optional. A filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+     * Optional. A filter against labels for the request. By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax: * `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root span starts with `NAME_PREFIX`. * `+root:NAME` or `+NAME`: Return traces where any root span's name is exactly `NAME`. * `span:NAME_PREFIX`: Return traces where any span starts with `NAME_PREFIX`. * `+span:NAME`: Return traces where any span's name is exactly `NAME`. * `latency:DURATION`: Return traces whose overall latency is greater or equal to than `DURATION`. Accepted units are nanoseconds (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For example, `latency:24ms` returns traces whose overall latency is greater than or equal to 24 milliseconds. * `label:LABEL_KEY`: Return all traces containing the specified label key (exact match, case-sensitive) regardless of the key:value pair's value (including empty values). * `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified label key (exact match, case-sensitive) whose value starts with `VALUE_PREFIX`. Both a key and a value must be specified. * `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair exactly matching the specified text. Both a key and a value must be specified. * `method:VALUE`: Equivalent to `/http/method:VALUE`. * `url:VALUE`: Equivalent to `/http/url:VALUE`.
      */
     filter?: string;
     /**
-     * Optional. Field used to sort the returned traces. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
+     * Optional. Field used to sort the returned traces. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size.
+     * Optional. Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size.
      */
     pageSize?: number;
     /**

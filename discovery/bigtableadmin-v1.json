@@ -96,7 +96,7 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20200629",
+  "revision": "20200725",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -339,6 +339,34 @@
         },
         "parent": {
           "description": "Required. The unique name of the project in which to create the new instance.\nValues are of the form `projects/{project}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FailureTrace": {
+      "description": "Added to the error payload.",
+      "id": "FailureTrace",
+      "properties": {
+        "frames": {
+          "items": {
+            "$ref": "Frame"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Frame": {
+      "id": "Frame",
+      "properties": {
+        "targetName": {
+          "type": "string"
+        },
+        "workflowGuid": {
+          "type": "string"
+        },
+        "zoneId": {
           "type": "string"
         }
       },
