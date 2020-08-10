@@ -240,7 +240,7 @@ export namespace manufacturers_v1 {
      */
     richProductContent?: string[] | null;
     /**
-     * The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
+     * The scent of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#scent.
      */
     scent?: string | null;
     /**
@@ -316,7 +316,7 @@ export namespace manufacturers_v1 {
     status?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -434,11 +434,11 @@ export namespace manufacturers_v1 {
      */
     issues?: Schema$Issue[];
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string | null;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string | null;
     /**
@@ -510,20 +510,9 @@ export namespace manufacturers_v1 {
      *
      *   // Do the magic
      *   const res = await manufacturers.accounts.products.delete({
-     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
-     *     //
-     *     // `target_country`   - The target country of the product as a CLDR territory
-     *     //                      code (for example, US).
-     *     //
-     *     // `content_language` - The content language of the product as a two-letter
-     *     //                      ISO 639-1 language code (for example, en).
-     *     //
-     *     // `product_id`     -   The ID of the product. For more information, see
-     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id}`.
-     *     //
-     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     // Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      *     parent: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -541,8 +530,8 @@ export namespace manufacturers_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
+     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -629,7 +618,7 @@ export namespace manufacturers_v1 {
 
     /**
      * manufacturers.accounts.products.get
-     * @desc Gets the product from a Manufacturer Center account, including product issues.  A recently updated product takes around 15 minutes to process. Changes are only visible after it has been processed. While some issues may be available once the product has been processed, other issues may take days to appear.
+     * @desc Gets the product from a Manufacturer Center account, including product issues. A recently updated product takes around 15 minutes to process. Changes are only visible after it has been processed. While some issues may be available once the product has been processed, other issues may take days to appear.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -654,23 +643,11 @@ export namespace manufacturers_v1 {
      *
      *   // Do the magic
      *   const res = await manufacturers.accounts.products.get({
-     *     // The information to be included in the response. Only sections listed here
-     *     // will be returned.
+     *     // The information to be included in the response. Only sections listed here will be returned.
      *     include: 'placeholder-value',
-     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
-     *     //
-     *     // `target_country`   - The target country of the product as a CLDR territory
-     *     //                      code (for example, US).
-     *     //
-     *     // `content_language` - The content language of the product as a two-letter
-     *     //                      ISO 639-1 language code (for example, en).
-     *     //
-     *     // `product_id`     -   The ID of the product. For more information, see
-     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id}`.
-     *     //
-     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     // Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      *     parent: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -698,8 +675,8 @@ export namespace manufacturers_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.include The information to be included in the response. Only sections listed here will be returned.
-     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
+     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -811,17 +788,13 @@ export namespace manufacturers_v1 {
      *
      *   // Do the magic
      *   const res = await manufacturers.accounts.products.list({
-     *     // The information to be included in the response. Only sections listed here
-     *     // will be returned.
+     *     // The information to be included in the response. Only sections listed here will be returned.
      *     include: 'placeholder-value',
-     *     // Maximum number of product statuses to return in the response, used for
-     *     // paging.
+     *     // Maximum number of product statuses to return in the response, used for paging.
      *     pageSize: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // Parent ID in the format `accounts/{account_id}`.
-     *     //
-     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     // Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      *     parent: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -845,7 +818,7 @@ export namespace manufacturers_v1 {
      * @param {string=} params.include The information to be included in the response. Only sections listed here will be returned.
      * @param {integer=} params.pageSize Maximum number of product statuses to return in the response, used for paging.
      * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -937,7 +910,7 @@ export namespace manufacturers_v1 {
 
     /**
      * manufacturers.accounts.products.update
-     * @desc Inserts or updates the attributes of the product in a Manufacturer Center account.  Creates a product with the provided attributes. If the product already exists, then all attributes are replaced with the new ones. The checks at upload time are minimal. All required attributes need to be present for a product to be valid. Issues may show up later after the API has accepted a new upload for a product and it is possible to overwrite an existing valid product with an invalid product. To detect this, you should retrieve the product and check it for issues once the new version is available.  Uploaded attributes first need to be processed before they can be retrieved. Until then, new products will be unavailable, and retrieval of previously uploaded products will return the original state of the product.
+     * @desc Inserts or updates the attributes of the product in a Manufacturer Center account. Creates a product with the provided attributes. If the product already exists, then all attributes are replaced with the new ones. The checks at upload time are minimal. All required attributes need to be present for a product to be valid. Issues may show up later after the API has accepted a new upload for a product and it is possible to overwrite an existing valid product with an invalid product. To detect this, you should retrieve the product and check it for issues once the new version is available. Uploaded attributes first need to be processed before they can be retrieved. Until then, new products will be unavailable, and retrieval of previously uploaded products will return the original state of the product.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -962,20 +935,9 @@ export namespace manufacturers_v1 {
      *
      *   // Do the magic
      *   const res = await manufacturers.accounts.products.update({
-     *     // Name in the format `{target_country}:{content_language}:{product_id}`.
-     *     //
-     *     // `target_country`   - The target country of the product as a CLDR territory
-     *     //                      code (for example, US).
-     *     //
-     *     // `content_language` - The content language of the product as a two-letter
-     *     //                      ISO 639-1 language code (for example, en).
-     *     //
-     *     // `product_id`     -   The ID of the product. For more information, see
-     *     //                      https://support.google.com/manufacturers/answer/6124116#id.
+     *     // Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id}`.
-     *     //
-     *     // `account_id` - The ID of the Manufacturer Center account.
+     *     // Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
@@ -1036,8 +998,8 @@ export namespace manufacturers_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
-     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
+     * @param {string} params.parent Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      * @param {().Attributes} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1127,11 +1089,11 @@ export namespace manufacturers_v1 {
   export interface Params$Resource$Accounts$Products$Delete
     extends StandardParameters {
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
@@ -1142,11 +1104,11 @@ export namespace manufacturers_v1 {
      */
     include?: string[];
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
@@ -1165,18 +1127,18 @@ export namespace manufacturers_v1 {
      */
     pageToken?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
   }
   export interface Params$Resource$Accounts$Products$Update
     extends StandardParameters {
     /**
-     * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+     * Name in the format `{target_country}:{content_language}:{product_id}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
     name?: string;
     /**
-     * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
+     * Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
      */
     parent?: string;
 
