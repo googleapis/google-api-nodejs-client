@@ -32,7 +32,6 @@ do
     --volume=${KOKORO_GFILE_DIR}:${KOKORO_GFILE_DIR} \
     gcr.io/google.com/cloudsdktool/cloud-sdk \
     secrets versions access latest \
-    --credential-file-override=${KOKORO_GFILE_DIR}/kokoro-trampoline.service-account.json \
     --project cloud-devrel-kokoro-resources \
     --secret $key > \
     "$SECRET_LOCATION/$key"
