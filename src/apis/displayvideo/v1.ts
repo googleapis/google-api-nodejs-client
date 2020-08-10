@@ -690,15 +690,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AuditAdvertiserResponse {
     /**
-     * The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9,999 campaigns per advertiser.
+     * The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9999 campaigns per advertiser.
      */
     usedCampaignsCount?: string | null;
     /**
-     * The number of ACTIVE, PAUSED and DRAFT insertion orders under this advertiser. These insertion orders count towards the limit of 9,999 insertion orders per advertiser.
+     * The number of ACTIVE, PAUSED and DRAFT insertion orders under this advertiser. These insertion orders count towards the limit of 9999 insertion orders per advertiser.
      */
     usedInsertionOrdersCount?: string | null;
     /**
-     * The number of ACTIVE, PAUSED, and DRAFT line items under this advertiser. These line items count towards the limit of 9,999 line items per advertiser.
+     * The number of ACTIVE, PAUSED, and DRAFT line items under this advertiser. These line items count towards the limit of 9999 line items per advertiser.
      */
     usedLineItemsCount?: string | null;
   }
@@ -851,9 +851,6 @@ export namespace displayvideo_v1 {
      */
     deletedAssignedUserRoles?: string[] | null;
   }
-  /**
-   * Response message for BulkEditAssignedUserRoles.
-   */
   export interface Schema$BulkEditAssignedUserRolesResponse {
     /**
      * The list of assigned user roles that have been successfully created. This list will be absent if empty.
@@ -2834,9 +2831,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for CustomBiddingAlgorithmService.ListCustomBiddingAlgorithms.
-   */
   export interface Schema$ListCustomBiddingAlgorithmsResponse {
     /**
      * The list of custom bidding algorithms. This list will be absent if empty.
@@ -2969,9 +2963,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for ListPartnerAssignedTargetingOptions.
-   */
   export interface Schema$ListPartnerAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -2982,9 +2973,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for ListPartners.
-   */
   export interface Schema$ListPartnersResponse {
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListPartners` method to retrieve the next page of results.
@@ -3021,9 +3009,6 @@ export namespace displayvideo_v1 {
      */
     targetingOptions?: Schema$TargetingOption[];
   }
-  /**
-   * Response message for ListUsers.
-   */
   export interface Schema$ListUsersResponse {
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListUsers` method to retrieve the next page of results. This token will be absent if there are no more results to return.
@@ -4068,7 +4053,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.advertisers.audit
-     * @desc Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their [respective resource limit]: (https://support.google.com/displayvideo/answer/6071450?hl=en)
+     * @desc Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15817,11 +15802,11 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.customBiddingAlgorithms.get({
-     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
      *     advertiserId: 'placeholder-value',
      *     // Required. The ID of the custom bidding algorithm to fetch.
      *     customBiddingAlgorithmId: '[^/]+',
-     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15847,9 +15832,9 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {string=} params.advertiserId The ID of the DV360 partner that has access to the custom bidding algorithm.
      * @param {string} params.customBiddingAlgorithmId Required. The ID of the custom bidding algorithm to fetch.
-     * @param {string=} params.partnerId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {string=} params.partnerId The ID of the DV360 partner that has access to the custom bidding algorithm.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15965,7 +15950,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.customBiddingAlgorithms.list({
-     *     // The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      *     advertiserId: 'placeholder-value',
      *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
@@ -15975,7 +15960,7 @@ export namespace displayvideo_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
-     *     // The ID of the DV3 partner that has access to the custom bidding algorithm.
+     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
      *     partnerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15996,12 +15981,12 @@ export namespace displayvideo_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     * @param {string=} params.advertiserId The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      * @param {string=} params.filter Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
-     * @param {string=} params.partnerId The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * @param {string=} params.partnerId The ID of the DV360 partner that has access to the custom bidding algorithm.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16098,7 +16083,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Custombiddingalgorithms$Get
     extends StandardParameters {
     /**
-     * The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * The ID of the DV360 partner that has access to the custom bidding algorithm.
      */
     advertiserId?: string;
     /**
@@ -16106,14 +16091,14 @@ export namespace displayvideo_v1 {
      */
     customBiddingAlgorithmId?: string;
     /**
-     * The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * The ID of the DV360 partner that has access to the custom bidding algorithm.
      */
     partnerId?: string;
   }
   export interface Params$Resource$Custombiddingalgorithms$List
     extends StandardParameters {
     /**
-     * The ID of the DV3 advertiser that has access to the custom bidding algorithm.
+     * The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      */
     advertiserId?: string;
     /**
@@ -16133,7 +16118,7 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
     /**
-     * The ID of the DV3 partner that has access to the custom bidding algorithm.
+     * The ID of the DV360 partner that has access to the custom bidding algorithm.
      */
     partnerId?: string;
   }
@@ -19589,7 +19574,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.partners.bulkEditPartnerAssignedTargetingOptions
-     * @desc Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.create_requests .
+     * @desc Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -22970,7 +22955,7 @@ export namespace displayvideo_v1 {
 
     /**
      * displayvideo.users.bulkEditAssignedUserRoles
-     * @desc Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deleted_assigned_user_roles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.created_assigned_user_roles.
+     * @desc Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
