@@ -116,7 +116,7 @@
         "profiles": {
           "methods": {
             "create": {
-              "description": "CreateProfile creates a new profile resource in the online mode.\n\nThe server ensures that the new profiles are created at a constant rate per\ndeployment, so the creation request may hang for some time until the next\nprofile session is available.\n\nThe request may fail with ABORTED error if the creation is not available\nwithin ~1m, the response will indicate the duration of the backoff the\nclient should take before attempting creating a profile again. The backoff\nduration is returned in google.rpc.RetryInfo extension on the response\nstatus. To a gRPC client, the extension will be return as a\nbinary-serialized proto in the trailing metadata item named\n\"google.rpc.retryinfo-bin\".",
+              "description": "CreateProfile creates a new profile resource in the online mode. The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named \"google.rpc.retryinfo-bin\".",
               "flatPath": "v2/projects/{projectsId}/profiles",
               "httpMethod": "POST",
               "id": "cloudprofiler.projects.profiles.create",
@@ -146,7 +146,7 @@
               ]
             },
             "createOffline": {
-              "description": "CreateOfflineProfile creates a new profile resource in the offline mode.\nThe client provides the profile to create along with the profile bytes, the\nserver records it.",
+              "description": "CreateOfflineProfile creates a new profile resource in the offline mode. The client provides the profile to create along with the profile bytes, the server records it.",
               "flatPath": "v2/projects/{projectsId}/profiles:createOffline",
               "httpMethod": "POST",
               "id": "cloudprofiler.projects.profiles.createOffline",
@@ -176,7 +176,7 @@
               ]
             },
             "patch": {
-              "description": "UpdateProfile updates the profile bytes and labels on the profile resource\ncreated in the online mode. Updating the bytes for profiles created in the\noffline mode is currently not supported: the profile content must be\nprovided at the time of the profile creation.",
+              "description": "UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation.",
               "flatPath": "v2/projects/{projectsId}/profiles/{profilesId}",
               "httpMethod": "PATCH",
               "id": "cloudprofiler.projects.profiles.patch",
@@ -192,7 +192,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Field mask used to specify the fields to be overwritten. Currently only\nprofile_bytes and labels fields are supported by UpdateProfile, so only\nthose fields can be specified in the mask. When no mask is provided, all\nfields are overwritten.",
+                  "description": "Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -216,11 +216,11 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200803",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
-      "description": "CreateProfileRequest describes a profile resource online creation request.\nThe deployment field must be populated. The profile_type specifies the list\nof profile types supported by the agent. The creation call will hang until a\nprofile of one of these types needs to be collected.",
+      "description": "CreateProfileRequest describes a profile resource online creation request. The deployment field must be populated. The profile_type specifies the list of profile types supported by the agent. The creation call will hang until a profile of one of these types needs to be collected.",
       "id": "CreateProfileRequest",
       "properties": {
         "deployment": {
@@ -233,11 +233,11 @@
             "Unspecified profile type.",
             "Thread CPU time sampling.",
             "Wallclock time sampling. More expensive as stops all threads.",
-            "In-use heap profile. Represents a snapshot of the allocations that are\nlive at the time of the profiling.",
+            "In-use heap profile. Represents a snapshot of the allocations that are live at the time of the profiling.",
             "Single-shot collection of all thread stacks.",
             "Synchronization contention profile.",
             "Peak heap profile.",
-            "Heap allocation profile. It represents the aggregation of all allocations\nmade over the duration of the profile. All allocations are included,\nincluding those that might have been freed by the end of the profiling\ninterval. The profile is in particular useful for garbage collecting\nlanguages to understand which parts of the code create most of the garbage\ncollection pressure to see if those can be optimized."
+            "Heap allocation profile. It represents the aggregation of all allocations made over the duration of the profile. All allocations are included, including those that might have been freed by the end of the profiling interval. The profile is in particular useful for garbage collecting languages to understand which parts of the code create most of the garbage collection pressure to see if those can be optimized."
           ],
           "items": {
             "enum": [
@@ -249,6 +249,16 @@
               "CONTENTION",
               "PEAK_HEAP",
               "HEAP_ALLOC"
+            ],
+            "enumDescriptions": [
+              "Unspecified profile type.",
+              "Thread CPU time sampling.",
+              "Wallclock time sampling. More expensive as stops all threads.",
+              "In-use heap profile. Represents a snapshot of the allocations that are live at the time of the profiling.",
+              "Single-shot collection of all thread stacks.",
+              "Synchronization contention profile.",
+              "Peak heap profile.",
+              "Heap allocation profile. It represents the aggregation of all allocations made over the duration of the profile. All allocations are included, including those that might have been freed by the end of the profiling interval. The profile is in particular useful for garbage collecting languages to understand which parts of the code create most of the garbage collection pressure to see if those can be optimized."
             ],
             "type": "string"
           },
@@ -265,15 +275,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels identify the deployment within the user universe and same target.\nValidation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.\nValue for an individual label must be <= 512 bytes, the total\nsize of all label names and values must be <= 1024 bytes.\n\nLabel named \"language\" can be used to record the programming language of\nthe profiled deployment. The standard choices for the value include \"java\",\n\"go\", \"python\", \"ruby\", \"nodejs\", \"php\", \"dotnet\".\n\nFor deployments running on Google Cloud Platform, \"zone\" or \"region\" label\nshould be present describing the deployment location. An example of a zone\nis \"us-central1-a\", an example of a region is \"us-central1\" or\n\"us-central\".",
+          "description": "Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be <= 512 bytes, the total size of all label names and values must be <= 1024 bytes. Label named \"language\" can be used to record the programming language of the profiled deployment. The standard choices for the value include \"java\", \"go\", \"python\", \"ruby\", \"nodejs\", \"php\", \"dotnet\". For deployments running on Google Cloud Platform, \"zone\" or \"region\" label should be present describing the deployment location. An example of a zone is \"us-central1-a\", an example of a region is \"us-central1\" or \"us-central\".",
           "type": "object"
         },
         "projectId": {
-          "description": "Project ID is the ID of a cloud project.\nValidation regex: `^a-z{4,61}[a-z0-9]$`.",
+          "description": "Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`.",
           "type": "string"
         },
         "target": {
-          "description": "Target is the service name used to group related deployments:\n* Service name for GAE Flex / Standard.\n* Cluster and container name for GKE.\n* User-specified string for direct GCE profiling (e.g. Java).\n* Job name for Dataflow.\nValidation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.",
+          "description": "Target is the service name used to group related deployments: * Service name for GAE Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct GCE profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.",
           "type": "string"
         }
       },
@@ -288,7 +298,7 @@
           "description": "Deployment this profile corresponds to."
         },
         "duration": {
-          "description": "Duration of the profiling session.\nInput (for the offline mode) or output (for the online mode).\nThe field represents requested profiling duration. It may slightly differ\nfrom the effective profiling duration, which is recorded in the profile\ndata, in case the profiling can't be stopped immediately (e.g. in case\nstopping the profiling is handled asynchronously).",
+          "description": "Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can't be stopped immediately (e.g. in case stopping the profiling is handled asynchronously).",
           "format": "google-duration",
           "type": "string"
         },
@@ -296,7 +306,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Input only. Labels associated to this specific profile. These labels will\nget merged with the deployment labels for the final data set.  See\ndocumentation on deployment labels for validation rules and limits.",
+          "description": "Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits.",
           "type": "object"
         },
         "name": {
@@ -304,12 +314,12 @@
           "type": "string"
         },
         "profileBytes": {
-          "description": "Input only. Profile bytes, as a gzip compressed serialized proto, the\nformat is https://github.com/google/pprof/blob/master/proto/profile.proto.",
+          "description": "Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto.",
           "format": "byte",
           "type": "string"
         },
         "profileType": {
-          "description": "Type of profile.\nFor offline mode, this must be specified when creating the profile. For\nonline mode it is assigned and returned by the server.",
+          "description": "Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server.",
           "enum": [
             "PROFILE_TYPE_UNSPECIFIED",
             "CPU",
@@ -324,11 +334,11 @@
             "Unspecified profile type.",
             "Thread CPU time sampling.",
             "Wallclock time sampling. More expensive as stops all threads.",
-            "In-use heap profile. Represents a snapshot of the allocations that are\nlive at the time of the profiling.",
+            "In-use heap profile. Represents a snapshot of the allocations that are live at the time of the profiling.",
             "Single-shot collection of all thread stacks.",
             "Synchronization contention profile.",
             "Peak heap profile.",
-            "Heap allocation profile. It represents the aggregation of all allocations\nmade over the duration of the profile. All allocations are included,\nincluding those that might have been freed by the end of the profiling\ninterval. The profile is in particular useful for garbage collecting\nlanguages to understand which parts of the code create most of the garbage\ncollection pressure to see if those can be optimized."
+            "Heap allocation profile. It represents the aggregation of all allocations made over the duration of the profile. All allocations are included, including those that might have been freed by the end of the profiling interval. The profile is in particular useful for garbage collecting languages to understand which parts of the code create most of the garbage collection pressure to see if those can be optimized."
           ],
           "type": "string"
         }

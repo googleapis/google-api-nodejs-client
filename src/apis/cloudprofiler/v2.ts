@@ -145,7 +145,7 @@ export namespace cloudprofiler_v2 {
    */
   export interface Schema$Deployment {
     /**
-     * Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be &lt;= 512 bytes, the total size of all label names and values must be &lt;= 1024 bytes.  Label named &quot;language&quot; can be used to record the programming language of the profiled deployment. The standard choices for the value include &quot;java&quot;, &quot;go&quot;, &quot;python&quot;, &quot;ruby&quot;, &quot;nodejs&quot;, &quot;php&quot;, &quot;dotnet&quot;.  For deployments running on Google Cloud Platform, &quot;zone&quot; or &quot;region&quot; label should be present describing the deployment location. An example of a zone is &quot;us-central1-a&quot;, an example of a region is &quot;us-central1&quot; or &quot;us-central&quot;.
+     * Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be &lt;= 512 bytes, the total size of all label names and values must be &lt;= 1024 bytes. Label named &quot;language&quot; can be used to record the programming language of the profiled deployment. The standard choices for the value include &quot;java&quot;, &quot;go&quot;, &quot;python&quot;, &quot;ruby&quot;, &quot;nodejs&quot;, &quot;php&quot;, &quot;dotnet&quot;. For deployments running on Google Cloud Platform, &quot;zone&quot; or &quot;region&quot; label should be present describing the deployment location. An example of a zone is &quot;us-central1-a&quot;, an example of a region is &quot;us-central1&quot; or &quot;us-central&quot;.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -170,7 +170,7 @@ export namespace cloudprofiler_v2 {
      */
     duration?: string | null;
     /**
-     * Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set.  See documentation on deployment labels for validation rules and limits.
+     * Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -204,7 +204,7 @@ export namespace cloudprofiler_v2 {
 
     /**
      * cloudprofiler.projects.profiles.create
-     * @desc CreateProfile creates a new profile resource in the online mode.  The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available.  The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named "google.rpc.retryinfo-bin".
+     * @desc CreateProfile creates a new profile resource in the online mode. The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named "google.rpc.retryinfo-bin".
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -541,10 +541,7 @@ export namespace cloudprofiler_v2 {
      *   const res = await cloudprofiler.projects.profiles.patch({
      *     // Output only. Opaque, server-assigned, unique ID for this profile.
      *     name: 'projects/my-project/profiles/my-profile',
-     *     // Field mask used to specify the fields to be overwritten. Currently only
-     *     // profile_bytes and labels fields are supported by UpdateProfile, so only
-     *     // those fields can be specified in the mask. When no mask is provided, all
-     *     // fields are overwritten.
+     *     // Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
