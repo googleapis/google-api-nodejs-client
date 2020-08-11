@@ -5906,7 +5906,7 @@
       }
     }
   },
-  "revision": "20200728",
+  "revision": "20200804",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -11439,7 +11439,8 @@
             "LINE_ITEM_TYPE_VIDEO_DEFAULT",
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
             "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
-            "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY"
+            "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
+            "LINE_ITEM_TYPE_AUDIO_DEFAULT"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -11448,7 +11449,8 @@
             "Video ads sold on a CPM basis for a variety of environments.",
             "Video ads that drive installs of an app.",
             "Display ads served on mobile app inventory.",
-            "Video ads served on mobile app inventory."
+            "Video ads served on mobile app inventory.",
+            "Rtb Audio ads sold for a variety of environments."
           ],
           "type": "string"
         },

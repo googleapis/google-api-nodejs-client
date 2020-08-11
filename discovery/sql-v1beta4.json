@@ -12,8 +12,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/sql",
+  "baseUrl": "https://sqladmin.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "SQL Admin",
   "description": "API for Cloud SQL database instance management",
   "discoveryVersion": "v1",
@@ -24,7 +24,7 @@
   },
   "id": "sql:v1beta4",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://sqladmin.mtls.googleapis.com/",
   "name": "sql",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -1370,7 +1370,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "ID of the project that contains the first generation instance.",
+                  "description": "ID of the project that contains the instance.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1818,8 +1818,8 @@
       }
     }
   },
-  "revision": "20200713",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20200728",
+  "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
       "description": "An entry for an Access Control list.",
@@ -1839,7 +1839,7 @@
           "type": "string"
         },
         "value": {
-          "description": "The whitelisted value for the access control list.",
+          "description": "The allowlisted value for the access control list.",
           "type": "string"
         }
       },
@@ -2071,7 +2071,7 @@
       "properties": {
         "binLogCoordinates": {
           "$ref": "BinLogCoordinates",
-          "description": "Binary log coordinates, if specified, identify the position up to which the\nsource instance should be cloned. If not specified, the source instance is\ncloned up to the most recent binary log coordinates."
+          "description": "Binary log coordinates, if specified, identify the position up to which the\nsource instance is cloned. If not specified, the source instance is\ncloned up to the most recent binary log coordinates."
         },
         "destinationInstanceName": {
           "description": "Name of the Cloud SQL instance to be created as a clone.",
@@ -2141,11 +2141,11 @@
       "id": "DatabaseFlags",
       "properties": {
         "name": {
-          "description": "The name of the flag. These flags are passed at instance startup, so\ninclude both server options and system variables for MySQL. Flags should be\nspecified with underscores, not hyphens. For more information, see <a\nhref=\"/sql/docs/mysql/flags\">Configuring Database Flags</a> in the Cloud\nSQL documentation.",
+          "description": "The name of the flag. These flags are passed at instance startup, so\ninclude both server options and system variables for MySQL. Flags are\nspecified with underscores, not hyphens. For more information, see <a\nhref=\"/sql/docs/mysql/flags\">Configuring Database Flags</a> in the Cloud\nSQL documentation.",
           "type": "string"
         },
         "value": {
-          "description": "The value of the flag. Booleans should be set to <b>on</b> for true\nand <b>off</b> for false. This field must be omitted if the flag\ndoesn't take a value.",
+          "description": "The value of the flag. Booleans are set to <b>on</b> for true\nand <b>off</b> for false. This field must be omitted if the flag\ndoesn't take a value.",
           "type": "string"
         }
       },
@@ -2176,7 +2176,7 @@
           "type": "string"
         },
         "currentDiskSize": {
-          "description": "The current disk usage of the instance in bytes. This property has been\ndeprecated. Users should use the\n\"cloudsql.googleapis.com/database/disk/bytes_used\" metric in Cloud\nMonitoring API instead. Please see <a\nhref=\"https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ\">this\nannouncement</a> for details.",
+          "description": "The current disk usage of the instance in bytes. This property has been\ndeprecated. Use the\n\"cloudsql.googleapis.com/database/disk/bytes_used\" metric in Cloud\nMonitoring API instead. Please see <a\nhref=\"https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ\">this\nannouncement</a> for details.",
           "format": "int64",
           "type": "string"
         },
@@ -2363,9 +2363,9 @@
           "description": "If the instance state is SUSPENDED, the reason for the suspension.",
           "enumDescriptions": [
             "This is an unknown suspension reason.",
-            "The instance is suspended due to billing issues (e.g., GCP account issue)",
-            "The instance is suspended due to illegal content (e.g., child pornography,\ncopyrighted material, etc.).",
-            "The instance is causing operational issues (e.g., causing the database\nto crash).",
+            "The instance is suspended due to billing issues (for example:, GCP account\nissue)",
+            "The instance is suspended due to illegal content (for example:, child\npornography, copyrighted material, etc.).",
+            "The instance is causing operational issues (for example:, causing the\ndatabase to crash).",
             "The KMS key used by the instance is either revoked or denied access to"
           ],
           "items": {
@@ -2448,11 +2448,11 @@
           "type": "string"
         },
         "clientCertificate": {
-          "description": "PEM representation of the slave's x509 certificate.",
+          "description": "PEM representation of the replica's x509 certificate.",
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the slave's private key. The corresponsing public key\nis encoded in the client's certificate. The format of the slave's private\nkey can be either PKCS #1 or PKCS #8.",
+          "description": "PEM representation of the replica's private key. The corresponsing public\nkey is encoded in the client's certificate. The format of the replica's\nprivate key can be either PKCS #1 or PKCS #8.",
           "type": "string"
         },
         "kind": {
@@ -2669,7 +2669,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This is the name of the flag. Flag names always use underscores, not\nhyphens, e.g. <b>max_allowed_packet</b>",
+          "description": "This is the name of the flag. Flag names always use underscores, not\nhyphens, for example: <b>max_allowed_packet</b>",
           "type": "string"
         },
         "requiresRestart": {
@@ -2943,14 +2943,14 @@
       "id": "IpConfiguration",
       "properties": {
         "authorizedNetworks": {
-          "description": "The list of external networks that are allowed to connect to the instance\nusing the IP. In 'CIDR' notation, also known as 'slash' notation (e.g.\n<b>192.168.100.0/24</b>).",
+          "description": "The list of external networks that are allowed to connect to the instance\nusing the IP. In 'CIDR' notation, also known as 'slash' notation (for\nexample: <b>192.168.100.0/24</b>).",
           "items": {
             "$ref": "AclEntry"
           },
           "type": "array"
         },
         "ipv4Enabled": {
-          "description": "Whether the instance should be assigned an IP address or not.",
+          "description": "Whether the instance is assigned a public IP address or not.",
           "type": "boolean"
         },
         "privateNetwork": {
@@ -2958,7 +2958,7 @@
           "type": "string"
         },
         "requireSsl": {
-          "description": "Whether SSL connections over IP should be enforced or not.",
+          "description": "Whether SSL connections over IP are enforced or not.",
           "type": "boolean"
         }
       },
@@ -2989,7 +2989,7 @@
           "enumDescriptions": [
             "This is an unknown IP address type.",
             "IP address the customer is supposed to connect to. Usually this is the\nload balancer's IP address",
-            "Source IP address of the connection a read replica establishes to its\nexternal master. This IP address can be whitelisted by the customer\nin case it has a firewall that filters incoming connection to its\non premises master.",
+            "Source IP address of the connection a read replica establishes to its\nexternal master. This IP address can be allowlisted by the customer\nin case it has a firewall that filters incoming connection to its\non premises master.",
             "Private IP used when using private IPs and network peering.",
             "V1 IP of a migrated instance. We want the user to\ndecommission this IP as soon as the migration is complete.\nNote: V1 instances with V1 ip addresses will be counted as PRIMARY."
           ],
@@ -2999,7 +2999,7 @@
       "type": "object"
     },
     "LocationPreference": {
-      "description": "Preferred location. This specifies where a Cloud SQL instance should\npreferably be located, either in a specific Compute Engine zone, or\nco-located with an App Engine application. Note that if the preferred\nlocation is not available, the instance will be located as close as possible\nwithin the region. Only one location may be specified.",
+      "description": "Preferred location. This specifies where a Cloud SQL instance\nis located, either in a specific Compute Engine zone, or\nco-located with an App Engine application. Note that if the preferred\nlocation is not available, the instance will be located as close as possible\nwithin the region. Only one location may be specified.",
       "id": "LocationPreference",
       "properties": {
         "followGaeApplication": {
@@ -3011,14 +3011,14 @@
           "type": "string"
         },
         "zone": {
-          "description": "The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b,\netc.).",
+          "description": "The preferred Compute Engine zone (for example: us-central1-a,\nus-central1-b, etc.).",
           "type": "string"
         }
       },
       "type": "object"
     },
     "MaintenanceWindow": {
-      "description": "Maintenance window. This specifies when a v2 Cloud SQL instance should\npreferably be restarted for system maintenance purposes.",
+      "description": "Maintenance window. This specifies when a Cloud SQL instance\nis restarted for system maintenance purposes.",
       "id": "MaintenanceWindow",
       "properties": {
         "day": {
@@ -3061,11 +3061,11 @@
           "type": "string"
         },
         "clientCertificate": {
-          "description": "PEM representation of the slave's x509 certificate.",
+          "description": "PEM representation of the replica's x509 certificate.",
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the slave's private key. The corresponsing public key\nis encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponsing public\nkey is encoded in the client's certificate.",
           "type": "string"
         },
         "connectRetryInterval": {
@@ -3074,7 +3074,7 @@
           "type": "integer"
         },
         "dumpFilePath": {
-          "description": "Path to a SQL dump file in Google Cloud Storage from which the slave\ninstance is to be created. The URI is in the form gs://bucketName/fileName.\nCompressed gzip files (.gz) are also supported.\nDumps should have the binlog co-ordinates from which replication should\nbegin. This can be accomplished by setting --master-data to 1 when using\nmysqldump.",
+          "description": "Path to a SQL dump file in Google Cloud Storage from which the replica\ninstance is to be created. The URI is in the form gs://bucketName/fileName.\nCompressed gzip files (.gz) are also supported.\nDumps have the binlog co-ordinates from which replication\nbegins. This can be accomplished by setting --master-data to 1 when using\nmysqldump.",
           "type": "string"
         },
         "kind": {
@@ -3114,11 +3114,11 @@
           "type": "string"
         },
         "clientCertificate": {
-          "description": "PEM representation of the slave's x509 certificate.",
+          "description": "PEM representation of the replica's x509 certificate.",
           "type": "string"
         },
         "clientKey": {
-          "description": "PEM representation of the slave's private key. The corresponsing public key\nis encoded in the client's certificate.",
+          "description": "PEM representation of the replica's private key. The corresponsing public\nkey is encoded in the client's certificate.",
           "type": "string"
         },
         "dumpFilePath": {
@@ -3458,8 +3458,8 @@
           "enumDescriptions": [
             "Unknown activation plan.",
             "The instance is always up and running.",
-            "The instance should never spin up.",
-            "The instance spins up upon receiving requests."
+            "The instance never starts.",
+            "The instance starts upon receiving requests."
           ],
           "type": "string"
         },
@@ -3630,7 +3630,9 @@
             "INSUFFICIENT_MAX_WAL_SENDERS",
             "INSUFFICIENT_MAX_WORKER_PROCESSES",
             "UNSUPPORTED_EXTENSIONS",
-            "INVALID_RDS_LOGICAL_REPLICATION"
+            "INVALID_RDS_LOGICAL_REPLICATION",
+            "INVALID_LOGGING_SETUP",
+            "INVALID_DB_PARAM"
           ],
           "enumDescriptions": [
             "",
@@ -3648,7 +3650,9 @@
             "The value of parameter max_wal_senders is not sufficient.",
             "The value of parameter max_worker_processes is not sufficient.",
             "Extensions installed are either not supported or having unsupported\nversions",
-            "The value of parameter rds.logical_replication is not set to 1."
+            "The value of parameter rds.logical_replication is not set to 1.",
+            "The master logging setup doesn't allow EM sync.",
+            "The master database parameter setup doesn't allow EM sync."
           ],
           "type": "string"
         }

@@ -465,6 +465,17 @@ export namespace bigtableadmin_v2 {
     title?: string | null;
   }
   /**
+   * Added to the error payload.
+   */
+  export interface Schema$FailureTrace {
+    frames?: Schema$Frame[];
+  }
+  export interface Schema$Frame {
+    targetName?: string | null;
+    workflowGuid?: string | null;
+    zoneId?: string | null;
+  }
+  /**
    * Rule for determining which cells to delete during garbage collection.
    */
   export interface Schema$GcRule {

@@ -166,7 +166,7 @@ export namespace bigqueryreservation_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some committed period of usage. Annual commitments renew by default. Commitments can be removed after their commitment end time passes.  In order to remove annual commitment, its plan needs to be changed to monthly or flex first.  A capacity commitment resource exists as a child resource of the admin project.
+   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some committed period of usage. Annual commitments renew by default. Commitments can be removed after their commitment end time passes. In order to remove annual commitment, its plan needs to be changed to monthly or flex first. A capacity commitment resource exists as a child resource of the admin project.
    */
   export interface Schema$CapacityCommitment {
     /**
@@ -212,7 +212,7 @@ export namespace bigqueryreservation_v1beta1 {
     slotPool?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -264,11 +264,11 @@ export namespace bigqueryreservation_v1beta1 {
     capacityCommitmentIds?: string[] | null;
   }
   /**
-   * The request for ReservationService.MoveAssignment.  **Note**: &quot;bigquery.reservationAssignments.create&quot; permission is required on the destination_id.  **Note**: &quot;bigquery.reservationAssignments.create&quot; and &quot;bigquery.reservationAssignments.delete&quot; permission are required on the related assignee.
+   * The request for ReservationService.MoveAssignment. **Note**: &quot;bigquery.reservationAssignments.create&quot; permission is required on the destination_id. **Note**: &quot;bigquery.reservationAssignments.create&quot; and &quot;bigquery.reservationAssignments.delete&quot; permission are required on the related assignee.
    */
   export interface Schema$MoveAssignmentRequest {
     /**
-     * The new reservation ID, e.g.:   `projects/myotherproject/locations/US/reservations/team2-prod`
+     * The new reservation ID, e.g.: `projects/myotherproject/locations/US/reservations/team2-prod`
      */
     destinationId?: string | null;
   }
@@ -285,7 +285,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     name?: string | null;
     /**
-     * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism.  Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false.  If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
+     * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
     slotCapacity?: string | null;
   }
@@ -325,7 +325,7 @@ export namespace bigqueryreservation_v1beta1 {
     second?: Schema$CapacityCommitment;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -333,7 +333,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -395,8 +395,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.getBiReservation({
-     *     // Required. Name of the requested reservation, for example:
-     *     // `projects/{project_id}/locations/{location_id}/bireservation`
+     *     // Required. Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
      *     name: 'projects/my-project/locations/my-location/biReservation',
      *   });
      *   console.log(res.data);
@@ -504,7 +503,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.searchAssignments
-     * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:  1. Assignments created on the project will be returned if they exist. 2. Otherwise assignments created on the closest ancestor will be    returned. 3. Assignments for different JobTypes will all be returned.  The same logic applies if the request is about a folder.  If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors).  Comparing to ListAssignments, there are some behavior differences:  1. permission on the assignee will be verified in this API. 2. Hierarchy lookup (project->folder->organization) happens in this API. 3. Parent here is `projects/x/locations/x`, instead of    `projects/x/locations/xreservations/x`.  **Note** "-" cannot be used for projects nor locations.
+     * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project: 1. Assignments created on the project will be returned if they exist. 2. Otherwise assignments created on the closest ancestor will be returned. 3. Assignments for different JobTypes will all be returned. The same logic applies if the request is about a folder. If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors). Comparing to ListAssignments, there are some behavior differences: 1. permission on the assignee will be verified in this API. 2. Hierarchy lookup (project->folder->organization) happens in this API. 3. Parent here is `projects/x/locations/x`, instead of `projects/x/locations/xreservations/x`. **Note** "-" cannot be used for projects nor locations.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -536,17 +535,9 @@ export namespace bigqueryreservation_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the admin project(containing project and location),
-     *     // e.g.:
-     *     //   `projects/myproject/locations/US`.
+     *     // Required. The resource name of the admin project(containing project and location), e.g.: `projects/myproject/locations/US`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Please specify resource name as assignee in the query.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * `assignee=projects/myproject`
-     *     // * `assignee=folders/123`
-     *     // * `assignee=organizations/456`
+     *     // Please specify resource name as assignee in the query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -569,8 +560,8 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the admin project(containing project and location), e.g.:   `projects/myproject/locations/US`.
-     * @param {string=} params.query Please specify resource name as assignee in the query.  Examples:  * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
+     * @param {string} params.parent Required. The resource name of the admin project(containing project and location), e.g.: `projects/myproject/locations/US`.
+     * @param {string=} params.query Please specify resource name as assignee in the query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -664,7 +655,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.updateBiReservation
-     * @desc Updates a BI reservation.  Only fields specified in the `field_mask` are updated.  A singleton BI reservation always exists with default size 0. In order to reserve BI capacity it needs to be updated to an amount greater than 0. In order to release BI capacity reservation size must be set to 0.
+     * @desc Updates a BI reservation. Only fields specified in the `field_mask` are updated. A singleton BI reservation always exists with default size 0. In order to reserve BI capacity it needs to be updated to an amount greater than 0. In order to release BI capacity reservation size must be set to 0.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -692,9 +683,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.updateBiReservation({
-     *     // The resource name of the singleton BI reservation.
-     *     // Reservation names have the form
-     *     // `projects/{project_id}/locations/{location_id}/bireservation`.
+     *     // The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id}/locations/{location_id}/bireservation`.
      *     name: 'projects/my-project/locations/my-location/biReservation',
      *     // A list of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -833,11 +822,11 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the admin project(containing project and location), e.g.:   `projects/myproject/locations/US`.
+     * Required. The resource name of the admin project(containing project and location), e.g.: `projects/myproject/locations/US`.
      */
     parent?: string;
     /**
-     * Please specify resource name as assignee in the query.  Examples:  * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
+     * Please specify resource name as assignee in the query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` * `assignee=organizations/456`
      */
     query?: string;
   }
@@ -895,11 +884,9 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.create(
      *     {
-     *       // If true, fail the request if another project in the organization has a
-     *       // capacity commitment.
+     *       // If true, fail the request if another project in the organization has a capacity commitment.
      *       enforceSingleAdminProjectPerOrg: 'placeholder-value',
-     *       // Required. Resource name of the parent reservation. E.g.,
-     *       //    `projects/myproject/locations/US`
+     *       // Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -943,7 +930,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleAdminProjectPerOrg If true, fail the request if another project in the organization has a capacity commitment.
-     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      * @param {().CapacityCommitment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1063,8 +1050,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.delete(
      *     {
-     *       // Required. Resource name of the capacity commitment to delete. E.g.,
-     *       //    `projects/myproject/locations/US/capacityCommitments/123`
+     *       // Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *     }
@@ -1084,7 +1070,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the capacity commitment to delete. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
+     * @param {string} params.name Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1197,8 +1183,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.get(
      *     {
-     *       // Required. Resource name of the capacity commitment to retrieve. E.g.,
-     *       //    `projects/myproject/locations/US/capacityCommitments/123`
+     *       // Required. Resource name of the capacity commitment to retrieve. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *     }
@@ -1227,7 +1212,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the capacity commitment to retrieve. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
+     * @param {string} params.name Required. Resource name of the capacity commitment to retrieve. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1347,8 +1332,7 @@ export namespace bigqueryreservation_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. Resource name of the parent reservation. E.g.,
-     *       //    `projects/myproject/locations/US`
+     *       // Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      *       parent: 'projects/my-project/locations/my-location',
      *     }
      *   );
@@ -1372,7 +1356,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1468,7 +1452,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.merge
-     * @desc Merges capacity commitments of the same plan into a single commitment.  The resulting capacity commitment has the greater commitment_end_time out of the to-be-merged capacity commitments.  Attempting to merge capacity commitments of different plan will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @desc Merges capacity commitments of the same plan into a single commitment. The resulting capacity commitment has the greater commitment_end_time out of the to-be-merged capacity commitments. Attempting to merge capacity commitments of different plan will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1497,8 +1481,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.merge(
      *     {
-     *       // Parent resource that identifies admin project and location e.g.,
-     *       //  `projects/myproject/locations/us`
+     *       // Parent resource that identifies admin project and location e.g., `projects/myproject/locations/us`
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1534,7 +1517,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Parent resource that identifies admin project and location e.g.,  `projects/myproject/locations/us`
+     * @param {string} params.parent Parent resource that identifies admin project and location e.g., `projects/myproject/locations/us`
      * @param {().MergeCapacityCommitmentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1624,7 +1607,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.patch
-     * @desc Updates an existing capacity commitment.  Only `plan` and `renewal_plan` fields can be updated.  Plan can only be changed to a plan of a longer commitment period. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @desc Updates an existing capacity commitment. Only `plan` and `renewal_plan` fields can be updated. Plan can only be changed to a plan of a longer commitment period. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1653,8 +1636,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.patch(
      *     {
-     *       // Output only. The resource name of the capacity commitment, e.g.,
-     *       // `projects/myproject/locations/US/capacityCommitments/123`
+     *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *       // Standard field mask for the set of fields to be updated.
@@ -1789,7 +1771,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.split
-     * @desc Splits capacity commitment to two commitments of the same plan and `commitment_end_time`.  A common use case is to enable downgrading commitments.  For example, in order to downgrade from 10000 slots to 8000, you might split a 10000 capacity commitment into commitments of 2000 and 8000. Then, you would change the plan of the first one to `FLEX` and then delete it.
+     * @desc Splits capacity commitment to two commitments of the same plan and `commitment_end_time`. A common use case is to enable downgrading commitments. For example, in order to downgrade from 10000 slots to 8000, you might split a 10000 capacity commitment into commitments of 2000 and 8000. Then, you would change the plan of the first one to `FLEX` and then delete it.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1818,8 +1800,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.split(
      *     {
-     *       // Required. The resource name e.g.,:
-     *       //  `projects/myproject/locations/US/capacityCommitments/123`
+     *       // Required. The resource name e.g.,: `projects/myproject/locations/US/capacityCommitments/123`
      *       name:
      *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *
@@ -1850,7 +1831,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name e.g.,:  `projects/myproject/locations/US/capacityCommitments/123`
+     * @param {string} params.name Required. The resource name e.g.,: `projects/myproject/locations/US/capacityCommitments/123`
      * @param {().SplitCapacityCommitmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1953,7 +1934,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     enforceSingleAdminProjectPerOrg?: boolean;
     /**
-     * Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
+     * Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      */
     parent?: string;
 
@@ -1965,14 +1946,14 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the capacity commitment to delete. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
+     * Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the capacity commitment to retrieve. E.g.,    `projects/myproject/locations/US/capacityCommitments/123`
+     * Required. Resource name of the capacity commitment to retrieve. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
   }
@@ -1987,14 +1968,14 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent reservation. E.g.,    `projects/myproject/locations/US`
+     * Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Merge
     extends StandardParameters {
     /**
-     * Parent resource that identifies admin project and location e.g.,  `projects/myproject/locations/us`
+     * Parent resource that identifies admin project and location e.g., `projects/myproject/locations/us`
      */
     parent?: string;
 
@@ -2022,7 +2003,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Split
     extends StandardParameters {
     /**
-     * Required. The resource name e.g.,:  `projects/myproject/locations/US/capacityCommitments/123`
+     * Required. The resource name e.g.,: `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
 
@@ -2072,11 +2053,9 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.create({
-     *     // Required. Project, location. E.g.,
-     *     // `projects/myproject/locations/US`
+     *     // Required. Project, location. E.g., `projects/myproject/locations/US`
      *     parent: 'projects/my-project/locations/my-location',
-     *     // The reservation ID. This field must only contain lower case alphanumeric
-     *     // characters or dash. Max length is 64 characters.
+     *     // The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
      *     reservationId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2225,8 +2204,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.delete({
-     *     // Required. Resource name of the reservation to retrieve. E.g.,
-     *     //    `projects/myproject/locations/US/reservations/team1-prod`
+     *     // Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      *     name:
      *       'projects/my-project/locations/my-location/reservations/my-reservation',
      *   });
@@ -2245,7 +2223,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
+     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2357,8 +2335,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.get({
-     *     // Required. Resource name of the reservation to retrieve. E.g.,
-     *     //    `projects/myproject/locations/US/reservations/team1-prod`
+     *     // Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      *     name:
      *       'projects/my-project/locations/my-location/reservations/my-reservation',
      *   });
@@ -2381,7 +2358,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
+     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2493,18 +2470,13 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.list({
-     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.:
-     *     // filter="reservation.slot_capacity > 200"
-     *     // filter="reservation.name = \"*dev/x\""
-     *     // Advanced filtering syntax can be
-     *     // [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      *     filter: 'placeholder-value',
      *     // The maximum number of items to return.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name containing project and location, e.g.:
-     *     //   `projects/myproject/locations/US`
+     *     // Required. The parent resource name containing project and location, e.g.: `projects/myproject/locations/US`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2528,7 +2500,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {string=} params.filter Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name containing project and location, e.g.:   `projects/myproject/locations/US`
+     * @param {string} params.parent Required. The parent resource name containing project and location, e.g.: `projects/myproject/locations/US`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2648,8 +2620,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
-     *     // The resource name of the reservation, e.g.,
-     *     // `projects/x/locations/x/reservations/team1-prod`.
+     *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
      *     name:
      *       'projects/my-project/locations/my-location/reservations/my-reservation',
      *     // Standard field mask for the set of fields to be updated.
@@ -2788,14 +2759,14 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Reservations$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
+     * Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the reservation to retrieve. E.g.,    `projects/myproject/locations/US/reservations/team1-prod`
+     * Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
   }
@@ -2814,7 +2785,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name containing project and location, e.g.:   `projects/myproject/locations/US`
+     * Required. The parent resource name containing project and location, e.g.: `projects/myproject/locations/US`
      */
     parent?: string;
   }
@@ -2843,7 +2814,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.create
-     * @desc Creates an assignment object which allows the given project to submit jobs of a certain type using slots from the specified reservation.  Currently a resource (project, folder, organization) can only have one assignment per each (job_type, location) combination, and that reservation will be used for all jobs of the matching type.  Different assignments can be created on different levels of the projects, folders or organization hierarchy.  During query execution, the assignment is looked up at the project, folder and organization levels in that order. The first assignment found is applied to the query.  When creating assignments, it does not matter if other assignments exist at higher levels.  Example:  * The organization `organizationA` contains two projects, `project1`   and `project2`. * Assignments for all three entities (`organizationA`, `project1`, and   `project2`) could all be created and mapped to the same or different   reservations.  Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation.  Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment does not match location of the reservation.
+     * @desc Creates an assignment object which allows the given project to submit jobs of a certain type using slots from the specified reservation. Currently a resource (project, folder, organization) can only have one assignment per each (job_type, location) combination, and that reservation will be used for all jobs of the matching type. Different assignments can be created on different levels of the projects, folders or organization hierarchy. During query execution, the assignment is looked up at the project, folder and organization levels in that order. The first assignment found is applied to the query. When creating assignments, it does not matter if other assignments exist at higher levels. Example: * The organization `organizationA` contains two projects, `project1` and `project2`. * Assignments for all three entities (`organizationA`, `project1`, and `project2`) could all be created and mapped to the same or different reservations. Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment does not match location of the reservation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2872,8 +2843,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.create(
      *     {
-     *       // Required. The parent resource name of the assignment
-     *       // E.g. `projects/myproject/locations/US/reservations/team1-prod`
+     *       // Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
      *       parent:
      *         'projects/my-project/locations/my-location/reservations/my-reservation',
      *
@@ -2997,7 +2967,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.delete
-     * @desc Deletes a assignment. No expansion will happen.  Example:  * Organization `organizationA` contains two projects, `project1` and   `project2`. * Reservation `res1` exists and was created previously. * CreateAssignment was used previously to define the following   associations between entities and reservations: `<organizationA, res1>`   and `<project1, res1>`  In this example, deletion of the `<organizationA, res1>` assignment won't affect the other assignment `<project1, res1>`. After said deletion, queries from `project1` will still use `res1` while queries from `project2` will switch to use on-demand mode.
+     * @desc Deletes a assignment. No expansion will happen. Example: * Organization `organizationA` contains two projects, `project1` and `project2`. * Reservation `res1` exists and was created previously. * CreateAssignment was used previously to define the following associations between entities and reservations: `` and `` In this example, deletion of the `` assignment won't affect the other assignment ``. After said deletion, queries from `project1` will still use `res1` while queries from `project2` will switch to use on-demand mode.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3026,8 +2996,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.delete(
      *     {
-     *       // Required. Name of the resource, e.g.
-     *       //   `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *       // Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      *       name:
      *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
      *     }
@@ -3047,7 +3016,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the resource, e.g.   `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     * @param {string} params.name Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3131,7 +3100,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.list
-     * @desc Lists assignments.  Only explicitly created assignments will be returned.  Example:  * Organization `organizationA` contains two projects, `project1` and   `project2`. * Reservation `res1` exists and was created previously. * CreateAssignment was used previously to define the following   associations between entities and reservations: `<organizationA, res1>`   and `<project1, res1>`  In this example, ListAssignments will just return the above two assignments for reservation `res1`, and no expansion/merge will happen.  The wildcard "-" can be used for reservations in the request. In that case all assignments belongs to the specified project and location will be listed.  **Note** "-" cannot be used for projects nor locations.
+     * @desc Lists assignments. Only explicitly created assignments will be returned. Example: * Organization `organizationA` contains two projects, `project1` and `project2`. * Reservation `res1` exists and was created previously. * CreateAssignment was used previously to define the following associations between entities and reservations: `` and `` In this example, ListAssignments will just return the above two assignments for reservation `res1`, and no expansion/merge will happen. The wildcard "-" can be used for reservations in the request. In that case all assignments belongs to the specified project and location will be listed. **Note** "-" cannot be used for projects nor locations.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3164,13 +3133,7 @@ export namespace bigqueryreservation_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name e.g.:
-     *       //
-     *       // `projects/myproject/locations/US/reservations/team1-prod`
-     *       //
-     *       // Or:
-     *       //
-     *       // `projects/myproject/locations/US/reservations/-`
+     *       // Required. The parent resource name e.g.: `projects/myproject/locations/US/reservations/team1-prod` Or: `projects/myproject/locations/US/reservations/-`
      *       parent:
      *         'projects/my-project/locations/my-location/reservations/my-reservation',
      *     }
@@ -3195,7 +3158,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name e.g.:  `projects/myproject/locations/US/reservations/team1-prod`  Or:  `projects/myproject/locations/US/reservations/-`
+     * @param {string} params.parent Required. The parent resource name e.g.: `projects/myproject/locations/US/reservations/team1-prod` Or: `projects/myproject/locations/US/reservations/-`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3287,7 +3250,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.reservations.assignments.move
-     * @desc Moves an assignment under a new reservation.  This differs from removing an existing assignment and recreating a new one by providing a transactional change that ensures an assignee always has an associated reservation.
+     * @desc Moves an assignment under a new reservation. This differs from removing an existing assignment and recreating a new one by providing a transactional change that ensures an assignee always has an associated reservation.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3316,9 +3279,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.move(
      *     {
-     *       // Required. The resource name of the assignment,
-     *       // e.g.
-     *       // `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *       // Required. The resource name of the assignment, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      *       name:
      *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
      *
@@ -3453,7 +3414,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the resource, e.g.   `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     * Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      */
     name?: string;
   }
@@ -3468,7 +3429,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name e.g.:  `projects/myproject/locations/US/reservations/team1-prod`  Or:  `projects/myproject/locations/US/reservations/-`
+     * Required. The parent resource name e.g.: `projects/myproject/locations/US/reservations/team1-prod` Or: `projects/myproject/locations/US/reservations/-`
      */
     parent?: string;
   }

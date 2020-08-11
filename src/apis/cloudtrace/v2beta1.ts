@@ -128,7 +128,7 @@ export namespace cloudtrace_v2beta1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -136,7 +136,7 @@ export namespace cloudtrace_v2beta1 {
    */
   export interface Schema$ListTraceSinksResponse {
     /**
-     * If there might be more results than appear in this response, then `nextPageToken` is included.  To get the next set of results, call the same method again using the value of `nextPageToken` as `pageToken`.
+     * If there might be more results than appear in this response, then `nextPageToken` is included. To get the next set of results, call the same method again using the value of `nextPageToken` as `pageToken`.
      */
     nextPageToken?: string | null;
     /**
@@ -149,7 +149,7 @@ export namespace cloudtrace_v2beta1 {
    */
   export interface Schema$OutputConfig {
     /**
-     * The destination for writing trace data. Currently only BigQuery is supported. E.g.:      &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot;
+     * The destination for writing trace data. Currently only BigQuery is supported. E.g.: &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot;
      */
     destination?: string | null;
   }
@@ -158,7 +158,7 @@ export namespace cloudtrace_v2beta1 {
    */
   export interface Schema$TraceSink {
     /**
-     * Required. The canonical sink resource name, unique within the project. Must be of the form:    project/[PROJECT_NUMBER]/traceSinks/[SINK_ID].  E.g.:    `&quot;projects/12345/traceSinks/my-project-trace-sink&quot;`.  Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
+     * Required. The canonical sink resource name, unique within the project. Must be of the form: project/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `&quot;projects/12345/traceSinks/my-project-trace-sink&quot;`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
      */
     name?: string | null;
     /**
@@ -166,7 +166,7 @@ export namespace cloudtrace_v2beta1 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.:     &quot;service-00000001@00000002.iam.gserviceaccount.com&quot;
+     * Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.: &quot;service-00000001@00000002.iam.gserviceaccount.com&quot;
      */
     writerIdentity?: string | null;
   }
@@ -188,7 +188,7 @@ export namespace cloudtrace_v2beta1 {
 
     /**
      * cloudtrace.projects.traceSinks.create
-     * @desc Creates a sink that exports trace spans to a destination.  The export of newly-ingested traces begins immediately, unless the sink's `writer_identity` is not permitted to write to the destination.  A sink can export traces only from the resource owning the sink (the 'parent').
+     * @desc Creates a sink that exports trace spans to a destination. The export of newly-ingested traces begins immediately, unless the sink's `writer_identity` is not permitted to write to the destination. A sink can export traces only from the resource owning the sink (the 'parent').
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -216,12 +216,7 @@ export namespace cloudtrace_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traceSinks.create({
-     *     // Required. The resource in which to create the sink (currently only project
-     *     // sinks are supported):
-     *     //
-     *     //     "projects/[PROJECT_ID]"
-     *     //
-     *     // Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
+     *     // Required. The resource in which to create the sink (currently only project sinks are supported): "projects/[PROJECT_ID]" Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -253,7 +248,7 @@ export namespace cloudtrace_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource in which to create the sink (currently only project sinks are supported):      "projects/[PROJECT_ID]"  Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
+     * @param {string} params.parent Required. The resource in which to create the sink (currently only project sinks are supported): "projects/[PROJECT_ID]" Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
      * @param {().TraceSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -368,12 +363,7 @@ export namespace cloudtrace_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traceSinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the
-     *     // parent resource and the sink identifier:
-     *     //
-     *     //     "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"
-     *     //
-     *     // Example: `"projects/12345/traceSinks/my-sink-id"`.
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      *     name: 'projects/my-project/traceSinks/my-traceSink',
      *   });
      *   console.log(res.data);
@@ -391,7 +381,7 @@ export namespace cloudtrace_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * @param {string} params.name Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -502,11 +492,7 @@ export namespace cloudtrace_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traceSinks.get({
-     *     // Required. The resource name of the sink:
-     *     //
-     *     //     "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"
-     *     //
-     *     // Example: `"projects/12345/traceSinks/my-sink-id"`.
+     *     // Required. The resource name of the sink: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      *     name: 'projects/my-project/traceSinks/my-traceSink',
      *   });
      *   console.log(res.data);
@@ -528,7 +514,7 @@ export namespace cloudtrace_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the sink:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * @param {string} params.name Required. The resource name of the sink: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -639,19 +625,11 @@ export namespace cloudtrace_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traceSinks.list({
-     *     // Optional. The maximum number of results to return from this request.
-     *     // Non-positive values are ignored.  The presence of `nextPageToken` in the
-     *     // response indicates that more results might be available.
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
      *     pageSize: 'placeholder-value',
-     *     // Optional. If present, then retrieve the next batch of results from the
-     *     // preceding call to this method.  `pageToken` must be the value of
-     *     // `nextPageToken` from the previous response.  The values of other method
-     *     // parameters should be identical to those in the previous call.
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed (currently only
-     *     // project parent resources are supported):
-     *     //
-     *     //     "projects/[PROJECT_ID]"
+     *     // Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported): "projects/[PROJECT_ID]"
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -672,9 +650,9 @@ export namespace cloudtrace_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported):      "projects/[PROJECT_ID]"
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported): "projects/[PROJECT_ID]"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -765,7 +743,7 @@ export namespace cloudtrace_v2beta1 {
 
     /**
      * cloudtrace.projects.traceSinks.patch
-     * @desc Updates a sink.  This method updates fields in the existing sink according to the provided update mask. The sink's name cannot be changed nor any output-only fields (e.g. the writer_identity).
+     * @desc Updates a sink. This method updates fields in the existing sink according to the provided update mask. The sink's name cannot be changed nor any output-only fields (e.g. the writer_identity).
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -793,23 +771,9 @@ export namespace cloudtrace_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traceSinks.patch({
-     *     // Required. The full resource name of the sink to update, including the
-     *     // parent resource and the sink identifier:
-     *     //
-     *     //     "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"
-     *     //
-     *     // Example: `"projects/12345/traceSinks/my-sink-id"`.
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      *     name: 'projects/my-project/traceSinks/my-traceSink',
-     *     // Required. Field mask that specifies the fields in `trace_sink` that are to
-     *     // be updated. A sink field is overwritten if, and only if, it is
-     *     // in the update mask.  `name` and `writer_identity` fields cannot be updated.
-     *     //
-     *     // An empty updateMask is considered an error.
-     *     //
-     *     // For a detailed `FieldMask` definition, see
-     *     // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     //
-     *     // Example: `updateMask=output_config`.
+     *     // Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask. `name` and `writer_identity` fields cannot be updated. An empty updateMask is considered an error. For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Example: `updateMask=output_config`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -841,8 +805,8 @@ export namespace cloudtrace_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The full resource name of the sink to update, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
-     * @param {string=} params.updateMask Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask.  `name` and `writer_identity` fields cannot be updated.  An empty updateMask is considered an error.  For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask  Example: `updateMask=output_config`.
+     * @param {string} params.name Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask. `name` and `writer_identity` fields cannot be updated. An empty updateMask is considered an error. For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Example: `updateMask=output_config`.
      * @param {().TraceSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -928,7 +892,7 @@ export namespace cloudtrace_v2beta1 {
   export interface Params$Resource$Projects$Tracesinks$Create
     extends StandardParameters {
     /**
-     * Required. The resource in which to create the sink (currently only project sinks are supported):      "projects/[PROJECT_ID]"  Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
+     * Required. The resource in which to create the sink (currently only project sinks are supported): "projects/[PROJECT_ID]" Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
      */
     parent?: string;
 
@@ -940,40 +904,40 @@ export namespace cloudtrace_v2beta1 {
   export interface Params$Resource$Projects$Tracesinks$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Tracesinks$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the sink:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * Required. The resource name of the sink: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Tracesinks$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
      */
     pageSize?: number;
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported):      "projects/[PROJECT_ID]"
+     * Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported): "projects/[PROJECT_ID]"
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Tracesinks$Patch
     extends StandardParameters {
     /**
-     * Required. The full resource name of the sink to update, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
+     * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]" Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
     /**
-     * Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask.  `name` and `writer_identity` fields cannot be updated.  An empty updateMask is considered an error.  For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask  Example: `updateMask=output_config`.
+     * Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask. `name` and `writer_identity` fields cannot be updated. An empty updateMask is considered an error. For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Example: `updateMask=output_config`.
      */
     updateMask?: string;
 

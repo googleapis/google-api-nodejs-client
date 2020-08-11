@@ -193,7 +193,7 @@ export namespace genomics_v1alpha2 {
      */
     exitStatus?: number | null;
     /**
-     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
+     * The tail end of any content written to standard error by the container. If the content emits large amounts of debugging noise or contains sensitive information, you can prevent the content from being printed by setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag. Note that only a small amount of the end of the stream is captured here. The entire stream is stored in the `/google/logs` directory mounted into each action, and can be copied off the machine as described elsewhere.
      */
     stderr?: string | null;
   }
@@ -261,7 +261,7 @@ export namespace genomics_v1alpha2 {
    */
   export interface Schema$DockerExecutor {
     /**
-     * Required. The command or newline delimited script to run. The command string will be executed within a bash shell.  If the command exits with a non-zero exit code, output parameter de-localization will be skipped and the pipeline operation&#39;s `error` field will be populated.  Maximum command string length is 16384.
+     * Required. The command or newline delimited script to run. The command string will be executed within a bash shell. If the command exits with a non-zero exit code, output parameter de-localization will be skipped and the pipeline operation&#39;s `error` field will be populated. Maximum command string length is 16384.
      */
     cmd?: string | null;
     /**
@@ -270,7 +270,7 @@ export namespace genomics_v1alpha2 {
     imageName?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -368,7 +368,7 @@ export namespace genomics_v1alpha2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
+     * The server-assigned name, which is only unique within the same service that originally returns it. For example: `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
      */
     name?: string | null;
     /**
@@ -467,12 +467,12 @@ export namespace genomics_v1alpha2 {
      */
     projectId?: string | null;
     /**
-     * Required. Specifies resource requirements for the pipeline run. Required fields:  * minimumCpuCores  * minimumRamGb
+     * Required. Specifies resource requirements for the pipeline run. Required fields: * minimumCpuCores * minimumRamGb
      */
     resources?: Schema$PipelineResources;
   }
   /**
-   * Parameters facilitate setting and delivering data into the pipeline&#39;s execution environment. They are defined at create time, with optional defaults, and can be overridden at run time.  If `localCopy` is unset, then the parameter specifies a string that is passed as-is into the pipeline, as the value of the environment variable with the given name.  A default value can be optionally specified at create time. The default can be overridden at run time using the inputs map. If no default is given, a value must be supplied at runtime.  If `localCopy` is defined, then the parameter specifies a data source or sink, both in Google Cloud Storage and on the Docker container where the pipeline computation is run. The service account associated with the Pipeline (by default the project&#39;s Compute Engine service account) must have access to the Google Cloud Storage paths.  At run time, the Google Cloud Storage paths can be overridden if a default was provided at create time, or must be set otherwise. The pipeline runner should add a key/value pair to either the inputs or outputs map. The indicated data copies will be carried out before/after pipeline execution, just as if the corresponding arguments were provided to `gsutil cp`.  For example: Given the following `PipelineParameter`, specified in the `inputParameters` list:  ``` {name: &quot;input_file&quot;, localCopy: {path: &quot;file.txt&quot;, disk: &quot;pd1&quot;}} ```  where `disk` is defined in the `PipelineResources` object as:  ``` {name: &quot;pd1&quot;, mountPoint: &quot;/mnt/disk/&quot;} ```  We create a disk named `pd1`, mount it on the host VM, and map `/mnt/pd1` to `/mnt/disk` in the docker container.  At runtime, an entry for `input_file` would be required in the inputs map, such as:  ```   inputs[&quot;input_file&quot;] = &quot;gs://my-bucket/bar.txt&quot; ```  This would generate the following gsutil call:  ```   gsutil cp gs://my-bucket/bar.txt /mnt/pd1/file.txt ```  The file `/mnt/pd1/file.txt` maps to `/mnt/disk/file.txt` in the Docker container. Acceptable paths are:  &lt;table&gt;   &lt;thead&gt;     &lt;tr&gt;&lt;th&gt;Google Cloud storage path&lt;/th&gt;&lt;th&gt;Local path&lt;/th&gt;&lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;&lt;td&gt;file&lt;/td&gt;&lt;td&gt;file&lt;/td&gt;&lt;/tr&gt;     &lt;tr&gt;&lt;td&gt;glob&lt;/td&gt;&lt;td&gt;directory&lt;/td&gt;&lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;  For outputs, the direction of the copy is reversed:  ```   gsutil cp /mnt/disk/file.txt gs://my-bucket/bar.txt ```  Acceptable paths are:  &lt;table&gt;   &lt;thead&gt;     &lt;tr&gt;&lt;th&gt;Local path&lt;/th&gt;&lt;th&gt;Google Cloud Storage path&lt;/th&gt;&lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;&lt;td&gt;file&lt;/td&gt;&lt;td&gt;file&lt;/td&gt;&lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;file&lt;/td&gt;       &lt;td&gt;directory - directory must already exist&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;glob&lt;/td&gt;       &lt;td&gt;directory - directory will be created if it doesn&#39;t exist&lt;/td&gt;&lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;  One restriction due to docker limitations, is that for outputs that are found on the boot disk, the local path cannot be a glob and must be a file.
+   * Parameters facilitate setting and delivering data into the pipeline&#39;s execution environment. They are defined at create time, with optional defaults, and can be overridden at run time. If `localCopy` is unset, then the parameter specifies a string that is passed as-is into the pipeline, as the value of the environment variable with the given name. A default value can be optionally specified at create time. The default can be overridden at run time using the inputs map. If no default is given, a value must be supplied at runtime. If `localCopy` is defined, then the parameter specifies a data source or sink, both in Google Cloud Storage and on the Docker container where the pipeline computation is run. The service account associated with the Pipeline (by default the project&#39;s Compute Engine service account) must have access to the Google Cloud Storage paths. At run time, the Google Cloud Storage paths can be overridden if a default was provided at create time, or must be set otherwise. The pipeline runner should add a key/value pair to either the inputs or outputs map. The indicated data copies will be carried out before/after pipeline execution, just as if the corresponding arguments were provided to `gsutil cp`. For example: Given the following `PipelineParameter`, specified in the `inputParameters` list: ``` {name: &quot;input_file&quot;, localCopy: {path: &quot;file.txt&quot;, disk: &quot;pd1&quot;}} ``` where `disk` is defined in the `PipelineResources` object as: ``` {name: &quot;pd1&quot;, mountPoint: &quot;/mnt/disk/&quot;} ``` We create a disk named `pd1`, mount it on the host VM, and map `/mnt/pd1` to `/mnt/disk` in the docker container. At runtime, an entry for `input_file` would be required in the inputs map, such as: ``` inputs[&quot;input_file&quot;] = &quot;gs://my-bucket/bar.txt&quot; ``` This would generate the following gsutil call: ``` gsutil cp gs://my-bucket/bar.txt /mnt/pd1/file.txt ``` The file `/mnt/pd1/file.txt` maps to `/mnt/disk/file.txt` in the Docker container. Acceptable paths are: Google Cloud storage pathLocal path file file glob directory For outputs, the direction of the copy is reversed: ``` gsutil cp /mnt/disk/file.txt gs://my-bucket/bar.txt ``` Acceptable paths are: Local pathGoogle Cloud Storage path file file file directory - directory must already exist glob directory - directory will be created if it doesn&#39;t exist One restriction due to docker limitations, is that for outputs that are found on the boot disk, the local path cannot be a glob and must be a file.
    */
   export interface Schema$PipelineParameter {
     /**
@@ -521,7 +521,7 @@ export namespace genomics_v1alpha2 {
      */
     minimumRamGb?: number | null;
     /**
-     * Whether to assign an external IP to the instance. This is an experimental feature that may go away. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time. If you need to ssh into a private IP VM for debugging, you can ssh to a public VM and then ssh into the private VM&#39;s Internal IP.  If noAddress is set, this pipeline run may only load docker images from Google Container Registry and not Docker Hub. Before using this, you must [configure access to Google services from internal IPs](https://cloud.google.com/compute/docs/configure-private-google-access#configuring_access_to_google_services_from_internal_ips).
+     * Whether to assign an external IP to the instance. This is an experimental feature that may go away. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time. If you need to ssh into a private IP VM for debugging, you can ssh to a public VM and then ssh into the private VM&#39;s Internal IP. If noAddress is set, this pipeline run may only load docker images from Google Container Registry and not Docker Hub. Before using this, you must [configure access to Google services from internal IPs](https://cloud.google.com/compute/docs/configure-private-google-access#configuring_access_to_google_services_from_internal_ips).
      */
     noAddress?: boolean | null;
     /**
@@ -563,7 +563,7 @@ export namespace genomics_v1alpha2 {
      */
     clientId?: string | null;
     /**
-     * Pipeline input arguments; keys are defined in the pipeline documentation. All input parameters that do not have default values  must be specified. If parameters with defaults are specified here, the defaults will be overridden.
+     * Pipeline input arguments; keys are defined in the pipeline documentation. All input parameters that do not have default values must be specified. If parameters with defaults are specified here, the defaults will be overridden.
      */
     inputs?: {[key: string]: string} | null;
     /**
@@ -579,7 +579,7 @@ export namespace genomics_v1alpha2 {
      */
     logging?: Schema$LoggingOptions;
     /**
-     * Pipeline output arguments; keys are defined in the pipeline documentation.  All output parameters of without default values must be specified.  If parameters with defaults are specified here, the defaults will be overridden.
+     * Pipeline output arguments; keys are defined in the pipeline documentation. All output parameters of without default values must be specified. If parameters with defaults are specified here, the defaults will be overridden.
      */
     outputs?: {[key: string]: string} | null;
     /**
@@ -634,7 +634,7 @@ export namespace genomics_v1alpha2 {
      */
     email?: string | null;
     /**
-     * List of scopes to be enabled for this service account on the VM. The following scopes are automatically included:  * https://www.googleapis.com/auth/compute * https://www.googleapis.com/auth/devstorage.full_control * https://www.googleapis.com/auth/genomics * https://www.googleapis.com/auth/logging.write * https://www.googleapis.com/auth/monitoring.write
+     * List of scopes to be enabled for this service account on the VM. The following scopes are automatically included: * https://www.googleapis.com/auth/compute * https://www.googleapis.com/auth/devstorage.full_control * https://www.googleapis.com/auth/genomics * https://www.googleapis.com/auth/logging.write * https://www.googleapis.com/auth/monitoring.write
      */
     scopes?: string[] | null;
   }
@@ -649,7 +649,7 @@ export namespace genomics_v1alpha2 {
     validationToken?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -657,7 +657,7 @@ export namespace genomics_v1alpha2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -730,7 +730,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.cancel`
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.cancel`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -869,7 +869,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.get`
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.get`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1003,7 +1003,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.operations.list
-     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission&#58;  * `genomics.operations.list`
+     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `genomics.operations.list`
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1031,36 +1031,7 @@ export namespace genomics_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await genomics.operations.list({
-     *     // A string for filtering Operations.
-     *     // In v2alpha1, the following filter fields are supported&#58;
-     *     //
-     *     // * createTime&#58; The time this job was created
-     *     // * events&#58; The set of event (names) that have occurred while running
-     *     //   the pipeline.  The &#58; operator can be used to determine if a
-     *     //   particular event has occurred.
-     *     // * error&#58; If the pipeline is running, this value is NULL.  Once the
-     *     //   pipeline finishes, the value is the standard Google error code.
-     *     // * labels.key or labels."key with space" where key is a label key.
-     *     // * done&#58; If the pipeline is running, this value is false. Once the
-     *     //   pipeline finishes, the value is true.
-     *     //
-     *     // In v1 and v1alpha2, the following filter fields are supported&#58;
-     *     //
-     *     // * projectId&#58; Required. Corresponds to
-     *     //   OperationMetadata.projectId.
-     *     // * createTime&#58; The time this job was created, in seconds from the
-     *     //   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
-     *     //   operators.
-     *     // * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only
-     *     //   one status may be specified.
-     *     // * labels.key where key is a label key.
-     *     //
-     *     // Examples&#58;
-     *     //
-     *     // * `projectId = my-project AND createTime >= 1432140000`
-     *     // * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
-     *     // * `projectId = my-project AND labels.color = *`
-     *     // * `projectId = my-project AND labels.color = red`
+     *     // A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
      *     name: 'operations',
@@ -1087,7 +1058,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The maximum number of results to return. The maximum value is 256.
      * @param {string=} params.pageToken The standard list page token.
@@ -1196,7 +1167,7 @@ export namespace genomics_v1alpha2 {
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
-     * A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      */
     filter?: string;
     /**
@@ -1221,7 +1192,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.pipelines.create
-     * @desc Creates a pipeline that can be run later. Create takes a Pipeline that has all fields other than `pipelineId` populated, and then returns the same pipeline with `pipelineId` populated. This id can be used to run the pipeline.  Caller must have WRITE permission to the project.
+     * @desc Creates a pipeline that can be run later. Create takes a Pipeline that has all fields other than `pipelineId` populated, and then returns the same pipeline with `pipelineId` populated. This id can be used to run the pipeline. Caller must have WRITE permission to the project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1373,7 +1344,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.pipelines.delete
-     * @desc Deletes a pipeline based on ID.  Caller must have WRITE permission to the project.
+     * @desc Deletes a pipeline based on ID. Caller must have WRITE permission to the project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1401,8 +1372,7 @@ export namespace genomics_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await genomics.pipelines.delete({
-     *     // Caller must have WRITE access to the project in which this pipeline
-     *     // is defined.
+     *     // Caller must have WRITE access to the project in which this pipeline is defined.
      *     pipelineId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1505,7 +1475,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.pipelines.get
-     * @desc Retrieves a pipeline based on ID.  Caller must have READ permission to the project.
+     * @desc Retrieves a pipeline based on ID. Caller must have READ permission to the project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1533,8 +1503,7 @@ export namespace genomics_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await genomics.pipelines.get({
-     *     // Caller must have READ access to the project in which this pipeline
-     *     // is defined.
+     *     // Caller must have READ access to the project in which this pipeline is defined.
      *     pipelineId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1792,7 +1761,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.pipelines.list
-     * @desc Lists pipelines.  Caller must have READ permission to the project.
+     * @desc Lists pipelines. Caller must have READ permission to the project.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1820,18 +1789,13 @@ export namespace genomics_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await genomics.pipelines.list({
-     *     // Pipelines with names that match this prefix should be
-     *     // returned.  If unspecified, all pipelines in the project, up to
-     *     // `pageSize`, will be returned.
+     *     // Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
      *     namePrefix: 'placeholder-value',
-     *     // Number of pipelines to return at once. Defaults to 256, and max
-     *     // is 2048.
+     *     // Number of pipelines to return at once. Defaults to 256, and max is 2048.
      *     pageSize: 'placeholder-value',
-     *     // Token to use to indicate where to start getting results.
-     *     // If unspecified, returns the first page of results.
+     *     // Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to search for pipelines. Caller
-     *     // must have READ access to this project.
+     *     // Required. The name of the project to search for pipelines. Caller must have READ access to this project.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1852,7 +1816,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.namePrefix Pipelines with names that match this prefix should be returned.  If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
+     * @param {string=} params.namePrefix Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
      * @param {integer=} params.pageSize Number of pipelines to return at once. Defaults to 256, and max is 2048.
      * @param {string=} params.pageToken Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
      * @param {string=} params.projectId Required. The name of the project to search for pipelines. Caller must have READ access to this project.
@@ -1945,7 +1909,7 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.pipelines.run
-     * @desc Runs a pipeline. If `pipelineId` is specified in the request, then run a saved pipeline. If `ephemeralPipeline` is specified, then run that pipeline once without saving a copy.  The caller must have READ permission to the project where the pipeline is stored and WRITE permission to the project where the pipeline will be run, as VMs will be created and storage will be used.  If a pipeline operation is still running after 6 days, it will be canceled.
+     * @desc Runs a pipeline. If `pipelineId` is specified in the request, then run a saved pipeline. If `ephemeralPipeline` is specified, then run that pipeline once without saving a copy. The caller must have READ permission to the project where the pipeline is stored and WRITE permission to the project where the pipeline will be run, as VMs will be created and storage will be used. If a pipeline operation is still running after 6 days, it will be canceled.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2261,7 +2225,7 @@ export namespace genomics_v1alpha2 {
   }
   export interface Params$Resource$Pipelines$List extends StandardParameters {
     /**
-     * Pipelines with names that match this prefix should be returned.  If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
+     * Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
      */
     namePrefix?: string;
     /**

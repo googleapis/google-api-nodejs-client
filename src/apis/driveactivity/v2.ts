@@ -435,7 +435,7 @@ export namespace driveactivity_v2 {
      */
     folder?: Schema$Folder;
     /**
-     * The MIME type of the Drive item.  See https://developers.google.com/drive/v3/web/mime-types.
+     * The MIME type of the Drive item. See https://developers.google.com/drive/v3/web/mime-types.
      */
     mimeType?: string | null;
     /**
@@ -633,7 +633,7 @@ export namespace driveactivity_v2 {
      */
     group?: Schema$Group;
     /**
-     * Indicates the &lt;a href=&quot;/drive/web/manage-sharing#roles&quot;&gt;Google Drive permissions role&lt;/a&gt;. The role determines a user&#39;s ability to read, write, and comment on items.
+     * Indicates the Google Drive permissions role. The role determines a user&#39;s ability to read, write, and comment on items.
      */
     role?: string | null;
     /**
@@ -676,7 +676,7 @@ export namespace driveactivity_v2 {
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
-     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;: Uses numerical operators on date values either in     terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples:       - &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;       - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;    - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the &quot;has&quot; operator (:) and     either a singular value or a list of allowed action types enclosed in     parentheses.     Examples:       - &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       - &lt;tt&gt;detail.action_detail_case:(CREATE EDIT)&lt;/tt&gt;       - &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
+     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;. Supported fields: - time: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - time &gt; 1452409200000 AND time &lt;= 1492812924310 - time &gt;= &quot;2016-01-10T01:02:03-05:00&quot; - detail.action_detail_case: Uses the &quot;has&quot; operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - detail.action_detail_case: RENAME - detail.action_detail_case:(CREATE EDIT) - -detail.action_detail_case:MOVE
      */
     filter?: string | null;
     /**

@@ -307,7 +307,7 @@ export namespace storagetransfer_v1 {
     pubsubTopic?: string | null;
   }
   /**
-   * Conditions that determine which objects will be transferred. Applies only to S3 and Cloud Storage objects.  The &quot;last modification time&quot; refers to the time of the last change to the object&#39;s content or metadata — specifically, this is the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
+   * Conditions that determine which objects will be transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage.  The &quot;last modification time&quot; refers to the time of the last change to the object&#39;s content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs.
    */
   export interface Schema$ObjectConditions {
     /**
@@ -583,7 +583,7 @@ export namespace storagetransfer_v1 {
     transferSpec?: Schema$TransferSpec;
   }
   /**
-   * TransferOptions uses three boolean parameters to define the actions to be performed on objects in a transfer.
+   * TransferOptions define the actions to be performed on objects in a transfer.
    */
   export interface Schema$TransferOptions {
     /**

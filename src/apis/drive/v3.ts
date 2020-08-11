@@ -905,6 +905,10 @@ export namespace drive_v3 {
      * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn&#39;t extra information required for a anyone type.
      */
     type?: string | null;
+    /**
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. published is the only supported value.
+     */
+    view?: string | null;
   }
   /**
    * A list of permissions for a file.
@@ -1541,6 +1545,8 @@ export namespace drive_v3 {
      *     includeCorpusRemovals: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      *     includeRemoved: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
@@ -1583,6 +1589,7 @@ export namespace drive_v3 {
      * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
@@ -1712,6 +1719,8 @@ export namespace drive_v3 {
      *     includeCorpusRemovals: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      *     includeRemoved: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
@@ -1777,6 +1786,7 @@ export namespace drive_v3 {
      * @param {string=} params.driveId The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
@@ -1903,6 +1913,10 @@ export namespace drive_v3 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      */
     includeRemoved?: boolean;
@@ -1952,6 +1966,10 @@ export namespace drive_v3 {
      * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      */
@@ -4122,6 +4140,8 @@ export namespace drive_v3 {
      *     fileId: 'placeholder-value',
      *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
      *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      *     keepRevisionForever: 'placeholder-value',
      *     // A language hint for OCR processing during image import (ISO 639-1 code).
@@ -4271,6 +4291,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -4393,6 +4414,8 @@ export namespace drive_v3 {
      *     enforceSingleParent: 'placeholder-value',
      *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
      *     ignoreDefaultVisibility: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      *     keepRevisionForever: 'placeholder-value',
      *     // A language hint for OCR processing during image import (ISO 639-1 code).
@@ -4547,6 +4570,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -5200,6 +5224,8 @@ export namespace drive_v3 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
@@ -5280,6 +5306,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      * @param {string} params.fileId The ID of the file.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5407,6 +5434,8 @@ export namespace drive_v3 {
      *     driveId: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
      *     includeTeamDriveItems: 'placeholder-value',
      *     // A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
@@ -5450,6 +5479,7 @@ export namespace drive_v3 {
      * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
      * @param {string=} params.driveId ID of the shared drive to search.
      * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
@@ -5577,6 +5607,8 @@ export namespace drive_v3 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      *     keepRevisionForever: 'placeholder-value',
      *     // A language hint for OCR processing during image import (ISO 639-1 code).
@@ -5734,6 +5766,7 @@ export namespace drive_v3 {
      * @param {string=} params.addParents A comma-separated list of parent IDs to add.
      * @param {boolean=} params.enforceSingleParent Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
      * @param {string} params.fileId The ID of the file.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
@@ -5869,6 +5902,8 @@ export namespace drive_v3 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
      *     // Deprecated use supportsAllDrives instead.
@@ -5919,6 +5954,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      * @param {string} params.fileId The ID of the file.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().Channel} params.requestBody Request body data
@@ -6019,6 +6055,10 @@ export namespace drive_v3 {
      */
     ignoreDefaultVisibility?: boolean;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
@@ -6049,6 +6089,10 @@ export namespace drive_v3 {
      * Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
      */
     ignoreDefaultVisibility?: boolean;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
@@ -6137,6 +6181,10 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
+    /**
      * Whether the requesting application supports both My Drives and shared drives.
      */
     supportsAllDrives?: boolean;
@@ -6162,6 +6210,10 @@ export namespace drive_v3 {
      * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Deprecated use includeItemsFromAllDrives instead.
      */
@@ -6212,6 +6264,10 @@ export namespace drive_v3 {
      * The ID of the file.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
@@ -6266,6 +6322,10 @@ export namespace drive_v3 {
      * The ID of the file.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * Whether the requesting application supports both My Drives and shared drives.
      */
@@ -6352,7 +6412,8 @@ export namespace drive_v3 {
      *       //   "photoLink": "my_photoLink",
      *       //   "role": "my_role",
      *       //   "teamDrivePermissionDetails": [],
-     *       //   "type": "my_type"
+     *       //   "type": "my_type",
+     *       //   "view": "my_view"
      *       // }
      *     },
      *   });
@@ -6372,7 +6433,8 @@ export namespace drive_v3 {
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
      *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type"
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
      *   // }
      * }
      *
@@ -6677,7 +6739,8 @@ export namespace drive_v3 {
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
      *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type"
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
      *   // }
      * }
      *
@@ -6812,6 +6875,8 @@ export namespace drive_v3 {
      *   const res = await drive.permissions.list({
      *     // The ID of the file or shared drive.
      *     fileId: 'placeholder-value',
+     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     *     includePermissionsForView: 'placeholder-value',
      *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      *     pageSize: 'placeholder-value',
      *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
@@ -6843,6 +6908,7 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file or shared drive.
+     * @param {string=} params.includePermissionsForView Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
@@ -6991,7 +7057,8 @@ export namespace drive_v3 {
      *       //   "photoLink": "my_photoLink",
      *       //   "role": "my_role",
      *       //   "teamDrivePermissionDetails": [],
-     *       //   "type": "my_type"
+     *       //   "type": "my_type",
+     *       //   "view": "my_view"
      *       // }
      *     },
      *   });
@@ -7011,7 +7078,8 @@ export namespace drive_v3 {
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
      *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type"
+     *   //   "type": "my_type",
+     *   //   "view": "my_view"
      *   // }
      * }
      *
@@ -7209,6 +7277,10 @@ export namespace drive_v3 {
      * The ID of the file or shared drive.
      */
     fileId?: string;
+    /**
+     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     */
+    includePermissionsForView?: string;
     /**
      * The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      */

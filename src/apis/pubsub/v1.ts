@@ -515,6 +515,10 @@ export namespace pubsub_v1 {
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
     /**
+     * Indicates whether the subscription is detached from its topic. Detached subscriptions don&#39;t receive messages from their topic and don&#39;t retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.
+     */
+    detached?: boolean | null;
+    /**
      * If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.
      */
     enableMessageOrdering?: boolean | null;
@@ -2090,6 +2094,7 @@ export namespace pubsub_v1 {
      *       // {
      *       //   "ackDeadlineSeconds": 0,
      *       //   "deadLetterPolicy": {},
+     *       //   "detached": false,
      *       //   "enableMessageOrdering": false,
      *       //   "expirationPolicy": {},
      *       //   "filter": "my_filter",
@@ -2109,6 +2114,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "detached": false,
      *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",
@@ -2526,6 +2532,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "detached": false,
      *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",
@@ -3272,6 +3279,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "deadLetterPolicy": {},
+     *   //   "detached": false,
      *   //   "enableMessageOrdering": false,
      *   //   "expirationPolicy": {},
      *   //   "filter": "my_filter",

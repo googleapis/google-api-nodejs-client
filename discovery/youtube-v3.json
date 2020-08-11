@@ -3970,7 +3970,7 @@
       }
     }
   },
-  "revision": "20200802",
+  "revision": "20200806",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -11004,6 +11004,7 @@
           "type": "boolean"
         },
         "channelId": {
+          "default": "UCBR8-60-B28hp2BmDPdntcQ",
           "description": "The YouTube channel that created the video category.",
           "type": "string"
         },

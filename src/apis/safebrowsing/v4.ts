@@ -178,7 +178,7 @@ export namespace safebrowsing_v4 {
      */
     maxDatabaseEntries?: number | null;
     /**
-     * The maximum size in number of entries. The update will not contain more entries than this value.  This should be a power of 2 between 2**10 and 2**20.  If zero, no update size limit is set.
+     * The maximum size in number of entries. The update will not contain more entries than this value. This should be a power of 2 between 2**10 and 2**20. If zero, no update size limit is set.
      */
     maxUpdateEntries?: number | null;
     /**
@@ -191,7 +191,7 @@ export namespace safebrowsing_v4 {
     supportedCompressions?: string[] | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -353,11 +353,11 @@ export namespace safebrowsing_v4 {
     value?: string | null;
   }
   /**
-   * The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL.  Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression.
+   * The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL. Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression.
    */
   export interface Schema$RawHashes {
     /**
-     * The number of bytes for each prefix encoded below.  This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
+     * The number of bytes for each prefix encoded below. This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
      */
     prefixSize?: number | null;
     /**
@@ -606,8 +606,7 @@ export namespace safebrowsing_v4 {
      *
      *   // Do the magic
      *   const res = await safebrowsing.encodedFullHashes.get({
-     *     // A client ID that (hopefully) uniquely identifies the client implementation
-     *     // of the Safe Browsing API.
+     *     // A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      *     clientId: 'placeholder-value',
      *     // The version of the client implementation.
      *     clientVersion: 'placeholder-value',
@@ -773,8 +772,7 @@ export namespace safebrowsing_v4 {
      *
      *   // Do the magic
      *   const res = await safebrowsing.encodedUpdates.get({
-     *     // A client ID that uniquely identifies the client implementation of the Safe
-     *     // Browsing API.
+     *     // A client ID that uniquely identifies the client implementation of the Safe Browsing API.
      *     clientId: 'placeholder-value',
      *     // The version of the client implementation.
      *     clientVersion: 'placeholder-value',

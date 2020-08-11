@@ -2,7 +2,7 @@
 
 # webfonts
 
-> Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
+> 
 
 ## Installation
 

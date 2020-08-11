@@ -101,7 +101,7 @@ export namespace tagmanager_v1 {
   /**
    * Tag Manager API
    *
-   * This API allows clients to access and modify container and tag      configuration.
+   * This API allows clients to access and modify container and tag configuration.
    *
    * @example
    * const {google} = require('googleapis');
@@ -153,7 +153,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$AccountAccess {
     /**
-     * List of Account permissions. Valid account permissions are &lt;code&gt;read&lt;/code&gt; and &lt;code&gt;manage&lt;/code&gt;. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * List of Account permissions. Valid account permissions are read and manage. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     permission?: string[] | null;
   }
@@ -162,7 +162,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$Condition {
     /**
-     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes:&lt;ul&gt; &lt;li&gt;For binary operators, include parameters named &lt;code&gt;arg0&lt;/code&gt; and    &lt;code&gt;arg1&lt;/code&gt; for specifying the left and right operands,    respectively.&lt;/li&gt; &lt;li&gt;At this time, the left operand (&lt;code&gt;arg0&lt;/code&gt;) must be a reference     to a variable.&lt;/li&gt; &lt;li&gt;For case-insensitive Regex matching, include a boolean parameter named     &lt;code&gt;ignore_case&lt;/code&gt; that is set to &lt;code&gt;true&lt;/code&gt;.     If not specified or set to any other value, the matching will be case     sensitive.&lt;/li&gt; &lt;li&gt;To negate an operator, include a boolean parameter named     &lt;code&gt;negate&lt;/code&gt; boolean parameter that is set to &lt;code&gt;true&lt;/code&gt;.     &lt;/li&gt; &lt;/ul&gt; @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * A list of named parameters (key/value), depending on the condition&#39;s type. Notes: - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively. - At this time, the left operand (arg0) must be a reference to a variable. - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive. - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     parameter?: Schema$Parameter[];
     /**
@@ -187,11 +187,11 @@ export namespace tagmanager_v1 {
      */
     domainName?: string[] | null;
     /**
-     * List of enabled built-in variables. Valid values include: &lt;code&gt;pageUrl, pageHostname, pagePath, referrer, event, clickElement, clickClasses, clickId, clickTarget, clickUrl, clickText, formElement, formClasses, formId, formTarget, formUrl, formText, errorMessage, errorUrl, errorLine, newHistoryFragment, oldHistoryFragment, newHistoryState, oldHistoryState, historySource, containerVersion, debugMode, randomNumber, containerId&lt;/code&gt;. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * List of enabled built-in variables. Valid values include: pageUrl, pageHostname, pagePath, referrer, event, clickElement, clickClasses, clickId, clickTarget, clickUrl, clickText, formElement, formClasses, formId, formTarget, formUrl, formText, errorMessage, errorUrl, errorLine, newHistoryFragment, oldHistoryFragment, newHistoryState, oldHistoryState, historySource, containerVersion, debugMode, randomNumber, containerId. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     enabledBuiltInVariable?: string[] | null;
     /**
-     * The fingerprint of the GTM Container as computed at storage time.  This value is recomputed whenever the account is modified.
+     * The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.
      */
     fingerprint?: string | null;
     /**
@@ -215,7 +215,7 @@ export namespace tagmanager_v1 {
      */
     timeZoneId?: string | null;
     /**
-     * List of Usage Contexts for the Container. Valid values include: &lt;code&gt;web, android, ios&lt;/code&gt;. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     * List of Usage Contexts for the Container. Valid values include: web, android, ios. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
      */
     usageContext?: string[] | null;
   }
@@ -228,7 +228,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string | null;
     /**
-     * List of Container permissions. Valid container permissions are: &lt;code&gt;read, edit, delete, publish&lt;/code&gt;. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
+     * List of Container permissions. Valid container permissions are: read, edit, delete, publish. @mutable tagmanager.accounts.permissions.create @mutable tagmanager.accounts.permissions.update
      */
     permission?: string[] | null;
   }
@@ -607,7 +607,7 @@ export namespace tagmanager_v1 {
    */
   export interface Schema$Parameter {
     /**
-     * The named key that uniquely identifies a parameter.  Required for top-level parameters, as well as map values.  Ignored for list values. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values. @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     key?: string | null;
     /**
@@ -619,7 +619,7 @@ export namespace tagmanager_v1 {
      */
     map?: Schema$Parameter[];
     /**
-     * The parameter type.  Valid values are:&lt;ul&gt; &lt;li&gt;&lt;code&gt;boolean&lt;/code&gt;: The value represents a boolean, represented as     &#39;true&#39; or &#39;false&#39;&lt;/li&gt; &lt;li&gt;&lt;code&gt;integer&lt;/code&gt;: The value represents a 64-bit signed integer     value, in base 10&lt;/li&gt; &lt;li&gt;&lt;code&gt;list&lt;/code&gt;: A list of parameters should be specified&lt;/li&gt; &lt;li&gt;&lt;code&gt;map&lt;/code&gt;: A map of parameters should be specified&lt;/li&gt; &lt;li&gt;&lt;code&gt;template&lt;/code&gt;: The value represents any text; this can include     variable references (even variable references that might return     non-string types)&lt;/li&gt; &lt;li&gt;&lt;code&gt;trigger_reference&lt;/code&gt;: The value represents a trigger,     represented as the trigger id&lt;/li&gt; &lt;li&gt;&lt;code&gt;tag_reference&lt;/code&gt;: The value represents a tag, represented as     the tag name&lt;/li&gt; &lt;/ul&gt; @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * The parameter type. Valid values are: - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39; - integer: The value represents a 64-bit signed integer value, in base 10 - list: A list of parameters should be specified - map: A map of parameters should be specified - template: The value represents any text; this can include variable references (even variable references that might return non-string types) - trigger_reference: The value represents a trigger, represented as the trigger id - tag_reference: The value represents a tag, represented as the tag name @mutable tagmanager.accounts.containers.variables.create @mutable tagmanager.accounts.containers.variables.update @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     type?: string | null;
     /**
@@ -692,11 +692,11 @@ export namespace tagmanager_v1 {
      */
     accountId?: string | null;
     /**
-     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag     will not fire. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     blockingRuleId?: string[] | null;
     /**
-     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag     will not fire. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     blockingTriggerId?: string[] | null;
     /**
@@ -708,11 +708,11 @@ export namespace tagmanager_v1 {
      */
     fingerprint?: string | null;
     /**
-     * Firing rule IDs. A tag will fire when any of the listed rules are true and     all of its &lt;code&gt;blockingRuleIds&lt;/code&gt; (if any specified) are false. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     firingRuleId?: string[] | null;
     /**
-     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its &lt;code&gt;blockingTriggerIds&lt;/code&gt; (if any specified) are false. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
+     * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update
      */
     firingTriggerId?: string[] | null;
     /**
@@ -895,7 +895,7 @@ export namespace tagmanager_v1 {
      */
     waitForTags?: Schema$Parameter;
     /**
-     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to &lt;code&gt;true&lt;/code&gt;.  Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
+     * How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers. @mutable tagmanager.accounts.containers.triggers.create @mutable tagmanager.accounts.containers.triggers.update
      */
     waitForTagsTimeout?: Schema$Parameter;
   }
@@ -1293,8 +1293,7 @@ export namespace tagmanager_v1 {
      *   const res = await tagmanager.accounts.update({
      *     // The GTM Account ID.
      *     accountId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the account
-     *     // in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the account in storage.
      *     fingerprint: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2067,8 +2066,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the
-     *     // container in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the container in storage.
      *     fingerprint: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2893,8 +2891,7 @@ export namespace tagmanager_v1 {
      *     containerId: 'placeholder-value',
      *     // The GTM Environment ID.
      *     environmentId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the
-     *     // environment in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the environment in storage.
      *     fingerprint: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3721,8 +3718,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the folder in
-     *     // storage.
+     *     // When provided, this fingerprint must match the fingerprint of the folder in storage.
      *     fingerprint: 'placeholder-value',
      *     // The GTM Folder ID.
      *     folderId: 'placeholder-value',
@@ -5133,8 +5129,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the tag in
-     *     // storage.
+     *     // When provided, this fingerprint must match the fingerprint of the tag in storage.
      *     fingerprint: 'placeholder-value',
      *     // The GTM Tag ID.
      *     tagId: 'placeholder-value',
@@ -6048,8 +6043,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the trigger
-     *     // in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the trigger in storage.
      *     fingerprint: 'placeholder-value',
      *     // The GTM Trigger ID.
      *     triggerId: 'placeholder-value',
@@ -6932,8 +6926,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the variable
-     *     // in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the variable in storage.
      *     fingerprint: 'placeholder-value',
      *     // The GTM Variable ID.
      *     variableId: 'placeholder-value',
@@ -7488,8 +7481,7 @@ export namespace tagmanager_v1 {
      *     accountId: 'placeholder-value',
      *     // The GTM Container ID.
      *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID. Specify <code>published</code> to retrieve
-     *     // the currently published version.
+     *     // The GTM Container Version ID. Specify published to retrieve the currently published version.
      *     containerVersionId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7524,7 +7516,7 @@ export namespace tagmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
      * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.containerVersionId The GTM Container Version ID. Specify <code>published</code> to retrieve the currently published version.
+     * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7795,8 +7787,7 @@ export namespace tagmanager_v1 {
      *     containerId: 'placeholder-value',
      *     // The GTM Container Version ID.
      *     containerVersionId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the
-     *     // container version in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the container version in storage.
      *     fingerprint: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8250,8 +8241,7 @@ export namespace tagmanager_v1 {
      *     containerId: 'placeholder-value',
      *     // The GTM Container Version ID.
      *     containerVersionId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the
-     *     // container version in storage.
+     *     // When provided, this fingerprint must match the fingerprint of the container version in storage.
      *     fingerprint: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8436,7 +8426,7 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
     /**
-     * The GTM Container Version ID. Specify <code>published</code> to retrieve the currently published version.
+     * The GTM Container Version ID. Specify published to retrieve the currently published version.
      */
     containerVersionId?: string;
   }

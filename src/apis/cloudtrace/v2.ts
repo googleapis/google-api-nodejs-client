@@ -145,7 +145,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: { &quot;string_value&quot;: { &quot;value&quot;: &quot;my-instance&quot; } }     &quot;/http/request_bytes&quot;: { &quot;int_value&quot;: 300 }     &quot;abc.com/myattribute&quot;: { &quot;bool_value&quot;: false }
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: &quot;/instance_id&quot;: { &quot;string_value&quot;: { &quot;value&quot;: &quot;my-instance&quot; } } &quot;/http/request_bytes&quot;: { &quot;int_value&quot;: 300 } &quot;abc.com/myattribute&quot;: { &quot;bool_value&quot;: false }
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -180,7 +180,7 @@ export namespace cloudtrace_v2 {
     spans?: Schema$Span[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -188,7 +188,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Link {
     /**
-     * A set of attributes on the link. You have have up to  32 attributes per link.
+     * A set of attributes on the link. You have have up to 32 attributes per link.
      */
     attributes?: Schema$Attributes;
     /**
@@ -252,7 +252,7 @@ export namespace cloudtrace_v2 {
     module?: Schema$TruncatableString;
   }
   /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous&amp;mdash;there may be gaps or overlaps between spans in a trace.
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there may be gaps or overlaps between spans in a trace.
    */
   export interface Schema$Span {
     /**
@@ -276,7 +276,7 @@ export namespace cloudtrace_v2 {
      */
     links?: Schema$Links;
     /**
-     * Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     * Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
      */
     name?: string | null;
     /**
@@ -367,12 +367,12 @@ export namespace cloudtrace_v2 {
      */
     stackFrames?: Schema$StackFrames;
     /**
-     * The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace.  Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`.  Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`.
+     * The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`.
      */
     stackTraceHashId?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -380,7 +380,7 @@ export namespace cloudtrace_v2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -431,7 +431,7 @@ export namespace cloudtrace_v2 {
      */
     truncatedByteCount?: number | null;
     /**
-     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
+     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
      */
     value?: string | null;
   }
@@ -483,8 +483,7 @@ export namespace cloudtrace_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.batchWrite({
-     *     // Required. The name of the project where the spans belong. The format is
-     *     // `projects/[PROJECT_ID]`.
+     *     // Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -645,14 +644,7 @@ export namespace cloudtrace_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.spans.createSpan({
-     *     // Required. The resource name of the span in the following format:
-     *     //
-     *     //     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;
-     *     // it is a 32-character hexadecimal encoding of a 16-byte array.
-     *     //
-     *     // [SPAN_ID] is a unique identifier for a span within a trace; it
-     *     // is a 16-character hexadecimal encoding of an 8-byte array. It should not
-     *     // be zero.
+     *     // Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
      *     name: 'projects/my-project/traces/my-trace/spans/my-span',
      *
      *     // Request body metadata
@@ -706,7 +698,7 @@ export namespace cloudtrace_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     * @param {string} params.name Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
      * @param {().Span} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -792,7 +784,7 @@ export namespace cloudtrace_v2 {
   export interface Params$Resource$Projects$Traces$Spans$Createspan
     extends StandardParameters {
     /**
-     * Required. The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     * Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
      */
     name?: string;
 

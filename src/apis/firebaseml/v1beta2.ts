@@ -128,7 +128,7 @@ export namespace firebaseml_v1beta2 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -225,7 +225,7 @@ export namespace firebaseml_v1beta2 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -233,12 +233,12 @@ export namespace firebaseml_v1beta2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
     /**
@@ -246,7 +246,7 @@ export namespace firebaseml_v1beta2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -316,8 +316,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.create({
-     *     // Required. The parent project resource where the model is to be created.
-     *     // The parent must have the form `projects/{project_id}`
+     *     // Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -470,8 +469,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.delete({
-     *     // Required. The name of the model to delete.
-     *     // The name must have the form `projects/{project_id}/models/{model_id}`
+     *     // Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`
      *     name: 'projects/my-project/models/my-model',
      *   });
      *   console.log(res.data);
@@ -597,8 +595,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.get({
-     *     // Required. The name of the model to get.
-     *     // The name must have the form `projects/{project_id}/models/{model_id}`
+     *     // Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`
      *     name: 'projects/my-project/models/my-model',
      *   });
      *   console.log(res.data);
@@ -735,15 +732,13 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.list({
-     *     // A filter for the list
-     *     // e.g. 'tags: abc' to list models which are tagged with "abc"
+     *     // A filter for the list e.g. 'tags: abc' to list models which are tagged with "abc"
      *     filter: 'placeholder-value',
      *     // The maximum number of items to return
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent to list models for.
-     *     // The parent must have the form `projects/{project_id}'
+     *     // Required. The name of the parent to list models for. The parent must have the form `projects/{project_id}'
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -881,9 +876,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.patch({
-     *     // The resource name of the Model.
-     *     // Model names have the form `projects/{project_id}/models/{model_id}`
-     *     // The name is ignored when creating a model.
+     *     // The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
      *     name: 'projects/my-project/models/my-model',
      *     // The update mask
      *     updateMask: 'placeholder-value',
@@ -1080,7 +1073,7 @@ export namespace firebaseml_v1beta2 {
 
     /**
      * firebaseml.projects.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

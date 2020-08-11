@@ -184,7 +184,7 @@ export namespace logging_v2 {
    */
   export interface Schema$CmekSettings {
     /**
-     * The resource name for the configured Cloud KMS key.KMS key name format:  &quot;projects/PROJECT_ID/locations/LOCATION/keyRings/KEYRING/cryptoKeys/KEY&quot;For example:  &quot;projects/my-project-id/locations/my-region/keyRings/key-ring-name/cryptoKeys/key-name&quot;To enable CMEK for the Logs Router, set this field to a valid kms_key_name for which the associated service account has the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Logs Router, set this field to an empty string.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * The resource name for the configured Cloud KMS key.KMS key name format: &quot;projects/PROJECT_ID/locations/LOCATION/keyRings/KEYRING/cryptoKeys/KEY&quot;For example: &quot;projects/my-project-id/locations/my-region/keyRings/key-ring-name/cryptoKeys/key-name&quot;To enable CMEK for the Logs Router, set this field to a valid kms_key_name for which the associated service account has the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Logs Router, set this field to an empty string.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      */
     kmsKeyName?: string | null;
     /**
@@ -197,11 +197,11 @@ export namespace logging_v2 {
     serviceAccountId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
   /**
-   * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): boundsi  Lower bound (1 &lt;= i &lt; N); boundsi - 1The bounds field must contain at least one element. If bounds has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
+   * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): boundsi Lower bound (1 &lt;= i &lt; N); boundsi - 1The bounds field must contain at least one element. If bounds has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
    */
   export interface Schema$Explicit {
     /**
@@ -210,7 +210,7 @@ export namespace logging_v2 {
     bounds?: number[] | null;
   }
   /**
-   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): scale * (growth_factor ^ i).  Lower bound (1 &lt;= i &lt; N): scale * (growth_factor ^ (i - 1)).
+   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): scale * (growth_factor ^ i). Lower bound (1 &lt;= i &lt; N): scale * (growth_factor ^ (i - 1)).
    */
   export interface Schema$Exponential {
     /**
@@ -309,7 +309,7 @@ export namespace logging_v2 {
     valueType?: string | null;
   }
   /**
-   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): offset + (width * i).  Lower bound (1 &lt;= i &lt; N): offset + (width * (i - 1)).
+   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): offset + (width * i). Lower bound (1 &lt;= i &lt; N): offset + (width * (i - 1)).
    */
   export interface Schema$Linear {
     /**
@@ -462,7 +462,11 @@ export namespace logging_v2 {
      */
     lifecycleState?: string | null;
     /**
-     * The resource name of the bucket. For example: &quot;projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are:  &quot;global&quot;  &quot;us-central1&quot;For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.
+     * Whether the bucket has been locked. The retention period on a locked bucket may not be changed. Locked buckets may only be deleted if they are empty.
+     */
+    locked?: boolean | null;
+    /**
+     * The resource name of the bucket. For example: &quot;projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are: &quot;global&quot;For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.
      */
     name?: string | null;
     /**
@@ -483,7 +487,7 @@ export namespace logging_v2 {
      */
     httpRequest?: Schema$HttpRequest;
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which are removed in a single query result. However, there are no guarantees of de-duplication in the export of logs.If the insert_id is omitted when writing a log entry, the Logging API  assigns its own unique identifier in this field.In queries, the insert_id is also used to order log entries that have the same log_name and timestamp values.
+     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which are removed in a single query result. However, there are no guarantees of de-duplication in the export of logs.If the insert_id is omitted when writing a log entry, the Logging API assigns its own unique identifier in this field.In queries, the insert_id is also used to order log entries that have the same log_name and timestamp values.
      */
     insertId?: string | null;
     /**
@@ -507,7 +511,7 @@ export namespace logging_v2 {
      */
     operation?: Schema$LogEntryOperation;
     /**
-     * The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.The following protocol buffer types are supported; user-defined types are not supported:&quot;type.googleapis.com/google.cloud.audit.AuditLog&quot;  &quot;type.googleapis.com/google.appengine.logging.v1.RequestLog&quot;
+     * The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.The following protocol buffer types are supported; user-defined types are not supported:&quot;type.googleapis.com/google.cloud.audit.AuditLog&quot; &quot;type.googleapis.com/google.appengine.logging.v1.RequestLog&quot;
      */
     protoPayload?: {[key: string]: any} | null;
     /**
@@ -672,7 +676,7 @@ export namespace logging_v2 {
      */
     updateTime?: string | null;
     /**
-     * Optional. A value_extractor is required when using a distribution logs-based metric to extract the values to record from a log entry. Two functions are supported for value extraction: EXTRACT(field) or REGEXP_EXTRACT(field, regex). The argument are:  1. field: The name of the log entry field from which the value is to be  extracted.  2. regex: A regular expression using the Google RE2 syntax  (https://github.com/google/re2/wiki/Syntax) with a single capture  group to extract data from the specified log entry field. The value  of the field is converted to a string before applying the regex.  It is an error to specify a regex that does not include exactly one  capture group.The result of the extraction must be convertible to a double type, as the distribution always records double values. If either the extraction or the conversion to double fails, then those values are not recorded in the distribution.Example: REGEXP_EXTRACT(jsonPayload.request, &quot;.*quantity=(\d+).*&quot;)
+     * Optional. A value_extractor is required when using a distribution logs-based metric to extract the values to record from a log entry. Two functions are supported for value extraction: EXTRACT(field) or REGEXP_EXTRACT(field, regex). The argument are: 1. field: The name of the log entry field from which the value is to be extracted. 2. regex: A regular expression using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax) with a single capture group to extract data from the specified log entry field. The value of the field is converted to a string before applying the regex. It is an error to specify a regex that does not include exactly one capture group.The result of the extraction must be convertible to a double type, as the distribution always records double values. If either the extraction or the conversion to double fails, then those values are not recorded in the distribution.Example: REGEXP_EXTRACT(jsonPayload.request, &quot;.*quantity=(\d+).*&quot;)
      */
     valueExtractor?: string | null;
     /**
@@ -705,6 +709,10 @@ export namespace logging_v2 {
      */
     disabled?: boolean | null;
     /**
+     * Optional. Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and one of exclusion_filters it will not be exported.
+     */
+    exclusions?: Schema$LogExclusion[];
+    /**
      * Optional. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-queries). The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
      */
     filter?: string | null;
@@ -725,12 +733,12 @@ export namespace logging_v2 {
      */
     updateTime?: string | null;
     /**
-     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under which Logging writes the exported log entries to the sink&#39;s destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service&#39;s documentation to determine the appropriate IAM roles to assign to the identity.
+     * Output only. An IAM identity—a service account or group—under which Logging writes the exported log entries to the sink&#39;s destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service&#39;s documentation to determine the appropriate IAM roles to assign to the identity.
      */
     writerIdentity?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.The following are specific rules for service defined Monitoring metric descriptors: type, metric_kind, value_type and description  fields are all required. The unit field must be specified  if the value_type is any of DOUBLE, INT64, DISTRIBUTION. Maximum of default 500 metric descriptors per service is allowed. Maximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.The following are specific rules for service defined Monitoring metric descriptors: type, metric_kind, value_type and description fields are all required. The unit field must be specified if the value_type is any of DOUBLE, INT64, DISTRIBUTION. Maximum of default 500 metric descriptors per service is allowed. Maximum of default 10 labels per metric descriptor is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -742,7 +750,7 @@ export namespace logging_v2 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type.The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are  allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type.The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -766,11 +774,11 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded.All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must follow: Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are  allowed. The maximum number of characters allowed for the relative_metric_name is  100.All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded.All service defined metrics must be prefixed with the service name, in the format of {service name}/{relative metric name}, such as cloudsql.googleapis.com/database/cpu/utilization. The relative metric name must follow: Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are allowed. The maximum number of characters allowed for the relative_metric_name is 100.All user-defined metric types have the DNS name custom.googleapis.com, external.googleapis.com, or logging.googleapis.com/user/.Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ; Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ] | Annotation | &quot;1&quot; ; Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or }. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, &quot;new users per day&quot; can be represented as 1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new users). Alternatively, &quot;thousands of page views per day&quot; would be represented as 1000/d or k1/d or k{page_views}/d (and a metric value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -796,7 +804,7 @@ export namespace logging_v2 {
     samplePeriod?: string | null;
   }
   /**
-   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource&#39;s schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for &quot;gce_instance&quot; has labels &quot;instance_id&quot; and &quot;zone&quot;: { &quot;type&quot;: &quot;gce_instance&quot;,   &quot;labels&quot;: { &quot;instance_id&quot;: &quot;12345678901234&quot;,               &quot;zone&quot;: &quot;us-central1-a&quot; }}
+   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource&#39;s schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for &quot;gce_instance&quot; has labels &quot;instance_id&quot; and &quot;zone&quot;: { &quot;type&quot;: &quot;gce_instance&quot;, &quot;labels&quot;: { &quot;instance_id&quot;: &quot;12345678901234&quot;, &quot;zone&quot;: &quot;us-central1-a&quot; }}
    */
   export interface Schema$MonitoredResource {
     /**
@@ -809,7 +817,7 @@ export namespace logging_v2 {
     type?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different services can support different monitored resource types.The following are specific rules to service defined monitored resources for Monitoring and Logging: The type, display_name, description, labels and launch_stage  fields are all required. The first label of the monitored resource descriptor must be  resource_container. There are legacy monitored resource descritptors  start with project_id. It must include a location label. Maximum of default 5 service defined monitored resource descriptors  is allowed per service. Maximum of default 10 labels per monitored resource is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different services can support different monitored resource types.The following are specific rules to service defined monitored resources for Monitoring and Logging: The type, display_name, description, labels and launch_stage fields are all required. The first label of the monitored resource descriptor must be resource_container. There are legacy monitored resource descritptors start with project_id. It must include a location label. Maximum of default 5 service defined monitored resource descriptors is allowed per service. Maximum of default 10 labels per monitored resource is allowed.The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -821,7 +829,7 @@ export namespace logging_v2 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are  allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, an individual Google Cloud SQL database is identified by values for the labels database_id and location.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow: Only upper and lower-case letters, digits and underscores (_) are allowed. Label name must start with a letter or digit. The maximum length of a label name is 100 characters.For example, an individual Google Cloud SQL database is identified by values for the labels database_id and location.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -833,7 +841,7 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type cloudsql_database represents databases in Google Cloud SQL.All service defined monitored resource types must be prefixed with the service name, in the format of {service name}/{relative resource name}. The relative resource name must follow: Only upper and lower-case letters and digits are allowed. It must start with upper case character and is recommended to use Upper  Camel Case style. The maximum number of characters allowed for the relative_resource_name  is 100.Note there are legacy service monitored resources not following this rule.
+     * Required. The monitored resource type. For example, the type cloudsql_database represents databases in Google Cloud SQL.All service defined monitored resource types must be prefixed with the service name, in the format of {service name}/{relative resource name}. The relative resource name must follow: Only upper and lower-case letters and digits are allowed. It must start with upper case character and is recommended to use Upper Camel Case style. The maximum number of characters allowed for the relative_resource_name is 100.Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
@@ -842,7 +850,7 @@ export namespace logging_v2 {
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
-     * Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,   &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],   &quot;spot_instance&quot;: false }
+     * Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;, &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;spot_instance&quot;: false }
      */
     systemLabels?: {[key: string]: any} | null;
     /**
@@ -1018,6 +1026,10 @@ export namespace logging_v2 {
     revisionId?: string | null;
   }
   /**
+   * The parameters to UndeleteBucket.
+   */
+  export interface Schema$UndeleteBucketRequest {}
+  /**
    * The parameters to WriteLogEntries.
    */
   export interface Schema$WriteLogEntriesRequest {
@@ -1042,7 +1054,7 @@ export namespace logging_v2 {
      */
     partialSuccess?: boolean | null;
     /**
-     * Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example: { &quot;type&quot;: &quot;gce_instance&quot;,   &quot;labels&quot;: {     &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;: &quot;00000000000000000000&quot; }} See LogEntry.
+     * Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example: { &quot;type&quot;: &quot;gce_instance&quot;, &quot;labels&quot;: { &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;: &quot;00000000000000000000&quot; }} See LogEntry.
      */
     resource?: Schema$MonitoredResource;
   }
@@ -1106,12 +1118,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.buckets.get({
-     *     // Required. The resource name of the bucket:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
      *     name: 'billingAccounts/my-billingAccount/buckets/my-bucket',
      *   });
      *   console.log(res.data);
@@ -1121,6 +1128,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -1262,12 +1270,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.exclusions.create({
-     *     // Required. The parent resource in which to create the exclusion:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'billingAccounts/my-billingAccount',
      *
      *     // Request body metadata
@@ -1420,12 +1423,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.exclusions.delete({
-     *     // Required. The resource name of an existing exclusion to delete:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -1556,12 +1554,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.exclusions.get({
-     *     // Required. The resource name of an existing exclusion:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -1703,12 +1696,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose exclusions are to be listed.
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'billingAccounts/my-billingAccount',
      *   });
      *   console.log(res.data);
@@ -1850,12 +1838,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.exclusions.patch({
-     *     // Required. The resource name of the exclusion to update:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'billingAccounts/my-billingAccount/exclusions/my-exclusion',
      *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
      *     updateMask: 'placeholder-value',
@@ -2055,6 +2038,294 @@ export namespace logging_v2 {
     }
 
     /**
+     * logging.billingAccounts.locations.buckets.create
+     * @desc Creates a bucket that can be used to store log entries. Once a bucket has been created, the region cannot be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.create({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     *     parent: 'billingAccounts/my-billingAccount/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.locations.buckets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.bucketId Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * @param {string} params.parent Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Create,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Create
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.billingAccounts.locations.buckets.delete
+     * @desc Deletes a bucket. Moves the bucket to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all logs in the bucket will be permanently deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.delete({
+     *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.locations.buckets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * logging.billingAccounts.locations.buckets.list
      * @desc Lists buckets (Beta).
      * @example
@@ -2090,12 +2361,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose buckets are to be listed:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     // Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      *     parent: 'billingAccounts/my-billingAccount/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2235,12 +2501,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.patch({
-     *     // Required. The full resource name of the bucket to update.
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
      *     name:
      *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
@@ -2253,6 +2514,7 @@ export namespace logging_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
@@ -2266,6 +2528,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -2363,8 +2626,171 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
     }
+
+    /**
+     * logging.billingAccounts.locations.buckets.undelete
+     * @desc Undeletes a bucket. A bucket that has been deleted may be undeleted within the grace period of 7 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.undelete({
+     *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.billingAccounts.locations.buckets.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {().UndeleteBucketRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    undelete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Undelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
   export interface Params$Resource$Billingaccounts$Locations$Buckets$List
     extends StandardParameters {
     /**
@@ -2395,6 +2821,18 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteBucketRequest;
   }
 
   export class Resource$Billingaccounts$Logs {
@@ -2433,12 +2871,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.logs.delete({
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     // Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      *     logName: 'billingAccounts/my-billingAccount/logs/my-log',
      *   });
      *   console.log(res.data);
@@ -2573,12 +3006,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'billingAccounts/my-billingAccount',
      *   });
      *   console.log(res.data);
@@ -2742,12 +3170,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.create({
-     *     // Required. The resource in which to create the sink:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'billingAccounts/my-billingAccount',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      *     uniqueWriterIdentity: 'placeholder-value',
@@ -2761,6 +3184,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -2779,6 +3203,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -2913,12 +3338,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -3049,12 +3469,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.get({
-     *     // Required. The resource name of the sink:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -3066,6 +3481,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -3201,12 +3617,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'billingAccounts/my-billingAccount',
      *   });
      *   console.log(res.data);
@@ -3346,19 +3757,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.patch({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3370,6 +3773,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -3388,6 +3792,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -3408,7 +3813,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3520,19 +3925,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.update({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3544,6 +3941,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -3562,6 +3960,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -3582,7 +3981,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3721,7 +4120,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -3741,7 +4140,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -4099,12 +4498,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.exclusions.create({
-     *     // Required. The parent resource in which to create the exclusion:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: '[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -4257,12 +4651,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.exclusions.delete({
-     *     // Required. The resource name of an existing exclusion to delete:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -4393,12 +4782,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.exclusions.get({
-     *     // Required. The resource name of an existing exclusion:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -4539,12 +4923,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose exclusions are to be listed.
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -4685,12 +5064,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.exclusions.patch({
-     *     // Required. The resource name of the exclusion to update:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: '[^/]+/[^/]+/exclusions/my-exclusion',
      *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
      *     updateMask: 'placeholder-value',
@@ -4919,12 +5293,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.exclusions.create({
-     *     // Required. The parent resource in which to create the exclusion:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -5077,12 +5446,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.exclusions.delete({
-     *     // Required. The resource name of an existing exclusion to delete:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'folders/my-folder/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -5213,12 +5577,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.exclusions.get({
-     *     // Required. The resource name of an existing exclusion:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'folders/my-folder/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -5360,12 +5719,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose exclusions are to be listed.
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -5507,12 +5861,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.exclusions.patch({
-     *     // Required. The resource name of the exclusion to update:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'folders/my-folder/exclusions/my-exclusion',
      *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
      *     updateMask: 'placeholder-value',
@@ -5710,6 +6059,293 @@ export namespace logging_v2 {
     }
 
     /**
+     * logging.folders.locations.buckets.create
+     * @desc Creates a bucket that can be used to store log entries. Once a bucket has been created, the region cannot be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.create({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     *     parent: 'folders/my-folder/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.bucketId Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * @param {string} params.parent Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Folders$Locations$Buckets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Locations$Buckets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    create(
+      params: Params$Resource$Folders$Locations$Buckets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Buckets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Buckets$Create,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Create
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.folders.locations.buckets.delete
+     * @desc Deletes a bucket. Moves the bucket to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all logs in the bucket will be permanently deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.delete({
+     *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Folders$Locations$Buckets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Locations$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Locations$Buckets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Buckets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * logging.folders.locations.buckets.get
      * @desc Gets a bucket (Beta).
      * @example
@@ -5741,12 +6377,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.buckets.get({
-     *     // Required. The resource name of the bucket:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
      *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
@@ -5756,6 +6387,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -5888,12 +6520,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose buckets are to be listed:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     // Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      *     parent: 'folders/my-folder/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -6033,12 +6660,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.buckets.patch({
-     *     // Required. The full resource name of the bucket to update.
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
      *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
      *     updateMask: 'placeholder-value',
@@ -6050,6 +6672,7 @@ export namespace logging_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
@@ -6063,6 +6686,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -6160,8 +6784,170 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
     }
+
+    /**
+     * logging.folders.locations.buckets.undelete
+     * @desc Undeletes a bucket. A bucket that has been deleted may be undeleted within the grace period of 7 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.undelete({
+     *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.folders.locations.buckets.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {().UndeleteBucketRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+      params: Params$Resource$Folders$Locations$Buckets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Folders$Locations$Buckets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    undelete(
+      params: Params$Resource$Folders$Locations$Buckets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Folders$Locations$Buckets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(
+      params: Params$Resource$Folders$Locations$Buckets$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Undelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Folders$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
   export interface Params$Resource$Folders$Locations$Buckets$Get
     extends StandardParameters {
     /**
@@ -6200,6 +6986,18 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
+  export interface Params$Resource$Folders$Locations$Buckets$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteBucketRequest;
+  }
 
   export class Resource$Folders$Logs {
     context: APIRequestContext;
@@ -6237,12 +7035,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.logs.delete({
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     // Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      *     logName: 'folders/my-folder/logs/my-log',
      *   });
      *   console.log(res.data);
@@ -6377,12 +7170,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -6546,12 +7334,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.create({
-     *     // Required. The resource in which to create the sink:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'folders/my-folder',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      *     uniqueWriterIdentity: 'placeholder-value',
@@ -6565,6 +7348,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -6583,6 +7367,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -6717,12 +7502,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'folders/my-folder/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -6853,12 +7633,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.get({
-     *     // Required. The resource name of the sink:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'folders/my-folder/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -6870,6 +7645,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -7005,12 +7781,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -7150,19 +7921,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.patch({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'folders/my-folder/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7174,6 +7937,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -7192,6 +7956,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -7212,7 +7977,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7324,19 +8089,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.update({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'folders/my-folder/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7348,6 +8105,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -7366,6 +8124,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -7386,7 +8145,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7525,7 +8284,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -7545,7 +8304,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -7568,6 +8327,293 @@ export namespace logging_v2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * logging.locations.buckets.create
+     * @desc Creates a bucket that can be used to store log entries. Once a bucket has been created, the region cannot be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.create({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     *     parent: '[^/]+/[^/]+/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.bucketId Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * @param {string} params.parent Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Locations$Buckets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Locations$Buckets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    create(
+      params: Params$Resource$Locations$Buckets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Buckets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Buckets$Create,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Create
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.locations.buckets.delete
+     * @desc Deletes a bucket. Moves the bucket to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all logs in the bucket will be permanently deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.delete({
+     *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Locations$Buckets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Locations$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Locations$Buckets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Buckets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -7602,12 +8648,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.locations.buckets.get({
-     *     // Required. The resource name of the bucket:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
      *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
@@ -7617,6 +8658,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -7749,12 +8791,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose buckets are to be listed:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     // Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      *     parent: '[^/]+/[^/]+/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -7894,12 +8931,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.locations.buckets.patch({
-     *     // Required. The full resource name of the bucket to update.
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
      *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
      *     updateMask: 'placeholder-value',
@@ -7911,6 +8943,7 @@ export namespace logging_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
@@ -7924,6 +8957,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -8021,8 +9055,170 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
     }
+
+    /**
+     * logging.locations.buckets.undelete
+     * @desc Undeletes a bucket. A bucket that has been deleted may be undeleted within the grace period of 7 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.undelete({
+     *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.locations.buckets.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {().UndeleteBucketRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+      params: Params$Resource$Locations$Buckets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Locations$Buckets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    undelete(
+      params: Params$Resource$Locations$Buckets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Buckets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Buckets$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Undelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Locations$Buckets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
   export interface Params$Resource$Locations$Buckets$Get
     extends StandardParameters {
     /**
@@ -8061,6 +9257,18 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
+  export interface Params$Resource$Locations$Buckets$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteBucketRequest;
+  }
 
   export class Resource$Logs {
     context: APIRequestContext;
@@ -8098,12 +9306,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.logs.delete({
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     // Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      *     logName: '[^/]+/[^/]+/logs/my-log',
      *   });
      *   console.log(res.data);
@@ -8237,12 +9440,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -8587,12 +9785,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.getCmekSettings({
-     *     // Required. The resource for which to retrieve CMEK settings.
-     *     // "projects/[PROJECT_ID]/cmekSettings"
-     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     // "folders/[FOLDER_ID]/cmekSettings"
-     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -8728,12 +9921,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update.
-     *     // "projects/[PROJECT_ID]/cmekSettings"
-     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     // "folders/[FOLDER_ID]/cmekSettings"
-     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: 'organizations/my-organization',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
@@ -8916,12 +10104,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.exclusions.create({
-     *     // Required. The parent resource in which to create the exclusion:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -9074,12 +10257,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.exclusions.delete({
-     *     // Required. The resource name of an existing exclusion to delete:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'organizations/my-organization/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -9210,12 +10388,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.exclusions.get({
-     *     // Required. The resource name of an existing exclusion:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'organizations/my-organization/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -9357,12 +10530,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose exclusions are to be listed.
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -9504,12 +10672,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.exclusions.patch({
-     *     // Required. The resource name of the exclusion to update:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'organizations/my-organization/exclusions/my-exclusion',
      *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
      *     updateMask: 'placeholder-value',
@@ -9707,6 +10870,294 @@ export namespace logging_v2 {
     }
 
     /**
+     * logging.organizations.locations.buckets.create
+     * @desc Creates a bucket that can be used to store log entries. Once a bucket has been created, the region cannot be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.create({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.bucketId Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * @param {string} params.parent Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Buckets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Buckets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    create(
+      params: Params$Resource$Organizations$Locations$Buckets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Buckets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Buckets$Create,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Create
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.locations.buckets.delete
+     * @desc Deletes a bucket. Moves the bucket to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all logs in the bucket will be permanently deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.delete({
+     *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Buckets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Buckets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Buckets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * logging.organizations.locations.buckets.get
      * @desc Gets a bucket (Beta).
      * @example
@@ -9738,12 +11189,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.get({
-     *     // Required. The resource name of the bucket:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
      *     name:
      *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *   });
@@ -9754,6 +11200,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -9886,12 +11333,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose buckets are to be listed:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     // Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -10031,12 +11473,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.patch({
-     *     // Required. The full resource name of the bucket to update.
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
      *     name:
      *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
@@ -10049,6 +11486,7 @@ export namespace logging_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
@@ -10062,6 +11500,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -10159,8 +11598,171 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
     }
+
+    /**
+     * logging.organizations.locations.buckets.undelete
+     * @desc Undeletes a bucket. A bucket that has been deleted may be undeleted within the grace period of 7 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.undelete({
+     *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.organizations.locations.buckets.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {().UndeleteBucketRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+      params: Params$Resource$Organizations$Locations$Buckets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Organizations$Locations$Buckets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    undelete(
+      params: Params$Resource$Organizations$Locations$Buckets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Organizations$Locations$Buckets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(
+      params: Params$Resource$Organizations$Locations$Buckets$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Undelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Organizations$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Buckets$Get
     extends StandardParameters {
     /**
@@ -10199,6 +11801,18 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
+  export interface Params$Resource$Organizations$Locations$Buckets$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteBucketRequest;
+  }
 
   export class Resource$Organizations$Logs {
     context: APIRequestContext;
@@ -10236,12 +11850,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.logs.delete({
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     // Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      *     logName: 'organizations/my-organization/logs/my-log',
      *   });
      *   console.log(res.data);
@@ -10376,12 +11985,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -10545,12 +12149,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.create({
-     *     // Required. The resource in which to create the sink:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'organizations/my-organization',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      *     uniqueWriterIdentity: 'placeholder-value',
@@ -10564,6 +12163,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -10582,6 +12182,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -10716,12 +12317,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -10852,12 +12448,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.get({
-     *     // Required. The resource name of the sink:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -10869,6 +12460,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -11004,12 +12596,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -11149,19 +12736,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.patch({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11173,6 +12752,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -11191,6 +12771,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -11211,7 +12792,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11323,19 +12904,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.update({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11347,6 +12920,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -11365,6 +12939,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -11385,7 +12960,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11524,7 +13099,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -11544,7 +13119,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -11607,12 +13182,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.exclusions.create({
-     *     // Required. The parent resource in which to create the exclusion:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -11765,12 +13335,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.exclusions.delete({
-     *     // Required. The resource name of an existing exclusion to delete:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'projects/my-project/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -11901,12 +13466,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.exclusions.get({
-     *     // Required. The resource name of an existing exclusion:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'projects/my-project/exclusions/my-exclusion',
      *   });
      *   console.log(res.data);
@@ -12048,12 +13608,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose exclusions are to be listed.
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose exclusions are to be listed. "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -12195,12 +13750,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.exclusions.patch({
-     *     // Required. The resource name of the exclusion to update:
-     *     // "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     // "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *     // Example: "projects/my-project-id/exclusions/my-exclusion-id".
+     *     // Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example: "projects/my-project-id/exclusions/my-exclusion-id".
      *     name: 'projects/my-project/exclusions/my-exclusion',
      *     // Required. A non-empty list of fields to change in the existing exclusion. New values for the fields are taken from the corresponding fields in the LogExclusion included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.For example, to change the filter and description of an exclusion, specify an update_mask of "filter,description".
      *     updateMask: 'placeholder-value',
@@ -12398,6 +13948,293 @@ export namespace logging_v2 {
     }
 
     /**
+     * logging.projects.locations.buckets.create
+     * @desc Creates a bucket that can be used to store log entries. Once a bucket has been created, the region cannot be changed.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.create({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
+     *   //   "name": "my_name",
+     *   //   "retentionDays": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.bucketId Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     * @param {string} params.parent Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Buckets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Buckets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    create(
+      params: Params$Resource$Projects$Locations$Buckets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Buckets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Buckets$Create,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Create
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.projects.locations.buckets.delete
+     * @desc Deletes a bucket. Moves the bucket to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all logs in the bucket will be permanently deleted.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.delete({
+     *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Buckets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Buckets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Buckets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Buckets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Buckets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * logging.projects.locations.buckets.get
      * @desc Gets a bucket (Beta).
      * @example
@@ -12429,12 +14266,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.buckets.get({
-     *     // Required. The resource name of the bucket:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
      *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
@@ -12444,6 +14276,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -12576,12 +14409,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose buckets are to be listed:
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *     // Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
+     *     // Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -12721,12 +14549,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.buckets.patch({
-     *     // Required. The full resource name of the bucket to update.
-     *     // "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *     // Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
      *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
      *     updateMask: 'placeholder-value',
@@ -12738,6 +14561,7 @@ export namespace logging_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
@@ -12751,6 +14575,7 @@ export namespace logging_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
@@ -12848,8 +14673,170 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
     }
+
+    /**
+     * logging.projects.locations.buckets.undelete
+     * @desc Undeletes a bucket. A bucket that has been deleted may be undeleted within the grace period of 7 days.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.undelete({
+     *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias logging.projects.locations.buckets.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {().UndeleteBucketRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+      params: Params$Resource$Projects$Locations$Buckets$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Locations$Buckets$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    undelete(
+      params: Params$Resource$Projects$Locations$Buckets$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Buckets$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Buckets$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Undelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" Example: "projects/my-logging-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Buckets$Get
     extends StandardParameters {
     /**
@@ -12888,6 +14875,18 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
+  export interface Params$Resource$Projects$Locations$Buckets$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteBucketRequest;
+  }
 
   export class Resource$Projects$Logs {
     context: APIRequestContext;
@@ -12925,12 +14924,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.logs.delete({
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+     *     // Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
      *     logName: 'projects/my-project/logs/my-log',
      *   });
      *   console.log(res.data);
@@ -13065,12 +15059,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -13235,9 +15224,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.metrics.create({
-     *     // Required. The resource name of the project in which to create the metric:
-     *     // "projects/[PROJECT_ID]"
-     *     // The new metric must be provided in the request.
+     *     // Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -13399,9 +15386,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.metrics.delete({
-     *     // Required. The resource name of the metric to delete:
-     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *     //
+     *     // Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *     metricName: 'projects/my-project/metrics/my-metric',
      *   });
      *   console.log(res.data);
@@ -13532,9 +15517,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.metrics.get({
-     *     // Required. The resource name of the desired metric:
-     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *     //
+     *     // Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *     metricName: 'projects/my-project/metrics/my-metric',
      *   });
      *   console.log(res.data);
@@ -13680,9 +15663,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project containing the metrics:
-     *     // "projects/[PROJECT_ID]"
-     *     //
+     *     // Required. The name of the project containing the metrics: "projects/[PROJECT_ID]"
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -13825,9 +15806,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.metrics.update({
-     *     // Required. The resource name of the metric to update:
-     *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *     // The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     *     // Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
      *     metricName: 'projects/my-project/metrics/my-metric',
      *
      *     // Request body metadata
@@ -14046,12 +16025,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.create({
-     *     // Required. The resource in which to create the sink:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: 'projects/my-project',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      *     uniqueWriterIdentity: 'placeholder-value',
@@ -14065,6 +16039,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -14083,6 +16058,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -14217,12 +16193,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'projects/my-project/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -14353,12 +16324,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.get({
-     *     // Required. The resource name of the sink:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'projects/my-project/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -14370,6 +16336,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -14505,12 +16472,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -14650,19 +16612,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.patch({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'projects/my-project/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14674,6 +16628,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -14692,6 +16647,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -14712,7 +16668,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14824,19 +16780,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.update({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: 'projects/my-project/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14848,6 +16796,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -14866,6 +16815,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -14886,7 +16836,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15025,7 +16975,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -15045,7 +16995,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -15091,12 +17041,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.create({
-     *     // Required. The resource in which to create the sink:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     // Examples: "projects/my-logging-project", "organizations/123456789".
+     *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
      *     parent: '[^/]+/[^/]+',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      *     uniqueWriterIdentity: 'placeholder-value',
@@ -15110,6 +17055,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -15128,6 +17074,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -15261,12 +17208,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.delete({
-     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -15396,12 +17338,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.get({
-     *     // Required. The resource name of the sink:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
      *   });
      *   console.log(res.data);
@@ -15413,6 +17350,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -15547,12 +17485,7 @@ export namespace logging_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource whose sinks are to be listed:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     //
+     *     // Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -15691,19 +17624,11 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.update({
-     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier:
-     *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *     // Example: "projects/my-project-id/sinks/my-sink-id".
+     *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
-     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field:
-     *     // If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity.
-     *     // If the old value is false and the new value is true, then writer_identity is changed to a unique service account.
-     *     // It is an error if the old value is true and the new value is set to false or defaulted to false.
+     *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
      *     uniqueWriterIdentity: 'placeholder-value',
-     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     *     // Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -15715,6 +17640,7 @@ export namespace logging_v2 {
      *       //   "description": "my_description",
      *       //   "destination": "my_destination",
      *       //   "disabled": false,
+     *       //   "exclusions": [],
      *       //   "filter": "my_filter",
      *       //   "includeChildren": false,
      *       //   "name": "my_name",
@@ -15733,6 +17659,7 @@ export namespace logging_v2 {
      *   //   "description": "my_description",
      *   //   "destination": "my_destination",
      *   //   "disabled": false,
+     *   //   "exclusions": [],
      *   //   "filter": "my_filter",
      *   //   "includeChildren": false,
      *   //   "name": "my_name",
@@ -15753,7 +17680,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15886,7 +17813,7 @@ export namespace logging_v2 {
      */
     uniqueWriterIdentity?: boolean;
     /**
-     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
+     * Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes: destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      */
     updateMask?: string;
 
@@ -15934,12 +17861,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.getCmekSettings({
-     *     // Required. The resource for which to retrieve CMEK settings.
-     *     // "projects/[PROJECT_ID]/cmekSettings"
-     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     // "folders/[FOLDER_ID]/cmekSettings"
-     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -16075,12 +17997,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update.
-     *     // "projects/[PROJECT_ID]/cmekSettings"
-     *     // "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     // "folders/[FOLDER_ID]/cmekSettings"
-     *     // Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: '[^/]+/[^/]+',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
