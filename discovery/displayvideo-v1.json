@@ -117,7 +117,7 @@
     "advertisers": {
       "methods": {
         "audit": {
-          "description": "Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their [respective resource limit]: (https://support.google.com/displayvideo/answer/6071450?hl=en)",
+          "description": "Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.",
           "flatPath": "v1/advertisers/{advertisersId}:audit",
           "httpMethod": "GET",
           "id": "displayvideo.advertisers.audit",
@@ -3517,7 +3517,7 @@
           ],
           "parameters": {
             "advertiserId": {
-              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "description": "The ID of the DV360 partner that has access to the custom bidding algorithm.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -3531,7 +3531,7 @@
               "type": "string"
             },
             "partnerId": {
-              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "description": "The ID of the DV360 partner that has access to the custom bidding algorithm.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -3553,7 +3553,7 @@
           "parameterOrder": [],
           "parameters": {
             "advertiserId": {
-              "description": "The ID of the DV3 advertiser that has access to the custom bidding algorithm.",
+              "description": "The ID of the DV360 advertiser that has access to the custom bidding algorithm.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -3580,7 +3580,7 @@
               "type": "string"
             },
             "partnerId": {
-              "description": "The ID of the DV3 partner that has access to the custom bidding algorithm.",
+              "description": "The ID of the DV360 partner that has access to the custom bidding algorithm.",
               "format": "int64",
               "location": "query",
               "type": "string"
@@ -4440,7 +4440,7 @@
     "partners": {
       "methods": {
         "bulkEditPartnerAssignedTargetingOptions": {
-          "description": "Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.create_requests .",
+          "description": "Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .",
           "flatPath": "v1/partners/{partnersId}:bulkEditPartnerAssignedTargetingOptions",
           "httpMethod": "POST",
           "id": "displayvideo.partners.bulkEditPartnerAssignedTargetingOptions",
@@ -5733,7 +5733,7 @@
     "users": {
       "methods": {
         "bulkEditAssignedUserRoles": {
-          "description": "Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deleted_assigned_user_roles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.created_assigned_user_roles.",
+          "description": "Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles.",
           "flatPath": "v1/users/{usersId}:bulkEditAssignedUserRoles",
           "httpMethod": "POST",
           "id": "displayvideo.users.bulkEditAssignedUserRoles",
@@ -5906,7 +5906,7 @@
       }
     }
   },
-  "revision": "20200804",
+  "revision": "20200806",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -6854,17 +6854,17 @@
       "id": "AuditAdvertiserResponse",
       "properties": {
         "usedCampaignsCount": {
-          "description": "The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9,999 campaigns per advertiser.",
+          "description": "The number of ACTIVE and PAUSED campaigns under this advertiser. These campaigns count towards the limit of 9999 campaigns per advertiser.",
           "format": "int64",
           "type": "string"
         },
         "usedInsertionOrdersCount": {
-          "description": "The number of ACTIVE, PAUSED and DRAFT insertion orders under this advertiser. These insertion orders count towards the limit of 9,999 insertion orders per advertiser.",
+          "description": "The number of ACTIVE, PAUSED and DRAFT insertion orders under this advertiser. These insertion orders count towards the limit of 9999 insertion orders per advertiser.",
           "format": "int64",
           "type": "string"
         },
         "usedLineItemsCount": {
-          "description": "The number of ACTIVE, PAUSED, and DRAFT line items under this advertiser. These line items count towards the limit of 9,999 line items per advertiser.",
+          "description": "The number of ACTIVE, PAUSED, and DRAFT line items under this advertiser. These line items count towards the limit of 9999 line items per advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -7108,7 +7108,6 @@
       "type": "object"
     },
     "BulkEditAssignedUserRolesResponse": {
-      "description": "Response message for BulkEditAssignedUserRoles.",
       "id": "BulkEditAssignedUserRolesResponse",
       "properties": {
         "createdAssignedUserRoles": {
@@ -11691,7 +11690,6 @@
       "type": "object"
     },
     "ListCustomBiddingAlgorithmsResponse": {
-      "description": "Response message for CustomBiddingAlgorithmService.ListCustomBiddingAlgorithms.",
       "id": "ListCustomBiddingAlgorithmsResponse",
       "properties": {
         "customBiddingAlgorithms": {
@@ -11900,7 +11898,6 @@
       "type": "object"
     },
     "ListPartnerAssignedTargetingOptionsResponse": {
-      "description": "Response message for ListPartnerAssignedTargetingOptions.",
       "id": "ListPartnerAssignedTargetingOptionsResponse",
       "properties": {
         "assignedTargetingOptions": {
@@ -11918,7 +11915,6 @@
       "type": "object"
     },
     "ListPartnersResponse": {
-      "description": "Response message for ListPartners.",
       "id": "ListPartnersResponse",
       "properties": {
         "nextPageToken": {
@@ -11972,7 +11968,6 @@
       "type": "object"
     },
     "ListUsersResponse": {
-      "description": "Response message for ListUsers.",
       "id": "ListUsersResponse",
       "properties": {
         "nextPageToken": {

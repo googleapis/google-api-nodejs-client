@@ -273,7 +273,7 @@ export namespace dlp_v2 {
     tableReference?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
-   * Message defining the location of a BigQuery table. A table is uniquely identified  by its project_id, dataset_id, and table_name. Within a query a table is often referenced with a string in the format of: `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` or `&lt;project_id&gt;.&lt;dataset_id&gt;.&lt;table_id&gt;`.
+   * Message defining the location of a BigQuery table. A table is uniquely identified by its project_id, dataset_id, and table_name. Within a query a table is often referenced with a string in the format of: `:.` or `..`.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryTable {
     /**
@@ -405,7 +405,7 @@ export namespace dlp_v2 {
      */
     charactersToIgnore?: Schema$GooglePrivacyDlpV2CharsToIgnore[];
     /**
-     * Character to use to mask the sensitive values&amp;mdash;for example, `*` for an alphabetic string such as a name, or `0` for a numeric string such as ZIP code or credit card number. This string must have a length of 1. If not supplied, this value defaults to `*` for strings, and `0` for digits.
+     * Character to use to mask the sensitive values—for example, `*` for an alphabetic string such as a name, or `0` for a numeric string such as ZIP code or credit card number. This string must have a length of 1. If not supplied, this value defaults to `*` for strings, and `0` for digits.
      */
     maskingCharacter?: string | null;
     /**
@@ -435,7 +435,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageFileSet {
     /**
-     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is allowed.
+     * The url, in the format `gs:///`. Trailing wildcard in the path is allowed.
      */
     url?: string | null;
   }
@@ -475,7 +475,7 @@ export namespace dlp_v2 {
     path?: string | null;
   }
   /**
-   * Message representing a set of files in a Cloud Storage bucket. Regular expressions are used to allow fine-grained control over which files in the bucket to include.  Included files are those that match at least one item in `include_regex` and do not match any items in `exclude_regex`. Note that a file that matches items from both lists will _not_ be included. For a match to occur, the entire file path (i.e., everything in the url after the bucket name) must match the regular expression.  For example, given the input `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory1/.*&quot;], exclude_regex: [&quot;directory1/excluded.*&quot;]}`:  * `gs://mybucket/directory1/myfile` will be included * `gs://mybucket/directory1/directory2/myfile` will be included (`.*` matches across `/`) * `gs://mybucket/directory0/directory1/myfile` will _not_ be included (the full path doesn&#39;t match any items in `include_regex`) * `gs://mybucket/directory1/excludedfile` will _not_ be included (the path matches an item in `exclude_regex`)  If `include_regex` is left empty, it will match all files by default (this is equivalent to setting `include_regex: [&quot;.*&quot;]`).  Some other common use cases:  * `{bucket_name: &quot;mybucket&quot;, exclude_regex: [&quot;.*\.pdf&quot;]}` will include all files in `mybucket` except for .pdf files * `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory/[^/]+&quot;]}` will include all files directly under `gs://mybucket/directory/`, without matching across `/`
+   * Message representing a set of files in a Cloud Storage bucket. Regular expressions are used to allow fine-grained control over which files in the bucket to include. Included files are those that match at least one item in `include_regex` and do not match any items in `exclude_regex`. Note that a file that matches items from both lists will _not_ be included. For a match to occur, the entire file path (i.e., everything in the url after the bucket name) must match the regular expression. For example, given the input `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory1/.*&quot;], exclude_regex: [&quot;directory1/excluded.*&quot;]}`: * `gs://mybucket/directory1/myfile` will be included * `gs://mybucket/directory1/directory2/myfile` will be included (`.*` matches across `/`) * `gs://mybucket/directory0/directory1/myfile` will _not_ be included (the full path doesn&#39;t match any items in `include_regex`) * `gs://mybucket/directory1/excludedfile` will _not_ be included (the path matches an item in `exclude_regex`) If `include_regex` is left empty, it will match all files by default (this is equivalent to setting `include_regex: [&quot;.*&quot;]`). Some other common use cases: * `{bucket_name: &quot;mybucket&quot;, exclude_regex: [&quot;.*\.pdf&quot;]}` will include all files in `mybucket` except for .pdf files * `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory/[^/]+&quot;]}` will include all files directly under `gs://mybucket/directory/`, without matching across `/`
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet {
     /**
@@ -483,11 +483,11 @@ export namespace dlp_v2 {
      */
     bucketName?: string | null;
     /**
-     * A list of regular expressions matching file paths to exclude. All files in the bucket that match at least one of these regular expressions will be excluded from the scan.  Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
+     * A list of regular expressions matching file paths to exclude. All files in the bucket that match at least one of these regular expressions will be excluded from the scan. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
      */
     excludeRegex?: string[] | null;
     /**
-     * A list of regular expressions matching file paths to include. All files in the bucket that match at least one of these regular expressions will be included in the set of files, except for those that also match an item in `exclude_regex`. Leaving this field empty will match all files by default (this is equivalent to including `.*` in the list).  Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
+     * A list of regular expressions matching file paths to include. All files in the bucket that match at least one of these regular expressions will be included in the set of files, except for those that also match an item in `exclude_regex`. Leaving this field empty will match all files by default (this is equivalent to including `.*` in the list). Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
      */
     includeRegex?: string[] | null;
   }
@@ -509,7 +509,7 @@ export namespace dlp_v2 {
     red?: number | null;
   }
   /**
-   * The field type of `value` and `field` do not need to match to be considered equal, but not all comparisons are possible. EQUAL_TO and NOT_EQUAL_TO attempt to compare even with incompatible types, but all other comparisons are invalid with incompatible types. A `value` of type:  - `string` can be compared against all other types - `boolean` can only be compared against other booleans - `integer` can be compared against doubles or a string if the string value can be parsed as an integer. - `double` can be compared against integers or a string if the string can be parsed as a double. - `Timestamp` can be compared against strings in RFC 3339 date string format. - `TimeOfDay` can be compared against timestamps and strings in the format of &#39;HH:mm:ss&#39;.  If we fail to compare do to type mismatch, a warning will be given and the condition will evaluate to false.
+   * The field type of `value` and `field` do not need to match to be considered equal, but not all comparisons are possible. EQUAL_TO and NOT_EQUAL_TO attempt to compare even with incompatible types, but all other comparisons are invalid with incompatible types. A `value` of type: - `string` can be compared against all other types - `boolean` can only be compared against other booleans - `integer` can be compared against doubles or a string if the string value can be parsed as an integer. - `double` can be compared against integers or a string if the string can be parsed as a double. - `Timestamp` can be compared against strings in RFC 3339 date string format. - `TimeOfDay` can be compared against timestamps and strings in the format of &#39;HH:mm:ss&#39;. If we fail to compare do to type mismatch, a warning will be given and the condition will evaluate to false.
    */
   export interface Schema$GooglePrivacyDlpV2Condition {
     /**
@@ -547,11 +547,11 @@ export namespace dlp_v2 {
      */
     projectId?: string | null;
     /**
-     * The rest of the path after the root. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the relative path is  `table_id` - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative  path is `folder/filename.txt`
+     * The rest of the path after the root. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the relative path is `table_id` - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative path is `folder/filename.txt`
      */
     relativePath?: string | null;
     /**
-     * The root of the container. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the root is  `dataset_id` - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root  is `gs://bucket`
+     * The root of the container. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the root is `dataset_id` - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root is `gs://bucket`
      */
     rootPath?: string | null;
     /**
@@ -589,7 +589,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
     /**
-     * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows:  * BigQuery tables:  `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace}  Nested names could be absent if the embedded object has no string identifier (for an example an image contained within a document).
+     * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names could be absent if the embedded object has no string identifier (for an example an image contained within a document).
      */
     containerName?: string | null;
     /**
@@ -711,7 +711,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CryptoDeterministicConfig {
     /**
-     * A context may be used for higher security and maintaining referential integrity such that the same identifier in two different contexts will be given a distinct surrogate. The context is appended to plaintext value being encrypted. On decryption the provided context is validated against the value used during encryption. If a context was provided during encryption, same context must be provided during decryption as well.  If the context is not set, plaintext would be used as is for encryption. If the context is set but:  1. there is no record present when transforming a given value or 2. the field is not present when transforming a given value,  plaintext would be used as is for encryption.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s.
+     * A context may be used for higher security and maintaining referential integrity such that the same identifier in two different contexts will be given a distinct surrogate. The context is appended to plaintext value being encrypted. On decryption the provided context is validated against the value used during encryption. If a context was provided during encryption, same context must be provided during decryption as well. If the context is not set, plaintext would be used as is for encryption. If the context is set but: 1. there is no record present when transforming a given value or 2. the field is not present when transforming a given value, plaintext would be used as is for encryption. Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s.
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -719,7 +719,7 @@ export namespace dlp_v2 {
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
-     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: {info type name}({surrogate character count}):{surrogate}  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text.  Note: For record transformations where the entire cell in a table is being transformed, surrogates are not mandatory. Surrogates are used to denote the location of the token and are necessary for re-identification in free form text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either  - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error  Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE.
+     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: {info type name}({surrogate character count}):{surrogate} For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39; This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text. Note: For record transformations where the entire cell in a table is being transformed, surrogates are not mandatory. Surrogates are used to denote the location of the token and are necessary for re-identification in free form text. In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE.
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -750,7 +750,7 @@ export namespace dlp_v2 {
     unwrapped?: Schema$GooglePrivacyDlpV2UnwrappedCryptoKey;
   }
   /**
-   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/dlp/docs/pseudonymization to learn more.  Note: We recommend using  CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.
+   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/dlp/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
     /**
@@ -758,7 +758,7 @@ export namespace dlp_v2 {
      */
     commonAlphabet?: string | null;
     /**
-     * The &#39;tweak&#39;, a context may be used for higher security since the same identifier in two different contexts won&#39;t be given the same surrogate. If the context is not set, a default tweak will be used.  If the context is set but:  1. there is no record present when transforming a given value or 1. the field is not present when transforming a given value,  a default tweak will be used.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s. Currently, the referenced field may be of value type integer or string.  The tweak is constructed as a sequence of bytes in big endian byte order such that:  - a 64 bit integer is encoded followed by a single byte of value 1 - a string is encoded in UTF-8 format followed by a single byte of value 2
+     * The &#39;tweak&#39;, a context may be used for higher security since the same identifier in two different contexts won&#39;t be given the same surrogate. If the context is not set, a default tweak will be used. If the context is set but: 1. there is no record present when transforming a given value or 1. the field is not present when transforming a given value, a default tweak will be used. Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s. Currently, the referenced field may be of value type integer or string. The tweak is constructed as a sequence of bytes in big endian byte order such that: - a 64 bit integer is encoded followed by a single byte of value 1 - a string is encoded in UTF-8 format followed by a single byte of value 2
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -766,7 +766,7 @@ export namespace dlp_v2 {
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
-     * This is supported by mapping these to the alphanumeric characters that the FFX mode natively supports. This happens before/after encryption/decryption. Each character listed must appear only once. Number of characters must be in the range [2, 95]. This must be encoded as ASCII. The order of characters does not matter. The full list of allowed characters is: &lt;code&gt;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ~`!@#$%^&amp;*()_-+={[}]|\:;&quot;&#39;&lt;,&gt;.?/&lt;/code&gt;
+     * This is supported by mapping these to the alphanumeric characters that the FFX mode natively supports. This happens before/after encryption/decryption. Each character listed must appear only once. Number of characters must be in the range [2, 95]. This must be encoded as ASCII. The order of characters does not matter. The full list of allowed characters is: 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ~`!@#$%^&amp;*()_-+={[}]|\:;&quot;&#39;&lt;,&gt;.?/
      */
     customAlphabet?: string | null;
     /**
@@ -774,7 +774,7 @@ export namespace dlp_v2 {
      */
     radix?: number | null;
     /**
-     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate  For example, if the name of custom infoType is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](https://cloud.google.com/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
+     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate For example, if the name of custom infoType is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39; This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](https://cloud.google.com/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text. In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -854,7 +854,7 @@ export namespace dlp_v2 {
      */
     lowerBoundDays?: number | null;
     /**
-     * Required. Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction.  For example, 3 means shift date to at most 3 days into the future.
+     * Required. Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction. For example, 3 means shift date to at most 3 days into the future.
      */
     upperBoundDays?: number | null;
   }
@@ -947,7 +947,7 @@ export namespace dlp_v2 {
      */
     createTime?: string | null;
     /**
-     * ///////////// // The core content of the template  // ///////////////
+     * ///////////// // The core content of the template // ///////////////
      */
     deidentifyConfig?: Schema$GooglePrivacyDlpV2DeidentifyConfig;
     /**
@@ -959,7 +959,7 @@ export namespace dlp_v2 {
      */
     displayName?: string | null;
     /**
-     * Output only. The template name.  The template will have one of the following formats: `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
+     * Output only. The template name. The template will have one of the following formats: `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
      */
     name?: string | null;
     /**
@@ -985,7 +985,7 @@ export namespace dlp_v2 {
     regionCode?: string | null;
   }
   /**
-   * A DeltaPresenceEstimationHistogramBucket message with the following values:   min_probability: 0.1   max_probability: 0.2   frequency: 42 means that there are 42 records for which δ is in [0.1, 0.2). An important particular case is when min_probability = max_probability = 1: then, every individual who shares this quasi-identifier combination is in the dataset.
+   * A DeltaPresenceEstimationHistogramBucket message with the following values: min_probability: 0.1 max_probability: 0.2 frequency: 42 means that there are 42 records for which δ is in [0.1, 0.2). An important particular case is when min_probability = max_probability = 1: then, every individual who shares this quasi-identifier combination is in the dataset.
    */
   export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket {
     /**
@@ -1027,7 +1027,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DeltaPresenceEstimationResult {
     /**
-     * The intervals [min_probability, max_probability) do not overlap. If a value doesn&#39;t correspond to any such interval, the associated frequency is zero. For example, the following records:   {min_probability: 0, max_probability: 0.1, frequency: 17}   {min_probability: 0.2, max_probability: 0.3, frequency: 42}   {min_probability: 0.3, max_probability: 0.4, frequency: 99} mean that there are no record with an estimated probability in [0.1, 0.2) nor larger or equal to 0.4.
+     * The intervals [min_probability, max_probability) do not overlap. If a value doesn&#39;t correspond to any such interval, the associated frequency is zero. For example, the following records: {min_probability: 0, max_probability: 0.1, frequency: 17} {min_probability: 0.2, max_probability: 0.3, frequency: 42} {min_probability: 0.3, max_probability: 0.4, frequency: 99} mean that there are no record with an estimated probability in [0.1, 0.2) nor larger or equal to 0.4.
      */
     deltaPresenceEstimationHistogram?: Schema$GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket[];
   }
@@ -1041,7 +1041,7 @@ export namespace dlp_v2 {
     hotwordRule?: Schema$GooglePrivacyDlpV2HotwordRule;
   }
   /**
-   * Custom information type based on a dictionary of words or phrases. This can be used to match sensitive information specific to the data, such as a list of employee IDs or job titles.  Dictionary words are case-insensitive and all characters other than letters and digits in the unicode [Basic Multilingual Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane) will be replaced with whitespace when scanning for matches, so the dictionary phrase &quot;Sam Johnson&quot; will match all three phrases &quot;sam johnson&quot;, &quot;Sam, Johnson&quot;, and &quot;Sam (Johnson)&quot;. Additionally, the characters surrounding any match must be of a different type than the adjacent characters within the word, so letters must be next to non-letters and digits next to non-digits. For example, the dictionary word &quot;jen&quot; will match the first three letters of the text &quot;jen123&quot; but will return no matches for &quot;jennifer&quot;.  Dictionary words containing a large number of characters that are not letters or digits may result in unexpected findings because such characters are treated as whitespace. The [limits](https://cloud.google.com/dlp/limits) page contains details about the size limits of dictionaries. For dictionaries that do not fit within these constraints, consider using `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
+   * Custom information type based on a dictionary of words or phrases. This can be used to match sensitive information specific to the data, such as a list of employee IDs or job titles. Dictionary words are case-insensitive and all characters other than letters and digits in the unicode [Basic Multilingual Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane) will be replaced with whitespace when scanning for matches, so the dictionary phrase &quot;Sam Johnson&quot; will match all three phrases &quot;sam johnson&quot;, &quot;Sam, Johnson&quot;, and &quot;Sam (Johnson)&quot;. Additionally, the characters surrounding any match must be of a different type than the adjacent characters within the word, so letters must be next to non-letters and digits next to non-digits. For example, the dictionary word &quot;jen&quot; will match the first three letters of the text &quot;jen123&quot; but will return no matches for &quot;jennifer&quot;. Dictionary words containing a large number of characters that are not letters or digits may result in unexpected findings because such characters are treated as whitespace. The [limits](https://cloud.google.com/dlp/limits) page contains details about the size limits of dictionaries. For dictionaries that do not fit within these constraints, consider using `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
    */
   export interface Schema$GooglePrivacyDlpV2Dictionary {
     /**
@@ -1186,7 +1186,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FieldTransformation {
     /**
-     * Only apply the transformation if the condition evaluates to true for the given `RecordCondition`. The conditions are allowed to reference fields that are not used in the actual transformation.  Example Use Cases:  - Apply a different bucket transformation to an age column if the zip code column for the same record is within a specific range. - Redact a field if the date of birth field is greater than 85.
+     * Only apply the transformation if the condition evaluates to true for the given `RecordCondition`. The conditions are allowed to reference fields that are not used in the actual transformation. Example Use Cases: - Apply a different bucket transformation to an age column if the zip code column for the same record is within a specific range. - Redact a field if the date of birth field is greater than 85.
      */
     condition?: Schema$GooglePrivacyDlpV2RecordCondition;
     /**
@@ -1211,7 +1211,7 @@ export namespace dlp_v2 {
      */
     regexFileSet?: Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet;
     /**
-     * The Cloud Storage url of the file(s) to scan, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is allowed.  If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/x, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/x.  Exactly one of `url` or `regex_file_set` must be set.
+     * The Cloud Storage url of the file(s) to scan, in the format `gs:///`. Trailing wildcard in the path is allowed. If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/x, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/x. Exactly one of `url` or `regex_file_set` must be set.
      */
     url?: string | null;
   }
@@ -1236,7 +1236,7 @@ export namespace dlp_v2 {
      */
     jobName?: string | null;
     /**
-     * The labels associated with this `Finding`.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
+     * The labels associated with this `Finding`. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 10 labels can be associated with a given finding. Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1290,7 +1290,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FinishDlpJobRequest {}
   /**
-   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies.  The transformed value will be a hyphenated string of {lower_bound}-{upper_bound}, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;.  This can be used on data of type: double, long.  If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing.  See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
+   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies. The transformed value will be a hyphenated string of {lower_bound}-{upper_bound}, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;. This can be used on data of type: double, long. If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig {
     /**
@@ -1345,11 +1345,11 @@ export namespace dlp_v2 {
      */
     containerDetails?: Schema$GooglePrivacyDlpV2Container;
     /**
-     * Offset in bytes of the line, from the beginning of the file, where the finding  is located. Populate if the item being scanned is only part of a bigger item, such as a shard of a file and you want to track the absolute position of the finding.
+     * Offset in bytes of the line, from the beginning of the file, where the finding is located. Populate if the item being scanned is only part of a bigger item, such as a shard of a file and you want to track the absolute position of the finding.
      */
     fileOffset?: string | null;
     /**
-     * Labels to represent user provided metadata about the data being inspected. If configured by the job, some key values may be required. The labels associated with `Finding`&#39;s produced by hybrid inspection.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
+     * Labels to represent user provided metadata about the data being inspected. If configured by the job, some key values may be required. The labels associated with `Finding`&#39;s produced by hybrid inspection. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 10 labels can be associated with a given finding. Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1409,11 +1409,11 @@ export namespace dlp_v2 {
      */
     description?: string | null;
     /**
-     * To organize findings, these labels will be added to each finding.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
+     * To organize findings, these labels will be added to each finding. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 10 labels can be associated with a given finding. Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
-     * These are labels that each inspection request must include within their &#39;finding_labels&#39; map. Request may contain others, but any missing one of these will be rejected.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  No more than 10 keys can be required.
+     * These are labels that each inspection request must include within their &#39;finding_labels&#39; map. Request may contain others, but any missing one of these will be rejected. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`. No more than 10 keys can be required.
      */
     requiredFindingLabelKeys?: string[] | null;
     /**
@@ -1452,7 +1452,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.  When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64}`.
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64}`.
      */
     name?: string | null;
   }
@@ -1546,7 +1546,7 @@ export namespace dlp_v2 {
      */
     includeQuote?: boolean | null;
     /**
-     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
+     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
@@ -1686,7 +1686,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * Output only. The template name.  The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
+     * Output only. The template name. The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      */
     name?: string | null;
     /**
@@ -1748,7 +1748,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2KAnonymityConfig {
     /**
-     * Message indicating that multiple rows might be associated to a single individual. If the same entity_id is associated to multiple quasi-identifier tuples over distinct rows, we consider the entire collection of tuples as the composite quasi-identifier. This collection is a multiset: the order in which the different tuples appear in the dataset is ignored, but their frequency is taken into account.  Important note: a maximum of 1000 rows can be associated to a single entity ID. If more rows are associated with the same entity ID, some might be ignored.
+     * Message indicating that multiple rows might be associated to a single individual. If the same entity_id is associated to multiple quasi-identifier tuples over distinct rows, we consider the entire collection of tuples as the composite quasi-identifier. This collection is a multiset: the order in which the different tuples appear in the dataset is ignored, but their frequency is taken into account. Important note: a maximum of 1000 rows can be associated to a single entity ID. If more rows are associated with the same entity ID, some might be ignored.
      */
     entityId?: Schema$GooglePrivacyDlpV2EntityId;
     /**
@@ -1812,7 +1812,7 @@ export namespace dlp_v2 {
      */
     partitionId?: Schema$GooglePrivacyDlpV2PartitionId;
     /**
-     * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element&#39;s _ancestors_.  A path can never be empty, and a path can have at most 100 elements.
+     * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element&#39;s _ancestors_. A path can never be empty, and a path can have at most 100 elements.
      */
     path?: Schema$GooglePrivacyDlpV2PathElement[];
   }
@@ -1843,7 +1843,7 @@ export namespace dlp_v2 {
     regionCode?: string | null;
   }
   /**
-   * A KMapEstimationHistogramBucket message with the following values:   min_anonymity: 3   max_anonymity: 5   frequency: 42 means that there are 42 records whose quasi-identifier values correspond to 3, 4 or 5 people in the overlying population. An important particular case is when min_anonymity = max_anonymity = 1: the frequency field then corresponds to the number of uniquely identifiable records.
+   * A KMapEstimationHistogramBucket message with the following values: min_anonymity: 3 max_anonymity: 5 frequency: 42 means that there are 42 records whose quasi-identifier values correspond to 3, 4 or 5 people in the overlying population. An important particular case is when min_anonymity = max_anonymity = 1: the frequency field then corresponds to the number of uniquely identifiable records.
    */
   export interface Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket {
     /**
@@ -1885,7 +1885,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2KMapEstimationResult {
     /**
-     * The intervals [min_anonymity, max_anonymity] do not overlap. If a value doesn&#39;t correspond to any such interval, the associated frequency is zero. For example, the following records:   {min_anonymity: 1, max_anonymity: 1, frequency: 17}   {min_anonymity: 2, max_anonymity: 3, frequency: 42}   {min_anonymity: 5, max_anonymity: 10, frequency: 99} mean that there are no record with an estimated anonymity of 4, 5, or larger than 10.
+     * The intervals [min_anonymity, max_anonymity] do not overlap. If a value doesn&#39;t correspond to any such interval, the associated frequency is zero. For example, the following records: {min_anonymity: 1, max_anonymity: 1, frequency: 17} {min_anonymity: 2, max_anonymity: 3, frequency: 42} {min_anonymity: 5, max_anonymity: 10, frequency: 99} mean that there are no record with an estimated anonymity of 4, 5, or larger than 10.
      */
     kMapEstimationHistogram?: Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket[];
   }
@@ -2156,16 +2156,16 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2OutputStorageConfig {
     /**
-     * Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted.  If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema. Only for use with external storage.
+     * Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted. If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema. Only for use with external storage.
      */
     outputSchema?: string | null;
     /**
-     * Store findings in an existing table or a new table in an existing dataset. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for generating the date details.  For Inspect, each column in an existing output table must have the same name, type, and mode of a field in the `Finding` object.  For Risk, an existing output table should be the output of a previous Risk analysis job run on the same source table, with the same privacy metric and quasi-identifiers. Risk jobs that analyze the same table but compute a different privacy metric, or use different sets of quasi-identifiers, cannot store their results in the same table.
+     * Store findings in an existing table or a new table in an existing dataset. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for generating the date details. For Inspect, each column in an existing output table must have the same name, type, and mode of a field in the `Finding` object. For Risk, an existing output table should be the output of a previous Risk analysis job run on the same source table, with the same privacy metric and quasi-identifiers. Risk jobs that analyze the same table but compute a different privacy metric, or use different sets of quasi-identifiers, cannot store their results in the same table.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
-   * Datastore partition ID. A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.  A partition ID contains several dimensions: project ID and namespace ID.
+   * Datastore partition ID. A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty. A partition ID contains several dimensions: project ID and namespace ID.
    */
   export interface Schema$GooglePrivacyDlpV2PartitionId {
     /**
@@ -2178,7 +2178,7 @@ export namespace dlp_v2 {
     projectId?: string | null;
   }
   /**
-   * A (kind, ID/name) pair used to construct a key path.  If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
+   * A (kind, ID/name) pair used to construct a key path. If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
    */
   export interface Schema$GooglePrivacyDlpV2PathElement {
     /**
@@ -2514,7 +2514,7 @@ export namespace dlp_v2 {
      */
     locationId?: string | null;
     /**
-     * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are:   - `CryptoDeterministicConfig`  - `CryptoReplaceFfxFpeConfig`
+     * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are: - `CryptoDeterministicConfig` - `CryptoReplaceFfxFpeConfig`
      */
     reidentifyConfig?: Schema$GooglePrivacyDlpV2DeidentifyConfig;
     /**
@@ -2622,7 +2622,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Schedule {
     /**
-     * With this option a job is started a regular periodic basis. For example: every day (86400 seconds).  A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs.  This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.
+     * With this option a job is started a regular periodic basis. For example: every day (86400 seconds). A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs. This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.
      */
     recurrencePeriodDuration?: string | null;
   }
@@ -2735,7 +2735,7 @@ export namespace dlp_v2 {
      */
     createTime?: string | null;
     /**
-     * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first.  For example, some of the data for stored custom dictionaries is put in the user&#39;s Google Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid.  If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
+     * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. For example, some of the data for stored custom dictionaries is put in the user&#39;s Google Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
@@ -2863,7 +2863,7 @@ export namespace dlp_v2 {
      */
     startTime?: string | null;
     /**
-     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery.  For BigQuery: Required to filter out rows based on the given start and end times. If not specified and the table was modified between the given start and end times, the entire table will be scanned. The valid data types of the timestamp field are: `INTEGER`, `DATE`, `TIMESTAMP`, or `DATETIME` BigQuery column.  For Datastore. Valid data types of the timestamp field are: `TIMESTAMP`. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
+     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. For BigQuery: Required to filter out rows based on the given start and end times. If not specified and the table was modified between the given start and end times, the entire table will be scanned. The valid data types of the timestamp field are: `INTEGER`, `DATE`, `TIMESTAMP`, or `DATETIME` BigQuery column. For Datastore. Valid data types of the timestamp field are: `TIMESTAMP`. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
@@ -3078,11 +3078,11 @@ export namespace dlp_v2 {
     words?: string[] | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -3090,7 +3090,7 @@ export namespace dlp_v2 {
      */
     code?: number | null;
     /**
-     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}> | null;
     /**
@@ -3099,7 +3099,7 @@ export namespace dlp_v2 {
     message?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$GoogleTypeDate {
     /**
@@ -3170,17 +3170,13 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.infoTypes.list({
-     *     // filter to only return infoTypes supported by certain parts of the
-     *     // API. Defaults to supported_by=INSPECT.
+     *     // filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      *     filter: 'placeholder-value',
-     *     // BCP-47 language code for localized infoType friendly
-     *     // names. If omitted, or if localized strings are not available,
-     *     // en-US strings will be returned.
+     *     // BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      *     languageCode: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // The parent resource name.
-     *     // - Format:locations/[LOCATION-ID]
+     *     // The parent resource name. - Format:locations/[LOCATION-ID]
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3360,17 +3356,13 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.locations.infoTypes.list({
-     *     // filter to only return infoTypes supported by certain parts of the
-     *     // API. Defaults to supported_by=INSPECT.
+     *     // filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      *     filter: 'placeholder-value',
-     *     // BCP-47 language code for localized infoType friendly
-     *     // names. If omitted, or if localized strings are not available,
-     *     // en-US strings will be returned.
+     *     // BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      *     languageCode: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // The parent resource name.
-     *     // - Format:locations/[LOCATION-ID]
+     *     // The parent resource name. - Format:locations/[LOCATION-ID]
      *     parent: 'locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3567,11 +3559,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3733,9 +3721,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.delete({
-     *     // Required. Resource name of the organization and deidentify template to be deleted,
-     *     // for example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -3865,9 +3851,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.get({
-     *     // Required. Resource name of the organization and deidentify template to be read, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -4018,31 +4002,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.deidentifyTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListDeidentifyTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -4064,7 +4030,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -4200,9 +4166,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.patch({
-     *     // Required. Resource name of organization and deidentify template to be updated, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *
@@ -4368,7 +4332,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -4430,11 +4394,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -4590,9 +4550,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.delete({
-     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'organizations/my-organization/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
@@ -4721,9 +4679,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.get({
-     *     // Required. Resource name of the organization and inspectTemplate to be read, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'organizations/my-organization/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
@@ -4867,31 +4823,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.inspectTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListInspectTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -4913,7 +4851,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -5050,9 +4988,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.patch({
-     *     // Required. Resource name of organization and inspectTemplate to be updated, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'organizations/my-organization/inspectTemplates/my-inspectTemplate',
      *
      *     // Request body metadata
@@ -5211,7 +5147,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -5292,11 +5228,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -5458,9 +5390,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.delete({
-     *     // Required. Resource name of the organization and deidentify template to be deleted,
-     *     // for example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -5590,9 +5520,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.get({
-     *     // Required. Resource name of the organization and deidentify template to be read, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -5743,31 +5671,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.locations.deidentifyTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListDeidentifyTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5789,7 +5699,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -5925,9 +5835,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.patch({
-     *     // Required. Resource name of organization and deidentify template to be updated, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *
@@ -6093,7 +6001,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -6155,11 +6063,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -6315,9 +6219,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.delete({
-     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
@@ -6447,9 +6349,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.get({
-     *     // Required. Resource name of the organization and inspectTemplate to be read, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
@@ -6594,31 +6494,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.locations.inspectTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListInspectTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -6640,7 +6522,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -6777,9 +6659,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.patch({
-     *     // Required. Resource name of organization and inspectTemplate to be updated, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *
@@ -6939,7 +6819,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -7001,11 +6881,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -7158,9 +7034,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.delete({
-     *     // Required. Resource name of the organization and storedInfoType to be deleted, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
@@ -7290,9 +7164,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.get({
-     *     // Required. Resource name of the organization and storedInfoType to be read, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
@@ -7434,32 +7306,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.locations.storedInfoTypes.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, display_name, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the most recent version of the
-     *     // resource was created.
-     *     // - `state`: corresponds to the state of the resource.
-     *     // - `name`: corresponds to resource name.
-     *     // - `display_name`: corresponds to info type's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListStoredInfoTypes`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -7481,7 +7334,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -7618,9 +7471,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.patch({
-     *     // Required. Resource name of organization and storedInfoType to be updated, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *
@@ -7777,7 +7628,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
@@ -7839,11 +7690,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -7996,9 +7843,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.delete({
-     *     // Required. Resource name of the organization and storedInfoType to be deleted, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'organizations/my-organization/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
@@ -8127,9 +7972,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.get({
-     *     // Required. Resource name of the organization and storedInfoType to be read, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'organizations/my-organization/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
@@ -8270,32 +8113,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.organizations.storedInfoTypes.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, display_name, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the most recent version of the
-     *     // resource was created.
-     *     // - `state`: corresponds to the state of the resource.
-     *     // - `name`: corresponds to resource name.
-     *     // - `display_name`: corresponds to info type's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListStoredInfoTypes`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -8317,7 +8141,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -8454,9 +8278,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.patch({
-     *     // Required. Resource name of organization and storedInfoType to be updated, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'organizations/my-organization/storedInfoTypes/my-storedInfoType',
      *
      *     // Request body metadata
@@ -8612,7 +8434,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
@@ -8678,7 +8500,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.content.deidentify
-     * @desc De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8703,9 +8525,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.deidentify({
-     *     // Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -8849,7 +8669,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.content.inspect
-     * @desc Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images and https://cloud.google.com/dlp/docs/inspecting-text,
+     * @desc Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images and https://cloud.google.com/dlp/docs/inspecting-text,
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -8874,9 +8694,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.inspect({
-     *     // Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -9034,9 +8852,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.reidentify({
-     *     // Required. The parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -9249,11 +9065,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -9415,9 +9227,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.delete({
-     *     // Required. Resource name of the organization and deidentify template to be deleted,
-     *     // for example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name: 'projects/my-project/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
@@ -9546,9 +9356,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.get({
-     *     // Required. Resource name of the organization and deidentify template to be read, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name: 'projects/my-project/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
@@ -9698,31 +9506,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.deidentifyTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListDeidentifyTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -9744,7 +9534,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -9880,9 +9670,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.patch({
-     *     // Required. Resource name of organization and deidentify template to be updated, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name: 'projects/my-project/deidentifyTemplates/my-deidentifyTemplate',
      *
      *     // Request body metadata
@@ -10047,7 +9835,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -10220,7 +10008,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.dlpJobs.create
-     * @desc Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.  When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10245,9 +10033,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -10677,58 +10463,17 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.list({
-     *     // Allows filtering.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * Supported fields/values for inspect jobs:
-     *     //     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
-     *     //     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     //     - `trigger_name` - The resource name of the trigger that created job.
-     *     //     - 'end_time` - Corresponds to time the job finished.
-     *     //     - 'start_time` - Corresponds to time the job finished.
-     *     // * Supported fields for risk analysis jobs:
-     *     //     - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *     //     - 'end_time` - Corresponds to time the job finished.
-     *     //     - 'start_time` - Corresponds to time the job finished.
-     *     // * The operator must be `=` or `!=`.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * inspected_storage = cloud_storage AND state = done
-     *     // * inspected_storage = cloud_storage OR inspected_storage = bigquery
-     *     // * inspected_storage = cloud_storage AND (state = done OR state = canceled)
-     *     // * end_time > \"2017-12-12T00:00:00+00:00\"
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, end_time asc, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the job was created.
-     *     // - `end_time`: corresponds to time the job ended.
-     *     // - `name`: corresponds to job's name.
-     *     // - `state`: corresponds to `state`
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      *     orderBy: 'placeholder-value',
      *     // The standard list page size.
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -10751,9 +10496,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
@@ -10898,7 +10643,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Dlpjobs$List
     extends StandardParameters {
     /**
-     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -10906,7 +10651,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -10935,7 +10680,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.image.redact
-     * @desc Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -10960,9 +10705,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.image.redact({
-     *     // The parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -11143,11 +10886,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -11303,9 +11042,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.delete({
-     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'projects/my-project/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
@@ -11434,9 +11171,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.get({
-     *     // Required. Resource name of the organization and inspectTemplate to be read, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'projects/my-project/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
@@ -11580,31 +11315,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.inspectTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListInspectTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -11626,7 +11343,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -11763,9 +11480,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.patch({
-     *     // Required. Resource name of organization and inspectTemplate to be updated, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name: 'projects/my-project/inspectTemplates/my-inspectTemplate',
      *
      *     // Request body metadata
@@ -11924,7 +11639,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -11986,8 +11701,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.activate({
-     *     // Required. Resource name of the trigger to activate, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
@@ -12141,9 +11855,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -12303,8 +12015,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.delete({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
@@ -12433,8 +12144,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.get({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
@@ -12580,58 +12290,17 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.list({
-     *     // Allows filtering.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * Supported fields/values for inspect jobs:
-     *     //     - `status` - HEALTHY|PAUSED|CANCELLED
-     *     //     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     //     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
-     *     //     quotation marks. Nanoseconds are ignored.
-     *     //     - 'error_count' - Number of errors that have occurred while running.
-     *     // * The operator must be `=` or `!=` for status and inspected_storage.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * inspected_storage = cloud_storage AND status = HEALTHY
-     *     // * inspected_storage = cloud_storage OR inspected_storage = bigquery
-     *     // * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
-     *     // * last_run_time > \"2017-12-12T00:00:00+00:00\"
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of triggeredJob fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the JobTrigger was created.
-     *     // - `update_time`: corresponds to time the JobTrigger was last updated.
-     *     // - `last_run_time`: corresponds to the last time the JobTrigger ran.
-     *     // - `name`: corresponds to JobTrigger's name.
-     *     // - `display_name`: corresponds to JobTrigger's display name.
-     *     // - `status`: corresponds to JobTrigger's status.
+     *     // Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      *     orderBy: 'placeholder-value',
      *     // Size of the page, can be limited by a server.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to ListJobTriggers. `order_by` field must not
-     *     // change for subsequent calls.
+     *     // Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -12652,9 +12321,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
@@ -12785,8 +12454,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.patch({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
@@ -12957,7 +12625,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Jobtriggers$List
     extends StandardParameters {
     /**
-     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -12965,7 +12633,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
@@ -13031,7 +12699,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.locations.content.deidentify
-     * @desc De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc De-identifies potentially sensitive info from a ContentItem. This method has limits on input size and output size. See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13056,9 +12724,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.deidentify({
-     *     // Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13202,7 +12868,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.locations.content.inspect
-     * @desc Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images and https://cloud.google.com/dlp/docs/inspecting-text,
+     * @desc Finds potentially sensitive info in content. This method has limits on input size, processing time, and output size. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated. For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images and https://cloud.google.com/dlp/docs/inspecting-text,
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -13227,9 +12893,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.inspect({
-     *     // Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13387,9 +13051,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.reidentify({
-     *     // Required. The parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13602,11 +13264,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13768,9 +13426,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.delete({
-     *     // Required. Resource name of the organization and deidentify template to be deleted,
-     *     // for example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -13900,9 +13556,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.get({
-     *     // Required. Resource name of the organization and deidentify template to be read, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
@@ -14053,31 +13707,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.locations.deidentifyTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListDeidentifyTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -14099,7 +13735,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -14235,9 +13871,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.patch({
-     *     // Required. Resource name of organization and deidentify template to be updated, for
-     *     // example `organizations/433245324/deidentifyTemplates/432452342` or
-     *     // projects/project-id/deidentifyTemplates/432452342.
+     *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *
@@ -14403,7 +14037,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -14576,7 +14210,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.locations.dlpJobs.create
-     * @desc Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.  When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc Creates a new job to inspect storage or calculate risk metrics. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more. When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -14601,9 +14235,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -15169,8 +14801,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.hybridInspect({
-     *     // Required. Resource name of the job to execute a hybrid inspect on, for example
-     *     // `projects/dlp-test-project/dlpJob/53234423`.
+     *     // Required. Resource name of the job to execute a hybrid inspect on, for example `projects/dlp-test-project/dlpJob/53234423`.
      *     name: 'projects/my-project/locations/my-location/dlpJobs/my-dlpJob',
      *
      *     // Request body metadata
@@ -15323,58 +14954,17 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.list({
-     *     // Allows filtering.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * Supported fields/values for inspect jobs:
-     *     //     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
-     *     //     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     //     - `trigger_name` - The resource name of the trigger that created job.
-     *     //     - 'end_time` - Corresponds to time the job finished.
-     *     //     - 'start_time` - Corresponds to time the job finished.
-     *     // * Supported fields for risk analysis jobs:
-     *     //     - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *     //     - 'end_time` - Corresponds to time the job finished.
-     *     //     - 'start_time` - Corresponds to time the job finished.
-     *     // * The operator must be `=` or `!=`.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * inspected_storage = cloud_storage AND state = done
-     *     // * inspected_storage = cloud_storage OR inspected_storage = bigquery
-     *     // * inspected_storage = cloud_storage AND (state = done OR state = canceled)
-     *     // * end_time > \"2017-12-12T00:00:00+00:00\"
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, end_time asc, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the job was created.
-     *     // - `end_time`: corresponds to time the job ended.
-     *     // - `name`: corresponds to job's name.
-     *     // - `state`: corresponds to `state`
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      *     orderBy: 'placeholder-value',
      *     // The standard list page size.
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -15397,9 +14987,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
@@ -15568,7 +15158,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Dlpjobs$List
     extends StandardParameters {
     /**
-     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -15576,7 +15166,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -15605,7 +15195,7 @@ export namespace dlp_v2 {
 
     /**
      * dlp.projects.locations.image.redact
-     * @desc Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @desc Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to learn more. When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -15630,9 +15220,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.image.redact({
-     *     // The parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -15813,11 +15401,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -15973,9 +15557,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.delete({
-     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
@@ -16105,9 +15687,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.get({
-     *     // Required. Resource name of the organization and inspectTemplate to be read, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
@@ -16252,31 +15832,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.locations.inspectTemplates.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the template was created.
-     *     // - `update_time`: corresponds to time the template was last updated.
-     *     // - `name`: corresponds to template's name.
-     *     // - `display_name`: corresponds to template's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListInspectTemplates`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -16298,7 +15860,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -16435,9 +15997,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.patch({
-     *     // Required. Resource name of organization and inspectTemplate to be updated, for
-     *     // example `organizations/433245324/inspectTemplates/432452342` or
-     *     // projects/project-id/inspectTemplates/432452342.
+     *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *
@@ -16597,7 +16157,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
@@ -16659,8 +16219,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.activate({
-     *     // Required. Resource name of the trigger to activate, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/locations/my-location/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
@@ -16814,9 +16373,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -16976,8 +16533,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.delete({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/locations/my-location/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
@@ -17106,8 +16662,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.get({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/locations/my-location/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
@@ -17253,8 +16808,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.hybridInspect({
-     *     // Required. Resource name of the trigger to execute a hybrid inspect on, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the trigger to execute a hybrid inspect on, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/locations/my-location/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
@@ -17407,58 +16961,17 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.list({
-     *     // Allows filtering.
-     *     //
-     *     // Supported syntax:
-     *     //
-     *     // * Filter expressions are made up of one or more restrictions.
-     *     // * Restrictions can be combined by `AND` or `OR` logical operators. A
-     *     // sequence of restrictions implicitly uses `AND`.
-     *     // * A restriction has the form of `{field} {operator} {value}`.
-     *     // * Supported fields/values for inspect jobs:
-     *     //     - `status` - HEALTHY|PAUSED|CANCELLED
-     *     //     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     //     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
-     *     //     quotation marks. Nanoseconds are ignored.
-     *     //     - 'error_count' - Number of errors that have occurred while running.
-     *     // * The operator must be `=` or `!=` for status and inspected_storage.
-     *     //
-     *     // Examples:
-     *     //
-     *     // * inspected_storage = cloud_storage AND status = HEALTHY
-     *     // * inspected_storage = cloud_storage OR inspected_storage = bigquery
-     *     // * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
-     *     // * last_run_time > \"2017-12-12T00:00:00+00:00\"
-     *     //
-     *     // The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of triggeredJob fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc,update_time, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the JobTrigger was created.
-     *     // - `update_time`: corresponds to time the JobTrigger was last updated.
-     *     // - `last_run_time`: corresponds to the last time the JobTrigger ran.
-     *     // - `name`: corresponds to JobTrigger's name.
-     *     // - `display_name`: corresponds to JobTrigger's display name.
-     *     // - `status`: corresponds to JobTrigger's status.
+     *     // Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      *     orderBy: 'placeholder-value',
      *     // Size of the page, can be limited by a server.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to ListJobTriggers. `order_by` field must not
-     *     // change for subsequent calls.
+     *     // Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -17479,9 +16992,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
@@ -17612,8 +17125,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.patch({
-     *     // Required. Resource name of the project and the triggeredJob, for example
-     *     // `projects/dlp-test-project/jobTriggers/53234423`.
+     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      *     name: 'projects/my-project/locations/my-location/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
@@ -17796,7 +17308,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Jobtriggers$List
     extends StandardParameters {
     /**
-     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -17804,7 +17316,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
@@ -17866,11 +17378,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -18023,9 +17531,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.delete({
-     *     // Required. Resource name of the organization and storedInfoType to be deleted, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
@@ -18155,9 +17661,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.get({
-     *     // Required. Resource name of the organization and storedInfoType to be read, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
@@ -18299,32 +17803,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.locations.storedInfoTypes.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, display_name, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the most recent version of the
-     *     // resource was created.
-     *     // - `state`: corresponds to the state of the resource.
-     *     // - `name`: corresponds to resource name.
-     *     // - `display_name`: corresponds to info type's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListStoredInfoTypes`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -18346,7 +17831,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -18483,9 +17968,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.patch({
-     *     // Required. Resource name of organization and storedInfoType to be updated, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name:
      *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *
@@ -18642,7 +18125,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
@@ -18704,11 +18187,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.create({
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -18861,9 +18340,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.delete({
-     *     // Required. Resource name of the organization and storedInfoType to be deleted, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'projects/my-project/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
@@ -18992,9 +18469,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.get({
-     *     // Required. Resource name of the organization and storedInfoType to be read, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'projects/my-project/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
@@ -19135,32 +18610,13 @@ export namespace dlp_v2 {
      *   const res = await dlp.projects.storedInfoTypes.list({
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by,
-     *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
-     *     // default sorting order is ascending, redundant space characters are
-     *     // insignificant.
-     *     //
-     *     // Example: `name asc, display_name, create_time desc`
-     *     //
-     *     // Supported fields are:
-     *     //
-     *     // - `create_time`: corresponds to time the most recent version of the
-     *     // resource was created.
-     *     // - `state`: corresponds to the state of the resource.
-     *     // - `name`: corresponds to resource name.
-     *     // - `display_name`: corresponds to info type's display name.
+     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by server. If zero server returns
-     *     // a page of max size 100.
+     *     // Size of the page, can be limited by server. If zero server returns a page of max size 100.
      *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call
-     *     // to `ListStoredInfoTypes`.
+     *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name.
-     *     // - Format:projects/[PROJECT-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]
-     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
-     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
+     *     // Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -19182,7 +18638,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
@@ -19319,9 +18775,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.patch({
-     *     // Required. Resource name of organization and storedInfoType to be updated, for
-     *     // example `organizations/433245324/storedInfoTypes/432452342` or
-     *     // projects/project-id/storedInfoTypes/432452342.
+     *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
      *     name: 'projects/my-project/storedInfoTypes/my-storedInfoType',
      *
      *     // Request body metadata
@@ -19477,7 +18931,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, display_name, create_time desc` Supported fields are: - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**

@@ -132,7 +132,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3Impression {
     /**
-     * An arbitrary, developer-defined type identifier for each type of game object used in your game.  Since players interact with differ types of game objects in different ways, this field allows you to segregate impression data by type for analysis.  You should assign a unique `game_object_type` ID to represent a distinct type of game object in your game.  For example, 1=monster location, 2=powerup location.
+     * An arbitrary, developer-defined type identifier for each type of game object used in your game. Since players interact with differ types of game objects in different ways, this field allows you to segregate impression data by type for analysis. You should assign a unique `game_object_type` ID to represent a distinct type of game object in your game. For example, 1=monster location, 2=powerup location.
      */
     gameObjectType?: number | null;
     /**
@@ -157,7 +157,7 @@ export namespace playablelocations_v3 {
      */
     impressions?: Schema$GoogleMapsPlayablelocationsV3Impression[];
     /**
-     * Required. A string that uniquely identifies the log impressions request. This allows you to detect duplicate requests. We recommend that you use UUIDs for this value. The value must not exceed 50 characters.  You should reuse the `request_id` only when retrying a request in case of failure. In this case, the request must be identical to the one that failed.
+     * Required. A string that uniquely identifies the log impressions request. This allows you to detect duplicate requests. We recommend that you use UUIDs for this value. The value must not exceed 50 characters. You should reuse the `request_id` only when retrying a request in case of failure. In this case, the request must be identical to the one that failed.
      */
     requestId?: string | null;
   }
@@ -178,12 +178,12 @@ export namespace playablelocations_v3 {
      */
     playerReports?: Schema$GoogleMapsPlayablelocationsV3PlayerReport[];
     /**
-     * Required. A string that uniquely identifies the log player reports request. This allows you to detect duplicate requests. We recommend that you use UUIDs for this value. The value must not exceed 50 characters.  You should reuse the `request_id` only when retrying a request in the case of a failure. In that case, the request must be identical to the one that failed.
+     * Required. A string that uniquely identifies the log player reports request. This allows you to detect duplicate requests. We recommend that you use UUIDs for this value. The value must not exceed 50 characters. You should reuse the `request_id` only when retrying a request in the case of a failure. In that case, the request must be identical to the one that failed.
      */
     requestId?: string | null;
   }
   /**
-   * A response for the LogPlayerReports method.  This method returns no data upon success.
+   * A response for the LogPlayerReports method. This method returns no data upon success.
    */
   export interface Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse {}
   /**
@@ -212,7 +212,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SampleAreaFilter {
     /**
-     * Required. The S2 cell ID of the area you want. This must be between cell level 11 and 14 (inclusive).  S2 cells are 64-bit integers that identify areas on the Earth. They are hierarchical, and can therefore be used for spatial indexing.  The S2 geometry library is available in a number of languages:    * [C++](https://github.com/google/s2geometry)   * [Java](https://github.com/google/s2-geometry-library-java)   * [Go](https://github.com/golang/geo)   * [Python](https://github.com/google/s2geometry/tree/master/src/python)
+     * Required. The S2 cell ID of the area you want. This must be between cell level 11 and 14 (inclusive). S2 cells are 64-bit integers that identify areas on the Earth. They are hierarchical, and can therefore be used for spatial indexing. The S2 geometry library is available in a number of languages: * [C++](https://github.com/google/s2geometry) * [Java](https://github.com/google/s2-geometry-library-java) * [Go](https://github.com/golang/geo) * [Python](https://github.com/google/s2geometry/tree/master/src/python)
      */
     s2CellId?: string | null;
   }
@@ -221,7 +221,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SampleCriterion {
     /**
-     * Specifies which `PlayableLocation` fields are returned.  `name` (which is used for logging impressions), `center_point` and `place_id` (or `plus_code`) are always returned.  The following fields are omitted unless you specify them here:    * snapped_point   * types  Note: The more fields you include, the more expensive in terms of data and associated latency your query will be.
+     * Specifies which `PlayableLocation` fields are returned. `name` (which is used for logging impressions), `center_point` and `place_id` (or `plus_code`) are always returned. The following fields are omitted unless you specify them here: * snapped_point * types Note: The more fields you include, the more expensive in terms of data and associated latency your query will be.
      */
     fieldsToReturn?: string | null;
     /**
@@ -229,7 +229,7 @@ export namespace playablelocations_v3 {
      */
     filter?: Schema$GoogleMapsPlayablelocationsV3SampleFilter;
     /**
-     * Required. An arbitrary, developer-defined identifier of the type of game object that the playable location is used for. This field allows you to specify criteria per game object type when searching for playable locations.  You should assign a unique `game_object_type` ID across all `request_criteria` to represent a distinct type of game object. For example, 1=monster location, 2=powerup location.  The response contains a map&lt;game_object_type, Response&gt;.
+     * Required. An arbitrary, developer-defined identifier of the type of game object that the playable location is used for. This field allows you to specify criteria per game object type when searching for playable locations. You should assign a unique `game_object_type` ID across all `request_criteria` to represent a distinct type of game object. For example, 1=monster location, 2=powerup location. The response contains a map.
      */
     gameObjectType?: number | null;
   }
@@ -242,7 +242,7 @@ export namespace playablelocations_v3 {
      */
     includedTypes?: string[] | null;
     /**
-     * Specifies the maximum number of playable locations to return. This value must not be greater than 1000. The default value is 100.  Only the top-ranking playable locations are returned.
+     * Specifies the maximum number of playable locations to return. This value must not be greater than 1000. The default value is 100. Only the top-ranking playable locations are returned.
      */
     maxLocationCount?: number | null;
     /**
@@ -255,7 +255,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocation {
     /**
-     * Required. The latitude and longitude associated with the center of the playable location.  By default, the set of playable locations returned from SamplePlayableLocations use center-point coordinates.
+     * Required. The latitude and longitude associated with the center of the playable location. By default, the set of playable locations returned from SamplePlayableLocations use center-point coordinates.
      */
     centerPoint?: Schema$GoogleTypeLatLng;
     /**
@@ -275,7 +275,7 @@ export namespace playablelocations_v3 {
      */
     snappedPoint?: Schema$GoogleTypeLatLng;
     /**
-     * A collection of [Playable Location Types](/maps/documentation/gaming/tt/types) for this playable location. The first type in the collection is the primary type.  Type information might not be available for all playable locations.
+     * A collection of [Playable Location Types](/maps/documentation/gaming/tt/types) for this playable location. The first type in the collection is the primary type. Type information might not be available for all playable locations.
      */
     types?: string[] | null;
   }
@@ -289,7 +289,7 @@ export namespace playablelocations_v3 {
     locations?: Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocation[];
   }
   /**
-   *  Life of a query:  - When a game starts in a new location, your game server issues a SamplePlayableLocations request. The request specifies the S2 cell, and contains one or more &quot;criteria&quot; for filtering:  - Criterion 0: i locations for long-lived bases, or level 0 monsters, or... - Criterion 1: j locations for short-lived bases, or level 1 monsters, ... - Criterion 2: k locations for random objects. - etc (up to 5 criterion may be specified).  `PlayableLocationList` will then contain mutually exclusive lists of `PlayableLocation` objects that satisfy each of the criteria. Think of it as a collection of real-world locations that you can then associate with your game state.  Note: These points are impermanent in nature. E.g, parks can close, and places can be removed.  The response specifies how long you can expect the playable locations to last. Once they expire, you should query the `samplePlayableLocations` API again to get a fresh view of the real world.
+   *  Life of a query: - When a game starts in a new location, your game server issues a SamplePlayableLocations request. The request specifies the S2 cell, and contains one or more &quot;criteria&quot; for filtering: - Criterion 0: i locations for long-lived bases, or level 0 monsters, or... - Criterion 1: j locations for short-lived bases, or level 1 monsters, ... - Criterion 2: k locations for random objects. - etc (up to 5 criterion may be specified). `PlayableLocationList` will then contain mutually exclusive lists of `PlayableLocation` objects that satisfy each of the criteria. Think of it as a collection of real-world locations that you can then associate with your game state. Note: These points are impermanent in nature. E.g, parks can close, and places can be removed. The response specifies how long you can expect the playable locations to last. Once they expire, you should query the `samplePlayableLocations` API again to get a fresh view of the real world.
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest {
     /**
@@ -323,11 +323,11 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SampleSpacingOptions {
     /**
-     * Required. The minimum spacing between any two playable locations, measured in meters. The minimum value is 30. The maximum value is 1000.  Inputs will be rounded up to the next 10 meter interval.  The default value is 200m.  Set this field to remove tight clusters of playable locations.  Note:  The spacing is a greedy algorithm. It optimizes for selecting the highest ranking locations first, not to maximize the number of locations selected. Consider the following scenario:    * Rank: A: 2, B: 1, C: 3.   * Distance: A--200m--B--200m--C  If spacing=250, it will pick the highest ranked location [B], not [A, C].   Note:  Spacing works within the game object type itself, as well as the previous ones. Suppose three game object types, each with the following spacing:    * X: 400m, Y: undefined, Z: 200m.  1. Add locations for X, within 400m of each other. 2. Add locations for Y, without any spacing. 3. Finally, add locations for Z within 200m of each other as well X and Y.  The distance diagram between those locations end up as:    * From-&gt;To.   * X-&gt;X: 400m   * Y-&gt;X, Y-&gt;Y: unspecified.   * Z-&gt;X, Z-&gt;Y, Z-&gt;Z: 200m.
+     * Required. The minimum spacing between any two playable locations, measured in meters. The minimum value is 30. The maximum value is 1000. Inputs will be rounded up to the next 10 meter interval. The default value is 200m. Set this field to remove tight clusters of playable locations. Note: The spacing is a greedy algorithm. It optimizes for selecting the highest ranking locations first, not to maximize the number of locations selected. Consider the following scenario: * Rank: A: 2, B: 1, C: 3. * Distance: A--200m--B--200m--C If spacing=250, it will pick the highest ranked location [B], not [A, C]. Note: Spacing works within the game object type itself, as well as the previous ones. Suppose three game object types, each with the following spacing: * X: 400m, Y: undefined, Z: 200m. 1. Add locations for X, within 400m of each other. 2. Add locations for Y, without any spacing. 3. Finally, add locations for Z within 200m of each other as well X and Y. The distance diagram between those locations end up as: * From-&gt;To. * X-&gt;X: 400m * Y-&gt;X, Y-&gt;Y: unspecified. * Z-&gt;X, Z-&gt;Y, Z-&gt;Z: 200m.
      */
     minSpacingMeters?: number | null;
     /**
-     * Specifies whether the minimum spacing constraint applies to the center-point or to the snapped point of playable locations. The default value is `CENTER_POINT`.  If a snapped point is not available for a playable location, its center-point is used instead.  Set this to the point type used in your game.
+     * Specifies whether the minimum spacing constraint applies to the center-point or to the snapped point of playable locations. The default value is `CENTER_POINT`. If a snapped point is not available for a playable location, its center-point is used instead. Set this to the point type used in your game.
      */
     pointType?: string | null;
   }
@@ -369,7 +369,7 @@ export namespace playablelocations_v3 {
     platform?: string | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
@@ -390,7 +390,7 @@ export namespace playablelocations_v3 {
 
     /**
      * playablelocations.logImpressions
-     * @desc Logs new events when playable locations are displayed, and when they are interacted with.  Impressions are not partially saved; either all impressions are saved and this request succeeds, or no impressions are saved, and this request fails.
+     * @desc Logs new events when playable locations are displayed, and when they are interacted with. Impressions are not partially saved; either all impressions are saved and this request succeeds, or no impressions are saved, and this request fails.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -550,7 +550,7 @@ export namespace playablelocations_v3 {
 
     /**
      * playablelocations.logPlayerReports
-     * @desc Logs bad playable location reports submitted by players.  Reports are not partially saved; either all reports are saved and this request succeeds, or no reports are saved, and this request fails.
+     * @desc Logs bad playable location reports submitted by players. Reports are not partially saved; either all reports are saved and this request succeeds, or no reports are saved, and this request fails.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -713,7 +713,7 @@ export namespace playablelocations_v3 {
 
     /**
      * playablelocations.samplePlayableLocations
-     * @desc Returns a set of playable locations that lie within a specified area, that satisfy optional filter criteria.  Note: Identical `SamplePlayableLocations` requests can return different results as the state of the world changes over time.
+     * @desc Returns a set of playable locations that lie within a specified area, that satisfy optional filter criteria. Note: Identical `SamplePlayableLocations` requests can return different results as the state of the world changes over time.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
