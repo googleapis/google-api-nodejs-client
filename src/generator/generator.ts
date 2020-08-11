@@ -276,7 +276,7 @@ async function main() {
   if (!discoveryUrl && argv._.length > 0) {
     argv._.forEach(async url => {
       console.log(`Generating API for ${url}`);
-      await gen.generateAPI(url);
+      await gen.generateAPI('' + url);
       console.log('Generated API for ' + url);
     });
   } else {
