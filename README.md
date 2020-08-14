@@ -530,7 +530,7 @@ You can use the following environment variables to proxy HTTP and HTTPS requests
 When HTTP_PROXY / http_proxy are set, they will be used to proxy non-SSL requests that do not have an explicit proxy configuration option present. Similarly, HTTPS_PROXY / https_proxy will be respected for SSL requests that do not have an explicit proxy configuration option. It is valid to define a proxy in one of the environment variables, but then override it for a specific request, using the proxy configuration option.
 
 ### Getting Supported APIs
-You can programatically obtain the list of supported APIs, and all available versions:
+You can programmatically obtain the list of supported APIs, and all available versions:
 
 ```js
 const {google} = require('googleapis');
@@ -556,7 +556,7 @@ google.options({
 });
 ```
 
-HTTP/2 is often more performant, as it allows multiplexing of multiple concurrent requests over a single socket. In a traditional HTTP/2 API, the client is directly responsible for opening and closing the sessions made to make requests.  To maintain compability with the existing API, this module will automatically re-use existing sessions, which are collected after idling for 500ms.  Much of the performance gains will be visible in batch style workloads, and tight loops. To provide feedback on the experimental API surface, please comment on [this issue](https://github.com/googleapis/google-api-nodejs-client/issues/1130).
+HTTP/2 is often more performant, as it allows multiplexing of multiple concurrent requests over a single socket. In a traditional HTTP/2 API, the client is directly responsible for opening and closing the sessions made to make requests.  To maintain compatibility with the existing API, this module will automatically re-use existing sessions, which are collected after idling for 500ms.  Much of the performance gains will be visible in batch style workloads, and tight loops. To provide feedback on the experimental API surface, please comment on [this issue](https://github.com/googleapis/google-api-nodejs-client/issues/1130).
 
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
