@@ -149,7 +149,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$CancelPatchJobRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -287,7 +287,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$File {
     /**
-     * Defaults to false. When false, files will be subject to validations based on the file type:  Remote: A checksum must be specified. GCS:    An object generation number must be specified.
+     * Defaults to false. When false, files will be subject to validations based on the file type: Remote: A checksum must be specified. GCS: An object generation number must be specified.
      */
     allowInsecure?: boolean | null;
     /**
@@ -350,7 +350,7 @@ export namespace osconfig_v1 {
      */
     path?: string | null;
     /**
-     * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755.  Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
+     * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
      */
     permissions?: string | null;
     /**
@@ -681,7 +681,7 @@ export namespace osconfig_v1 {
     zones?: string[] | null;
   }
   /**
-   * Targets a group of VM instances by using their [assigned labels](https://cloud.google.com/compute/docs/labeling-resources). Labels are key-value pairs. A `GroupLabel` is a combination of labels that is used to target VMs for a patch job.  For example, a patch job can target VMs that have the following `GroupLabel`: `{&quot;env&quot;:&quot;test&quot;, &quot;app&quot;:&quot;web&quot;}`. This means that the patch job is applied to VMs that have both the labels `env=test` and `app=web`.
+   * Targets a group of VM instances by using their [assigned labels](https://cloud.google.com/compute/docs/labeling-resources). Labels are key-value pairs. A `GroupLabel` is a combination of labels that is used to target VMs for a patch job. For example, a patch job can target VMs that have the following `GroupLabel`: `{&quot;env&quot;:&quot;test&quot;, &quot;app&quot;:&quot;web&quot;}`. This means that the patch job is applied to VMs that have both the labels `env=test` and `app=web`.
    */
   export interface Schema$PatchInstanceFilterGroupLabel {
     /**
@@ -690,7 +690,7 @@ export namespace osconfig_v1 {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instance details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed. Instance details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails. For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -849,7 +849,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$PatchRollout {
     /**
-     * The maximum number (or percentage) of VMs per zone to disrupt at any given moment. The number of VMs calculated from multiplying the percentage by the total number of VMs in a zone is rounded up.  During patching, a VM is considered disrupted from the time the agent is notified to begin until patching has completed. This disruption time includes the time to complete reboot and any post-patch steps.  A VM contributes to the disruption budget if its patching operation fails either when applying the patches, running pre or post patch steps, or if it fails to respond with a success notification before timing out. VMs that are not running or do not have an active agent do not count toward this disruption budget.  For zone-by-zone rollouts, if the disruption budget in a zone is exceeded, the patch job stops, because continuing to the next zone requires completion of the patch process in the previous zone.  For example, if the disruption budget has a fixed value of `10`, and 8 VMs fail to patch in the current zone, the patch job continues to patch 2 VMs at a time until the zone is completed. When that zone is completed successfully, patching begins with 10 VMs at a time in the next zone. If 10 VMs in the next zone fail to patch, the patch job stops.
+     * The maximum number (or percentage) of VMs per zone to disrupt at any given moment. The number of VMs calculated from multiplying the percentage by the total number of VMs in a zone is rounded up. During patching, a VM is considered disrupted from the time the agent is notified to begin until patching has completed. This disruption time includes the time to complete reboot and any post-patch steps. A VM contributes to the disruption budget if its patching operation fails either when applying the patches, running pre or post patch steps, or if it fails to respond with a success notification before timing out. VMs that are not running or do not have an active agent do not count toward this disruption budget. For zone-by-zone rollouts, if the disruption budget in a zone is exceeded, the patch job stops, because continuing to the next zone requires completion of the patch process in the previous zone. For example, if the disruption budget has a fixed value of `10`, and 8 VMs fail to patch in the current zone, the patch job continues to patch 2 VMs at a time until the zone is completed. When that zone is completed successfully, patching begins with 10 VMs at a time in the next zone. If 10 VMs in the next zone fail to patch, the patch job stops.
      */
     disruptionBudget?: Schema$FixedOrPercent;
     /**
@@ -1077,7 +1077,7 @@ export namespace osconfig_v1 {
     exclusivePatches?: string[] | null;
   }
   /**
-   * Yum patching is performed by executing `yum update`. Additional options can be set to control how this is executed.  Note that not all settings are supported on all platforms.
+   * Yum patching is performed by executing `yum update`. Additional options can be set to control how this is executed. Note that not all settings are supported on all platforms.
    */
   export interface Schema$YumSettings {
     /**
@@ -1110,7 +1110,7 @@ export namespace osconfig_v1 {
      */
     excludes?: string[] | null;
     /**
-     * An exclusive list of patches to be updated. These are the only patches that will be installed using &#39;zypper patch patch:&lt;patch_name&gt;&#39; command. This field must not be used with any other patch configuration fields.
+     * An exclusive list of patches to be updated. These are the only patches that will be installed using &#39;zypper patch patch:&#39; command. This field must not be used with any other patch configuration fields.
      */
     exclusivePatches?: string[] | null;
     /**
@@ -1175,13 +1175,7 @@ export namespace osconfig_v1 {
      *   const res = await osconfig.projects.patchDeployments.create({
      *     // Required. The project to apply this patch deployment to in the form `projects/x`.
      *     parent: 'projects/my-project',
-     *     // Required. A name for the patch deployment in the project. When creating a name
-     *     // the following rules apply:
-     *     // * Must contain only lowercase letters, numbers, and hyphens.
-     *     // * Must start with a letter.
-     *     // * Must be between 1-63 characters.
-     *     // * Must end with a number or a letter.
-     *     // * Must be unique within the project.
+     *     // Required. A name for the patch deployment in the project. When creating a name the following rules apply: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      *     patchDeploymentId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1342,8 +1336,7 @@ export namespace osconfig_v1 {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.delete({
-     *     // Required. The resource name of the patch deployment in the form
-     *     // `projects/x/patchDeployments/x`.
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
      *   });
      *   console.log(res.data);
@@ -1469,8 +1462,7 @@ export namespace osconfig_v1 {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.get({
-     *     // Required. The resource name of the patch deployment in the form
-     *     // `projects/x/patchDeployments/x`.
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
      *   });
      *   console.log(res.data);
@@ -1610,8 +1602,7 @@ export namespace osconfig_v1 {
      *   const res = await osconfig.projects.patchDeployments.list({
      *     // Optional. The maximum number of patch deployments to return. Default is 100.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A pagination token returned from a previous call to ListPatchDeployments
-     *     // that indicates where this listing should continue from.
+     *     // Optional. A pagination token returned from a previous call to ListPatchDeployments that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the parent in the form `projects/x`.
      *     parent: 'projects/my-project',
@@ -2264,14 +2255,11 @@ export namespace osconfig_v1 {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.list({
-     *     // If provided, this field specifies the criteria that must be met by patch
-     *     // jobs to be included in the response.
-     *     // Currently, filtering is only available on the patch_deployment field.
+     *     // If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
      *     filter: 'placeholder-value',
      *     // The maximum number of instance status to return.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. In the form of `projects/x`
      *     parent: 'projects/my-project',
@@ -2471,14 +2459,11 @@ export namespace osconfig_v1 {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
-     *     // A filter expression that filters results listed in the response. This
-     *     // field supports filtering results by instance zone, name, state, or
-     *     // `failure_reason`.
+     *     // A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
      *     filter: 'placeholder-value',
-     *     // The maximum number of instance details records to return.  Default is 100.
+     *     // The maximum number of instance details records to return. Default is 100.
      *     pageSize: 'placeholder-value',
-     *     // A pagination token returned from a previous call
-     *     // that indicates where this listing should continue from.
+     *     // A pagination token returned from a previous call that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
      *     parent: 'projects/my-project/patchJobs/my-patchJob',
@@ -2502,7 +2487,7 @@ export namespace osconfig_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
-     * @param {integer=} params.pageSize The maximum number of instance details records to return.  Default is 100.
+     * @param {integer=} params.pageSize The maximum number of instance details records to return. Default is 100.
      * @param {string=} params.pageToken A pagination token returned from a previous call that indicates where this listing should continue from.
      * @param {string} params.parent Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2605,7 +2590,7 @@ export namespace osconfig_v1 {
      */
     filter?: string;
     /**
-     * The maximum number of instance details records to return.  Default is 100.
+     * The maximum number of instance details records to return. Default is 100.
      */
     pageSize?: number;
     /**
