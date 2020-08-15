@@ -696,8 +696,7 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasklists.list({
-     *     // Maximum number of task lists returned on one page. Optional. The default is
-     *     // 20 (max allowed: 100).
+     *     // Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      *     maxResults: 'placeholder-value',
      *     // Token specifying the result page to return. Optional.
      *     pageToken: 'placeholder-value',
@@ -1588,11 +1587,9 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.insert({
-     *     // Parent task identifier. If the task is created at the top level, this
-     *     // parameter is omitted. Optional.
+     *     // Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      *     parent: 'placeholder-value',
-     *     // Previous sibling task identifier. If the task is created at the first
-     *     // position among its siblings, this parameter is omitted. Optional.
+     *     // Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      *     previous: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
@@ -1766,37 +1763,27 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.list({
-     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to
-     *     // filter by. Optional. The default is not to filter by completion date.
+     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      *     completedMax: 'placeholder-value',
-     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to
-     *     // filter by. Optional. The default is not to filter by completion date.
+     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      *     completedMin: 'placeholder-value',
-     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     *     // Optional. The default is not to filter by due date.
+     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      *     dueMax: 'placeholder-value',
-     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
-     *     // Optional. The default is not to filter by due date.
+     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      *     dueMin: 'placeholder-value',
-     *     // Maximum number of task lists returned on one page. Optional. The default is
-     *     // 20 (max allowed: 100).
+     *     // Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      *     maxResults: 'placeholder-value',
      *     // Token specifying the result page to return. Optional.
      *     pageToken: 'placeholder-value',
-     *     // Flag indicating whether completed tasks are returned in the result.
-     *     // Optional. The default is True.
+     *     // Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      *     showCompleted: 'placeholder-value',
-     *     // Flag indicating whether deleted tasks are returned in the result. Optional.
-     *     // The default is False.
+     *     // Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
      *     showDeleted: 'placeholder-value',
-     *     // Flag indicating whether hidden tasks are returned in the result. Optional.
-     *     // The default is False.
+     *     // Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      *     showHidden: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
-     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp)
-     *     // to filter by. Optional. The default is not to filter by last modification
-     *     // time.
+     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
      *     updatedMin: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1939,11 +1926,9 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.move({
-     *     // New parent task identifier. If the task is moved to the top level, this
-     *     // parameter is omitted. Optional.
+     *     // New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
      *     parent: 'placeholder-value',
-     *     // New previous sibling task identifier. If the task is moved to the first
-     *     // position among its siblings, this parameter is omitted. Optional.
+     *     // New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      *     previous: 'placeholder-value',
      *     // Task identifier.
      *     task: 'placeholder-value',
