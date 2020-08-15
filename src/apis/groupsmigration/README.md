@@ -2,7 +2,7 @@
 
 # groupsmigration
 
-> 
+> The Groups Migration API allows domain administrators to archive emails into Google groups.
 
 ## Installation
 
