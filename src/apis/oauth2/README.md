@@ -2,7 +2,7 @@
 
 # oauth2
 
-> Obtains end-user authorization grants for use with other Google APIs.
+> 
 
 ## Installation
 
