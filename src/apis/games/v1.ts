@@ -101,7 +101,7 @@ export namespace games_v1 {
   /**
    * Google Play Game Services
    *
-   * The Google Play games service allows developers to enhance games with social leaderboards,     achievements, game state, sign-in with Google, and more.
+   * The Google Play games service allows developers to enhance games with social leaderboards, achievements, game state, sign-in with Google, and more.
    *
    * @example
    * const {google} = require('googleapis');
@@ -903,7 +903,7 @@ export namespace games_v1 {
      */
     scoreRank?: string | null;
     /**
-     * Additional information about the score.  Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string | null;
     /**
@@ -1182,6 +1182,10 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerLeaderboardScore {
     /**
+     * The rank of the score in the friends collection for this leaderboard.
+     */
+    friendsRank?: Schema$LeaderboardScoreRank;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLeaderboardScore`.
      */
     kind?: string | null;
@@ -1198,7 +1202,7 @@ export namespace games_v1 {
      */
     scoreString?: string | null;
     /**
-     * Additional information about the score.  Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string | null;
     /**
@@ -1294,7 +1298,7 @@ export namespace games_v1 {
      */
     score?: string | null;
     /**
-     * Additional information about this score.  Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string | null;
     /**
@@ -1336,11 +1340,11 @@ export namespace games_v1 {
      */
     leaderboardId?: string | null;
     /**
-     * Additional information about this score.  Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string | null;
     /**
-     * The scores in time spans that have not been beaten.  As an example, the submitted score may be better than the player&#39;s `DAILY` score, but not better than the player&#39;s scores for the `WEEKLY` or `ALL_TIME` time spans.
+     * The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player&#39;s `DAILY` score, but not better than the player&#39;s scores for the `WEEKLY` or `ALL_TIME` time spans.
      */
     unbeatenScores?: Schema$PlayerScore[];
   }
@@ -1405,7 +1409,7 @@ export namespace games_v1 {
      */
     score?: string | null;
     /**
-     * Additional information about this score.  Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string | null;
     /**
@@ -1426,7 +1430,7 @@ export namespace games_v1 {
      */
     description?: string | null;
     /**
-     * The ID of the file underlying this snapshot in the Drive API.  Only present if the snapshot is a view on a Drive file and the file is owned by the caller.
+     * The ID of the file underlying this snapshot in the Drive API. Only present if the snapshot is a view on a Drive file and the file is owned by the caller.
      */
     driveId?: string | null;
     /**
@@ -1589,9 +1593,7 @@ export namespace games_v1 {
      *   const res = await games.achievementDefinitions.list({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of achievement resources to return in the response, used
-     *     // for paging. For any response, the actual number of achievement resources
-     *     // returned may be less than the specified `maxResults`.
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -1762,9 +1764,7 @@ export namespace games_v1 {
      *   const res = await games.achievements.increment({
      *     // The ID of the achievement used by this method.
      *     achievementId: 'placeholder-value',
-     *     // A randomly generated numeric ID for each request specified by the caller.
-     *     // This number is used at the server to ensure that the request is handled
-     *     // correctly across retries.
+     *     // A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
      *     requestId: 'placeholder-value',
      *     // The number of steps to increment.
      *     stepsToIncrement: 'placeholder-value',
@@ -1911,17 +1911,13 @@ export namespace games_v1 {
      *   const res = await games.achievements.list({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of achievement resources to return in the response, used
-     *     // for paging. For any response, the actual number of achievement resources
-     *     // returned may be less than the specified `maxResults`.
+     *     // The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
-     *     // Tells the server to return only achievements with the specified state.  If
-     *     // this parameter isn't specified, all achievements are returned.
+     *     // Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
      *     state: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1947,7 +1943,7 @@ export namespace games_v1 {
      * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {string=} params.state Tells the server to return only achievements with the specified state.  If this parameter isn't specified, all achievements are returned.
+     * @param {string=} params.state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2641,7 +2637,7 @@ export namespace games_v1 {
      */
     playerId?: string;
     /**
-     * Tells the server to return only achievements with the specified state.  If this parameter isn't specified, all achievements are returned.
+     * Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
      */
     state?: string;
   }
@@ -3151,9 +3147,7 @@ export namespace games_v1 {
      *   const res = await games.events.listByPlayer({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of events to return in the response, used for paging.
-     *     // For any response, the actual number of events to return may be less than
-     *     // the specified maxResults.
+     *     // The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -3296,9 +3290,7 @@ export namespace games_v1 {
      *   const res = await games.events.listDefinitions({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of event definitions to return in the response, used for
-     *     // paging.  For any response, the actual number of event definitions to return
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -3323,7 +3315,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging.  For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
+     * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3583,7 +3575,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of event definitions to return in the response, used for paging.  For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
+     * The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -3776,9 +3768,7 @@ export namespace games_v1 {
      *   const res = await games.leaderboards.list({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of leaderboards to return in the response.  For any
-     *     // response, the actual number of leaderboards returned may be less than the
-     *     // specified `maxResults`.
+     *     // The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -3803,7 +3793,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response.  For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
+     * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3911,7 +3901,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of leaderboards to return in the response.  For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
+     * The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -4088,14 +4078,11 @@ export namespace games_v1 {
      *     collection: 'placeholder-value',
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of category resources to return in the response, used
-     *     // for paging. For any response, the actual number of category resources
-     *     // returned may be less than the specified `maxResults`.
+     *     // The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4246,7 +4233,7 @@ export namespace games_v1 {
 
     /**
      * games.players.get
-     * @desc Retrieves the Player resource with the given ID.  To retrieve the player for the currently authenticated user, set `playerId` to `me`.
+     * @desc Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4273,8 +4260,7 @@ export namespace games_v1 {
      *   const res = await games.players.get({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4420,9 +4406,7 @@ export namespace games_v1 {
      *     collection: 'placeholder-value',
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of player resources to return in the response, used for
-     *     // paging. For any response, the actual number of player resources returned
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -4597,11 +4581,7 @@ export namespace games_v1 {
      *
      *   // Do the magic
      *   const res = await games.revisions.check({
-     *     // The revision of the client SDK used by your application. Format:
-     *     // `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are:
-     *     // * `ANDROID` - Client is running the Android SDK.
-     *     // * `IOS` - Client is running the iOS SDK.
-     *     // * `WEB_APP` - Client is running as a Web App.
+     *     // The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.
      *     clientRevision: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4727,7 +4707,7 @@ export namespace games_v1 {
 
     /**
      * games.scores.get
-     * @desc Get high scores, and optionally ranks, in leaderboards for the currently authenticated player.  For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span.  `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
+     * @desc Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -4752,22 +4732,17 @@ export namespace games_v1 {
      *
      *   // Do the magic
      *   const res = await games.scores.get({
-     *     // The types of ranks to return. If the parameter is omitted, no ranks will be
-     *     // returned.
+     *     // The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      *     includeRankType: 'placeholder-value',
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The ID of the leaderboard.  Can be set to 'ALL' to retrieve data for all
-     *     // leaderboards for this application.
+     *     // The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
      *     leaderboardId: 'placeholder-value',
-     *     // The maximum number of leaderboard scores to return in the response.  For
-     *     // any response, the actual number of leaderboard scores returned may be less
-     *     // than the specified `maxResults`.
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the
-     *     // authenticated player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *     // The time span for the scores and ranks you're requesting.
      *     timeSpan: 'placeholder-value',
@@ -4794,8 +4769,8 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.includeRankType The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {string} params.leaderboardId The ID of the leaderboard.  Can be set to 'ALL' to retrieve data for all leaderboards for this application.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * @param {string} params.leaderboardId The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
+     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
      * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
@@ -4923,9 +4898,7 @@ export namespace games_v1 {
      *     language: 'placeholder-value',
      *     // The ID of the leaderboard.
      *     leaderboardId: 'placeholder-value',
-     *     // The maximum number of leaderboard scores to return in the response.  For
-     *     // any response, the actual number of leaderboard scores returned may be less
-     *     // than the specified `maxResults`.
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -4957,7 +4930,7 @@ export namespace games_v1 {
      * @param {string} params.collection The collection of scores you're requesting.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5078,19 +5051,13 @@ export namespace games_v1 {
      *     language: 'placeholder-value',
      *     // The ID of the leaderboard.
      *     leaderboardId: 'placeholder-value',
-     *     // The maximum number of leaderboard scores to return in the response.  For
-     *     // any response, the actual number of leaderboard scores returned may be less
-     *     // than the specified `maxResults`.
+     *     // The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // The preferred number of scores to return above the player's score. More
-     *     // scores may be returned if the player is at the bottom of the leaderboard;
-     *     // fewer may be returned if the player is at the top. Must be less than or
-     *     // equal to maxResults.
+     *     // The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
      *     resultsAbove: 'placeholder-value',
-     *     // True if the top scores should be returned when the player is not in the
-     *     // leaderboard. Defaults to true.
+     *     // True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
      *     returnTopIfAbsent: 'placeholder-value',
      *     // The time span for the scores and ranks you're requesting.
      *     timeSpan: 'placeholder-value',
@@ -5120,7 +5087,7 @@ export namespace games_v1 {
      * @param {string} params.collection The collection of scores you're requesting.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {integer=} params.resultsAbove The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
      * @param {boolean=} params.returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
@@ -5242,16 +5209,9 @@ export namespace games_v1 {
      *     language: 'placeholder-value',
      *     // The ID of the leaderboard.
      *     leaderboardId: 'placeholder-value',
-     *     // The score you're submitting. The submitted score is ignored if it is worse
-     *     // than a previously submitted score, where worse depends on the leaderboard
-     *     // sort order. The meaning of the score value depends on the leaderboard
-     *     // format type. For fixed-point, the score represents the raw value.  For
-     *     // time, the score represents elapsed time in milliseconds.  For currency, the
-     *     // score represents a value in micro units.
+     *     // The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      *     score: 'placeholder-value',
-     *     // Additional information about the score you're submitting.  Values must
-     *     // contain no more than 64 URI-safe characters as defined by section 2.3 of
-     *     // RFC 3986.
+     *     // Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      *     scoreTag: '[a-zA-Z0-9-._~]{0,64}',
      *   });
      *   console.log(res.data);
@@ -5278,8 +5238,8 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value.  For time, the score represents elapsed time in milliseconds.  For currency, the score represents a value in micro units.
-     * @param {string=} params.scoreTag Additional information about the score you're submitting.  Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
+     * @param {string=} params.scoreTag Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5524,11 +5484,11 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The ID of the leaderboard.  Can be set to 'ALL' to retrieve data for all leaderboards for this application.
+     * The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -5558,7 +5518,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -5585,7 +5545,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response.  For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -5615,11 +5575,11 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value.  For time, the score represents elapsed time in milliseconds.  For currency, the score represents a value in micro units.
+     * The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      */
     score?: string;
     /**
-     * Additional information about the score you're submitting.  Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
   }
@@ -5820,14 +5780,11 @@ export namespace games_v1 {
      *   const res = await games.snapshots.list({
      *     // The preferred language to use for strings returned by this method.
      *     language: 'placeholder-value',
-     *     // The maximum number of snapshot resources to return in the response, used
-     *     // for paging. For any response, the actual number of snapshot resources
-     *     // returned may be less than the specified `maxResults`.
+     *     // The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
-     *     // A player ID. A value of `me` may be used in place of the authenticated
-     *     // player's ID.
+     *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
