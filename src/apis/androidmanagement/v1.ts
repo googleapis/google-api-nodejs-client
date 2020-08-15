@@ -224,6 +224,10 @@ export namespace androidmanagement_v1 {
      */
     accessibleTrackIds?: string[] | null;
     /**
+     * Controls whether the app can communicate with itself across a device’s work and personal profiles, subject to user consent.
+     */
+    connectedWorkAndPersonalApp?: string | null;
+    /**
      * The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.
      */
     defaultPermissionPolicy?: string | null;
@@ -244,7 +248,7 @@ export namespace androidmanagement_v1 {
      */
     lockTaskAllowed?: boolean | null;
     /**
-     * Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: &lt;table&gt; &lt;tr&gt;&lt;td&gt;&lt;i&gt;type&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i&gt;JSON value&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BOOL&lt;/td&gt;&lt;td&gt;true or false&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;INTEGER&lt;/td&gt;&lt;td&gt;number&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;CHOICE&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;MULTISELECT&lt;/td&gt;&lt;td&gt;array of strings&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;HIDDEN&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BUNDLE_ARRAY&lt;/td&gt;&lt;td&gt;array of objects&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
+     * Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: *type* *JSON value* BOOL true or false STRING string INTEGER number CHOICE string MULTISELECT array of strings HIDDEN string BUNDLE_ARRAY array of objects
      */
     managedConfiguration?: {[key: string]: any} | null;
     /**
@@ -640,7 +644,7 @@ export namespace androidmanagement_v1 {
     width?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
   /**
@@ -969,7 +973,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ManagedConfigurationTemplate {
     /**
-     * Optional, a map containing &lt;key, value&gt; configuration variables defined for the configuration.
+     * Optional, a map containing configuration variables defined for the configuration.
      */
     configurationVariables?: {[key: string]: string} | null;
     /**
@@ -1083,7 +1087,7 @@ export namespace androidmanagement_v1 {
      */
     currentValue?: any | null;
     /**
-     * For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a  subfield name. 2) For array-typed fields, the field name is followed by the array index  enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
+     * For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a subfield name. 2) For array-typed fields, the field name is followed by the array index enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
      */
     fieldPath?: string | null;
     /**
@@ -1099,7 +1103,7 @@ export namespace androidmanagement_v1 {
      */
     packageName?: string | null;
     /**
-     * The name of the policy setting. This is the JSON field name of a top-level Policy  field.
+     * The name of the policy setting. This is the JSON field name of a top-level Policy field.
      */
     settingName?: string | null;
   }
@@ -1727,7 +1731,7 @@ export namespace androidmanagement_v1 {
      */
     signinEnrollmentToken?: string | null;
     /**
-     * Sign-in URL for authentication when device is provisioned with a sign-in enrollment token. The sign-in endpoint should finish authentication flow with a URL in the form of https://enterprise.google.com/android/enroll?et=&lt;token&gt; for a successful login, or https://enterprise.google.com/android/enroll/invalid for a failed login.
+     * Sign-in URL for authentication when device is provisioned with a sign-in enrollment token. The sign-in endpoint should finish authentication flow with a URL in the form of https://enterprise.google.com/android/enroll?et= for a successful login, or https://enterprise.google.com/android/enroll/invalid for a failed login.
      */
     signinUrl?: string | null;
   }
@@ -1903,7 +1907,7 @@ export namespace androidmanagement_v1 {
      */
     defaultMessage?: string | null;
     /**
-     * A map containing &lt;locale, message&gt; pairs, where locale is a well-formed BCP 47 language (https://www.w3.org/International/articles/language-tags/) code, such as en-US, es-ES, or fr.
+     * A map containing pairs, where locale is a well-formed BCP 47 language (https://www.w3.org/International/articles/language-tags/) code, such as en-US, es-ES, or fr.
      */
     localizedMessages?: {[key: string]: string} | null;
   }
@@ -1941,7 +1945,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$WebAppIcon {
     /**
-     * The actual bytes of the image in a base64url encoded string (c.f. RFC4648, section 5 &quot;Base 64 Encoding with URL and Filename Safe Alphabet&quot;). &lt;ul&gt; &lt;li&gt;The image type can be png or jpg. &lt;li&gt;The image should ideally be square. &lt;li&gt;The image should ideally have a size of 512x512. &lt;/ul&gt;
+     * The actual bytes of the image in a base64url encoded string (c.f. RFC4648, section 5 &quot;Base 64 Encoding with URL and Filename Safe Alphabet&quot;). - The image type can be png or jpg. - The image should ideally be square. - The image should ideally have a size of 512x512.
      */
     imageData?: string | null;
   }
@@ -1950,7 +1954,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$WebToken {
     /**
-     * The features to enable. Use this if you want to control exactly which feature(s) will be activated; leave empty to allow all features.Restrictions / things to note: &lt;ul&gt; &lt;li&gt; If no features are listed here, all features are enabled — this is the  default behavior where you give access to all features to your admins. &lt;li&gt; This must not contain any FEATURE_UNSPECIFIED values. &lt;li&gt; Repeated values are ignored &lt;/ul&gt;
+     * The features to enable. Use this if you want to control exactly which feature(s) will be activated; leave empty to allow all features.Restrictions / things to note: - If no features are listed here, all features are enabled — this is the default behavior where you give access to all features to your admins. - This must not contain any FEATURE_UNSPECIFIED values. - Repeated values are ignored
      */
     enabledFeatures?: string[] | null;
     /**
