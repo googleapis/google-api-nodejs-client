@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/X6Y8lGxo9UpbIUm1urqOSAixTR0\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/CksIT3-yvN8mvgQ0wLcNMxzX3cw\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -2055,7 +2055,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.",
+          "description": "Creates a persistent disk in the specified project using the data in the request. You can create a disk from a source (sourceImage, sourceSnapshot, or sourceDisk) or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.",
           "httpMethod": "POST",
           "id": "compute.disks.insert",
           "parameterOrder": [
@@ -5550,6 +5550,48 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "deletePerInstanceConfigs": {
+          "description": "Deletes selected per-instance configs for the managed instance group.",
+          "httpMethod": "POST",
+          "id": "compute.instanceGroupManagers.deletePerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone where the managed instance group is located. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs",
+          "request": {
+            "$ref": "InstanceGroupManagersDeletePerInstanceConfigsReq"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "get": {
           "description": "Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request.",
           "httpMethod": "GET",
@@ -5812,6 +5854,69 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "listPerInstanceConfigs": {
+          "description": "Lists all of the per-instance configs defined for the managed instance group. The orderBy query parameter is not supported.",
+          "httpMethod": "POST",
+          "id": "compute.instanceGroupManagers.listPerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.\n\nFor example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.\n\nYou can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.\n\nTo filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone where the managed instance group is located. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs",
+          "response": {
+            "$ref": "InstanceGroupManagersListPerInstanceConfigsResp"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "patch": {
           "description": "Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.",
           "httpMethod": "PATCH",
@@ -5850,6 +5955,53 @@
           "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}",
           "request": {
             "$ref": "InstanceGroupManager"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "patchPerInstanceConfigs": {
+          "description": "Inserts or patches per-instance configs for the managed instance group. perInstanceConfig.name serves as a key used to distinguish whether to perform insert or patch.",
+          "httpMethod": "POST",
+          "id": "compute.instanceGroupManagers.patchPerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone where the managed instance group is located. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs",
+          "request": {
+            "$ref": "InstanceGroupManagersPatchPerInstanceConfigsReq"
           },
           "response": {
             "$ref": "Operation"
@@ -6043,6 +6195,53 @@
           "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools",
           "request": {
             "$ref": "InstanceGroupManagersSetTargetPoolsRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "updatePerInstanceConfigs": {
+          "description": "Inserts or updates per-instance configs for the managed instance group. perInstanceConfig.name serves as a key used to distinguish whether to perform insert or patch.",
+          "httpMethod": "POST",
+          "id": "compute.instanceGroupManagers.updatePerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone where the managed instance group is located. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs",
+          "request": {
+            "$ref": "InstanceGroupManagersUpdatePerInstanceConfigsReq"
           },
           "response": {
             "$ref": "Operation"
@@ -14995,6 +15194,48 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "deletePerInstanceConfigs": {
+          "description": "Deletes selected per-instance configs for the managed instance group.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstanceGroupManagers.deletePerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request, should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deletePerInstanceConfigs",
+          "request": {
+            "$ref": "RegionInstanceGroupManagerDeleteInstanceConfigReq"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "get": {
           "description": "Returns all of the details about the specified managed instance group.",
           "httpMethod": "GET",
@@ -15257,6 +15498,69 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "listPerInstanceConfigs": {
+          "description": "Lists all of the per-instance configs defined for the managed instance group. The orderBy query parameter is not supported.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstanceGroupManagers.listPerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.\n\nFor example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.\n\nYou can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.\n\nTo filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request, should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listPerInstanceConfigs",
+          "response": {
+            "$ref": "RegionInstanceGroupManagersListInstanceConfigsResp"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "patch": {
           "description": "Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.",
           "httpMethod": "PATCH",
@@ -15295,6 +15599,53 @@
           "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}",
           "request": {
             "$ref": "InstanceGroupManager"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "patchPerInstanceConfigs": {
+          "description": "Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstanceGroupManagers.patchPerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request, should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs",
+          "request": {
+            "$ref": "RegionInstanceGroupManagerPatchInstanceConfigReq"
           },
           "response": {
             "$ref": "Operation"
@@ -15489,6 +15840,53 @@
           "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools",
           "request": {
             "$ref": "RegionInstanceGroupManagersSetTargetPoolsRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "updatePerInstanceConfigs": {
+          "description": "Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstanceGroupManagers.updatePerInstanceConfigs",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group. It should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request, should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/updatePerInstanceConfigs",
+          "request": {
+            "$ref": "RegionInstanceGroupManagerUpdateInstanceConfigReq"
           },
           "response": {
             "$ref": "Operation"
@@ -15709,6 +16107,190 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        }
+      }
+    },
+    "regionNetworkEndpointGroups": {
+      "methods": {
+        "delete": {
+          "description": "Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.",
+          "httpMethod": "DELETE",
+          "id": "compute.regionNetworkEndpointGroups.delete",
+          "parameterOrder": [
+            "project",
+            "region",
+            "networkEndpointGroup"
+          ],
+          "parameters": {
+            "networkEndpointGroup": {
+              "description": "The name of the network endpoint group to delete. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region where the network endpoint group is located. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.",
+          "httpMethod": "GET",
+          "id": "compute.regionNetworkEndpointGroups.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "networkEndpointGroup"
+          ],
+          "parameters": {
+            "networkEndpointGroup": {
+              "description": "The name of the network endpoint group. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region where the network endpoint group is located. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}",
+          "response": {
+            "$ref": "NetworkEndpointGroup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "Creates a network endpoint group in the specified project using the parameters that are included in the request.",
+          "httpMethod": "POST",
+          "id": "compute.regionNetworkEndpointGroups.insert",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region where you want to create the network endpoint group. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/networkEndpointGroups",
+          "request": {
+            "$ref": "NetworkEndpointGroup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "Retrieves the list of regional network endpoint groups available to the specified project in the given region.",
+          "httpMethod": "GET",
+          "id": "compute.regionNetworkEndpointGroups.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.\n\nFor example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.\n\nYou can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.\n\nTo filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region where the network endpoint group is located. It should comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/regions/{region}/networkEndpointGroups",
+          "response": {
+            "$ref": "NetworkEndpointGroupList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         }
       }
@@ -24084,7 +24666,7 @@
       }
     }
   },
-  "revision": "20200704",
+  "revision": "20200719",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26217,7 +26799,7 @@
           "type": "string"
         },
         "healthChecks": {
-          "description": "The list of URLs to the healthChecks, httpHealthChecks (legacy), or httpsHealthChecks (legacy) resource for health checking this backend service. Not all backend services support legacy health checks. See  Load balancer guide. Currently at most one health check can be specified. Backend services with instance group or zonal NEG backends must have a health check. Backend services with internet NEG backends must not have a health check. A health check must",
+          "description": "The list of URLs to the healthChecks, httpHealthChecks (legacy), or httpsHealthChecks (legacy) resource for health checking this backend service. Not all backend services support legacy health checks. See  Load balancer guide. Currently, at most one health check can be specified for each backend service. Backend services with instance group or zonal NEG backends must have a health check. Backend services with internet or serverless NEG backends must not have a health check.",
           "items": {
             "type": "string"
           },
@@ -26304,7 +26886,7 @@
           "type": "string"
         },
         "protocol": {
-          "description": "The protocol this BackendService uses to communicate with backends.\n\nPossible values are HTTP, HTTPS, HTTP2, TCP, SSL, or UDP. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.",
+          "description": "The protocol this BackendService uses to communicate with backends.\n\nPossible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.",
           "enum": [
             "GRPC",
             "HTTP",
@@ -26906,6 +27488,20 @@
       "description": "Represents a regional Commitment resource.\n\nCreating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for {$api_version}.regionCommitments ==)",
       "id": "Commitment",
       "properties": {
+        "category": {
+          "description": "The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "LICENSE",
+            "MACHINE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
           "type": "string"
@@ -26927,6 +27523,10 @@
           "default": "compute#commitment",
           "description": "[Output Only] Type of the resource. Always compute#commitment for commitments.",
           "type": "string"
+        },
+        "licenseResource": {
+          "$ref": "LicenseResourceCommitment",
+          "description": "The license specification required as part of a license commitment."
         },
         "name": {
           "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
@@ -27686,7 +28286,7 @@
           "type": "string"
         },
         "sizeGb": {
-          "description": "Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.\n\nIf you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.",
+          "description": "Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.\n\nIf you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.",
           "format": "int64",
           "type": "string"
         },
@@ -29432,7 +30032,7 @@
           "type": "string"
         },
         "portRange": {
-          "description": "When the load balancing scheme is EXTERNAL, INTERNAL_SELF_MANAGED and INTERNAL_MANAGED, you can specify a port_range. Use with a forwarding rule that points to a target proxy or a target pool. Do not use with a forwarding rule that points to a backend service. This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.\n\nApplicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.\n\nSome types of forwarding target have constraints on the acceptable ports:  \n- TargetHttpProxy: 80, 8080 \n- TargetHttpsProxy: 443 \n- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetVpnGateway: 500, 4500",
+          "description": "When the load balancing scheme is EXTERNAL, INTERNAL_SELF_MANAGED and INTERNAL_MANAGED, you can specify a port_range. Use with a forwarding rule that points to a target proxy or a target pool. Do not use with a forwarding rule that points to a backend service. This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetGrpcProxy, TargetVpnGateway, TargetPool, TargetInstance.\n\nApplicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.\n\nSome types of forwarding target have constraints on the acceptable ports:  \n- TargetHttpProxy: 80, 8080 \n- TargetHttpsProxy: 443 \n- TargetGrpcProxy: Any ports \n- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetVpnGateway: 500, 4500",
           "type": "string"
         },
         "ports": {
@@ -29464,7 +30064,7 @@
           "type": "string"
         },
         "target": {
-          "description": "The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only targetHttpProxy is valid, not targetHttpsProxy.",
+          "description": "The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only targetHttpProxy and targetGrpcProxy are valid, not targetHttpsProxy.",
           "type": "string"
         }
       },
@@ -31327,9 +31927,10 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction"
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nThe headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL."
         },
         "matchRules": {
+          "description": "The list of criteria for matching attributes of a request to this routeRule. This list has OR semantics: the request matches this routeRule when any of the matchRules are satisfied. However predicates within a given matchRule have AND semantics. All predicates within a matchRule must match for the request to match the rule.",
           "items": {
             "$ref": "HttpRouteRuleMatch"
           },
@@ -31342,7 +31943,7 @@
         },
         "routeAction": {
           "$ref": "HttpRouteAction",
-          "description": "In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices.\nOnly one of urlRedirect, service or routeAction.weightedBackendService must be set."
+          "description": "In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices.\nOnly one of urlRedirect, service or routeAction.weightedBackendService must be set.\nUrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a routeRule's routeAction."
         },
         "service": {
           "description": "The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.\nOnly one of urlRedirect, service or routeAction.weightedBackendService must be set.",
@@ -32615,6 +33216,10 @@
           "description": "[Output Only] The URL for this managed instance group. The server defines this URL.",
           "type": "string"
         },
+        "statefulPolicy": {
+          "$ref": "StatefulPolicy",
+          "description": "Stateful configuration for this Instanced Group Manager"
+        },
         "status": {
           "$ref": "InstanceGroupManagerStatus",
           "description": "[Output Only] The status of this managed instance group."
@@ -32957,9 +33562,37 @@
           "description": "[Output Only] A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.",
           "type": "boolean"
         },
+        "stateful": {
+          "$ref": "InstanceGroupManagerStatusStateful",
+          "description": "[Output Only] Stateful status of the given Instance Group Manager."
+        },
         "versionTarget": {
           "$ref": "InstanceGroupManagerStatusVersionTarget",
           "description": "[Output Only] A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager."
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStatusStateful": {
+      "id": "InstanceGroupManagerStatusStateful",
+      "properties": {
+        "hasStatefulConfig": {
+          "description": "[Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.",
+          "type": "boolean"
+        },
+        "perInstanceConfigs": {
+          "$ref": "InstanceGroupManagerStatusStatefulPerInstanceConfigs",
+          "description": "[Output Only] Status of per-instance configs on the instance."
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStatusStatefulPerInstanceConfigs": {
+      "id": "InstanceGroupManagerStatusStatefulPerInstanceConfigs",
+      "properties": {
+        "allEffective": {
+          "description": "A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -33144,6 +33777,20 @@
       },
       "type": "object"
     },
+    "InstanceGroupManagersDeletePerInstanceConfigsReq": {
+      "description": "InstanceGroupManagers.deletePerInstanceConfigs",
+      "id": "InstanceGroupManagersDeletePerInstanceConfigsReq",
+      "properties": {
+        "names": {
+          "description": "The list of instance names for which we want to delete per-instance configs on this managed instance group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "InstanceGroupManagersListErrorsResponse": {
       "id": "InstanceGroupManagersListErrorsResponse",
       "properties": {
@@ -33174,6 +33821,118 @@
         "nextPageToken": {
           "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagersListPerInstanceConfigsResp": {
+      "id": "InstanceGroupManagersListPerInstanceConfigsResp",
+      "properties": {
+        "items": {
+          "description": "[Output Only] The list of PerInstanceConfig.",
+          "items": {
+            "$ref": "PerInstanceConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
+          "type": "string"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key: value format. For example:\n\"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement, or a warning about invalid network settings (for example, if an instance attempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagersPatchPerInstanceConfigsReq": {
+      "description": "InstanceGroupManagers.patchPerInstanceConfigs",
+      "id": "InstanceGroupManagersPatchPerInstanceConfigsReq",
+      "properties": {
+        "perInstanceConfigs": {
+          "description": "The list of per-instance configs to insert or patch on this managed instance group.",
+          "items": {
+            "$ref": "PerInstanceConfig"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -33307,6 +34066,20 @@
           "description": "The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagersUpdatePerInstanceConfigsReq": {
+      "description": "InstanceGroupManagers.updatePerInstanceConfigs",
+      "id": "InstanceGroupManagersUpdatePerInstanceConfigsReq",
+      "properties": {
+        "perInstanceConfigs": {
+          "description": "The list of per-instance configs to insert or patch on this managed instance group.",
+          "items": {
+            "$ref": "PerInstanceConfig"
           },
           "type": "array"
         }
@@ -35841,6 +36614,26 @@
       },
       "type": "object"
     },
+    "LicenseResourceCommitment": {
+      "description": "Commitment for a particular license resource.",
+      "id": "LicenseResourceCommitment",
+      "properties": {
+        "amount": {
+          "description": "The number of licenses purchased.",
+          "format": "int64",
+          "type": "string"
+        },
+        "coresPerLicense": {
+          "description": "Specifies the core range of the instance for which this license applies.",
+          "type": "string"
+        },
+        "license": {
+          "description": "Any applicable license URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LicenseResourceRequirements": {
       "id": "LicenseResourceRequirements",
       "properties": {
@@ -36562,6 +37355,14 @@
           "$ref": "ManagedInstanceLastAttempt",
           "description": "[Output Only] Information about the last attempt to create or delete the instance."
         },
+        "preservedStateFromConfig": {
+          "$ref": "PreservedState",
+          "description": "[Output Only] Preserved state applied from per-instance config for this instance."
+        },
+        "preservedStateFromPolicy": {
+          "$ref": "PreservedState",
+          "description": "[Output Only] Preserved state generated based on stateful policy for this instance."
+        },
         "version": {
           "$ref": "ManagedInstanceVersion",
           "description": "[Output Only] Intended version of this instance."
@@ -36853,7 +37654,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs or  Setting up zonal NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs,  Setting up zonal NEGs, or  Setting up serverless NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -36862,6 +37663,18 @@
           },
           "description": "Metadata defined as annotations on the network endpoint group.",
           "type": "object"
+        },
+        "appEngine": {
+          "$ref": "NetworkEndpointGroupAppEngine",
+          "description": "Only valid when networkEndpointType is \"SERVERLESS\". Only one of cloudRun, appEngine or cloudFunction may be set."
+        },
+        "cloudFunction": {
+          "$ref": "NetworkEndpointGroupCloudFunction",
+          "description": "Only valid when networkEndpointType is \"SERVERLESS\". Only one of cloudRun, appEngine or cloudFunction may be set."
+        },
+        "cloudRun": {
+          "$ref": "NetworkEndpointGroupCloudRun",
+          "description": "Only valid when networkEndpointType is \"SERVERLESS\". Only one of cloudRun, appEngine or cloudFunction may be set."
         },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
@@ -36895,17 +37708,25 @@
           "type": "string"
         },
         "networkEndpointType": {
-          "description": "Type of network endpoints in this network endpoint group.",
+          "description": "Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.",
           "enum": [
             "GCE_VM_IP_PORT",
             "INTERNET_FQDN_PORT",
-            "INTERNET_IP_PORT"
+            "INTERNET_IP_PORT",
+            "NON_GCP_PRIVATE_IP_PORT",
+            "SERVERLESS"
           ],
           "enumDescriptions": [
             "",
             "",
+            "",
+            "",
             ""
           ],
+          "type": "string"
+        },
+        "region": {
+          "description": "[Output Only] The URL of the region where the network endpoint group is located.",
           "type": "string"
         },
         "selfLink": {
@@ -37036,6 +37857,59 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkEndpointGroupAppEngine": {
+      "description": "Configuration for an App Engine network endpoint group (NEG). The service is optional, may be provided explicitly or in the URL mask. The version is optional and can only be provided explicitly or in the URL mask when service is present.\n\nNote: App Engine service must be in the same project and located in the same region as the Serverless NEG.",
+      "id": "NetworkEndpointGroupAppEngine",
+      "properties": {
+        "service": {
+          "description": "Optional serving service.\n\nThe service name must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"default\", \"my-service\".",
+          "type": "string"
+        },
+        "urlMask": {
+          "description": "A template to parse service and version fields from a request URL. URL mask allows for routing to multiple App Engine services without having to create multiple Network Endpoint Groups and backend services.\n\nFor example, the request URLs \"foo1-dot-appname.appspot.com/v1\" and \"foo1-dot-appname.appspot.com/v2\" can be backed by the same Serverless NEG with URL mask \"-dot-appname.appspot.com/\". The URL mask will parse them to { service = \"foo1\", version = \"v1\" } and { service = \"foo1\", version = \"v2\" } respectively.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional serving version.\n\nThe version must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"v1\", \"v2\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkEndpointGroupCloudFunction": {
+      "description": "Configuration for a Cloud Function network endpoint group (NEG). The function must be provided explicitly or in the URL mask.\n\nNote: Cloud Function must be in the same project and located in the same region as the Serverless NEG.",
+      "id": "NetworkEndpointGroupCloudFunction",
+      "properties": {
+        "function": {
+          "description": "A user-defined name of the Cloud Function.\n\nThe function name is case-sensitive and must be 1-63 characters long.\n\nExample value: \"func1\".",
+          "type": "string"
+        },
+        "urlMask": {
+          "description": "A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services.\n\nFor example, request URLs \"mydomain.com/function1\" and \"mydomain.com/function2\" can be backed by the same Serverless NEG with URL mask \"/\". The URL mask will parse them to { function = \"function1\" } and { function = \"function2\" } respectively.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkEndpointGroupCloudRun": {
+      "description": "Configuration for a Cloud Run network endpoint group (NEG). The service must be provided explicitly or in the URL mask. The tag is optional, may be provided explicitly or in the URL mask.\n\nNote: Cloud Run service must be in the same project and located in the same region as the Serverless NEG.",
+      "id": "NetworkEndpointGroupCloudRun",
+      "properties": {
+        "service": {
+          "description": "Cloud Run service is the main resource of Cloud Run.\n\nThe service must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"run-service\".",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Optional Cloud Run tag represents the \"named-revision\" to provide additional fine-grained traffic routing information.\n\nThe tag must be 1-63 characters long, and comply with RFC1035.\n\nExample value: \"revision-0010\".",
+          "type": "string"
+        },
+        "urlMask": {
+          "description": "A template to parse service and tag fields from a request URL. URL mask allows for routing to multiple Run services without having to create multiple network endpoint groups and backend services.\n\nFor example, request URLs \"foo1.domain.com/bar1\" and \"foo1.domain.com/bar2\" can be backed by the same Serverless Network Endpoint Group (NEG) with URL mask \".domain.com/\". The URL mask will parse them to { service=\"bar1\", tag=\"foo1\" } and { service=\"bar2\", tag=\"foo2\" } respectively.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -38040,6 +38914,20 @@
     "NodeGroupNode": {
       "id": "NodeGroupNode",
       "properties": {
+        "cpuOvercommitType": {
+          "description": "CPU overcommit.",
+          "enum": [
+            "CPU_OVERCOMMIT_TYPE_UNSPECIFIED",
+            "ENABLED",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "instances": {
           "description": "Instances scheduled on this node.",
           "items": {
@@ -38326,6 +39214,20 @@
       "description": "Represent a sole-tenant Node Template resource.\n\nYou can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for {$api_version}.nodeTemplates ==)",
       "id": "NodeTemplate",
       "properties": {
+        "cpuOvercommitType": {
+          "description": "CPU overcommit.",
+          "enum": [
+            "CPU_OVERCOMMIT_TYPE_UNSPECIFIED",
+            "ENABLED",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
           "type": "string"
@@ -40411,7 +41313,7 @@
         },
         "headerAction": {
           "$ref": "HttpHeaderAction",
-          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nHeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap"
+          "description": "Specifies changes to request and response headers that need to take effect for the selected backendService.\nHeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap \nNote that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL."
         },
         "name": {
           "description": "The name to which this PathMatcher is referred by the HostRule.",
@@ -40471,6 +41373,30 @@
         "name": {
           "description": "The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.",
           "type": "string"
+        },
+        "preservedState": {
+          "$ref": "PreservedState",
+          "description": "The intended preserved state for the given instance. Does not contain preserved state generated from a stateful policy."
+        },
+        "status": {
+          "description": "The status of applying this per-instance config on the corresponding managed instance.",
+          "enum": [
+            "APPLYING",
+            "DELETING",
+            "EFFECTIVE",
+            "NONE",
+            "UNAPPLIED",
+            "UNAPPLIED_DELETION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -40526,6 +41452,61 @@
             "$ref": "WafExpressionSet"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PreservedState": {
+      "description": "Preserved state for a given instance.",
+      "id": "PreservedState",
+      "properties": {
+        "disks": {
+          "additionalProperties": {
+            "$ref": "PreservedStatePreservedDisk"
+          },
+          "description": "Preserved disks defined for this instance. This map is keyed with the device names of the disks.",
+          "type": "object"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Preserved metadata defined for this instance.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PreservedStatePreservedDisk": {
+      "id": "PreservedStatePreservedDisk",
+      "properties": {
+        "autoDelete": {
+          "description": "These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.",
+          "enum": [
+            "NEVER",
+            "ON_PERMANENT_INSTANCE_DELETION"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.",
+          "enum": [
+            "READ_ONLY",
+            "READ_WRITE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "source": {
+          "description": "The URL of the disk resource that is stateful and should be attached to the VM instance.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -40720,6 +41701,7 @@
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
             "EXTERNAL_NETWORK_LB_FORWARDING_RULES",
+            "EXTERNAL_PROTOCOL_FORWARDING_RULES",
             "EXTERNAL_VPN_GATEWAYS",
             "FIREWALLS",
             "FORWARDING_RULES",
@@ -40802,6 +41784,7 @@
             "VPN_TUNNELS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -41381,6 +42364,20 @@
       },
       "type": "object"
     },
+    "RegionInstanceGroupManagerDeleteInstanceConfigReq": {
+      "description": "RegionInstanceGroupManagers.deletePerInstanceConfigs",
+      "id": "RegionInstanceGroupManagerDeleteInstanceConfigReq",
+      "properties": {
+        "names": {
+          "description": "The list of instance names for which we want to delete per-instance configs on this managed instance group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RegionInstanceGroupManagerList": {
       "description": "Contains a list of managed instance groups.",
       "id": "RegionInstanceGroupManagerList",
@@ -41493,6 +42490,34 @@
       },
       "type": "object"
     },
+    "RegionInstanceGroupManagerPatchInstanceConfigReq": {
+      "description": "RegionInstanceGroupManagers.patchPerInstanceConfigs",
+      "id": "RegionInstanceGroupManagerPatchInstanceConfigReq",
+      "properties": {
+        "perInstanceConfigs": {
+          "description": "The list of per-instance configs to insert or patch on this managed instance group.",
+          "items": {
+            "$ref": "PerInstanceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegionInstanceGroupManagerUpdateInstanceConfigReq": {
+      "description": "RegionInstanceGroupManagers.updatePerInstanceConfigs",
+      "id": "RegionInstanceGroupManagerUpdateInstanceConfigReq",
+      "properties": {
+        "perInstanceConfigs": {
+          "description": "The list of per-instance configs to insert or patch on this managed instance group.",
+          "items": {
+            "$ref": "PerInstanceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RegionInstanceGroupManagersAbandonInstancesRequest": {
       "id": "RegionInstanceGroupManagersAbandonInstancesRequest",
       "properties": {
@@ -41592,6 +42617,104 @@
         "nextPageToken": {
           "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionInstanceGroupManagersListInstanceConfigsResp": {
+      "id": "RegionInstanceGroupManagersListInstanceConfigsResp",
+      "properties": {
+        "items": {
+          "description": "[Output Only] The list of PerInstanceConfig.",
+          "items": {
+            "$ref": "PerInstanceConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
+          "type": "string"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key: value format. For example:\n\"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement, or a warning about invalid network settings (for example, if an instance attempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
         }
       },
       "type": "object"
@@ -44400,6 +45523,11 @@
           "description": "Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.\n\nBy default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.",
           "type": "boolean"
         },
+        "minNodeCpus": {
+          "description": "The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.",
+          "format": "int32",
+          "type": "integer"
+        },
         "nodeAffinities": {
           "description": "A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.",
           "items": {
@@ -45882,6 +47010,47 @@
       "properties": {
         "sslPolicy": {
           "description": "URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with the target proxy resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StatefulPolicy": {
+      "id": "StatefulPolicy",
+      "properties": {
+        "preservedState": {
+          "$ref": "StatefulPolicyPreservedState"
+        }
+      },
+      "type": "object"
+    },
+    "StatefulPolicyPreservedState": {
+      "description": "Configuration of preserved resources.",
+      "id": "StatefulPolicyPreservedState",
+      "properties": {
+        "disks": {
+          "additionalProperties": {
+            "$ref": "StatefulPolicyPreservedStateDiskDevice"
+          },
+          "description": "Disks created on the instances that will be preserved on instance delete, update, etc. This map is keyed with the device names of the disks.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "StatefulPolicyPreservedStateDiskDevice": {
+      "id": "StatefulPolicyPreservedStateDiskDevice",
+      "properties": {
+        "autoDelete": {
+          "description": "These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.",
+          "enum": [
+            "NEVER",
+            "ON_PERMANENT_INSTANCE_DELETION"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -47754,7 +48923,7 @@
           "type": "number"
         },
         "healthChecks": {
-          "description": "The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only HttpHealthChecks are supported. Only one health check may be specified.",
+          "description": "The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.",
           "items": {
             "type": "string"
           },
