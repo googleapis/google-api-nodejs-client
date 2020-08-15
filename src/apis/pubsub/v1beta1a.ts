@@ -143,7 +143,7 @@ export namespace pubsub_v1beta1a {
     subscription?: string | null;
   }
   /**
-   * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance:    service Foo {     rpc Bar (proto2.Empty) returns (proto2.Empty) { };   };  BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies    (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
+   * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance: service Foo { rpc Bar (proto2.Empty) returns (proto2.Empty) { }; }; BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
    */
   export interface Schema$Empty {}
   /**
@@ -151,7 +151,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$Label {
     /**
-     * The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below.  Each key should be globally unique.  The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint.  Instead, the namespace indicates what system or entity defines the semantics of the label.  Namespaces do not restrict the set of objects to which a label may be associated.  Keys are defined by the following grammar:    key          = hostname &quot;/&quot; kpath   kpath        = ksegment *[ &quot;/&quot; ksegment ]   ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ]  where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738.  Example key:   spanner.google.com/universe
+     * The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below. Each key should be globally unique. The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint. Instead, the namespace indicates what system or entity defines the semantics of the label. Namespaces do not restrict the set of objects to which a label may be associated. Keys are defined by the following grammar: key = hostname &quot;/&quot; kpath kpath = ksegment *[ &quot;/&quot; ksegment ] ksegment = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ] where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738. Example key: spanner.google.com/universe
      */
     key?: string | null;
     /**
@@ -168,7 +168,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ListSubscriptionsResponse {
     /**
-     * If not empty, indicates that there are more subscriptions that match the request and this value should be passed to the next &lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
+     * If not empty, indicates that there are more subscriptions that match the request and this value should be passed to the next ListSubscriptionsRequest to continue.
      */
     nextPageToken?: string | null;
     /**
@@ -181,7 +181,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ListTopicsResponse {
     /**
-     * If not empty, indicates that there are more topics that match the request, and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt; to continue.
+     * If not empty, indicates that there are more topics that match the request, and this value should be passed to the next ListTopicsRequest to continue.
      */
     nextPageToken?: string | null;
     /**
@@ -215,7 +215,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ModifyPushConfigRequest {
     /**
-     * An empty &lt;code&gt;push_config&lt;/code&gt; indicates that the Pub/Sub system should pause pushing messages from the given subscription.
+     * An empty push_config indicates that the Pub/Sub system should pause pushing messages from the given subscription.
      */
     pushConfig?: Schema$PushConfig;
     /**
@@ -340,7 +340,7 @@ export namespace pubsub_v1beta1a {
     subscription?: string | null;
   }
   /**
-   * Either a &lt;code&gt;PubsubMessage&lt;/code&gt; or a truncation event. One of these two must be populated.
+   * Either a PubsubMessage or a truncation event. One of these two must be populated.
    */
   export interface Schema$PullResponse {
     /**
@@ -366,7 +366,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$Subscription {
     /**
-     * For either push or pull delivery, the value is the maximum time after a subscriber receives a message before the subscriber should acknowledge or Nack the message. If the Ack deadline for a message passes without an Ack or a Nack, the Pub/Sub system will eventually redeliver the message. If a subscriber acknowledges after the deadline, the Pub/Sub system may accept the Ack, but it is possible that the message has been already delivered again. Multiple Acks to the message are allowed and will succeed.  For push delivery, this value is used to set the request timeout for the call to the push endpoint.  For pull delivery, this value is used as the initial value for the Ack deadline. It may be overridden for each message using its corresponding ack_id with &lt;code&gt;ModifyAckDeadline&lt;/code&gt;. While a message is outstanding (i.e. it has been delivered to a pull subscriber and the subscriber has not yet Acked or Nacked), the Pub/Sub system will not deliver that message to another pull subscriber (on a best-effort basis).
+     * For either push or pull delivery, the value is the maximum time after a subscriber receives a message before the subscriber should acknowledge or Nack the message. If the Ack deadline for a message passes without an Ack or a Nack, the Pub/Sub system will eventually redeliver the message. If a subscriber acknowledges after the deadline, the Pub/Sub system may accept the Ack, but it is possible that the message has been already delivered again. Multiple Acks to the message are allowed and will succeed. For push delivery, this value is used to set the request timeout for the call to the push endpoint. For pull delivery, this value is used as the initial value for the Ack deadline. It may be overridden for each message using its corresponding ack_id with ModifyAckDeadline. While a message is outstanding (i.e. it has been delivered to a pull subscriber and the subscriber has not yet Acked or Nacked), the Pub/Sub system will not deliver that message to another pull subscriber (on a best-effort basis).
      */
     ackDeadlineSeconds?: number | null;
     /**
@@ -538,7 +538,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.create
-     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
+     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -982,8 +982,7 @@ export namespace pubsub_v1beta1a {
      *   const res = await pubsub.subscriptions.list({
      *     // Maximum number of subscriptions to return.
      *     maxResults: 'placeholder-value',
-     *     // The value obtained in the last <code>ListSubscriptionsResponse</code>
-     *     // for continuation.
+     *     // The value obtained in the last ListSubscriptionsResponse for continuation.
      *     pageToken: 'placeholder-value',
      *     // A valid label query expression.
      *     query: 'placeholder-value',
@@ -1007,7 +1006,7 @@ export namespace pubsub_v1beta1a {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of subscriptions to return.
-     * @param {string=} params.pageToken The value obtained in the last <code>ListSubscriptionsResponse</code> for continuation.
+     * @param {string=} params.pageToken The value obtained in the last ListSubscriptionsResponse for continuation.
      * @param {string=} params.query A valid label query expression.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1240,7 +1239,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.subscriptions.modifyPushConfig
-     * @desc Modifies the <code>PushConfig</code> for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the <code>PushConfig</code> field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
+     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1697,7 +1696,7 @@ export namespace pubsub_v1beta1a {
      */
     maxResults?: number;
     /**
-     * The value obtained in the last <code>ListSubscriptionsResponse</code> for continuation.
+     * The value obtained in the last ListSubscriptionsResponse for continuation.
      */
     pageToken?: string;
     /**
@@ -2171,8 +2170,7 @@ export namespace pubsub_v1beta1a {
      *   const res = await pubsub.topics.list({
      *     // Maximum number of topics to return.
      *     maxResults: 'placeholder-value',
-     *     // The value obtained in the last <code>ListTopicsResponse</code>
-     *     // for continuation.
+     *     // The value obtained in the last ListTopicsResponse for continuation.
      *     pageToken: 'placeholder-value',
      *     // A valid label query expression.
      *     query: 'placeholder-value',
@@ -2196,7 +2194,7 @@ export namespace pubsub_v1beta1a {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of topics to return.
-     * @param {string=} params.pageToken The value obtained in the last <code>ListTopicsResponse</code> for continuation.
+     * @param {string=} params.pageToken The value obtained in the last ListTopicsResponse for continuation.
      * @param {string=} params.query A valid label query expression.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2282,7 +2280,7 @@ export namespace pubsub_v1beta1a {
 
     /**
      * pubsub.topics.publish
-     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
+     * @desc Adds a message to the topic. Returns NOT_FOUND if the topic does not exist.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -2589,7 +2587,7 @@ export namespace pubsub_v1beta1a {
      */
     maxResults?: number;
     /**
-     * The value obtained in the last <code>ListTopicsResponse</code> for continuation.
+     * The value obtained in the last ListTopicsResponse for continuation.
      */
     pageToken?: string;
     /**
