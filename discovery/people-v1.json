@@ -431,7 +431,7 @@
           "parameterOrder": [],
           "parameters": {
             "personFields": {
-              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -501,7 +501,7 @@
           ],
           "parameters": {
             "personFields": {
-              "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -550,7 +550,7 @@
           ],
           "parameters": {
             "personFields": {
-              "description": "Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -613,7 +613,7 @@
           "parameterOrder": [],
           "parameters": {
             "personFields": {
-              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -700,7 +700,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -778,7 +778,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -818,7 +818,7 @@
           ],
           "parameters": {
             "personFields": {
-              "description": "Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+              "description": "Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -849,7 +849,7 @@
               "type": "string"
             },
             "updatePersonFields": {
-              "description": "Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined",
+              "description": "Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -919,7 +919,7 @@
                   "type": "string"
                 },
                 "personFields": {
-                  "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+                  "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -997,7 +997,7 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20200813",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1324,18 +1324,12 @@
           "type": "string"
         },
         "readMask": {
-          "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+          "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
           "format": "google-fieldmask",
           "type": "string"
         },
         "sources": {
           "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
-          "enumDescriptions": [
-            "Unspecified.",
-            "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
-            "Returns SourceType.CONTACT.",
-            "Returns SourceType.DOMAIN_CONTACT."
-          ],
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -1746,6 +1740,45 @@
         },
         "value": {
           "description": "The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language tag representing the locale.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A person's location.",
+      "id": "Location",
+      "properties": {
+        "buildingId": {
+          "description": "The building identifier.",
+          "type": "string"
+        },
+        "current": {
+          "description": "Whether the location is the current location.",
+          "type": "boolean"
+        },
+        "deskCode": {
+          "description": "The individual desk location.",
+          "type": "string"
+        },
+        "floor": {
+          "description": "The floor name or number.",
+          "type": "string"
+        },
+        "floorSection": {
+          "description": "The floor section in `floor_name`.",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "FieldMetadata",
+          "description": "Metadata about the location."
+        },
+        "type": {
+          "description": "The type of the location. The type can be custom or one of these predefined values: * `desk` * `grewUp`",
+          "type": "string"
+        },
+        "value": {
+          "description": "The free-form value of the location.",
           "type": "string"
         }
       },
@@ -2189,6 +2222,13 @@
           },
           "type": "array"
         },
+        "locations": {
+          "description": "The person's locations.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
         "memberships": {
           "description": "The person's group memberships.",
           "items": {
@@ -2275,7 +2315,7 @@
           "type": "array"
         },
         "residences": {
-          "description": "The person's residences.",
+          "description": "**DEPRECATED**: (Please use `person.locations` instead) The person's residences.",
           "items": {
             "$ref": "Residence"
           },
@@ -2467,12 +2507,6 @@
         },
         "userTypes": {
           "description": "Output only. The user types.",
-          "enumDescriptions": [
-            "The user type is not known.",
-            "The user is a Google user.",
-            "The user is a Google+ user.",
-            "The user is a G Suite user."
-          ],
           "items": {
             "enum": [
               "USER_TYPE_UNKNOWN",
@@ -2559,7 +2593,7 @@
       "type": "object"
     },
     "Residence": {
-      "description": "A person's past or current residence.",
+      "description": "**DEPRECATED**: Please use `person.locations` instead. A person's past or current residence.",
       "id": "Residence",
       "properties": {
         "current": {
@@ -2745,7 +2779,7 @@
       "id": "UpdateContactPhotoRequest",
       "properties": {
         "personFields": {
-          "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined",
+          "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -2756,12 +2790,6 @@
         },
         "sources": {
           "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
-          "enumDescriptions": [
-            "Unspecified.",
-            "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
-            "Returns SourceType.CONTACT.",
-            "Returns SourceType.DOMAIN_CONTACT."
-          ],
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
