@@ -164,7 +164,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     published?: Schema$AchievementConfigurationDetail;
     /**
-     * Steps to unlock.  Only applicable to incremental achievements.
+     * Steps to unlock. Only applicable to incremental achievements.
      */
     stepsToUnlock?: number | null;
     /**
@@ -264,7 +264,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     numDecimalPlaces?: number | null;
     /**
-     * An optional suffix for the NUMERIC format type.  These strings follow the same &lt;a href=&quot;http://developer.android.com/guide/topics/resources/string-resource.html#Plurals&quot;&gt; plural rules&lt;/a&gt; as all Android string resources.
+     * An optional suffix for the NUMERIC format type. These strings follow the same plural rules as all Android string resources.
      */
     suffix?: Schema$GamesNumberAffixConfiguration;
   }
@@ -860,9 +860,7 @@ export namespace gamesConfiguration_v1configuration {
      *   const res = await gamesConfiguration.achievementConfigurations.list({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // The maximum number of resource configurations to return in the response,
-     *     // used for paging. For any response, the actual number of resources returned
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
@@ -1863,9 +1861,7 @@ export namespace gamesConfiguration_v1configuration {
      *   const res = await gamesConfiguration.leaderboardConfigurations.list({
      *     // The application ID from the Google Play developer console.
      *     applicationId: 'placeholder-value',
-     *     // The maximum number of resource configurations to return in the response,
-     *     // used for paging. For any response, the actual number of resources returned
-     *     // may be less than the specified `maxResults`.
+     *     // The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      *     maxResults: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
