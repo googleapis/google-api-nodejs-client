@@ -172,6 +172,10 @@ export namespace content_v2_1 {
      */
     businessInformation?: Schema$AccountBusinessInformation;
     /**
+     * ID of CSS the account belongs to.
+     */
+    cssId?: string | null;
+    /**
      * The GMB account which is linked or in the process of being linked with the Merchant Center account.
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
@@ -183,6 +187,10 @@ export namespace content_v2_1 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;`content#account`&quot;
      */
     kind?: string | null;
+    /**
+     * List of label IDs that are assigned to the account by CSS.
+     */
+    labelIds?: string[] | null;
     /**
      * Required. Display name for the account.
      */
@@ -350,6 +358,10 @@ export namespace content_v2_1 {
      * Only applicable if the method is `claimwebsite`. Indicates whether or not to take the claim from another account in case there is a conflict.
      */
     overwrite?: boolean | null;
+    /**
+     * Controls which fields are visible. Only applicable if the method is &#39;get&#39;.
+     */
+    view?: string | null;
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
@@ -646,6 +658,18 @@ export namespace content_v2_1 {
      * Number of pending offers.
      */
     pending?: string | null;
+  }
+  export interface Schema$AccountsUpdateLabelsRequest {
+    /**
+     * The IDs of labels that should be assigned to the account.
+     */
+    labelIds?: string[] | null;
+  }
+  export interface Schema$AccountsUpdateLabelsResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsUpdateLabelsResponse&quot;.
+     */
+    kind?: string | null;
   }
   /**
    * The tax settings of a merchant account. All methods require the admin role.
@@ -3064,7 +3088,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipmentScheduledDeliveryDetails {
     /**
-     * The phone number of the carrier fulfilling the delivery.
+     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., &quot;+41 44 668 1800&quot;).
      */
     carrierPhoneNumber?: string | null;
     /**
@@ -4363,9 +4387,21 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductStatusDestinationStatus {
     /**
+     * List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
+     */
+    approvedCountrys?: string[] | null;
+    /**
      * The name of the destination
      */
     destination?: string | null;
+    /**
+     * List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved.
+     */
+    disapprovedCountrys?: string[] | null;
+    /**
+     * List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval.
+     */
+    pendingCountrys?: string[] | null;
     /**
      * Destination approval status in `targetCountry` of the offer.
      */
@@ -4446,6 +4482,10 @@ export namespace content_v2_1 {
     resources?: Schema$ProductStatus[];
   }
   export interface Schema$ProductStatusItemLevelIssue {
+    /**
+     * List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer.
+     */
+    applicableCountrys?: string[] | null;
     /**
      * The attribute&#39;s name, if the issue is caused by a single attribute.
      */
@@ -4613,7 +4653,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * The ID (name) of the region.
+     * The ID uniquely identifying each region.
      */
     regionId?: string | null;
     /**
@@ -6252,6 +6292,8 @@ export namespace content_v2_1 {
      *     accountId: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
+     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6260,9 +6302,11 @@ export namespace content_v2_1 {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "businessInformation": {},
+     *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
      *   //   "name": "my_name",
      *   //   "sellerId": "my_sellerId",
      *   //   "users": [],
@@ -6282,6 +6326,7 @@ export namespace content_v2_1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
+     * @param {string=} params.view Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6400,9 +6445,11 @@ export namespace content_v2_1 {
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
      *       //   "businessInformation": {},
+     *       //   "cssId": "my_cssId",
      *       //   "googleMyBusinessLink": {},
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labelIds": [],
      *       //   "name": "my_name",
      *       //   "sellerId": "my_sellerId",
      *       //   "users": [],
@@ -6418,9 +6465,11 @@ export namespace content_v2_1 {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "businessInformation": {},
+     *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
      *   //   "name": "my_name",
      *   //   "sellerId": "my_sellerId",
      *   //   "users": [],
@@ -6698,12 +6747,16 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.accounts.list({
+     *     // If view is set to "css", only return accounts that are assigned label with given ID.
+     *     label: 'placeholder-value',
      *     // The maximum number of accounts to return in the response, used for paging.
      *     maxResults: 'placeholder-value',
      *     // The ID of the managing account. This must be a multi-client account.
      *     merchantId: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
+     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6724,9 +6777,11 @@ export namespace content_v2_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.label If view is set to "css", only return accounts that are assigned label with given ID.
      * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {string=} params.view Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7002,9 +7057,11 @@ export namespace content_v2_1 {
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
      *       //   "businessInformation": {},
+     *       //   "cssId": "my_cssId",
      *       //   "googleMyBusinessLink": {},
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labelIds": [],
      *       //   "name": "my_name",
      *       //   "sellerId": "my_sellerId",
      *       //   "users": [],
@@ -7020,9 +7077,11 @@ export namespace content_v2_1 {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "businessInformation": {},
+     *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
      *   //   "name": "my_name",
      *   //   "sellerId": "my_sellerId",
      *   //   "users": [],
@@ -7123,6 +7182,158 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
+
+    /**
+     * content.accounts.updatelabels
+     * @desc Updates labels that are assigned to the Merchant Center account by CSS user.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.updatelabels({
+     *     // The ID of the account whose labels are updated.
+     *     accountId: 'placeholder-value',
+     *     // The ID of the managing account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labelIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias content.accounts.updatelabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account whose labels are updated.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {().AccountsUpdateLabelsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updatelabels(
+      params: Params$Resource$Accounts$Updatelabels,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatelabels(
+      params?: Params$Resource$Accounts$Updatelabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsUpdateLabelsResponse>;
+    updatelabels(
+      params: Params$Resource$Accounts$Updatelabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updatelabels(
+      params: Params$Resource$Accounts$Updatelabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>,
+      callback: BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+    ): void;
+    updatelabels(
+      params: Params$Resource$Accounts$Updatelabels,
+      callback: BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+    ): void;
+    updatelabels(
+      callback: BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+    ): void;
+    updatelabels(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Updatelabels
+        | BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountsUpdateLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountsUpdateLabelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Updatelabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Updatelabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accounts/{accountId}/updatelabels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountsUpdateLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountsUpdateLabelsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Authinfo
@@ -7172,6 +7383,10 @@ export namespace content_v2_1 {
      * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      */
     merchantId?: string;
+    /**
+     * Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     */
+    view?: string;
   }
   export interface Params$Resource$Accounts$Insert extends StandardParameters {
     /**
@@ -7201,6 +7416,10 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
+     * If view is set to "css", only return accounts that are assigned label with given ID.
+     */
+    label?: string;
+    /**
      * The maximum number of accounts to return in the response, used for paging.
      */
     maxResults?: number;
@@ -7212,6 +7431,10 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+    /**
+     * Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
+     */
+    view?: string;
   }
   export interface Params$Resource$Accounts$Listlinks
     extends StandardParameters {
@@ -7246,6 +7469,22 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$Account;
+  }
+  export interface Params$Resource$Accounts$Updatelabels
+    extends StandardParameters {
+    /**
+     * The ID of the account whose labels are updated.
+     */
+    accountId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountsUpdateLabelsRequest;
   }
 
   export class Resource$Accountstatuses {

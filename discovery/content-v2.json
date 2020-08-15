@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/T3p3jJ2SZQ9xZAma95npFozMerg\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/LoJS2PHXpFWLupj-kOBpv7_os1o\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20200721",
+  "revision": "20200805",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6662,7 +6662,7 @@
       "id": "OrderShipmentScheduledDeliveryDetails",
       "properties": {
         "carrierPhoneNumber": {
-          "description": "The phone number of the carrier fulfilling the delivery.",
+          "description": "The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., \"+41 44 668 1800\").",
           "type": "string"
         },
         "scheduledDate": {
