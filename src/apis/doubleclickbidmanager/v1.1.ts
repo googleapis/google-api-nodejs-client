@@ -164,7 +164,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$DownloadLineItemsRequest {
     /**
-     * File specification (column names, types, order) in which the line items will be returned. Default to &lt;code&gt;EWF&lt;/code&gt;.
+     * File specification (column names, types, order) in which the line items will be returned. Default to EWF.
      */
     fileSpec?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     filterType?: string | null;
     /**
-     * Format in which the line items will be returned. Default to &lt;code&gt;CSV&lt;/code&gt;.
+     * Format in which the line items will be returned. Default to CSV.
      */
     format?: string | null;
   }
@@ -185,7 +185,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$DownloadLineItemsResponse {
     /**
-     * Retrieved line items in CSV format. For more information about file formats, see &lt;a href=&quot;https://developers.google.com/bid-manager/guides/entity-write/format&quot;&gt; Entity Write File Format&lt;/a&gt;.
+     * Retrieved line items in CSV format. For more information about file formats, see Entity Write File Format.
      */
     lineItems?: string | null;
   }
@@ -194,7 +194,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$DownloadRequest {
     /**
-     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. &lt;br&gt;&lt;br&gt;Acceptable values are: &lt;ul&gt; &lt;li&gt;&quot;&lt;code&gt;AD&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;AD_GROUP&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;CAMPAIGN&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;INSERTION_ORDER&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;INVENTORY_SOURCE&lt;/code&gt;&quot;&lt;/li&gt; &lt;li&gt;&quot;&lt;code&gt;LINE_ITEM&lt;/code&gt;&quot;&lt;/li&gt; &lt;/ul&gt;
+     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. Acceptable values are: - &quot;AD&quot; - &quot;AD_GROUP&quot; - &quot;CAMPAIGN&quot; - &quot;INSERTION_ORDER&quot; - &quot;INVENTORY_SOURCE&quot; - &quot;LINE_ITEM&quot;
      */
     fileTypes?: string[] | null;
     /**
@@ -206,7 +206,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to &lt;code&gt;5&lt;/code&gt;.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
      */
     version?: string | null;
   }
@@ -263,7 +263,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$ListQueriesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#listQueriesResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
      */
     kind?: string | null;
     /**
@@ -280,7 +280,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$ListReportsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#listReportsResponse&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
      */
     kind?: string | null;
     /**
@@ -335,7 +335,7 @@ export namespace doubleclickbidmanager_v1_1 {
     type?: string | null;
   }
   /**
-   * Path filters specify which paths to include in a report. A path is the result of combining DV360 events based on User ID to create a workflow of users&#39; actions.&lt;br&gt;&lt;br&gt; When a path filter is set, the resulting report will only include paths that match the specified event at the specified position. All other paths will be excluded.
+   * Path filters specify which paths to include in a report. A path is the result of combining DV360 events based on User ID to create a workflow of users&#39; actions. When a path filter is set, the resulting report will only include paths that match the specified event at the specified position. All other paths will be excluded.
    */
   export interface Schema$PathFilter {
     /**
@@ -382,7 +382,7 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$Query {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &lt;code&gt;&quot;doubleclickbidmanager#query&quot;&lt;/code&gt;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#query&quot;.
      */
     kind?: string | null;
     /**
@@ -398,11 +398,11 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     queryId?: string | null;
     /**
-     * The ending time for the data that is shown in the report. Note, &lt;code&gt;reportDataEndTimeMs&lt;/code&gt; is required if &lt;code&gt;metadata.dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
+     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataEndTimeMs?: string | null;
     /**
-     * The starting time for the data that is shown in the report. Note, &lt;code&gt;reportDataStartTimeMs&lt;/code&gt; is required if &lt;code&gt;metadata.dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataStartTimeMs?: string | null;
     /**
@@ -410,7 +410,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     schedule?: Schema$QuerySchedule;
     /**
-     * Canonical timezone code for report data time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
+     * Canonical timezone code for report data time. Defaults to America/New_York.
      */
     timezoneCode?: string | null;
   }
@@ -439,7 +439,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     latestReportRunTimeMs?: string | null;
     /**
-     * Locale of the generated reports. Valid values are cs      CZECH de GERMAN en      ENGLISH es      SPANISH fr      FRENCH it      ITALIAN ja JAPANESE ko      KOREAN pl      POLISH pt-BR   BRAZILIAN_PORTUGUESE ru RUSSIAN tr      TURKISH uk      UKRAINIAN zh-CN   CHINA_CHINESE zh-TW TAIWAN_CHINESE &lt;br&gt;&lt;br&gt; An locale string not in the list above will generate reports in English.
+     * Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE An locale string not in the list above will generate reports in English.
      */
     locale?: string | null;
     /**
@@ -455,7 +455,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     sendNotification?: boolean | null;
     /**
-     * List of email addresses which are sent email notifications when the report is finished. Separate from &lt;code&gt;sendNotification&lt;/code&gt;.
+     * List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.
      */
     shareEmailAddress?: string[] | null;
     /**
@@ -480,7 +480,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     nextRunMinuteOfDay?: number | null;
     /**
-     * Canonical timezone code for report generation time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
+     * Canonical timezone code for report generation time. Defaults to America/New_York.
      */
     nextRunTimezoneCode?: string | null;
     /**
@@ -617,15 +617,15 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     dataRange?: string | null;
     /**
-     * The ending time for the data that is shown in the report. Note, &lt;code&gt;reportDataEndTimeMs&lt;/code&gt; is required if &lt;code&gt;dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
+     * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataEndTimeMs?: string | null;
     /**
-     * The starting time for the data that is shown in the report. Note, &lt;code&gt;reportDataStartTimeMs&lt;/code&gt; is required if &lt;code&gt;dataRange&lt;/code&gt; is &lt;code&gt;CUSTOM_DATES&lt;/code&gt; and ignored otherwise.
+     * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
     reportDataStartTimeMs?: string | null;
     /**
-     * Canonical timezone code for report data time. Defaults to &lt;code&gt;America/New_York&lt;/code&gt;.
+     * Canonical timezone code for report data time. Defaults to America/New_York.
      */
     timezoneCode?: string | null;
   }
@@ -634,15 +634,15 @@ export namespace doubleclickbidmanager_v1_1 {
    */
   export interface Schema$UploadLineItemsRequest {
     /**
-     * Set to &lt;code&gt;true&lt;/code&gt; to get upload status without actually persisting the line items.
+     * Set to true to get upload status without actually persisting the line items.
      */
     dryRun?: boolean | null;
     /**
-     * Format the line items are in. Default to &lt;code&gt;CSV&lt;/code&gt;.
+     * Format the line items are in. Default to CSV.
      */
     format?: string | null;
     /**
-     * Line items in CSV to upload. Refer to &lt;a href=&quot;https://developers.google.com/bid-manager/guides/entity-write/format&quot;&gt; Entity Write File Format&lt;/a&gt; for more information on file format.
+     * Line items in CSV to upload. Refer to Entity Write File Format for more information on file format.
      */
     lineItems?: string | null;
   }
@@ -1014,8 +1014,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.createquery({
-     *     // If true, tries to run the query asynchronously. Only applicable when
-     *     // the frequency is <code>ONE_TIME</code>.
+     *     // If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
      *     asynchronous: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1057,7 +1056,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.asynchronous If true, tries to run the query asynchronously. Only applicable when the frequency is <code>ONE_TIME</code>.
+     * @param {boolean=} params.asynchronous If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
      * @param {().Query} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1428,8 +1427,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.listqueries({
-     *     // Maximum number of results per page. Must be between <code>1</code> and
-     *     // <code>100</code>. Defaults to <code>100</code> if unspecified.
+     *     // Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token.
      *     pageToken: 'placeholder-value',
@@ -1453,7 +1451,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. Must be between <code>1</code> and <code>100</code>. Defaults to <code>100</code> if unspecified.
+     * @param {integer=} params.pageSize Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      * @param {string=} params.pageToken Optional pagination token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1684,7 +1682,7 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Queries$Createquery
     extends StandardParameters {
     /**
-     * If true, tries to run the query asynchronously. Only applicable when the frequency is <code>ONE_TIME</code>.
+     * If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
      */
     asynchronous?: boolean;
 
@@ -1709,7 +1707,7 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Queries$Listqueries
     extends StandardParameters {
     /**
-     * Maximum number of results per page. Must be between <code>1</code> and <code>100</code>. Defaults to <code>100</code> if unspecified.
+     * Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      */
     pageSize?: number;
     /**
@@ -1766,8 +1764,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.reports.listreports({
-     *     // Maximum number of results per page. Must be between <code>1</code> and
-     *     // <code>100</code>. Defaults to <code>100</code> if unspecified.
+     *     // Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      *     pageSize: 'placeholder-value',
      *     // Optional pagination token.
      *     pageToken: 'placeholder-value',
@@ -1793,7 +1790,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. Must be between <code>1</code> and <code>100</code>. Defaults to <code>100</code> if unspecified.
+     * @param {integer=} params.pageSize Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      * @param {string=} params.pageToken Optional pagination token.
      * @param {string} params.queryId Query ID with which the reports are associated.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1887,7 +1884,7 @@ export namespace doubleclickbidmanager_v1_1 {
   export interface Params$Resource$Reports$Listreports
     extends StandardParameters {
     /**
-     * Maximum number of results per page. Must be between <code>1</code> and <code>100</code>. Defaults to <code>100</code> if unspecified.
+     * Maximum number of results per page. Must be between 1 and 100. Defaults to 100 if unspecified.
      */
     pageSize?: number;
     /**

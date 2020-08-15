@@ -8,8 +8,8 @@
       }
     }
   },
-  "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
+  "basePath": "/doubleclickbidmanager/v1/",
+  "baseUrl": "https://www.googleapis.com/doubleclickbidmanager/v1/",
   "batchPath": "batch/doubleclickbidmanager",
   "canonicalName": "DoubleClick Bid Manager",
   "description": "DoubleClick Bid Manager API allows users to manage and create campaigns and reports.",
@@ -108,13 +108,13 @@
     "lineitems": {
       "methods": {
         "downloadlineitems": {
-          "description": "Retrieves line items in CSV format. YouTube & partners line items are not\nsupported.",
-          "flatPath": "doubleclickbidmanager/v1/lineitems/downloadlineitems",
+          "description": "Retrieves line items in CSV format. YouTube & partners line items are not supported.",
+          "flatPath": "lineitems/downloadlineitems",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.lineitems.downloadlineitems",
           "parameterOrder": [],
           "parameters": {},
-          "path": "doubleclickbidmanager/v1/lineitems/downloadlineitems",
+          "path": "lineitems/downloadlineitems",
           "request": {
             "$ref": "DownloadLineItemsRequest"
           },
@@ -126,13 +126,13 @@
           ]
         },
         "uploadlineitems": {
-          "description": "Uploads line items in CSV format. YouTube & partners line items are not\nsupported.",
-          "flatPath": "doubleclickbidmanager/v1/lineitems/uploadlineitems",
+          "description": "Uploads line items in CSV format. YouTube & partners line items are not supported.",
+          "flatPath": "lineitems/uploadlineitems",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.lineitems.uploadlineitems",
           "parameterOrder": [],
           "parameters": {},
-          "path": "doubleclickbidmanager/v1/lineitems/uploadlineitems",
+          "path": "lineitems/uploadlineitems",
           "request": {
             "$ref": "UploadLineItemsRequest"
           },
@@ -149,12 +149,12 @@
       "methods": {
         "createquery": {
           "description": "Creates a query.",
-          "flatPath": "doubleclickbidmanager/v1/query",
+          "flatPath": "query",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.queries.createquery",
           "parameterOrder": [],
           "parameters": {},
-          "path": "doubleclickbidmanager/v1/query",
+          "path": "query",
           "request": {
             "$ref": "Query"
           },
@@ -167,7 +167,7 @@
         },
         "deletequery": {
           "description": "Deletes a stored query as well as the associated stored reports.",
-          "flatPath": "doubleclickbidmanager/v1/query/{queryId}",
+          "flatPath": "query/{queryId}",
           "httpMethod": "DELETE",
           "id": "doubleclickbidmanager.queries.deletequery",
           "parameterOrder": [
@@ -182,14 +182,14 @@
               "type": "string"
             }
           },
-          "path": "doubleclickbidmanager/v1/query/{queryId}",
+          "path": "query/{queryId}",
           "scopes": [
             "https://www.googleapis.com/auth/doubleclickbidmanager"
           ]
         },
         "getquery": {
           "description": "Retrieves a stored query.",
-          "flatPath": "doubleclickbidmanager/v1/query/{queryId}",
+          "flatPath": "query/{queryId}",
           "httpMethod": "GET",
           "id": "doubleclickbidmanager.queries.getquery",
           "parameterOrder": [
@@ -204,7 +204,7 @@
               "type": "string"
             }
           },
-          "path": "doubleclickbidmanager/v1/query/{queryId}",
+          "path": "query/{queryId}",
           "response": {
             "$ref": "Query"
           },
@@ -214,12 +214,12 @@
         },
         "listqueries": {
           "description": "Retrieves stored queries.",
-          "flatPath": "doubleclickbidmanager/v1/queries",
+          "flatPath": "queries",
           "httpMethod": "GET",
           "id": "doubleclickbidmanager.queries.listqueries",
           "parameterOrder": [],
           "parameters": {},
-          "path": "doubleclickbidmanager/v1/queries",
+          "path": "queries",
           "response": {
             "$ref": "ListQueriesResponse"
           },
@@ -229,7 +229,7 @@
         },
         "runquery": {
           "description": "Runs a stored query to generate a report.",
-          "flatPath": "doubleclickbidmanager/v1/query/{queryId}",
+          "flatPath": "query/{queryId}",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.queries.runquery",
           "parameterOrder": [
@@ -244,7 +244,7 @@
               "type": "string"
             }
           },
-          "path": "doubleclickbidmanager/v1/query/{queryId}",
+          "path": "query/{queryId}",
           "request": {
             "$ref": "RunQueryRequest"
           },
@@ -258,7 +258,7 @@
       "methods": {
         "listreports": {
           "description": "Retrieves stored reports.",
-          "flatPath": "doubleclickbidmanager/v1/queries/{queryId}/reports",
+          "flatPath": "queries/{queryId}/reports",
           "httpMethod": "GET",
           "id": "doubleclickbidmanager.reports.listreports",
           "parameterOrder": [
@@ -273,7 +273,7 @@
               "type": "string"
             }
           },
-          "path": "doubleclickbidmanager/v1/queries/{queryId}/reports",
+          "path": "queries/{queryId}/reports",
           "response": {
             "$ref": "ListReportsResponse"
           },
@@ -287,12 +287,12 @@
       "methods": {
         "download": {
           "description": "Retrieves entities in SDF format.",
-          "flatPath": "doubleclickbidmanager/v1/sdf/download",
+          "flatPath": "sdf/download",
           "httpMethod": "POST",
           "id": "doubleclickbidmanager.sdf.download",
           "parameterOrder": [],
           "parameters": {},
-          "path": "doubleclickbidmanager/v1/sdf/download",
+          "path": "sdf/download",
           "request": {
             "$ref": "DownloadRequest"
           },
@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20200721",
+  "revision": "20200811",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "DownloadLineItemsRequest": {
@@ -314,7 +314,7 @@
       "id": "DownloadLineItemsRequest",
       "properties": {
         "fileSpec": {
-          "description": "File specification (column names, types, order) in which the line items\nwill be returned. Default to <code>EWF</code>.",
+          "description": "File specification (column names, types, order) in which the line items will be returned. Default to EWF.",
           "enum": [
             "EWF"
           ],
@@ -324,7 +324,7 @@
           "type": "string"
         },
         "filterIds": {
-          "description": "Ids of the specified filter type used to filter line items to fetch. If\nomitted, all the line items will be returned.",
+          "description": "Ids of the specified filter type used to filter line items to fetch. If omitted, all the line items will be returned.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -346,7 +346,7 @@
           "type": "string"
         },
         "format": {
-          "description": "Format in which the line items will be returned. Default to\n<code>CSV</code>.",
+          "description": "Format in which the line items will be returned. Default to CSV.",
           "enum": [
             "CSV"
           ],
@@ -363,18 +363,18 @@
       "id": "DownloadLineItemsResponse",
       "properties": {
         "lineItems": {
-          "description": "Retrieved line items in CSV format. For more information about file\nformats, see <a\nhref=\"https://developers.google.com/bid-manager/guides/entity-write/format\">\nEntity Write File Format</a>.",
+          "description": "Retrieved line items in CSV format. For more information about file formats, see Entity Write File Format.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "DownloadRequest": {
-      "description": "Request to fetch stored inventory sources, campaigns, insertion orders, line\nitems, YouTube ad groups and ads.",
+      "description": "Request to fetch stored inventory sources, campaigns, insertion orders, line items, YouTube ad groups and ads.",
       "id": "DownloadRequest",
       "properties": {
         "fileTypes": {
-          "description": "File types that will be returned. If INVENTORY_SOURCE is requested, no\nother file types may be requested. <br><br>Acceptable values are: <ul>\n<li>\"<code>AD</code>\"</li> <li>\"<code>AD_GROUP</code>\"</li>\n<li>\"<code>CAMPAIGN</code>\"</li> <li>\"<code>INSERTION_ORDER</code>\"</li>\n<li>\"<code>INVENTORY_SOURCE</code>\"</li> <li>\"<code>LINE_ITEM</code>\"</li>\n</ul>",
+          "description": "File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. Acceptable values are: - \"AD\" - \"AD_GROUP\" - \"CAMPAIGN\" - \"INSERTION_ORDER\" - \"INVENTORY_SOURCE\" - \"LINE_ITEM\" ",
           "enumDescriptions": [
             "",
             "",
@@ -392,12 +392,20 @@
               "CAMPAIGN",
               "INVENTORY_SOURCE"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
         },
         "filterIds": {
-          "description": "The IDs of the specified filter type. This is used to filter entities to\nfetch. At least one ID must be specified.",
+          "description": "The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -405,7 +413,7 @@
           "type": "array"
         },
         "filterType": {
-          "description": "Filter type used to filter entities to fetch. PARTNER_ID and\nINVENTORY_SOURCE_ID may only be used when downloading inventory sources.",
+          "description": "Filter type used to filter entities to fetch. PARTNER_ID and INVENTORY_SOURCE_ID may only be used when downloading inventory sources.",
           "enum": [
             "ADVERTISER_ID",
             "INSERTION_ORDER_ID",
@@ -425,7 +433,7 @@
           "type": "string"
         },
         "version": {
-          "description": "SDF Version (column names, types, order) in which the entities will be\nreturned. Default to <code>5</code>.",
+          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.",
           "type": "string"
         }
       },
@@ -719,7 +727,7 @@
       "id": "ListQueriesResponse",
       "properties": {
         "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string\n<code>\"doubleclickbidmanager#listQueriesResponse\"</code>.",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"doubleclickbidmanager#listQueriesResponse\".",
           "type": "string"
         },
         "queries": {
@@ -737,7 +745,7 @@
       "id": "ListReportsResponse",
       "properties": {
         "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string\n<code>\"doubleclickbidmanager#listReportsResponse\"</code>.",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"doubleclickbidmanager#listReportsResponse\".",
           "type": "string"
         },
         "reports": {
@@ -1001,6 +1009,125 @@
               "FILTER_INVENTORY_SOURCE_EXTERNAL_ID",
               "FILTER_AUTHORIZED_SELLER_STATE",
               "FILTER_VIDEO_DURATION_SECONDS_RANGE"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ],
             "type": "string"
           },
@@ -1561,6 +1688,280 @@
               "METRIC_FLOODLIGHT_IMPRESSIONS",
               "METRIC_BILLABLE_IMPRESSIONS"
             ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             "type": "string"
           },
           "type": "array"
@@ -1645,7 +2046,7 @@
       "id": "Query",
       "properties": {
         "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string\n<code>\"doubleclickbidmanager#query\"</code>.",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"doubleclickbidmanager#query\".",
           "type": "string"
         },
         "metadata": {
@@ -1662,12 +2063,12 @@
           "type": "string"
         },
         "reportDataEndTimeMs": {
-          "description": "The ending time for the data that is shown in the report. Note,\n<code>reportDataEndTimeMs</code> is required if\n<code>metadata.dataRange</code> is <code>CUSTOM_DATES</code> and ignored\notherwise.",
+          "description": "The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.",
           "format": "int64",
           "type": "string"
         },
         "reportDataStartTimeMs": {
-          "description": "The starting time for the data that is shown in the report. Note,\n<code>reportDataStartTimeMs</code> is required if\n<code>metadata.dataRange</code> is <code>CUSTOM_DATES</code> and ignored\notherwise.",
+          "description": "The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.",
           "format": "int64",
           "type": "string"
         },
@@ -1676,7 +2077,7 @@
           "description": "Information on how often and when to run a query."
         },
         "timezoneCode": {
-          "description": "Canonical timezone code for report data time. Defaults to\n<code>America/New_York</code>.",
+          "description": "Canonical timezone code for report data time. Defaults to America/New_York.",
           "type": "string"
         }
       },
@@ -1747,7 +2148,7 @@
           "type": "string"
         },
         "googleCloudStoragePathForLatestReport": {
-          "description": "The path to the location in Google Cloud Storage where the latest report is\nstored.",
+          "description": "The path to the location in Google Cloud Storage where the latest report is stored.",
           "type": "string"
         },
         "googleDrivePathForLatestReport": {
@@ -1760,7 +2161,7 @@
           "type": "string"
         },
         "locale": {
-          "description": "Locale of the generated reports. Valid values are cs      CZECH de\nGERMAN en      ENGLISH es      SPANISH fr      FRENCH it      ITALIAN ja\nJAPANESE ko      KOREAN pl      POLISH pt-BR   BRAZILIAN_PORTUGUESE ru\nRUSSIAN tr      TURKISH uk      UKRAINIAN zh-CN   CHINA_CHINESE zh-TW\nTAIWAN_CHINESE <br><br> An locale string not in the list above will\ngenerate reports in English.",
+          "description": "Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE An locale string not in the list above will generate reports in English.",
           "type": "string"
         },
         "reportCount": {
@@ -1773,11 +2174,11 @@
           "type": "boolean"
         },
         "sendNotification": {
-          "description": "Whether to send an email notification when a report is ready. Default to\nfalse.",
+          "description": "Whether to send an email notification when a report is ready. Default to false.",
           "type": "boolean"
         },
         "shareEmailAddress": {
-          "description": "List of email addresses which are sent email notifications when the report\nis finished. Separate from <code>sendNotification</code>.",
+          "description": "List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.",
           "items": {
             "type": "string"
           },
@@ -1820,12 +2221,12 @@
           "type": "string"
         },
         "nextRunMinuteOfDay": {
-          "description": "Time of day at which a new report will be generated, represented as minutes\npast midnight. Range is 0 to 1439. Only applies to scheduled reports.",
+          "description": "Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.",
           "format": "int32",
           "type": "integer"
         },
         "nextRunTimezoneCode": {
-          "description": "Canonical timezone code for report generation time. Defaults to\n<code>America/New_York</code>.",
+          "description": "Canonical timezone code for report generation time. Defaults to America/New_York.",
           "type": "string"
         }
       },
@@ -1923,7 +2324,7 @@
       "id": "ReportMetadata",
       "properties": {
         "googleCloudStoragePath": {
-          "description": "The path to the location in Google Cloud Storage where the report is\nstored.",
+          "description": "The path to the location in Google Cloud Storage where the report is stored.",
           "type": "string"
         },
         "reportDataEndTimeMs": {
@@ -2074,17 +2475,17 @@
           "type": "string"
         },
         "reportDataEndTimeMs": {
-          "description": "The ending time for the data that is shown in the report. Note,\n<code>reportDataEndTimeMs</code> is required if <code>dataRange</code> is\n<code>CUSTOM_DATES</code> and ignored otherwise.",
+          "description": "The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.",
           "format": "int64",
           "type": "string"
         },
         "reportDataStartTimeMs": {
-          "description": "The starting time for the data that is shown in the report. Note,\n<code>reportDataStartTimeMs</code> is required if <code>dataRange</code> is\n<code>CUSTOM_DATES</code> and ignored otherwise.",
+          "description": "The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.",
           "format": "int64",
           "type": "string"
         },
         "timezoneCode": {
-          "description": "Canonical timezone code for report data time. Defaults to\n<code>America/New_York</code>.",
+          "description": "Canonical timezone code for report data time. Defaults to America/New_York.",
           "type": "string"
         }
       },
@@ -2095,11 +2496,11 @@
       "id": "UploadLineItemsRequest",
       "properties": {
         "dryRun": {
-          "description": "Set to <code>true</code> to get upload status without actually persisting\nthe line items.",
+          "description": "Set to true to get upload status without actually persisting the line items.",
           "type": "boolean"
         },
         "format": {
-          "description": "Format the line items are in. Default to <code>CSV</code>.",
+          "description": "Format the line items are in. Default to CSV.",
           "enum": [
             "CSV"
           ],
@@ -2109,7 +2510,7 @@
           "type": "string"
         },
         "lineItems": {
-          "description": "Line items in CSV to upload. Refer to <a\nhref=\"https://developers.google.com/bid-manager/guides/entity-write/format\">\nEntity Write File Format</a> for more information on file format.",
+          "description": "Line items in CSV to upload. Refer to Entity Write File Format for more information on file format.",
           "type": "string"
         }
       },
@@ -2148,7 +2549,7 @@
       "type": "object"
     }
   },
-  "servicePath": "",
+  "servicePath": "doubleclickbidmanager/v1/",
   "title": "DoubleClick Bid Manager API",
   "version": "v1"
 }
