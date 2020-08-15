@@ -128,6 +128,15 @@ export namespace dialogflow_v2beta1 {
   }
 
   /**
+   * Metadata associated with the long running operation for Versions.CreateVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata {
+    /**
+     * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
+     */
+    version?: string | null;
+  }
+  /**
    * The response message for Agents.ExportAgent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentResponse {
@@ -273,7 +282,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment {
     /**
-     * Whether the playback of this segment can be interrupted by the end user&#39;s speech and the client should then start the next Dialogflow request.
+     * Output only. Whether the playback of this segment can be interrupted by the end user&#39;s speech and the client should then start the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -303,7 +312,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio {
     /**
-     * Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -316,7 +325,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText {
     /**
-     * Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -3491,6 +3500,15 @@ export namespace dialogflow_v2beta1 {
      * Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.
      */
     source?: string | null;
+  }
+  /**
+   * Metadata associated with the long running operation for Versions.CreateVersion.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata {
+    /**
+     * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
+     */
+    version?: string | null;
   }
   /**
    * The response message for Agents.ExportAgent.
