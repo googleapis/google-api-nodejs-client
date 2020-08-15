@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20200731",
+  "revision": "20200807",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3033,6 +3033,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "instanceReferences": {
+          "description": "Output only. List of references to Compute Engine instances.",
+          "items": {
+            "$ref": "InstanceReference"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "isPreemptible": {
           "description": "Output only. Specifies that this instance group contains preemptible instances.",
           "readOnly": true,
@@ -3068,6 +3076,21 @@
             "Instances are non-preemptible.This option is allowed for all instance groups and is the only valid value for Master and Worker instance groups.",
             "Instances are preemptible.This option is allowed only for secondary worker groups."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceReference": {
+      "description": "A reference to a Compute Engine instance.",
+      "id": "InstanceReference",
+      "properties": {
+        "instanceId": {
+          "description": "The unique identifier of the Compute Engine instance.",
+          "type": "string"
+        },
+        "instanceName": {
+          "description": "The user-friendly name of the Compute Engine instance.",
           "type": "string"
         }
       },
