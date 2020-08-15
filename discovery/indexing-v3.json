@@ -108,7 +108,7 @@
     "urlNotifications": {
       "methods": {
         "getMetadata": {
-          "description": "Gets metadata about a Web Document. This method can _only_ be used to query\nURLs that were previously seen in successful Indexing API notifications.\nIncludes the latest `UrlNotification` received via this API.",
+          "description": "Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API.",
           "flatPath": "v3/urlNotifications/metadata",
           "httpMethod": "GET",
           "id": "indexing.urlNotifications.getMetadata",
@@ -149,7 +149,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200804",
   "rootUrl": "https://indexing.googleapis.com/",
   "schemas": {
     "PublishUrlNotificationResponse": {
@@ -164,11 +164,11 @@
       "type": "object"
     },
     "UrlNotification": {
-      "description": "`UrlNotification` is the resource used in all Indexing API calls.\nIt describes one event in the life cycle of a Web Document.",
+      "description": "`UrlNotification` is the resource used in all Indexing API calls. It describes one event in the life cycle of a Web Document.",
       "id": "UrlNotification",
       "properties": {
         "notifyTime": {
-          "description": "Creation timestamp for this notification.\nUsers should _not_ specify it, the field is ignored at the request time.",
+          "description": "Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -187,14 +187,14 @@
           "type": "string"
         },
         "url": {
-          "description": "The object of this notification. The URL must be owned by the publisher\nof this notification and, in case of `URL_UPDATED` notifications, it _must_\nbe crawlable by Google.",
+          "description": "The object of this notification. The URL must be owned by the publisher of this notification and, in case of `URL_UPDATED` notifications, it _must_ be crawlable by Google.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "UrlNotificationMetadata": {
-      "description": "Summary of the most recent Indexing API notifications successfully received,\nfor a given URL.",
+      "description": "Summary of the most recent Indexing API notifications successfully received, for a given URL.",
       "id": "UrlNotificationMetadata",
       "properties": {
         "latestRemove": {
