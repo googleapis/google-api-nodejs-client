@@ -53,9 +53,21 @@ export namespace dfareporting_v3_3 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace dfareporting_v3_3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * DCM/DFA Reporting And Trafficking API
    *
-   * Manages your DoubleClick Campaign Manager ad campaigns and reports.
+   * Manage your DoubleClick Campaign Manager ad campaigns and reports.
    *
    * @example
    * const {google} = require('googleapis');
@@ -286,7 +302,7 @@ export namespace dfareporting_v3_3 {
      */
     countryId?: string | null;
     /**
-     * ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN  - &quot;51&quot; for EGP
+     * ID of currency associated with this account. This is a required field. Acceptable values are: - &quot;1&quot; for USD - &quot;2&quot; for GBP - &quot;3&quot; for ESP - &quot;4&quot; for SEK - &quot;5&quot; for CAD - &quot;6&quot; for JPY - &quot;7&quot; for DEM - &quot;8&quot; for AUD - &quot;9&quot; for FRF - &quot;10&quot; for ITL - &quot;11&quot; for DKK - &quot;12&quot; for NOK - &quot;13&quot; for FIM - &quot;14&quot; for ZAR - &quot;15&quot; for IEP - &quot;16&quot; for NLG - &quot;17&quot; for EUR - &quot;18&quot; for KRW - &quot;19&quot; for TWD - &quot;20&quot; for SGD - &quot;21&quot; for CNY - &quot;22&quot; for HKD - &quot;23&quot; for NZD - &quot;24&quot; for MYR - &quot;25&quot; for BRL - &quot;26&quot; for PTE - &quot;27&quot; for MXP - &quot;28&quot; for CLP - &quot;29&quot; for TRY - &quot;30&quot; for ARS - &quot;31&quot; for PEN - &quot;32&quot; for ILS - &quot;33&quot; for CHF - &quot;34&quot; for VEF - &quot;35&quot; for COP - &quot;36&quot; for GTQ - &quot;37&quot; for PLN - &quot;39&quot; for INR - &quot;40&quot; for THB - &quot;41&quot; for IDR - &quot;42&quot; for CZK - &quot;43&quot; for RON - &quot;44&quot; for HUF - &quot;45&quot; for RUB - &quot;46&quot; for AED - &quot;47&quot; for BGN - &quot;48&quot; for HRK - &quot;49&quot; for MXN - &quot;50&quot; for NGN - &quot;51&quot; for EGP
      */
     currencyId?: string | null;
     /**
@@ -306,7 +322,7 @@ export namespace dfareporting_v3_3 {
      */
     kind?: string | null;
     /**
-     * Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil)  - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
+     * Locale of this account. Acceptable values are: - &quot;cs&quot; (Czech) - &quot;de&quot; (German) - &quot;en&quot; (English) - &quot;en-GB&quot; (English United Kingdom) - &quot;es&quot; (Spanish) - &quot;fr&quot; (French) - &quot;it&quot; (Italian) - &quot;ja&quot; (Japanese) - &quot;ko&quot; (Korean) - &quot;pl&quot; (Polish) - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian) - &quot;sv&quot; (Swedish) - &quot;tr&quot; (Turkish) - &quot;zh-CN&quot; (Chinese Simplified) - &quot;zh-TW&quot; (Chinese Traditional)
      */
     locale?: string | null;
     /**
@@ -364,7 +380,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$AccountPermission {
     /**
-     * Account profiles associated with this account permission.  Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
+     * Account profiles associated with this account permission. Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
      */
     accountProfiles?: string[] | null;
     /**
@@ -485,11 +501,11 @@ export namespace dfareporting_v3_3 {
      */
     kind?: string | null;
     /**
-     * Locale of the user profile. This is a required field. Acceptable values are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
+     * Locale of the user profile. This is a required field. Acceptable values are: - &quot;cs&quot; (Czech) - &quot;de&quot; (German) - &quot;en&quot; (English) - &quot;en-GB&quot; (English United Kingdom) - &quot;es&quot; (Spanish) - &quot;fr&quot; (French) - &quot;it&quot; (Italian) - &quot;ja&quot; (Japanese) - &quot;ko&quot; (Korean) - &quot;pl&quot; (Polish) - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian) - &quot;sv&quot; (Swedish) - &quot;tr&quot; (Turkish) - &quot;zh-CN&quot; (Chinese Simplified) - &quot;zh-TW&quot; (Chinese Traditional)
      */
     locale?: string | null;
     /**
-     * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
+     * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&lt;&gt;&quot;#%,&quot;.
      */
     name?: string | null;
     /**
@@ -612,7 +628,7 @@ export namespace dfareporting_v3_3 {
      */
     creativeGroupAssignments?: Schema$CreativeGroupAssignment[];
     /**
-     * Creative rotation for this ad. Applicable when type is AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING. When type is AD_SERVING_DEFAULT_AD, this field should have exactly one creativeAssignment.
+     * Creative rotation for this ad. Applicable when type is AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING. When type is AD_SERVING_DEFAULT_AD, this field should have exactly one creativeAssignment .
      */
     creativeRotation?: Schema$CreativeRotation;
     /**
@@ -631,9 +647,6 @@ export namespace dfareporting_v3_3 {
      * Whether this ad is a dynamic click tracker. Applicable when type is AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is read-only after insert.
      */
     dynamicClickTracker?: boolean | null;
-    /**
-     * Date and time that this ad should stop serving. Must be later than the start time. This is a required field on insertion.
-     */
     endTime?: string | null;
     /**
      * Event tag overrides for this ad.
@@ -691,9 +704,6 @@ export namespace dfareporting_v3_3 {
      * Whether this ad requires ssl. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslRequired?: boolean | null;
-    /**
-     * Date and time that this ad should start serving. If creating an ad, this field must be a time in the future. This is a required field on insertion.
-     */
     startTime?: string | null;
     /**
      * Subaccount ID of this ad. This is a read-only field that can be left blank.
@@ -708,7 +718,7 @@ export namespace dfareporting_v3_3 {
      */
     technologyTargeting?: Schema$TechnologyTargeting;
     /**
-     * Type of ad. This is a required field on insertion. Note that default ads (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
+     * Type of ad. This is a required field on insertion. Note that default ads ( AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
      */
     type?: string | null;
   }
@@ -812,7 +822,7 @@ export namespace dfareporting_v3_3 {
      */
     defaultEmail?: string | null;
     /**
-     * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as:  - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups.  - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
+     * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as: - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
      */
     floodlightConfigurationId?: string | null;
     /**
@@ -1068,9 +1078,6 @@ export namespace dfareporting_v3_3 {
      * The default landing page ID for this campaign.
      */
     defaultLandingPageId?: string | null;
-    /**
-     * Date on which the campaign will stop running. On insert, the end date must be today or a future date. The end date must be later than or be the same as the start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective campaign run date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This is a required field.
-     */
     endDate?: string | null;
     /**
      * Overrides that can be used to activate or deactivate advertiser event tags.
@@ -1104,9 +1111,6 @@ export namespace dfareporting_v3_3 {
      * Whether Nielsen reports are enabled for this campaign.
      */
     nielsenOcrEnabled?: boolean | null;
-    /**
-     * Date on which the campaign starts running. The start date can be any date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This is a required field.
-     */
     startDate?: string | null;
     /**
      * Subaccount ID of this campaign. This is a read-only field that can be left blank.
@@ -1176,9 +1180,6 @@ export namespace dfareporting_v3_3 {
      * Action which caused the change.
      */
     action?: string | null;
-    /**
-     * Time when the object was modified.
-     */
     changeTime?: string | null;
     /**
      * Field name of the object which changed.
@@ -1318,7 +1319,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$ClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string | null;
     /**
@@ -1776,7 +1777,7 @@ export namespace dfareporting_v3_3 {
      */
     companionCreatives?: string[] | null;
     /**
-     * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types.  Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
+     * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types. Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
      */
     compatibility?: string[] | null;
     /**
@@ -1940,7 +1941,7 @@ export namespace dfareporting_v3_3 {
      */
     totalFileSize?: string | null;
     /**
-     * Type of this creative. This is a required field. Applicable to all creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
+     * Type of this creative. This is a required field. Applicable to all creative types. *Note:* FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
      */
     type?: string | null;
     /**
@@ -1969,7 +1970,7 @@ export namespace dfareporting_v3_3 {
      */
     additionalSizes?: Schema$Size[];
     /**
-     * Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
+     * Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL .
      */
     alignment?: string | null;
     /**
@@ -2199,7 +2200,7 @@ export namespace dfareporting_v3_3 {
      */
     kind?: string | null;
     /**
-     * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.  Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
+     * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field. Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
      */
     warnedValidationRules?: string[] | null;
   }
@@ -2248,12 +2249,9 @@ export namespace dfareporting_v3_3 {
      * Dimension value for the ID of the creative. This is a read-only, auto-generated field.
      */
     creativeIdDimensionValue?: Schema$DimensionValue;
-    /**
-     * Date and time that the assigned creative should stop serving. Must be later than the start time.
-     */
     endTime?: string | null;
     /**
-     * Rich media exit overrides for this creative assignment. Applicable when the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND - RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT - RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING - RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
+     * Rich media exit overrides for this creative assignment. Applicable when the creative type is any of the following: - DISPLAY - RICH_MEDIA_INPAGE - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND - RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT - RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING - RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
      */
     richMediaExitOverrides?: Schema$RichMediaExitOverride[];
     /**
@@ -2264,9 +2262,6 @@ export namespace dfareporting_v3_3 {
      * Whether the creative to be assigned is SSL-compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
     sslCompliant?: boolean | null;
-    /**
-     * Date and time that the assigned creative should start serving.
-     */
     startTime?: string | null;
     /**
      * Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
@@ -2278,7 +2273,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$CreativeClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string | null;
     /**
@@ -2655,9 +2650,6 @@ export namespace dfareporting_v3_3 {
    * Represents a date range.
    */
   export interface Schema$DateRange {
-    /**
-     * The end date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
-     */
     endDate?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#dateRange.
@@ -2667,9 +2659,6 @@ export namespace dfareporting_v3_3 {
      * The date range relative to the date of when the report is run.
      */
     relativeDateRange?: string | null;
-    /**
-     * The start date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
-     */
     startDate?: string | null;
   }
   /**
@@ -2677,7 +2666,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$DayPartTargeting {
     /**
-     * Days of the week when the ad will serve.  Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
+     * Days of the week when the ad will serve. Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
      */
     daysOfWeek?: string[] | null;
     /**
@@ -2861,21 +2850,15 @@ export namespace dfareporting_v3_3 {
      * The name of the dimension for which values should be requested.
      */
     dimensionName?: string | null;
-    /**
-     * The end date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
-     */
     endDate?: string | null;
     /**
      * The list of filters by which to filter values. The filters are ANDed.
      */
     filters?: Schema$DimensionFilter[];
     /**
-     * The kind of request this is, in this case dfareporting#dimensionValueRequest.
+     * The kind of request this is, in this case dfareporting#dimensionValueRequest .
      */
     kind?: string | null;
-    /**
-     * The start date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
-     */
     startDate?: string | null;
   }
   /**
@@ -2895,11 +2878,11 @@ export namespace dfareporting_v3_3 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Tag types for regular placements.  Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
+     * Tag types for regular placements. Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
      */
     inpageTagFormats?: string[] | null;
     /**
-     * Tag types for interstitial placements.  Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
+     * Tag types for interstitial placements. Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
      */
     interstitialTagFormats?: string[] | null;
     /**
@@ -3061,7 +3044,7 @@ export namespace dfareporting_v3_3 {
      */
     siteFilterType?: string | null;
     /**
-     * Filter list of site IDs associated with this event tag. The siteFilterType determines whether this is a whitelist or blacklist filter.
+     * Filter list of site IDs associated with this event tag. The siteFilterType determines whether this is a allowlist or blocklist filter.
      */
     siteIds?: string[] | null;
     /**
@@ -3147,6 +3130,8 @@ export namespace dfareporting_v3_3 {
      * The timestamp in milliseconds since epoch when this file was last modified.
      */
     lastModifiedTime?: string | null;
+    mediaRequestInfo?: Schema$MediaRequestInfo;
+    mediaResponseInfo?: Schema$MediaResponseInfo;
     /**
      * The ID of the report this file was generated from.
      */
@@ -3185,17 +3170,11 @@ export namespace dfareporting_v3_3 {
    * Flight
    */
   export interface Schema$Flight {
-    /**
-     * Inventory item flight end date.
-     */
     endDate?: string | null;
     /**
      * Rate or cost of this flight.
      */
     rateOrCost?: string | null;
-    /**
-     * Inventory item flight start date.
-     */
     startDate?: string | null;
     /**
      * Units of this flight.
@@ -3345,7 +3324,7 @@ export namespace dfareporting_v3_3 {
      */
     tagFormat?: string | null;
     /**
-     * Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
+     * Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being a-z0-9[ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
      */
     tagString?: string | null;
     /**
@@ -3415,7 +3394,7 @@ export namespace dfareporting_v3_3 {
      */
     subaccountId?: string | null;
     /**
-     * Value of the type= parameter in the floodlight tag, which the ad servers use to identify the activity group that the activity belongs to. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activity groups of the same floodlight configuration. This field is read-only after insertion.
+     * Value of the type= parameter in the floodlight tag, which the ad servers use to identify the activity group that the activity belongs to. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being a-z0-9[ _ ]. This tag string must also be unique among activity groups of the same floodlight configuration. This field is read-only after insertion.
      */
     tagString?: string | null;
     /**
@@ -3929,6 +3908,72 @@ export namespace dfareporting_v3_3 {
     postImpressionActivitiesDuration?: number | null;
   }
   /**
+   * Extra information added to operations that support Scotty media requests.
+   */
+  export interface Schema$MediaRequestInfo {
+    /**
+     * The number of current bytes uploaded or downloaded.
+     */
+    currentBytes?: string | null;
+    /**
+     * Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
+     */
+    customData?: string | null;
+    /**
+     * Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary&#39;s mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.
+     */
+    diffObjectVersion?: string | null;
+    /**
+     * The type of notification received from Scotty.
+     */
+    notificationType?: string | null;
+    /**
+     * The Scotty request ID.
+     */
+    requestId?: string | null;
+    /**
+     * The total size of the file.
+     */
+    totalBytes?: string | null;
+    /**
+     * Whether the total bytes field contains an estimated data.
+     */
+    totalBytesIsEstimated?: boolean | null;
+  }
+  /**
+   * This message is for backends to pass their scotty media specific fields to ESF. Backend will include this in their response message to ESF. Example: ExportFile is an rpc defined for upload using scotty from ESF. rpc ExportFile(ExportFileRequest) returns (ExportFileResponse) Message ExportFileResponse will include apiserving.MediaResponseInfo to tell ESF about data like dynamic_dropzone it needs to pass to Scotty. message ExportFileResponse { optional gdata.Media blob = 1; optional apiserving.MediaResponseInfo media_response_info = 2 }
+   */
+  export interface Schema$MediaResponseInfo {
+    /**
+     * Data to copy from backend response to the next backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
+     */
+    customData?: string | null;
+    /**
+     * Specifies any transformation to be applied to data before persisting it or retrieving from storage. E.g., encryption options for blobstore2. This should be of the form uploader_service.DataStorageTransform.
+     */
+    dataStorageTransform?: string | null;
+    /**
+     * Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.
+     */
+    dynamicDropTarget?: string | null;
+    /**
+     * Specifies the Scotty dropzone to use for uploads.
+     */
+    dynamicDropzone?: string | null;
+    /**
+     * Request class to use for all Blobstore operations for this request.
+     */
+    requestClass?: string | null;
+    /**
+     * Specifies the TrafficClass that Scotty should use for any RPCs to fetch the response bytes. Will override the traffic class GTOS of the incoming http request. This is a temporary field to facilitate whitelisting and experimentation by the bigstore agent only. For instance, this does not apply to RTMP reads. WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.
+     */
+    trafficClassField?: string | null;
+    /**
+     * Tells Scotty to verify hashes on the agent&#39;s behalf by parsing out the X-Goog-Hash header.
+     */
+    verifyHashFromHeader?: boolean | null;
+  }
+  /**
    * Represents a metric.
    */
   export interface Schema$Metric {
@@ -4345,9 +4390,6 @@ export namespace dfareporting_v3_3 {
      * Information about the creation of this order document.
      */
     createdInfo?: Schema$LastModifiedInfo;
-    /**
-     * Effective date of this order document.
-     */
     effectiveDate?: string | null;
     /**
      * ID of this order document.
@@ -4361,9 +4403,6 @@ export namespace dfareporting_v3_3 {
      * List of email addresses that received the last sent document.
      */
     lastSentRecipients?: string[] | null;
-    /**
-     * Timestamp of the last email sent with this order document.
-     */
     lastSentTime?: string | null;
     /**
      * ID of the order from which this order document is created.
@@ -4614,7 +4653,7 @@ export namespace dfareporting_v3_3 {
      */
     videoSettings?: Schema$VideoSettings;
     /**
-     * VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
+     * VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement. *Note:* Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
     vpaidAdapterChoice?: string | null;
   }
@@ -4963,9 +5002,6 @@ export namespace dfareporting_v3_3 {
      * Cap cost type of this inventory item.
      */
     capCostType?: string | null;
-    /**
-     * End date of this inventory item.
-     */
     endDate?: string | null;
     /**
      * Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
@@ -4979,9 +5015,6 @@ export namespace dfareporting_v3_3 {
      * Pricing type of this inventory item.
      */
     pricingType?: string | null;
-    /**
-     * Start date of this inventory item.
-     */
     startDate?: string | null;
   }
   /**
@@ -4996,9 +5029,6 @@ export namespace dfareporting_v3_3 {
      * Whether cap costs are ignored by ad serving.
      */
     disregardOverdelivery?: boolean | null;
-    /**
-     * Placement end date. This date must be later than, or the same day as, the placement start date, but not later than the campaign end date. If, for example, you set 6/25/2015 as both the start and end dates, the effective placement date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This field is required on insertion.
-     */
     endDate?: string | null;
     /**
      * Whether this placement is flighted. If true, pricing periods will be computed automatically.
@@ -5016,22 +5046,13 @@ export namespace dfareporting_v3_3 {
      * Placement pricing type. This field is required on insertion.
      */
     pricingType?: string | null;
-    /**
-     * Placement start date. This date must be later than, or the same day as, the campaign start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This field is required on insertion.
-     */
     startDate?: string | null;
-    /**
-     * Testing start date of this placement. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
-     */
     testingStartDate?: string | null;
   }
   /**
    * Pricing Period
    */
   export interface Schema$PricingSchedulePricingPeriod {
-    /**
-     * Pricing period end date. This date must be later than, or the same day as, the pricing period start date, but not later than the placement end date. The period end date can be the same date as the period start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective pricing period date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error.
-     */
     endDate?: string | null;
     /**
      * Comments for this pricing period.
@@ -5041,9 +5062,6 @@ export namespace dfareporting_v3_3 {
      * Rate or cost of this pricing period in nanos (i.e., multipled by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
      */
     rateOrCostNanos?: string | null;
-    /**
-     * Pricing period start date. This date must be later than, or the same day as, the placement start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
-     */
     startDate?: string | null;
     /**
      * Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
@@ -5082,9 +5100,6 @@ export namespace dfareporting_v3_3 {
      * Name of the project client.
      */
     clientName?: string | null;
-    /**
-     * End date of the project.
-     */
     endDate?: string | null;
     /**
      * ID of this project. This is a read-only, auto-generated field.
@@ -5106,9 +5121,6 @@ export namespace dfareporting_v3_3 {
      * Overview of this project.
      */
     overview?: string | null;
-    /**
-     * Start date of the project.
-     */
     startDate?: string | null;
     /**
      * Subaccount ID of this project.
@@ -5548,7 +5560,7 @@ export namespace dfareporting_v3_3 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;  - &quot;16&quot; for &quot;America/Asuncion&quot;  - &quot;17&quot; for &quot;America/Chicago&quot;  - &quot;18&quot; for &quot;America/Denver&quot;  - &quot;19&quot; for &quot;America/St_Johns&quot;  - &quot;20&quot; for &quot;Asia/Dhaka&quot;  - &quot;21&quot; for &quot;Asia/Jakarta&quot;  - &quot;22&quot; for &quot;Asia/Kabul&quot;  - &quot;23&quot; for &quot;Asia/Karachi&quot;  - &quot;24&quot; for &quot;Asia/Calcutta&quot;  - &quot;25&quot; for &quot;Asia/Pyongyang&quot;  - &quot;26&quot; for &quot;Asia/Rangoon&quot;  - &quot;27&quot; for &quot;Atlantic/Cape_Verde&quot;  - &quot;28&quot; for &quot;Atlantic/South_Georgia&quot;  - &quot;29&quot; for &quot;Australia/Adelaide&quot;  - &quot;30&quot; for &quot;Australia/Lord_Howe&quot;  - &quot;31&quot; for &quot;Europe/Moscow&quot;  - &quot;32&quot; for &quot;Pacific/Kiritimati&quot;  - &quot;35&quot; for &quot;Pacific/Norfolk&quot;  - &quot;36&quot; for &quot;Pacific/Tongatapu&quot;
+     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are: - &quot;1&quot; for &quot;America/New_York&quot; - &quot;2&quot; for &quot;Europe/London&quot; - &quot;3&quot; for &quot;Europe/Paris&quot; - &quot;4&quot; for &quot;Africa/Johannesburg&quot; - &quot;5&quot; for &quot;Asia/Jerusalem&quot; - &quot;6&quot; for &quot;Asia/Shanghai&quot; - &quot;7&quot; for &quot;Asia/Hong_Kong&quot; - &quot;8&quot; for &quot;Asia/Tokyo&quot; - &quot;9&quot; for &quot;Australia/Sydney&quot; - &quot;10&quot; for &quot;Asia/Dubai&quot; - &quot;11&quot; for &quot;America/Los_Angeles&quot; - &quot;12&quot; for &quot;Pacific/Auckland&quot; - &quot;13&quot; for &quot;America/Sao_Paulo&quot; - &quot;16&quot; for &quot;America/Asuncion&quot; - &quot;17&quot; for &quot;America/Chicago&quot; - &quot;18&quot; for &quot;America/Denver&quot; - &quot;19&quot; for &quot;America/St_Johns&quot; - &quot;20&quot; for &quot;Asia/Dhaka&quot; - &quot;21&quot; for &quot;Asia/Jakarta&quot; - &quot;22&quot; for &quot;Asia/Kabul&quot; - &quot;23&quot; for &quot;Asia/Karachi&quot; - &quot;24&quot; for &quot;Asia/Calcutta&quot; - &quot;25&quot; for &quot;Asia/Pyongyang&quot; - &quot;26&quot; for &quot;Asia/Rangoon&quot; - &quot;27&quot; for &quot;Atlantic/Cape_Verde&quot; - &quot;28&quot; for &quot;Atlantic/South_Georgia&quot; - &quot;29&quot; for &quot;Australia/Adelaide&quot; - &quot;30&quot; for &quot;Australia/Lord_Howe&quot; - &quot;31&quot; for &quot;Europe/Moscow&quot; - &quot;32&quot; for &quot;Pacific/Kiritimati&quot; - &quot;35&quot; for &quot;Pacific/Norfolk&quot; - &quot;36&quot; for &quot;Pacific/Tongatapu&quot;
      */
     reportGenerationTimeZoneId?: string | null;
   }
@@ -5726,7 +5738,7 @@ export namespace dfareporting_v3_3 {
      */
     videoActiveViewOptOutTemplate?: boolean | null;
     /**
-     * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
+     * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter). *Note:* Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
     vpaidAdapterChoiceTemplate?: string | null;
   }
@@ -6613,7 +6625,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6773,7 +6785,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6912,7 +6924,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7082,7 +7094,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7221,7 +7233,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7400,7 +7412,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7558,7 +7570,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7677,7 +7689,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Account ID.
+     * @param {string=} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7735,7 +7747,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7747,7 +7759,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -7909,7 +7921,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8138,7 +8150,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8311,7 +8323,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8478,7 +8490,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8534,7 +8546,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.patch({
-     *     // User profile ID.
+     *     // AccountUserProfile ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -8594,7 +8606,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id User profile ID.
+     * @param {string=} params.id AccountUserProfile ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AccountUserProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8656,7 +8668,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8669,7 +8681,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -8829,7 +8841,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8926,7 +8938,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Accountuserprofiles$Patch
     extends StandardParameters {
     /**
-     * User profile ID.
+     * AccountUserProfile ID.
      */
     id?: string;
     /**
@@ -9102,7 +9114,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9316,7 +9328,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9516,7 +9528,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9675,7 +9687,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Ad ID.
+     * @param {string=} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Ad} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9733,7 +9745,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9745,7 +9757,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -9947,7 +9959,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10226,7 +10238,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10363,7 +10375,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10509,7 +10521,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10667,7 +10679,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10723,7 +10735,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.patch({
-     *     // Advertiser group ID.
+     *     // AdvertiserGroup ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -10759,7 +10771,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser group ID.
+     * @param {string=} params.id AdvertiserGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().AdvertiserGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10818,7 +10830,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10831,7 +10843,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -10964,7 +10976,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11060,7 +11072,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Advertisergroups$Patch
     extends StandardParameters {
     /**
-     * Advertiser group ID.
+     * AdvertiserGroup ID.
      */
     id?: string;
     /**
@@ -11205,7 +11217,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11357,7 +11369,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11527,7 +11539,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11558,7 +11570,7 @@ export namespace dfareporting_v3_3 {
 
     /**
      * dfareporting.advertiserLandingPages.patch
-     * @desc Updates an existing landing page. This method supports patch semantics.
+     * @desc Updates an existing advertiser landing page. This method supports patch semantics.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -11583,7 +11595,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.patch({
-     *     // Landing page ID.
+     *     // LandingPage ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -11625,7 +11637,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Landing page ID.
+     * @param {string=} params.id LandingPage ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().LandingPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11684,7 +11696,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11697,7 +11709,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -11836,7 +11848,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11937,7 +11949,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Advertiserlandingpages$Patch
     extends StandardParameters {
     /**
-     * Landing page ID.
+     * LandingPage ID.
      */
     id?: string;
     /**
@@ -12089,7 +12101,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12257,7 +12269,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12327,7 +12339,7 @@ export namespace dfareporting_v3_3 {
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
      *     sortField: 'placeholder-value',
@@ -12365,7 +12377,7 @@ export namespace dfareporting_v3_3 {
      * @param {boolean=} params.onlyParent Select only advertisers which use another advertiser's floodlight configuration.
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.status Select only advertisers with the specified status.
@@ -12430,7 +12442,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12542,7 +12554,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser ID.
+     * @param {string=} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Advertiser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12601,7 +12613,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12614,7 +12626,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -12769,7 +12781,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12853,7 +12865,7 @@ export namespace dfareporting_v3_3 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
      */
     searchString?: string;
     /**
@@ -13017,7 +13029,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13182,7 +13194,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13340,7 +13352,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13549,7 +13561,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13742,7 +13754,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13917,7 +13929,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14054,7 +14066,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Campaign ID.
+     * @param {string=} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Campaign} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14112,7 +14124,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14124,7 +14136,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -14304,7 +14316,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14562,7 +14574,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14729,7 +14741,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14938,7 +14950,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15103,7 +15115,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15242,7 +15254,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15395,7 +15407,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15532,7 +15544,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15678,7 +15690,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15836,7 +15848,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15892,7 +15904,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.patch({
-     *     // Content category ID.
+     *     // ContentCategory ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -15928,7 +15940,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Content category ID.
+     * @param {string=} params.id ContentCategory ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().ContentCategory} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15987,7 +15999,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16000,7 +16012,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -16133,7 +16145,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16229,7 +16241,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Contentcategories$Patch
     extends StandardParameters {
     /**
-     * Content category ID.
+     * ContentCategory ID.
      */
     id?: string;
     /**
@@ -16385,7 +16397,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16538,7 +16550,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16709,7 +16721,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16845,7 +16857,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17035,7 +17047,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17205,7 +17217,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17345,7 +17357,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17497,7 +17509,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17658,7 +17670,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17712,7 +17724,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.patch({
-     *     // Creative Field ID
+     *     // CreativeField ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -17754,7 +17766,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Creative Field ID
+     * @param {string=} params.id CreativeField ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17813,7 +17825,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17826,7 +17838,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -17965,7 +17977,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18065,7 +18077,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Creativefields$Patch
     extends StandardParameters {
     /**
-     * Creative Field ID
+     * CreativeField ID.
      */
     id?: string;
     /**
@@ -18200,7 +18212,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18342,7 +18354,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18492,7 +18504,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18653,7 +18665,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18709,9 +18721,9 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.patch({
-     *     // Creative field ID for this creative field value.
+     *     // CreativeField ID.
      *     creativeFieldId: 'placeholder-value',
-     *     // Creative Field Value ID
+     *     // CreativeFieldValue ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -18745,8 +18757,8 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string} params.id Creative Field Value ID
+     * @param {string} params.creativeFieldId CreativeField ID.
+     * @param {string=} params.id CreativeFieldValue ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeFieldValue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18808,7 +18820,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18821,7 +18833,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'creativeFieldId', 'id'],
+        requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: this.context,
       };
@@ -18958,7 +18970,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19070,11 +19082,11 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Creativefieldvalues$Patch
     extends StandardParameters {
     /**
-     * Creative field ID for this creative field value.
+     * CreativeField ID.
      */
     creativeFieldId?: string;
     /**
-     * Creative Field Value ID
+     * CreativeFieldValue ID.
      */
     id?: string;
     /**
@@ -19224,7 +19236,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19378,7 +19390,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19542,7 +19554,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19596,7 +19608,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.patch({
-     *     // Creative group ID.
+     *     // CreativeGroup ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -19640,7 +19652,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Creative group ID.
+     * @param {string=} params.id CreativeGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().CreativeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19699,7 +19711,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19712,7 +19724,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -19853,7 +19865,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19946,7 +19958,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Creativegroups$Patch
     extends StandardParameters {
     /**
-     * Creative group ID.
+     * CreativeGroup ID.
      */
     id?: string;
     /**
@@ -20147,7 +20159,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20412,7 +20424,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20596,7 +20608,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20805,7 +20817,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Creative ID.
+     * @param {string=} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20863,7 +20875,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -20875,7 +20887,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -21127,7 +21139,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21407,7 +21419,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21577,7 +21589,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21733,7 +21745,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -21906,7 +21918,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22121,7 +22133,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22270,7 +22282,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22421,7 +22433,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22611,7 +22623,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22761,7 +22773,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -22934,7 +22946,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23099,7 +23111,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23152,7 +23164,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.patch({
-     *     // Event tag ID.
+     *     // EventTag ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -23216,7 +23228,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Event tag ID.
+     * @param {string=} params.id EventTag ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().EventTag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23274,7 +23286,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23286,7 +23298,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -23446,7 +23458,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23552,7 +23564,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Eventtags$Patch extends StandardParameters {
     /**
-     * Event tag ID.
+     * EventTag ID.
      */
     id?: string;
     /**
@@ -23626,6 +23638,8 @@ export namespace dfareporting_v3_3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "mediaRequestInfo": {},
+     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -23698,7 +23712,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -23845,7 +23859,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24015,7 +24029,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24164,7 +24178,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24330,7 +24344,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24527,7 +24541,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24706,7 +24720,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24762,7 +24776,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.patch({
-     *     // Floodlight activity ID.
+     *     // FloodlightActivity ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -24846,7 +24860,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight activity ID.
+     * @param {string=} params.id FloodlightActivity ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24908,7 +24922,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -24921,7 +24935,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -25105,7 +25119,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25240,7 +25254,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Floodlightactivities$Patch
     extends StandardParameters {
     /**
-     * Floodlight activity ID.
+     * FloodlightActivity ID.
      */
     id?: string;
     /**
@@ -25395,7 +25409,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25564,7 +25578,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25737,7 +25751,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25793,7 +25807,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.patch({
-     *     // Floodlight activity Group ID.
+     *     // FloodlightActivityGroup ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -25845,7 +25859,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight activity Group ID.
+     * @param {string=} params.id FloodlightActivityGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightActivityGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25909,7 +25923,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -25922,7 +25936,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -26078,7 +26092,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26175,7 +26189,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Floodlightactivitygroups$Patch
     extends StandardParameters {
     /**
-     * Floodlight activity Group ID.
+     * FloodlightActivityGroup ID.
      */
     id?: string;
     /**
@@ -26336,7 +26350,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26484,7 +26498,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26540,7 +26554,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.patch({
-     *     // Floodlight configuration ID.
+     *     // FloodlightConfiguration ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -26604,7 +26618,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight configuration ID.
+     * @param {string=} params.id FloodlightConfiguration ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().FloodlightConfiguration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26668,7 +26682,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26681,7 +26695,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -26849,7 +26863,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -26902,7 +26916,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Floodlightconfigurations$Patch
     extends StandardParameters {
     /**
-     * Floodlight configuration ID.
+     * FloodlightConfiguration ID.
      */
     id?: string;
     /**
@@ -27063,7 +27077,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27233,7 +27247,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27439,7 +27453,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27586,7 +27600,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27736,7 +27750,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -27888,7 +27902,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28069,7 +28083,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28208,7 +28222,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28372,7 +28386,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28511,7 +28525,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28683,7 +28697,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -28822,7 +28836,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29003,7 +29017,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29173,7 +29187,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29398,7 +29412,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29557,7 +29571,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29776,7 +29790,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -29966,7 +29980,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30163,7 +30177,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30217,7 +30231,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.patch({
-     *     // Placement group ID.
+     *     // PlacementGroup ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -30297,7 +30311,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Placement group ID.
+     * @param {string=} params.id PlacementGroup ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30356,7 +30370,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30369,7 +30383,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -30546,7 +30560,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -30683,7 +30697,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Placementgroups$Patch
     extends StandardParameters {
     /**
-     * Placement group ID.
+     * PlacementGroup ID.
      */
     id?: string;
     /**
@@ -30748,9 +30762,7 @@ export namespace dfareporting_v3_3 {
      *     placementIds: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // Tag formats to generate for these placements.
-     *     //
-     *     // Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     *     // Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      *     tagFormats: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -30774,7 +30786,7 @@ export namespace dfareporting_v3_3 {
      * @param {string=} params.campaignId Generate placements belonging to this campaign. This is a required field.
      * @param {string=} params.placementIds Generate tags for these placements.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.tagFormats Tag formats to generate for these placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     * @param {string=} params.tagFormats Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30838,7 +30850,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31013,7 +31025,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31233,7 +31245,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31322,7 +31334,7 @@ export namespace dfareporting_v3_3 {
      *     pricingTypes: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+     *     // Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
      *     searchString: 'placeholder-value',
      *     // Select only placements that are associated with these sites.
      *     siteIds: 'placeholder-value',
@@ -31370,7 +31382,7 @@ export namespace dfareporting_v3_3 {
      * @param {string=} params.placementStrategyIds Select only placements that are associated with these placement strategies.
      * @param {string=} params.pricingTypes Select only placements with these pricing types.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+     * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
      * @param {string=} params.siteIds Select only placements that are associated with these sites.
      * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
      * @param {string=} params.sortField Field by which to sort the list.
@@ -31435,7 +31447,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31598,7 +31610,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Placement ID.
+     * @param {string=} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Placement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31656,7 +31668,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31668,7 +31680,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -31875,7 +31887,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -31917,7 +31929,7 @@ export namespace dfareporting_v3_3 {
      */
     profileId?: string;
     /**
-     * Tag formats to generate for these placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
+     * Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      */
     tagFormats?: string[];
   }
@@ -32017,7 +32029,7 @@ export namespace dfareporting_v3_3 {
      */
     profileId?: string;
     /**
-     * Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+     * Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
      */
     searchString?: string;
     /**
@@ -32171,7 +32183,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32311,7 +32323,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32460,7 +32472,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32618,7 +32630,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32674,7 +32686,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.patch({
-     *     // Placement strategy ID.
+     *     // PlacementStrategy ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -32710,7 +32722,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Placement strategy ID.
+     * @param {string=} params.id PlacementStrategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().PlacementStrategy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32772,7 +32784,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -32785,7 +32797,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -32921,7 +32933,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33017,7 +33029,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Placementstrategies$Patch
     extends StandardParameters {
     /**
-     * Placement strategy ID.
+     * PlacementStrategy ID.
      */
     id?: string;
     /**
@@ -33158,7 +33170,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33297,7 +33309,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33460,7 +33472,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33596,7 +33608,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33774,7 +33786,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -33803,7 +33815,7 @@ export namespace dfareporting_v3_3 {
 
     /**
      * dfareporting.projects.list
-     * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
+     * @desc Retrieves a list of projects, possibly filtered. This method supports paging .
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -33932,7 +33944,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34117,7 +34129,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34276,7 +34288,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34440,7 +34452,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34604,7 +34616,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34660,7 +34672,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.patch({
-     *     // Remarketing list ID.
+     *     // RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -34714,7 +34726,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Remarketing list ID.
+     * @param {string=} params.id RemarketingList ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().RemarketingList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34773,7 +34785,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -34786,7 +34798,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -34937,7 +34949,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35030,7 +35042,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Remarketinglists$Patch
     extends StandardParameters {
     /**
-     * Remarketing list ID.
+     * RemarketingList ID.
      */
     id?: string;
     /**
@@ -35177,7 +35189,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35231,9 +35243,11 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.patch({
+     *     // RemarketingListShare ID.
+     *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // Remarketing list ID.
+     *     // RemarketingList ID.
      *     remarketingListId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -35267,8 +35281,9 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.id RemarketingListShare ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.remarketingListId Remarketing list ID.
+     * @param {string} params.remarketingListId RemarketingList ID.
      * @param {().RemarketingListShare} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -35331,13 +35346,13 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists/{remarketingListId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -35345,7 +35360,7 @@ export namespace dfareporting_v3_3 {
         ),
         params,
         requiredParams: ['profileId', 'remarketingListId'],
-        pathParams: ['profileId'],
+        pathParams: ['profileId', 'remarketingListId'],
         context: this.context,
       };
       if (callback) {
@@ -35482,7 +35497,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35524,11 +35539,15 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Remarketinglistshares$Patch
     extends StandardParameters {
     /**
+     * RemarketingListShare ID.
+     */
+    id?: string;
+    /**
      * User profile ID associated with this request.
      */
     profileId?: string;
     /**
-     * Remarketing list ID.
+     * RemarketingList ID.
      */
     remarketingListId?: string;
 
@@ -35661,7 +35680,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35811,7 +35830,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -35984,7 +36003,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36131,7 +36150,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36159,7 +36178,7 @@ export namespace dfareporting_v3_3 {
 
     /**
      * dfareporting.reports.patch
-     * @desc Updates a report. This method supports patch semantics.
+     * @desc Updates an existing report. This method supports patch semantics.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -36306,7 +36325,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36378,6 +36397,8 @@ export namespace dfareporting_v3_3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "mediaRequestInfo": {},
+     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -36451,7 +36472,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36627,7 +36648,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36898,7 +36919,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -36990,6 +37011,8 @@ export namespace dfareporting_v3_3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "mediaRequestInfo": {},
+     *   //   "mediaResponseInfo": {},
      *   //   "reportId": "my_reportId",
      *   //   "status": "my_status",
      *   //   "urls": {}
@@ -37064,7 +37087,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37213,7 +37236,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37408,7 +37431,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37570,7 +37593,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37749,7 +37772,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37856,7 +37879,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Site ID.
+     * @param {string=} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Site} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37914,7 +37937,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -37926,7 +37949,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -38076,7 +38099,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38333,7 +38356,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38479,7 +38502,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38624,7 +38647,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38811,7 +38834,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -38959,7 +38982,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39021,7 +39044,7 @@ export namespace dfareporting_v3_3 {
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
-     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
+     *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
      *     sortField: 'placeholder-value',
@@ -39051,7 +39074,7 @@ export namespace dfareporting_v3_3 {
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39114,7 +39137,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39206,7 +39229,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Subaccount ID.
+     * @param {string=} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().Subaccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39265,7 +39288,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39278,7 +39301,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -39413,7 +39436,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39481,7 +39504,7 @@ export namespace dfareporting_v3_3 {
      */
     profileId?: string;
     /**
-     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
+     * Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
      */
     searchString?: string;
     /**
@@ -39651,7 +39674,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -39818,7 +39841,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40023,7 +40046,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40190,7 +40213,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40351,7 +40374,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40407,7 +40430,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.patch({
-     *     // Targeting template ID.
+     *     // TargetingTemplate ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -40461,7 +40484,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Targeting template ID.
+     * @param {string=} params.id TargetingTemplate ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().TargetingTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40523,7 +40546,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40536,7 +40559,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -40690,7 +40713,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40779,7 +40802,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Targetingtemplates$Patch
     extends StandardParameters {
     /**
-     * Targeting template ID.
+     * TargetingTemplate ID.
      */
     id?: string;
     /**
@@ -40830,6 +40853,7 @@ export namespace dfareporting_v3_3 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/ddmconversions',
      *       'https://www.googleapis.com/auth/dfareporting',
      *       'https://www.googleapis.com/auth/dfatrafficking',
      *     ],
@@ -40924,7 +40948,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -40969,6 +40993,7 @@ export namespace dfareporting_v3_3 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/ddmconversions',
      *       'https://www.googleapis.com/auth/dfareporting',
      *       'https://www.googleapis.com/auth/dfatrafficking',
      *     ],
@@ -40998,7 +41023,7 @@ export namespace dfareporting_v3_3 {
      * @alias dfareporting.userProfiles.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -41055,7 +41080,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41212,7 +41237,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41357,7 +41382,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41526,7 +41551,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41668,7 +41693,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41826,7 +41851,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -41966,7 +41991,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42119,7 +42144,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42279,7 +42304,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42332,7 +42357,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.patch({
-     *     // User role ID.
+     *     // UserRole ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
@@ -42376,7 +42401,7 @@ export namespace dfareporting_v3_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id User role ID.
+     * @param {string=} params.id UserRole ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {().UserRole} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42434,7 +42459,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42446,7 +42471,7 @@ export namespace dfareporting_v3_3 {
           options
         ),
         params,
-        requiredParams: ['profileId', 'id'],
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: this.context,
       };
@@ -42586,7 +42611,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42684,7 +42709,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Userroles$Patch extends StandardParameters {
     /**
-     * User role ID.
+     * UserRole ID.
      */
     id?: string;
     /**
@@ -42825,7 +42850,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -42962,7 +42987,7 @@ export namespace dfareporting_v3_3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
