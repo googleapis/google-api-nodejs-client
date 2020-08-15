@@ -143,7 +143,7 @@ export namespace clouddebugger_v2 {
     name?: string | null;
   }
   /**
-   * ------------------------------------------------------------------------------ ## Breakpoint (the resource)  Represents the breakpoint specification, status and results.
+   * ------------------------------------------------------------------------------ ## Breakpoint (the resource) Represents the breakpoint specification, status and results.
    */
   export interface Schema$Breakpoint {
     /**
@@ -195,7 +195,7 @@ export namespace clouddebugger_v2 {
      */
     logLevel?: string | null;
     /**
-     * Only relevant when action is `LOG`. Defines the message to log when the breakpoint hits. The message may include parameter placeholders `$0`, `$1`, etc. These placeholders are replaced with the evaluated value of the appropriate expression. Expressions not referenced in `log_message_format` are not logged.  Example: `Message received, id = $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
+     * Only relevant when action is `LOG`. Defines the message to log when the breakpoint hits. The message may include parameter placeholders `$0`, `$1`, etc. These placeholders are replaced with the evaluated value of the appropriate expression. Expressions not referenced in `log_message_format` are not logged. Example: `Message received, id = $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
      */
     logMessageFormat?: string | null;
     /**
@@ -207,7 +207,7 @@ export namespace clouddebugger_v2 {
      */
     state?: string | null;
     /**
-     * Breakpoint status.  The status includes an error flag and a human readable message. This field is usually unset. The message can be either informational or an error message. Regardless, clients should always display the text message back to the user.  Error status indicates complete failure of the breakpoint.  Example (non-final state): `Still loading symbols...`  Examples (final state):  *   `Invalid line number` referring to location *   `Field f not found in class C` referring to condition
+     * Breakpoint status. The status includes an error flag and a human readable message. This field is usually unset. The message can be either informational or an error message. Regardless, clients should always display the text message back to the user. Error status indicates complete failure of the breakpoint. Example (non-final state): `Still loading symbols...` Examples (final state): * `Invalid line number` referring to location * `Field f not found in class C` referring to condition
      */
     status?: Schema$StatusMessage;
     /**
@@ -215,7 +215,7 @@ export namespace clouddebugger_v2 {
      */
     userEmail?: string | null;
     /**
-     * The `variable_table` exists to aid with computation, memory and network traffic optimization.  It enables storing a variable once and reference it from multiple variables, including variables stored in the `variable_table` itself. For example, the same `this` object, which may appear at many levels of the stack, can have all of its data stored once in this table.  The stack frame variables then would hold only a reference to it.  The variable `var_table_index` field is an index into this repeated field. The stored objects are nameless and get their name from the referencing variable. The effective variable is a merge of the referencing variable and the referenced variable.
+     * The `variable_table` exists to aid with computation, memory and network traffic optimization. It enables storing a variable once and reference it from multiple variables, including variables stored in the `variable_table` itself. For example, the same `this` object, which may appear at many levels of the stack, can have all of its data stored once in this table. The stack frame variables then would hold only a reference to it. The variable `var_table_index` field is an index into this repeated field. The stored objects are nameless and get their name from the referencing variable. The effective variable is a merge of the referencing variable and the referenced variable.
      */
     variableTable?: Schema$Variable[];
   }
@@ -245,7 +245,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$CloudWorkspaceId {
     /**
-     * The unique name of the workspace within the repo.  This is the name chosen by the client in the Source API&#39;s CreateWorkspace method.
+     * The unique name of the workspace within the repo. This is the name chosen by the client in the Source API&#39;s CreateWorkspace method.
      */
     name?: string | null;
     /**
@@ -320,7 +320,7 @@ export namespace clouddebugger_v2 {
     uniquifier?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -341,7 +341,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$FormatMessage {
     /**
-     * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character.  Examples:  *   `Failed to load &#39;$0&#39; which helps debug $1 the first time it     is loaded.  Again, $0 is very important.` *   `Please pay $$10 to use $0 instead of $1.`
+     * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character. Examples: * `Failed to load &#39;$0&#39; which helps debug $1 the first time it is loaded. Again, $0 is very important.` * `Please pay $$10 to use $0 instead of $1.`
      */
     format?: string | null;
     /**
@@ -582,7 +582,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$UpdateActiveBreakpointResponse {}
   /**
-   * Represents a variable or an argument possibly of a compound object type. Note how the following variables are represented:  1) A simple variable:      int x = 5      { name: &quot;x&quot;, value: &quot;5&quot;, type: &quot;int&quot; }  // Captured variable  2) A compound object:      struct T {         int m1;         int m2;     };     T x = { 3, 7 };      {  // Captured variable         name: &quot;x&quot;,         type: &quot;T&quot;,         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  3) A pointer where the pointee was captured:      T x = { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name: &quot;p&quot;,         type: &quot;T*&quot;,         value: &quot;0x00500500&quot;,         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  4) A pointer where the pointee was not captured:      T* p = new T;      {   // Captured variable         name: &quot;p&quot;,         type: &quot;T*&quot;,         value: &quot;0x00400400&quot;         status { is_error: true, description { format: &quot;unavailable&quot; } }     }  The status should describe the reason for the missing value, such as `&lt;optimized out&gt;`, `&lt;inaccessible&gt;`, `&lt;pointers limit reached&gt;`.  Note that a null pointer should not have members.  5) An unnamed value:      int* p = new int(7);      {   // Captured variable         name: &quot;p&quot;,         value: &quot;0x00500500&quot;,         type: &quot;int*&quot;,         members { value: &quot;7&quot;, type: &quot;int&quot; } }  6) An unnamed pointer where the pointee was not captured:      int* p = new int(7);     int** pp = &amp;p;      {  // Captured variable         name: &quot;pp&quot;,         value: &quot;0x00500500&quot;,         type: &quot;int**&quot;,         members {             value: &quot;0x00400400&quot;,             type: &quot;int*&quot;             status {                 is_error: true,                 description: { format: &quot;unavailable&quot; } }             }         }     }  To optimize computation, memory and network traffic, variables that repeat in the output multiple times can be stored once in a shared variable table and be referenced using the `var_table_index` field.  The variables stored in the shared table are nameless and are essentially a partition of the complete variable. To reconstruct the complete variable, merge the referencing variable with the referenced variable.  When using the shared variable table, the following variables:      T x = { 3, 7 };     T* p = &amp;x;     T&amp; r = x;      { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; }  // Captured variables     { name: &quot;p&quot;, value &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 }     { name: &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 }      {  // Shared variable table entry #3:         members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  Note that the pointer address is stored with the referencing variable and not with the referenced variable. This allows the referenced variable to be shared between pointers and references.  The type field is optional. The debugger agent may or may not support it.
+   * Represents a variable or an argument possibly of a compound object type. Note how the following variables are represented: 1) A simple variable: int x = 5 { name: &quot;x&quot;, value: &quot;5&quot;, type: &quot;int&quot; } // Captured variable 2) A compound object: struct T { int m1; int m2; }; T x = { 3, 7 }; { // Captured variable name: &quot;x&quot;, type: &quot;T&quot;, members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } 3) A pointer where the pointee was captured: T x = { 3, 7 }; T* p = &amp;x; { // Captured variable name: &quot;p&quot;, type: &quot;T*&quot;, value: &quot;0x00500500&quot;, members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } 4) A pointer where the pointee was not captured: T* p = new T; { // Captured variable name: &quot;p&quot;, type: &quot;T*&quot;, value: &quot;0x00400400&quot; status { is_error: true, description { format: &quot;unavailable&quot; } } } The status should describe the reason for the missing value, such as ``, ``, ``. Note that a null pointer should not have members. 5) An unnamed value: int* p = new int(7); { // Captured variable name: &quot;p&quot;, value: &quot;0x00500500&quot;, type: &quot;int*&quot;, members { value: &quot;7&quot;, type: &quot;int&quot; } } 6) An unnamed pointer where the pointee was not captured: int* p = new int(7); int** pp = &amp;p; { // Captured variable name: &quot;pp&quot;, value: &quot;0x00500500&quot;, type: &quot;int**&quot;, members { value: &quot;0x00400400&quot;, type: &quot;int*&quot; status { is_error: true, description: { format: &quot;unavailable&quot; } } } } } To optimize computation, memory and network traffic, variables that repeat in the output multiple times can be stored once in a shared variable table and be referenced using the `var_table_index` field. The variables stored in the shared table are nameless and are essentially a partition of the complete variable. To reconstruct the complete variable, merge the referencing variable with the referenced variable. When using the shared variable table, the following variables: T x = { 3, 7 }; T* p = &amp;x; T&amp; r = x; { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; } // Captured variables { name: &quot;p&quot;, value &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 } { name: &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 } { // Shared variable table entry #3: members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; } } Note that the pointer address is stored with the referencing variable and not with the referenced variable. This allows the referenced variable to be shared between pointers and references. The type field is optional. The debugger agent may or may not support it.
    */
   export interface Schema$Variable {
     /**
@@ -594,7 +594,7 @@ export namespace clouddebugger_v2 {
      */
     name?: string | null;
     /**
-     * Status associated with the variable. This field will usually stay unset. A status of a single variable only applies to that variable or expression. The rest of breakpoint data still remains valid. Variables might be reported in error state even when breakpoint is not in final state.  The message may refer to variable name with `refers_to` set to `VARIABLE_NAME`. Alternatively `refers_to` will be set to `VARIABLE_VALUE`. In either case variable value and members will be unset.  Example of error message applied to name: `Invalid expression syntax`.  Example of information message applied to value: `Not captured`.  Examples of error message applied to value:  *   `Malformed string`, *   `Field f not found in class C` *   `Null pointer dereference`
+     * Status associated with the variable. This field will usually stay unset. A status of a single variable only applies to that variable or expression. The rest of breakpoint data still remains valid. Variables might be reported in error state even when breakpoint is not in final state. The message may refer to variable name with `refers_to` set to `VARIABLE_NAME`. Alternatively `refers_to` will be set to `VARIABLE_VALUE`. In either case variable value and members will be unset. Example of error message applied to name: `Invalid expression syntax`. Example of information message applied to value: `Not captured`. Examples of error message applied to value: * `Malformed string`, * `Field f not found in class C` * `Null pointer dereference`
      */
     status?: Schema$StatusMessage;
     /**
@@ -632,7 +632,7 @@ export namespace clouddebugger_v2 {
 
     /**
      * clouddebugger.controller.debuggees.register
-     * @desc Registers the debuggee with the controller service.  All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method.  This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
+     * @desc Registers the debuggee with the controller service. All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method. This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -795,7 +795,7 @@ export namespace clouddebugger_v2 {
 
     /**
      * clouddebugger.controller.debuggees.breakpoints.list
-     * @desc Returns the list of all active breakpoints for the debuggee.  The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics.  This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
+     * @desc Returns the list of all active breakpoints for the debuggee. The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics. This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -823,22 +823,13 @@ export namespace clouddebugger_v2 {
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.breakpoints.list({
-     *     // Identifies the agent.
-     *     // This is the ID returned in the RegisterDebuggee response.
+     *     // Identifies the agent. This is the ID returned in the RegisterDebuggee response.
      *     agentId: 'placeholder-value',
      *     // Required. Identifies the debuggee.
      *     debuggeeId: 'placeholder-value',
-     *     // If set to `true` (recommended), returns `google.rpc.Code.OK` status and
-     *     // sets the `wait_expired` response field to `true` when the server-selected
-     *     // timeout has expired.
-     *     //
-     *     // If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status
-     *     // when the server-selected timeout has expired.
+     *     // If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired. If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      *     successOnTimeout: 'placeholder-value',
-     *     // A token that, if specified, blocks the method call until the list
-     *     // of active breakpoints has changed, or a server-selected timeout has
-     *     // expired. The value should be set from the `next_wait_token` field in
-     *     // the last response. The initial value should be set to `"init"`.
+     *     // A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
      *     waitToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -862,7 +853,7 @@ export namespace clouddebugger_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.agentId Identifies the agent. This is the ID returned in the RegisterDebuggee response.
      * @param {string} params.debuggeeId Required. Identifies the debuggee.
-     * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
+     * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired. If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -958,7 +949,7 @@ export namespace clouddebugger_v2 {
 
     /**
      * clouddebugger.controller.debuggees.breakpoints.update
-     * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service.  Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
+     * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service. Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1121,7 +1112,7 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
     /**
-     * If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
+     * If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired. If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      */
     successOnTimeout?: boolean;
     /**
@@ -1195,11 +1186,9 @@ export namespace clouddebugger_v2 {
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.list({
-     *     // Required. The client version making the call.
-     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     // Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     clientVersion: 'placeholder-value',
-     *     // When set to `true`, the result includes all debuggees. Otherwise, the
-     *     // result includes only debuggees that are active.
+     *     // When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
      *     includeInactive: 'placeholder-value',
      *     // Required. Project number of a Google Cloud project whose debuggees to list.
      *     project: 'placeholder-value',
@@ -1368,8 +1357,7 @@ export namespace clouddebugger_v2 {
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.delete({
      *     // Required. ID of the breakpoint to delete.
      *     breakpointId: 'placeholder-value',
-     *     // Required. The client version making the call.
-     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     // Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     clientVersion: 'placeholder-value',
      *     // Required. ID of the debuggee whose breakpoint to delete.
      *     debuggeeId: 'placeholder-value',
@@ -1508,8 +1496,7 @@ export namespace clouddebugger_v2 {
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.get({
      *     // Required. ID of the breakpoint to get.
      *     breakpointId: 'placeholder-value',
-     *     // Required. The client version making the call.
-     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     // Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     clientVersion: 'placeholder-value',
      *     // Required. ID of the debuggee whose breakpoint to get.
      *     debuggeeId: 'placeholder-value',
@@ -1655,25 +1642,17 @@ export namespace clouddebugger_v2 {
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.list({
      *     // Only breakpoints with the specified action will pass the filter.
      *     'action.value': 'placeholder-value',
-     *     // Required. The client version making the call.
-     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     // Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     clientVersion: 'placeholder-value',
      *     // Required. ID of the debuggee whose breakpoints to list.
      *     debuggeeId: 'placeholder-value',
-     *     // When set to `true`, the response includes the list of breakpoints set by
-     *     // any user. Otherwise, it includes only breakpoints set by the caller.
+     *     // When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
      *     includeAllUsers: 'placeholder-value',
-     *     // When set to `true`, the response includes active and inactive
-     *     // breakpoints. Otherwise, it includes only active breakpoints.
+     *     // When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
      *     includeInactive: 'placeholder-value',
-     *     // This field is deprecated. The following fields are always stripped out of
-     *     // the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+     *     // This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *     stripResults: 'placeholder-value',
-     *     // A wait token that, if specified, blocks the call until the breakpoints
-     *     // list has changed, or a server selected timeout has expired.  The value
-     *     // should be set from the last response. The error code
-     *     // `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
-     *     // should be called again with the same `wait_token`.
+     *     // A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
      *     waitToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1700,7 +1679,7 @@ export namespace clouddebugger_v2 {
      * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
      * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
      * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
-     * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
+     * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1821,8 +1800,7 @@ export namespace clouddebugger_v2 {
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.set({
      *     // The canary option set by the user upon setting breakpoint.
      *     canaryOption: 'placeholder-value',
-     *     // Required. The client version making the call.
-     *     // Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     *     // Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     clientVersion: 'placeholder-value',
      *     // Required. ID of the debuggee where the breakpoint is to be set.
      *     debuggeeId: 'placeholder-value',
@@ -2019,7 +1997,7 @@ export namespace clouddebugger_v2 {
      */
     stripResults?: boolean;
     /**
-     * A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
+     * A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
      */
     waitToken?: string;
   }
