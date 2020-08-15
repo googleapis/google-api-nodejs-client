@@ -99,7 +99,7 @@
     "agentUsers": {
       "methods": {
         "delete": {
-          "description": "Unlinks the given third-party user from your smart home Action.\nAll data related to this user will be deleted.\n\nFor more details on how users link their accounts, see\n[fulfillment and\nauthentication](https://developers.google.com/assistant/smarthome/concepts/fulfillment-authentication).\n\nThe third-party user's identity is passed in via the `agent_user_id`\n(see DeleteAgentUserRequest).\nThis request must be authorized using service account credentials from your\nActions console project.",
+          "description": "Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted. For more details on how users link their accounts, see [fulfillment and authentication](https://developers.google.com/assistant/smarthome/concepts/fulfillment-authentication). The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/agentUsers/{agentUsersId}",
           "httpMethod": "DELETE",
           "id": "homegraph.agentUsers.delete",
@@ -130,7 +130,7 @@
     "devices": {
       "methods": {
         "query": {
-          "description": "Gets the current states in Home Graph for the given set of the third-party\nuser's devices.\n\nThe third-party user's identity is passed in via the `agent_user_id`\n(see QueryRequest).\nThis request must be authorized using service account credentials from your\nActions console project.",
+          "description": "Gets the current states in Home Graph for the given set of the third-party user's devices. The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:query",
           "httpMethod": "POST",
           "id": "homegraph.devices.query",
@@ -145,7 +145,7 @@
           }
         },
         "reportStateAndNotification": {
-          "description": "Reports device state and optionally sends device notifications.\nCalled by your smart home Action when the state of a third-party device\nchanges or you need to send a notification about the device.\nSee [Implement Report\nState](https://developers.google.com/assistant/smarthome/develop/report-state)\nfor more information.\n\nThis method updates the device state according to its declared\n[traits](https://developers.google.com/assistant/smarthome/concepts/devices-traits).\nPublishing a new state value outside of these traits will result in an\n`INVALID_ARGUMENT` error response.\n\nThe third-party user's identity is passed in via the `agent_user_id`\n(see ReportStateAndNotificationRequest).\nThis request must be authorized using service account credentials from your\nActions console project.",
+          "description": "Reports device state and optionally sends device notifications. Called by your smart home Action when the state of a third-party device changes or you need to send a notification about the device. See [Implement Report State](https://developers.google.com/assistant/smarthome/develop/report-state) for more information. This method updates the device state according to its declared [traits](https://developers.google.com/assistant/smarthome/concepts/devices-traits). Publishing a new state value outside of these traits will result in an `INVALID_ARGUMENT` error response. The third-party user's identity is passed in via the `agent_user_id` (see ReportStateAndNotificationRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:reportStateAndNotification",
           "httpMethod": "POST",
           "id": "homegraph.devices.reportStateAndNotification",
@@ -160,7 +160,7 @@
           }
         },
         "requestSync": {
-          "description": "Requests Google to send an `action.devices.SYNC`\n[intent](https://developers.google.com/assistant/smarthome/reference/intent/sync)\nto your smart home Action to update device metadata for the given user.\n\n\nThe third-party user's identity is passed via the `agent_user_id`\n(see RequestSyncDevicesRequest).\nThis request must be authorized using service account credentials from your\nActions console project.",
+          "description": "Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:requestSync",
           "httpMethod": "POST",
           "id": "homegraph.devices.requestSync",
@@ -175,7 +175,7 @@
           }
         },
         "sync": {
-          "description": "Gets all the devices associated with the given third-party user.\n\nThe third-party user's identity is passed in via the `agent_user_id`\n(see SyncRequest).\nThis request must be authorized using service account credentials from your\nActions console project.",
+          "description": "Gets all the devices associated with the given third-party user. The third-party user's identity is passed in via the `agent_user_id` (see SyncRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:sync",
           "httpMethod": "POST",
           "id": "homegraph.devices.sync",
@@ -192,7 +192,7 @@
       }
     }
   },
-  "revision": "20200522",
+  "revision": "20200810",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -238,7 +238,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Custom device attributes stored in Home Graph and provided to your\nsmart home Action in each\n[QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query)\nand\n[EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute)\nintent.",
+          "description": "Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent.",
           "type": "object"
         },
         "deviceInfo": {
@@ -254,37 +254,37 @@
           "description": "Names given to this device by your smart home Action."
         },
         "notificationSupportedByAgent": {
-          "description": "Indicates whether your smart home Action will report notifications\nto Google for this device via\nReportStateAndNotification.\n\nIf your smart home Action enables users to control device notifications,\nyou should update this field and call\nRequestSyncDevices.",
+          "description": "Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.",
           "type": "boolean"
         },
         "otherDeviceIds": {
-          "description": "Alternate IDs associated with this device.\nThis is used to identify cloud synced devices enabled for [local\nfulfillment](https://developers.google.com/assistant/smarthome/concepts/local).",
+          "description": "Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local fulfillment](https://developers.google.com/assistant/smarthome/concepts/local).",
           "items": {
             "$ref": "AgentOtherDeviceId"
           },
           "type": "array"
         },
         "roomHint": {
-          "description": "Suggested name for the room where this device is installed.\nGoogle attempts to use this value during user setup.",
+          "description": "Suggested name for the room where this device is installed. Google attempts to use this value during user setup.",
           "type": "string"
         },
         "structureHint": {
-          "description": "Suggested name for the structure where this device is installed.\nGoogle attempts to use this value during user setup.",
+          "description": "Suggested name for the structure where this device is installed. Google attempts to use this value during user setup.",
           "type": "string"
         },
         "traits": {
-          "description": "Traits supported by the device.\nSee [device\ntraits](https://developers.google.com/assistant/smarthome/traits).",
+          "description": "Traits supported by the device. See [device traits](https://developers.google.com/assistant/smarthome/traits).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "type": {
-          "description": "Hardware type of the device.\nSee [device\ntypes](https://developers.google.com/assistant/smarthome/guides).",
+          "description": "Hardware type of the device. See [device types](https://developers.google.com/assistant/smarthome/guides).",
           "type": "string"
         },
         "willReportState": {
-          "description": "Indicates whether your smart home Action will report state of this device\nto Google via\nReportStateAndNotification.",
+          "description": "Indicates whether your smart home Action will report state of this device to Google via ReportStateAndNotification.",
           "type": "boolean"
         }
       },
@@ -318,7 +318,7 @@
       "id": "DeviceNames",
       "properties": {
         "defaultNames": {
-          "description": "List of names provided by the manufacturer rather than the user, such as\nserial numbers, SKUs, etc.",
+          "description": "List of names provided by the manufacturer rather than the user, such as serial numbers, SKUs, etc.",
           "items": {
             "type": "string"
           },
@@ -339,13 +339,13 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
     },
     "QueryRequest": {
-      "description": "Request type for the\n[`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.",
+      "description": "Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.",
       "id": "QueryRequest",
       "properties": {
         "agentUserId": {
@@ -353,7 +353,7 @@
           "type": "string"
         },
         "inputs": {
-          "description": "Required. Inputs containing third-party device IDs for which to\nget the device states.",
+          "description": "Required. Inputs containing third-party device IDs for which to get the device states.",
           "items": {
             "$ref": "QueryRequestInput"
           },
@@ -392,7 +392,7 @@
       "type": "object"
     },
     "QueryResponse": {
-      "description": "Response type for the\n[`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.\nThis should follow the same format as the Google smart home\n`action.devices.QUERY`\n[response](https://developers.google.com/assistant/smarthome/reference/intent/query).\n# Example\n\n```json\n{\n  \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\",\n  \"payload\": {\n    \"devices\": {\n      \"123\": {\n        \"on\": true,\n        \"online\": true\n      },\n      \"456\": {\n        \"on\": true,\n        \"online\": true,\n        \"brightness\": 80,\n        \"color\": {\n          \"name\": \"cerulean\",\n          \"spectrumRGB\": 31655\n        }\n      }\n    }\n  }\n}\n```",
+      "description": "Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.google.com/assistant/smarthome/reference/intent/query). # Example ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"devices\": { \"123\": { \"on\": true, \"online\": true }, \"456\": { \"on\": true, \"online\": true, \"brightness\": 80, \"color\": { \"name\": \"cerulean\", \"spectrumRGB\": 31655 } } } } } ```",
       "id": "QueryResponse",
       "properties": {
         "payload": {
@@ -418,7 +418,7 @@
             },
             "type": "object"
           },
-          "description": "States of the devices. Map of third-party device ID to struct of device\nstates.",
+          "description": "States of the devices. Map of third-party device ID to struct of device states.",
           "type": "object"
         }
       },
@@ -433,7 +433,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Notifications metadata for devices. See the **Device NOTIFICATIONS**\nsection of the individual trait [reference\nguides](https://developers.google.com/assistant/smarthome/traits).",
+          "description": "Notifications metadata for devices. See the **Device NOTIFICATIONS** section of the individual trait [reference guides](https://developers.google.com/assistant/smarthome/traits).",
           "type": "object"
         },
         "states": {
@@ -441,14 +441,14 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "States of devices to update. See the **Device STATES** section\nof the individual trait [reference\nguides](https://developers.google.com/assistant/smarthome/traits).",
+          "description": "States of devices to update. See the **Device STATES** section of the individual trait [reference guides](https://developers.google.com/assistant/smarthome/traits).",
           "type": "object"
         }
       },
       "type": "object"
     },
     "ReportStateAndNotificationRequest": {
-      "description": "Request type for the\n[`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification)\ncall. It may include states, notifications, or both. States and notifications\nare defined per `device_id` (for example, \"123\" and \"456\" in the following\nexample).\n# Example\n\n```json\n{\n  \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\",\n  \"agentUserId\": \"1234\",\n  \"payload\": {\n    \"devices\": {\n      \"states\": {\n        \"123\": {\n          \"on\": true\n        },\n        \"456\": {\n          \"on\": true,\n          \"brightness\": 10\n        }\n      },\n    }\n  }\n}\n```",
+      "description": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, \"123\" and \"456\" in the following example). # Example ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 } }, } } } ```",
       "id": "ReportStateAndNotificationRequest",
       "properties": {
         "agentUserId": {
@@ -460,7 +460,7 @@
           "type": "string"
         },
         "followUpToken": {
-          "description": "Token to maintain state in the follow up notification response.\nDeprecated. See the [notifications\nguide](https://developers.google.com/assistant/smarthome/develop/notifications)\nfor details on implementing follow up notifications.",
+          "description": "Token to maintain state in the follow up notification response. Deprecated. See the [notifications guide](https://developers.google.com/assistant/smarthome/develop/notifications) for details on implementing follow up notifications.",
           "type": "string"
         },
         "payload": {
@@ -475,7 +475,7 @@
       "type": "object"
     },
     "ReportStateAndNotificationResponse": {
-      "description": "Response type for the\n[`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification)\ncall.",
+      "description": "Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call.",
       "id": "ReportStateAndNotificationResponse",
       "properties": {
         "requestId": {
@@ -486,7 +486,7 @@
       "type": "object"
     },
     "RequestSyncDevicesRequest": {
-      "description": "Request type for the\n[`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices)\ncall.",
+      "description": "Request type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call.",
       "id": "RequestSyncDevicesRequest",
       "properties": {
         "agentUserId": {
@@ -494,14 +494,14 @@
           "type": "string"
         },
         "async": {
-          "description": "Optional. If set, the request will be added to a queue and a response will\nbe returned immediately. This enables concurrent requests for the given\n`agent_user_id`, but the caller will not receive any error responses.",
+          "description": "Optional. If set, the request will be added to a queue and a response will be returned immediately. This enables concurrent requests for the given `agent_user_id`, but the caller will not receive any error responses.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "RequestSyncDevicesResponse": {
-      "description": "Response type for the\n[`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices)\ncall.\n\nIntentionally empty upon success. An HTTP response code is returned\nwith more details upon failure.",
+      "description": "Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure.",
       "id": "RequestSyncDevicesResponse",
       "properties": {},
       "type": "object"
@@ -518,7 +518,7 @@
       "type": "object"
     },
     "SyncRequest": {
-      "description": "Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync)\ncall.",
+      "description": "Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call.",
       "id": "SyncRequest",
       "properties": {
         "agentUserId": {
@@ -533,7 +533,7 @@
       "type": "object"
     },
     "SyncResponse": {
-      "description": "Response type for the\n[`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call.\nThis should follow the same format as the Google smart home\n`action.devices.SYNC`\n[response](https://developers.google.com/assistant/smarthome/reference/intent/sync).\n# Example\n\n```json\n{\n  \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\",\n  \"payload\": {\n    \"agentUserId\": \"1836.15267389\",\n    \"devices\": [{\n      \"id\": \"123\",\n      \"type\": \"action.devices.types.OUTLET\",\n      \"traits\": [\n        \"action.devices.traits.OnOff\"\n      ],\n      \"name\": {\n        \"defaultNames\": [\"My Outlet 1234\"],\n        \"name\": \"Night light\",\n        \"nicknames\": [\"wall plug\"]\n      },\n      \"willReportState\": false,\n      \"deviceInfo\": {\n        \"manufacturer\": \"lights-out-inc\",\n        \"model\": \"hs1234\",\n        \"hwVersion\": \"3.2\",\n        \"swVersion\": \"11.4\"\n      },\n      \"customData\": {\n        \"fooValue\": 74,\n        \"barValue\": true,\n        \"bazValue\": \"foo\"\n      }\n    }]\n  }\n}\n```",
+      "description": "Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.google.com/assistant/smarthome/reference/intent/sync). # Example ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"agentUserId\": \"1836.15267389\", \"devices\": [{ \"id\": \"123\", \"type\": \"action.devices.types.OUTLET\", \"traits\": [ \"action.devices.traits.OnOff\" ], \"name\": { \"defaultNames\": [\"My Outlet 1234\"], \"name\": \"Night light\", \"nicknames\": [\"wall plug\"] }, \"willReportState\": false, \"deviceInfo\": { \"manufacturer\": \"lights-out-inc\", \"model\": \"hs1234\", \"hwVersion\": \"3.2\", \"swVersion\": \"11.4\" }, \"customData\": { \"fooValue\": 74, \"barValue\": true, \"bazValue\": \"foo\" } }] } } ```",
       "id": "SyncResponse",
       "properties": {
         "payload": {
