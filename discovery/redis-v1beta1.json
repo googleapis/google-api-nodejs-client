@@ -180,7 +180,7 @@
             "instances": {
               "methods": {
                 "create": {
-                  "description": "Creates a Redis instance based on the specified tier and memory size.\n\nBy default, the instance is accessible from the project's\n[default network](https://cloud.google.com/vpc/docs/vpc).\n\nThe creation is executed asynchronously and callers may check the returned\noperation to track its progress. Once the operation is completed the Redis\ninstance will be fully functional. Completed longrunning.Operation will\ncontain the new instance object in the response field.\n\nThe returned operation is automatically deleted after a few hours, so there\nis no need to call DeleteOperation.",
+                  "description": "Creates a Redis instance based on the specified tier and memory size. By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc). The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.instances.create",
@@ -189,12 +189,12 @@
                   ],
                   "parameters": {
                     "instanceId": {
-                      "description": "Required. The logical name of the Redis instance in the customer project\nwith the following restrictions:\n\n* Must contain only lowercase letters, numbers, and hyphens.\n* Must start with a letter.\n* Must be between 1-40 characters.\n* Must end with a number or a letter.\n* Must be unique within the customer project / location",
+                      "description": "Required. The logical name of the Redis instance in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the instance location using the form:\n    `projects/{project_id}/locations/{location_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -213,7 +213,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a specific Redis instance.  Instance stops serving and data is\ndeleted.",
+                  "description": "Deletes a specific Redis instance. Instance stops serving and data is deleted.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "redis.projects.locations.instances.delete",
@@ -222,7 +222,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -238,7 +238,7 @@
                   ]
                 },
                 "export": {
-                  "description": "Export Redis instance data into a Redis RDB format file in Cloud Storage.\n\nRedis will continue serving during this operation.\n\nThe returned operation is automatically deleted after a few hours, so\nthere is no need to call DeleteOperation.",
+                  "description": "Export Redis instance data into a Redis RDB format file in Cloud Storage. Redis will continue serving during this operation. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:export",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.instances.export",
@@ -247,7 +247,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -266,7 +266,7 @@
                   ]
                 },
                 "failover": {
-                  "description": "Initiates a failover of the master node to current replica node for a\nspecific STANDARD tier Cloud Memorystore for Redis instance.",
+                  "description": "Initiates a failover of the master node to current replica node for a specific STANDARD tier Cloud Memorystore for Redis instance.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:failover",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.instances.failover",
@@ -275,7 +275,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -303,7 +303,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -319,7 +319,7 @@
                   ]
                 },
                 "import": {
-                  "description": "Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.\n\nRedis may stop serving during this operation. Instance state will be\nIMPORTING for entire operation. When complete, the instance will contain\nonly data from the imported file.\n\nThe returned operation is automatically deleted after a few hours, so\nthere is no need to call DeleteOperation.",
+                  "description": "Import a Redis RDB snapshot file from Cloud Storage into a Redis instance. Redis may stop serving during this operation. Instance state will be IMPORTING for entire operation. When complete, the instance will contain only data from the imported file. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:import",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.instances.import",
@@ -328,7 +328,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -347,7 +347,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists all Redis instances owned by a project in either the specified\nlocation (region) or all locations.\n\nThe location should have the following format:\n\n* `projects/{project_id}/locations/{location_id}`\n\nIf `location_id` is specified as `-` (wildcard), then all regions\navailable to the project are queried, and the results are aggregated.",
+                  "description": "Lists all Redis instances owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "GET",
                   "id": "redis.projects.locations.instances.list",
@@ -356,18 +356,18 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of items to return.\n\nIf not specified, a default value of 1000 will be used by the service.\nRegardless of the page_size value, the response may include a partial list\nand a caller should only rely on response's\n`next_page_token`\nto determine if there are more instances left to be queried.",
+                      "description": "The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The `next_page_token` value returned from a previous\nListInstances request, if any.",
+                      "description": "The `next_page_token` value returned from a previous ListInstances request, if any.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the instance location using the form:\n    `projects/{project_id}/locations/{location_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -383,7 +383,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the metadata and configuration of a specific Redis instance.\n\nCompleted longrunning.Operation will contain the new instance object\nin the response field. The returned operation is automatically deleted\nafter a few hours, so there is no need to call DeleteOperation.",
+                  "description": "Updates the metadata and configuration of a specific Redis instance. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "PATCH",
                   "id": "redis.projects.locations.instances.patch",
@@ -392,14 +392,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Unique name of the resource in this scope including project and\nlocation using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\n\nNote: Redis instances are managed and addressed at regional level so\nlocation_id here refers to a GCP region; however, users may choose which\nspecific zone (or collection of zones for cross-zone instances) an instance\nshould be provisioned in. Refer to location_id and\nalternative_location_id fields for more details.",
+                      "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in\nthis field. The elements of the repeated paths field may only include these\nfields from Instance:\n\n *   `displayName`\n *   `labels`\n *   `memorySizeGb`\n *   `redisConfig`",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -417,7 +417,7 @@
                   ]
                 },
                 "upgrade": {
-                  "description": "Upgrades Redis instance to the newer Redis version specified in the\nrequest.",
+                  "description": "Upgrades Redis instance to the newer Redis version specified in the request.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:upgrade",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.instances.upgrade",
@@ -426,7 +426,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Redis instance resource name using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\nwhere `location_id` refers to a GCP region.",
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -449,7 +449,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.operations.cancel",
@@ -474,7 +474,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "redis.projects.locations.operations.delete",
@@ -499,7 +499,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "redis.projects.locations.operations.get",
@@ -524,7 +524,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "redis.projects.locations.operations.list",
@@ -571,11 +571,11 @@
       }
     }
   },
-  "revision": "20200722",
+  "revision": "20200810",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:\n\n    service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -596,15 +596,15 @@
       "id": "FailoverInstanceRequest",
       "properties": {
         "dataProtectionMode": {
-          "description": "Optional. Available data protection modes that the user can choose. If it's\nunspecified, data protection mode will be LIMITED_DATA_LOSS by default.",
+          "description": "Optional. Available data protection modes that the user can choose. If it's unspecified, data protection mode will be LIMITED_DATA_LOSS by default.",
           "enum": [
             "DATA_PROTECTION_MODE_UNSPECIFIED",
             "LIMITED_DATA_LOSS",
             "FORCE_DATA_LOSS"
           ],
           "enumDescriptions": [
-            "Defaults to LIMITED_DATA_LOSS if a data protection mode is not\nspecified.",
-            "Instance failover will be protected with data loss control. More\nspecifically, the failover will only be performed if the current\nreplication offset diff between master and replica is under a certain\nthreshold.",
+            "Defaults to LIMITED_DATA_LOSS if a data protection mode is not specified.",
+            "Instance failover will be protected with data loss control. More specifically, the failover will only be performed if the current replication offset diff between master and replica is under a certain threshold.",
             "Instance failover will be performed without data loss control."
           ],
           "type": "string"
@@ -617,7 +617,7 @@
       "id": "GcsDestination",
       "properties": {
         "uri": {
-          "description": "Required. Data destination URI (e.g.\n'gs://my_bucket/my_object'). Existing files will be overwritten.",
+          "description": "Required. Data destination URI (e.g. 'gs://my_bucket/my_object'). Existing files will be overwritten.",
           "type": "string"
         }
       },
@@ -643,7 +643,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "[Output only] Identifies whether the user has requested cancellation\nof the operation. Operations that have successfully been cancelled\nhave Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+          "description": "[Output only] Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "createTime": {
@@ -672,21 +672,22 @@
       "type": "object"
     },
     "GoogleCloudRedisV1beta1LocationMetadata": {
-      "description": "This location metadata represents additional configuration options for a\ngiven location where a Redis instance may be created. All fields are output\nonly. It is returned as content of the\n`google.cloud.location.Location.metadata` field.",
+      "description": "This location metadata represents additional configuration options for a given location where a Redis instance may be created. All fields are output only. It is returned as content of the `google.cloud.location.Location.metadata` field.",
       "id": "GoogleCloudRedisV1beta1LocationMetadata",
       "properties": {
         "availableZones": {
           "additionalProperties": {
             "$ref": "GoogleCloudRedisV1beta1ZoneMetadata"
           },
-          "description": "Output only. The set of available zones in the location. The map is keyed\nby the lowercase ID of each zone, as defined by GCE. These keys can be\nspecified in `location_id` or `alternative_location_id` fields when\ncreating a Redis instance.",
+          "description": "Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in `location_id` or `alternative_location_id` fields when creating a Redis instance.",
+          "readOnly": true,
           "type": "object"
         }
       },
       "type": "object"
     },
     "GoogleCloudRedisV1beta1ZoneMetadata": {
-      "description": "Defines specific information for a particular zone. Currently empty and\nreserved for future use only.",
+      "description": "Defines specific information for a particular zone. Currently empty and reserved for future use only.",
       "id": "GoogleCloudRedisV1beta1ZoneMetadata",
       "properties": {},
       "type": "object"
@@ -695,33 +696,34 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1Instance",
       "properties": {
         "consumerDefinedName": {
-          "description": "consumer_defined_name is the name that is set by the consumer. On the other\nhand Name field represents system-assigned id of an instance so consumers\nare not necessarily aware of it.\nconsumer_defined_name is used for notification/UI purposes for consumer to\nrecognize their instances.",
+          "description": "consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.",
           "type": "string"
         },
         "createTime": {
           "description": "Output only. Timestamp when the resource was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Resource labels to represent user provided metadata. Each label\nis a key-value pair, where both the key and the value are arbitrary strings\nprovided by the user.",
+          "description": "Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.",
           "type": "object"
         },
         "maintenancePolicyNames": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The MaintenancePolicies that have been attached to the instance.\nThe key must be of the type name of the oneof policy name defined in\nMaintenancePolicy, and the referenced policy must define the same policy\ntype. For complete details of MaintenancePolicy, please refer to\ngo/cloud-saas-mw-ug.",
+          "description": "The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.",
           "type": "object"
         },
         "maintenanceSchedules": {
           "additionalProperties": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule"
           },
-          "description": "The MaintenanceSchedule contains the scheduling information of published\nmaintenance schedule.",
+          "description": "The MaintenanceSchedule contains the scheduling information of published maintenance schedule.",
           "type": "object"
         },
         "maintenanceSettings": {
@@ -729,40 +731,43 @@
           "description": "Optional. The MaintenanceSettings associated with instance."
         },
         "name": {
-          "description": "Unique name of the resource. It uses the form:\n `projects/{project_id}/locations/{location_id}/instances/{instance_id}`",
+          "description": "Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`",
           "type": "string"
         },
         "producerMetadata": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Output only. Custom string attributes used primarily to expose\nproducer-specific information in monitoring dashboards.\nSee go/get-instance-metadata.",
+          "description": "Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.",
+          "readOnly": true,
           "type": "object"
         },
         "provisionedResources": {
-          "description": "Output only. The list of data plane resources provisioned for this\ninstance, e.g. compute VMs. See go/get-instance-metadata.",
+          "description": "Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.",
           "items": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource"
           },
+          "readOnly": true,
           "type": "array"
         },
         "slmInstanceTemplate": {
-          "description": "Link to the SLM instance template. Only populated when updating SLM\ninstances via SSA's Actuation service adaptor.\nService producers with custom control plane (e.g. Cloud SQL) doesn't\nneed to populate this field. Instead they should use software_versions.",
+          "description": "Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.",
           "type": "string"
         },
         "sloMetadata": {
           "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata",
-          "description": "Output only. SLO metadata for instance classification in the\nStandardized dataplane SLO platform.\nSee go/cloud-ssa-standard-slo for feature description."
+          "description": "Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.",
+          "readOnly": true
         },
         "softwareVersions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Software versions that are used to deploy this instance. This can be\nmutated by rollout services.",
+          "description": "Software versions that are used to deploy this instance. This can be mutated by rollout services.",
           "type": "object"
         },
         "state": {
-          "description": "Output only. Current lifecycle state of the resource (e.g. if it's being\ncreated or ready to use).",
+          "description": "Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -781,26 +786,29 @@
             "Instance is being deleted.",
             "Instance encountered an error and is in indeterministic state."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "tenantProjectId": {
-          "description": "Output only. ID of the associated GCP tenant project.\nSee go/get-instance-metadata.",
+          "description": "Output only. ID of the associated GCP tenant project. See go/get-instance-metadata.",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
           "description": "Output only. Timestamp when the resource was last modified.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule": {
-      "description": "Maintenance schedule which is exposed to customer and potentially end user,\nindicating published upcoming future maintenance schedule",
+      "description": "Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
-          "description": "Can this scheduled update be rescheduled?\nBy default, it's true and API needs to do explicitly check whether it's\nset, if it's set as false explicitly, it's false",
+          "description": "Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false",
           "type": "boolean"
         },
         "endTime": {
@@ -809,7 +817,7 @@
           "type": "string"
         },
         "rolloutManagementPolicy": {
-          "description": "The rollout management policy this maintenance schedule is associated\nwith. When doing reschedule update request, the reschedule should be\nagainst this given policy.",
+          "description": "The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.",
           "type": "string"
         },
         "startTime": {
@@ -821,22 +829,22 @@
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings": {
-      "description": "Maintenance settings associated with instance. Allows service producers and\nend users to assign settings that controls maintenance on this instance.",
+      "description": "Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings",
       "properties": {
         "exclude": {
-          "description": "Optional. Exclude instance from maintenance. When true, rollout service will not\nattempt maintenance on the instance. Rollout service will include the\ninstance in reported rollout progress as not attempted.",
+          "description": "Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata": {
-      "description": "Node information for custom per-node SLO implementations.\nSSA does not support per-node SLO, but producers can populate per-node\ninformation in SloMetadata for custom precomputations.\nSSA Eligibility Exporter will emit per-node metric based on this information.",
+      "description": "Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata",
       "properties": {
         "exclusions": {
-          "description": "By default node is eligible if instance is eligible.\nBut individual node might be excluded from SLO by adding entry here.\nFor semantic see SloMetadata.exclusions.\nIf both instance and node level exclusions are present for time period,\nthe node level's reason will be reported by Eligibility Exporter.",
+          "description": "By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level's reason will be reported by Eligibility Exporter.",
           "items": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion"
           },
@@ -847,7 +855,7 @@
           "type": "string"
         },
         "nodeId": {
-          "description": "The id of the node.\nThis should be equal to SaasInstanceNode.node_id.",
+          "description": "The id of the node. This should be equal to SaasInstanceNode.node_id.",
           "type": "string"
         }
       },
@@ -858,18 +866,18 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource",
       "properties": {
         "resourceType": {
-          "description": "Type of the resource. This can be either a GCP resource or a custom one\n(e.g. another cloud provider's VM). For GCP compute resources use singular\nform of the names listed in GCP compute API documentation\n(https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with\n'compute-', for example: 'compute-instance', 'compute-disk',\n'compute-autoscaler'.",
+          "description": "Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.",
           "type": "string"
         },
         "resourceUrl": {
-          "description": "URL identifying the resource, e.g.\n\"https://www.googleapis.com/compute/v1/projects/...)\".",
+          "description": "URL identifying the resource, e.g. \"https://www.googleapis.com/compute/v1/projects/...)\".",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility": {
-      "description": "SloEligibility is a tuple containing eligibility value: true if an instance\nis eligible for SLO calculation or false if it should be excluded from all\nSLO-related calculations along with a user-defined reason.",
+      "description": "SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility",
       "properties": {
         "eligible": {
@@ -877,7 +885,7 @@
           "type": "boolean"
         },
         "reason": {
-          "description": "User-defined reason for the current value of instance eligibility. Usually,\nthis can be directly mapped to the internal state. An empty reason is\nallowed.",
+          "description": "User-defined reason for the current value of instance eligibility. Usually, this can be directly mapped to the internal state. An empty reason is allowed.",
           "type": "string"
         }
       },
@@ -888,16 +896,16 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion",
       "properties": {
         "duration": {
-          "description": "Exclusion duration. No restrictions on the possible values.\n\nWhen an ongoing operation is taking longer than initially expected,\nan existing entry in the exclusion list can be updated by extending the\nduration. This is supported by the subsystem exporting eligibility data\nas long as such extension is committed at least 10 minutes before the\noriginal exclusion expiration - otherwise it is possible that there will\nbe \"gaps\" in the exclusion application in the exported timeseries.",
+          "description": "Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be \"gaps\" in the exclusion application in the exported timeseries.",
           "format": "google-duration",
           "type": "string"
         },
         "reason": {
-          "description": "Human-readable reason for the exclusion.\nThis should be a static string (e.g. \"Disruptive update in progress\")\nand should not contain dynamically generated data (e.g. instance name).\nCan be left empty.",
+          "description": "Human-readable reason for the exclusion. This should be a static string (e.g. \"Disruptive update in progress\") and should not contain dynamically generated data (e.g. instance name). Can be left empty.",
           "type": "string"
         },
         "sliName": {
-          "description": "Name of an SLI that this exclusion applies to. Can be left empty,\nsignaling that the instance should be excluded from all SLIs defined\nin the service SLO configuration.",
+          "description": "Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.",
           "type": "string"
         },
         "startTime": {
@@ -909,7 +917,7 @@
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata": {
-      "description": "SloMetadata contains resources required for proper SLO classification of the\ninstance.",
+      "description": "SloMetadata contains resources required for proper SLO classification of the instance.",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata",
       "properties": {
         "eligibility": {
@@ -917,21 +925,21 @@
           "description": "Optional. User-defined instance eligibility."
         },
         "exclusions": {
-          "description": "List of SLO exclusion windows. When multiple entries in the list match\n(matching the exclusion time-window against current time point)\nthe exclusion reason used in the first matching entry will be published.\n\nIt is not needed to include expired exclusion in this list, as only the\ncurrently applicable exclusions are taken into account by the eligibility\nexporting subsystem (the historical state of exclusions will be reflected\nin the historically produced timeseries regardless of the current state).\n\nThis field can be used to mark the instance as temporary ineligible\nfor the purpose of SLO calculation. For permanent instance SLO exclusion,\nuse of custom instance eligibility is recommended. See 'eligibility' field\nbelow.",
+          "description": "List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.",
           "items": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion"
           },
           "type": "array"
         },
         "nodes": {
-          "description": "Optional. List of nodes.\nSome producers need to use per-node metadata to calculate SLO.\nThis field allows such producers to publish per-node SLO meta data,\nwhich will be consumed by SSA Eligibility Exporter and published in the\nform of per node metric to Monarch.",
+          "description": "Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.",
           "items": {
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata"
           },
           "type": "array"
         },
         "tier": {
-          "description": "Name of the SLO tier the Instance belongs to. This name will be expected to\nmatch the tiers specified in the service SLO configuration.\n\nField is mandatory and must not be empty.",
+          "description": "Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.",
           "type": "string"
         }
       },
@@ -964,15 +972,15 @@
       "id": "Instance",
       "properties": {
         "alternativeLocationId": {
-          "description": "Optional. Only applicable to STANDARD_HA tier which protects the instance\nagainst zonal failures by provisioning it across two zones. If provided, it\nmust be a different zone from the one provided in location_id.",
+          "description": "Optional. Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in location_id.",
           "type": "string"
         },
         "authorizedNetwork": {
-          "description": "Optional. The full name of the Google Compute Engine\n[network](https://cloud.google.com/vpc/docs/vpc) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
+          "description": "Optional. The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.",
           "type": "string"
         },
         "connectMode": {
-          "description": "Optional. The network connect mode of the Redis instance.\nIf not provided, the connect mode defaults to DIRECT_PEERING.",
+          "description": "Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.",
           "enum": [
             "CONNECT_MODE_UNSPECIFIED",
             "DIRECT_PEERING",
@@ -981,17 +989,19 @@
           "enumDescriptions": [
             "Not set.",
             "Connect via direct peering to the Memorystore for Redis hosted service.",
-            "Connect your Memorystore for Redis instance using Private Services\nAccess. Private services access provides an IP address range for multiple\nGoogle Cloud services, including Memorystore."
+            "Connect your Memorystore for Redis instance using Private Services Access. Private services access provides an IP address range for multiple Google Cloud services, including Memorystore."
           ],
           "type": "string"
         },
         "createTime": {
           "description": "Output only. The time the instance was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "currentLocationId": {
-          "description": "Output only. The current zone where the Redis endpoint is placed. For Basic\nTier instances, this will always be the same as the location_id\nprovided by the user at creation time. For Standard Tier instances,\nthis can be either location_id or alternative_location_id and can\nchange after a failover event.",
+          "description": "Output only. The current zone where the Redis endpoint is placed. For Basic Tier instances, this will always be the same as the location_id provided by the user at creation time. For Standard Tier instances, this can be either location_id or alternative_location_id and can change after a failover event.",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -999,7 +1009,8 @@
           "type": "string"
         },
         "host": {
-          "description": "Output only. Hostname or IP address of the exposed Redis endpoint used by\nclients to connect to the service.",
+          "description": "Output only. Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -1010,7 +1021,7 @@
           "type": "object"
         },
         "locationId": {
-          "description": "Optional. The zone where the instance will be provisioned. If not provided,\nthe service will choose a zone for the instance. For STANDARD_HA tier,\ninstances will be created across two zones for protection against zonal\nfailures. If alternative_location_id is also provided, it must be\ndifferent from location_id.",
+          "description": "Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone for the instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal failures. If alternative_location_id is also provided, it must be different from location_id.",
           "type": "string"
         },
         "memorySizeGb": {
@@ -1019,31 +1030,33 @@
           "type": "integer"
         },
         "name": {
-          "description": "Required. Unique name of the resource in this scope including project and\nlocation using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\n\nNote: Redis instances are managed and addressed at regional level so\nlocation_id here refers to a GCP region; however, users may choose which\nspecific zone (or collection of zones for cross-zone instances) an instance\nshould be provisioned in. Refer to location_id and\nalternative_location_id fields for more details.",
+          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.",
           "type": "string"
         },
         "persistenceIamIdentity": {
-          "description": "Output only. Cloud IAM identity used by import / export operations to\ntransfer data to/from Cloud Storage. Format is\n\"serviceAccount:<service_account_email>\". The value may change over time\nfor a given instance so should be checked before each import/export\noperation.",
+          "description": "Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is \"serviceAccount:\". The value may change over time for a given instance so should be checked before each import/export operation.",
+          "readOnly": true,
           "type": "string"
         },
         "port": {
           "description": "Output only. The port number of the exposed Redis endpoint.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "redisConfigs": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Redis configuration parameters, according to\nhttp://redis.io/topics/config. Currently, the only supported parameters\nare:\n\n Redis version 3.2 and newer:\n\n *   maxmemory-policy\n *   notify-keyspace-events\n\n Redis version 4.0 and newer:\n\n *   activedefrag\n *   lfu-decay-time\n *   lfu-log-factor\n *   maxmemory-gb\n\n Redis version 5.0 and newer:\n\n *   stream-node-max-bytes\n *   stream-node-max-entries",
+          "description": "Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries",
           "type": "object"
         },
         "redisVersion": {
-          "description": "Optional. The version of Redis software.\nIf not provided, latest supported version will be used. Currently, the\nsupported values are:\n\n *   `REDIS_3_2` for Redis 3.2 compatibility\n *   `REDIS_4_0` for Redis 4.0 compatibility (default)\n *   `REDIS_5_0` for Redis 5.0 compatibility",
+          "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility",
           "type": "string"
         },
         "reservedIpRange": {
-          "description": "Optional. The CIDR range of internal addresses that are reserved for this\ninstance. If not provided, the service will choose an unused /29 block,\nfor example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique\nand non-overlapping with existing subnets in an authorized network.",
+          "description": "Optional. The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.",
           "type": "string"
         },
         "state": {
@@ -1063,17 +1076,19 @@
             "Not set.",
             "Redis instance is being created.",
             "Redis instance has been created and is fully usable.",
-            "Redis instance configuration is being updated. Certain kinds of updates\nmay cause the instance to become unusable while the update is in\nprogress.",
+            "Redis instance configuration is being updated. Certain kinds of updates may cause the instance to become unusable while the update is in progress.",
             "Redis instance is being deleted.",
             "Redis instance is being repaired and may be unusable.",
             "Maintenance is being performed on this Redis instance.",
             "Redis instance is importing data (availability may be affected).",
             "Redis instance is failing over (availability may be affected)."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "statusMessage": {
-          "description": "Output only. Additional information about the current status of this\ninstance, if available.",
+          "description": "Output only. Additional information about the current status of this instance, if available.",
+          "readOnly": true,
           "type": "string"
         },
         "tier": {
@@ -1098,14 +1113,14 @@
       "id": "ListInstancesResponse",
       "properties": {
         "instances": {
-          "description": "A list of Redis instances in the project in the specified location,\nor across all locations.\n\nIf the `location_id` in the parent field of the request is \"-\", all regions\navailable to the project are queried, and the results aggregated.\nIf in such an aggregated query a location is unavailable, a dummy Redis\nentry is included in the response with the `name` field set to a value of\nthe form `projects/{project_id}/locations/{location_id}/instances/`- and\nthe `status` field set to ERROR and `status_message` field set to \"location\nnot available for ListInstances\".",
+          "description": "A list of Redis instances in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is \"-\", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a dummy Redis entry is included in the response with the `name` field set to a value of the form `projects/{project_id}/locations/{location_id}/instances/`- and the `status` field set to ERROR and `status_message` field set to \"location not available for ListInstances\".",
           "items": {
             "$ref": "Instance"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "unreachable": {
@@ -1159,14 +1174,14 @@
       "id": "Location",
       "properties": {
         "displayName": {
-          "description": "The friendly name for this location, typically a nearby city name.\nFor example, \"Tokyo\".",
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Cross-service attributes for the location. For example\n\n    {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
           "type": "object"
         },
         "locationId": {
@@ -1189,11 +1204,11 @@
       "type": "object"
     },
     "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call.",
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
       "properties": {
         "done": {
-          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable.",
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
           "type": "boolean"
         },
         "error": {
@@ -1205,11 +1220,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "{\n\n`createTime`: The time the operation was created.\n\n`endTime`: The time the operation finished running.\n\n`target`: Server-defined resource path for the target of the operation.\n\n`verb`: Name of the verb executed by the operation.\n\n`statusDetail`: Human-readable status of the operation, if any.\n\n`cancelRequested`: Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.\n\n`apiVersion`: API version used to start the operation.\n\n}",
+          "description": "{ `createTime`: The time the operation was created. `endTime`: The time the operation finished running. `target`: Server-defined resource path for the target of the operation. `verb`: Name of the verb executed by the operation. `statusDetail`: Human-readable status of the operation, if any. `cancelRequested`: Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`. `apiVersion`: API version used to start the operation. }",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
           "type": "string"
         },
         "response": {
@@ -1217,7 +1232,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -1235,7 +1250,7 @@
       "type": "object"
     },
     "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
       "properties": {
         "code": {
@@ -1244,7 +1259,7 @@
           "type": "integer"
         },
         "details": {
-          "description": "A list of messages that carry the error details.  There is a common set of\nmessage types for APIs to use.",
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
             "additionalProperties": {
               "description": "Properties of the object. Contains field @type with type URL.",
@@ -1255,7 +1270,7 @@
           "type": "array"
         },
         "message": {
-          "description": "A developer-facing error message, which should be in English. Any\nuser-facing error message should be localized and sent in the\ngoogle.rpc.Status.details field, or localized by the client.",
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
