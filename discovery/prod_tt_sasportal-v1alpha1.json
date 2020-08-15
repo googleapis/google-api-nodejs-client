@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20200813",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -1840,6 +1840,10 @@
         "frequencyRange": {
           "$ref": "SasPortalFrequencyRange",
           "description": "The transmission frequency range."
+        },
+        "grantId": {
+          "description": "Grant Id.",
+          "type": "string"
         },
         "maxEirp": {
           "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of maxEirp represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).",
