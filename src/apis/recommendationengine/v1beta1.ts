@@ -175,7 +175,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1BigQuerySource {
     /**
-     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)
+     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user event imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. &quot;user_events_ga360&quot; using https://support.google.com/analytics/answer/3437719?hl=en
      */
     dataSchema?: string | null;
     /**
@@ -374,7 +374,7 @@ export namespace recommendationengine_v1beta1 {
      */
     inputUris?: string[] | null;
     /**
-     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import)
+     * Optional. The schema to use when parsing the data from the source. Supported values for catalog imports: 1: &quot;catalog_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#json (Default for catalogItems.import) 2: &quot;catalog_merchant_center&quot; using https://cloud.google.com/recommendations-ai/docs/upload-catalog#mc Supported values for user events imports: 1: &quot;user_events_recommendations_ai&quot; using https://cloud.google.com/recommendations-ai/docs/manage-user-events#import (Default for userEvents.import) 2. &quot;user_events_ga360&quot; using https://support.google.com/analytics/answer/3437719?hl=en
      */
     jsonSchema?: string | null;
   }
@@ -1226,7 +1226,7 @@ export namespace recommendationengine_v1beta1 {
      *   const res = await recommendationengine.projects.locations.catalogs.patch({
      *     // The fully qualified resource name of the catalog.
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
-     *     // Optional. Indicates which fields in the provided 'recommendation_model' to update. If not set, will only update the catalog_item_level_config field.
+     *     // Optional. Indicates which fields in the provided 'catalog' to update. If not set, will only update the catalog_item_level_config field. Currently only fields that can be updated are catalog_item_level_config.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1261,7 +1261,7 @@ export namespace recommendationengine_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the catalog.
-     * @param {string=} params.updateMask Optional. Indicates which fields in the provided 'recommendation_model' to update. If not set, will only update the catalog_item_level_config field.
+     * @param {string=} params.updateMask Optional. Indicates which fields in the provided 'catalog' to update. If not set, will only update the catalog_item_level_config field. Currently only fields that can be updated are catalog_item_level_config.
      * @param {().GoogleCloudRecommendationengineV1beta1Catalog} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1390,7 +1390,7 @@ export namespace recommendationengine_v1beta1 {
      */
     name?: string;
     /**
-     * Optional. Indicates which fields in the provided 'recommendation_model' to update. If not set, will only update the catalog_item_level_config field.
+     * Optional. Indicates which fields in the provided 'catalog' to update. If not set, will only update the catalog_item_level_config field. Currently only fields that can be updated are catalog_item_level_config.
      */
     updateMask?: string;
 
