@@ -200,7 +200,7 @@ export namespace script_v1 {
     versionNumber?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -267,7 +267,7 @@ export namespace script_v1 {
      */
     parameters?: any[] | null;
     /**
-     * &lt;b&gt;Deprecated&lt;/b&gt;. For use with Android add-ons only. An ID that represents the user&#39;s current session in the Android app for Google Docs or Sheets, included as extra data in the [Intent](https://developer.android.com/guide/components/intents-filters.html) that launches the add-on. When an Android add-on is run with a session state, it gains the privileges of a [bound](https://developers.google.com/apps-script/guides/bound) script&amp;mdash;that is, it can access information like the user&#39;s current cursor position (in Docs) or selected cell (in Sheets). To retrieve the state, call `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`. Optional.
+     * *Deprecated*. For use with Android add-ons only. An ID that represents the user&#39;s current session in the Android app for Google Docs or Sheets, included as extra data in the [Intent](https://developer.android.com/guide/components/intents-filters.html) that launches the add-on. When an Android add-on is run with a session state, it gains the privileges of a [bound](https://developers.google.com/apps-script/guides/bound) script—that is, it can access information like the user&#39;s current cursor position (in Docs) or selected cell (in Sheets). To retrieve the state, call `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`. Optional.
      */
     sessionState?: string | null;
   }
@@ -554,7 +554,7 @@ export namespace script_v1 {
     value?: string | null;
   }
   /**
-   * A representation of an execution of an Apps Script function started with run. The execution response does not arrive until the function finishes executing. The maximum execution runtime is listed in the [Apps Script quotas guide](/apps-script/guides/services/quotas#current_limitations). &lt;p&gt;After execution has started, it can have one of four outcomes:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; If the script function returns successfully, the   response field contains an   ExecutionResponse object   with the function&#39;s return value in the object&#39;s `result` field.&lt;/li&gt; &lt;li&gt; If the script function (or Apps Script itself) throws an exception, the   error field contains a   Status object. The `Status` object&#39;s `details`   field contains an array with a single   ExecutionError object that   provides information about the nature of the error.&lt;/li&gt; &lt;li&gt; If the execution has not yet completed,   the done field is `false` and   the neither the `response` nor `error` fields are present.&lt;/li&gt; &lt;li&gt; If the `run` call itself fails (for example, because of a   malformed request or an authorization error), the method returns an HTTP   response code in the 4XX range with a different format for the response   body. Client libraries automatically convert a 4XX response into an   exception class.&lt;/li&gt; &lt;/ul&gt;
+   * A representation of an execution of an Apps Script function started with run. The execution response does not arrive until the function finishes executing. The maximum execution runtime is listed in the [Apps Script quotas guide](/apps-script/guides/services/quotas#current_limitations). After execution has started, it can have one of four outcomes: - If the script function returns successfully, the response field contains an ExecutionResponse object with the function&#39;s return value in the object&#39;s `result` field. - If the script function (or Apps Script itself) throws an exception, the error field contains a Status object. The `Status` object&#39;s `details` field contains an array with a single ExecutionError object that provides information about the nature of the error. - If the execution has not yet completed, the done field is `false` and the neither the `response` nor `error` fields are present. - If the `run` call itself fails (for example, because of a malformed request or an authorization error), the method returns an HTTP response code in the 4XX range with a different format for the response body. Client libraries automatically convert a 4XX response into an exception class.
    */
   export interface Schema$Operation {
     /**
@@ -630,7 +630,7 @@ export namespace script_v1 {
    */
   export interface Schema$Status {
     /**
-     * The status code. For this API, this value either: &lt;ul&gt; &lt;li&gt; 10, indicating a `SCRIPT_TIMEOUT` error,&lt;/li&gt; &lt;li&gt; 3, indicating an `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1, indicating a `CANCELLED` execution.&lt;/li&gt; &lt;/ul&gt;
+     * The status code. For this API, this value either: - 10, indicating a `SCRIPT_TIMEOUT` error, - 3, indicating an `INVALID_ARGUMENT` error, or - 1, indicating a `CANCELLED` execution.
      */
     code?: number | null;
     /**
@@ -756,38 +756,27 @@ export namespace script_v1 {
      *
      *   // Do the magic
      *   const res = await script.processes.list({
-     *     // The maximum number of returned processes per page of results. Defaults to
-     *     // 50.
+     *     // The maximum number of returned processes per page of results. Defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This
-     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      *     pageToken: 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // projects with a specific deployment ID.
+     *     // Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
      *     'userProcessFilter.deploymentId': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those that completed
-     *     // on or before the given timestamp.
+     *     // Optional field used to limit returned processes to those that completed on or before the given timestamp.
      *     'userProcessFilter.endTime': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // a script function with the given function name.
+     *     // Optional field used to limit returned processes to those originating from a script function with the given function name.
      *     'userProcessFilter.functionName': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // projects with project names containing a specific string.
+     *     // Optional field used to limit returned processes to those originating from projects with project names containing a specific string.
      *     'userProcessFilter.projectName': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // projects with a specific script ID.
+     *     // Optional field used to limit returned processes to those originating from projects with a specific script ID.
      *     'userProcessFilter.scriptId': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those that were
-     *     // started on or after the given timestamp.
+     *     // Optional field used to limit returned processes to those that were started on or after the given timestamp.
      *     'userProcessFilter.startTime': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified process statuses.
+     *     // Optional field used to limit returned processes to those having one of the specified process statuses.
      *     'userProcessFilter.statuses': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified process types.
+     *     // Optional field used to limit returned processes to those having one of the specified process types.
      *     'userProcessFilter.types': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified user access levels.
+     *     // Optional field used to limit returned processes to those having one of the specified user access levels.
      *     'userProcessFilter.userAccessLevels': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -932,34 +921,25 @@ export namespace script_v1 {
      *
      *   // Do the magic
      *   const res = await script.processes.listScriptProcesses({
-     *     // The maximum number of returned processes per page of results. Defaults to
-     *     // 50.
+     *     // The maximum number of returned processes per page of results. Defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This
-     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      *     pageToken: 'placeholder-value',
      *     // The script ID of the project whose processes are listed.
      *     scriptId: 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // projects with a specific deployment ID.
+     *     // Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
      *     'scriptProcessFilter.deploymentId': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those that completed
-     *     // on or before the given timestamp.
+     *     // Optional field used to limit returned processes to those that completed on or before the given timestamp.
      *     'scriptProcessFilter.endTime': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those originating from
-     *     // a script function with the given function name.
+     *     // Optional field used to limit returned processes to those originating from a script function with the given function name.
      *     'scriptProcessFilter.functionName': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those that were
-     *     // started on or after the given timestamp.
+     *     // Optional field used to limit returned processes to those that were started on or after the given timestamp.
      *     'scriptProcessFilter.startTime': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified process statuses.
+     *     // Optional field used to limit returned processes to those having one of the specified process statuses.
      *     'scriptProcessFilter.statuses': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified process types.
+     *     // Optional field used to limit returned processes to those having one of the specified process types.
      *     'scriptProcessFilter.types': 'placeholder-value',
-     *     // Optional field used to limit returned processes to those having one of
-     *     // the specified user access levels.
+     *     // Optional field used to limit returned processes to those having one of the specified user access levels.
      *     'scriptProcessFilter.userAccessLevels': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1491,8 +1471,7 @@ export namespace script_v1 {
      *   const res = await script.projects.getContent({
      *     // The script project's Drive ID.
      *     scriptId: 'placeholder-value',
-     *     // The version number of the project to retrieve. If not provided, the
-     *     // project's HEAD version is returned.
+     *     // The version number of the project to retrieve. If not provided, the project's HEAD version is returned.
      *     versionNumber: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2385,8 +2364,7 @@ export namespace script_v1 {
      *   const res = await script.projects.deployments.list({
      *     // The maximum number of deployments on each returned page. Defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This
-     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      *     pageToken: 'placeholder-value',
      *     // The script project's Drive ID.
      *     scriptId: 'placeholder-value',
@@ -3035,8 +3013,7 @@ export namespace script_v1 {
      *   const res = await script.projects.versions.list({
      *     // The maximum number of versions on each returned page. Defaults to 50.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This
-     *     // should be set to the value of `nextPageToken` from a previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      *     pageToken: 'placeholder-value',
      *     // The script project's Drive ID.
      *     scriptId: 'placeholder-value',
@@ -3198,7 +3175,7 @@ export namespace script_v1 {
 
     /**
      * script.scripts.run
-     * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project.  This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab.  The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
+     * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project. This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab. The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3236,8 +3213,7 @@ export namespace script_v1 {
      *
      *   // Do the magic
      *   const res = await script.scripts.run({
-     *     // The script ID of the script to be executed. To find the script ID, open
-     *     // the project in the script editor and select **File > Project properties**.
+     *     // The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
      *     scriptId: 'placeholder-value',
      *
      *     // Request body metadata
